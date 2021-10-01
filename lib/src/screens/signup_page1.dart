@@ -1,9 +1,72 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:readyplates_restaurants/models/signup.dart';
 import 'package:readyplates_restaurants/utils/utils.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
 
-class SignupPage1 extends StatelessWidget {
+String rescity = '';
+
+class SignupPage1 extends StatefulWidget {
   //const SignupPage1({Key? key}) : super(key: key);
+
+  @override
+  _SignupPage1State createState() => _SignupPage1State();
+}
+
+class _SignupPage1State extends State<SignupPage1> {
+  final userController = TextEditingController();
+  final resNameController = TextEditingController();
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final ownMobileController = TextEditingController();
+  var resCityController = TextEditingController();
+  final pocController = TextEditingController();
+  final pocNumberController = TextEditingController();
+
+  Signup? users;
+
+  Future<Signup?> signup(
+    String user,
+    String res_name,
+    String own_name,
+    String own_mobile,
+    String res_city,
+    String poc,
+    String poc_number,
+  ) async {
+    http.Response response;
+    response = await http.post(
+      Uri.parse('http://192.168.0.197:8000/restaurants/s1'),
+      body: jsonEncode({
+        'user': user,
+        'res_name': res_name,
+        'own_name': own_name,
+        'own_mobile': own_mobile,
+        'res_city': res_city,
+        'poc': poc,
+        'poc_number': poc_number,
+      }),
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+    if (response.statusCode == 201) {
+      print('object');
+      return Signup(
+          own_mobile: '',
+          own_name: '',
+          poc_number: '',
+          poc: '',
+          res_city: '',
+          res_name: '',
+          user: '');
+    }
+    //  else {
+    //   throw Exception('Failed to create User.');
+    // }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +130,7 @@ class SignupPage1 extends StatelessWidget {
                     width: 341,
                     height: 45,
                     child: TextFormField(
+                      controller: resNameController,
                       textAlign: TextAlign.left,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -76,7 +140,7 @@ class SignupPage1 extends StatelessWidget {
                             Radius.circular(6.0),
                           ),
                         ),
-                        hintText: 'Male',
+                        hintText: 'Snack Shack Fast Food Restaurant',
                         contentPadding: EdgeInsets.only(
                           left: 14,
                           top: 14,
@@ -114,6 +178,7 @@ class SignupPage1 extends StatelessWidget {
                     width: 341,
                     height: 45,
                     child: TextFormField(
+                      controller: firstNameController,
                       textAlign: TextAlign.left,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -143,6 +208,7 @@ class SignupPage1 extends StatelessWidget {
                     width: 341,
                     height: 45,
                     child: TextFormField(
+                      controller: lastNameController,
                       textAlign: TextAlign.left,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -196,6 +262,7 @@ class SignupPage1 extends StatelessWidget {
                     width: 341,
                     height: 45,
                     child: TextFormField(
+                      controller: userController,
                       textAlign: TextAlign.left,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -246,6 +313,7 @@ class SignupPage1 extends StatelessWidget {
                     width: 341,
                     height: 45,
                     child: TextFormField(
+                      controller: ownMobileController,
                       keyboardType: TextInputType.number,
                       textAlign: TextAlign.left,
                       decoration: InputDecoration(
@@ -329,13 +397,16 @@ class SignupPage1 extends StatelessWidget {
                     width: 341,
                     height: 45,
                     child: DropdownButtonFormField(
-                      icon: IconButton(
-                          iconSize: 14.83,
-                          icon: FaIcon(
-                            FontAwesomeIcons.chevronDown,
-                            color: Color(0xff000000),
-                          ),
-                          onPressed: () {}),
+                      icon: Padding(
+                        padding: const EdgeInsets.only(
+                          right: 12.21,
+                        ),
+                        child: FaIcon(
+                          FontAwesomeIcons.chevronDown,
+                          color: Color(0xff000000),
+                          size: 14.87,
+                        ),
+                      ),
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderSide:
@@ -356,12 +427,16 @@ class SignupPage1 extends StatelessWidget {
                         ),
                       ),
                       items: [
-                        //DropdownMenuItem(child: Text("Select City"), value: ""),
+                        DropdownMenuItem(child: Text("Select City"), value: ""),
                         DropdownMenuItem(child: Text("Pune"), value: "Pune"),
-                        DropdownMenuItem(
-                            child: Text("Mumbai"), value: "Mumbai"),
                       ],
-                      onChanged: (newValue) {},
+                      onChanged: (newValue) {
+                        setState(() {
+                          rescity = newValue.toString();
+
+                          print(newValue);
+                        });
+                      },
                     ),
                   ),
                   SizedBox(
@@ -392,6 +467,7 @@ class SignupPage1 extends StatelessWidget {
                     width: 341,
                     height: 45,
                     child: TextFormField(
+                      controller: pocController,
                       textAlign: TextAlign.left,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -442,6 +518,7 @@ class SignupPage1 extends StatelessWidget {
                     width: 341,
                     height: 45,
                     child: TextFormField(
+                      controller: pocNumberController,
                       keyboardType: TextInputType.number,
                       textAlign: TextAlign.left,
                       decoration: InputDecoration(
@@ -469,7 +546,22 @@ class SignupPage1 extends StatelessWidget {
                     height: 18,
                   ),
                   InkWell(
-                    onTap: () {
+                    onTap: () async {
+                      String fs = firstNameController.text;
+                      String ls = firstNameController.text;
+                      String own = fs + ' ' + ls;
+                      final String user = '26';
+                      final String res_name = resNameController.text;
+                      final String own_name = own;
+                      final String own_mobile = ownMobileController.text;
+                      final String res_city = rescity;
+                      final String poc = pocController.text;
+                      final String poc_number = pocNumberController.text;
+                      final Signup? u = await signup(user, res_name, own_name,
+                          own_mobile, res_city, poc, poc_number);
+                      setState(() {
+                        users = u;
+                      });
                       Navigator.pushNamed(context, Routes.signup2Route);
                     },
                     child: Container(

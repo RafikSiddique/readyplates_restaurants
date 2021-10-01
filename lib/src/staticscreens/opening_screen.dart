@@ -6,6 +6,7 @@ class OpeningScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         // appBar: AppBar(),
@@ -18,7 +19,6 @@ class OpeningScreen extends StatelessWidget {
           ),
           child: SingleChildScrollView(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
                   padding: EdgeInsets.only(
@@ -55,7 +55,7 @@ class OpeningScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 595,
+                  height: size.height * 0.6,
                 ),
                 Padding(
                   padding: EdgeInsets.only(

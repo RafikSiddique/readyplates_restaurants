@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(),
       //home:,
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.openingscreenRoute,
+      initialRoute: Routes.signup1Route,
       routes: {
         Routes.openingscreenRoute: (context) => OpeningScreen(),
         Routes.signup1Route: (context) => SignupPage1(),
