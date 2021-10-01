@@ -37,8 +37,24 @@ class SignupPage2 extends StatelessWidget {
             SizedBox(height: 8),
             Padding(
               padding: const EdgeInsets.only(left: 17),
-              child: Text("Restaurant Address *",
-                  style: TextStyle(fontSize: 13, color: Color(0xff2F2E41))),
+              child: RichText(
+                text: TextSpan(
+                    text: 'Restaurant Address',
+                    style: TextStyle(
+                      fontSize: 13,
+                      letterSpacing: -0.229412,
+                      color: Color(0xff2F2E41),
+                    ),
+                    children: [
+                      TextSpan(
+                        text: ' *',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Color(0xffEB4132),
+                        ),
+                      ),
+                    ]),
+              ),
             ),
             SizedBox(
               height: 5,
@@ -49,7 +65,11 @@ class SignupPage2 extends StatelessWidget {
               child: TextFormField(
                 // controller: firstname,
                 decoration: InputDecoration(
-                  labelText: "Address Line 1",
+                  hintText: "Address Line 1",
+                  hintStyle: TextStyle(
+                      fontSize: 15,
+                      letterSpacing: -0.264706,
+                      color: Color(0xff2F2E41).withOpacity(0.7)),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -60,7 +80,11 @@ class SignupPage2 extends StatelessWidget {
               child: TextFormField(
                 //controller: lastname,
                 decoration: InputDecoration(
-                  labelText: "Address Line 2",
+                  hintText: "Address Line 2",
+                  hintStyle: TextStyle(
+                      fontSize: 15,
+                      letterSpacing: -0.264706,
+                      color: Color(0xff2F2E41).withOpacity(0.7)),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -71,7 +95,11 @@ class SignupPage2 extends StatelessWidget {
               child: TextFormField(
                 //controller: lastname,
                 decoration: InputDecoration(
-                  labelText: "Nearby Landmark",
+                  hintText: "Nearby Landmark",
+                  hintStyle: TextStyle(
+                      fontSize: 15,
+                      letterSpacing: -0.264706,
+                      color: Color(0xff2F2E41).withOpacity(0.7)),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -87,11 +115,24 @@ class SignupPage2 extends StatelessWidget {
             SizedBox(height: 18),
             Padding(
               padding: const EdgeInsets.only(left: 17),
-              child: Text("Postal Code *",
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: Color(0xff2F2E41),
-                  )),
+              child: RichText(
+                text: TextSpan(
+                    text: 'Postal Code',
+                    style: TextStyle(
+                      fontSize: 13,
+                      letterSpacing: -0.229412,
+                      color: Color(0xff2F2E41),
+                    ),
+                    children: [
+                      TextSpan(
+                        text: ' *',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Color(0xffEB4132),
+                        ),
+                      ),
+                    ]),
+              ),
             ),
             SizedBox(
               height: 5,
@@ -105,7 +146,11 @@ class SignupPage2 extends StatelessWidget {
               child: TextFormField(
                 // controller: email,
                 decoration: InputDecoration(
-                  labelText: "xxxxxxx",
+                  hintText: "xxxxxxx",
+                  hintStyle: TextStyle(
+                      fontSize: 15,
+                      letterSpacing: -0.264706,
+                      color: Color(0xff2F2E41).withOpacity(0.7)),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -115,11 +160,24 @@ class SignupPage2 extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 17),
-              child: Text("Locate Restaurant on Map *",
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: Color(0xff2F2E41),
-                  )),
+              child: RichText(
+                text: TextSpan(
+                    text: 'Locate Restaurant on Map ',
+                    style: TextStyle(
+                      fontSize: 13,
+                      letterSpacing: -0.229412,
+                      color: Color(0xff2F2E41),
+                    ),
+                    children: [
+                      TextSpan(
+                        text: ' *',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Color(0xffEB4132),
+                        ),
+                      ),
+                    ]),
+              ),
             ),
             SizedBox(
               height: 5,
@@ -133,7 +191,7 @@ class SignupPage2 extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("assets/images/map.jpeg"),
+                  image: AssetImage("assets/images/map.png"),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -170,7 +228,6 @@ class SignupPage2 extends StatelessWidget {
                 // controller: email,
                 decoration: InputDecoration(
                   fillColor: Color(0xFFE6E6E6),
-                  labelText: "",
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -199,7 +256,6 @@ class SignupPage2 extends StatelessWidget {
                 // controller: email,
                 decoration: InputDecoration(
                   fillColor: Color(0xFFE6E6E6),
-                  labelText: "",
                   border: OutlineInputBorder(),
                 ),
               ),

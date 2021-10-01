@@ -36,11 +36,24 @@ class SignupPage3 extends StatelessWidget {
             SizedBox(height: 8),
             Padding(
               padding: const EdgeInsets.only(left: 17),
-              child: Text("GSTIN Present *",
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: Color(0xff2F2E41),
-                  )),
+              child: RichText(
+                text: TextSpan(
+                    text: 'GSTIN Present *',
+                    style: TextStyle(
+                      fontSize: 13,
+                      letterSpacing: -0.229412,
+                      color: Color(0xff2F2E41),
+                    ),
+                    children: [
+                      TextSpan(
+                        text: ' *',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Color(0xffEB4132),
+                        ),
+                      ),
+                    ]),
+              ),
             ),
             SizedBox(
               height: 5,
@@ -54,7 +67,11 @@ class SignupPage3 extends StatelessWidget {
               child: TextFormField(
                 // controller: email,
                 decoration: InputDecoration(
-                  labelText: "Yes/No/Applied/Acknowledgement Received",
+                  hintText: "Yes/No/Applied/Acknowledgement Received",
+                  hintStyle: TextStyle(
+                      fontSize: 15,
+                      letterSpacing: -0.264706,
+                      color: Color(0xff2F2E41).withOpacity(0.7)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(6.0),
                   ),
@@ -82,7 +99,11 @@ class SignupPage3 extends StatelessWidget {
               child: TextFormField(
                 // controller: email,
                 decoration: InputDecoration(
-                  labelText: "Eg. 22AABCU9603R1ZX",
+                  hintText: "Eg.22AABCU9603R1ZX",
+                  hintStyle: TextStyle(
+                      fontSize: 15,
+                      letterSpacing: -0.264706,
+                      color: Color(0xff2F2E41).withOpacity(0.7)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(6.0),
                   ),
@@ -110,7 +131,11 @@ class SignupPage3 extends StatelessWidget {
               child: TextFormField(
                 // controller: email,
                 decoration: InputDecoration(
-                  labelText: "Yes/No/Applied/Acknowledgement Received",
+                  hintText: "Yes/No/Applied/Acknowledgement Received",
+                  hintStyle: TextStyle(
+                      fontSize: 15,
+                      letterSpacing: -0.264706,
+                      color: Color(0xff2F2E41).withOpacity(0.7)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(6.0),
                   ),
@@ -138,7 +163,13 @@ class SignupPage3 extends StatelessWidget {
               child: TextFormField(
                 // controller: email,
                 decoration: InputDecoration(
-                  labelText: "Yes/No/Applied/Acknowledgement Received",
+                  hintText: "mm/dd/yyyy",
+                  hintStyle: TextStyle(
+                      fontSize: 15,
+                      letterSpacing: -0.264706,
+                      color: Color(0xff2F2E41).withOpacity(0.7)),
+
+                  //labelText: "Yes/No/Applied/Acknowledgement Received",
                   suffixIcon: IconButton(
                     icon: Icon(Icons.calendar_today_outlined),
                     color: Color(0xff6E6D7A),
@@ -153,12 +184,25 @@ class SignupPage3 extends StatelessWidget {
             SizedBox(height: 26),
             Padding(
               padding: const EdgeInsets.only(left: 17),
-              child: Text(
-                  "Upload KYC (Aadhar Card/ Passport/Driving License/ Voter ID*",
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: Color(0xff2F2E41),
-                  )),
+              child: RichText(
+                text: TextSpan(
+                    text:
+                        'Upload KYC (Aadhar Card/ Passport/Driving License/ Voter ID',
+                    style: TextStyle(
+                      fontSize: 13,
+                      letterSpacing: -0.229412,
+                      color: Color(0xff2F2E41),
+                    ),
+                    children: [
+                      TextSpan(
+                        text: ' *',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Color(0xffEB4132),
+                        ),
+                      ),
+                    ]),
+              ),
             ),
             SizedBox(
               height: 5,
@@ -172,7 +216,11 @@ class SignupPage3 extends StatelessWidget {
               child: TextFormField(
                 // controller: email,
                 decoration: InputDecoration(
-                  labelText: "Please upload [ “png”, “jpg”, “jpeg”] images",
+                  hintText: "Please upload [ “png”, “jpg”, “jpeg”] images",
+                  hintStyle: TextStyle(
+                      fontSize: 15,
+                      letterSpacing: -0.264706,
+                      color: Color(0xff2F2E41).withOpacity(0.7)),
                   suffixIcon: Container(
                     height: 45,
                     width: 45,
@@ -210,8 +258,12 @@ class SignupPage3 extends StatelessWidget {
               child: TextFormField(
                 // controller: email,
                 decoration: InputDecoration(
-                  labelText:
+                  hintText:
                       "Please upload [ “png”, “jpg”, “jpeg”, “pdf”] files",
+                  hintStyle: TextStyle(
+                      fontSize: 15,
+                      letterSpacing: -0.264706,
+                      color: Color(0xff2F2E41).withOpacity(0.7)),
                   suffixIcon: Container(
                     height: 45,
                     width: 45,
@@ -249,8 +301,12 @@ class SignupPage3 extends StatelessWidget {
               child: TextFormField(
                 // controller: email,
                 decoration: InputDecoration(
-                  labelText:
-                      "Please upload [ “png”, “jpg”, “jpeg”, “pdf”] files  ",
+                  hintText:
+                      "Please upload [ “png”, “jpg”, “jpeg”, “pdf”] files",
+                  hintStyle: TextStyle(
+                      fontSize: 15,
+                      letterSpacing: -0.264706,
+                      color: Color(0xff2F2E41).withOpacity(0.7)),
                   suffixIcon: Container(
                     height: 45,
                     width: 45,
