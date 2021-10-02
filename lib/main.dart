@@ -15,9 +15,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(),
-      //home:,
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.signup1Route,
+      initialRoute: Routes.openingscreenRoute,
       routes: {
         Routes.openingscreenRoute: (context) => OpeningScreen(),
         Routes.signup1Route: (context) => SignupPage1(),
