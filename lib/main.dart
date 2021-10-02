@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:readyplates_restaurants/src/screens/signup_page.dart';
 import 'package:readyplates_restaurants/src/screens/signup_page1.dart';
 import 'package:readyplates_restaurants/src/screens/signup_page2.dart';
 import 'package:readyplates_restaurants/src/screens/signup_page3.dart';
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: Routes.signup3Route,
       routes: {
+        "/signup": (context) => SignupPage(),
         Routes.openingscreenRoute: (context) => OpeningScreen(),
         Routes.signup1Route: (context) => SignupPage1(),
         Routes.signup2Route: (context) => SignupPage2(),

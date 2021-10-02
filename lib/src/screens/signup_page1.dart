@@ -73,6 +73,7 @@ class _SignupPage1State extends State<SignupPage1> {
   Widget build(BuildContext context) {
     // Size size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         toolbarHeight: 44,
         backgroundColor: Colors.white,
@@ -180,8 +181,8 @@ class _SignupPage1State extends State<SignupPage1> {
                   textAlign: TextAlign.left,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(width: 1, color: Color(0xffE0E0E0)),
+                      borderSide: BorderSide(
+                          width: 1, color: Color(0xffE0E0E0).withOpacity(0.5)),
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(6),
                         topRight: Radius.circular(6),
@@ -201,6 +202,9 @@ class _SignupPage1State extends State<SignupPage1> {
                     ),
                   ),
                 ),
+              ),
+              SizedBox(
+                height: 5,
               ),
               Container(
                 // width: 341,

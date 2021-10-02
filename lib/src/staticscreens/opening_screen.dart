@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:readyplates_restaurants/utils/utils.dart';
 
@@ -12,6 +10,7 @@ class OpeningScreen extends StatelessWidget {
     return Scaffold(
       // appBar: AppBar(),
       body: Container(
+        height: size.height,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/background.png'),
@@ -40,7 +39,7 @@ class OpeningScreen extends StatelessWidget {
                     ),
                     SizedBox(width: 16),
                     Container(
-                      // width: 234,
+                      width: 234,
                       height: 39,
                       child: RichText(
                         text: TextSpan(
@@ -48,6 +47,7 @@ class OpeningScreen extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 30,
                               letterSpacing: -0.0769231,
+                              fontFamily: 'Montserrat-Bold',
                               fontWeight: FontWeight.bold,
                               color: Color.fromRGBO(255, 255, 255, 0.9),
                             ),
@@ -56,6 +56,7 @@ class OpeningScreen extends StatelessWidget {
                                 text: ' Plates'.toUpperCase(),
                                 style: TextStyle(
                                   fontSize: 30,
+                                  fontFamily: 'Montserrat',
                                   letterSpacing: -0.0769231,
                                   fontWeight: FontWeight.normal,
                                   color: Color.fromRGBO(255, 255, 255, 0.9),
@@ -81,7 +82,7 @@ class OpeningScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: size.height * 0.6,
+                height: size.height * 0.74,
               ),
               Padding(
                 padding: EdgeInsets.only(
@@ -91,19 +92,19 @@ class OpeningScreen extends StatelessWidget {
                 child: InkWell(
                   onTap: () {},
                   child: Container(
-                    // width: 343,
+                    width: 343,
                     height: 54,
                     decoration: BoxDecoration(
                       color: Color.fromRGBO(255, 255, 255, 0.38),
                       borderRadius: BorderRadius.all(Radius.circular(6)),
                     ),
-
                     child: Center(
                       child: Text(
                         'LOGIN',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 17,
+                          fontFamily: 'Inter-Bold',
                           fontStyle: FontStyle.normal,
                           fontWeight: FontWeight.bold,
                           letterSpacing: -0.3,
@@ -127,7 +128,7 @@ class OpeningScreen extends StatelessWidget {
                     Navigator.pushNamed(context, Routes.signup1Route);
                   },
                   child: Container(
-                    // width: 343,
+                    width: 343,
                     height: 54,
                     decoration: BoxDecoration(
                       color: Color.fromRGBO(34, 40, 49, 0.2),
@@ -143,6 +144,7 @@ class OpeningScreen extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 17,
+                          fontFamily: 'Inter-Bold',
                           fontStyle: FontStyle.normal,
                           fontWeight: FontWeight.bold,
                           letterSpacing: -0.3,
