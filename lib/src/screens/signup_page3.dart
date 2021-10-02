@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:readyplates_restaurants/utils/utils.dart';
 
 class SignupPage3 extends StatelessWidget {
@@ -7,32 +8,32 @@ class SignupPage3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 44,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+            iconSize: 14.83,
+            icon: FaIcon(
+              FontAwesomeIcons.chevronLeft,
+              color: Color(0xff000000),
+            ),
+            onPressed: () {}),
+        centerTitle: true,
+        title: Text(
+          'Partner Onboarding',
+          style: TextStyle(
+            fontSize: 17,
+            letterSpacing: -0.226667,
+            color: Color(0xff393E46),
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(height: 20),
-                IconButton(
-                  icon: const Icon(
-                    Icons.arrow_left,
-                  ),
-                  color: Color(0xff000000),
-                  onPressed: () {
-                    Navigator.pushNamed(context, Routes.openingscreenRoute);
-                  },
-                ),
-                SizedBox(width: 75),
-                Text("Partner Onboarding",
-                    style: TextStyle(
-                      fontSize: 17,
-                      color: Color(0xff393E46),
-                    )),
-              ],
-            ),
             SizedBox(height: 8),
             Padding(
               padding: const EdgeInsets.only(left: 17),
@@ -59,6 +60,7 @@ class SignupPage3 extends StatelessWidget {
               height: 5,
             ),
             Container(
+              height: 45,
               margin: EdgeInsets.only(
                 left: 17,
                 right: 17,
@@ -68,10 +70,21 @@ class SignupPage3 extends StatelessWidget {
                 // controller: email,
                 decoration: InputDecoration(
                   hintText: "Yes/No/Applied/Acknowledgement Received",
+                  contentPadding: EdgeInsets.only(
+                    left: 14,
+                    top: 14,
+                  ),
                   hintStyle: TextStyle(
-                      fontSize: 15,
-                      letterSpacing: -0.264706,
-                      color: Color(0xff2F2E41).withOpacity(0.7)),
+                    fontSize: 15,
+                    letterSpacing: -0.264706,
+                    color: Color(0xff2F2E41).withOpacity(0.7),
+                  ),
+
+                  // hintText: "Yes/No/Applied/Acknowledgement Received",
+                  // hintStyle: TextStyle(
+                  //     fontSize: 15,
+                  //     letterSpacing: -0.264706,
+                  //     color: Color(0xff2F2E41).withOpacity(0.7)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(6.0),
                   ),
@@ -91,6 +104,7 @@ class SignupPage3 extends StatelessWidget {
               height: 5,
             ),
             Container(
+              height: 45,
               margin: EdgeInsets.only(
                 left: 17,
                 right: 17,
@@ -100,10 +114,15 @@ class SignupPage3 extends StatelessWidget {
                 // controller: email,
                 decoration: InputDecoration(
                   hintText: "Eg.22AABCU9603R1ZX",
+                  contentPadding: EdgeInsets.only(
+                    left: 14,
+                    top: 14,
+                  ),
                   hintStyle: TextStyle(
-                      fontSize: 15,
-                      letterSpacing: -0.264706,
-                      color: Color(0xff2F2E41).withOpacity(0.7)),
+                    fontSize: 13,
+                    letterSpacing: -0.264706,
+                    color: Color(0xff2F2E41).withOpacity(0.7),
+                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(6.0),
                   ),
@@ -123,6 +142,7 @@ class SignupPage3 extends StatelessWidget {
               height: 5,
             ),
             Container(
+              height: 45,
               margin: EdgeInsets.only(
                 left: 17,
                 right: 17,
@@ -133,7 +153,7 @@ class SignupPage3 extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: "Yes/No/Applied/Acknowledgement Received",
                   hintStyle: TextStyle(
-                      fontSize: 15,
+                      fontSize: 13,
                       letterSpacing: -0.264706,
                       color: Color(0xff2F2E41).withOpacity(0.7)),
                   border: OutlineInputBorder(
@@ -155,6 +175,7 @@ class SignupPage3 extends StatelessWidget {
               height: 5,
             ),
             Container(
+              height: 45,
               margin: EdgeInsets.only(
                 left: 17,
                 right: 17,
@@ -165,7 +186,7 @@ class SignupPage3 extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: "mm/dd/yyyy",
                   hintStyle: TextStyle(
-                      fontSize: 15,
+                      fontSize: 13,
                       letterSpacing: -0.264706,
                       color: Color(0xff2F2E41).withOpacity(0.7)),
 
@@ -197,7 +218,7 @@ class SignupPage3 extends StatelessWidget {
                       TextSpan(
                         text: ' *',
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 13,
                           color: Color(0xffEB4132),
                         ),
                       ),
@@ -208,6 +229,7 @@ class SignupPage3 extends StatelessWidget {
               height: 5,
             ),
             Container(
+              height: 45,
               margin: EdgeInsets.only(
                 left: 17,
                 right: 17,
@@ -218,7 +240,7 @@ class SignupPage3 extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: "Please upload [ “png”, “jpg”, “jpeg”] images",
                   hintStyle: TextStyle(
-                      fontSize: 15,
+                      fontSize: 13,
                       letterSpacing: -0.264706,
                       color: Color(0xff2F2E41).withOpacity(0.7)),
                   suffixIcon: Container(
@@ -250,6 +272,7 @@ class SignupPage3 extends StatelessWidget {
               height: 5,
             ),
             Container(
+              height: 45,
               margin: EdgeInsets.only(
                 left: 17,
                 right: 17,
@@ -261,7 +284,7 @@ class SignupPage3 extends StatelessWidget {
                   hintText:
                       "Please upload [ “png”, “jpg”, “jpeg”, “pdf”] files",
                   hintStyle: TextStyle(
-                      fontSize: 15,
+                      fontSize: 13,
                       letterSpacing: -0.264706,
                       color: Color(0xff2F2E41).withOpacity(0.7)),
                   suffixIcon: Container(
@@ -293,6 +316,7 @@ class SignupPage3 extends StatelessWidget {
               height: 5,
             ),
             Container(
+              height: 45,
               margin: EdgeInsets.only(
                 left: 17,
                 right: 17,
@@ -304,7 +328,7 @@ class SignupPage3 extends StatelessWidget {
                   hintText:
                       "Please upload [ “png”, “jpg”, “jpeg”, “pdf”] files",
                   hintStyle: TextStyle(
-                      fontSize: 15,
+                      fontSize: 13,
                       letterSpacing: -0.264706,
                       color: Color(0xff2F2E41).withOpacity(0.7)),
                   suffixIcon: Container(
@@ -327,7 +351,7 @@ class SignupPage3 extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 17, right: 15),
               child: SizedBox(
-                height: 54,
+                height: 45,
                 width: MediaQuery.of(context).size.width,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -349,12 +373,6 @@ class SignupPage3 extends StatelessWidget {
             SizedBox(
               height: 17,
             ),
-            Divider(
-              indent: 120,
-              endIndent: 120,
-              thickness: 5,
-              color: Color(0xff000000),
-            )
           ],
         ),
       ),

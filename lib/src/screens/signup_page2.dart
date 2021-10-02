@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:readyplates_restaurants/utils/utils.dart';
 
 class SignupPage2 extends StatelessWidget {
@@ -7,33 +8,33 @@ class SignupPage2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 44,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+            iconSize: 14.83,
+            icon: FaIcon(
+              FontAwesomeIcons.chevronLeft,
+              color: Color(0xff000000),
+            ),
+            onPressed: () {}),
+        centerTitle: true,
+        title: Text(
+          'Partner Onboarding',
+          style: TextStyle(
+            fontSize: 17,
+            letterSpacing: -0.226667,
+            color: Color(0xff393E46),
+          ),
+        ),
+      ),
       //backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(height: 20),
-                IconButton(
-                  icon: const Icon(
-                    Icons.arrow_left,
-                  ),
-                  color: Color(0xff000000),
-                  onPressed: () {
-                    // Navigator.pushNamed(context, MyRoutes.OnbordingPage);
-                  },
-                ),
-                SizedBox(width: 75),
-                Text("Partner Onboarding",
-                    style: TextStyle(
-                      fontSize: 17,
-                      color: Color(0xff393E46),
-                    )),
-              ],
-            ),
             SizedBox(height: 8),
             Padding(
               padding: const EdgeInsets.only(left: 17),
@@ -60,6 +61,7 @@ class SignupPage2 extends StatelessWidget {
               height: 5,
             ),
             Container(
+              height: 45,
               margin: EdgeInsets.only(left: 17, right: 15),
               width: MediaQuery.of(context).size.width,
               child: TextFormField(
@@ -70,11 +72,20 @@ class SignupPage2 extends StatelessWidget {
                       fontSize: 15,
                       letterSpacing: -0.264706,
                       color: Color(0xff2F2E41).withOpacity(0.7)),
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(width: 0, color: Color(0xffE0E0E0)),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(6),
+                      topRight: Radius.circular(6),
+                      bottomLeft: Radius.circular(0),
+                      bottomRight: Radius.circular(0),
+                    ),
+                  ),
                 ),
               ),
             ),
             Container(
+              height: 45,
               margin: EdgeInsets.only(left: 17, right: 15),
               width: MediaQuery.of(context).size.width,
               child: TextFormField(
@@ -85,11 +96,21 @@ class SignupPage2 extends StatelessWidget {
                       fontSize: 15,
                       letterSpacing: -0.264706,
                       color: Color(0xff2F2E41).withOpacity(0.7)),
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(width: 0.5, color: Color(0xffE0E0E0)),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(0),
+                      topRight: Radius.circular(0),
+                      bottomLeft: Radius.circular(0),
+                      bottomRight: Radius.circular(0),
+                    ),
+                  ),
                 ),
               ),
             ),
             Container(
+              height: 45,
               margin: EdgeInsets.only(left: 17, right: 15),
               width: MediaQuery.of(context).size.width,
               child: TextFormField(
@@ -100,7 +121,15 @@ class SignupPage2 extends StatelessWidget {
                       fontSize: 15,
                       letterSpacing: -0.264706,
                       color: Color(0xff2F2E41).withOpacity(0.7)),
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(width: 0, color: Color(0xffE0E0E0)),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(0),
+                      topRight: Radius.circular(0),
+                      bottomLeft: Radius.circular(6),
+                      bottomRight: Radius.circular(6),
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -138,6 +167,7 @@ class SignupPage2 extends StatelessWidget {
               height: 5,
             ),
             Container(
+              height: 45,
               margin: EdgeInsets.only(
                 left: 17,
                 right: 17,
@@ -219,6 +249,7 @@ class SignupPage2 extends StatelessWidget {
               height: 5,
             ),
             Container(
+              height: 45,
               margin: EdgeInsets.only(
                 left: 17,
                 right: 17,
@@ -247,6 +278,7 @@ class SignupPage2 extends StatelessWidget {
               height: 5,
             ),
             Container(
+              height: 45,
               margin: EdgeInsets.only(
                 left: 17,
                 right: 17,
@@ -286,12 +318,6 @@ class SignupPage2 extends StatelessWidget {
             SizedBox(
               height: 17,
             ),
-            Divider(
-              indent: 120,
-              endIndent: 120,
-              thickness: 5,
-              color: Color(0xff000000),
-            )
           ],
         ),
       ),
