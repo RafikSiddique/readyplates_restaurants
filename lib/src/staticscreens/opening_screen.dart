@@ -19,13 +19,11 @@ class OpeningScreen extends StatelessWidget {
         ),
         child: SingleChildScrollView(
           child: Column(
+             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: 34),
               Padding(
-                padding: EdgeInsets.only(
-                  top: 34,
-                  left: 42,
-                  right: 43,
-                ),
+                padding: const EdgeInsets.only(left: 42,right: 43),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -65,19 +63,6 @@ class OpeningScreen extends StatelessWidget {
                             ]),
                       ),
                     ),
-                    // Container(
-                    //   // width: 234,
-                    //   height: 39,
-                    //   child: Text(
-                    //     "READY PLATES",
-                    //     style: TextStyle(
-                    //       fontSize: 30,
-                    //       fontWeight: FontWeight.bold,
-                    //       letterSpacing: -0.0769231,
-                    //       color: Color.fromRGBO(255, 255, 255, 0.9),
-                    //     ),
-                    //   ),
-                    // ),
                   ],
                 ),
               ),
@@ -89,13 +74,12 @@ class OpeningScreen extends StatelessWidget {
                   left: 16,
                   right: 16,
                 ),
-                child: 
-                InkWell(
+                child: InkWell(
                   onTap: () {
-                      Navigator.pushNamed(context, Routes.loginRoute);
+                    Navigator.pushNamed(context, Routes.loginRoute);
                   },
                   child: Container(
-                    width: 343,
+                    width: size.width,
                     height: 54,
                     decoration: BoxDecoration(
                       color: Color.fromRGBO(255, 255, 255, 0.38),
@@ -131,7 +115,7 @@ class OpeningScreen extends StatelessWidget {
                     Navigator.pushNamed(context, Routes.signupRoute);
                   },
                   child: Container(
-                    width: 343,
+                    width:  size.width,
                     height: 54,
                     decoration: BoxDecoration(
                       color: Color.fromRGBO(34, 40, 49, 0.2),

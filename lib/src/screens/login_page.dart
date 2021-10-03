@@ -19,6 +19,7 @@ class LoginPage extends StatelessWidget {
         ),
         child: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
                 padding: EdgeInsets.only(
@@ -72,7 +73,8 @@ class LoginPage extends StatelessWidget {
                 height: size.height * 0.38,
               ),
               Container(
-                width: 375,
+                  width: size.width,
+                height: 583,
                 decoration: BoxDecoration(
                   color: Color(0xffFFFFFF),
                   borderRadius: BorderRadius.only(
@@ -102,7 +104,7 @@ class LoginPage extends StatelessWidget {
                                   Navigator.pushNamed(context,Routes.signupRoute);
                                 }),
                             Spacer(
-                              flex: 2,
+                             
                             ),
                             Text(
                               'Login',
@@ -117,7 +119,7 @@ class LoginPage extends StatelessWidget {
                               ),
                             ),
                             Spacer(
-                              flex: 3,
+                             
                             ),
                           ],
                         ),
@@ -140,7 +142,7 @@ class LoginPage extends StatelessWidget {
                         height: 10,
                       ),
                       Container(
-                        width: 341,
+                        width:size.width,
                         height: 45,
                         child: TextFormField(
                           textAlign: TextAlign.left,
@@ -185,7 +187,7 @@ class LoginPage extends StatelessWidget {
                         height: 10,
                       ),
                       Container(
-                        width: 341,
+                        width:size.width,
                         height: 45,
                         child: TextFormField(
                           textAlign: TextAlign.left,
@@ -240,7 +242,7 @@ class LoginPage extends StatelessWidget {
                           Navigator.pushNamed(context, Routes.signup1Route);
                         },
                         child: Container(
-                          width: 343,
+                          width:size.width,
                           height: 54,
                           decoration: BoxDecoration(
                             color: Color(0xff7A7E83),
@@ -269,7 +271,7 @@ class LoginPage extends StatelessWidget {
                           Navigator.pushNamed(context, Routes.signup1Route);
                         },
                         child: Container(
-                          width: 343,
+                           width:size.width,
                           height: 54,
                           decoration: BoxDecoration(
                             color: Color(0xffF4F4F4),

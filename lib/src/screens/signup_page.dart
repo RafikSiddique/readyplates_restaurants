@@ -1,9 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:readyplates_restaurants/utils/utils.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
 
-class SignupPage extends StatelessWidget {
+class SignupPage extends StatefulWidget {
   const SignupPage({Key? key}) : super(key: key);
+
+  @override
+  State<SignupPage> createState() => _SignupPageState();
+}
+
+class _SignupPageState extends State<SignupPage> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final password2Controller = TextEditingController();
+  // https://readyplates.herokuapp.com/restaurants/s1
+// http://192.168.0.197:8000/restaurants/s1
+  Future signup(
+    String email,
+    String password,
+    String password2,
+  ) async {
+    http.Response response;
+    print('object');
+    response = await http.post(
+      Uri.parse('https://readyplates.herokuapp.com/restaurants/s1'),
+      body: jsonEncode({
+        'email': email,
+        'password': password,
+        'password2': password2,
+      }),
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+    print('object1');
+    setState(() {
+      if (response.statusCode == 200) {
+        return jsonDecode(response.body);
+      } else {
+        throw Exception('Failed to create User.');
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,59 +61,55 @@ class SignupPage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Padding(
-                padding: EdgeInsets.only(
-                  top: 34,
-                  left: 42,
-                  right: 43,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 40,
-                      height: 40,
-                      child: Image.asset(
-                        "assets/images/spoon.png",
-                        fit: BoxFit.cover,
-                      ),
+              SizedBox(
+                height: 34,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 40,
+                    height: 40,
+                    child: Image.asset(
+                      "assets/images/spoon.png",
+                      fit: BoxFit.cover,
                     ),
-                    SizedBox(width: 16),
-                    Container(
-                      width: size.width * 0.6,
-                      height: 39,
-                      child: RichText(
-                        text: TextSpan(
-                            text: 'READY',
-                            style: TextStyle(
-                              fontSize: 30,
-                              letterSpacing: -0.0769231,
-                              fontFamily: 'Montserrat-Bold',
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromRGBO(255, 255, 255, 0.9),
-                            ),
-                            children: [
-                              TextSpan(
-                                text: ' Plates'.toUpperCase(),
-                                style: TextStyle(
-                                  fontSize: 30,
-                                  fontFamily: 'Montserrat',
-                                  letterSpacing: -0.0769231,
-                                  fontWeight: FontWeight.normal,
-                                  color: Color.fromRGBO(255, 255, 255, 0.9),
-                                ),
+                  ),
+                  SizedBox(width: 16),
+                  Container(
+                    width: size.width * 0.6,
+                    height: 39,
+                    child: RichText(
+                      text: TextSpan(
+                          text: 'READY',
+                          style: TextStyle(
+                            fontSize: 30,
+                            letterSpacing: -0.0769231,
+                            fontFamily: 'Montserrat-Bold',
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromRGBO(255, 255, 255, 0.9),
+                          ),
+                          children: [
+                            TextSpan(
+                              text: ' Plates'.toUpperCase(),
+                              style: TextStyle(
+                                fontSize: 30,
+                                fontFamily: 'Montserrat',
+                                letterSpacing: -0.0769231,
+                                fontWeight: FontWeight.normal,
+                                color: Color.fromRGBO(255, 255, 255, 0.9),
                               ),
-                            ]),
-                      ),
+                            ),
+                          ]),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               SizedBox(
                 height: size.height * 0.4,
               ),
               Container(
-                width: 375,
+                width: size.width,
                 height: 583,
                 decoration: BoxDecoration(
                   color: Color(0xffFFFFFF),
@@ -91,6 +128,7 @@ class SignupPage extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 37),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             IconButton(
                                 iconSize: 14.83,
@@ -99,11 +137,10 @@ class SignupPage extends StatelessWidget {
                                   color: Color(0xff000000),
                                 ),
                                 onPressed: () {
-                                  Navigator.pushNamed(context,Routes.openingscreenRoute);
+                                  Navigator.pushNamed(
+                                      context, Routes.openingscreenRoute);
                                 }),
-                            Spacer(
-                              flex: 2,
-                            ),
+                            Spacer(),
                             Text(
                               'Sign-up',
                               textAlign: TextAlign.center,
@@ -116,9 +153,7 @@ class SignupPage extends StatelessWidget {
                                 color: Color(0xff393E46),
                               ),
                             ),
-                            Spacer(
-                              flex: 3,
-                            ),
+                            Spacer(),
                           ],
                         ),
                       ),
@@ -139,9 +174,10 @@ class SignupPage extends StatelessWidget {
                         height: 10,
                       ),
                       Container(
-                        width: 341,
+                        width: size.width,
                         height: 45,
                         child: TextFormField(
+                          controller: emailController,
                           textAlign: TextAlign.left,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
@@ -185,9 +221,10 @@ class SignupPage extends StatelessWidget {
                         height: 10,
                       ),
                       Container(
-                        width: 341,
+                        width: size.width,
                         height: 45,
                         child: TextFormField(
+                          controller: passwordController,
                           textAlign: TextAlign.left,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
@@ -244,9 +281,10 @@ class SignupPage extends StatelessWidget {
                         height: 10,
                       ),
                       Container(
-                        width: 341,
+                        width: size.width,
                         height: 45,
                         child: TextFormField(
+                          controller: password2Controller,
                           textAlign: TextAlign.left,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
@@ -289,11 +327,17 @@ class SignupPage extends StatelessWidget {
                         height: 30,
                       ),
                       InkWell(
-                        onTap: () {
+                        onTap: () async {
+                          final String email = emailController.text;
+                          final String password = passwordController.text;
+                          final String password2 = password2Controller.text;
+
+                          await signup(email, password, password2);
+
                           Navigator.pushNamed(context, Routes.loginRoute);
                         },
                         child: Container(
-                          width: 343,
+                          width: size.width,
                           height: 54,
                           decoration: BoxDecoration(
                             color: Color(0xff7A7E83),
@@ -322,7 +366,7 @@ class SignupPage extends StatelessWidget {
                           Navigator.pushNamed(context, Routes.loginRoute);
                         },
                         child: Container(
-                          width: 343,
+                          width: size.width,
                           height: 54,
                           decoration: BoxDecoration(
                             color: Color(0xffF4F4F4),
