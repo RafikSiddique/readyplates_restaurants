@@ -18,7 +18,9 @@ class SignupPage3 extends StatelessWidget {
               FontAwesomeIcons.chevronLeft,
               color: Color(0xff000000),
             ),
-            onPressed: () {}),
+            onPressed: () {
+              Navigator.pushNamed(context,Routes.signup2Route);
+            }),
         centerTitle: true,
         title: Text(
           'Partner Onboarding',
@@ -361,7 +363,7 @@ class SignupPage3 extends StatelessWidget {
                           color: Color.fromRGBO(255, 255, 255, 0.5)),
                     ),
                     onPressed: () {
-                      //Navigator.pushNamed(context, MyRoutes.shopRoute);
+                      // Navigator.pushNamed(context, MyRoutes.shopRoute);
                     },
                     child: Text('CONTINUE',
                         style: TextStyle(

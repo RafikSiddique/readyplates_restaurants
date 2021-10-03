@@ -39,7 +39,7 @@ class OpeningScreen extends StatelessWidget {
                     ),
                     SizedBox(width: 16),
                     Container(
-                      width: 234,
+                      width: size.width * 0.6,
                       height: 39,
                       child: RichText(
                         text: TextSpan(
@@ -89,8 +89,11 @@ class OpeningScreen extends StatelessWidget {
                   left: 16,
                   right: 16,
                 ),
-                child: InkWell(
-                  onTap: () {},
+                child: 
+                InkWell(
+                  onTap: () {
+                      Navigator.pushNamed(context, Routes.loginRoute);
+                  },
                   child: Container(
                     width: 343,
                     height: 54,
@@ -125,7 +128,7 @@ class OpeningScreen extends StatelessWidget {
                 ),
                 child: InkWell(
                   onTap: () {
-                    Navigator.pushNamed(context, Routes.signup1Route);
+                    Navigator.pushNamed(context, Routes.signupRoute);
                   },
                   child: Container(
                     width: 343,

@@ -18,7 +18,9 @@ class SignupPage2 extends StatelessWidget {
               FontAwesomeIcons.chevronLeft,
               color: Color(0xff000000),
             ),
-            onPressed: () {}),
+            onPressed: () {
+              Navigator.pushNamed(context,Routes.signup1Route);
+            }),
         centerTitle: true,
         title: Text(
           'Partner Onboarding',

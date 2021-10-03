@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:readyplates_restaurants/utils/utils.dart';
 
-class SignupPage extends StatelessWidget {
-  const SignupPage({Key? key}) : super(key: key);
+class LoginPage extends StatelessWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class SignupPage extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/signupimg.png'),
+            image: AssetImage('assets/images/loginimg.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -69,11 +69,10 @@ class SignupPage extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: size.height * 0.4,
+                height: size.height * 0.38,
               ),
               Container(
                 width: 375,
-                height: 583,
                 decoration: BoxDecoration(
                   color: Color(0xffFFFFFF),
                   borderRadius: BorderRadius.only(
@@ -86,6 +85,7 @@ class SignupPage extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 16, right: 16),
                   child: Column(
+                   
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
@@ -99,13 +99,13 @@ class SignupPage extends StatelessWidget {
                                   color: Color(0xff000000),
                                 ),
                                 onPressed: () {
-                                  Navigator.pushNamed(context,Routes.openingscreenRoute);
+                                  Navigator.pushNamed(context,Routes.signupRoute);
                                 }),
                             Spacer(
                               flex: 2,
                             ),
                             Text(
-                              'Sign-up',
+                              'Login',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 17,
@@ -131,6 +131,7 @@ class SignupPage extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 13,
                           fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.w500,
                           fontFamily: 'Inter-Regular',
                           color: Color(0xff374151),
                         ),
@@ -146,12 +147,11 @@ class SignupPage extends StatelessWidget {
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
                               borderSide: BorderSide(
-                                  width: 1,
-                                  color: Color(0xffE0E0E0).withOpacity(0.5)),
+                                  width: 1, color: Color(0xffBEC5D1)),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(6)),
                             ),
-                            hintText: 'Eg aatef.sayyed@fladdra.com',
+                            hintText: 'Registered email id',
                             contentPadding: EdgeInsets.only(
                               left: 14,
                               top: 14,
@@ -214,83 +214,30 @@ class SignupPage extends StatelessWidget {
                       SizedBox(
                         height: 3,
                       ),
-                      Text(
-                        'Atleast 8 characters (Caps, Small & Special Characters)',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 9,
-                          fontFamily: 'Inter-Regular',
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.normal,
-                          letterSpacing: -0.229412,
-                          color: Color(0xff6E6D7A),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      Text(
-                        'Re-confirm Password',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: 'Inter-Regular',
-                          color: Color(0xff374151),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        width: 341,
-                        height: 45,
-                        child: TextFormField(
-                          textAlign: TextAlign.left,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    width: 1, color: Color(0xffBEC5D1)),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(6))),
-                            hintText: '**** **** ****',
-                            contentPadding: EdgeInsets.only(
-                              left: 14,
-                              top: 14,
-                            ),
-                            hintStyle: TextStyle(
-                              fontSize: 12,
-                              letterSpacing: 0.24,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            'Forgot Password ?',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              decoration: TextDecoration.underline,
+                              fontSize: 10,
                               fontFamily: 'Inter-Regular',
                               fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w600,
-                              color: Color(0xff9CA3AF),
+                              fontWeight: FontWeight.normal,
+                              letterSpacing: -0.229412,
+                              color: Color(0xffEB4132),
                             ),
                           ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 3,
-                      ),
-                      Text(
-                        'Please re-enter password',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 9,
-                          fontFamily: 'Inter-Regular',
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.normal,
-                          letterSpacing: -0.229412,
-                          color: Color(0xff6E6D7A),
-                        ),
+                        ],
                       ),
                       SizedBox(
                         height: 30,
                       ),
                       InkWell(
                         onTap: () {
-                          Navigator.pushNamed(context, Routes.loginRoute);
+                          Navigator.pushNamed(context, Routes.signup1Route);
                         },
                         child: Container(
                           width: 343,
@@ -319,7 +266,7 @@ class SignupPage extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          Navigator.pushNamed(context, Routes.loginRoute);
+                          Navigator.pushNamed(context, Routes.signup1Route);
                         },
                         child: Container(
                           width: 343,
@@ -360,6 +307,9 @@ class SignupPage extends StatelessWidget {
                           ),
                         ),
                       ),
+                      SizedBox(
+                        height: 10,
+                      )
                     ],
                   ),
                 ),

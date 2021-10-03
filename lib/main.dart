@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:readyplates_restaurants/src/screens/login_page.dart';
 import 'package:readyplates_restaurants/src/screens/signup_page.dart';
 import 'package:readyplates_restaurants/src/screens/signup_page1.dart';
 import 'package:readyplates_restaurants/src/screens/signup_page2.dart';
@@ -14,13 +15,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(),
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.signup3Route,
+      initialRoute: Routes.openingscreenRoute,
+      theme: ThemeData(
+        primarySwatch: Colors.teal,
+      ),
       routes: {
-        "/signup": (context) => SignupPage(),
+        "/openingscreen": (context) => SignupPage(),
         Routes.openingscreenRoute: (context) => OpeningScreen(),
+        Routes.signupRoute: (context) => SignupPage(),
+        Routes.loginRoute: (context) => LoginPage(),
         Routes.signup1Route: (context) => SignupPage1(),
         Routes.signup2Route: (context) => SignupPage2(),
         Routes.signup3Route: (context) => SignupPage3(),
