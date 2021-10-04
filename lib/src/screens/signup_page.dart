@@ -90,7 +90,8 @@ class _SignupPageState extends State<SignupPage> {
                             style: TextStyle(
                               fontSize: 30,
                               letterSpacing: -0.0769231,
-                              fontFamily: 'Montserrat-Bold',
+                              fontFamily: 'Montserrat',
+                              fontStyle: FontStyle.normal,
                               fontWeight: FontWeight.bold,
                               color: Color.fromRGBO(255, 255, 255, 0.9),
                             ),
@@ -101,6 +102,7 @@ class _SignupPageState extends State<SignupPage> {
                                   fontSize: 30,
                                   fontFamily: 'Montserrat',
                                   letterSpacing: -0.0769231,
+                                  fontStyle: FontStyle.normal,
                                   fontWeight: FontWeight.normal,
                                   color: Color.fromRGBO(255, 255, 255, 0.9),
                                 ),
@@ -151,7 +153,7 @@ class _SignupPageState extends State<SignupPage> {
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: 17,
-                                  fontFamily: 'Inter-Regular',
+                                  fontFamily: 'Inter-Bold',
                                   fontWeight: FontWeight.w500,
                                   fontStyle: FontStyle.normal,
                                   letterSpacing: -0.226667,
@@ -171,7 +173,8 @@ class _SignupPageState extends State<SignupPage> {
                           style: TextStyle(
                             fontSize: 13,
                             fontStyle: FontStyle.normal,
-                            fontFamily: 'Inter-Regular',
+                            fontFamily: 'Inter-Bold',
+                            fontWeight: FontWeight.w500,
                             color: Color(0xff374151),
                           ),
                         ),
@@ -200,7 +203,7 @@ class _SignupPageState extends State<SignupPage> {
                               hintStyle: TextStyle(
                                 fontSize: 12,
                                 letterSpacing: 0.24,
-                                fontFamily: 'Inter-Regular',
+                                fontFamily: 'Inter',
                                 fontStyle: FontStyle.normal,
                                 fontWeight: FontWeight.normal,
                                 color: Color(0xff9CA3AF),
@@ -218,7 +221,7 @@ class _SignupPageState extends State<SignupPage> {
                             fontSize: 13,
                             fontStyle: FontStyle.normal,
                             fontWeight: FontWeight.w500,
-                            fontFamily: 'Inter-Regular',
+                            fontFamily: 'Inter-Bold',
                             color: Color(0xff374151),
                           ),
                         ),
@@ -245,7 +248,7 @@ class _SignupPageState extends State<SignupPage> {
                               hintStyle: TextStyle(
                                 fontSize: 12,
                                 letterSpacing: 0.24,
-                                fontFamily: 'Inter-Regular',
+                                fontFamily: 'Inter',
                                 fontStyle: FontStyle.normal,
                                 fontWeight: FontWeight.w600,
                                 color: Color(0xff9CA3AF),
@@ -261,7 +264,7 @@ class _SignupPageState extends State<SignupPage> {
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 9,
-                            fontFamily: 'Inter-Regular',
+                            fontFamily: 'Poppins',
                             fontStyle: FontStyle.normal,
                             fontWeight: FontWeight.normal,
                             letterSpacing: -0.229412,

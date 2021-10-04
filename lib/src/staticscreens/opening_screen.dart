@@ -48,7 +48,8 @@ class OpeningScreen extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 30,
                                 letterSpacing: -0.0769231,
-                                fontFamily: 'Montserrat-Bold',
+                                fontFamily: 'Montserrat',
+                                fontStyle: FontStyle.normal,
                                 fontWeight: FontWeight.bold,
                                 color: Color.fromRGBO(255, 255, 255, 0.9),
                               ),
@@ -59,6 +60,7 @@ class OpeningScreen extends StatelessWidget {
                                     fontSize: 30,
                                     fontFamily: 'Montserrat',
                                     letterSpacing: -0.0769231,
+                                    fontStyle: FontStyle.normal,
                                     fontWeight: FontWeight.normal,
                                     color: Color.fromRGBO(255, 255, 255, 0.9),
                                   ),
@@ -89,7 +91,9 @@ class OpeningScreen extends StatelessWidget {
                           width: size.width,
                           height: 54,
                           decoration: BoxDecoration(
-                            color: Color.fromRGBO(255, 255, 255, 0.38),
+                            // #FFFFFF
+                            color: Color(0xffFFFFFF).withOpacity(0.38),
+                            // color: Color.fromRGBO(255, 255, 255, 0.38),
                             // borderRadius: BorderRadius.all(Radius.circular(6)),
                           ),
                           child: Center(
@@ -103,7 +107,7 @@ class OpeningScreen extends StatelessWidget {
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: 17,
-                                  fontFamily: 'Inter-Bold',
+                                  fontFamily: 'Inter',
                                   fontStyle: FontStyle.normal,
                                   fontWeight: FontWeight.bold,
                                   letterSpacing: -0.3,
@@ -133,7 +137,8 @@ class OpeningScreen extends StatelessWidget {
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Color.fromRGBO(34, 40, 49, 0.2),
+                          color: Color(0xffFFFFFF).withOpacity(0.2),
+                          // color: Color.fromRGBO(34, 40, 49, 0.2),
                           border: Border.all(
                             width: 1.5,
                             color: Color.fromRGBO(255, 255, 255, 0.5),
@@ -148,15 +153,15 @@ class OpeningScreen extends StatelessWidget {
                             child: Center(
                               child: BackdropFilter(
                                 filter: ImageFilter.blur(
-                                  sigmaX: 15,
-                                  sigmaY: 15,
+                                  sigmaX: 10,
+                                  sigmaY: 10,
                                 ),
                                 child: Text(
                                   'SIGN UP',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontSize: 17,
-                                    fontFamily: 'Inter-Bold',
+                                    fontFamily: 'Inter',
                                     fontStyle: FontStyle.normal,
                                     fontWeight: FontWeight.bold,
                                     letterSpacing: -0.3,
