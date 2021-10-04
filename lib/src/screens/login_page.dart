@@ -1,9 +1,63 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:readyplates_restaurants/utils/utils.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
+import 'package:get/get.dart';
 
-class LoginPage extends StatelessWidget {
+String user = '';
+
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
+  // https://readyplates.herokuapp.com/restaurants/login/
+// http://192.168.0.197:8000/restaurants/login/
+  Future signup(
+    String username,
+    String password,
+  ) async {
+    http.Response response;
+    print('object');
+    response = await http.post(
+      Uri.parse('http://192.168.0.194:5000/restaurants/login/'),
+      body: jsonEncode(
+        {
+          'username': username,
+          'password': password,
+        },
+      ),
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+    print('object1');
+    setState(() {
+      if (response.statusCode == 200) {
+        Map resp = json.decode(response.body);
+        // print(resp["ID"]);
+        user = resp["ID"].toString();
+        print('User Id is ---->' + user);
+        return print(response.body);
+      } else if (response.statusCode == 401) {
+        final snackBar = SnackBar(
+            content: Text(
+          'Invalid Credentials. Please Check Username and Password !!!',
+          style: TextStyle(fontSize: 20),
+        ));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      } else {
+        throw Exception('Failed to create User.');
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +127,7 @@ class LoginPage extends StatelessWidget {
                 height: size.height * 0.38,
               ),
               Container(
-                  width: size.width,
+                width: size.width,
                 height: 583,
                 decoration: BoxDecoration(
                   color: Color(0xffFFFFFF),
@@ -87,7 +141,6 @@ class LoginPage extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 16, right: 16),
                   child: Column(
-                   
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
@@ -101,11 +154,10 @@ class LoginPage extends StatelessWidget {
                                   color: Color(0xff000000),
                                 ),
                                 onPressed: () {
-                                  Navigator.pushNamed(context,Routes.signupRoute);
+                                  Navigator.pushNamed(
+                                      context, Routes.signupRoute);
                                 }),
-                            Spacer(
-                             
-                            ),
+                            Spacer(),
                             Text(
                               'Login',
                               textAlign: TextAlign.center,
@@ -118,9 +170,7 @@ class LoginPage extends StatelessWidget {
                                 color: Color(0xff393E46),
                               ),
                             ),
-                            Spacer(
-                             
-                            ),
+                            Spacer(),
                           ],
                         ),
                       ),
@@ -142,9 +192,10 @@ class LoginPage extends StatelessWidget {
                         height: 10,
                       ),
                       Container(
-                        width:size.width,
+                        width: size.width,
                         height: 45,
                         child: TextFormField(
+                          controller: usernameController,
                           textAlign: TextAlign.left,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
@@ -187,9 +238,10 @@ class LoginPage extends StatelessWidget {
                         height: 10,
                       ),
                       Container(
-                        width:size.width,
+                        width: size.width,
                         height: 45,
                         child: TextFormField(
+                          controller: passwordController,
                           textAlign: TextAlign.left,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
@@ -238,11 +290,18 @@ class LoginPage extends StatelessWidget {
                         height: 30,
                       ),
                       InkWell(
-                        onTap: () {
-                          Navigator.pushNamed(context, Routes.signup1Route);
+                        onTap: () async {
+                          final String username = usernameController.text;
+                          final String password = passwordController.text;
+
+                          await signup(
+                            username,
+                            password,
+                          );
+                          // Navigator.pushNamed(context, Routes.signup1Route);
                         },
                         child: Container(
-                          width:size.width,
+                          width: size.width,
                           height: 54,
                           decoration: BoxDecoration(
                             color: Color(0xff7A7E83),
@@ -268,10 +327,10 @@ class LoginPage extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          Navigator.pushNamed(context, Routes.signup1Route);
+                          Navigator.pushNamed(context, Routes.onboarding1Route);
                         },
                         child: Container(
-                           width:size.width,
+                          width: size.width,
                           height: 54,
                           decoration: BoxDecoration(
                             color: Color(0xffF4F4F4),

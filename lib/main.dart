@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:readyplates_restaurants/src/screens/login_page.dart';
 import 'package:readyplates_restaurants/src/screens/signup_page.dart';
-import 'package:readyplates_restaurants/src/screens/signup_page1.dart';
-import 'package:readyplates_restaurants/src/screens/signup_page2.dart';
-import 'package:readyplates_restaurants/src/screens/signup_page3.dart';
+import 'package:readyplates_restaurants/src/screens/onboarding_page1.dart';
+import 'package:readyplates_restaurants/src/screens/onboarding_page2.dart';
+import 'package:readyplates_restaurants/src/screens/onboarding_page3.dart';
 import 'package:readyplates_restaurants/src/staticscreens/opening_screen.dart';
 import 'package:readyplates_restaurants/utils/utils.dart';
 
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.openingscreenRoute,
+      initialRoute: Routes.onboarding1Route,
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
@@ -25,9 +25,9 @@ class MyApp extends StatelessWidget {
         Routes.openingscreenRoute: (context) => OpeningScreen(),
         Routes.signupRoute: (context) => SignupPage(),
         Routes.loginRoute: (context) => LoginPage(),
-        Routes.signup1Route: (context) => SignupPage1(),
-        Routes.signup2Route: (context) => SignupPage2(),
-        Routes.signup3Route: (context) => SignupPage3(),
+        Routes.onboarding1Route: (context) => OnboardingPage1(),
+        Routes.onboarding2Route: (context) => OnboardingPage2(),
+        Routes.onboarding3Route: (context) => OnboardingPage3(),
       },
     );
   }

@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:readyplates_restaurants/models/signup.dart';
 import 'package:readyplates_restaurants/utils/utils.dart';
-// import 'package:http/http.dart' as http;
-// import 'dart:async';
-// import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
 
 String rescity = '';
 
-class SignupPage1 extends StatefulWidget {
+class OnboardingPage1 extends StatefulWidget {
   //const SignupPage1({Key? key}) : super(key: key);
 
   @override
-  _SignupPage1State createState() => _SignupPage1State();
+  _OnboardingPage1State createState() => _OnboardingPage1State();
 }
 
-class _SignupPage1State extends State<SignupPage1> {
+class _OnboardingPage1State extends State<OnboardingPage1> {
   final userController = TextEditingController();
   final resNameController = TextEditingController();
   final firstNameController = TextEditingController();
@@ -25,49 +25,49 @@ class _SignupPage1State extends State<SignupPage1> {
   final pocController = TextEditingController();
   final pocNumberController = TextEditingController();
 
-  // Signup? users;
-// https://readyplates.herokuapp.com/restaurants/s1
-// http://192.168.0.197:8000/restaurants/s1
-  // Future<Signup?> signup(
-  //   String user,
-  //   String res_name,
-  //   String own_name,
-  //   String own_mobile,
-  //   String res_city,
-  //   String poc,
-  //   String poc_number,
-  // ) async {
-  //   http.Response response;
-  //   response = await http.post(
-  //     Uri.parse('https://readyplates.herokuapp.com/restaurants/s1'),
-  //     body: jsonEncode({
-  //       'user': user,
-  //       'res_name': res_name,
-  //       'own_name': own_name,
-  //       'own_mobile': own_mobile,
-  //       'res_city': res_city,
-  //       'poc': poc,
-  //       'poc_number': poc_number,
-  //     }),
-  //     headers: {
-  //       'Content-Type': 'application/json; charset=UTF-8',
-  //     },
-  //   );
-  //   if (response.statusCode == 201) {
-  //     print('object');
-  //     return Signup(
-  //         own_mobile: '',
-  //         own_name: '',
-  //         poc_number: '',
-  //         poc: '',
-  //         res_city: '',
-  //         res_name: '',
-  //         user: '');
-  //   }
-  //   //  else {
-  //   //   throw Exception('Failed to create User.');
-  //   // }
-  // }
+  Signup? users;
+//https://readyplates.herokuapp.com/restaurants/s1
+//http://192.168.0.197:8000/restaurants/s1
+  Future<Signup?> signup(
+    String user,
+    String res_name,
+    String own_name,
+    String own_mobile,
+    String res_city,
+    String poc,
+    String poc_number,
+  ) async {
+    http.Response response;
+    response = await http.post(
+      Uri.parse('https://readyplates.herokuapp.com/restaurants/s1'),
+      body: jsonEncode({
+        'user': user,
+        'res_name': res_name,
+        'own_name': own_name,
+        'own_mobile': own_mobile,
+        'res_city': res_city,
+        'poc': poc,
+        'poc_number': poc_number,
+      }),
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+    if (response.statusCode == 201) {
+      print('object');
+      return Signup(
+          own_mobile: '',
+          own_name: '',
+          poc_number: '',
+          poc: '',
+          res_city: '',
+          res_name: '',
+          user: '');
+    }
+    //  else {
+    //   throw Exception('Failed to create User.');
+    // }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +85,7 @@ class _SignupPage1State extends State<SignupPage1> {
               color: Color(0xff000000),
             ),
             onPressed: () {
-              Navigator.pushNamed(context,Routes.loginRoute);
+              Navigator.pushNamed(context, Routes.loginRoute);
             }),
         centerTitle: true,
         title: Text(
@@ -136,11 +136,11 @@ class _SignupPage1State extends State<SignupPage1> {
                   textAlign: TextAlign.left,
                   decoration: InputDecoration(
                     //Color(0xff00ADB5) Color(0xffE0E0E0)
-                   // fillColor: Color(0xff00ADB5),
+                    // fillColor: Color(0xff00ADB5),
                     // focusColor: Color(0xff00ADB5),
-                   // hoverColor: Color(0xff00ADB5),
+                    // hoverColor: Color(0xff00ADB5),
                     border: OutlineInputBorder(
-                     // borderSide: new BorderSide(color: Colors.teal),
+                      // borderSide: new BorderSide(color: Colors.teal),
                       borderSide: BorderSide(
                         width: 1,
                         color: Color(0xffE0E0E0),
@@ -559,25 +559,23 @@ class _SignupPage1State extends State<SignupPage1> {
                 height: 18,
               ),
               InkWell(
-                onTap: () 
-                // async
-                 {
-                  // String fs = firstNameController.text;
-                  // String ls = firstNameController.text;
-                  // String own = fs + ' ' + ls;
-                  // final String user = '26';
-                  // final String res_name = resNameController.text;
-                  // final String own_name = own;
-                  // final String own_mobile = ownMobileController.text;
-                  // final String res_city = rescity;
-                  // final String poc = pocController.text;
-                  // final String poc_number = pocNumberController.text;
-                  // final Signup? u = await signup(user, res_name, own_name,
-                  //     own_mobile, res_city, poc, poc_number);
-                  // setState(() {
-                  //   users = u;
-                  // });
-                  Navigator.pushNamed(context, Routes.signup2Route);
+                onTap: () async {
+                  String fs = firstNameController.text;
+                  String ls = firstNameController.text;
+                  String own = fs + ' ' + ls;
+                  final String user = '26';
+                  final String res_name = resNameController.text;
+                  final String own_name = own;
+                  final String own_mobile = ownMobileController.text;
+                  final String res_city = rescity;
+                  final String poc = pocController.text;
+                  final String poc_number = pocNumberController.text;
+                  final Signup? u = await signup(user, res_name, own_name,
+                      own_mobile, res_city, poc, poc_number);
+                  setState(() {
+                    users = u;
+                  });
+                  Navigator.pushNamed(context, Routes.onboarding2Route);
                 },
                 child: Container(
                   // width: 343,
