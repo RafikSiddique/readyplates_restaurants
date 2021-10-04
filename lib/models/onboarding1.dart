@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-class Signup {
+class Onboarding1 {
   String user;
   String res_name;
   String own_name;
@@ -9,7 +9,7 @@ class Signup {
   String poc;
   String poc_number;
 
-  Signup({
+  Onboarding1({
     required this.user,
     required this.res_name,
     required this.own_name,
@@ -19,7 +19,7 @@ class Signup {
     required this.poc_number,
   });
 
-  Signup copyWith({
+  Onboarding1 copyWith({
     String? user,
     String? res_name,
     String? own_name,
@@ -28,7 +28,7 @@ class Signup {
     String? poc,
     String? poc_number,
   }) {
-    return Signup(
+    return Onboarding1(
       user: user ?? this.user,
       res_name: res_name ?? this.res_name,
       own_name: own_name ?? this.own_name,
@@ -51,8 +51,8 @@ class Signup {
     };
   }
 
-  factory Signup.fromMap(Map<String, dynamic> map) {
-    return Signup(
+  factory Onboarding1.fromMap(Map<String, dynamic> map) {
+    return Onboarding1(
       user: map['user'],
       res_name: map['res_name'],
       own_name: map['own_name'],
@@ -65,18 +65,19 @@ class Signup {
 
   String toJson() => json.encode(toMap());
 
-  factory Signup.fromJson(String source) => Signup.fromMap(json.decode(source));
+  factory Onboarding1.fromJson(String source) =>
+      Onboarding1.fromMap(json.decode(source));
 
   @override
   String toString() {
-    return 'Signup(user: $user, res_name: $res_name, own_name: $own_name, own_mobile: $own_mobile, res_city: $res_city, poc: $poc, poc_number: $poc_number)';
+    return 'Onboarding1(user: $user, res_name: $res_name, own_name: $own_name, own_mobile: $own_mobile, res_city: $res_city, poc: $poc, poc_number: $poc_number)';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is Signup &&
+    return other is Onboarding1 &&
         other.user == user &&
         other.res_name == res_name &&
         other.own_name == own_name &&

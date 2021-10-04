@@ -1,9 +1,57 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:readyplates_restaurants/models/onboarding2.dart';
+import 'package:readyplates_restaurants/src/screens/login_page.dart';
 import 'package:readyplates_restaurants/utils/utils.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
 
-class OnboardingPage2 extends StatelessWidget {
+class OnboardingPage2 extends StatefulWidget {
   const OnboardingPage2({Key? key}) : super(key: key);
+
+  @override
+  State<OnboardingPage2> createState() => _OnboardingPage2State();
+}
+
+class _OnboardingPage2State extends State<OnboardingPage2> {
+  final address1Controller = TextEditingController();
+  final address2Controller = TextEditingController();
+  final nearbylandnarkController = TextEditingController();
+  final postalcodeController = TextEditingController();
+  final latitudeController = TextEditingController();
+  final longitudeController = TextEditingController();
+  Onboarding2? user2;
+  //https://readyplates.herokuapp.com/restaurants/s2/
+//http://192.168.0.194:5000/restaurants/s2/
+  Future<Onboarding2?> onbordingapi2(
+    String user,
+    String address,
+    String postal_code,
+    String latitude,
+    String longitude,
+  ) async {
+    http.Response response;
+    response = await http.post(
+      Uri.parse('https://readyplates.herokuapp.com/restaurants/s2/'),
+      body: jsonEncode({
+        'user': user,
+        'address': address,
+        'postal_code': postal_code,
+        'latitude': latitude,
+        'longitude': longitude,
+      }),
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+    if (response.statusCode == 201) {
+      print('object');
+      print(response.body);
+    } else {
+      throw Exception('Failed to create User.');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +115,7 @@ class OnboardingPage2 extends StatelessWidget {
               margin: EdgeInsets.only(left: 17, right: 15),
               width: MediaQuery.of(context).size.width,
               child: TextFormField(
-                // controller: firstname,
+                controller: address1Controller,
                 decoration: InputDecoration(
                   hintText: "Address Line 1",
                   hintStyle: TextStyle(
@@ -91,7 +139,7 @@ class OnboardingPage2 extends StatelessWidget {
               margin: EdgeInsets.only(left: 17, right: 15),
               width: MediaQuery.of(context).size.width,
               child: TextFormField(
-                //controller: lastname,
+                controller: address2Controller,
                 decoration: InputDecoration(
                   hintText: "Address Line 2",
                   hintStyle: TextStyle(
@@ -116,7 +164,7 @@ class OnboardingPage2 extends StatelessWidget {
               margin: EdgeInsets.only(left: 17, right: 15),
               width: MediaQuery.of(context).size.width,
               child: TextFormField(
-                //controller: lastname,
+                controller: nearbylandnarkController,
                 decoration: InputDecoration(
                   hintText: "Nearby Landmark",
                   hintStyle: TextStyle(
@@ -176,7 +224,7 @@ class OnboardingPage2 extends StatelessWidget {
               ),
               width: MediaQuery.of(context).size.width,
               child: TextFormField(
-                // controller: email,
+                controller: postalcodeController,
                 decoration: InputDecoration(
                   hintText: "xxxxxxx",
                   hintStyle: TextStyle(
@@ -258,7 +306,7 @@ class OnboardingPage2 extends StatelessWidget {
               ),
               width: MediaQuery.of(context).size.width,
               child: TextFormField(
-                // controller: email,
+                controller: latitudeController,
                 decoration: InputDecoration(
                   fillColor: Color(0xFFE6E6E6),
                   border: OutlineInputBorder(),
@@ -287,7 +335,7 @@ class OnboardingPage2 extends StatelessWidget {
               ),
               width: MediaQuery.of(context).size.width,
               child: TextFormField(
-                // controller: email,
+                controller: longitudeController,
                 decoration: InputDecoration(
                   fillColor: Color(0xFFE6E6E6),
                   border: OutlineInputBorder(),
@@ -307,7 +355,22 @@ class OnboardingPage2 extends StatelessWidget {
                           width: 1.5,
                           color: Color.fromRGBO(255, 255, 255, 0.5)),
                     ),
-                    onPressed: () {
+                    onPressed: () async {
+                      String a1 = address1Controller.text;
+                      String a2 = address2Controller.text;
+                      String n = nearbylandnarkController.text;
+                      String addresses = a1 + ' ' + a2 + ' ' + n;
+
+                      final String user = id;
+                      final String address = addresses;
+                      final String postal_code = postalcodeController.text;
+                      final String latitude = latitudeController.text;
+                      final String longitude = longitudeController.text;
+                      final Onboarding2? u1 = await onbordingapi2(
+                          user, address, postal_code, latitude, longitude);
+                      setState(() {
+                        user2 = u1;
+                      });
                       Navigator.pushNamed(context, Routes.onboarding3Route);
                     },
                     child: Text('CONTINUE',

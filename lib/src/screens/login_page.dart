@@ -4,9 +4,8 @@ import 'package:readyplates_restaurants/utils/utils.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
-import 'package:get/get.dart';
 
-String user = '';
+String id = '';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -27,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
     http.Response response;
     print('object');
     response = await http.post(
-      Uri.parse('http://192.168.0.194:5000/restaurants/login/'),
+      Uri.parse('https://readyplates.herokuapp.com/restaurants/login/'),
       body: jsonEncode(
         {
           'username': username,
@@ -43,8 +42,8 @@ class _LoginPageState extends State<LoginPage> {
       if (response.statusCode == 200) {
         Map resp = json.decode(response.body);
         // print(resp["ID"]);
-        user = resp["ID"].toString();
-        print('User Id is ---->' + user);
+        id = resp["ID"].toString();
+        print('User Id is ---->' + id);
         return print(response.body);
       } else if (response.statusCode == 401) {
         final snackBar = SnackBar(
@@ -298,7 +297,7 @@ class _LoginPageState extends State<LoginPage> {
                             username,
                             password,
                           );
-                          // Navigator.pushNamed(context, Routes.signup1Route);
+                          Navigator.pushNamed(context, Routes.onboarding1Route);
                         },
                         child: Container(
                           width: size.width,

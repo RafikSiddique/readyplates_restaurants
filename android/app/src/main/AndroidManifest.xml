@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.readyplates_restaurants">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="readyplates_restaurants"
         android:icon="@mipmap/ic_launcher">

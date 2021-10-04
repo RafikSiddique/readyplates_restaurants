@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:readyplates_restaurants/src/screens/login_page.dart';
+import 'package:readyplates_restaurants/src/screens/onboarding_page4.dart';
 import 'package:readyplates_restaurants/src/screens/signup_page.dart';
 import 'package:readyplates_restaurants/src/screens/onboarding_page1.dart';
 import 'package:readyplates_restaurants/src/screens/onboarding_page2.dart';
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.onboarding1Route,
+      initialRoute: Routes.openingscreenRoute,
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         Routes.onboarding1Route: (context) => OnboardingPage1(),
         Routes.onboarding2Route: (context) => OnboardingPage2(),
         Routes.onboarding3Route: (context) => OnboardingPage3(),
+        Routes.onboarding4Route: (context) => OnboardingPage4(),
       },
     );
   }

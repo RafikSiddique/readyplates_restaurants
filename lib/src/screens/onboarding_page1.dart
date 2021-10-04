@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:readyplates_restaurants/models/signup.dart';
+import 'package:readyplates_restaurants/models/onboarding1.dart';
+import 'package:readyplates_restaurants/src/screens/login_page.dart';
 import 'package:readyplates_restaurants/utils/utils.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
@@ -25,10 +26,10 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
   final pocController = TextEditingController();
   final pocNumberController = TextEditingController();
 
-  Signup? users;
-//https://readyplates.herokuapp.com/restaurants/s1
-//http://192.168.0.197:8000/restaurants/s1
-  Future<Signup?> signup(
+  Onboarding1? users;
+//https://readyplates.herokuapp.com/restaurants/s1/
+//http://192.168.0.194:5000/restaurants/s1/
+  Future<Onboarding1?> onboardingapi1(
     String user,
     String res_name,
     String own_name,
@@ -55,18 +56,10 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
     );
     if (response.statusCode == 201) {
       print('object');
-      return Signup(
-          own_mobile: '',
-          own_name: '',
-          poc_number: '',
-          poc: '',
-          res_city: '',
-          res_name: '',
-          user: '');
+      print(response.body);
+    } else {
+      throw Exception('Failed to create User.');
     }
-    //  else {
-    //   throw Exception('Failed to create User.');
-    // }
   }
 
   @override
@@ -563,15 +556,17 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                   String fs = firstNameController.text;
                   String ls = firstNameController.text;
                   String own = fs + ' ' + ls;
-                  final String user = '26';
+
+                  print(id);
                   final String res_name = resNameController.text;
                   final String own_name = own;
+                  final String user = id;
                   final String own_mobile = ownMobileController.text;
                   final String res_city = rescity;
                   final String poc = pocController.text;
                   final String poc_number = pocNumberController.text;
-                  final Signup? u = await signup(user, res_name, own_name,
-                      own_mobile, res_city, poc, poc_number);
+                  final Onboarding1? u = await onboardingapi1(user, res_name,
+                      own_name, own_mobile, res_city, poc, poc_number);
                   setState(() {
                     users = u;
                   });

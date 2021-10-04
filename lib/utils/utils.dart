@@ -5,4 +5,5 @@ class Routes {
   static String onboarding1Route = "/onboarding1";
   static String onboarding2Route = "/onboarding2";
   static String onboarding3Route = "/onboarding3";
+  static String onboarding4Route = "/onboarding4";
 }

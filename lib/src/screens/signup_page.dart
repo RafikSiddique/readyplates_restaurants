@@ -26,7 +26,7 @@ class _SignupPageState extends State<SignupPage> {
     http.Response response;
     print('object');
     response = await http.post(
-      Uri.parse('http://192.168.0.194:5000/restaurants/register/'),
+      Uri.parse('https://readyplates.herokuapp.com/restaurants/register/'),
       body: jsonEncode(
         {
           'email': email,
