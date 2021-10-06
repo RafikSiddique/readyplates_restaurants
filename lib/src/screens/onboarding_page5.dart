@@ -25,7 +25,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                 color: Color(0xff000000),
               ),
               onPressed: () {
-                Navigator.pushNamed(context, Routes.onboarding5Route);
+                Navigator.pushNamed(context, Routes.onboarding4Route);
               }),
           centerTitle: true,
           title: Text(

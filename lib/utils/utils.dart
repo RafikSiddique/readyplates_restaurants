@@ -7,4 +7,5 @@ class Routes {
   static String onboarding3Route = "/onboarding3";
   static String onboarding4Route = "/onboarding4";
   static String onboarding5Route = "/onboarding5";
+  static String onboarding6Route = "/onboarding6";
 }

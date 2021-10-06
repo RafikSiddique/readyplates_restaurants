@@ -1,0 +1,678 @@
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:readyplates_restaurants/utils/utils.dart';
+
+class OnboardingPage6 extends StatefulWidget {
+  const OnboardingPage6({Key? key}) : super(key: key);
+
+  @override
+  State<OnboardingPage6> createState() => _OnboardingPage6State();
+}
+
+class _OnboardingPage6State extends State<OnboardingPage6> {
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          toolbarHeight: 44,
+          backgroundColor: Colors.white,
+          elevation: 0,
+          leading: IconButton(
+              iconSize: 14.83,
+              icon: FaIcon(
+                FontAwesomeIcons.chevronLeft,
+                color: Color(0xff000000),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, Routes.onboarding5Route);
+              }),
+          centerTitle: true,
+          title: Text(
+            'Restaurant Bio',
+            style: TextStyle(
+              fontSize: 17,
+              fontFamily: 'Inter',
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w500,
+              letterSpacing: -0.226667,
+              color: Color(0xff393E46),
+            ),
+          ),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.only(left: 16, right: 16),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 8,
+                ),
+                RichText(
+                  text: TextSpan(
+                      text: 'Restaurant Description',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontFamily: 'Inter',
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: -0.229412,
+                        color: Color(0xff2F2E41),
+                      ),
+                      children: [
+                        TextSpan(
+                          text: ' *',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Color(0xffEB4132),
+                          ),
+                        ),
+                      ]),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Container(
+                  // width: 341,
+                  height: 45,
+                  child: TextFormField(
+                    maxLines: 5,
+                    cursorColor: Color(0xff00ADB5),
+                    textAlign: TextAlign.left,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          width: 1,
+                          color: Color(0xffE0E0E0),
+                        ),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(6.0),
+                        ),
+                      ),
+                      hintText:
+                          'Founded in 1954, Burger King is the second largest fast food hamburger chain in the world. The original Home of the Whopper, our commitment to premium ingredients, signature recipes, and family-friendly dining experiences is what has defined our brand for more than 50 successful years.',
+                      contentPadding: EdgeInsets.all(14),
+                      hintStyle: TextStyle(
+                        fontSize: 13,
+                        fontFamily: 'Inter',
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: -0.264706,
+                        color: Color(0x979797).withOpacity(0.7),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 3,
+                ),
+                Text(
+                  'Max 50 words',
+                  style: TextStyle(
+                    fontSize: 9,
+                    fontFamily: 'Poppins',
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.normal,
+                    letterSpacing: -0.229412,
+                    color: Color(0xff6E6D7A),
+                  ),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                RichText(
+                  text: TextSpan(
+                      text: 'Table Information',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontFamily: 'Inter',
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: -0.229412,
+                        color: Color(0xff2F2E41),
+                      ),
+                      children: [
+                        TextSpan(
+                          text: ' *',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Color(0xffEB4132),
+                          ),
+                        ),
+                      ]),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 180,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(6)),
+                            border: Border.all(
+                              width: 1,
+                              color: Color(0xffE0E0E0),
+                              style: BorderStyle.solid,
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                '00',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontFamily: 'Inter',
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: -0.264706,
+                                  color: Color(0xff979797).withOpacity(0.7),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 12),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      height: 13,
+                                      child: IconButton(
+                                          iconSize: 12,
+                                          icon: FaIcon(
+                                            FontAwesomeIcons.chevronUp,
+                                            color: Color(0xff6E6D7A),
+                                          ),
+                                          onPressed: () {}),
+                                    ),
+                                    Container(
+                                      height: 13,
+                                      child: IconButton(
+                                          iconSize: 12,
+                                          icon: FaIcon(
+                                            FontAwesomeIcons.chevronDown,
+                                            color: Color(0xff6E6D7A),
+                                          ),
+                                          onPressed: () {}),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 3,
+                        ),
+                        Text(
+                          'Enter No of tables present',
+                          style: TextStyle(
+                            fontSize: 9,
+                            fontFamily: 'Poppins',
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.normal,
+                            letterSpacing: -0.229412,
+                            color: Color(0xff6E6D7A),
+                          ),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      width: 18,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 180,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(6)),
+                            border: Border.all(
+                              width: 1,
+                              color: Color(0xffE0E0E0),
+                              style: BorderStyle.solid,
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                '00',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontFamily: 'Inter',
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: -0.264706,
+                                  color: Color(0xff979797).withOpacity(0.7),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 12),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      height: 13,
+                                      child: IconButton(
+                                          iconSize: 12,
+                                          icon: FaIcon(
+                                            FontAwesomeIcons.chevronUp,
+                                            color: Color(0xff6E6D7A),
+                                          ),
+                                          onPressed: () {}),
+                                    ),
+                                    Container(
+                                      height: 13,
+                                      child: IconButton(
+                                          iconSize: 12,
+                                          icon: FaIcon(
+                                            FontAwesomeIcons.chevronDown,
+                                            color: Color(0xff6E6D7A),
+                                          ),
+                                          onPressed: () {}),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 3,
+                        ),
+                        Text(
+                          'Max table size (No of persons)',
+                          style: TextStyle(
+                            fontSize: 9,
+                            fontFamily: 'Poppins',
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.normal,
+                            letterSpacing: -0.229412,
+                            color: Color(0xff6E6D7A),
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        RichText(
+                          text: TextSpan(
+                              text: 'Cost for two',
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontFamily: 'Inter',
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.w500,
+                                letterSpacing: -0.229412,
+                                color: Color(0xff2F2E41),
+                              ),
+                              children: [
+                                TextSpan(
+                                  text: ' *',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Color(0xffEB4132),
+                                  ),
+                                ),
+                              ]),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          width: 180,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(6)),
+                            border: Border.all(
+                              width: 1,
+                              color: Color(0xffE0E0E0),
+                              style: BorderStyle.solid,
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                '00',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontFamily: 'Inter',
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: -0.264706,
+                                  color: Color(0xff979797).withOpacity(0.7),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 16,
+                              ),
+                              Text(
+                                '₹',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontFamily: 'Inter',
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: -0.264706,
+                                  color: Color(0xff979797).withOpacity(0.7),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 3,
+                        ),
+                        Text(
+                          'Enter No of tables present',
+                          style: TextStyle(
+                            fontSize: 9,
+                            fontFamily: 'Poppins',
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.normal,
+                            letterSpacing: -0.229412,
+                            color: Color(0xff6E6D7A),
+                          ),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      width: 18,
+                    ),
+                    Column(
+                      children: [
+                        RichText(
+                          text: TextSpan(
+                              text: 'Serving time',
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontFamily: 'Inter',
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.w500,
+                                letterSpacing: -0.229412,
+                                color: Color(0xff2F2E41),
+                              ),
+                              children: [
+                                TextSpan(
+                                  text: ' *',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Color(0xffEB4132),
+                                  ),
+                                ),
+                              ]),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          width: 180,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(6)),
+                            border: Border.all(
+                              width: 1,
+                              color: Color(0xffE0E0E0),
+                              style: BorderStyle.solid,
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                '00',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontFamily: 'Inter',
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: -0.264706,
+                                  color: Color(0xff979797).withOpacity(0.7),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Text(
+                                'mins',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontFamily: 'Inter',
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: -0.264706,
+                                  color: Color(0xff979797).withOpacity(0.7),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 3,
+                        ),
+                        Text(
+                          'Enter average serving time for two',
+                          style: TextStyle(
+                            fontSize: 9,
+                            fontFamily: 'Poppins',
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.normal,
+                            letterSpacing: -0.229412,
+                            color: Color(0xff6E6D7A),
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Text(
+                  'Recurring events (optional)',
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontFamily: 'Inter',
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: -0.229412,
+                    color: Color(0xff2F2E41),
+                  ),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, Routes.onboarding2Route);
+                  },
+                  child: Container(
+                    // width: 343,
+                    height: 40.11,
+                    decoration: BoxDecoration(
+                      color: Color(0xff7A7E83),
+                      borderRadius: BorderRadius.all(Radius.circular(6)),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Click here to verify account',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 17,
+                          fontFamily: 'Inter',
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: -0.28,
+                          color: Color(0xffE5E5E5),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 3,
+                ),
+                Text(
+                  '₹ 1 will be credited to your account for verification',
+                  style: TextStyle(
+                    fontSize: 8,
+                    fontFamily: 'Montserrat',
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: -0.229412,
+                    color: Color(0xff6E6D7A),
+                  ),
+                ),
+                SizedBox(
+                  height: 6,
+                ),
+                Row(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 180,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(6)),
+                            border: Border.all(
+                              width: 1,
+                              color: Color(0xffE0E0E0),
+                              style: BorderStyle.solid,
+                            ),
+                          ),
+                          child: Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Text(
+                                  'Event Dates',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    fontFamily: 'Inter',
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w500,
+                                    letterSpacing: -0.264706,
+                                    color: Color(0xff979797).withOpacity(0.7),
+                                  ),
+                                ),
+                                IconButton(
+                                    iconSize: 16.25,
+                                    icon: FaIcon(
+                                      FontAwesomeIcons.calendar,
+                                      color: Color(0xff000000),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.pushNamed(
+                                          context, Routes.onboarding4Route);
+                                    }),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 3,
+                        ),
+                        Text(
+                          'Enter No of tables present',
+                          style: TextStyle(
+                            fontSize: 9,
+                            fontFamily: 'Poppins',
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.normal,
+                            letterSpacing: -0.229412,
+                            color: Color(0xff6E6D7A),
+                          ),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      width: 18,
+                    ),
+                    Column(
+                      children: [
+                        Container(
+                          width: 180,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(6)),
+                            border: Border.all(
+                              width: 1,
+                              color: Color(0xffE0E0E0),
+                              style: BorderStyle.solid,
+                            ),
+                          ),
+                          child: Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Text(
+                                  'Monthly',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    fontFamily: 'Inter',
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w500,
+                                    letterSpacing: -0.264706,
+                                    color: Color(0xff979797).withOpacity(0.7),
+                                  ),
+                                ),
+                                IconButton(
+                                    iconSize: 16.25,
+                                    icon: FaIcon(
+                                      FontAwesomeIcons.calendar,
+                                      color: Color(0xff000000),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.pushNamed(
+                                          context, Routes.onboarding4Route);
+                                    }),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 3,
+                        ),
+                        Text(
+                          'Recurrance frequency',
+                          style: TextStyle(
+                            fontSize: 9,
+                            fontFamily: 'Poppins',
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.normal,
+                            letterSpacing: -0.229412,
+                            color: Color(0xff6E6D7A),
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
