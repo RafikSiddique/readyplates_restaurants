@@ -12,27 +12,38 @@ class OnboardingPage4 extends StatefulWidget {
 class _OnboardingPage4State extends State<OnboardingPage4> {
   List<String> selectCategory = [
     'Burgers',
-    'Pizza',
-    'Chinese',
     'Pan-Asian',
-    'Arab',
-    'Italian',
     'Continental',
-    'Fast Food',
-    'Japanese',
     'Malay',
-    'Korean',
-    'Indonesian',
     'Seafood',
-    'Barbeque',
-    'Vegan',
     'South Indian',
+    'Pizza',
+    'Arab',
+    'Fast Food',
+    'Korean',
+    'Barbeque',
     'North Indian',
+    'Chinese',
+    'Italian',
+    'Japanese',
+    'Indonesian',
+    'Vegan',
     'Pan-Indian',
   ];
 
   List<String> chooseCategory = [];
+  List<String> selectDays = [
+    'Monday',
+    'Thursday',
+    'Sunday',
+    'Tuesday',
+    'Friday',
+    'Wednesday',
+    'Saturday',
+  ];
+  List<String> chooseDays = [];
   bool isChecked = false;
+  bool isDays = false;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -140,8 +151,11 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                       ),
                     ),
                     items: [
-                      DropdownMenuItem(child: Text("Select City"), value: ""),
-                      DropdownMenuItem(child: Text("Pune"), value: "Pune"),
+                      DropdownMenuItem(
+                          child: Text("Select Type of Establishment"),
+                          value: ""),
+                      DropdownMenuItem(
+                          child: Text("Dineout only"), value: "Dineout only"),
                     ],
                     onChanged: (newValue) {
                       setState(() {
@@ -186,52 +200,159 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                 ),
                 Row(
                   children: [
-                    ...selectCategory
-                        .map((category) => Wrap(
-                              crossAxisAlignment: WrapCrossAlignment.center,
-                              direction: Axis.horizontal,
-                              children: [
-                                Checkbox(
-                                  checkColor: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(4),
-                                      side: BorderSide(
-                                        color: Color(0xffE0E0E0),
-                                        width: 1,
-                                        style: BorderStyle.solid,
-                                      )),
-                                  value: chooseCategory.contains(category),
-                                  onChanged: (value) {
-                                    if (chooseCategory.contains(category)) {
-                                      chooseCategory.remove(category);
-                                    } else {
-                                      chooseCategory.add(category);
-                                    }
-                                    setState(() {
-                                      isChecked = value!;
-                                    });
-                                  },
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Container(
-                                  width: 85,
-                                  child: Text(
-                                    category,
-                                    style: TextStyle(
-                                      fontSize: 13,
-                                      fontFamily: 'Inter',
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.normal,
-                                      letterSpacing: -0.264706,
-                                      color: Color(0xff2F2E41).withOpacity(0.7),
+                    Column(
+                      children: [
+                        ...selectCategory
+                            .sublist(0, 6)
+                            .map((category) => Row(
+                                  children: [
+                                    Checkbox(
+                                      checkColor: Colors.white,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                          side: BorderSide(
+                                            color: Color(0xffE0E0E0),
+                                            width: 1,
+                                            style: BorderStyle.solid,
+                                          )),
+                                      value: chooseCategory.contains(category),
+                                      onChanged: (value) {
+                                        if (chooseCategory.contains(category)) {
+                                          chooseCategory.remove(category);
+                                        } else {
+                                          chooseCategory.add(category);
+                                        }
+                                        setState(() {
+                                          isChecked = value!;
+                                        });
+                                      },
                                     ),
-                                  ),
-                                ),
-                              ],
-                            ))
-                        .toList(),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Container(
+                                      width: 85,
+                                      child: Text(
+                                        category,
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                          fontFamily: 'Inter',
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.normal,
+                                          letterSpacing: -0.264706,
+                                          color: Color(0xff2F2E41)
+                                              .withOpacity(0.7),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ))
+                            .toList(),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        ...selectCategory
+                            .sublist(6, 12)
+                            .map((category) => Row(
+                                  children: [
+                                    Checkbox(
+                                      checkColor: Colors.white,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                          side: BorderSide(
+                                            color: Color(0xffE0E0E0),
+                                            width: 1,
+                                            style: BorderStyle.solid,
+                                          )),
+                                      value: chooseCategory.contains(category),
+                                      onChanged: (value) {
+                                        if (chooseCategory.contains(category)) {
+                                          chooseCategory.remove(category);
+                                        } else {
+                                          chooseCategory.add(category);
+                                        }
+                                        setState(() {
+                                          isChecked = value!;
+                                        });
+                                      },
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Container(
+                                      width: 85,
+                                      child: Text(
+                                        category,
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                          fontFamily: 'Inter',
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.normal,
+                                          letterSpacing: -0.264706,
+                                          color: Color(0xff2F2E41)
+                                              .withOpacity(0.7),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ))
+                            .toList(),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        ...selectCategory
+                            .sublist(12, 18)
+                            .map((category) => Row(
+                                  children: [
+                                    Checkbox(
+                                      checkColor: Colors.white,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                          side: BorderSide(
+                                            color: Color(0xffE0E0E0),
+                                            width: 1,
+                                            style: BorderStyle.solid,
+                                          )),
+                                      value: chooseCategory.contains(category),
+                                      onChanged: (value) {
+                                        if (chooseCategory.contains(category)) {
+                                          chooseCategory.remove(category);
+                                        } else {
+                                          chooseCategory.add(category);
+                                        }
+                                        setState(() {
+                                          isChecked = value!;
+                                        });
+                                      },
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Container(
+                                      width: 85,
+                                      child: Text(
+                                        category,
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                          fontFamily: 'Inter',
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.normal,
+                                          letterSpacing: -0.264706,
+                                          color: Color(0xff2F2E41)
+                                              .withOpacity(0.7),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ))
+                            .toList(),
+                      ],
+                    )
                   ],
                 ),
                 SizedBox(
@@ -280,12 +401,529 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                 SizedBox(
                   height: 5,
                 ),
-                Container(
-                  width: 162,
-                  height: 45,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(6)),
+                Row(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 180,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(6)),
+                            border: Border.all(
+                              width: 1,
+                              color: Color(0xffE0E0E0),
+                              style: BorderStyle.solid,
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          '10:00',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontFamily: 'Inter',
+                                            fontStyle: FontStyle.normal,
+                                            fontWeight: FontWeight.w500,
+                                            letterSpacing: -0.264706,
+                                            color: Color(0xff979797)
+                                                .withOpacity(0.7),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(bottom: 12),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Container(
+                                                height: 13,
+                                                child: IconButton(
+                                                    iconSize: 12,
+                                                    icon: FaIcon(
+                                                      FontAwesomeIcons
+                                                          .chevronUp,
+                                                      color: Color(0xff6E6D7A),
+                                                    ),
+                                                    onPressed: () {}),
+                                              ),
+                                              Container(
+                                                height: 13,
+                                                child: IconButton(
+                                                    iconSize: 12,
+                                                    icon: FaIcon(
+                                                      FontAwesomeIcons
+                                                          .chevronDown,
+                                                      color: Color(0xff6E6D7A),
+                                                    ),
+                                                    onPressed: () {}),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                width: 4,
+                              ),
+                              Container(
+                                height: 35,
+                                width: 0,
+                                decoration: BoxDecoration(
+                                  color: Color(0xffE0E0E0),
+                                  border: Border.all(
+                                    width: 1,
+                                    color: Color(0xffE0E0E0),
+                                    style: BorderStyle.solid,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 18,
+                              ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Container(
+                                        height: 19,
+                                        child: Text(
+                                          'AM',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontFamily: 'Inter',
+                                            fontStyle: FontStyle.normal,
+                                            fontWeight: FontWeight.w500,
+                                            letterSpacing: -0.264706,
+                                            color: Color(0xff979797)
+                                                .withOpacity(0.7),
+                                          ),
+                                        ),
+                                      ),
+                                      IconButton(
+                                          iconSize: 12,
+                                          padding: EdgeInsets.only(
+                                              bottom: 4, top: 4),
+                                          icon: FaIcon(
+                                            FontAwesomeIcons.chevronDown,
+                                            color: Color(0xff6E6D7A),
+                                          ),
+                                          onPressed: () {}),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 3,
+                        ),
+                        Text(
+                          'Select start time (hh:mm AM/PM)',
+                          style: TextStyle(
+                            fontSize: 9,
+                            fontFamily: 'Poppins',
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.normal,
+                            letterSpacing: -0.229412,
+                            color: Color(0xff6E6D7A),
+                          ),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      width: 18,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 180,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(6)),
+                            border: Border.all(
+                              width: 1,
+                              color: Color(0xffE0E0E0),
+                              style: BorderStyle.solid,
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          '10:00',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontFamily: 'Inter',
+                                            fontStyle: FontStyle.normal,
+                                            fontWeight: FontWeight.w500,
+                                            letterSpacing: -0.264706,
+                                            color: Color(0xff979797)
+                                                .withOpacity(0.7),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(bottom: 12),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Container(
+                                                height: 13,
+                                                child: IconButton(
+                                                    iconSize: 12,
+                                                    icon: FaIcon(
+                                                      FontAwesomeIcons
+                                                          .chevronUp,
+                                                      color: Color(0xff6E6D7A),
+                                                    ),
+                                                    onPressed: () {}),
+                                              ),
+                                              Container(
+                                                height: 13,
+                                                child: IconButton(
+                                                    iconSize: 12,
+                                                    icon: FaIcon(
+                                                      FontAwesomeIcons
+                                                          .chevronDown,
+                                                      color: Color(0xff6E6D7A),
+                                                    ),
+                                                    onPressed: () {}),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                width: 4,
+                              ),
+                              Container(
+                                height: 35,
+                                width: 0,
+                                decoration: BoxDecoration(
+                                  color: Color(0xffE0E0E0),
+                                  border: Border.all(
+                                    width: 1,
+                                    color: Color(0xffE0E0E0),
+                                    style: BorderStyle.solid,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 18,
+                              ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Container(
+                                        height: 19,
+                                        child: Text(
+                                          'AM',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontFamily: 'Inter',
+                                            fontStyle: FontStyle.normal,
+                                            fontWeight: FontWeight.w500,
+                                            letterSpacing: -0.264706,
+                                            color: Color(0xff979797)
+                                                .withOpacity(0.7),
+                                          ),
+                                        ),
+                                      ),
+                                      IconButton(
+                                          iconSize: 12,
+                                          padding: EdgeInsets.only(
+                                              bottom: 4, top: 4),
+                                          icon: FaIcon(
+                                            FontAwesomeIcons.chevronDown,
+                                            color: Color(0xff6E6D7A),
+                                          ),
+                                          onPressed: () {}),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 3,
+                        ),
+                        Text(
+                          'Select start time (hh:mm AM/PM)',
+                          style: TextStyle(
+                            fontSize: 9,
+                            fontFamily: 'Poppins',
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.normal,
+                            letterSpacing: -0.229412,
+                            color: Color(0xff6E6D7A),
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 29,
+                ),
+                RichText(
+                  text: TextSpan(
+                    text: 'Restaurant Operational Days',
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontFamily: 'Inter',
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: -0.229412,
+                      color: Color(0xff2F2E41),
+                    ),
+                    children: [
+                      TextSpan(
+                        text: ' *',
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontFamily: 'Inter',
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: -0.229412,
+                          color: Color(0xffEB4132),
+                        ),
+                      ),
+                    ],
                   ),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Column(
+                      children: [
+                        ...selectDays
+                            .sublist(0, 3)
+                            .map((days) => Row(
+                                  children: [
+                                    Checkbox(
+                                      checkColor: Colors.white,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                          side: BorderSide(
+                                            color: Color(0xffE0E0E0),
+                                            width: 1,
+                                            style: BorderStyle.solid,
+                                          )),
+                                      value: chooseDays.contains(days),
+                                      onChanged: (value) {
+                                        if (chooseDays.contains(days)) {
+                                          chooseDays.remove(days);
+                                        } else {
+                                          chooseDays.add(days);
+                                        }
+                                        setState(() {
+                                          isDays = value!;
+                                        });
+                                      },
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Container(
+                                      width: 85,
+                                      child: Text(
+                                        days,
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                          fontFamily: 'Inter',
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.normal,
+                                          letterSpacing: -0.264706,
+                                          color: Color(0xff2F2E41)
+                                              .withOpacity(0.7),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ))
+                            .toList(),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        ...selectDays
+                            .sublist(3, 5)
+                            .map((days) => Row(
+                                  children: [
+                                    Checkbox(
+                                      checkColor: Colors.white,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                          side: BorderSide(
+                                            color: Color(0xffE0E0E0),
+                                            width: 1,
+                                            style: BorderStyle.solid,
+                                          )),
+                                      value: chooseDays.contains(days),
+                                      onChanged: (value) {
+                                        if (chooseDays.contains(days)) {
+                                          chooseDays.remove(days);
+                                        } else {
+                                          chooseDays.add(days);
+                                        }
+                                        setState(() {
+                                          isDays = value!;
+                                        });
+                                      },
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Container(
+                                      width: 85,
+                                      child: Text(
+                                        days,
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                          fontFamily: 'Inter',
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.normal,
+                                          letterSpacing: -0.264706,
+                                          color: Color(0xff2F2E41)
+                                              .withOpacity(0.7),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ))
+                            .toList(),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        ...selectDays
+                            .sublist(5, 7)
+                            .map((days) => Row(
+                                  children: [
+                                    Checkbox(
+                                      checkColor: Colors.white,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                          side: BorderSide(
+                                            color: Color(0xffE0E0E0),
+                                            width: 1,
+                                            style: BorderStyle.solid,
+                                          )),
+                                      value: chooseDays.contains(days),
+                                      onChanged: (value) {
+                                        if (chooseDays.contains(days)) {
+                                          chooseDays.remove(days);
+                                        } else {
+                                          chooseDays.add(days);
+                                        }
+                                        setState(() {
+                                          isDays = value!;
+                                        });
+                                      },
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Container(
+                                      width: 85,
+                                      child: Text(
+                                        days,
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                          fontFamily: 'Inter',
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.normal,
+                                          letterSpacing: -0.264706,
+                                          color: Color(0xff2F2E41)
+                                              .withOpacity(0.7),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ))
+                            .toList(),
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 29,
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, Routes.onboarding2Route);
+                  },
+                  child: Container(
+                    // width: 343,
+                    height: 40.11,
+                    decoration: BoxDecoration(
+                      color: Color(0xff7A7E83),
+                      borderRadius: BorderRadius.all(Radius.circular(6)),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'CONTINUE',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: -0.28,
+                          color: Color(0xffE5E5E5),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 5.89,
                 ),
               ],
             ),
