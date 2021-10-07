@@ -12,6 +12,7 @@ class OnboardingPage6 extends StatefulWidget {
 class _OnboardingPage6State extends State<OnboardingPage6> {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -75,6 +76,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                 ),
                 Container(
                   // width: 341,
+
                   height: 45,
                   child: TextFormField(
                     maxLines: 5,
@@ -151,7 +153,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          width: 180,
+                          width: 175,
                           height: 50,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(6)),
@@ -230,7 +232,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          width: 180,
+                          width: 175,
                           height: 50,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(6)),
@@ -337,7 +339,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                           height: 5,
                         ),
                         Container(
-                          width: 180,
+                          width: 175,
                           height: 50,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(6)),
@@ -398,6 +400,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                       width: 18,
                     ),
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         RichText(
                           text: TextSpan(
@@ -424,7 +427,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                           height: 5,
                         ),
                         Container(
-                          width: 180,
+                          width: 175,
                           height: 50,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(6)),
@@ -500,57 +503,13 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                 SizedBox(
                   height: 5,
                 ),
-                InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, Routes.onboarding2Route);
-                  },
-                  child: Container(
-                    // width: 343,
-                    height: 40.11,
-                    decoration: BoxDecoration(
-                      color: Color(0xff7A7E83),
-                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Click here to verify account',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 17,
-                          fontFamily: 'Inter',
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: -0.28,
-                          color: Color(0xffE5E5E5),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 3,
-                ),
-                Text(
-                  '₹ 1 will be credited to your account for verification',
-                  style: TextStyle(
-                    fontSize: 8,
-                    fontFamily: 'Montserrat',
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: -0.229412,
-                    color: Color(0xff6E6D7A),
-                  ),
-                ),
-                SizedBox(
-                  height: 6,
-                ),
                 Row(
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          width: 180,
+                          width: 175,
                           height: 50,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(6)),
@@ -562,29 +521,32 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                           ),
                           child: Center(
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  'Event Dates',
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    fontFamily: 'Inter',
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w500,
-                                    letterSpacing: -0.264706,
-                                    color: Color(0xff979797).withOpacity(0.7),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 14),
+                                  child: Text(
+                                    'Event Dates',
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontFamily: 'Inter',
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.w500,
+                                      letterSpacing: -0.264706,
+                                      color: Color(0xff979797).withOpacity(0.7),
+                                    ),
                                   ),
                                 ),
-                                IconButton(
-                                    iconSize: 16.25,
-                                    icon: FaIcon(
-                                      FontAwesomeIcons.calendar,
-                                      color: Color(0xff000000),
-                                    ),
-                                    onPressed: () {
-                                      Navigator.pushNamed(
-                                          context, Routes.onboarding4Route);
-                                    }),
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 7.5),
+                                  child: Container(
+                                    width: 15,
+                                    height: 15,
+                                    child: Image(
+                                        image: AssetImage(
+                                            'assets/images/calendar.png')),
+                                  ),
+                                ),
                               ],
                             ),
                           ),
@@ -609,9 +571,10 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                       width: 18,
                     ),
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          width: 180,
+                          width: 175,
                           height: 50,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(6)),
@@ -623,29 +586,32 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                           ),
                           child: Center(
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  'Monthly',
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    fontFamily: 'Inter',
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w500,
-                                    letterSpacing: -0.264706,
-                                    color: Color(0xff979797).withOpacity(0.7),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 14),
+                                  child: Text(
+                                    'Monthly',
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontFamily: 'Inter',
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.w500,
+                                      letterSpacing: -0.264706,
+                                      color: Color(0xff979797).withOpacity(0.7),
+                                    ),
                                   ),
                                 ),
-                                IconButton(
-                                    iconSize: 16.25,
-                                    icon: FaIcon(
-                                      FontAwesomeIcons.calendar,
-                                      color: Color(0xff000000),
-                                    ),
-                                    onPressed: () {
-                                      Navigator.pushNamed(
-                                          context, Routes.onboarding4Route);
-                                    }),
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 7.5),
+                                  child: Container(
+                                    width: 15,
+                                    height: 15,
+                                    child: Image(
+                                        image: AssetImage(
+                                            'assets/images/calendar.png')),
+                                  ),
+                                ),
                               ],
                             ),
                           ),
@@ -667,6 +633,329 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                       ],
                     ),
                   ],
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                //hgf
+
+                Row(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 175,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(6)),
+                            border: Border.all(
+                              width: 1,
+                              color: Color(0xffE0E0E0),
+                              style: BorderStyle.solid,
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8),
+                                child: Text(
+                                  '10:00',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: 'Inter',
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w500,
+                                    letterSpacing: -0.264706,
+                                    color: Color(0xff979797).withOpacity(0.7),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: 13,
+                                      child: IconButton(
+                                          iconSize: 12,
+                                          icon: FaIcon(
+                                            FontAwesomeIcons.chevronUp,
+                                            color: Color(0xff6E6D7A),
+                                          ),
+                                          onPressed: () {}),
+                                    ),
+                                    Container(
+                                      height: 13,
+                                      child: IconButton(
+                                          iconSize: 12,
+                                          icon: FaIcon(
+                                            FontAwesomeIcons.chevronDown,
+                                            color: Color(0xff6E6D7A),
+                                          ),
+                                          onPressed: () {}),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              // SizedBox(
+                              //   width: 6,
+                              // ),
+                              Container(
+                                height: 35,
+                                width: 0,
+                                decoration: BoxDecoration(
+                                  color: Color(0xffE0E0E0),
+                                  border: Border.all(
+                                    width: 1,
+                                    color: Color(0xffE0E0E0),
+                                    style: BorderStyle.solid,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 18,
+                              ),
+                              Container(
+                                height: 19,
+                                child: Text(
+                                  'AM',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: 'Inter',
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w500,
+                                    letterSpacing: -0.264706,
+                                    color: Color(0xff979797).withOpacity(0.7),
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                  iconSize: 12,
+                                  padding: EdgeInsets.only(bottom: 4, top: 4),
+                                  icon: FaIcon(
+                                    FontAwesomeIcons.chevronDown,
+                                    color: Color(0xff6E6D7A),
+                                  ),
+                                  onPressed: () {}),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 3,
+                        ),
+                        Text(
+                          'Select start time (hh:mm AM/PM)',
+                          style: TextStyle(
+                            fontSize: 9,
+                            fontFamily: 'Poppins',
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.normal,
+                            letterSpacing: -0.229412,
+                            color: Color(0xff6E6D7A),
+                          ),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      width: 18,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 175,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(6)),
+                            border: Border.all(
+                              width: 1,
+                              color: Color(0xffE0E0E0),
+                              style: BorderStyle.solid,
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8),
+                                child: Text(
+                                  '10:00',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: 'Inter',
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w500,
+                                    letterSpacing: -0.264706,
+                                    color: Color(0xff979797).withOpacity(0.7),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: 13,
+                                      child: IconButton(
+                                          iconSize: 12,
+                                          icon: FaIcon(
+                                            FontAwesomeIcons.chevronUp,
+                                            color: Color(0xff6E6D7A),
+                                          ),
+                                          onPressed: () {}),
+                                    ),
+                                    Container(
+                                      height: 13,
+                                      child: IconButton(
+                                          iconSize: 12,
+                                          icon: FaIcon(
+                                            FontAwesomeIcons.chevronDown,
+                                            color: Color(0xff6E6D7A),
+                                          ),
+                                          onPressed: () {}),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              // SizedBox(
+                              //   width: 6,
+                              // ),
+                              Container(
+                                height: 35,
+                                width: 0,
+                                decoration: BoxDecoration(
+                                  color: Color(0xffE0E0E0),
+                                  border: Border.all(
+                                    width: 1,
+                                    color: Color(0xffE0E0E0),
+                                    style: BorderStyle.solid,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 18,
+                              ),
+                              Container(
+                                height: 19,
+                                child: Text(
+                                  'PM',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: 'Inter',
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w500,
+                                    letterSpacing: -0.264706,
+                                    color: Color(0xff979797).withOpacity(0.7),
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                  iconSize: 12,
+                                  padding: EdgeInsets.only(bottom: 4, top: 4),
+                                  icon: FaIcon(
+                                    FontAwesomeIcons.chevronDown,
+                                    color: Color(0xff6E6D7A),
+                                  ),
+                                  onPressed: () {}),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 3,
+                        ),
+                        Text(
+                          'Event end time (hh:mm AM/PM)',
+                          style: TextStyle(
+                            fontSize: 9,
+                            fontFamily: 'Poppins',
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.normal,
+                            letterSpacing: -0.229412,
+                            color: Color(0xff6E6D7A),
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Container(
+                  // width: 341,
+                  height: 45,
+                  child: TextFormField(
+                    maxLines: 5,
+                    cursorColor: Color(0xff00ADB5),
+                    textAlign: TextAlign.left,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          width: 1,
+                          color: Color(0xffE0E0E0),
+                        ),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(6.0),
+                        ),
+                      ),
+                      hintText: 'Event Description',
+                      contentPadding: EdgeInsets.all(14),
+                      hintStyle: TextStyle(
+                        fontSize: 13,
+                        fontFamily: 'Inter',
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: -0.264706,
+                        color: Color(0x979797).withOpacity(0.7),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 3,
+                ),
+                Text(
+                  'Max 20 words',
+                  style: TextStyle(
+                    fontSize: 9,
+                    fontFamily: 'Poppins',
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.normal,
+                    letterSpacing: -0.229412,
+                    color: Color(0xff6E6D7A),
+                  ),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, Routes.onboarding2Route);
+                  },
+                  child: Container(
+                    // width: 343,
+                    height: 40.11,
+                    decoration: BoxDecoration(
+                      color: Color(0xff7A7E83),
+                      borderRadius: BorderRadius.all(Radius.circular(6)),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'CONTINUE',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 17,
+                          fontFamily: 'Inter',
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: -0.28,
+                          color: Color(0xffE5E5E5),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),

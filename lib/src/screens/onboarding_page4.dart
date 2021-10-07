@@ -407,7 +407,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          width: 180,
+                          width: 175,
                           height: 50,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(6)),
@@ -418,72 +418,52 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                             ),
                           ),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left: 10),
+                                padding: const EdgeInsets.only(left: 8),
+                                child: Text(
+                                  '10:00',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: 'Inter',
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w500,
+                                    letterSpacing: -0.264706,
+                                    color: Color(0xff979797).withOpacity(0.7),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5),
                                 child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          '10:00',
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            fontFamily: 'Inter',
-                                            fontStyle: FontStyle.normal,
-                                            fontWeight: FontWeight.w500,
-                                            letterSpacing: -0.264706,
-                                            color: Color(0xff979797)
-                                                .withOpacity(0.7),
+                                    Container(
+                                      height: 13,
+                                      child: IconButton(
+                                          iconSize: 12,
+                                          icon: FaIcon(
+                                            FontAwesomeIcons.chevronUp,
+                                            color: Color(0xff6E6D7A),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(bottom: 12),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                height: 13,
-                                                child: IconButton(
-                                                    iconSize: 12,
-                                                    icon: FaIcon(
-                                                      FontAwesomeIcons
-                                                          .chevronUp,
-                                                      color: Color(0xff6E6D7A),
-                                                    ),
-                                                    onPressed: () {}),
-                                              ),
-                                              Container(
-                                                height: 13,
-                                                child: IconButton(
-                                                    iconSize: 12,
-                                                    icon: FaIcon(
-                                                      FontAwesomeIcons
-                                                          .chevronDown,
-                                                      color: Color(0xff6E6D7A),
-                                                    ),
-                                                    onPressed: () {}),
-                                              ),
-                                            ],
+                                          onPressed: () {}),
+                                    ),
+                                    Container(
+                                      height: 13,
+                                      child: IconButton(
+                                          iconSize: 12,
+                                          icon: FaIcon(
+                                            FontAwesomeIcons.chevronDown,
+                                            color: Color(0xff6E6D7A),
                                           ),
-                                        ),
-                                      ],
-                                    )
+                                          onPressed: () {}),
+                                    ),
                                   ],
                                 ),
                               ),
-                              SizedBox(
-                                width: 4,
-                              ),
+                              // SizedBox(
+                              //   width: 6,
+                              // ),
                               Container(
                                 height: 35,
                                 width: 0,
@@ -499,39 +479,28 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                               SizedBox(
                                 width: 18,
                               ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Container(
-                                        height: 19,
-                                        child: Text(
-                                          'AM',
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            fontFamily: 'Inter',
-                                            fontStyle: FontStyle.normal,
-                                            fontWeight: FontWeight.w500,
-                                            letterSpacing: -0.264706,
-                                            color: Color(0xff979797)
-                                                .withOpacity(0.7),
-                                          ),
-                                        ),
-                                      ),
-                                      IconButton(
-                                          iconSize: 12,
-                                          padding: EdgeInsets.only(
-                                              bottom: 4, top: 4),
-                                          icon: FaIcon(
-                                            FontAwesomeIcons.chevronDown,
-                                            color: Color(0xff6E6D7A),
-                                          ),
-                                          onPressed: () {}),
-                                    ],
-                                  )
-                                ],
+                              Container(
+                                height: 19,
+                                child: Text(
+                                  'AM',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: 'Inter',
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w500,
+                                    letterSpacing: -0.264706,
+                                    color: Color(0xff979797).withOpacity(0.7),
+                                  ),
+                                ),
                               ),
+                              IconButton(
+                                  iconSize: 12,
+                                  padding: EdgeInsets.only(bottom: 4, top: 4),
+                                  icon: FaIcon(
+                                    FontAwesomeIcons.chevronDown,
+                                    color: Color(0xff6E6D7A),
+                                  ),
+                                  onPressed: () {}),
                             ],
                           ),
                         ),
@@ -558,7 +527,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          width: 180,
+                          width: 175,
                           height: 50,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(6)),
@@ -569,72 +538,52 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                             ),
                           ),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left: 10),
+                                padding: const EdgeInsets.only(left: 8),
+                                child: Text(
+                                  '10:00',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: 'Inter',
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w500,
+                                    letterSpacing: -0.264706,
+                                    color: Color(0xff979797).withOpacity(0.7),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5),
                                 child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          '10:00',
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            fontFamily: 'Inter',
-                                            fontStyle: FontStyle.normal,
-                                            fontWeight: FontWeight.w500,
-                                            letterSpacing: -0.264706,
-                                            color: Color(0xff979797)
-                                                .withOpacity(0.7),
+                                    Container(
+                                      height: 13,
+                                      child: IconButton(
+                                          iconSize: 12,
+                                          icon: FaIcon(
+                                            FontAwesomeIcons.chevronUp,
+                                            color: Color(0xff6E6D7A),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(bottom: 12),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                height: 13,
-                                                child: IconButton(
-                                                    iconSize: 12,
-                                                    icon: FaIcon(
-                                                      FontAwesomeIcons
-                                                          .chevronUp,
-                                                      color: Color(0xff6E6D7A),
-                                                    ),
-                                                    onPressed: () {}),
-                                              ),
-                                              Container(
-                                                height: 13,
-                                                child: IconButton(
-                                                    iconSize: 12,
-                                                    icon: FaIcon(
-                                                      FontAwesomeIcons
-                                                          .chevronDown,
-                                                      color: Color(0xff6E6D7A),
-                                                    ),
-                                                    onPressed: () {}),
-                                              ),
-                                            ],
+                                          onPressed: () {}),
+                                    ),
+                                    Container(
+                                      height: 13,
+                                      child: IconButton(
+                                          iconSize: 12,
+                                          icon: FaIcon(
+                                            FontAwesomeIcons.chevronDown,
+                                            color: Color(0xff6E6D7A),
                                           ),
-                                        ),
-                                      ],
-                                    )
+                                          onPressed: () {}),
+                                    ),
                                   ],
                                 ),
                               ),
-                              SizedBox(
-                                width: 4,
-                              ),
+                              // SizedBox(
+                              //   width: 6,
+                              // ),
                               Container(
                                 height: 35,
                                 width: 0,
@@ -650,39 +599,28 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                               SizedBox(
                                 width: 18,
                               ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Container(
-                                        height: 19,
-                                        child: Text(
-                                          'AM',
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            fontFamily: 'Inter',
-                                            fontStyle: FontStyle.normal,
-                                            fontWeight: FontWeight.w500,
-                                            letterSpacing: -0.264706,
-                                            color: Color(0xff979797)
-                                                .withOpacity(0.7),
-                                          ),
-                                        ),
-                                      ),
-                                      IconButton(
-                                          iconSize: 12,
-                                          padding: EdgeInsets.only(
-                                              bottom: 4, top: 4),
-                                          icon: FaIcon(
-                                            FontAwesomeIcons.chevronDown,
-                                            color: Color(0xff6E6D7A),
-                                          ),
-                                          onPressed: () {}),
-                                    ],
-                                  )
-                                ],
+                              Container(
+                                height: 19,
+                                child: Text(
+                                  'PM',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: 'Inter',
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w500,
+                                    letterSpacing: -0.264706,
+                                    color: Color(0xff979797).withOpacity(0.7),
+                                  ),
+                                ),
                               ),
+                              IconButton(
+                                  iconSize: 12,
+                                  padding: EdgeInsets.only(bottom: 4, top: 4),
+                                  icon: FaIcon(
+                                    FontAwesomeIcons.chevronDown,
+                                    color: Color(0xff6E6D7A),
+                                  ),
+                                  onPressed: () {}),
                             ],
                           ),
                         ),
@@ -690,7 +628,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                           height: 3,
                         ),
                         Text(
-                          'Select start time (hh:mm AM/PM)',
+                          'Event end time (hh:mm AM/PM)',
                           style: TextStyle(
                             fontSize: 9,
                             fontFamily: 'Poppins',
