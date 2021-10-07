@@ -957,6 +957,9 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                     ),
                   ),
                 ),
+                SizedBox(
+                  height: 6.89,
+                ),
               ],
             ),
           ),

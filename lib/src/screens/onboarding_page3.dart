@@ -92,9 +92,12 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                 padding: const EdgeInsets.only(left: 17),
                 child: RichText(
                   text: TextSpan(
-                      text: 'GSTIN Present *',
+                      text: 'GSTIN Present ',
                       style: TextStyle(
                         fontSize: 13,
+                        fontFamily: 'Inter',
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.w500,
                         letterSpacing: -0.229412,
                         color: Color(0xff2F2E41),
                       ),
@@ -112,158 +115,248 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
               SizedBox(
                 height: 5,
               ),
+
               Container(
+                width: MediaQuery.of(context).size.width,
                 height: 45,
                 margin: EdgeInsets.only(
                   left: 17,
                   right: 17,
                 ),
-                width: MediaQuery.of(context).size.width,
                 child: TextFormField(
-                  controller: gstController,
+                  cursorColor: Color(0xff00ADB5),
+                  textAlign: TextAlign.left,
                   decoration: InputDecoration(
-                    hintText: "Yes/No/Applied/Acknowledgement Received",
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 1,
+                        color: Color(0xffE0E0E0),
+                      ),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(6.0),
+                      ),
+                    ),
+                    hintText: 'Yes/No/Applied/Acknowledgement Received',
                     contentPadding: EdgeInsets.only(
                       left: 14,
                       top: 14,
                     ),
                     hintStyle: TextStyle(
-                      fontSize: 15,
+                      fontSize: 13,
+                      fontFamily: 'Inter',
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.w500,
                       letterSpacing: -0.264706,
-                      color: Color(0xff2F2E41).withOpacity(0.7),
-                    ),
-
-                    // hintText: "Yes/No/Applied/Acknowledgement Received",
-                    // hintStyle: TextStyle(
-                    //     fontSize: 15,
-                    //     letterSpacing: -0.264706,
-                    //     color: Color(0xff2F2E41).withOpacity(0.7)),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(6.0),
+                      color: Color(0x979797).withOpacity(0.7),
                     ),
                   ),
                 ),
               ),
+
               SizedBox(height: 26),
               Padding(
                 padding: const EdgeInsets.only(left: 17),
                 child: Text("Restaurant GSTIN",
                     style: TextStyle(
                       fontSize: 13,
+                      fontFamily: 'Inter',
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: -0.229412,
                       color: Color(0xff2F2E41),
                     )),
               ),
               SizedBox(
                 height: 5,
               ),
+
               Container(
+                width: MediaQuery.of(context).size.width,
                 height: 45,
                 margin: EdgeInsets.only(
                   left: 17,
                   right: 17,
                 ),
-                width: MediaQuery.of(context).size.width,
                 child: TextFormField(
-                  controller: resgstController,
+                  cursorColor: Color(0xff00ADB5),
+                  textAlign: TextAlign.left,
                   decoration: InputDecoration(
-                    hintText: "Eg.22AABCU9603R1ZX",
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 1,
+                        color: Color(0xffE0E0E0),
+                      ),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(6.0),
+                      ),
+                    ),
+                    hintText: 'Eg.22AABCU9603R1ZX',
                     contentPadding: EdgeInsets.only(
                       left: 14,
                       top: 14,
                     ),
                     hintStyle: TextStyle(
                       fontSize: 13,
+                      fontFamily: 'Inter',
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.w500,
                       letterSpacing: -0.264706,
-                      color: Color(0xff2F2E41).withOpacity(0.7),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(6.0),
+                      color: Color(0x979797).withOpacity(0.7),
                     ),
                   ),
                 ),
               ),
+
               SizedBox(height: 26),
               Padding(
                 padding: const EdgeInsets.only(left: 17),
                 child: Text("FSSAI License Status",
                     style: TextStyle(
                       fontSize: 13,
+                      fontFamily: 'Inter',
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: -0.229412,
                       color: Color(0xff2F2E41),
                     )),
               ),
+
               SizedBox(
                 height: 5,
               ),
               Container(
+                width: MediaQuery.of(context).size.width,
                 height: 45,
                 margin: EdgeInsets.only(
                   left: 17,
                   right: 17,
                 ),
-                width: MediaQuery.of(context).size.width,
                 child: TextFormField(
-                  controller: fssaistatusController,
+                  cursorColor: Color(0xff00ADB5),
+                  textAlign: TextAlign.left,
                   decoration: InputDecoration(
-                    hintText: "Yes/No/Applied/Acknowledgement Received",
-                    hintStyle: TextStyle(
-                        fontSize: 13,
-                        letterSpacing: -0.264706,
-                        color: Color(0xff2F2E41).withOpacity(0.7)),
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(6.0),
+                      borderSide: BorderSide(
+                        width: 1,
+                        color: Color(0xffE0E0E0),
+                      ),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(6.0),
+                      ),
+                    ),
+                    hintText: 'Yes/No/Applied/Acknowledgement Received',
+                    contentPadding: EdgeInsets.only(
+                      left: 14,
+                      top: 14,
+                    ),
+                    hintStyle: TextStyle(
+                      fontSize: 13,
+                      fontFamily: 'Inter',
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: -0.264706,
+                      color: Color(0x979797).withOpacity(0.7),
                     ),
                   ),
                 ),
               ),
+
               SizedBox(height: 26),
               Padding(
                 padding: const EdgeInsets.only(left: 17),
                 child: Text("FSSAI Expiry Date",
                     style: TextStyle(
                       fontSize: 13,
+                      fontFamily: 'Inter',
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: -0.229412,
                       color: Color(0xff2F2E41),
                     )),
               ),
+
               SizedBox(
                 height: 5,
               ),
               Container(
-                height: 45,
+                height: 45.68,
                 margin: EdgeInsets.only(
                   left: 17,
                   right: 17,
                 ),
                 width: MediaQuery.of(context).size.width,
-                child: TextFormField(
-                  controller: fssaidateController,
-                  decoration: InputDecoration(
-                    hintText: "mm/dd/yyyy",
-                    hintStyle: TextStyle(
-                        fontSize: 13,
-                        letterSpacing: -0.264706,
-                        color: Color(0xff2F2E41).withOpacity(0.7)),
-
-                    //labelText: "Yes/No/Applied/Acknowledgement Received",
-                    suffixIcon: IconButton(
-                      icon: Icon(Icons.calendar_today_outlined),
-                      color: Color(0xff6E6D7A),
-                      onPressed: () {},
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(6.0),
-                    ),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    width: 1,
+                    color: Color(0xffE0E0E0),
+                    style: BorderStyle.solid,
+                  ),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(6.0),
                   ),
                 ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 12.5),
+                      child: Text(
+                        'mm/dd/yyyy',
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontFamily: 'Inter',
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: -0.264706,
+                          color: Color(0xff979797).withOpacity(0.7),
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {},
+                      child: Container(
+                        width: 45,
+                        decoration: BoxDecoration(
+                          color: Color(0xffEFEFEF),
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(0),
+                            topRight: Radius.circular(6.0),
+                            bottomLeft: Radius.circular(0),
+                            bottomRight: Radius.circular(6.0),
+                          ),
+                        ),
+                        child: Center(
+                          child: Container(
+                            width: 15,
+                            height: 15,
+                            child: Image(
+                              image: AssetImage(
+                                'assets/images/calender.jpeg',
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
+
+              //
+
               SizedBox(height: 26),
               Padding(
                 padding: const EdgeInsets.only(left: 17),
                 child: RichText(
                   text: TextSpan(
                       text:
-                          'Upload KYC (Aadhar Card/ Passport/Driving License/ Voter ID',
+                          'Upload KYC (Aadhar Card/ Passport/Driving License/ \nVoter ID',
                       style: TextStyle(
                         fontSize: 13,
+                        fontFamily: 'Inter',
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.w500,
                         letterSpacing: -0.229412,
                         color: Color(0xff2F2E41),
                       ),
@@ -278,128 +371,247 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                       ]),
                 ),
               ),
+
               SizedBox(
                 height: 5,
               ),
               Container(
-                height: 45,
+                height: 45.68,
                 margin: EdgeInsets.only(
                   left: 17,
                   right: 17,
                 ),
                 width: MediaQuery.of(context).size.width,
-                child: TextFormField(
-                  // controller: email,
-                  decoration: InputDecoration(
-                    hintText: "Please upload [ “png”, “jpg”, “jpeg”] images",
-                    hintStyle: TextStyle(
-                        fontSize: 13,
-                        letterSpacing: -0.264706,
-                        color: Color(0xff2F2E41).withOpacity(0.7)),
-                    suffixIcon: Container(
-                      height: 45,
-                      width: 45,
-                      color: Color(0xffEFEFEF),
-                      child: IconButton(
-                        icon: Icon(Icons.upload_file),
-                        color: Color(0xff6E6D7A),
-                        onPressed: () {},
-                      ),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(6.0),
-                    ),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    width: 1,
+                    color: Color(0xffE0E0E0),
+                    style: BorderStyle.solid,
+                  ),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(6.0),
                   ),
                 ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 12.5),
+                      child: Text(
+                        'Please upload [ “png”, “jpg”, “jpeg”] images',
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontFamily: 'Inter',
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: -0.264706,
+                          color: Color(0xff979797).withOpacity(0.7),
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {},
+                      child: Container(
+                        width: 45,
+                        decoration: BoxDecoration(
+                          color: Color(0xffEFEFEF),
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(0),
+                            topRight: Radius.circular(6.0),
+                            bottomLeft: Radius.circular(0),
+                            bottomRight: Radius.circular(6.0),
+                          ),
+                        ),
+                        child: Center(
+                          child: Container(
+                            width: 20,
+                            height: 20,
+                            child: Image(
+                              image: AssetImage(
+                                'assets/images/upload.png',
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
+
+//
+
               SizedBox(height: 26),
               Padding(
                 padding: const EdgeInsets.only(left: 17),
                 child: Text("Upload GSTIN Certificate",
                     style: TextStyle(
                       fontSize: 13,
+                      fontFamily: 'Inter',
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: -0.229412,
                       color: Color(0xff2F2E41),
                     )),
               ),
               SizedBox(
                 height: 5,
               ),
+
+              SizedBox(
+                height: 5.08,
+              ),
               Container(
-                height: 45,
+                height: 45.68,
                 margin: EdgeInsets.only(
                   left: 17,
                   right: 17,
                 ),
                 width: MediaQuery.of(context).size.width,
-                child: TextFormField(
-                  // controller: email,
-                  decoration: InputDecoration(
-                    hintText:
-                        "Please upload [ “png”, “jpg”, “jpeg”, “pdf”] files",
-                    hintStyle: TextStyle(
-                        fontSize: 13,
-                        letterSpacing: -0.264706,
-                        color: Color(0xff2F2E41).withOpacity(0.7)),
-                    suffixIcon: Container(
-                      height: 45,
-                      width: 45,
-                      color: Color(0xffEFEFEF),
-                      child: IconButton(
-                        icon: Icon(Icons.upload_file),
-                        color: Color(0xff6E6D7A),
-                        onPressed: () {},
-                      ),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(6.0),
-                    ),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    width: 1,
+                    color: Color(0xffE0E0E0),
+                    style: BorderStyle.solid,
+                  ),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(6.0),
                   ),
                 ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 12.5),
+                      child: Text(
+                        'Please upload [ “png”, “jpg”, “jpeg”, “pdf”] files',
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontFamily: 'Inter',
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: -0.264706,
+                          color: Color(0xff979797).withOpacity(0.7),
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {},
+                      child: Container(
+                        width: 45,
+                        decoration: BoxDecoration(
+                          color: Color(0xffEFEFEF),
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(0),
+                            topRight: Radius.circular(6.0),
+                            bottomLeft: Radius.circular(0),
+                            bottomRight: Radius.circular(6.0),
+                          ),
+                        ),
+                        child: Center(
+                          child: Container(
+                            width: 20,
+                            height: 20,
+                            child: Image(
+                              image: AssetImage(
+                                'assets/images/upload.png',
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
+
+              //
               SizedBox(height: 26),
               Padding(
                 padding: const EdgeInsets.only(left: 17),
                 child: Text("Upload FSSAI Certificate",
                     style: TextStyle(
                       fontSize: 13,
+                      fontFamily: 'Inter',
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: -0.229412,
                       color: Color(0xff2F2E41),
                     )),
               ),
+
               SizedBox(
-                height: 5,
+                height: 5.08,
               ),
               Container(
-                height: 45,
+                height: 45.68,
                 margin: EdgeInsets.only(
                   left: 17,
                   right: 17,
                 ),
                 width: MediaQuery.of(context).size.width,
-                child: TextFormField(
-                  // controller: email,
-                  decoration: InputDecoration(
-                    hintText:
-                        "Please upload [ “png”, “jpg”, “jpeg”, “pdf”] files",
-                    hintStyle: TextStyle(
-                        fontSize: 13,
-                        letterSpacing: -0.264706,
-                        color: Color(0xff2F2E41).withOpacity(0.7)),
-                    suffixIcon: Container(
-                      height: 45,
-                      width: 45,
-                      color: Color(0xffEFEFEF),
-                      child: IconButton(
-                        icon: Icon(Icons.upload_file),
-                        color: Color(0xff6E6D7A),
-                        onPressed: () {},
-                      ),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(6),
-                    ),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    width: 1,
+                    color: Color(0xffE0E0E0),
+                    style: BorderStyle.solid,
+                  ),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(6.0),
                   ),
                 ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 12.5),
+                      child: Text(
+                        'Please upload [ “png”, “jpg”, “jpeg”, “pdf”] files',
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontFamily: 'Inter',
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: -0.264706,
+                          color: Color(0xff979797).withOpacity(0.7),
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {},
+                      child: Container(
+                        width: 45,
+                        decoration: BoxDecoration(
+                          color: Color(0xffEFEFEF),
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(0),
+                            topRight: Radius.circular(6.0),
+                            bottomLeft: Radius.circular(0),
+                            bottomRight: Radius.circular(6.0),
+                          ),
+                        ),
+                        child: Center(
+                          child: Container(
+                            width: 20,
+                            height: 20,
+                            child: Image(
+                              image: AssetImage(
+                                'assets/images/upload.png',
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
+
+              //
+
               SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.only(left: 17, right: 15),

@@ -1,0 +1,433 @@
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:readyplates_restaurants/utils/utils.dart';
+
+class OnboardingPage7 extends StatefulWidget {
+  const OnboardingPage7({Key? key}) : super(key: key);
+
+  @override
+  _OnboardingPage7State createState() => _OnboardingPage7State();
+}
+
+class _OnboardingPage7State extends State<OnboardingPage7> {
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          toolbarHeight: 44,
+          backgroundColor: Colors.white,
+          elevation: 0,
+          leading: IconButton(
+              iconSize: 14.83,
+              icon: FaIcon(
+                FontAwesomeIcons.chevronLeft,
+                color: Color(0xff000000),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, Routes.onboarding6Route);
+              }),
+          centerTitle: true,
+          title: Text(
+            'Restaurant Bio',
+            style: TextStyle(
+              fontSize: 17,
+              fontFamily: 'Inter',
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w500,
+              letterSpacing: -0.226667,
+              color: Color(0xff393E46),
+            ),
+          ),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.only(
+            left: 16,
+            right: 16,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 14,
+              ),
+              RichText(
+                text: TextSpan(
+                    text: 'Restaurant Fascia Images',
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontFamily: 'Inter',
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: -0.229412,
+                      color: Color(0xff2F2E41),
+                    ),
+                    children: [
+                      TextSpan(
+                        text: ' *',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Color(0xffEB4132),
+                        ),
+                      ),
+                    ]),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(6)),
+                child: Container(
+                  height: 228,
+                  decoration: BoxDecoration(
+                    color: Color(0xffFFFFFF),
+                    // color: Color.fromRGBO(34, 40, 49, 0.2),
+                    border: Border.all(
+                      width: 1,
+                      color: Color(0xffE0E0E0),
+                    ),
+                    // borderRadius: BorderRadius.all(Radius.circular(12)),
+                  ),
+                  child: Image(
+                    image: AssetImage('assets/images/frontfascia.png'),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Row(
+                children: [
+                  Wrap(
+                    direction: Axis.vertical,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(3)),
+                        child: Container(
+                          height: 49,
+                          decoration: BoxDecoration(
+                            color: Color(0xffFFFFFF),
+                            border: Border.all(
+                              width: 0.5,
+                              color: Color(0xffE0E0E0),
+                            ),
+                          ),
+                          child: Image(
+                            image: AssetImage(
+                                'assets/images/FrontFasciaNight.png'),
+                          ),
+                        ),
+                      ),
+                      Text(
+                        'Front Fascia (Night)',
+                        style: TextStyle(
+                          fontSize: 9,
+                          fontFamily: 'Poppins',
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.normal,
+                          letterSpacing: -0.229412,
+                          color: Color(0xff6E6D7A),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    width: 16,
+                  ),
+                  Wrap(
+                    direction: Axis.vertical,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(3)),
+                        child: Container(
+                          height: 49,
+                          decoration: BoxDecoration(
+                            color: Color(0xffFFFFFF),
+                            border: Border.all(
+                              width: 0.5,
+                              color: Color(0xffE0E0E0),
+                            ),
+                          ),
+                          child: Image(
+                            image: AssetImage('assets/images/StreetView.png'),
+                          ),
+                        ),
+                      ),
+                      Text(
+                        'Street View',
+                        style: TextStyle(
+                          fontSize: 9,
+                          fontFamily: 'Poppins',
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.normal,
+                          letterSpacing: -0.229412,
+                          color: Color(0xff6E6D7A),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    width: 16,
+                  ),
+                  Wrap(
+                    direction: Axis.vertical,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(3)),
+                        child: Container(
+                          height: 49,
+                          decoration: BoxDecoration(
+                            color: Color(0xffFFFFFF),
+                            border: Border.all(
+                              width: 0.5,
+                              color: Color(0xffE0E0E0),
+                            ),
+                          ),
+                          child: Image(
+                            image: AssetImage(
+                                'assets/images/FrontFasciaDaytime.png'),
+                          ),
+                        ),
+                      ),
+                      Text(
+                        'Front Fascia (Daytime)',
+                        style: TextStyle(
+                          fontSize: 9,
+                          fontFamily: 'Poppins',
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.normal,
+                          letterSpacing: -0.229412,
+                          color: Color(0xff6E6D7A),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    width: 16,
+                  ),
+                  Wrap(
+                    direction: Axis.vertical,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(3)),
+                        child: Container(
+                          height: 49,
+                          decoration: BoxDecoration(
+                            color: Color(0xffFFFFFF),
+                            border: Border.all(
+                              width: 0.5,
+                              color: Color(0xffE0E0E0),
+                            ),
+                          ),
+                          child: Image(
+                            image: AssetImage(
+                                'assets/images/RestaurantEntrance.png'),
+                          ),
+                        ),
+                      ),
+                      Text(
+                        'Restaurant Entrance',
+                        style: TextStyle(
+                          fontSize: 9,
+                          fontFamily: 'Poppins',
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.normal,
+                          letterSpacing: -0.229412,
+                          color: Color(0xff6E6D7A),
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 11),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: 5,
+                      width: 5,
+                      decoration: BoxDecoration(
+                        color: Color(0xffE0E0E0),
+                        borderRadius: BorderRadius.all(Radius.circular(12)),
+                      ),
+                      // child: Icon(
+                      //   Icons.fiber_manual_record,
+                      //   color: Color(0xffE0E0E0),
+                      //   size: 10,
+                      // ),
+                    ),
+                    SizedBox(
+                      width: 11,
+                    ),
+                    Container(
+                      height: 5,
+                      width: 5,
+                      decoration: BoxDecoration(
+                        color: Color(0xffE0E0E0),
+                        borderRadius: BorderRadius.all(Radius.circular(12)),
+                      ),
+                      // child: Icon(
+                      //   Icons.fiber_manual_record,
+                      //   color: Color(0xffE0E0E0),
+                      //   size: 10,
+                      // ),
+                    ),
+                    SizedBox(
+                      width: 11,
+                    ),
+                    Container(
+                      height: 5,
+                      width: 5,
+                      decoration: BoxDecoration(
+                        color: Color(0xff00ADB5),
+                        borderRadius: BorderRadius.all(Radius.circular(12)),
+                      ),
+                      // child: Icon(
+                      //   Icons.fiber_manual_record,
+                      //   color: Color(0xffE0E0E0),
+                      //   size: 10,
+                      // ),
+                    ),
+                    SizedBox(
+                      width: 11,
+                    ),
+                    Container(
+                      height: 5,
+                      width: 5,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          width: 1,
+                          color: Color(0xffE0E0E0),
+                        ),
+                        borderRadius: BorderRadius.all(Radius.circular(12)),
+                      ),
+                      // child: Icon(
+                      //   Icons.fiber_manual_record,
+                      //   color: Color(0xffE0E0E0),
+                      //   size: 10,
+                      // ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 11,
+              ),
+              Row(
+                children: [
+                  Column(
+                    children: [
+                      Container(
+                        width: 164,
+                        height: 135,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            width: 1,
+                            color: Color(0xffE0E0E0),
+                            style: BorderStyle.solid,
+                          ),
+                          borderRadius: BorderRadius.all(Radius.circular(6)),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              height: 27,
+                              decoration: BoxDecoration(
+                                color: Color(0xffE0E0E0),
+                                border: Border.all(
+                                  width: 1,
+                                  color: Color(0xffE0E0E0),
+                                  style: BorderStyle.solid,
+                                ),
+                                borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(6),
+                                    bottomRight: Radius.circular(6)),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 12.5),
+                                    child: Text(
+                                      'Front Fascia (Night)',
+                                      style: TextStyle(
+                                        fontSize: 9,
+                                        fontFamily: 'Poppins',
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.normal,
+                                        letterSpacing: -0.229412,
+                                        color: Color(0xff6E6D7A),
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () async {
+                                      // final result = await FilePicker.platform
+                                      //     .pickFiles(allowMultiple: true);
+                                      // if (result == null) return;
+                                      // final file = result.files.first;
+                                      // // openFile(file);
+
+                                      // print('Name: ${file.name}');
+                                      // print('Bytes: ${file.bytes}');
+                                      // print('Size: ${file.size}');
+                                      // print('Extension: ${file.extension}');
+                                      // print('Path: ${file.path}');
+                                      // final newFile = await saveFilePermanently(file);
+                                      // print('From Path: ${file.path!}');
+                                      // print('To Path: ${newFile.path}');
+                                    },
+                                    child: Container(
+                                      width: 50,
+                                      decoration: BoxDecoration(
+                                        color: Color(0xffEFEFEF),
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(0),
+                                          topRight: Radius.circular(6.0),
+                                          bottomLeft: Radius.circular(0),
+                                          bottomRight: Radius.circular(6.0),
+                                        ),
+                                      ),
+                                      child: Center(
+                                        child: Container(
+                                          width: 26,
+                                          height: 26,
+                                          child: Image(
+                                            image: AssetImage(
+                                              'assets/images/upload.png',
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                  Column(
+                    children: [],
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

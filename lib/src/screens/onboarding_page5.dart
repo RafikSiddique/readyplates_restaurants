@@ -1,6 +1,11 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:readyplates_restaurants/utils/utils.dart';
+import 'package:open_file/open_file.dart';
+import 'package:path_provider/path_provider.dart';
 
 class OnboardingPage5 extends StatefulWidget {
   const OnboardingPage5({Key? key}) : super(key: key);
@@ -10,8 +15,19 @@ class OnboardingPage5 extends StatefulWidget {
 }
 
 class _OnboardingPage5State extends State<OnboardingPage5> {
+  void openFile(PlatformFile file) {
+    OpenFile.open(file.path!);
+  }
+
+  Future<File> saveFilePermanently(PlatformFile file) async {
+    final appStorage = await getApplicationDocumentsDirectory();
+    final newFile = File('${appStorage.path}/${file.name}');
+    return File(file.path!).copy(newFile.path);
+  }
+
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -504,9 +520,24 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                         ),
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () async {
+                          final result = await FilePicker.platform
+                              .pickFiles(allowMultiple: true);
+                          if (result == null) return;
+                          final file = result.files.first;
+                          // openFile(file);
+
+                          print('Name: ${file.name}');
+                          print('Bytes: ${file.bytes}');
+                          print('Size: ${file.size}');
+                          print('Extension: ${file.extension}');
+                          print('Path: ${file.path}');
+                          final newFile = await saveFilePermanently(file);
+                          print('From Path: ${file.path!}');
+                          print('To Path: ${newFile.path}');
+                        },
                         child: Container(
-                          width: 45,
+                          width: size.width * 0.110,
                           decoration: BoxDecoration(
                             color: Color(0xffEFEFEF),
                             borderRadius: BorderRadius.only(

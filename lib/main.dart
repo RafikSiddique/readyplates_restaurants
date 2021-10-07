@@ -3,6 +3,7 @@ import 'package:readyplates_restaurants/src/screens/login_page.dart';
 import 'package:readyplates_restaurants/src/screens/onboarding_page4.dart';
 import 'package:readyplates_restaurants/src/screens/onboarding_page5.dart';
 import 'package:readyplates_restaurants/src/screens/onboarding_page6.dart';
+import 'package:readyplates_restaurants/src/screens/onboarding_page7.dart';
 import 'package:readyplates_restaurants/src/screens/signup_page.dart';
 import 'package:readyplates_restaurants/src/screens/onboarding_page1.dart';
 import 'package:readyplates_restaurants/src/screens/onboarding_page2.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.onboarding6Route,
+      initialRoute: Routes.onboarding7Route,
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
         Routes.onboarding4Route: (context) => OnboardingPage4(),
         Routes.onboarding5Route: (context) => OnboardingPage5(),
         Routes.onboarding6Route: (context) => OnboardingPage6(),
+        Routes.onboarding7Route: (context) => OnboardingPage7(),
       },
     );
   }
