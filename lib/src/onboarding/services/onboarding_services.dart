@@ -5,6 +5,7 @@ import 'package:http/http.dart';
 class OnboardingServices extends ApiServices {
   Future<bool> uploadImages(List<String> files, int index) async {
     try {
+      
       List<List<String>> fields = [
         ["front_fascia_day", "front_fascia_night", "street_view", "entrance"],
         ["ambience1", "ambience2", "ambience3", "ambience4"],

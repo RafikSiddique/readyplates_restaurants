@@ -82,6 +82,10 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
     });
   }
 
+  bool isImagesUploaded(List<String> list) {
+    return list[0] != "" && list[1] != "" && list[2] != "" && list[3] != "";
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -203,12 +207,16 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                   onTap: () async {
                     switch (onBoardingController.pageIndex.value) {
                       case 0:
-                        await onBoardingController
-                            .uploadImage(onBoardingController.fasciaImages);
-                        pageController.animateToPage(1,
-                            duration: Duration(milliseconds: 500),
-                            curve: Curves.ease);
-
+                        if (isImagesUploaded(
+                            onBoardingController.fasciaImages)) {
+                          await onBoardingController
+                              .uploadImage(onBoardingController.fasciaImages);
+                          pageController.animateToPage(1,
+                              duration: Duration(milliseconds: 500),
+                              curve: Curves.ease);
+                        } else {
+                          Get.snackbar("Error", "Upload all the images");
+                        }
                         break;
                       case 1:
                         await onBoardingController
