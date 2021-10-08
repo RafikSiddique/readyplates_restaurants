@@ -1,5 +1,10 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:open_file/open_file.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:readyplates_restaurants/models/onboarding3.dart';
 import 'package:readyplates_restaurants/src/screens/login_page.dart';
 import 'package:readyplates_restaurants/utils/utils.dart';
@@ -15,6 +20,9 @@ class OnboardingPage3 extends StatefulWidget {
 }
 
 class _OnboardingPage3State extends State<OnboardingPage3> {
+  String disp = '';
+  String disp1 = '';
+  String disp2 = '';
   final gstController = TextEditingController();
   final resgstController = TextEditingController();
   final fssaistatusController = TextEditingController();
@@ -23,6 +31,34 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
   final uploadgstController = TextEditingController();
   final uploadfssaiController = TextEditingController();
   Onboarding3? user3;
+  DateTime? _selectedfssaiExpiryDate;
+  void openFile(PlatformFile file) {
+    OpenFile.open(file.path!);
+  }
+
+  Future<File> saveFilePermanently(PlatformFile file) async {
+    final appStorage = await getApplicationDocumentsDirectory();
+    final newFile = File('${appStorage.path}/${file.name}');
+    return File(file.path!).copy(newFile.path);
+  }
+
+  void fssaiExpiryDate() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2021),
+      lastDate: DateTime.now(),
+      currentDate: DateTime.now(),
+    ).then((pickedDate) {
+      if (pickedDate == null) {
+        return;
+      }
+      setState(() {
+        _selectedfssaiExpiryDate = pickedDate;
+      });
+    });
+  }
+
   //https://readyplates.herokuapp.com/restaurants/s3/
 //http://192.168.0.194:5000/restaurants/s3/
   Future<Onboarding3?> onbordingapi3(
@@ -301,7 +337,9 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                     Padding(
                       padding: const EdgeInsets.only(left: 12.5),
                       child: Text(
-                        'mm/dd/yyyy',
+                        _selectedfssaiExpiryDate == null
+                            ? 'mm/dd/yyyy'
+                            : '${_selectedfssaiExpiryDate!.year}/${_selectedfssaiExpiryDate!.month}/${_selectedfssaiExpiryDate!.day}',
                         style: TextStyle(
                           fontSize: 13,
                           fontFamily: 'Inter',
@@ -314,7 +352,9 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                       ),
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        fssaiExpiryDate();
+                      },
                       child: Container(
                         width: 45,
                         decoration: BoxDecoration(
@@ -332,7 +372,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                             height: 15,
                             child: Image(
                               image: AssetImage(
-                                'assets/images/calender.jpeg',
+                                'assets/images/calendar.png',
                               ),
                             ),
                           ),
@@ -398,7 +438,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                     Padding(
                       padding: const EdgeInsets.only(left: 12.5),
                       child: Text(
-                        'Please upload [ “png”, “jpg”, “jpeg”] images',
+                        '${disp}',
                         style: TextStyle(
                           fontSize: 13,
                           fontFamily: 'Inter',
@@ -411,7 +451,25 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                       ),
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () async {
+                        final result = await FilePicker.platform
+                            .pickFiles(allowMultiple: true);
+                        if (result == null) return;
+                        final file = result.files.first;
+                        // openFile(file);
+
+                        print('Name: ${file.name}');
+                        print('Bytes: ${file.bytes}');
+                        print('Size: ${file.size}');
+                        print('Extension: ${file.extension}');
+                        print('Path: ${file.path}');
+                        final newFile = await saveFilePermanently(file);
+                        setState(() {
+                          disp = newFile.toString();
+                        });
+                        print('From Path: ${file.path!}');
+                        print('To Path: ${newFile.path}');
+                      },
                       child: Container(
                         width: 45,
                         decoration: BoxDecoration(
@@ -485,7 +543,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                     Padding(
                       padding: const EdgeInsets.only(left: 12.5),
                       child: Text(
-                        'Please upload [ “png”, “jpg”, “jpeg”, “pdf”] files',
+                        '${disp1}',
                         style: TextStyle(
                           fontSize: 13,
                           fontFamily: 'Inter',
@@ -498,7 +556,25 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                       ),
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () async {
+                        final result = await FilePicker.platform
+                            .pickFiles(allowMultiple: true);
+                        if (result == null) return;
+                        final file = result.files.first;
+                        // openFile(file);
+
+                        print('Name: ${file.name}');
+                        print('Bytes: ${file.bytes}');
+                        print('Size: ${file.size}');
+                        print('Extension: ${file.extension}');
+                        print('Path: ${file.path}');
+                        final newFile = await saveFilePermanently(file);
+                        setState(() {
+                          disp1 = newFile.toString();
+                        });
+                        print('From Path: ${file.path!}');
+                        print('To Path: ${newFile.path}');
+                      },
                       child: Container(
                         width: 45,
                         decoration: BoxDecoration(
@@ -568,7 +644,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                     Padding(
                       padding: const EdgeInsets.only(left: 12.5),
                       child: Text(
-                        'Please upload [ “png”, “jpg”, “jpeg”, “pdf”] files',
+                        '${disp2}',
                         style: TextStyle(
                           fontSize: 13,
                           fontFamily: 'Inter',
@@ -581,7 +657,25 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                       ),
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () async {
+                        final result = await FilePicker.platform
+                            .pickFiles(allowMultiple: true);
+                        if (result == null) return;
+                        final file = result.files.first;
+                        // openFile(file);
+
+                        print('Name: ${file.name}');
+                        print('Bytes: ${file.bytes}');
+                        print('Size: ${file.size}');
+                        print('Extension: ${file.extension}');
+                        print('Path: ${file.path}');
+                        final newFile = await saveFilePermanently(file);
+                        print('From Path: ${file.path!}');
+                        setState(() {
+                          disp2 = newFile.toString();
+                        });
+                        print('To Path: ${newFile.path}');
+                      },
                       child: Container(
                         width: 45,
                         decoration: BoxDecoration(

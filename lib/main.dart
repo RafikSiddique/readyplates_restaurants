@@ -4,6 +4,8 @@ import 'package:readyplates_restaurants/src/screens/onboarding_page4.dart';
 import 'package:readyplates_restaurants/src/screens/onboarding_page5.dart';
 import 'package:readyplates_restaurants/src/screens/onboarding_page6.dart';
 import 'package:readyplates_restaurants/src/screens/onboarding_page7.dart';
+import 'package:readyplates_restaurants/src/screens/onboarding_page8.dart';
+import 'package:readyplates_restaurants/src/screens/onboarding_page9.dart';
 import 'package:readyplates_restaurants/src/screens/signup_page.dart';
 import 'package:readyplates_restaurants/src/screens/onboarding_page1.dart';
 import 'package:readyplates_restaurants/src/screens/onboarding_page2.dart';
@@ -36,6 +38,8 @@ class MyApp extends StatelessWidget {
         Routes.onboarding5Route: (context) => OnboardingPage5(),
         Routes.onboarding6Route: (context) => OnboardingPage6(),
         Routes.onboarding7Route: (context) => OnboardingPage7(),
+        Routes.onboarding8Route: (context) => OnboardingPage8(),
+        Routes.onboarding9Route: (context) => OnboardingPage9(),
       },
     );
   }

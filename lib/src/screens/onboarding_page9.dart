@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:readyplates_restaurants/utils/utils.dart';
 
-class OnboardingPage7 extends StatefulWidget {
-  const OnboardingPage7({Key? key}) : super(key: key);
+class OnboardingPage9 extends StatefulWidget {
+  const OnboardingPage9({Key? key}) : super(key: key);
 
   @override
-  _OnboardingPage7State createState() => _OnboardingPage7State();
+  _OnboardingPage9State createState() => _OnboardingPage9State();
 }
 
-class _OnboardingPage7State extends State<OnboardingPage7> {
+class _OnboardingPage9State extends State<OnboardingPage9> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -55,7 +54,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                 ),
                 RichText(
                   text: TextSpan(
-                      text: 'Restaurant Fascia Images',
+                      text: 'Food Dishes Images',
                       style: TextStyle(
                         fontSize: 13,
                         fontFamily: 'Inter',
@@ -81,7 +80,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                   borderRadius: BorderRadius.all(Radius.circular(6)),
                   child: Container(
                     height: 228,
-                    width: size.width,
+                    //sssswidth: 343,
                     decoration: BoxDecoration(
                       color: Color(0xffFFFFFF),
                       // color: Color.fromRGBO(34, 40, 49, 0.2),
@@ -92,8 +91,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                       // borderRadius: BorderRadius.all(Radius.circular(12)),
                     ),
                     child: Image(
-                      image: AssetImage('assets/images/frontfascia.png'),
-                      fit: BoxFit.fill,
+                      image: AssetImage('assets/images/FoodDishesImage.png'),
                     ),
                   ),
                 ),
@@ -102,164 +100,152 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                 ),
                 Row(
                   mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.all(Radius.circular(3)),
-                      child: Container(
-                        height: 49,
-                        width: 74,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 0.5,
-                            color: Color(0xffE0E0E0),
+                    Wrap(
+                      direction: Axis.vertical,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(3)),
+                          child: Container(
+                            height: 49,
+                            // width: 74,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                width: 0.5,
+                                color: Color(0xffE0E0E0),
+                              ),
+                            ),
+                            child: Image(
+                              image: AssetImage('assets/images/Food1.png'),
+                              fit: BoxFit.fill,
+                            ),
                           ),
                         ),
-                        child: Image(
-                          image: AssetImage('assets/images/StreetView.png'),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
+                        Text(
+                          'Food 1',
+                          style: TextStyle(
+                            fontSize: 9,
+                            fontFamily: 'Poppins',
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.normal,
+                            letterSpacing: -0.229412,
+                            color: Color(0xff6E6D7A),
+                          ),
+                        )
+                      ],
                     ),
                     SizedBox(
                       width: 16,
                     ),
-                    ClipRRect(
-                      borderRadius: BorderRadius.all(Radius.circular(3)),
-                      child: Container(
-                        height: 49,
-                        width: 74,
-                        decoration: BoxDecoration(
-                          color: Color(0xffFFFFFF),
-                          border: Border.all(
-                            width: 0.5,
-                            color: Color(0xffE0E0E0),
+                    Wrap(
+                      direction: Axis.vertical,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(3)),
+                          child: Container(
+                            height: 49,
+                            // width: 74,
+                            decoration: BoxDecoration(
+                              color: Color(0xffFFFFFF),
+                              border: Border.all(
+                                width: 0.5,
+                                color: Color(0xffE0E0E0),
+                              ),
+                            ),
+                            child: Image(
+                              image: AssetImage('assets/images/Food2.png'),
+                            ),
                           ),
                         ),
-                        child: Image(
-                          image: AssetImage('assets/images/StreetView.png'),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
+                        Text(
+                          'Food 2',
+                          style: TextStyle(
+                            fontSize: 9,
+                            fontFamily: 'Poppins',
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.normal,
+                            letterSpacing: -0.229412,
+                            color: Color(0xff6E6D7A),
+                          ),
+                        )
+                      ],
                     ),
                     SizedBox(
                       width: 16,
                     ),
-                    ClipRRect(
-                      borderRadius: BorderRadius.all(Radius.circular(3)),
-                      child: Container(
-                        height: 49,
-                        width: 74,
-                        decoration: BoxDecoration(
-                          color: Color(0xffFFFFFF),
-                          border: Border.all(
-                            width: 0.5,
-                            color: Color(0xffE0E0E0),
+                    Wrap(
+                      direction: Axis.vertical,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(3)),
+                          child: Container(
+                            height: 49,
+                            // width: 74,
+                            decoration: BoxDecoration(
+                              color: Color(0xffFFFFFF),
+                              border: Border.all(
+                                width: 0.5,
+                                color: Color(0xffE0E0E0),
+                              ),
+                            ),
+                            child: Image(
+                              image: AssetImage('assets/images/Food3.png'),
+                            ),
                           ),
                         ),
-                        child: Image(
-                          image: AssetImage(
-                              'assets/images/FrontFasciaDaytime.png'),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
+                        Text(
+                          'Food 3',
+                          style: TextStyle(
+                            fontSize: 9,
+                            fontFamily: 'Poppins',
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.normal,
+                            letterSpacing: -0.229412,
+                            color: Color(0xff6E6D7A),
+                          ),
+                        )
+                      ],
                     ),
                     SizedBox(
                       width: 16,
                     ),
-                    ClipRRect(
-                      borderRadius: BorderRadius.all(Radius.circular(3)),
-                      child: Container(
-                        height: 49,
-                        width: 74,
-                        decoration: BoxDecoration(
-                          color: Color(0xffFFFFFF),
-                          border: Border.all(
-                            width: 0.5,
-                            color: Color(0xffE0E0E0),
+                    Wrap(
+                      direction: Axis.vertical,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(3)),
+                          child: Container(
+                            height: 49,
+                            // width: 74,
+                            decoration: BoxDecoration(
+                              color: Color(0xffFFFFFF),
+                              border: Border.all(
+                                width: 0.5,
+                                color: Color(0xffE0E0E0),
+                              ),
+                            ),
+                            child: Image(
+                              image: AssetImage('assets/images/Food4.png'),
+                            ),
                           ),
                         ),
-                        child: Image(
-                          image: AssetImage(
-                              'assets/images/RestaurantEntrance.png'),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      width: 74,
-                      child: Text(
-                        'Front Fascia (Night)',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 9,
-                          fontFamily: 'Poppins',
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.normal,
-                          letterSpacing: -0.229412,
-                          color: Color(0xff6E6D7A),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 16,
-                    ),
-                    Container(
-                      width: 74,
-                      child: Text(
-                        'Street View',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 9,
-                          fontFamily: 'Poppins',
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.normal,
-                          letterSpacing: -0.229412,
-                          color: Color(0xff6E6D7A),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 16,
-                    ),
-                    Container(
-                      width: 74,
-                      child: Text(
-                        'Front Fascia (Daytime)',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 9,
-                          fontFamily: 'Poppins',
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.normal,
-                          letterSpacing: -0.229412,
-                          color: Color(0xff6E6D7A),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 16,
-                    ),
-                    Container(
-                      width: 74,
-                      child: Text(
-                        'Restaurant Entrance',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 9,
-                          fontFamily: 'Poppins',
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.normal,
-                          letterSpacing: -0.229412,
-                          color: Color(0xff6E6D7A),
-                        ),
-                      ),
+                        Text(
+                          'Food 4',
+                          style: TextStyle(
+                            fontSize: 9,
+                            fontFamily: 'Poppins',
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.normal,
+                            letterSpacing: -0.229412,
+                            color: Color(0xff6E6D7A),
+                          ),
+                        )
+                      ],
                     ),
                   ],
                 ),
@@ -340,14 +326,9 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                 SizedBox(
                   height: 11,
                 ),
-                Column(
-                  mainAxisSize: MainAxisSize.max,
-                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                Row(
                   children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    Column(
                       children: [
                         Container(
                           width: 164,
@@ -374,7 +355,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                                 ),
                               ),
                               SizedBox(
-                                width: 11,
+                                height: 36,
                               ),
                               Container(
                                 height: 27,
@@ -397,7 +378,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                                       padding:
                                           const EdgeInsets.only(left: 12.5),
                                       child: Text(
-                                        'Front Fascia (Night)',
+                                        'Food 1',
                                         style: TextStyle(
                                           fontSize: 9,
                                           fontFamily: 'Poppins',
@@ -457,9 +438,9 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                             ],
                           ),
                         ),
-                        // SizedBox(
-                        //   width: 15,
-                        // ),
+                        SizedBox(
+                          height: 15,
+                        ),
                         Container(
                           width: 164,
                           height: 138,
@@ -508,7 +489,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                                       padding:
                                           const EdgeInsets.only(left: 12.5),
                                       child: Text(
-                                        'Front Fascia (Daytime)',
+                                        'Food 3',
                                         style: TextStyle(
                                           fontSize: 9,
                                           fontFamily: 'Poppins',
@@ -571,11 +552,9 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                       ],
                     ),
                     SizedBox(
-                      height: 15,
+                      width: 15,
                     ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    Column(
                       children: [
                         Container(
                           width: 164,
@@ -625,7 +604,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                                       padding:
                                           const EdgeInsets.only(left: 12.5),
                                       child: Text(
-                                        'Front Fascia (Night)',
+                                        'Food 2',
                                         style: TextStyle(
                                           fontSize: 9,
                                           fontFamily: 'Poppins',
@@ -685,9 +664,9 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                             ],
                           ),
                         ),
-                        // SizedBox(
-                        //   width: 15,
-                        // ),
+                        SizedBox(
+                          height: 15,
+                        ),
                         Container(
                           width: 164,
                           height: 138,
@@ -736,7 +715,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                                       padding:
                                           const EdgeInsets.only(left: 12.5),
                                       child: Text(
-                                        'Restaurant Entrance',
+                                        'Food 4',
                                         style: TextStyle(
                                           fontSize: 9,
                                           fontFamily: 'Poppins',

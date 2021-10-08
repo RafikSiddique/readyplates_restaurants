@@ -10,6 +10,45 @@ class OnboardingPage6 extends StatefulWidget {
 }
 
 class _OnboardingPage6State extends State<OnboardingPage6> {
+  final dobController = TextEditingController();
+  String dob = '';
+  DateTime? _selectedEventDate;
+  DateTime? _selectedMonthlyDate;
+  void showEventDate() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2021),
+      lastDate: DateTime.now(),
+      currentDate: DateTime.now(),
+    ).then((pickedDate) {
+      if (pickedDate == null) {
+        return;
+      }
+      setState(() {
+        _selectedEventDate = pickedDate;
+      });
+    });
+  }
+
+  void showMonthlyDate() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2021),
+      lastDate: DateTime.now(),
+      currentDate: DateTime.now(),
+    ).then((pickedDate) {
+      if (pickedDate == null) {
+        return;
+      }
+
+      setState(() {
+        _selectedMonthlyDate = pickedDate;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -526,7 +565,9 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 14),
                                   child: Text(
-                                    'Event Dates',
+                                    _selectedEventDate == null
+                                        ? 'Event Dates'
+                                        : '${_selectedEventDate!.year}/${_selectedEventDate!.month}/${_selectedEventDate!.day}',
                                     style: TextStyle(
                                       fontSize: 15,
                                       fontFamily: 'Inter',
@@ -539,12 +580,17 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(right: 7.5),
-                                  child: Container(
-                                    width: 15,
-                                    height: 15,
-                                    child: Image(
-                                        image: AssetImage(
-                                            'assets/images/calendar.png')),
+                                  child: InkWell(
+                                    onTap: () {
+                                      showEventDate();
+                                    },
+                                    child: Container(
+                                      width: 15,
+                                      height: 15,
+                                      child: Image(
+                                          image: AssetImage(
+                                              'assets/images/calendar.png')),
+                                    ),
                                   ),
                                 ),
                               ],
@@ -591,7 +637,9 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 14),
                                   child: Text(
-                                    'Monthly',
+                                    _selectedMonthlyDate == null
+                                        ? 'Monthly'
+                                        : '${_selectedMonthlyDate!.year}/${_selectedMonthlyDate!.month}/${_selectedMonthlyDate!.day}',
                                     style: TextStyle(
                                       fontSize: 15,
                                       fontFamily: 'Inter',
@@ -604,12 +652,17 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(right: 7.5),
-                                  child: Container(
-                                    width: 15,
-                                    height: 15,
-                                    child: Image(
-                                        image: AssetImage(
-                                            'assets/images/calendar.png')),
+                                  child: InkWell(
+                                    onTap: () {
+                                      showMonthlyDate();
+                                    },
+                                    child: Container(
+                                      width: 15,
+                                      height: 15,
+                                      child: Image(
+                                          image: AssetImage(
+                                              'assets/images/calendar.png')),
+                                    ),
                                   ),
                                 ),
                               ],
