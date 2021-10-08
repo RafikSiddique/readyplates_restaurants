@@ -9,3 +9,5 @@ class ApiServices {
   Uri get image => accounts('image/');
   Uri onboarding(int screen) => accounts("s${screen}/");
 }
+
+// https://readyplates.herokuapp.com/restaurants/s1/

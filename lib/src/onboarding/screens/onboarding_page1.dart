@@ -10,6 +10,7 @@ import 'dart:convert';
 String rescity = '';
 
 class OnboardingPage1 extends StatefulWidget {
+  static const id = "/onboarding1";
   //const SignupPage1({Key? key}) : super(key: key);
 
   @override

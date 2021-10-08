@@ -27,7 +27,7 @@ class AuthenticationServices extends ApiServices {
           'Content-Type': 'application/json; charset=UTF-8',
         },
       );
-      if (response.statusCode == 201) {
+      if (response.statusCode == 200) {
         Map resp = json.decode(response.body);
         print(resp["ID"]);
         String id = resp["ID"].toString();
@@ -59,6 +59,48 @@ class AuthenticationServices extends ApiServices {
           'Content-Type': 'application/json; charset=UTF-8',
         },
       );
+      if (response.statusCode == 200) {
+        Map resp = json.decode(response.body);
+        print(resp["ID"]);
+        String id = resp["ID"].toString();
+        print('User Id is ---->' + id);
+        print(response.body);
+        return id;
+      } else {
+        throw AppException(code: response.statusCode, message: response.body);
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<String> onboardingapi1(
+    String user,
+    String res_name,
+    String own_name,
+    String own_mobile,
+    String res_city,
+    String poc,
+    String poc_number,
+  ) async {
+    try {
+      http.Response response = await http.post(
+        loginUri,
+        body: jsonEncode(
+          {
+            'user': user,
+            'res_name': res_name,
+            'own_name': own_name,
+            'own_mobile': own_mobile,
+            'res_city': res_city,
+            'poc': poc,
+            'poc_number': poc_number,
+          },
+        ),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
       if (response.statusCode == 201) {
         Map resp = json.decode(response.body);
         print(resp["ID"]);
@@ -73,6 +115,38 @@ class AuthenticationServices extends ApiServices {
       rethrow;
     }
   }
+// Future<Onboarding1?> onboardingapi1(
+//     String user,
+//     String res_name,
+//     String own_name,
+//     String own_mobile,
+//     String res_city,
+//     String poc,
+//     String poc_number,
+//   ) async {
+//     http.Response response;
+//     response = await http.post(
+//       Uri.parse('https://readyplates.herokuapp.com/restaurants/s1/'),
+//       body: jsonEncode({
+//         'user': user,
+//         'res_name': res_name,
+//         'own_name': own_name,
+//         'own_mobile': own_mobile,
+//         'res_city': res_city,
+//         'poc': poc,
+//         'poc_number': poc_number,
+//       }),
+//       headers: {
+//         'Content-Type': 'application/json; charset=UTF-8',
+//       },
+//     );
+//     if (response.statusCode == 201) {
+//       print('object');
+//       print(response.body);
+//     } else {
+//       throw Exception('Failed to create User.');
+//     }
+//   }
 
   // Future<bool> uploadImage(File file) async {
   //   try {

@@ -11,8 +11,18 @@ class AuthController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final password2Controller = TextEditingController();
+
   final usernameController = TextEditingController();
   final loginpasswordController = TextEditingController();
+
+  final userController = TextEditingController();
+  final resNameController = TextEditingController();
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final ownMobileController = TextEditingController();
+  var resCityController = TextEditingController();
+  final pocController = TextEditingController();
+  final pocNumberController = TextEditingController();
   RxString dob = "".obs;
 
   String? id;
@@ -34,6 +44,25 @@ class AuthController extends GetxController {
         loginpasswordController.text,
       );
       sfHelper.setUserId(id!);
+      Get.toNamed(LoginPage.id);
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+    }
+  }
+
+  Future<void> onboardingapi1() async {
+    try {
+      id = await services.onboardingapi1(
+        userController.text,
+        resNameController.text,
+        firstNameController.text,
+        lastNameController.text,
+        ownMobileController.text,
+        pocController.text,
+        pocNumberController.text,
+      );
+      sfHelper.setUserId(id!);
+      // sfHelper.getUserId(id!);
       Get.toNamed(LoginPage.id);
     } catch (e) {
       Get.snackbar("Error", e.toString());
