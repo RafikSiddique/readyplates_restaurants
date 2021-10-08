@@ -5,7 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:readyplates_restaurants/src/onboarding/controller/onboarding_controller.dart';
-import 'package:readyplates_restaurants/utils/utils.dart';
+// import 'package:readyplates_restaurants/utils/utils.dart';
 
 class OnboardingPage7 extends StatefulWidget {
   const OnboardingPage7({Key? key}) : super(key: key);

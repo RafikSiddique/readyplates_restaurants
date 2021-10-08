@@ -84,7 +84,7 @@ class OnBoardingController extends GetxController {
       await onboardingServices.uploadImages(files, pageIndex.value);
       imageLoading.value = false;
     } catch (e) {
-      
+      Get.snackbar("Error", e.toString());
     }
   }
 }
