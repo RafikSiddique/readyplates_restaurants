@@ -80,6 +80,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                 borderRadius: BorderRadius.all(Radius.circular(6)),
                 child: Container(
                   height: 228,
+                  // width: 343,
                   decoration: BoxDecoration(
                     color: Color(0xffFFFFFF),
                     // color: Color.fromRGBO(34, 40, 49, 0.2),
@@ -95,9 +96,11 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                 ),
               ),
               SizedBox(
-                height: 5,
+                height: 7,
               ),
               Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Wrap(
                     direction: Axis.vertical,
@@ -107,16 +110,16 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                         borderRadius: BorderRadius.all(Radius.circular(3)),
                         child: Container(
                           height: 49,
+                          width: 74,
                           decoration: BoxDecoration(
-                            color: Color(0xffFFFFFF),
                             border: Border.all(
                               width: 0.5,
                               color: Color(0xffE0E0E0),
                             ),
                           ),
                           child: Image(
-                            image: AssetImage(
-                                'assets/images/FrontFasciaNight.png'),
+                            image: AssetImage('assets/images/StreetView.png'),
+                            fit: BoxFit.fill,
                           ),
                         ),
                       ),
@@ -144,6 +147,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                         borderRadius: BorderRadius.all(Radius.circular(3)),
                         child: Container(
                           height: 49,
+                          // width: 74,
                           decoration: BoxDecoration(
                             color: Color(0xffFFFFFF),
                             border: Border.all(
@@ -180,6 +184,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                         borderRadius: BorderRadius.all(Radius.circular(3)),
                         child: Container(
                           height: 49,
+                          // width: 74,
                           decoration: BoxDecoration(
                             color: Color(0xffFFFFFF),
                             border: Border.all(
@@ -217,6 +222,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                         borderRadius: BorderRadius.all(Radius.circular(3)),
                         child: Container(
                           height: 49,
+                          // width: 74,
                           decoration: BoxDecoration(
                             color: Color(0xffFFFFFF),
                             border: Border.all(
@@ -248,7 +254,9 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
               Padding(
                 padding: const EdgeInsets.only(top: 11),
                 child: Row(
+                  mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
+                  // crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
                       height: 5,
@@ -326,7 +334,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                     children: [
                       Container(
                         width: 164,
-                        height: 135,
+                        height: 138,
                         decoration: BoxDecoration(
                           border: Border.all(
                             width: 1,
@@ -337,11 +345,24 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
+                            Container(
+                              width: 38,
+                              height: 38,
+                              child: Image(
+                                image: AssetImage(
+                                  'assets/images/imglogo.png',
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 36,
+                            ),
                             Container(
                               height: 27,
                               decoration: BoxDecoration(
-                                color: Color(0xffE0E0E0),
+                                color: Color(0xffFFFFFF),
                                 border: Border.all(
                                   width: 1,
                                   color: Color(0xffE0E0E0),
@@ -388,20 +409,131 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                                       // print('To Path: ${newFile.path}');
                                     },
                                     child: Container(
-                                      width: 50,
+                                      width: 27,
+                                      height: 27,
                                       decoration: BoxDecoration(
                                         color: Color(0xffEFEFEF),
                                         borderRadius: BorderRadius.only(
                                           topLeft: Radius.circular(0),
-                                          topRight: Radius.circular(6.0),
+                                          topRight: Radius.circular(0),
                                           bottomLeft: Radius.circular(0),
                                           bottomRight: Radius.circular(6.0),
                                         ),
                                       ),
                                       child: Center(
                                         child: Container(
-                                          width: 26,
-                                          height: 26,
+                                          width: 16,
+                                          height: 16,
+                                          child: Image(
+                                            image: AssetImage(
+                                              'assets/images/upload.png',
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Container(
+                        width: 164,
+                        height: 138,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            width: 1,
+                            color: Color(0xffE0E0E0),
+                            style: BorderStyle.solid,
+                          ),
+                          borderRadius: BorderRadius.all(Radius.circular(6)),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: 38,
+                              height: 38,
+                              child: Image(
+                                image: AssetImage(
+                                  'assets/images/imglogo.png',
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 36,
+                            ),
+                            Container(
+                              height: 27,
+                              decoration: BoxDecoration(
+                                color: Color(0xffFFFFFF),
+                                border: Border.all(
+                                  width: 1,
+                                  color: Color(0xffE0E0E0),
+                                  style: BorderStyle.solid,
+                                ),
+                                borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(6),
+                                    bottomRight: Radius.circular(6)),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 12.5),
+                                    child: Text(
+                                      'Front Fascia (Daytime)',
+                                      style: TextStyle(
+                                        fontSize: 9,
+                                        fontFamily: 'Poppins',
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.normal,
+                                        letterSpacing: -0.229412,
+                                        color: Color(0xff6E6D7A),
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () async {
+                                      // final result = await FilePicker.platform
+                                      //     .pickFiles(allowMultiple: true);
+                                      // if (result == null) return;
+                                      // final file = result.files.first;
+                                      // // openFile(file);
+
+                                      // print('Name: ${file.name}');
+                                      // print('Bytes: ${file.bytes}');
+                                      // print('Size: ${file.size}');
+                                      // print('Extension: ${file.extension}');
+                                      // print('Path: ${file.path}');
+                                      // final newFile = await saveFilePermanently(file);
+                                      // print('From Path: ${file.path!}');
+                                      // print('To Path: ${newFile.path}');
+                                    },
+                                    child: Container(
+                                      width: 27,
+                                      height: 27,
+                                      decoration: BoxDecoration(
+                                        color: Color(0xffEFEFEF),
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(0),
+                                          topRight: Radius.circular(0),
+                                          bottomLeft: Radius.circular(0),
+                                          bottomRight: Radius.circular(6.0),
+                                        ),
+                                      ),
+                                      child: Center(
+                                        child: Container(
+                                          width: 16,
+                                          height: 16,
                                           child: Image(
                                             image: AssetImage(
                                               'assets/images/upload.png',
@@ -419,11 +551,265 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                       )
                     ],
                   ),
+                  SizedBox(
+                    width: 15,
+                  ),
                   Column(
-                    children: [],
+                    children: [
+                      Container(
+                        width: 164,
+                        height: 138,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            width: 1,
+                            color: Color(0xffE0E0E0),
+                            style: BorderStyle.solid,
+                          ),
+                          borderRadius: BorderRadius.all(Radius.circular(6)),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: 38,
+                              height: 38,
+                              child: Image(
+                                image: AssetImage(
+                                  'assets/images/imglogo.png',
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 36,
+                            ),
+                            Container(
+                              height: 27,
+                              decoration: BoxDecoration(
+                                color: Color(0xffFFFFFF),
+                                border: Border.all(
+                                  width: 1,
+                                  color: Color(0xffE0E0E0),
+                                  style: BorderStyle.solid,
+                                ),
+                                borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(6),
+                                    bottomRight: Radius.circular(6)),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 12.5),
+                                    child: Text(
+                                      'Front Fascia (Night)',
+                                      style: TextStyle(
+                                        fontSize: 9,
+                                        fontFamily: 'Poppins',
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.normal,
+                                        letterSpacing: -0.229412,
+                                        color: Color(0xff6E6D7A),
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () async {
+                                      // final result = await FilePicker.platform
+                                      //     .pickFiles(allowMultiple: true);
+                                      // if (result == null) return;
+                                      // final file = result.files.first;
+                                      // // openFile(file);
+
+                                      // print('Name: ${file.name}');
+                                      // print('Bytes: ${file.bytes}');
+                                      // print('Size: ${file.size}');
+                                      // print('Extension: ${file.extension}');
+                                      // print('Path: ${file.path}');
+                                      // final newFile = await saveFilePermanently(file);
+                                      // print('From Path: ${file.path!}');
+                                      // print('To Path: ${newFile.path}');
+                                    },
+                                    child: Container(
+                                      width: 27,
+                                      height: 27,
+                                      decoration: BoxDecoration(
+                                        color: Color(0xffEFEFEF),
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(0),
+                                          topRight: Radius.circular(0),
+                                          bottomLeft: Radius.circular(0),
+                                          bottomRight: Radius.circular(6.0),
+                                        ),
+                                      ),
+                                      child: Center(
+                                        child: Container(
+                                          width: 16,
+                                          height: 16,
+                                          child: Image(
+                                            image: AssetImage(
+                                              'assets/images/upload.png',
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Container(
+                        width: 164,
+                        height: 138,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            width: 1,
+                            color: Color(0xffE0E0E0),
+                            style: BorderStyle.solid,
+                          ),
+                          borderRadius: BorderRadius.all(Radius.circular(6)),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: 38,
+                              height: 38,
+                              child: Image(
+                                image: AssetImage(
+                                  'assets/images/imglogo.png',
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 36,
+                            ),
+                            Container(
+                              height: 27,
+                              decoration: BoxDecoration(
+                                color: Color(0xffFFFFFF),
+                                border: Border.all(
+                                  width: 1,
+                                  color: Color(0xffE0E0E0),
+                                  style: BorderStyle.solid,
+                                ),
+                                borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(6),
+                                    bottomRight: Radius.circular(6)),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 12.5),
+                                    child: Text(
+                                      'Restaurant Entrance',
+                                      style: TextStyle(
+                                        fontSize: 9,
+                                        fontFamily: 'Poppins',
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.normal,
+                                        letterSpacing: -0.229412,
+                                        color: Color(0xff6E6D7A),
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () async {
+                                      // final result = await FilePicker.platform
+                                      //     .pickFiles(allowMultiple: true);
+                                      // if (result == null) return;
+                                      // final file = result.files.first;
+                                      // // openFile(file);
+
+                                      // print('Name: ${file.name}');
+                                      // print('Bytes: ${file.bytes}');
+                                      // print('Size: ${file.size}');
+                                      // print('Extension: ${file.extension}');
+                                      // print('Path: ${file.path}');
+                                      // final newFile = await saveFilePermanently(file);
+                                      // print('From Path: ${file.path!}');
+                                      // print('To Path: ${newFile.path}');
+                                    },
+                                    child: Container(
+                                      width: 27,
+                                      height: 27,
+                                      decoration: BoxDecoration(
+                                        color: Color(0xffEFEFEF),
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(0),
+                                          topRight: Radius.circular(0),
+                                          bottomLeft: Radius.circular(0),
+                                          bottomRight: Radius.circular(6.0),
+                                        ),
+                                      ),
+                                      child: Center(
+                                        child: Container(
+                                          width: 16,
+                                          height: 16,
+                                          child: Image(
+                                            image: AssetImage(
+                                              'assets/images/upload.png',
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
                   ),
                 ],
-              )
+              ),
+              SizedBox(
+                height: 11,
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, Routes.onboarding2Route);
+                },
+                child: Container(
+                  // width: 343,
+                  height: 40.11,
+                  decoration: BoxDecoration(
+                    color: Color(0xff7A7E83),
+                    borderRadius: BorderRadius.all(Radius.circular(6)),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'CONTINUE',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontFamily: 'Inter',
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: -0.28,
+                        color: Color(0xffE5E5E5),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 5.89,
+              ),
             ],
           ),
         ),
