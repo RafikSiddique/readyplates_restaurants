@@ -4,6 +4,8 @@ import 'package:readyplates_restaurants/src/login/screens/login_page.dart';
 import 'package:readyplates_restaurants/src/login/screens/signup_page.dart';
 import 'package:readyplates_restaurants/src/login/auth_services.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/onboarding_page1.dart';
+import 'package:readyplates_restaurants/src/onboarding/screens/onboarding_page2.dart';
+import 'package:readyplates_restaurants/src/onboarding/screens/onboarding_page3.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 
 class AuthController extends GetxController {
@@ -23,6 +25,21 @@ class AuthController extends GetxController {
   String rescity = '';
   final pocController = TextEditingController();
   final pocNumberController = TextEditingController();
+
+  final address1Controller = TextEditingController();
+  final address2Controller = TextEditingController();
+  final nearbylandnarkController = TextEditingController();
+  final postalcodeController = TextEditingController();
+  final latitudeController = TextEditingController();
+  final longitudeController = TextEditingController();
+
+  final gstpresentController = TextEditingController();
+  final gstnumController = TextEditingController();
+  final fssaistatusController = TextEditingController();
+  String expiry = '';
+  String kycimg = '';
+  String gstinimg = '';
+  String fssaiimg = '';
   // RxString dob = "".obs;
 
   String? id;
@@ -54,7 +71,7 @@ class AuthController extends GetxController {
     String ownName = firstNameController.text + " " + lastNameController.text;
     try {
       id = await services.onboardingapi1(
-        id!,
+        uniqueId,
         resNameController.text,
         ownName,
         ownMobileController.text,
@@ -70,4 +87,46 @@ class AuthController extends GetxController {
     }
   }
 
+  Future<void> onboardingapi2() async {
+    String adress = address1Controller.text +
+        " " +
+        address2Controller.text +
+        " " +
+        nearbylandnarkController.text;
+
+    try {
+      id = await services.onboardingapi2(
+        uniqueId,
+        adress,
+        postalcodeController.text,
+        latitudeController.text,
+        longitudeController.text,
+      );
+      sfHelper.setUserId(id!);
+      sfHelper.getUserId();
+      Get.toNamed(OnboardingPage2.id);
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+    }
+  }
+
+  Future<void> onboardingapi3() async {
+    try {
+      id = await services.onboardingapi3(
+        uniqueId,
+        gstpresentController.text,
+        gstnumController.text,
+        fssaistatusController.text,
+        expiry,
+        kycimg,
+        gstinimg,
+        fssaiimg,
+      );
+      sfHelper.setUserId(id!);
+      sfHelper.getUserId();
+      Get.toNamed(OnboardingPage3.id);
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+    }
+  }
 }

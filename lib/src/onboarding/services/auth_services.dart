@@ -2,9 +2,12 @@ import 'dart:convert';
 // import 'dart:io';
 
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 import 'package:readyplates_restaurants/utils/api_services.dart';
 import 'package:readyplates_restaurants/utils/exception.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
+
+String uniqueId = '';
 
 class AuthenticationServices extends ApiServices {
   SharedPreferenceHelper sharedPreferenceHelper = SharedPreferenceHelper();
@@ -64,7 +67,7 @@ class AuthenticationServices extends ApiServices {
         Map resp = json.decode(response.body);
         print(resp["ID"]);
         String id = resp["ID"].toString();
-
+        uniqueId = id;
         print('User Id is ---->' + id);
         print(response.body);
         return id;
@@ -87,7 +90,7 @@ class AuthenticationServices extends ApiServices {
   ) async {
     try {
       http.Response response = await http.post(
-        onboarding as Uri,
+        onboarding1Uri,
         body: jsonEncode(
           {
             'user': user,
@@ -107,7 +110,90 @@ class AuthenticationServices extends ApiServices {
         Map resp = json.decode(response.body);
         print(resp["ID"]);
         String id = resp["ID"].toString();
-        print('User Id is ---->' + id);
+        print('User Id is ---->' + uniqueId);
+        print(response.body);
+        return id;
+      } else {
+        throw AppException(code: response.statusCode, message: response.body);
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<String> onboardingapi2(
+    String user,
+    String address,
+    String postal_code,
+    String latitude,
+    String longitude,
+  ) async {
+    try {
+      http.Response response = await http.post(
+        onboarding2Uri,
+        body: jsonEncode(
+          {
+            'user': user,
+            'address': address,
+            'postal_code': postal_code,
+            'latitude': latitude,
+            'longitude': longitude,
+          },
+        ),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+      if (response.statusCode == 201) {
+        Map resp = json.decode(response.body);
+        print(resp["ID"]);
+        String id = resp["ID"].toString();
+        print('User Id is ---->' + uniqueId);
+        print(response.body);
+        return id;
+      } else {
+        throw AppException(code: response.statusCode, message: response.body);
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<String> onboardingapi3(
+    String user,
+    String gstin_present,
+    String gstin_num,
+    String fssai_status,
+    String fssai_expiry,
+    String kyc_image,
+    String gstin_image,
+    String fssai_image,
+  ) async {
+    /* ('user','gstin_present','gstin_num','fssai_status','fssai_expiry','kyc_image','gstin_image','fssai_image') */
+    try {
+      http.Response response = await http.post(
+        onboarding3Uri,
+        body: jsonEncode(
+          {
+            'user': user,
+            'gstin_present': gstin_present,
+            'gstin_num': gstin_num,
+            'fssai_status': fssai_status,
+            'fssai_expiry': fssai_expiry,
+            'kyc_image': kyc_image,
+            'gstin_image': gstin_image,
+            'fssai_image': fssai_image,
+          },
+        ),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+      if (response.statusCode == 201) {
+        Map resp = json.decode(response.body);
+        print(resp["ID"]);
+        String id = resp["ID"].toString();
+        print('User Id is ---->' + uniqueId);
         print(response.body);
         return id;
       } else {
