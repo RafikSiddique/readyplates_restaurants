@@ -19,7 +19,8 @@ class _SignupPageState extends State<SignupPage> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    var media = MediaQuery.of(context);
+    Size size = media.size;
     return Scaffold(
       body: Stack(
         alignment: Alignment.bottomCenter,
@@ -37,11 +38,11 @@ class _SignupPageState extends State<SignupPage> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                SizedBox(
-                  height: kToolbarHeight,
-                ),
-                Container(
-                  height: 40,
+                if (media.viewInsets.bottom == 0)
+                  SizedBox(height: size.height * 0.05),
+                AnimatedContainer(
+                  duration: Duration(milliseconds: 500),
+                  height: media.viewInsets.bottom == 0 ? 40 : 0,
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -82,318 +83,328 @@ class _SignupPageState extends State<SignupPage> {
                     ],
                   ),
                 ),
-                Spacer(),
-                Container(
-                  width: size.width,
-                  //   height: 583,
-                  decoration: BoxDecoration(
-                      color: Color(0xffFFFFFF),
-                      borderRadius:
-                          BorderRadius.vertical(top: Radius.circular(36))),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 16, right: 16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Container(
-                          width: size.width,
-                          padding: EdgeInsets.only(top: kToolbarHeight / 3),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: IconButton(
-                                    iconSize: 14.83,
-                                    icon: FaIcon(
-                                      FontAwesomeIcons.chevronLeft,
-                                      color: Color(0xff000000),
+                SizedBox(
+                  height:
+                      media.viewInsets.bottom == 0 ? kToolbarHeight / 1.5 : 0,
+                ),
+                Spacer(
+                  flex: media.viewInsets.bottom == 0 ? 3 : 1,
+                ),
+                Expanded(
+                  flex: 5,
+                  child: AnimatedContainer(
+                    duration: Duration(milliseconds: 300),
+                    width: size.width,
+                    decoration: BoxDecoration(
+                        color: Color(0xffFFFFFF),
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(36))),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 16, right: 16),
+                      child: SingleChildScrollView(
+                        physics: BouncingScrollPhysics(),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Container(
+                              width: size.width,
+                              padding:
+                                  EdgeInsets.only(top: size.height * 0.035),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: IconButton(
+                                        iconSize: 14.83,
+                                        icon: FaIcon(
+                                          FontAwesomeIcons.chevronLeft,
+                                          color: Color(0xff000000),
+                                        ),
+                                        onPressed: () {
+                                          Get.back();
+                                        },
+                                      ),
                                     ),
-                                    onPressed: () {
-                                      Navigator.pushNamed(
-                                          context, Routes.openingscreenRoute);
-                                    },
                                   ),
-                                ),
+                                  Align(
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      'Sign-up',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 17,
+                                        fontFamily: 'Inter-Bold',
+                                        fontWeight: FontWeight.w500,
+                                        fontStyle: FontStyle.normal,
+                                        letterSpacing: -0.226667,
+                                        color: Color(0xff393E46),
+                                      ),
+                                    ),
+                                  ),
+                                  Spacer(),
+                                ],
                               ),
-                              Align(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  'Sign-up',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                    fontFamily: 'Inter-Bold',
-                                    fontWeight: FontWeight.w500,
+                            ),
+                            SizedBox(
+                              height: kToolbarHeight * 0.4,
+                            ),
+                            Text(
+                              'Email address',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontStyle: FontStyle.normal,
+                                fontFamily: 'Inter-Bold',
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xff374151),
+                              ),
+                            ),
+                            SizedBox(
+                              height: kToolbarHeight * 0.15,
+                            ),
+                            Container(
+                              width: size.width,
+                              height: 45,
+                              child: TextFormField(
+                                controller: controller.emailController,
+                                textAlign: TextAlign.left,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 1,
+                                        color:
+                                            Color(0xffE0E0E0).withOpacity(0.5)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(6)),
+                                  ),
+                                  hintText: 'Eg aatef.sayyed@fladdra.com',
+                                  contentPadding: EdgeInsets.only(
+                                    left: 14,
+                                    top: 14,
+                                  ),
+                                  hintStyle: TextStyle(
+                                    fontSize: 12,
+                                    letterSpacing: 0.24,
+                                    fontFamily: 'Inter',
                                     fontStyle: FontStyle.normal,
-                                    letterSpacing: -0.226667,
-                                    color: Color(0xff393E46),
+                                    fontWeight: FontWeight.normal,
+                                    color: Color(0xff9CA3AF),
                                   ),
                                 ),
                               ),
-                              Spacer(),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: kToolbarHeight * 0.4,
-                        ),
-                        Text(
-                          'Email address',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontStyle: FontStyle.normal,
-                            fontFamily: 'Inter-Bold',
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xff374151),
-                          ),
-                        ),
-                        SizedBox(
-                          height: kToolbarHeight * 0.15,
-                        ),
-                        Container(
-                          width: size.width,
-                          height: 45,
-                          child: TextFormField(
-                            controller: controller.emailController,
-                            textAlign: TextAlign.left,
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    width: 1,
-                                    color: Color(0xffE0E0E0).withOpacity(0.5)),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(6)),
+                            ),
+                            SizedBox(
+                              height: kToolbarHeight * 0.4,
+                            ),
+                            Text(
+                              'Password',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.w500,
+                                fontFamily: 'Inter-Bold',
+                                color: Color(0xff374151),
                               ),
-                              hintText: 'Eg aatef.sayyed@fladdra.com',
-                              contentPadding: EdgeInsets.only(
-                                left: 14,
-                                top: 14,
+                            ),
+                            SizedBox(
+                              height: kToolbarHeight * 0.15,
+                            ),
+                            Container(
+                              width: size.width,
+                              height: 45,
+                              child: TextFormField(
+                                controller: controller.passwordController,
+                                textAlign: TextAlign.left,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          width: 1, color: Color(0xffBEC5D1)),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(6))),
+                                  hintText: '**** **** ****',
+                                  contentPadding: EdgeInsets.only(
+                                    left: 14,
+                                    top: 14,
+                                  ),
+                                  hintStyle: TextStyle(
+                                    fontSize: 12,
+                                    letterSpacing: 0.24,
+                                    fontFamily: 'Inter',
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w600,
+                                    color: Color(0xff9CA3AF),
+                                  ),
+                                ),
                               ),
-                              hintStyle: TextStyle(
-                                fontSize: 12,
-                                letterSpacing: 0.24,
-                                fontFamily: 'Inter',
+                            ),
+                            SizedBox(
+                              height: 3,
+                            ),
+                            Text(
+                              'Atleast 8 characters (Caps, Small & Special Characters)',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 9,
+                                fontFamily: 'Poppins',
                                 fontStyle: FontStyle.normal,
                                 fontWeight: FontWeight.normal,
-                                color: Color(0xff9CA3AF),
+                                letterSpacing: -0.229412,
+                                color: Color(0xff6E6D7A),
                               ),
                             ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: kToolbarHeight * 0.4,
-                        ),
-                        Text(
-                          'Password',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: 'Inter-Bold',
-                            color: Color(0xff374151),
-                          ),
-                        ),
-                        SizedBox(
-                          height: kToolbarHeight * 0.15,
-                        ),
-                        Container(
-                          width: size.width,
-                          height: 45,
-                          child: TextFormField(
-                            controller: controller.passwordController,
-                            textAlign: TextAlign.left,
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      width: 1, color: Color(0xffBEC5D1)),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(6))),
-                              hintText: '**** **** ****',
-                              contentPadding: EdgeInsets.only(
-                                left: 14,
-                                top: 14,
-                              ),
-                              hintStyle: TextStyle(
-                                fontSize: 12,
-                                letterSpacing: 0.24,
-                                fontFamily: 'Inter',
+                            SizedBox(
+                              height: kToolbarHeight * 0.4,
+                            ),
+                            Text(
+                              'Re-confirm Password',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 13,
                                 fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w600,
-                                color: Color(0xff9CA3AF),
+                                fontWeight: FontWeight.w500,
+                                fontFamily: 'Inter-Regular',
+                                color: Color(0xff374151),
                               ),
                             ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 3,
-                        ),
-                        Text(
-                          'Atleast 8 characters (Caps, Small & Special Characters)',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 9,
-                            fontFamily: 'Poppins',
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.normal,
-                            letterSpacing: -0.229412,
-                            color: Color(0xff6E6D7A),
-                          ),
-                        ),
-                        SizedBox(
-                          height: kToolbarHeight * 0.4,
-                        ),
-                        Text(
-                          'Re-confirm Password',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: 'Inter-Regular',
-                            color: Color(0xff374151),
-                          ),
-                        ),
-                        SizedBox(
-                          height: kToolbarHeight * 0.15,
-                        ),
-                        Container(
-                          width: size.width,
-                          height: 45,
-                          child: TextFormField(
-                            controller: controller.password2Controller,
-                            textAlign: TextAlign.left,
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      width: 1, color: Color(0xffBEC5D1)),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(6))),
-                              hintText: '**** **** ****',
-                              contentPadding: EdgeInsets.only(
-                                left: 14,
-                                top: 14,
+                            SizedBox(
+                              height: kToolbarHeight * 0.15,
+                            ),
+                            Container(
+                              width: size.width,
+                              height: 45,
+                              child: TextFormField(
+                                controller: controller.password2Controller,
+                                textAlign: TextAlign.left,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          width: 1, color: Color(0xffBEC5D1)),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(6))),
+                                  hintText: '**** **** ****',
+                                  contentPadding: EdgeInsets.only(
+                                    left: 14,
+                                    top: 14,
+                                  ),
+                                  hintStyle: TextStyle(
+                                    fontSize: 12,
+                                    letterSpacing: 0.24,
+                                    fontFamily: 'Inter-Regular',
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w600,
+                                    color: Color(0xff9CA3AF),
+                                  ),
+                                ),
                               ),
-                              hintStyle: TextStyle(
-                                fontSize: 12,
-                                letterSpacing: 0.24,
+                            ),
+                            SizedBox(
+                              height: kToolbarHeight * 0.1,
+                            ),
+                            Text(
+                              'Please re-enter password',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 9,
                                 fontFamily: 'Inter-Regular',
                                 fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w600,
-                                color: Color(0xff9CA3AF),
+                                fontWeight: FontWeight.normal,
+                                letterSpacing: -0.229412,
+                                color: Color(0xff6E6D7A),
                               ),
                             ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: kToolbarHeight * 0.1,
-                        ),
-                        Text(
-                          'Please re-enter password',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 9,
-                            fontFamily: 'Inter-Regular',
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.normal,
-                            letterSpacing: -0.229412,
-                            color: Color(0xff6E6D7A),
-                          ),
-                        ),
-                        SizedBox(
-                          height: kToolbarHeight * 0.4,
-                        ),
-                        InkWell(
-                          onTap: () async {
-                            formKey.currentState!.save();
-                            await controller.signup();
-
-                            Navigator.pushNamed(context, Routes.loginRoute);
-                          },
-                          child: Container(
-                            width: size.width,
-                            height: 54,
-                            decoration: BoxDecoration(
-                              color: Color(0xff7A7E83),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(6)),
+                            SizedBox(
+                              height: kToolbarHeight * 0.4,
                             ),
-                            child: Center(
-                              child: Text(
-                                'Verify Password',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 17,
-                                  fontFamily: 'Inter-Regular',
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.w600,
-                                  color: Color(0xffE5E5E5),
+                            InkWell(
+                              onTap: () async {
+                                formKey.currentState!.save();
+                                await controller.signup();
+                              },
+                              child: Container(
+                                width: size.width,
+                                height: 54,
+                                decoration: BoxDecoration(
+                                  color: Color(0xff7A7E83),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(6)),
                                 ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: kToolbarHeight * 0.2,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            Navigator.pushNamed(context, Routes.loginRoute);
-                          },
-                          child: Container(
-                            width: size.width,
-                            height: 54,
-                            decoration: BoxDecoration(
-                              color: Color(0xffF4F4F4),
-                              border: Border.all(
-                                width: 1,
-                                color: Color(0xffB9B9B9),
-                              ),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(6)),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  width: 26.42,
-                                  height: 27,
-                                  child:
-                                      Image.asset('assets/images/google.png'),
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Center(
+                                child: Center(
                                   child: Text(
-                                    'Sign up with Google',
+                                    'Verify Password',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontSize: 17,
                                       fontFamily: 'Inter-Regular',
                                       fontStyle: FontStyle.normal,
                                       fontWeight: FontWeight.w600,
-                                      color: Color(0xff222222),
+                                      color: Color(0xffE5E5E5),
                                     ),
                                   ),
                                 ),
-                              ],
+                              ),
                             ),
-                          ),
+                            SizedBox(
+                              height: kToolbarHeight * 0.2,
+                            ),
+                            InkWell(
+                              onTap: () {
+                              },
+                              child: Container(
+                                width: size.width,
+                                height: 54,
+                                decoration: BoxDecoration(
+                                  color: Color(0xffF4F4F4),
+                                  border: Border.all(
+                                    width: 1,
+                                    color: Color(0xffB9B9B9),
+                                  ),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(6)),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      width: 26.42,
+                                      height: 27,
+                                      child: Image.asset(
+                                          'assets/images/google.png'),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Center(
+                                      child: Text(
+                                        'Sign up with Google',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 17,
+                                          fontFamily: 'Inter-Regular',
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.w600,
+                                          color: Color(0xff222222),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: kToolbarHeight / 2.7,
+                            )
+                          ],
                         ),
-                        SizedBox(
-                          height: kToolbarHeight / 2.7,
-                        )
-                      ],
+                      ),
                     ),
                   ),
-                ),
+                )
               ],
             ),
           ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/utils/utils.dart';
 
 class OnboardingPage4 extends StatefulWidget {
@@ -44,6 +46,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
   List<String> chooseDays = [];
   bool isChecked = false;
   bool isDays = false;
+  final controller = Get.find<OnboardingController>();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -60,7 +63,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                 color: Color(0xff000000),
               ),
               onPressed: () {
-                Navigator.pushNamed(context, Routes.onboarding3Route);
+                Get.back();
               }),
           centerTitle: true,
           title: Text(
@@ -401,246 +404,309 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                 SizedBox(
                   height: 5,
                 ),
-                Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: 175,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(6)),
-                            border: Border.all(
-                              width: 1,
-                              color: Color(0xffE0E0E0),
-                              style: BorderStyle.solid,
-                            ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 8),
-                                child: Text(
-                                  '10:00',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontFamily: 'Inter',
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w500,
-                                    letterSpacing: -0.264706,
-                                    color: Color(0xff979797).withOpacity(0.7),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 5),
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      height: 13,
-                                      child: IconButton(
-                                          iconSize: 12,
-                                          icon: FaIcon(
-                                            FontAwesomeIcons.chevronUp,
-                                            color: Color(0xff6E6D7A),
-                                          ),
-                                          onPressed: () {}),
-                                    ),
-                                    Container(
-                                      height: 13,
-                                      child: IconButton(
-                                          iconSize: 12,
-                                          icon: FaIcon(
-                                            FontAwesomeIcons.chevronDown,
-                                            color: Color(0xff6E6D7A),
-                                          ),
-                                          onPressed: () {}),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              // SizedBox(
-                              //   width: 6,
-                              // ),
-                              Container(
-                                height: 35,
-                                width: 0,
-                                decoration: BoxDecoration(
+                Obx(
+                  () => Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 50,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(6)),
+                                border: Border.all(
+                                  width: 1,
                                   color: Color(0xffE0E0E0),
-                                  border: Border.all(
-                                    width: 1,
-                                    color: Color(0xffE0E0E0),
-                                    style: BorderStyle.solid,
-                                  ),
+                                  style: BorderStyle.solid,
                                 ),
                               ),
-                              SizedBox(
-                                width: 18,
-                              ),
-                              Container(
-                                height: 19,
-                                child: Text(
-                                  'AM',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontFamily: 'Inter',
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w500,
-                                    letterSpacing: -0.264706,
-                                    color: Color(0xff979797).withOpacity(0.7),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 8),
+                                    child: Text(
+                                      '${controller.startHour}:${controller.startMinute}',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontFamily: 'Inter',
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.w500,
+                                        letterSpacing: -0.264706,
+                                        color:
+                                            Color(0xff979797).withOpacity(0.7),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                              IconButton(
-                                  iconSize: 12,
-                                  padding: EdgeInsets.only(bottom: 4, top: 4),
-                                  icon: FaIcon(
-                                    FontAwesomeIcons.chevronDown,
-                                    color: Color(0xff6E6D7A),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 5),
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          height: 13,
+                                          child: IconButton(
+                                              iconSize: 12,
+                                              icon: FaIcon(
+                                                FontAwesomeIcons.chevronUp,
+                                                color: Color(0xff6E6D7A),
+                                              ),
+                                              onPressed: () {
+                                                if (controller.startMinute ==
+                                                    30) {
+                                                  if (controller.startHour !=
+                                                      12)
+                                                    controller.startHour + 1;
+                                                  controller.startMinute.value =
+                                                      00;
+                                                } else
+                                                  controller.startMinute =
+                                                      controller.startMinute +
+                                                          30;
+                                              }),
+                                        ),
+                                        Container(
+                                          height: 13,
+                                          child: IconButton(
+                                              iconSize: 12,
+                                              icon: FaIcon(
+                                                FontAwesomeIcons.chevronDown,
+                                                color: Color(0xff6E6D7A),
+                                              ),
+                                              onPressed: () {}),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  onPressed: () {}),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 3,
-                        ),
-                        Text(
-                          'Select start time (hh:mm AM/PM)',
-                          style: TextStyle(
-                            fontSize: 9,
-                            fontFamily: 'Poppins',
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.normal,
-                            letterSpacing: -0.229412,
-                            color: Color(0xff6E6D7A),
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      width: 18,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: 175,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(6)),
-                            border: Border.all(
-                              width: 1,
-                              color: Color(0xffE0E0E0),
-                              style: BorderStyle.solid,
+                                  // SizedBox(
+                                  //   width: 6,
+                                  // ),
+                                  Container(
+                                    height: 35,
+                                    width: 0,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xffE0E0E0),
+                                      border: Border.all(
+                                        width: 1,
+                                        color: Color(0xffE0E0E0),
+                                        style: BorderStyle.solid,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 18,
+                                  ),
+                                  Container(
+                                    height: 19,
+                                    child: Text(
+                                      controller.startAmPm.value,
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontFamily: 'Inter',
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.w500,
+                                        letterSpacing: -0.264706,
+                                        color:
+                                            Color(0xff979797).withOpacity(0.7),
+                                      ),
+                                    ),
+                                  ),
+                                  IconButton(
+                                      iconSize: 12,
+                                      padding:
+                                          EdgeInsets.only(bottom: 4, top: 4),
+                                      icon: FaIcon(
+                                        FontAwesomeIcons.chevronDown,
+                                        color: Color(0xff6E6D7A),
+                                      ),
+                                      onPressed: () {}),
+                                ],
+                              ),
                             ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 8),
-                                child: Text(
-                                  '10:00',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontFamily: 'Inter',
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w500,
-                                    letterSpacing: -0.264706,
-                                    color: Color(0xff979797).withOpacity(0.7),
-                                  ),
-                                ),
+                            SizedBox(
+                              height: 3,
+                            ),
+                            Text(
+                              'Select start time (hh:mm AM/PM)',
+                              style: TextStyle(
+                                fontSize: 9,
+                                fontFamily: 'Poppins',
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.normal,
+                                letterSpacing: -0.229412,
+                                color: Color(0xff6E6D7A),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 5),
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      height: 13,
-                                      child: IconButton(
-                                          iconSize: 12,
-                                          icon: FaIcon(
-                                            FontAwesomeIcons.chevronUp,
-                                            color: Color(0xff6E6D7A),
-                                          ),
-                                          onPressed: () {}),
-                                    ),
-                                    Container(
-                                      height: 13,
-                                      child: IconButton(
-                                          iconSize: 12,
-                                          icon: FaIcon(
-                                            FontAwesomeIcons.chevronDown,
-                                            color: Color(0xff6E6D7A),
-                                          ),
-                                          onPressed: () {}),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              // SizedBox(
-                              //   width: 6,
-                              // ),
-                              Container(
-                                height: 35,
-                                width: 0,
-                                decoration: BoxDecoration(
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: 18,
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 50,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(6)),
+                                border: Border.all(
+                                  width: 1,
                                   color: Color(0xffE0E0E0),
-                                  border: Border.all(
-                                    width: 1,
-                                    color: Color(0xffE0E0E0),
-                                    style: BorderStyle.solid,
-                                  ),
+                                  style: BorderStyle.solid,
                                 ),
                               ),
-                              SizedBox(
-                                width: 18,
-                              ),
-                              Container(
-                                height: 19,
-                                child: Text(
-                                  'PM',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontFamily: 'Inter',
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w500,
-                                    letterSpacing: -0.264706,
-                                    color: Color(0xff979797).withOpacity(0.7),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 8),
+                                    child: Text(
+                                      '${controller.endHour}:${controller.endMinute}',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontFamily: 'Inter',
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.w500,
+                                        letterSpacing: -0.264706,
+                                        color:
+                                            Color(0xff979797).withOpacity(0.7),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                              IconButton(
-                                  iconSize: 12,
-                                  padding: EdgeInsets.only(bottom: 4, top: 4),
-                                  icon: FaIcon(
-                                    FontAwesomeIcons.chevronDown,
-                                    color: Color(0xff6E6D7A),
+                                  Container(
+                                    width: size.width * 0.09,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Expanded(
+                                          child: Align(
+                                            alignment: Alignment.center,
+                                            child: InkWell(
+                                                child: FaIcon(
+                                                  FontAwesomeIcons.chevronUp,
+                                                  color: Color(0xff6E6D7A),
+                                                  size: 12,
+                                                ),
+                                                onTap: () {
+                                                  if (controller.endMinute ==
+                                                      30) {
+                                                    if (controller.endHour !=
+                                                        12)
+                                                      controller.endHour + 1;
+                                                    controller.endMinute.value =
+                                                        00;
+                                                  } else {
+                                                    if (controller.endHour !=
+                                                        0) {
+                                                      controller
+                                                          .endMinute.value = 30;
+                                                      if (controller.endHour !=
+                                                          0)
+                                                        controller.endHour - 1;
+                                                    }
+                                                  }
+                                                }),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Align(
+                                            alignment: Alignment.center,
+                                            child: InkWell(
+                                                child: FaIcon(
+                                                  FontAwesomeIcons.chevronDown,
+                                                  size: 15,
+                                                  color: Color(0xff6E6D7A),
+                                                ),
+                                                onTap: () {
+                                                  if (controller.endMinute ==
+                                                      30) {
+                                                    if (controller.endMinute !=
+                                                        00)
+                                                      controller.endHour - 1;
+                                                    controller.endMinute.value =
+                                                        00;
+                                                  } else {
+                                                    if (controller.endHour !=
+                                                        0) {
+                                                      controller
+                                                          .endMinute.value = 30;
+                                                      controller.endHour - 1;
+                                                    }
+                                                  }
+                                                }),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  onPressed: () {}),
-                            ],
-                          ),
+                                  Container(
+                                    height: 35,
+                                    width: 0,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xffE0E0E0),
+                                      border: Border.all(
+                                        width: 1,
+                                        color: Color(0xffE0E0E0),
+                                        style: BorderStyle.solid,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 18,
+                                  ),
+                                  Container(
+                                    height: 19,
+                                    child: Text(
+                                      controller.startAmPm.value,
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontFamily: 'Inter',
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.w500,
+                                        letterSpacing: -0.264706,
+                                        color:
+                                            Color(0xff979797).withOpacity(0.7),
+                                      ),
+                                    ),
+                                  ),
+                                  IconButton(
+                                      iconSize: 12,
+                                      padding:
+                                          EdgeInsets.only(bottom: 4, top: 4),
+                                      icon: FaIcon(
+                                        FontAwesomeIcons.chevronDown,
+                                        color: Color(0xff6E6D7A),
+                                      ),
+                                      onPressed: () {}),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 3,
+                            ),
+                            Text(
+                              'Select end time (hh:mm AM/PM)',
+                              style: TextStyle(
+                                fontSize: 9,
+                                fontFamily: 'Poppins',
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.normal,
+                                letterSpacing: -0.229412,
+                                color: Color(0xff6E6D7A),
+                              ),
+                            )
+                          ],
                         ),
-                        SizedBox(
-                          height: 3,
-                        ),
-                        Text(
-                          'Event end time (hh:mm AM/PM)',
-                          style: TextStyle(
-                            fontSize: 9,
-                            fontFamily: 'Poppins',
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.normal,
-                            letterSpacing: -0.229412,
-                            color: Color(0xff6E6D7A),
-                          ),
-                        )
-                      ],
-                    ),
-                  ],
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: 29,
@@ -837,7 +903,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.pushNamed(context, Routes.onboarding2Route);
+                    //TODO Call APi
                   },
                   child: Container(
                     // width: 343,

@@ -1,6 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:readyplates_restaurants/src/login/screens/login_page.dart';
+import 'package:readyplates_restaurants/src/login/screens/signup_page.dart';
 import 'package:readyplates_restaurants/utils/utils.dart';
 
 class OpeningScreen extends StatelessWidget {
@@ -83,7 +86,7 @@ class OpeningScreen extends StatelessWidget {
                     type: MaterialType.transparency,
                     child: InkWell(
                       onTap: () {
-                        Navigator.pushNamed(context, Routes.loginRoute);
+                        Get.toNamed(LoginPage.id);
                       },
                       child: ClipRRect(
                         borderRadius: BorderRadius.all(Radius.circular(6)),
@@ -133,7 +136,7 @@ class OpeningScreen extends StatelessWidget {
                     type: MaterialType.transparency,
                     child: InkWell(
                       onTap: () {
-                        Navigator.pushNamed(context, Routes.signupRoute);
+                        Get.toNamed(SignupPage.id);
                       },
                       child: Container(
                         decoration: BoxDecoration(

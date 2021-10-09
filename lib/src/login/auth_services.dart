@@ -1,20 +1,20 @@
 import 'dart:convert';
 // import 'dart:io';
 
-import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:readyplates_restaurants/utils/api_services.dart';
 import 'package:readyplates_restaurants/utils/exception.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 
 class AuthenticationServices extends ApiServices {
   SharedPreferenceHelper sharedPreferenceHelper = SharedPreferenceHelper();
-  Future<String> signup(
+  Future<void> signup(
     String email,
     String password,
     String password2,
   ) async {
     try {
-      http.Response response = await http.post(
+      Response response = await post(
         registerUri,
         body: jsonEncode(
           {
@@ -27,14 +27,9 @@ class AuthenticationServices extends ApiServices {
           'Content-Type': 'application/json; charset=UTF-8',
         },
       );
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         Map resp = json.decode(response.body);
-        print(resp["ID"]);
-        String id = resp["ID"].toString();
-
-        print('User Id is ---->' + id);
-        print(response.body);
-        return id;
+        print(resp);
       } else {
         throw AppException(code: response.statusCode, message: response.body);
       }
@@ -48,7 +43,7 @@ class AuthenticationServices extends ApiServices {
     String password,
   ) async {
     try {
-      http.Response response = await http.post(
+      Response response = await post(
         loginUri,
         body: jsonEncode(
           {
@@ -76,7 +71,7 @@ class AuthenticationServices extends ApiServices {
     }
   }
 
-  Future<String> onboardingapi1(
+/*   Future<String> onboardingapi1(
     String user,
     String res_name,
     String own_name,
@@ -86,7 +81,7 @@ class AuthenticationServices extends ApiServices {
     String poc_number,
   ) async {
     try {
-      http.Response response = await http.post(
+      Response response = await post(
         onboarding as Uri,
         body: jsonEncode(
           {
@@ -116,5 +111,5 @@ class AuthenticationServices extends ApiServices {
     } catch (e) {
       rethrow;
     }
-  }
+  } */
 }

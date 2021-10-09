@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
+import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/utils/utils.dart';
 
 class OnboardingPage1 extends StatefulWidget {
@@ -13,7 +14,7 @@ class OnboardingPage1 extends StatefulWidget {
 }
 
 class _OnboardingPage1State extends State<OnboardingPage1> {
-  final controller = Get.find<AuthController>();
+  final controller = Get.find<OnboardingController>();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
@@ -33,7 +34,7 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                 color: Color(0xff000000),
               ),
               onPressed: () {
-                Navigator.pushNamed(context, Routes.loginRoute);
+                Get.back();
               }),
           centerTitle: true,
           title: Text(
@@ -511,24 +512,6 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                     onTap: () async {
                       formKey.currentState!.save();
                       await controller.onboardingapi1();
-                      // String fs = firstNameController.text;
-                      // String ls = firstNameController.text;
-                      // String own = fs + ' ' + ls;
-
-                      // print(id);
-                      // final String res_name = resNameController.text;
-                      // final String own_name = own;
-                      // final String user = id;
-                      // final String own_mobile = ownMobileController.text;
-                      // final String res_city = rescity;
-                      // final String poc = pocController.text;
-                      // final String poc_number = pocNumberController.text;
-                      // final Onboarding1? u = await onboardingapi1(user, res_name,
-                      //     own_name, own_mobile, res_city, poc, poc_number);
-                      // setState(() {
-                      //   users = u;
-                      // });
-                      Navigator.pushNamed(context, Routes.onboarding2Route);
                     },
                     child: Container(
                       // width: 343,

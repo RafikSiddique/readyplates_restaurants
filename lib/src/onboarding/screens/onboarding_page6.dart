@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:readyplates_restaurants/utils/utils.dart';
+import 'package:get/get.dart';
 
 class OnboardingPage6 extends StatefulWidget {
   const OnboardingPage6({Key? key}) : super(key: key);
@@ -65,7 +65,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                 color: Color(0xff000000),
               ),
               onPressed: () {
-                Navigator.pushNamed(context, Routes.onboarding5Route);
+                Get.back();
               }),
           centerTitle: true,
           title: Text(
@@ -985,7 +985,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.pushNamed(context, Routes.onboarding2Route);
+                    //TODO: API CALL
                   },
                   child: Container(
                     // width: 343,

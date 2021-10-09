@@ -22,7 +22,6 @@ class OnbordingPage13 extends StatelessWidget {
                 color: Color(0xff000000),
               ),
               onPressed: () {
-                //Navigator.pushNamed(context, Routes.onboarding4Route);
               }),
           centerTitle: true,
           title: Text(
@@ -492,7 +491,6 @@ class OnbordingPage13 extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  //Navigator.pushNamed(context, Routes.onboarding2Route);
                 },
                 child: Container(
                   margin: EdgeInsets.only(left: 16, right: 16),

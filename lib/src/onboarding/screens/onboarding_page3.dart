@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
+import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 // import 'package:readyplates_restaurants/src/screens/login_page.dart';
 import 'package:readyplates_restaurants/utils/utils.dart';
 // import 'package:http/http.dart' as http;
@@ -22,20 +23,8 @@ class OnboardingPage3 extends StatefulWidget {
 }
 
 class _OnboardingPage3State extends State<OnboardingPage3> {
-  final controller = Get.find<AuthController>();
+  final controller = Get.find<OnboardingController>();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  // String disp = '';
-  // String disp1 = '';
-  // String disp2 = '';
-  // final gstController = TextEditingController();
-  // final resgstController = TextEditingController();
-  // final fssaistatusController = TextEditingController();
-  // final fssaidateController = TextEditingController();
-  // final uploadkycController = TextEditingController();
-  // final uploadgstController = TextEditingController();
-  // final uploadfssaiController = TextEditingController();
-  // Onboarding3? user3;
-  DateTime? _selectedfssaiExpiryDate;
   void openFile(PlatformFile file) {
     OpenFile.open(file.path!);
   }
@@ -58,45 +47,10 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
         return;
       }
       setState(() {
-        _selectedfssaiExpiryDate = pickedDate;
-        // e = ('${_selectedfssaiExpiryDate!.year}/${_selectedfssaiExpiryDate!.month}/${_selectedfssaiExpiryDate!.day}')
-        //     .toString();
-        // print(e);
+        controller.expiry = pickedDate;
       });
     });
   }
-
-  //https://readyplates.herokuapp.com/restaurants/s3/
-//http://192.168.0.194:5000/restaurants/s3/
-  // Future<Onboarding3?> onbordingapi3(
-  //   String user,
-  //   String gstin_present,
-  //   String gstin_num,
-  //   String fssai_status,
-  //   String fssai_expiry,
-  // ) async {
-  //   http.Response response;
-  //   response = await http.post(
-  //     Uri.parse('https://readyplates.herokuapp.com/restaurants/s3/'),
-  //     body: jsonEncode({
-  //       'user': user,
-  //       'gstin_present': gstin_present,
-  //       'gstin_num': gstin_num,
-  //       'fssai_status': fssai_status,
-  //       'fssai_expiry': fssai_expiry,
-  //     }),
-  //     headers: {
-  //       'Content-Type': 'application/json; charset=UTF-8',
-  //     },
-  //   );
-  //   if (response.statusCode == 201) {
-  //     print('object');
-  //     print(response.body);
-  //     print('end!!!!!!!');
-  //   } else {
-  //     throw Exception('Failed to create User.');
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +67,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                 color: Color(0xff000000),
               ),
               onPressed: () {
-                Navigator.pushNamed(context, Routes.onboarding2Route);
+                Get.back();
               }),
           centerTitle: true,
           title: Text(
@@ -349,10 +303,9 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                       Padding(
                         padding: const EdgeInsets.only(left: 12.5),
                         child: Text(
-                          _selectedfssaiExpiryDate == null
+                          controller.expiry == null
                               ? 'mm/dd/yyyy'
-                              : controller.expiry =
-                                  '${_selectedfssaiExpiryDate!.year}/${_selectedfssaiExpiryDate!.month}/${_selectedfssaiExpiryDate!.day}',
+                              : '${controller.expiry!.year}/${controller.expiry!.month}/${controller.expiry!.day}',
                           style: TextStyle(
                             fontSize: 13,
                             fontFamily: 'Inter',
@@ -448,19 +401,21 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 12.5),
-                        child: Text(
-                          '${controller.kycimg}',
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontFamily: 'Inter',
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: -0.264706,
-                            color: Color(0xff979797).withOpacity(0.7),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 12.5),
+                          child: Text(
+                            '${controller.kycimg.path}',
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontFamily: 'Inter',
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w500,
+                              letterSpacing: -0.264706,
+                              color: Color(0xff979797).withOpacity(0.7),
+                            ),
+                            textAlign: TextAlign.center,
                           ),
-                          textAlign: TextAlign.center,
                         ),
                       ),
                       InkWell(
@@ -476,12 +431,10 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                           print('Size: ${file.size}');
                           print('Extension: ${file.extension}');
                           print('Path: ${file.path}');
-                          final newFile = await saveFilePermanently(file);
                           setState(() {
-                            controller.kycimg = newFile.toString();
+                            controller.kycimg = File(file.path!);
                           });
                           print('From Path: ${file.path!}');
-                          print('To Path: ${newFile.path}');
                         },
                         child: Container(
                           width: 45,
@@ -553,25 +506,27 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 12.5),
-                        child: Text(
-                          '${controller.gstinimg}',
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontFamily: 'Inter',
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: -0.264706,
-                            color: Color(0xff979797).withOpacity(0.7),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 12.5),
+                          child: Text(
+                            '${controller.gstinimg.path}',
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontFamily: 'Inter',
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w500,
+                              letterSpacing: -0.264706,
+                              color: Color(0xff979797).withOpacity(0.7),
+                            ),
+                            textAlign: TextAlign.center,
                           ),
-                          textAlign: TextAlign.center,
                         ),
                       ),
                       InkWell(
                         onTap: () async {
                           final result = await FilePicker.platform
-                              .pickFiles(allowMultiple: true);
+                              .pickFiles(allowMultiple: false);
                           if (result == null) return;
                           final file = result.files.first;
                           // openFile(file);
@@ -581,12 +536,9 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                           print('Size: ${file.size}');
                           print('Extension: ${file.extension}');
                           print('Path: ${file.path}');
-                          final newFile = await saveFilePermanently(file);
                           setState(() {
-                            controller.gstinimg = newFile.toString();
+                            controller.gstinimg = File(file.path!);
                           });
-                          print('From Path: ${file.path!}');
-                          print('To Path: ${newFile.path}');
                         },
                         child: Container(
                           width: 45,
@@ -654,19 +606,21 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 12.5),
-                        child: Text(
-                          '${controller.fssaiimg}',
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontFamily: 'Inter',
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: -0.264706,
-                            color: Color(0xff979797).withOpacity(0.7),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 12.5),
+                          child: Text(
+                            '${controller.fssaiimg.path}',
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontFamily: 'Inter',
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w500,
+                              letterSpacing: -0.264706,
+                              color: Color(0xff979797).withOpacity(0.7),
+                            ),
+                            textAlign: TextAlign.center,
                           ),
-                          textAlign: TextAlign.center,
                         ),
                       ),
                       InkWell(
@@ -682,12 +636,11 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                           print('Size: ${file.size}');
                           print('Extension: ${file.extension}');
                           print('Path: ${file.path}');
-                          final newFile = await saveFilePermanently(file);
+
                           print('From Path: ${file.path!}');
                           setState(() {
-                            controller.fssaiimg = newFile.toString();
+                            controller.fssaiimg = File(file.path!);
                           });
-                          print('To Path: ${newFile.path}');
                         },
                         child: Container(
                           width: 45,
@@ -735,22 +688,6 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                         onPressed: () async {
                           formKey.currentState!.save();
                           await controller.onboardingapi3();
-                          // final String user = id;
-                          // final String gstin_present = gstController.text;
-                          // final String gstin_num = resgstController.text;
-                          // final String fssai_status = fssaistatusController.text;
-                          // final String fssai_expiry = fssaidateController.text;
-                          // final Onboarding3? u3 = await onbordingapi3(
-                          //     user,
-                          //     gstin_present,
-                          //     gstin_num,
-                          //     fssai_status,
-                          //     fssai_expiry);
-                          // setState(() {
-                          //   user3 = u3;
-                          // });
-
-                          Navigator.pushNamed(context, Routes.onboarding4Route);
                         },
                         child: Text('CONTINUE',
                             style: TextStyle(

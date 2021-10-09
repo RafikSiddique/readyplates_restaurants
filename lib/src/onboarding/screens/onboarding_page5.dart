@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:readyplates_restaurants/utils/utils.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
@@ -41,7 +42,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                 color: Color(0xff000000),
               ),
               onPressed: () {
-                Navigator.pushNamed(context, Routes.onboarding4Route);
+                Get.back();
               }),
           centerTitle: true,
           title: Text(
@@ -568,7 +569,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.pushNamed(context, Routes.onboarding2Route);
+                    //TODO: SOMETHING
                   },
                   child: Container(
                     // width: 343,

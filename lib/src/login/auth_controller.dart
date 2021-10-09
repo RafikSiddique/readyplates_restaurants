@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:readyplates_restaurants/pages/add_menu_page.dart';
 import 'package:readyplates_restaurants/src/login/screens/login_page.dart';
-import 'package:readyplates_restaurants/src/login/screens/signup_page.dart';
 import 'package:readyplates_restaurants/src/login/auth_services.dart';
-import 'package:readyplates_restaurants/src/onboarding/screens/onboarding_page1.dart';
-import 'package:readyplates_restaurants/src/onboarding/screens/onboarding_page2.dart';
-import 'package:readyplates_restaurants/src/onboarding/screens/onboarding_page3.dart';
+import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
+import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
+import 'package:readyplates_restaurants/utils/utils.dart';
 
 class AuthController extends GetxController {
   final AuthenticationServices services = AuthenticationServices();
@@ -15,116 +15,61 @@ class AuthController extends GetxController {
   final passwordController = TextEditingController();
   final password2Controller = TextEditingController();
 
-  final usernameController = TextEditingController();
-  final loginpasswordController = TextEditingController();
+  RxBool isLoggedIn = false.obs;
 
-  final resNameController = TextEditingController();
-  final firstNameController = TextEditingController();
-  final lastNameController = TextEditingController();
-  final ownMobileController = TextEditingController();
-  String rescity = '';
-  final pocController = TextEditingController();
-  final pocNumberController = TextEditingController();
+  String route(int id) {
+    switch (id) {
+      case 1:
+        return OnboardingPage1.id;
+      case 2:
+        return OnboardingPage2.id;
+      case 3:
+        return OnboardingPage3.id;
+      case 4:
+        return Routes.onboarding4Route;
+      case 5:
+        return Routes.onboarding5Route;
+      case 6:
+        return Routes.onboarding6Route;
+      case 7:
+        return Routes.onboarding7Route;
+      case 8:
+        return Routes.onboarding8Route;
+      case 9:
+        return Routes.onboarding9Route;
 
-  final address1Controller = TextEditingController();
-  final address2Controller = TextEditingController();
-  final nearbylandnarkController = TextEditingController();
-  final postalcodeController = TextEditingController();
-  final latitudeController = TextEditingController();
-  final longitudeController = TextEditingController();
+      default:
+        return OnboardingPage1.id;
+    }
+  }
 
-  final gstpresentController = TextEditingController();
-  final gstnumController = TextEditingController();
-  final fssaistatusController = TextEditingController();
-  String expiry = '';
-  String kycimg = '';
-  String gstinimg = '';
-  String fssaiimg = '';
-  // RxString dob = "".obs;
-
-  String? id;
   Future<void> signup() async {
     try {
-      id = await services.signup(emailController.text, passwordController.text,
+      await services.signup(emailController.text, passwordController.text,
           password2Controller.text);
-      sfHelper.setUserId(id!);
-      Get.toNamed(SignupPage.id);
-    } catch (e) {
-      Get.snackbar("Error", e.toString());
-    }
-  }
 
-  Future<void> login() async {
-    try {
-      id = await services.login(
-        usernameController.text,
-        loginpasswordController.text,
-      );
-      sfHelper.setUserId(id!);
-      Get.toNamed(LoginPage.id);
-    } catch (e) {
-      Get.snackbar("Error", e.toString());
-    }
-  }
+      await login(true);
 
-  Future<void> onboardingapi1() async {
-    String ownName = firstNameController.text + " " + lastNameController.text;
-    try {
-      id = await services.onboardingapi1(
-        uniqueId,
-        resNameController.text,
-        ownName,
-        ownMobileController.text,
-        rescity,
-        pocController.text,
-        pocNumberController.text,
-      );
-      sfHelper.setUserId(id!);
-      sfHelper.getUserId();
       Get.toNamed(OnboardingPage1.id);
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }
   }
 
-  Future<void> onboardingapi2() async {
-    String adress = address1Controller.text +
-        " " +
-        address2Controller.text +
-        " " +
-        nearbylandnarkController.text;
-
+  Future<void> login([bool isImplicit = false]) async {
     try {
-      id = await services.onboardingapi2(
-        uniqueId,
-        adress,
-        postalcodeController.text,
-        latitudeController.text,
-        longitudeController.text,
+      String id = await services.login(
+        emailController.text,
+        passwordController.text,
       );
-      sfHelper.setUserId(id!);
-      sfHelper.getUserId();
-      Get.toNamed(OnboardingPage2.id);
-    } catch (e) {
-      Get.snackbar("Error", e.toString());
-    }
-  }
-
-  Future<void> onboardingapi3() async {
-    try {
-      id = await services.onboardingapi3(
-        uniqueId,
-        gstpresentController.text,
-        gstnumController.text,
-        fssaistatusController.text,
-        expiry,
-        kycimg,
-        gstinimg,
-        fssaiimg,
-      );
-      sfHelper.setUserId(id!);
-      sfHelper.getUserId();
-      Get.toNamed(OnboardingPage3.id);
+      sfHelper.setUserId(id);
+      Get.find<OnboardingController>().uniqueId = id;
+      if (!isImplicit) {
+        isLoggedIn.value = true;
+        sfHelper.setLoggedIn(true);
+        int routeId = 0;
+        Get.toNamed(route(routeId));
+      }
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }

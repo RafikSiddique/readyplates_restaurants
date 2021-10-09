@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SharedPreferenceHelper {
   final String _isLoggedIn = "loggedin";
   final String _userId = "userId";
+  final String _onBoardingNumber = "onboarding";
 
   Future<bool> setUserId(String id) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
@@ -34,5 +35,18 @@ class SharedPreferenceHelper {
     } else {
       return success;
     }
+  }
+
+  Future<bool> setOnBoarding(int screen) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    bool? success = await sharedPreferences.setInt(_onBoardingNumber, screen);
+    return success;
+  }
+
+  Future<int> getOnboarding() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    int? screen = sharedPreferences.getInt(_onBoardingNumber);
+    screen ??= 1;
+    return screen;
   }
 }

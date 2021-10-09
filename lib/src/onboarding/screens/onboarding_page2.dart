@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
+import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/utils/utils.dart';
 
 class OnboardingPage2 extends StatefulWidget {
@@ -13,46 +14,8 @@ class OnboardingPage2 extends StatefulWidget {
 }
 
 class _OnboardingPage2State extends State<OnboardingPage2> {
-  final controller = Get.find<AuthController>();
+  final controller = Get.find<OnboardingController>();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-//   final address1Controller = TextEditingController();
-//   final address2Controller = TextEditingController();
-//   final nearbylandnarkController = TextEditingController();
-//   final postalcodeController = TextEditingController();
-//   final latitudeController = TextEditingController();
-//   final longitudeController = TextEditingController();
-//   Onboarding2? user2;
-//   //https://readyplates.herokuapp.com/restaurants/s2/
-// //http://192.168.0.194:5000/restaurants/s2/
-//   Future<Onboarding2?> onbordingapi2(
-//     String user,
-//     String address,
-//     String postal_code,
-//     String latitude,
-//     String longitude,
-//   ) async {
-//     http.Response response;
-//     response = await http.post(
-//       Uri.parse('https://readyplates.herokuapp.com/restaurants/s2/'),
-//       body: jsonEncode({
-//         'user': user,
-//         'address': address,
-//         'postal_code': postal_code,
-//         'latitude': latitude,
-//         'longitude': longitude,
-//       }),
-//       headers: {
-//         'Content-Type': 'application/json; charset=UTF-8',
-//       },
-//     );
-//     if (response.statusCode == 201) {
-//       print('object');
-//       print(response.body);
-//     } else {
-//       throw Exception('Failed to create User.');
-//     }
-//   }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -68,7 +31,7 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
                 color: Color(0xff000000),
               ),
               onPressed: () {
-                Navigator.pushNamed(context, Routes.onboarding1Route);
+                Get.back();
               }),
           centerTitle: true,
           title: Text(
@@ -364,22 +327,6 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
                         onPressed: () async {
                           formKey.currentState!.save();
                           await controller.onboardingapi2();
-                          // String a1 = address1Controller.text;
-                          // String a2 = address2Controller.text;
-                          // String n = nearbylandnarkController.text;
-                          // String addresses = a1 + ' ' + a2 + ' ' + n;
-
-                          // final String user = id;
-                          // final String address = addresses;
-                          // final String postal_code = postalcodeController.text;
-                          // final String latitude = latitudeController.text;
-                          // final String longitude = longitudeController.text;
-                          // final Onboarding2? u1 = await onbordingapi2(
-                          //     user, address, postal_code, latitude, longitude);
-                          // setState(() {
-                          //   user2 = u1;
-                          // });
-                          Navigator.pushNamed(context, Routes.onboarding3Route);
                         },
                         child: Text('CONTINUE',
                             style: TextStyle(
