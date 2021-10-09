@@ -2,6 +2,7 @@ import 'dart:convert';
 // import 'dart:io';
 
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 import 'package:readyplates_restaurants/utils/api_services.dart';
 import 'package:readyplates_restaurants/utils/exception.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
@@ -137,6 +138,51 @@ class AuthenticationServices extends ApiServices {
             'postal_code': postal_code,
             'latitude': latitude,
             'longitude': longitude,
+          },
+        ),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+      if (response.statusCode == 201) {
+        Map resp = json.decode(response.body);
+        print(resp["ID"]);
+        String id = resp["ID"].toString();
+        print('User Id is ---->' + uniqueId);
+        print(response.body);
+        return id;
+      } else {
+        throw AppException(code: response.statusCode, message: response.body);
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<String> onboardingapi3(
+    String user,
+    String gstin_present,
+    String gstin_num,
+    String fssai_status,
+    String fssai_expiry,
+    String kyc_image,
+    String gstin_image,
+    String fssai_image,
+  ) async {
+    /* ('user','gstin_present','gstin_num','fssai_status','fssai_expiry','kyc_image','gstin_image','fssai_image') */
+    try {
+      http.Response response = await http.post(
+        onboarding3Uri,
+        body: jsonEncode(
+          {
+            'user': user,
+            'gstin_present': gstin_present,
+            'gstin_num': gstin_num,
+            'fssai_status': fssai_status,
+            'fssai_expiry': fssai_expiry,
+            'kyc_image': kyc_image,
+            'gstin_image': gstin_image,
+            'fssai_image': fssai_image,
           },
         ),
         headers: {

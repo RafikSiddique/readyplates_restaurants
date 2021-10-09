@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/onboarding_page1.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/onboarding_page2.dart';
+import 'package:readyplates_restaurants/src/onboarding/screens/onboarding_page3.dart';
 import 'package:readyplates_restaurants/src/screens/login_page.dart';
 import 'package:readyplates_restaurants/src/screens/signup_page.dart';
 import 'package:readyplates_restaurants/src/onboarding/services/auth_services.dart';
@@ -31,6 +32,14 @@ class AuthController extends GetxController {
   final postalcodeController = TextEditingController();
   final latitudeController = TextEditingController();
   final longitudeController = TextEditingController();
+
+  final gstpresentController = TextEditingController();
+  final gstnumController = TextEditingController();
+  final fssaistatusController = TextEditingController();
+  String expiry = '';
+  String kycimg = '';
+  String gstinimg = '';
+  String fssaiimg = '';
   // RxString dob = "".obs;
 
   String? id;
@@ -96,6 +105,26 @@ class AuthController extends GetxController {
       sfHelper.setUserId(id!);
       sfHelper.getUserId();
       Get.toNamed(OnboardingPage2.id);
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+    }
+  }
+
+  Future<void> onboardingapi3() async {
+    try {
+      id = await services.onboardingapi3(
+        uniqueId,
+        gstpresentController.text,
+        gstnumController.text,
+        fssaistatusController.text,
+        expiry,
+        kycimg,
+        gstinimg,
+        fssaiimg,
+      );
+      sfHelper.setUserId(id!);
+      sfHelper.getUserId();
+      Get.toNamed(OnboardingPage3.id);
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }

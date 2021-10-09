@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:readyplates_restaurants/models/onboarding2.dart';
 import 'package:readyplates_restaurants/src/onboarding/controller/auth_controller.dart';
-import 'package:readyplates_restaurants/src/screens/login_page.dart';
 import 'package:readyplates_restaurants/utils/utils.dart';
-import 'package:http/http.dart' as http;
-import 'dart:async';
-import 'dart:convert';
 
 class OnboardingPage2 extends StatefulWidget {
   static const id = "/onboarding2";
