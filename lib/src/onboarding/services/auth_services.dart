@@ -87,7 +87,7 @@ class AuthenticationServices extends ApiServices {
   ) async {
     try {
       http.Response response = await http.post(
-        onboarding as Uri,
+        onboarding1Uri,
         body: jsonEncode(
           {
             'user': user,
