@@ -2,7 +2,6 @@ import 'dart:convert';
 // import 'dart:io';
 
 import 'package:http/http.dart' as http;
-import 'package:readyplates_restaurants/src/screens/login_page.dart';
 import 'package:readyplates_restaurants/utils/api_services.dart';
 import 'package:readyplates_restaurants/utils/exception.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';

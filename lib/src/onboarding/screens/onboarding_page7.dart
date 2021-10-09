@@ -5,7 +5,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:readyplates_restaurants/src/onboarding/controller/onboarding_controller.dart';
-// import 'package:readyplates_restaurants/utils/utils.dart';
 
 class OnboardingPage7 extends StatefulWidget {
   const OnboardingPage7({Key? key}) : super(key: key);
@@ -83,7 +82,11 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
   }
 
   bool isImagesUploaded(List<String> list) {
-    return list[0] != "" && list[1] != "" && list[2] != "" && list[3] != "";
+    return list[0] != "" &&
+        list[1] != "" &&
+        list[2] != "" &&
+        list[3] != "" &&
+        list[4] != "";
   }
 
   @override
@@ -119,6 +122,11 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                     break;
                   case 3:
                     pageController.animateToPage(2,
+                        duration: Duration(milliseconds: 500),
+                        curve: Curves.ease);
+                    break;
+                  case 4:
+                    pageController.animateToPage(3,
                         duration: Duration(milliseconds: 500),
                         curve: Curves.ease);
                     break;
@@ -234,35 +242,39 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                         break;
                       case 3:
                         await onBoardingController
-                            .uploadImage(onBoardingController.covidProtocol);
-                        //TODO: Implement 4th page
+                            .uploadImage(onBoardingController.foodImages);
+                        pageController.animateToPage(4,
+                            duration: Duration(milliseconds: 500),
+                            curve: Curves.ease);
                         break;
                       default:
                     }
 //                    Navigator.pushNamed(context, Routes.onboarding2Route);
                   },
-                  child: Container(
-                    // width: 343,
-                    height: 40.11,
-                    decoration: BoxDecoration(
-                      color: Color(0xff7A7E83),
-                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                    ),
-                    child: Center(
-                      child: onBoardingController.imageLoading.value
-                          ? CircularProgressIndicator()
-                          : Text(
-                              'CONTINUE',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 17,
-                                fontFamily: 'Inter',
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w600,
-                                letterSpacing: -0.28,
-                                color: Color(0xffE5E5E5),
+                  child: InkWell(
+                    child: Container(
+                      // width: 343,
+                      height: 40.11,
+                      decoration: BoxDecoration(
+                        color: Color(0xff7A7E83),
+                        borderRadius: BorderRadius.all(Radius.circular(6)),
+                      ),
+                      child: Center(
+                        child: onBoardingController.imageLoading.value
+                            ? CircularProgressIndicator()
+                            : Text(
+                                'CONTINUE',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  fontFamily: 'Inter',
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w600,
+                                  letterSpacing: -0.28,
+                                  color: Color(0xffE5E5E5),
+                                ),
                               ),
-                            ),
+                      ),
                     ),
                   ),
                 ),
