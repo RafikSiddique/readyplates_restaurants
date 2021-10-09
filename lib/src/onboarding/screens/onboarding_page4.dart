@@ -12,40 +12,6 @@ class OnboardingPage4 extends StatefulWidget {
 }
 
 class _OnboardingPage4State extends State<OnboardingPage4> {
-  List<String> selectCategory = [
-    'Burgers',
-    'Pan-Asian',
-    'Continental',
-    'Malay',
-    'Seafood',
-    'South Indian',
-    'Pizza',
-    'Arab',
-    'Fast Food',
-    'Korean',
-    'Barbeque',
-    'North Indian',
-    'Chinese',
-    'Italian',
-    'Japanese',
-    'Indonesian',
-    'Vegan',
-    'Pan-Indian',
-  ];
-
-  List<String> chooseCategory = [];
-  List<String> selectDays = [
-    'Monday',
-    'Thursday',
-    'Sunday',
-    'Tuesday',
-    'Friday',
-    'Wednesday',
-    'Saturday',
-  ];
-  List<String> chooseDays = [];
-  bool isChecked = false;
-  bool isDays = false;
   final controller = Get.find<OnboardingController>();
   @override
   Widget build(BuildContext context) {
@@ -162,8 +128,6 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                     ],
                     onChanged: (newValue) {
                       setState(() {
-                        // rescity = newValue.toString();
-
                         print(newValue);
                       });
                     },
@@ -201,162 +165,170 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                 SizedBox(
                   height: 15.05,
                 ),
-                Row(
-                  children: [
-                    Column(
-                      children: [
-                        ...selectCategory
-                            .sublist(0, 6)
-                            .map((category) => Row(
-                                  children: [
-                                    Checkbox(
-                                      checkColor: Colors.white,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(4),
-                                          side: BorderSide(
-                                            color: Color(0xffE0E0E0),
-                                            width: 1,
-                                            style: BorderStyle.solid,
-                                          )),
-                                      value: chooseCategory.contains(category),
-                                      onChanged: (value) {
-                                        if (chooseCategory.contains(category)) {
-                                          chooseCategory.remove(category);
-                                        } else {
-                                          chooseCategory.add(category);
-                                        }
-                                        setState(() {
-                                          isChecked = value!;
-                                        });
-                                      },
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Container(
-                                      width: 85,
-                                      child: Text(
-                                        category,
-                                        style: TextStyle(
-                                          fontSize: 13,
-                                          fontFamily: 'Inter',
-                                          fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.normal,
-                                          letterSpacing: -0.264706,
-                                          color: Color(0xff2F2E41)
-                                              .withOpacity(0.7),
+                Obx(
+                  () => Row(
+                    children: [
+                      Column(
+                        children: [
+                          ...controller.selectCategory
+                              .sublist(0, 6)
+                              .map((category) => Row(
+                                    children: [
+                                      Checkbox(
+                                        checkColor: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                            side: BorderSide(
+                                              color: Color(0xffE0E0E0),
+                                              width: 1,
+                                              style: BorderStyle.solid,
+                                            )),
+                                        value: controller.chooseCategory
+                                            .contains(category),
+                                        onChanged: (value) {
+                                          if (controller.chooseCategory
+                                              .contains(category)) {
+                                            controller.chooseCategory
+                                                .remove(category);
+                                          } else {
+                                            controller.chooseCategory
+                                                .add(category);
+                                          }
+                                          setState(() {
+                                            controller.isChecked = value!;
+                                          });
+                                        },
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Container(
+                                        width: 85,
+                                        child: Text(
+                                          category,
+                                          style: TextStyle(
+                                            fontSize: 13,
+                                            fontFamily: 'Inter',
+                                            fontStyle: FontStyle.normal,
+                                            fontWeight: FontWeight.normal,
+                                            letterSpacing: -0.264706,
+                                            color: Color(0xff2F2E41)
+                                                .withOpacity(0.7),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ))
-                            .toList(),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        ...selectCategory
-                            .sublist(6, 12)
-                            .map((category) => Row(
-                                  children: [
-                                    Checkbox(
-                                      checkColor: Colors.white,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(4),
-                                          side: BorderSide(
-                                            color: Color(0xffE0E0E0),
-                                            width: 1,
-                                            style: BorderStyle.solid,
-                                          )),
-                                      value: chooseCategory.contains(category),
-                                      onChanged: (value) {
-                                        if (chooseCategory.contains(category)) {
-                                          chooseCategory.remove(category);
-                                        } else {
-                                          chooseCategory.add(category);
-                                        }
-                                        setState(() {
-                                          isChecked = value!;
-                                        });
-                                      },
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Container(
-                                      width: 85,
-                                      child: Text(
-                                        category,
-                                        style: TextStyle(
-                                          fontSize: 13,
-                                          fontFamily: 'Inter',
-                                          fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.normal,
-                                          letterSpacing: -0.264706,
-                                          color: Color(0xff2F2E41)
-                                              .withOpacity(0.7),
+                                    ],
+                                  ))
+                              .toList(),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          ...controller.selectCategory
+                              .sublist(6, 12)
+                              .map((category) => Row(
+                                    children: [
+                                      Checkbox(
+                                        checkColor: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                            side: BorderSide(
+                                              color: Color(0xffE0E0E0),
+                                              width: 1,
+                                              style: BorderStyle.solid,
+                                            )),
+                                        value: controller.chooseCategory
+                                            .contains(category),
+                                        onChanged: (value) {
+                                          if (controller.chooseCategory
+                                              .contains(category)) {
+                                            controller.chooseCategory
+                                                .remove(category);
+                                          } else {
+                                            controller.chooseCategory
+                                                .add(category);
+                                          }
+                                        },
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Container(
+                                        width: 85,
+                                        child: Text(
+                                          category,
+                                          style: TextStyle(
+                                            fontSize: 13,
+                                            fontFamily: 'Inter',
+                                            fontStyle: FontStyle.normal,
+                                            fontWeight: FontWeight.normal,
+                                            letterSpacing: -0.264706,
+                                            color: Color(0xff2F2E41)
+                                                .withOpacity(0.7),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ))
-                            .toList(),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        ...selectCategory
-                            .sublist(12, 18)
-                            .map((category) => Row(
-                                  children: [
-                                    Checkbox(
-                                      checkColor: Colors.white,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(4),
-                                          side: BorderSide(
-                                            color: Color(0xffE0E0E0),
-                                            width: 1,
-                                            style: BorderStyle.solid,
-                                          )),
-                                      value: chooseCategory.contains(category),
-                                      onChanged: (value) {
-                                        if (chooseCategory.contains(category)) {
-                                          chooseCategory.remove(category);
-                                        } else {
-                                          chooseCategory.add(category);
-                                        }
-                                        setState(() {
-                                          isChecked = value!;
-                                        });
-                                      },
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Container(
-                                      width: 85,
-                                      child: Text(
-                                        category,
-                                        style: TextStyle(
-                                          fontSize: 13,
-                                          fontFamily: 'Inter',
-                                          fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.normal,
-                                          letterSpacing: -0.264706,
-                                          color: Color(0xff2F2E41)
-                                              .withOpacity(0.7),
+                                    ],
+                                  ))
+                              .toList(),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          ...controller.selectCategory
+                              .sublist(12, 18)
+                              .map((category) => Row(
+                                    children: [
+                                      Checkbox(
+                                        checkColor: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                            side: BorderSide(
+                                              color: Color(0xffE0E0E0),
+                                              width: 1,
+                                              style: BorderStyle.solid,
+                                            )),
+                                        value: controller.chooseCategory
+                                            .contains(category),
+                                        onChanged: (value) {
+                                          if (controller.chooseCategory
+                                              .contains(category)) {
+                                            controller.chooseCategory
+                                                .remove(category);
+                                          } else {
+                                            controller.chooseCategory
+                                                .add(category);
+                                          }
+                                        },
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Container(
+                                        width: 85,
+                                        child: Text(
+                                          category,
+                                          style: TextStyle(
+                                            fontSize: 13,
+                                            fontFamily: 'Inter',
+                                            fontStyle: FontStyle.normal,
+                                            fontWeight: FontWeight.normal,
+                                            letterSpacing: -0.264706,
+                                            color: Color(0xff2F2E41)
+                                                .withOpacity(0.7),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ))
-                            .toList(),
-                      ],
-                    )
-                  ],
+                                    ],
+                                  ))
+                              .toList(),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: 9.95,
@@ -430,9 +402,25 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 8),
                                     child: Text(
-                                      '${controller.startHour}:${controller.startMinute}',
+                                      (controller.startHour.toString().length ==
+                                                  1
+                                              ? controller.startHour
+                                                  .toString()
+                                                  .padLeft(2, "0")
+                                              : controller.startHour
+                                                  .toString()) +
+                                          ":" +
+                                          (controller.startMinute
+                                                      .toString()
+                                                      .length ==
+                                                  1
+                                              ? controller.startMinute
+                                                  .toString()
+                                                  .padLeft(2, "0")
+                                              : controller.startMinute
+                                                  .toString()),
                                       style: TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 20,
                                         fontFamily: 'Inter',
                                         fontStyle: FontStyle.normal,
                                         fontWeight: FontWeight.w500,
@@ -442,48 +430,67 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                       ),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5),
+                                  Container(
+                                    width: size.width * 0.09,
                                     child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
                                       children: [
-                                        Container(
-                                          height: 13,
-                                          child: IconButton(
-                                              iconSize: 12,
-                                              icon: FaIcon(
-                                                FontAwesomeIcons.chevronUp,
-                                                color: Color(0xff6E6D7A),
-                                              ),
-                                              onPressed: () {
-                                                if (controller.startMinute ==
-                                                    30) {
-                                                  if (controller.startHour !=
-                                                      12)
-                                                    controller.startHour + 1;
-                                                  controller.startMinute.value =
-                                                      00;
-                                                } else
-                                                  controller.startMinute =
-                                                      controller.startMinute +
-                                                          30;
-                                              }),
+                                        Expanded(
+                                          child: Align(
+                                            alignment: Alignment.center,
+                                            child: InkWell(
+                                                child: FaIcon(
+                                                  FontAwesomeIcons.chevronUp,
+                                                  color: Color(0xff6E6D7A),
+                                                  size: 17,
+                                                ),
+                                                onTap: () {
+                                                  if (controller.startMinute ==
+                                                      30) {
+                                                    if (controller.startHour !=
+                                                        12) {
+                                                      controller.startHour + 1;
+                                                    }
+                                                    controller
+                                                        .startMinute.value = 00;
+                                                  } else {
+                                                    if (controller.startHour !=
+                                                        12)
+                                                      controller.startMinute
+                                                          .value = 30;
+                                                  }
+                                                }),
+                                          ),
                                         ),
-                                        Container(
-                                          height: 13,
-                                          child: IconButton(
-                                              iconSize: 12,
-                                              icon: FaIcon(
-                                                FontAwesomeIcons.chevronDown,
-                                                color: Color(0xff6E6D7A),
-                                              ),
-                                              onPressed: () {}),
+                                        Expanded(
+                                          child: Align(
+                                            alignment: Alignment.center,
+                                            child: InkWell(
+                                                child: FaIcon(
+                                                  FontAwesomeIcons.chevronDown,
+                                                  size: 17,
+                                                  color: Color(0xff6E6D7A),
+                                                ),
+                                                onTap: () {
+                                                  if (controller.startMinute ==
+                                                      30) {
+                                                    controller
+                                                        .startMinute.value = 00;
+                                                  } else {
+                                                    if (controller.startHour !=
+                                                        0) {
+                                                      controller.startMinute
+                                                          .value = 30;
+                                                      controller.startHour - 1;
+                                                    }
+                                                  }
+                                                }),
+                                          ),
                                         ),
                                       ],
                                     ),
                                   ),
-                                  // SizedBox(
-                                  //   width: 6,
-                                  // ),
                                   Container(
                                     height: 35,
                                     width: 0,
@@ -519,10 +526,19 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                       padding:
                                           EdgeInsets.only(bottom: 4, top: 4),
                                       icon: FaIcon(
-                                        FontAwesomeIcons.chevronDown,
+                                        controller.startAmPm.value == "AM"
+                                            ? FontAwesomeIcons.chevronDown
+                                            : FontAwesomeIcons.chevronUp,
                                         color: Color(0xff6E6D7A),
                                       ),
-                                      onPressed: () {}),
+                                      onPressed: () {
+                                        if (controller.startAmPm.value ==
+                                            "AM") {
+                                          controller.startAmPm.value = "PM";
+                                        } else {
+                                          controller.startAmPm.value = "AM";
+                                        }
+                                      }),
                                 ],
                               ),
                             ),
@@ -567,9 +583,23 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 8),
                                     child: Text(
-                                      '${controller.endHour}:${controller.endMinute}',
+                                      (controller.endHour.toString().length == 1
+                                              ? controller.endHour
+                                                  .toString()
+                                                  .padLeft(2, "0")
+                                              : controller.endHour.toString()) +
+                                          ":" +
+                                          (controller.endMinute
+                                                      .toString()
+                                                      .length ==
+                                                  1
+                                              ? controller.endMinute
+                                                  .toString()
+                                                  .padLeft(2, "0")
+                                              : controller.endMinute
+                                                  .toString()),
                                       style: TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 20,
                                         fontFamily: 'Inter',
                                         fontStyle: FontStyle.normal,
                                         fontWeight: FontWeight.w500,
@@ -589,28 +619,28 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                           child: Align(
                                             alignment: Alignment.center,
                                             child: InkWell(
-                                                child: FaIcon(
-                                                  FontAwesomeIcons.chevronUp,
-                                                  color: Color(0xff6E6D7A),
-                                                  size: 12,
+                                                child: Container(
+                                                  height: 20,
+                                                  width: 20,
+                                                  alignment: Alignment.center,
+                                                  child: FaIcon(
+                                                    FontAwesomeIcons.chevronUp,
+                                                    color: Color(0xff6E6D7A),
+                                                    size: 17,
+                                                  ),
                                                 ),
                                                 onTap: () {
                                                   if (controller.endMinute ==
                                                       30) {
                                                     if (controller.endHour !=
-                                                        12)
+                                                        12) {
                                                       controller.endHour + 1;
+                                                    }
                                                     controller.endMinute.value =
                                                         00;
                                                   } else {
-                                                    if (controller.endHour !=
-                                                        0) {
-                                                      controller
-                                                          .endMinute.value = 30;
-                                                      if (controller.endHour !=
-                                                          0)
-                                                        controller.endHour - 1;
-                                                    }
+                                                    controller.endMinute.value =
+                                                        30;
                                                   }
                                                 }),
                                           ),
@@ -619,17 +649,20 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                           child: Align(
                                             alignment: Alignment.center,
                                             child: InkWell(
-                                                child: FaIcon(
-                                                  FontAwesomeIcons.chevronDown,
-                                                  size: 15,
-                                                  color: Color(0xff6E6D7A),
+                                                child: Container(
+                                                  height: 20,
+                                                  width: 20,
+                                                  alignment: Alignment.center,
+                                                  child: FaIcon(
+                                                    FontAwesomeIcons
+                                                        .chevronDown,
+                                                    size: 17,
+                                                    color: Color(0xff6E6D7A),
+                                                  ),
                                                 ),
                                                 onTap: () {
                                                   if (controller.endMinute ==
                                                       30) {
-                                                    if (controller.endMinute !=
-                                                        00)
-                                                      controller.endHour - 1;
                                                     controller.endMinute.value =
                                                         00;
                                                   } else {
@@ -664,7 +697,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                   Container(
                                     height: 19,
                                     child: Text(
-                                      controller.startAmPm.value,
+                                      controller.endAmPm.value,
                                       style: TextStyle(
                                         fontSize: 16,
                                         fontFamily: 'Inter',
@@ -681,10 +714,18 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                       padding:
                                           EdgeInsets.only(bottom: 4, top: 4),
                                       icon: FaIcon(
-                                        FontAwesomeIcons.chevronDown,
+                                        controller.endAmPm.value == "AM"
+                                            ? FontAwesomeIcons.chevronDown
+                                            : FontAwesomeIcons.chevronUp,
                                         color: Color(0xff6E6D7A),
                                       ),
-                                      onPressed: () {}),
+                                      onPressed: () {
+                                        if (controller.endAmPm.value == "AM") {
+                                          controller.endAmPm.value = "PM";
+                                        } else {
+                                          controller.endAmPm.value = "AM";
+                                        }
+                                      }),
                                 ],
                               ),
                             ),
@@ -740,163 +781,162 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                 SizedBox(
                   height: 15,
                 ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Column(
-                      children: [
-                        ...selectDays
-                            .sublist(0, 3)
-                            .map((days) => Row(
-                                  children: [
-                                    Checkbox(
-                                      checkColor: Colors.white,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(4),
-                                          side: BorderSide(
-                                            color: Color(0xffE0E0E0),
-                                            width: 1,
-                                            style: BorderStyle.solid,
-                                          )),
-                                      value: chooseDays.contains(days),
-                                      onChanged: (value) {
-                                        if (chooseDays.contains(days)) {
-                                          chooseDays.remove(days);
-                                        } else {
-                                          chooseDays.add(days);
-                                        }
-                                        setState(() {
-                                          isDays = value!;
-                                        });
-                                      },
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Container(
-                                      width: 85,
-                                      child: Text(
-                                        days,
-                                        style: TextStyle(
-                                          fontSize: 13,
-                                          fontFamily: 'Inter',
-                                          fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.normal,
-                                          letterSpacing: -0.264706,
-                                          color: Color(0xff2F2E41)
-                                              .withOpacity(0.7),
+                Obx(
+                  () => Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Column(
+                        children: [
+                          ...controller.selectDays
+                              .sublist(0, 3)
+                              .map((days) => Row(
+                                    children: [
+                                      Checkbox(
+                                        checkColor: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                            side: BorderSide(
+                                              color: Color(0xffE0E0E0),
+                                              width: 1,
+                                              style: BorderStyle.solid,
+                                            )),
+                                        value: controller.chooseDays
+                                            .contains(days),
+                                        onChanged: (value) {
+                                          if (controller.chooseDays
+                                              .contains(days)) {
+                                            controller.chooseDays.remove(days);
+                                          } else {
+                                            controller.chooseDays.add(days);
+                                          }
+                                        },
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Container(
+                                        width: 85,
+                                        child: Text(
+                                          days,
+                                          style: TextStyle(
+                                            fontSize: 13,
+                                            fontFamily: 'Inter',
+                                            fontStyle: FontStyle.normal,
+                                            fontWeight: FontWeight.normal,
+                                            letterSpacing: -0.264706,
+                                            color: Color(0xff2F2E41)
+                                                .withOpacity(0.7),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ))
-                            .toList(),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        ...selectDays
-                            .sublist(3, 5)
-                            .map((days) => Row(
-                                  children: [
-                                    Checkbox(
-                                      checkColor: Colors.white,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(4),
-                                          side: BorderSide(
-                                            color: Color(0xffE0E0E0),
-                                            width: 1,
-                                            style: BorderStyle.solid,
-                                          )),
-                                      value: chooseDays.contains(days),
-                                      onChanged: (value) {
-                                        if (chooseDays.contains(days)) {
-                                          chooseDays.remove(days);
-                                        } else {
-                                          chooseDays.add(days);
-                                        }
-                                        setState(() {
-                                          isDays = value!;
-                                        });
-                                      },
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Container(
-                                      width: 85,
-                                      child: Text(
-                                        days,
-                                        style: TextStyle(
-                                          fontSize: 13,
-                                          fontFamily: 'Inter',
-                                          fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.normal,
-                                          letterSpacing: -0.264706,
-                                          color: Color(0xff2F2E41)
-                                              .withOpacity(0.7),
+                                    ],
+                                  ))
+                              .toList(),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          ...controller.selectDays
+                              .sublist(3, 5)
+                              .map((days) => Row(
+                                    children: [
+                                      Checkbox(
+                                        checkColor: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                            side: BorderSide(
+                                              color: Color(0xffE0E0E0),
+                                              width: 1,
+                                              style: BorderStyle.solid,
+                                            )),
+                                        value: controller.chooseDays
+                                            .contains(days),
+                                        onChanged: (value) {
+                                          if (controller.chooseDays
+                                              .contains(days)) {
+                                            controller.chooseDays.remove(days);
+                                          } else {
+                                            controller.chooseDays.add(days);
+                                          }
+                                        },
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Container(
+                                        width: 85,
+                                        child: Text(
+                                          days,
+                                          style: TextStyle(
+                                            fontSize: 13,
+                                            fontFamily: 'Inter',
+                                            fontStyle: FontStyle.normal,
+                                            fontWeight: FontWeight.normal,
+                                            letterSpacing: -0.264706,
+                                            color: Color(0xff2F2E41)
+                                                .withOpacity(0.7),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ))
-                            .toList(),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        ...selectDays
-                            .sublist(5, 7)
-                            .map((days) => Row(
-                                  children: [
-                                    Checkbox(
-                                      checkColor: Colors.white,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(4),
-                                          side: BorderSide(
-                                            color: Color(0xffE0E0E0),
-                                            width: 1,
-                                            style: BorderStyle.solid,
-                                          )),
-                                      value: chooseDays.contains(days),
-                                      onChanged: (value) {
-                                        if (chooseDays.contains(days)) {
-                                          chooseDays.remove(days);
-                                        } else {
-                                          chooseDays.add(days);
-                                        }
-                                        setState(() {
-                                          isDays = value!;
-                                        });
-                                      },
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Container(
-                                      width: 85,
-                                      child: Text(
-                                        days,
-                                        style: TextStyle(
-                                          fontSize: 13,
-                                          fontFamily: 'Inter',
-                                          fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.normal,
-                                          letterSpacing: -0.264706,
-                                          color: Color(0xff2F2E41)
-                                              .withOpacity(0.7),
+                                    ],
+                                  ))
+                              .toList(),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          ...controller.selectDays
+                              .sublist(5, 7)
+                              .map((days) => Row(
+                                    children: [
+                                      Checkbox(
+                                        checkColor: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                            side: BorderSide(
+                                              color: Color(0xffE0E0E0),
+                                              width: 1,
+                                              style: BorderStyle.solid,
+                                            )),
+                                        value: controller.chooseDays
+                                            .contains(days),
+                                        onChanged: (value) {
+                                          if (controller.chooseDays
+                                              .contains(days)) {
+                                            controller.chooseDays.remove(days);
+                                          } else {
+                                            controller.chooseDays.add(days);
+                                          }
+                                        },
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Container(
+                                        width: 85,
+                                        child: Text(
+                                          days,
+                                          style: TextStyle(
+                                            fontSize: 13,
+                                            fontFamily: 'Inter',
+                                            fontStyle: FontStyle.normal,
+                                            fontWeight: FontWeight.normal,
+                                            letterSpacing: -0.264706,
+                                            color: Color(0xff2F2E41)
+                                                .withOpacity(0.7),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ))
-                            .toList(),
-                      ],
-                    ),
-                  ],
+                                    ],
+                                  ))
+                              .toList(),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: 29,

@@ -46,6 +46,41 @@ class OnboardingController extends GetxController {
   RxString startAmPm = "AM".obs;
   RxString endAmPm = "PM".obs;
 
+  List<String> selectCategory = [
+    'Burgers',
+    'Pan-Asian',
+    'Continental',
+    'Malay',
+    'Seafood',
+    'South Indian',
+    'Pizza',
+    'Arab',
+    'Fast Food',
+    'Korean',
+    'Barbeque',
+    'North Indian',
+    'Chinese',
+    'Italian',
+    'Japanese',
+    'Indonesian',
+    'Vegan',
+    'Pan-Indian',
+  ];
+
+  RxList<String> chooseCategory = <String>[].obs;
+  List<String> selectDays = [
+    'Monday',
+    'Thursday',
+    'Sunday',
+    'Tuesday',
+    'Friday',
+    'Wednesday',
+    'Saturday',
+  ];
+  RxList<String> chooseDays = <String>[].obs;
+  bool isChecked = false;
+  bool isDays = false;
+
   @override
   void onInit() {
     SharedPreferenceHelper().getUserId().then((value) => uniqueId = value);

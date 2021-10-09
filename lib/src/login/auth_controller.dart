@@ -64,14 +64,26 @@ class AuthController extends GetxController {
       );
       sfHelper.setUserId(id);
       Get.find<OnboardingController>().uniqueId = id;
-      if (!isImplicit) {
+
+      int routeId = await getScreen(id);
+      if (routeId == 9) {
         isLoggedIn.value = true;
         sfHelper.setLoggedIn(true);
-        int routeId = 0;
-        Get.toNamed(route(routeId));
-      }
+        //TODO push to home
+      } else
+        Get.toNamed(route(routeId + 1));
     } catch (e) {
       Get.snackbar("Error", e.toString());
+    }
+  }
+
+  Future<int> getScreen(String uid) async {
+    try {
+      int id = await services.getOnboardingScreen(uid);
+      return id;
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+      return 0;
     }
   }
 }

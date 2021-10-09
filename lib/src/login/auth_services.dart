@@ -71,45 +71,23 @@ class AuthenticationServices extends ApiServices {
     }
   }
 
-/*   Future<String> onboardingapi1(
-    String user,
-    String res_name,
-    String own_name,
-    String own_mobile,
-    String res_city,
-    String poc,
-    String poc_number,
-  ) async {
+  Future<int> getOnboardingScreen(String id) async {
     try {
-      Response response = await post(
-        onboarding as Uri,
-        body: jsonEncode(
-          {
-            'user': user,
-            'res_name': res_name,
-            'own_name': own_name,
-            'own_mobile': own_mobile,
-            'res_city': res_city,
-            'poc': poc,
-            'poc_number': poc_number,
-          },
-        ),
-        headers: {
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-      );
-      if (response.statusCode == 201) {
-        Map resp = json.decode(response.body);
-        print(resp["ID"]);
-        String id = resp["ID"].toString();
-        print('User Id is ---->' + id);
-        print(response.body);
-        return id;
+      Response response = await post(screenStat,
+          body: jsonEncode(
+            {
+              'user': id,
+            },
+          ),
+          headers: contentTypeJsonHeader);
+      if (response.statusCode == 200) {
+        Map data = jsonDecode(response.body);
+        return data.entries.first.value as int;
       } else {
         throw AppException(code: response.statusCode, message: response.body);
       }
     } catch (e) {
       rethrow;
     }
-  } */
+  }
 }
