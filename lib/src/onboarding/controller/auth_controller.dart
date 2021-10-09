@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:readyplates_restaurants/src/onboarding/screens/onboarding_page1.dart';
 import 'package:readyplates_restaurants/src/screens/login_page.dart';
 import 'package:readyplates_restaurants/src/screens/signup_page.dart';
-import 'package:readyplates_restaurants/src/services/auth_services.dart';
+import 'package:readyplates_restaurants/src/onboarding/services/auth_services.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 
 class AuthController extends GetxController {
@@ -53,17 +54,17 @@ class AuthController extends GetxController {
     String ownName = firstNameController.text + " " + lastNameController.text;
     try {
       id = await services.onboardingapi1(
+        id!,
         resNameController.text,
         ownName,
-        id!,
         ownMobileController.text,
         rescity,
         pocController.text,
         pocNumberController.text,
       );
-      // sfHelper.setUserId(id!);
+      sfHelper.setUserId(id!);
       sfHelper.getUserId();
-      Get.toNamed(LoginPage.id);
+      Get.toNamed(OnboardingPage1.id);
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }
