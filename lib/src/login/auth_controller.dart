@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:readyplates_restaurants/src/screens/login_page.dart';
-import 'package:readyplates_restaurants/src/screens/signup_page.dart';
-import 'package:readyplates_restaurants/src/services/auth_services.dart';
+import 'package:readyplates_restaurants/src/login/screens/login_page.dart';
+import 'package:readyplates_restaurants/src/login/screens/signup_page.dart';
+import 'package:readyplates_restaurants/src/login/auth_services.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 
 class AuthController extends GetxController {
@@ -61,7 +61,7 @@ class AuthController extends GetxController {
         pocController.text,
         pocNumberController.text,
       );
-      // sfHelper.setUserId(id!);
+      sfHelper.setUserId(id!);
       sfHelper.getUserId();
       Get.toNamed(LoginPage.id);
     } catch (e) {
@@ -69,34 +69,4 @@ class AuthController extends GetxController {
     }
   }
 
-  // Future<void> register() async {
-  //   try {
-  //     await services.register(
-  //         email: usernameController.text,
-  //         password: passwordController.text,
-  //         password2: password2Controller.text,
-  //         fName: fNamController.text,
-  //         lName: lNameController.text,
-  //         gender: gender.value,
-  //         dob: dob.value,
-  //         mobNum: mobController.text);
-  //     Get.toNamed(LoginPage.id);
-  //   } catch (e) {
-  //     Get.snackbar("Error", e.toString());
-  //   }
-  // }
-
-  // Future<void> uploadImage(File file) async {
-  //   try {
-  //     bool success = await services.uploadImage(file);
-  //     if (success) {
-  //       Get.toNamed(MapPage.id);
-  //     }
-  //   } catch (e) {
-  //     Get.snackbar("Error", e.toString());
-  //   }
-  // }
-
-  // RxString gender = 'Male'.obs;
-  // final items = ['Male', 'Female'];
 }

@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:readyplates_restaurants/models/onboarding3.dart';
-import 'package:readyplates_restaurants/src/screens/login_page.dart';
+import 'package:readyplates_restaurants/src/login/screens/login_page.dart';
 import 'package:readyplates_restaurants/utils/utils.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
