@@ -15,15 +15,14 @@ class AuthController extends GetxController {
   final usernameController = TextEditingController();
   final loginpasswordController = TextEditingController();
 
-  final userController = TextEditingController();
   final resNameController = TextEditingController();
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final ownMobileController = TextEditingController();
-  var resCityController = TextEditingController();
+  String rescity = '';
   final pocController = TextEditingController();
   final pocNumberController = TextEditingController();
-  RxString dob = "".obs;
+  // RxString dob = "".obs;
 
   String? id;
   Future<void> signup() async {
@@ -51,18 +50,19 @@ class AuthController extends GetxController {
   }
 
   Future<void> onboardingapi1() async {
+    String ownName = firstNameController.text + " " + lastNameController.text;
     try {
       id = await services.onboardingapi1(
-        userController.text,
         resNameController.text,
-        firstNameController.text,
-        lastNameController.text,
+        ownName,
+        id!,
         ownMobileController.text,
+        rescity,
         pocController.text,
         pocNumberController.text,
       );
-      sfHelper.setUserId(id!);
-      // sfHelper.getUserId(id!);
+      // sfHelper.setUserId(id!);
+      sfHelper.getUserId();
       Get.toNamed(LoginPage.id);
     } catch (e) {
       Get.snackbar("Error", e.toString());

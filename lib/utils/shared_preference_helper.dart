@@ -13,11 +13,11 @@ class SharedPreferenceHelper {
 
   Future<String> getUserId() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    String? token = sharedPreferences.getString(_userId);
-    if (token == null) {
+    String? id = sharedPreferences.getString(_userId);
+    if (id == null) {
       throw AppException(message: "No such user found");
     } else
-      return token;
+      return id;
   }
 
   Future<bool> setLoggedIn(bool loggedIn) async {

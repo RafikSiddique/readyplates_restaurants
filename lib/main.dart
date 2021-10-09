@@ -17,6 +17,8 @@ import 'package:readyplates_restaurants/src/staticscreens/opening_screen.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 import 'package:readyplates_restaurants/utils/utils.dart';
 
+import 'src/screens/signup_page.dart';
+
 void main() {
   Get.put(OnBoardingController());
   Get.put(SharedPreferenceHelper());
@@ -29,7 +31,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.openingscreenRoute,
+      initialRoute: SignupPage.id,
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
