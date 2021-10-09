@@ -6,6 +6,8 @@ import 'package:readyplates_restaurants/utils/api_services.dart';
 import 'package:readyplates_restaurants/utils/exception.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 
+String uniqueId = '';
+
 class AuthenticationServices extends ApiServices {
   SharedPreferenceHelper sharedPreferenceHelper = SharedPreferenceHelper();
   Future<String> signup(
@@ -64,7 +66,7 @@ class AuthenticationServices extends ApiServices {
         Map resp = json.decode(response.body);
         print(resp["ID"]);
         String id = resp["ID"].toString();
-
+        uniqueId = id;
         print('User Id is ---->' + id);
         print(response.body);
         return id;
@@ -107,7 +109,45 @@ class AuthenticationServices extends ApiServices {
         Map resp = json.decode(response.body);
         print(resp["ID"]);
         String id = resp["ID"].toString();
-        print('User Id is ---->' + id);
+        print('User Id is ---->' + uniqueId);
+        print(response.body);
+        return id;
+      } else {
+        throw AppException(code: response.statusCode, message: response.body);
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<String> onboardingapi2(
+    String user,
+    String address,
+    String postal_code,
+    String latitude,
+    String longitude,
+  ) async {
+    try {
+      http.Response response = await http.post(
+        onboarding2Uri,
+        body: jsonEncode(
+          {
+            'user': user,
+            'address': address,
+            'postal_code': postal_code,
+            'latitude': latitude,
+            'longitude': longitude,
+          },
+        ),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+      if (response.statusCode == 201) {
+        Map resp = json.decode(response.body);
+        print(resp["ID"]);
+        String id = resp["ID"].toString();
+        print('User Id is ---->' + uniqueId);
         print(response.body);
         return id;
       } else {

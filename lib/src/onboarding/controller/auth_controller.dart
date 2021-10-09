@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/onboarding_page1.dart';
+import 'package:readyplates_restaurants/src/onboarding/screens/onboarding_page2.dart';
 import 'package:readyplates_restaurants/src/screens/login_page.dart';
 import 'package:readyplates_restaurants/src/screens/signup_page.dart';
 import 'package:readyplates_restaurants/src/onboarding/services/auth_services.dart';
@@ -23,6 +24,13 @@ class AuthController extends GetxController {
   String rescity = '';
   final pocController = TextEditingController();
   final pocNumberController = TextEditingController();
+
+  final address1Controller = TextEditingController();
+  final address2Controller = TextEditingController();
+  final nearbylandnarkController = TextEditingController();
+  final postalcodeController = TextEditingController();
+  final latitudeController = TextEditingController();
+  final longitudeController = TextEditingController();
   // RxString dob = "".obs;
 
   String? id;
@@ -54,7 +62,7 @@ class AuthController extends GetxController {
     String ownName = firstNameController.text + " " + lastNameController.text;
     try {
       id = await services.onboardingapi1(
-        id!,
+        uniqueId,
         resNameController.text,
         ownName,
         ownMobileController.text,
@@ -70,6 +78,28 @@ class AuthController extends GetxController {
     }
   }
 
+  Future<void> onboardingapi2() async {
+    String adress = address1Controller.text +
+        " " +
+        address2Controller.text +
+        " " +
+        nearbylandnarkController.text;
+
+    try {
+      id = await services.onboardingapi2(
+        uniqueId,
+        adress,
+        postalcodeController.text,
+        latitudeController.text,
+        longitudeController.text,
+      );
+      sfHelper.setUserId(id!);
+      sfHelper.getUserId();
+      Get.toNamed(OnboardingPage2.id);
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+    }
+  }
   // Future<void> register() async {
   //   try {
   //     await services.register(

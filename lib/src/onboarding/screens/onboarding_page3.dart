@@ -55,6 +55,9 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
       }
       setState(() {
         _selectedfssaiExpiryDate = pickedDate;
+        // e = ('${_selectedfssaiExpiryDate!.year}/${_selectedfssaiExpiryDate!.month}/${_selectedfssaiExpiryDate!.day}')
+        //     .toString();
+        // print(e);
       });
     });
   }

@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         SignupPage.id: (context) => SignupPage(),
         LoginPage.id: (context) => LoginPage(),
         OnboardingPage1.id: (context) => OnboardingPage1(),
-        Routes.onboarding2Route: (context) => OnboardingPage2(),
+        OnboardingPage2.id: (context) => OnboardingPage2(),
         Routes.onboarding3Route: (context) => OnboardingPage3(),
         Routes.onboarding4Route: (context) => OnboardingPage4(),
         Routes.onboarding5Route: (context) => OnboardingPage5(),
