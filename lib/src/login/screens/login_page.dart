@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
-import 'package:readyplates_restaurants/utils/utils.dart';
+import 'package:readyplates_restaurants/widgets/form_field.dart';
 
 class LoginPage extends StatefulWidget {
   static const id = "/login";
@@ -20,7 +20,6 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      // appBar: AppBar(),
       body: Stack(
         children: [
           Container(
@@ -36,55 +35,60 @@ class _LoginPageState extends State<LoginPage> {
               key: formKey,
               child: Column(
                 children: [
-                  SizedBox(
-                    height: kToolbarHeight,
-                  ),
-                  Container(
-                    height: 40,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          // width: 40,
-                          height: 40,
-                          child: Image.asset(
-                            "assets/images/spoon.png",
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        SizedBox(width: 16),
-                        Container(
-                          // width: size.width * 0.6,
-                          height: 39,
-                          child: RichText(
-                            text: TextSpan(
-                                text: 'READY',
-                                style: TextStyle(
-                                  fontSize: 30,
-                                  letterSpacing: -0.0769231,
-                                  fontFamily: 'Montserrat',
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromRGBO(255, 255, 255, 0.9),
-                                ),
-                                children: [
-                                  TextSpan(
-                                    text: ' Plates'.toUpperCase(),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 42, right: 43, top: 50),
+                    child: Hero(
+                      tag: "rp",
+                      child: Material(
+                        type: MaterialType.transparency,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              // width: 40,
+                              height: 40,
+                              child: Image.asset(
+                                "assets/images/spoon.png",
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            SizedBox(width: 16),
+                            Container(
+                              // width: size.width * 0.6,
+                              height: 39,
+                              child: RichText(
+                                text: TextSpan(
+                                    text: 'READY',
                                     style: TextStyle(
                                       fontSize: 30,
-                                      fontFamily: 'Montserrat',
                                       letterSpacing: -0.0769231,
+                                      fontFamily: 'Montserrat',
                                       fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.normal,
+                                      fontWeight: FontWeight.bold,
                                       color: Color.fromRGBO(255, 255, 255, 0.9),
                                     ),
-                                  ),
-                                ]),
-                          ),
+                                    children: [
+                                      TextSpan(
+                                        text: ' Plates'.toUpperCase(),
+                                        style: TextStyle(
+                                          fontSize: 30,
+                                          fontFamily: 'Montserrat',
+                                          letterSpacing: -0.0769231,
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.normal,
+                                          color: Color.fromRGBO(
+                                              255, 255, 255, 0.9),
+                                        ),
+                                      ),
+                                    ]),
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
                   ),
                   Spacer(),
@@ -121,16 +125,28 @@ class _LoginPageState extends State<LoginPage> {
                                     ),
                                   ),
                                 ),
-                                Text(
-                                  'Login',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                    fontFamily: 'Inter-Regular',
-                                    fontWeight: FontWeight.w500,
-                                    fontStyle: FontStyle.normal,
-                                    letterSpacing: -0.226667,
-                                    color: Color(0xff393E46),
+                                Align(
+                                  alignment: Alignment.center,
+                                  child: Hero(
+                                    tag: "login",
+                                    child: Card(
+                                      elevation: 0,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          'Login',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            fontSize: 17,
+                                            fontFamily: 'Inter-Bold',
+                                            fontWeight: FontWeight.w500,
+                                            fontStyle: FontStyle.normal,
+                                            letterSpacing: -0.226667,
+                                            color: Color(0xff393E46),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ),
                                 Spacer(),
@@ -140,93 +156,22 @@ class _LoginPageState extends State<LoginPage> {
                           SizedBox(
                             height: kToolbarHeight * 0.4,
                           ),
-                          Text(
-                            'Email address',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w500,
-                              fontFamily: 'Inter-Regular',
-                              color: Color(0xff374151),
-                            ),
-                          ),
-                          SizedBox(
-                            height: kToolbarHeight * 0.15,
-                          ),
-                          Container(
-                            width: size.width,
-                            height: 45,
-                            child: TextFormField(
-                              controller: controller.emailController,
-                              textAlign: TextAlign.left,
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      width: 1, color: Color(0xffBEC5D1)),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(6)),
-                                ),
-                                hintText: 'Registered email id',
-                                contentPadding: EdgeInsets.only(
-                                  left: 14,
-                                  top: 14,
-                                ),
-                                hintStyle: TextStyle(
-                                  fontSize: 12,
-                                  letterSpacing: 0.24,
-                                  fontFamily: 'Inter-Regular',
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.normal,
-                                  color: Color(0xff9CA3AF),
-                                ),
-                              ),
-                            ),
+                          AppFormField(
+                            title: "Email Address",
+                            hintText: "Registered E-Mail ID",
+                            fontSize: 12,
+                            inputType: TextInputType.text,
+                            controller: controller.emailController,
                           ),
                           SizedBox(
                             height: kToolbarHeight * 0.4,
                           ),
-                          Text(
-                            'Password',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w500,
-                              fontFamily: 'Inter-Regular',
-                              color: Color(0xff374151),
-                            ),
-                          ),
-                          SizedBox(
-                            height: kToolbarHeight * 0.15,
-                          ),
-                          Container(
-                            width: size.width,
-                            height: 45,
-                            child: TextFormField(
-                              controller: controller.passwordController,
-                              textAlign: TextAlign.left,
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        width: 1, color: Color(0xffBEC5D1)),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(6))),
-                                hintText: '**** **** ****',
-                                contentPadding: EdgeInsets.only(
-                                  left: 14,
-                                  top: 14,
-                                ),
-                                hintStyle: TextStyle(
-                                  fontSize: 12,
-                                  letterSpacing: 0.24,
-                                  fontFamily: 'Inter-Regular',
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.w600,
-                                  color: Color(0xff9CA3AF),
-                                ),
-                              ),
-                            ),
+                          AppFormField(
+                            title: "Password",
+                            hintText: "** ** **",
+                            fontSize: 12,
+                            controller: controller.passwordController,
+                            isPassword: true,
                           ),
                           SizedBox(
                             height: 3,
@@ -255,8 +200,8 @@ class _LoginPageState extends State<LoginPage> {
                           InkWell(
                             onTap: () async {
                               formKey.currentState!.save();
-                              await controller.login();
-  
+                              if (formKey.currentState!.validate())
+                                await controller.login();
                             },
                             child: Container(
                               width: size.width,
@@ -285,8 +230,7 @@ class _LoginPageState extends State<LoginPage> {
                             height: kToolbarHeight * 0.15,
                           ),
                           InkWell(
-                            onTap: () {
-                            },
+                            onTap: () {},
                             child: Container(
                               width: size.width,
                               height: 54,
@@ -344,3 +288,9 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
+
+
+/* 
+
+  
+ */

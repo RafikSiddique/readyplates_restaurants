@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 
 class AppFormField extends StatelessWidget {
@@ -13,9 +14,19 @@ class AppFormField extends StatelessWidget {
   final bool isPassword;
   final List<TextInputFormatter>? formatters;
   final TextInputType inputType;
+  final double fontSize;
+  final String fontFamily;
+  final FontWeight fontWeight;
+  final bool matchVerification;
+  final String? secondVal;
   AppFormField({
     Key? key,
+    this.secondVal,
+    this.matchVerification = false,
     this.isRequired = true,
+    this.fontSize = 12,
+    this.fontFamily = 'Inter-Bold',
+    this.fontWeight = FontWeight.w500,
     required this.title,
     this.inputType = TextInputType.text,
     this.formatters,
@@ -25,60 +36,87 @@ class AppFormField extends StatelessWidget {
     this.validator,
     required this.controller,
     this.bottomText,
-  }) : super(key: key);
+  })  : assert(matchVerification ? secondVal != null : true),
+        super(key: key);
+
+  bool obSecureText = true;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          FieldTitle(
-            text: title,
-            required: isRequired,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          TextFormField(
-            inputFormatters: formatters,
-            controller: controller,
-            validator: (value) {
-              if (isRequired) {
-                if (value == "") {
-                  return "This Field is required";
-                }
-              }
-              if (validator != null) return validator!(value);
-            },
-            textAlign: TextAlign.left,
-            keyboardType: inputType,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(
-                borderSide: BorderSide(width: 1, color: Color(0xffBEC5D1)),
-                borderRadius: borderRadius,
-              ),
-              hintText: hintText,
-              contentPadding: EdgeInsets.only(
-                left: 14,
-                top: 14,
-              ),
-              hintStyle: TextStyle(
-                fontSize: 12,
-                letterSpacing: 0.24,
-                fontFamily: 'Inter-Regular',
-                fontStyle: FontStyle.normal,
-                fontWeight: FontWeight.w600,
-                color: Color(0xff9CA3AF),
-              ),
+          if (title != "")
+            FieldTitle(
+              text: title,
+              required: isRequired,
+              fontSize: fontSize,
+              fontFamily: fontFamily,
+              fontWeight: fontWeight,
             ),
-          ),
+          if (title != "")
+            SizedBox(
+              height: 7,
+            ),
+          StatefulBuilder(builder: (context, setState) {
+            return TextFormField(
+              obscureText: isPassword ? obSecureText : false,
+              inputFormatters: formatters,
+              controller: controller,
+              validator: (value) {
+                if (value == "") {
+                  if (isRequired) {
+                    return "This Field is required";
+                  }
+                } else {
+                  if (matchVerification) {
+                    if (value != secondVal!) {
+                      return "The ${title} does not match";
+                    }
+                  }
+                }
+                if (validator != null) return validator!(value);
+              },
+              textAlign: TextAlign.left,
+              keyboardType: inputType,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(width: 1, color: Color(0xffBEC5D1)),
+                  borderRadius: borderRadius,
+                ),
+                hintText: hintText,
+                contentPadding: EdgeInsets.only(
+                  left: 14,
+                  top: 14,
+                ),
+                suffixIcon: isPassword
+                    ? IconButton(
+                        onPressed: () {
+                          setState(() {
+                            obSecureText = !obSecureText;
+                          });
+                        },
+                        icon: Icon(obSecureText ? Icons.lock : Icons.lock_open))
+                    : null,
+                hintStyle: TextStyle(
+                  fontSize: 12,
+                  letterSpacing: 0.24,
+                  fontFamily: 'Inter-Regular',
+                  fontStyle: FontStyle.normal,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xff9CA3AF),
+                ),
+              ),
+            );
+          }),
           if (bottomText != null)
             SizedBox(
               height: 3,
             ),
           if (bottomText != null)
             Text(
-              'Atleast 8 characters (Caps, Small & Special Characters)',
+              bottomText!,
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 9,

@@ -3,8 +3,17 @@ import 'package:flutter/material.dart';
 class FieldTitle extends StatelessWidget {
   final String text;
   final bool required;
-  const FieldTitle({Key? key, required this.text, this.required = true})
-      : super(key: key);
+  final double fontSize;
+  final String fontFamily;
+  final FontWeight fontWeight;
+  const FieldTitle({
+    Key? key,
+    required this.text,
+    this.required = true,
+    this.fontWeight = FontWeight.w500,
+    this.fontSize = 13,
+    this.fontFamily = 'Inter',
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,10 +22,10 @@ class FieldTitle extends StatelessWidget {
         text: TextSpan(
             text: text,
             style: TextStyle(
-              fontSize: 13,
-              fontFamily: 'Inter',
+              fontSize: fontSize,
+              fontFamily: fontFamily,
               fontStyle: FontStyle.normal,
-              fontWeight: FontWeight.w500,
+              fontWeight: fontWeight,
               letterSpacing: -0.229412,
               color: Color(0xff2F2E41),
             ),
@@ -25,7 +34,7 @@ class FieldTitle extends StatelessWidget {
                     TextSpan(
                       text: ' *',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: fontSize + 3,
                         color: Color(0xffEB4132),
                       ),
                     ),

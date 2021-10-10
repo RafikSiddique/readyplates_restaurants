@@ -53,4 +53,13 @@ class HomeServices extends ApiServices {
       rethrow;
     }
   }
+
+  Future<void> getMenu(String id) async {
+    try {
+      Response response = await get(
+        menuList(id),
+      );
+      print(response.body);
+    } catch (e) {}
+  }
 }

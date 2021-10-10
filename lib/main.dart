@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:readyplates_restaurants/src/home/screens/add_food_item.dart';
 import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';

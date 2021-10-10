@@ -297,9 +297,9 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                       Padding(
                         padding: const EdgeInsets.only(left: 12.5),
                         child: Text(
-                          controller.expiry == null
+                          controller.expiry == DateTime(1900)
                               ? 'mm/dd/yyyy'
-                              : '${controller.expiry!.year}/${controller.expiry!.month}/${controller.expiry!.day}',
+                              : '${controller.expiry.year}/${controller.expiry.month}/${controller.expiry.day}',
                           style: TextStyle(
                             fontSize: 13,
                             fontFamily: 'Inter',

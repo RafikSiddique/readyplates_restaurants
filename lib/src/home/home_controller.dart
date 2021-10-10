@@ -2,7 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:readyplates_restaurants/main.dart';
 import 'package:readyplates_restaurants/src/home/home_services.dart';
+import 'package:readyplates_restaurants/src/login/auth_controller.dart';
+import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 
 class HomeController extends GetxController {
@@ -15,6 +18,24 @@ class HomeController extends GetxController {
     selectedIndex.value = i;
     pageController.animateToPage(i,
         duration: Duration(milliseconds: 500), curve: Curves.ease);
+    title.value = getTitle(i);
+  }
+
+  RxString title = "Menu".obs;
+
+  String getTitle(int page) {
+    switch (page) {
+      case 0:
+        return "Menu";
+      case 1:
+        return "Performance";
+      case 2:
+        return "Orders";
+      case 3:
+        return "Profile";
+      default:
+        return "";
+    }
   }
 
   RxDouble spiceSlider = 1.0.obs;
@@ -49,5 +70,20 @@ class HomeController extends GetxController {
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }
+  }
+
+  Future<void> getFoodItems() async {
+    try {
+      String id = await sfHelper.getUserId();
+      await homeServices.getMenu(id);
+    } catch (e) {}
+  }
+
+  Future<void> logout() async {
+    await sfHelper.clear();
+    Get.find<AuthController>().clearAll();
+    Get.find<AuthController>().dispose();
+    Get.find<OnboardingController>().dispose();
+    runApp(MyApp());
   }
 }

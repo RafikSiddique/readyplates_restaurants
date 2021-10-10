@@ -66,4 +66,9 @@ class SharedPreferenceHelper {
       throw AppException(message: "Restaurant Name not found");
     }
   }
+
+  Future<void> clear() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.clear();
+  }
 }

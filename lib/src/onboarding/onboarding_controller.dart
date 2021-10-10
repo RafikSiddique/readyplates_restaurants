@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_services.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
@@ -32,7 +33,7 @@ class OnboardingController extends GetxController {
   final gstpresentController = TextEditingController();
   final gstnumController = TextEditingController();
   final fssaistatusController = TextEditingController();
-  DateTime expiry = DateTime.now();
+  DateTime expiry = DateTime(1900);
   File kycimg = File('');
   File gstinimg = File('');
   File fssaiimg = File('');
@@ -71,7 +72,40 @@ class OnboardingController extends GetxController {
   final ifsc_codeController = TextEditingController();
   final pan_numController = TextEditingController();
   final pan_nameController = TextEditingController();
+
   File pan_image = File('');
+
+  @override
+  void dispose() {
+    resNameController.clear();
+    firstNameController.clear();
+    lastNameController.clear();
+    ownMobileController.clear();
+    pocController.clear();
+    pocNumberController.clear();
+    address1Controller.clear();
+    address2Controller.clear();
+    nearbylandnarkController.clear();
+    postalcodeController.clear();
+    latitudeController.clear();
+    longitudeController.clear();
+    gstpresentController.clear();
+    gstnumController.clear();
+    fssaistatusController.clear();
+    ac_numberController.clear();
+    reac_numberController.clear();
+    ifsc_codeController.clear();
+    pan_numController.clear();
+    pan_nameController.clear();
+    eventDesc.clear();
+    try {
+      kycimg.delete();
+      gstinimg.delete();
+      pan_image.delete();
+      fssaiimg.delete();
+    } catch (e) {}
+    super.dispose();
+  }
 
   List<String> selectCategory = [
     'Burgers',
@@ -135,6 +169,7 @@ class OnboardingController extends GetxController {
         pocNumberController.text,
       );
       sfHelper.setRestaurantName(resNameController.text);
+      await Geolocator.requestPermission();
       Get.toNamed(OnboardingPage2.id);
     } catch (e) {
       Get.snackbar("Error", e.toString());

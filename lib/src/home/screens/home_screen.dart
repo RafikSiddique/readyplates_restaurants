@@ -1,8 +1,8 @@
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:readyplates_restaurants/src/home/home_controller.dart';
 import 'package:readyplates_restaurants/src/home/screens/add_menu_page.dart';
+import 'package:readyplates_restaurants/src/home/screens/profile_page.dart';
 
 class HomePage extends StatelessWidget {
   static const id = "/home";
@@ -10,9 +10,7 @@ class HomePage extends StatelessWidget {
   final controller = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
-    var media = MediaQuery.of(context);
     return Scaffold(
-        backgroundColor: Color(0xffE5E5E5),
         bottomNavigationBar: Obx(
           () => BottomNavigationBar(
             elevation: 1,
@@ -47,21 +45,30 @@ class HomePage extends StatelessWidget {
         appBar: AppBar(
           elevation: 0,
           toolbarHeight: 44,
-          backgroundColor: Color(0xffE5E5E5),
           centerTitle: true,
-          title: Center(
-            child: Text(
-              'Menu',
-              style: TextStyle(
-                fontFamily: 'Inter',
-                fontStyle: FontStyle.normal,
-                fontWeight: FontWeight.w500,
-                fontSize: 17,
-                letterSpacing: -0.226667,
-                color: Color(0xff393E46),
+          backgroundColor: Colors.transparent,
+          actions: [
+            IconButton(
+              onPressed: () {
+                controller.logout();
+              },
+              icon: Icon(
+                Icons.power_settings_new,
+                color: Colors.black,
               ),
-            ),
-          ),
+            )
+          ],
+          title: Obx(() => Text(
+                controller.title.value,
+                style: TextStyle(
+                  fontFamily: 'Inter',
+                  fontStyle: FontStyle.normal,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 17,
+                  letterSpacing: -0.226667,
+                  color: Color(0xff393E46),
+                ),
+              )),
         ),
         body: PageView(
           controller: controller.pageController,
@@ -70,7 +77,7 @@ class HomePage extends StatelessWidget {
             MenuPage(),
             Container(),
             Container(),
-            Container(),
+            ProfilePage(),
           ],
         ));
   }

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import 'package:readyplates_restaurants/src/home/screens/add_menu_page.dart';
 import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
-import 'package:readyplates_restaurants/src/login/screens/login_page.dart';
 import 'package:readyplates_restaurants/src/login/auth_services.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
@@ -19,6 +18,15 @@ class AuthController extends GetxController {
   RxBool isLoggedIn = false.obs;
   int routeId = -1;
   String userId = "-1";
+
+  void clearAll() {
+    isLoggedIn.value = false;
+    routeId = -1;
+    userId = "-1";
+    emailController.clear();
+    password2Controller.clear();
+    passwordController.clear();
+  }
 
   @override
   void onInit() {
@@ -85,8 +93,13 @@ class AuthController extends GetxController {
         isLoggedIn.value = true;
         sfHelper.setLoggedIn(true);
         Get.offAllNamed(HomePage.id);
-      } else
+      } else {
+        if (routeId == 1) {
+          await Geolocator.requestPermission();
+          ;
+        }
         Get.toNamed(route(routeId + 1));
+      }
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }

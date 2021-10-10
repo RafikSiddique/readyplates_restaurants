@@ -1,6 +1,12 @@
+import 'dart:async';
+
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:geocode/geocode.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 
 class OnboardingPage2 extends StatefulWidget {
@@ -16,6 +22,7 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    var media = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -235,13 +242,54 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
                     right: 17,
                   ),
                   height: 159,
+                  child: FutureBuilder<Position>(
+                      future: Geolocator.getCurrentPosition(),
+                      builder: (context, snapshot) {
+                        if (!snapshot.hasError && snapshot.data != null) {
+                          return OpenContainer(
+                            transitionDuration: Duration(milliseconds: 500),
+                            closedBuilder: (context, action) {
+                              return IgnorePointer(
+                                child: SelectLocation(
+                                  latLng: LatLng(snapshot.data!.latitude,
+                                      snapshot.data!.longitude),
+                                  setLocation: (p0) {},
+                                ),
+                              );
+                            },
+                            openBuilder: (context, action) {
+                              return SelectLocation(
+                                isOpen: true,
+                                latLng: LatLng(snapshot.data!.latitude,
+                                    snapshot.data!.longitude),
+                                setLocation: (p0) async {
+                                  GeoCode geoCode = GeoCode();
+                                  controller.latitudeController.text =
+                                      p0.latitude.toString();
+                                  controller.longitudeController.text =
+                                      p0.longitude.toString();
+                                  final address =
+                                      await geoCode.reverseGeocoding(
+                                          latitude: p0.latitude,
+                                          longitude: p0.longitude);
+
+                                  controller.address1Controller.text =
+                                      address.streetAddress.toString();
+                                  controller.address2Controller.text =
+                                      address.region.toString();
+                                  controller.postalcodeController.text =
+                                      address.postal.toString();
+                                },
+                              );
+                            },
+                          );
+                        } else {
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                      }),
                   width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("assets/images/map.png"),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 17),
@@ -340,6 +388,107 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class SelectLocation extends StatefulWidget {
+  final LatLng latLng;
+  final Function(LatLng) setLocation;
+  final bool isOpen;
+  SelectLocation({
+    Key? key,
+    this.isOpen = false,
+    required this.latLng,
+    required this.setLocation,
+  }) : super(key: key);
+
+  @override
+  State<SelectLocation> createState() => _SelectLocationState();
+}
+
+class _SelectLocationState extends State<SelectLocation> {
+  late LatLng latLng = widget.latLng;
+
+  Widget pin() {
+    return IgnorePointer(
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Icon(Icons.place, size: 56),
+            Container(
+              decoration: ShapeDecoration(
+                shadows: [
+                  BoxShadow(
+                    blurRadius: 4,
+                    color: Colors.black38,
+                  ),
+                ],
+                shape: CircleBorder(
+                  side: BorderSide(
+                    width: 4,
+                    color: Colors.transparent,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 56),
+          ],
+        ),
+      ),
+    );
+  }
+
+  GoogleMapController? controller;
+
+  Completer<GoogleMapController> completer = Completer<GoogleMapController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          GoogleMap(
+            initialCameraPosition:
+                CameraPosition(target: widget.latLng, zoom: 18),
+            onMapCreated: (controller) {
+              this.controller = controller;
+              completer.complete(this.controller);
+            },
+            onCameraMove: (position) {
+              latLng = position.target;
+            },
+            zoomControlsEnabled: widget.isOpen,
+            zoomGesturesEnabled: widget.isOpen,
+            myLocationButtonEnabled: widget.isOpen,
+            rotateGesturesEnabled: widget.isOpen,
+            onCameraIdle: () {},
+          ),
+          pin(),
+          if (widget.isOpen)
+            Align(
+              alignment: Alignment.topCenter,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      icon: Icon(FontAwesomeIcons.chevronLeft)),
+                  IconButton(
+                      onPressed: () {
+                        widget.setLocation(latLng);
+                        Get.back();
+                      },
+                      icon: Icon(Icons.check))
+                ],
+              ),
+            )
+        ],
       ),
     );
   }

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
-import 'package:readyplates_restaurants/utils/utils.dart';
+import 'package:readyplates_restaurants/widgets/form_field.dart';
 
 class OnboardingPage1 extends StatefulWidget {
   static const id = "/onboarding1";
-  //const SignupPage1({Key? key}) : super(key: key);
 
   @override
   _OnboardingPage1State createState() => _OnboardingPage1State();
@@ -19,7 +18,6 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
 
   @override
   Widget build(BuildContext context) {
-    // Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -57,144 +55,33 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                   SizedBox(
                     height: 8,
                   ),
-                  RichText(
-                    text: TextSpan(
-                        text: 'Restaurant Name',
-                        style: TextStyle(
-                          fontSize: 13,
-                          letterSpacing: -0.229412,
-                          color: Color(0xff2F2E41),
-                        ),
-                        children: [
-                          TextSpan(
-                            text: ' *',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Color(0xffEB4132),
-                            ),
-                          ),
-                        ]),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Container(
-                    // width: 341,
-                    height: 45,
-                    child: TextFormField(
-                      cursorColor: Color(0xff00ADB5),
-                      controller: controller.resNameController,
-                      textAlign: TextAlign.left,
-                      decoration: InputDecoration(
-                        //Color(0xff00ADB5) Color(0xffE0E0E0)
-                        // fillColor: Color(0xff00ADB5),
-                        // focusColor: Color(0xff00ADB5),
-                        // hoverColor: Color(0xff00ADB5),
-                        border: OutlineInputBorder(
-                          // borderSide: new BorderSide(color: Colors.teal),
-                          borderSide: BorderSide(
-                            width: 1,
-                            color: Color(0xffE0E0E0),
-                          ),
-
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(6.0),
-                          ),
-                        ),
-                        hintText: 'Snack Shack Fast Food Restaurant',
-                        contentPadding: EdgeInsets.only(
-                          left: 14,
-                          top: 14,
-                        ),
-                        hintStyle: TextStyle(
-                          fontSize: 15,
-                          letterSpacing: -0.264706,
-                          color: Color(0xff2F2E41).withOpacity(0.7),
-                        ),
-                      ),
-                    ),
+                  AppFormField(
+                    title: "Restaurant Name",
+                    hintText: "Snack Shack Fast Food Restaurant",
+                    controller: controller.resNameController,
+                    validator: (p0) {
+                      if (p0 == null ||
+                          p0 != controller.resNameController.text) {
+                        return "Account number does not match";
+                      }
+                    },
                   ),
                   SizedBox(
                     height: 18,
                   ),
-                  RichText(
-                    text: TextSpan(
-                        text: 'Owner Name',
-                        style: TextStyle(
-                          fontSize: 13,
-                          letterSpacing: -0.229412,
-                          color: Color(0xff2F2E41),
-                        ),
-                        children: [
-                          TextSpan(
-                            text: ' *',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Color(0xffEB4132),
-                            ),
-                          ),
-                        ]),
+                  AppFormField(
+                    title: "Owner Name",
+                    hintText: "First Name",
+                    controller: controller.firstNameController,
+                    borderRadius:
+                        BorderRadius.vertical(top: Radius.circular(6)),
                   ),
-                  Container(
-                    // width: 341,
-                    height: 45,
-                    child: TextFormField(
-                      controller: controller.firstNameController,
-                      textAlign: TextAlign.left,
-                      decoration: InputDecoration(
-                        fillColor: Color(0xff00ADB5),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              width: 1,
-                              color: Color(0xffE0E0E0).withOpacity(0.5)),
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(6),
-                            topRight: Radius.circular(6),
-                            bottomLeft: Radius.circular(0),
-                            bottomRight: Radius.circular(0),
-                          ),
-                        ),
-                        hintText: 'First Name',
-                        contentPadding: EdgeInsets.only(
-                          left: 14,
-                          top: 14,
-                        ),
-                        hintStyle: TextStyle(
-                          fontSize: 15,
-                          letterSpacing: -0.264706,
-                          color: Color(0xff2F2E41).withOpacity(0.7),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    // width: 341,
-                    height: 45,
-                    child: TextFormField(
-                      controller: controller.lastNameController,
-                      textAlign: TextAlign.left,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(),
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(0),
-                            topLeft: Radius.circular(0),
-                            bottomLeft: Radius.circular(6),
-                            bottomRight: Radius.circular(6),
-                          ),
-                        ),
-                        hintText: 'Last Name',
-                        contentPadding: EdgeInsets.only(
-                          left: 14,
-                          top: 14,
-                        ),
-                        hintStyle: TextStyle(
-                          fontSize: 15,
-                          letterSpacing: -0.264706,
-                          color: Color(0xff2F2E41).withOpacity(0.7),
-                        ),
-                      ),
-                    ),
+                  AppFormField(
+                    title: '',
+                    hintText: "Last Name",
+                    controller: controller.lastNameController,
+                    borderRadius:
+                        BorderRadius.vertical(bottom: Radius.circular(6)),
                   ),
                   SizedBox(
                     height: 3,
@@ -222,10 +109,8 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                     height: 5,
                   ),
                   Container(
-                    // width: 341,
                     height: 45,
                     child: TextFormField(
-                      // controller: controller.ownMobileController,
                       textAlign: TextAlign.left,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -273,7 +158,6 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                     height: 5,
                   ),
                   Container(
-                    // width: 341,
                     height: 45,
                     child: TextFormField(
                       controller: controller.ownMobileController,
@@ -357,7 +241,6 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                     height: 5,
                   ),
                   Container(
-                    // width: 341,
                     height: 45,
                     child: DropdownButtonFormField(
                       icon: Padding(
@@ -405,105 +288,20 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                   SizedBox(
                     height: 18,
                   ),
-                  RichText(
-                    text: TextSpan(
-                        text: 'Restaurant Point of Contact (POC)',
-                        style: TextStyle(
-                          fontSize: 13,
-                          letterSpacing: -0.229412,
-                          color: Color(0xff2F2E41),
-                        ),
-                        children: [
-                          TextSpan(
-                            text: '*',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Color(0xffEB4132),
-                            ),
-                          ),
-                        ]),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Container(
-                    // width: 341,
-                    height: 45,
-                    child: TextFormField(
-                      controller: controller.pocController,
-                      textAlign: TextAlign.left,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(width: 1, color: Color(0xffE0E0E0)),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(6.0),
-                          ),
-                        ),
-                        hintText: 'Owner/Co-Owner/Manager etc',
-                        contentPadding: EdgeInsets.only(
-                          left: 14,
-                          top: 14,
-                        ),
-                        hintStyle: TextStyle(
-                          fontSize: 15,
-                          letterSpacing: -0.264706,
-                          color: Color(0xff2F2E41).withOpacity(0.7),
-                        ),
-                      ),
-                    ),
+                  AppFormField(
+                    title: "Restaurant Point of Contact (POC)",
+                    hintText: "Owner/Co-Owner/Manager etc",
+                    controller: controller.pocController,
                   ),
                   SizedBox(
                     height: 18,
                   ),
-                  RichText(
-                    text: TextSpan(
-                        text: 'Restaurant POC Mobile Number',
-                        style: TextStyle(
-                          fontSize: 13,
-                          letterSpacing: -0.229412,
-                          color: Color(0xff2F2E41),
-                        ),
-                        children: [
-                          TextSpan(
-                            text: '*',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Color(0xffEB4132),
-                            ),
-                          ),
-                        ]),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Container(
-                    // width: 341,
-                    height: 45,
-                    child: TextFormField(
-                      controller: controller.pocNumberController,
-                      keyboardType: TextInputType.number,
-                      textAlign: TextAlign.left,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(width: 1, color: Color(0xffE0E0E0)),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(6.0),
-                          ),
-                        ),
-                        hintText: '+91 XXXXXXXXXX',
-                        contentPadding: EdgeInsets.only(
-                          left: 14,
-                          top: 14,
-                        ),
-                        hintStyle: TextStyle(
-                          fontSize: 15,
-                          letterSpacing: -0.264706,
-                          color: Color(0xff2F2E41).withOpacity(0.7),
-                        ),
-                      ),
-                    ),
+                  AppFormField(
+                    title: "Restaurant POC Mobile Number",
+                    hintText: "+91 XXXXXXXXXX",
+                    controller: controller.pocNumberController,
+                    inputType: TextInputType.number,
+                    formatters: [FilteringTextInputFormatter.digitsOnly],
                   ),
                   SizedBox(
                     height: 18,
@@ -511,10 +309,10 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                   InkWell(
                     onTap: () async {
                       formKey.currentState!.save();
-                      await controller.onboardingapi1();
+                      if (formKey.currentState!.validate())
+                        await controller.onboardingapi1();
                     },
                     child: Container(
-                      // width: 343,
                       height: 40.11,
                       decoration: BoxDecoration(
                         color: Color(0xff7A7E83),

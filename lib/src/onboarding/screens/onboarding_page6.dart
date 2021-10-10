@@ -33,28 +33,8 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
     });
   }
 
-/* 
-  void showMonthlyDate() {
-    showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2021),
-      lastDate: DateTime.now(),
-      currentDate: DateTime.now(),
-    ).then((pickedDate) {
-      if (pickedDate == null) {
-        return;
-      }
-
-      setState(() {
-        _selectedMonthlyDate = pickedDate;
-      });
-    });
-  }
- */
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -255,7 +235,8 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                         dimension: 15,
                                         child: InkWell(
                                           onTap: () {
-                                            controller.noOfTables--;
+                                            if (controller.noOfTables != 0)
+                                              controller.noOfTables--;
                                           },
                                           child: Container(
                                             height: 20,
@@ -363,7 +344,8 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                         dimension: 15,
                                         child: InkWell(
                                           onTap: () {
-                                            controller.noOfSeats--;
+                                            if (controller.noOfSeats != 0)
+                                              controller.noOfSeats--;
                                           },
                                           child: Container(
                                             height: 20,
