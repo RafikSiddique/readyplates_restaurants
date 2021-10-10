@@ -5,6 +5,7 @@ class SharedPreferenceHelper {
   final String _isLoggedIn = "loggedin";
   final String _userId = "userId";
   final String _onBoardingNumber = "onboarding";
+  final String _restaurantName = "resName";
 
   Future<bool> setUserId(String id) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
@@ -48,5 +49,21 @@ class SharedPreferenceHelper {
     int? screen = sharedPreferences.getInt(_onBoardingNumber);
     screen ??= 1;
     return screen;
+  }
+
+  Future<bool> setRestaurantName(String name) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    bool success = await sharedPreferences.setString(_restaurantName, name);
+    return success;
+  }
+
+  Future<String> getRestaurantName() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    String? success = sharedPreferences.getString(_restaurantName);
+    if (success != null) {
+      return success;
+    } else {
+      throw AppException(message: "Restaurant Name not found");
+    }
   }
 }

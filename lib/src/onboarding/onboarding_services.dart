@@ -110,7 +110,121 @@ class OnboardingServices extends ApiServices {
     }
   }
 
-  Future<bool> uploadImages(List<String> files, int index) async {
+  Future<void> onboardingapi4(
+    String user,
+    String type_of_estd,
+    String type_of_cusine,
+    String start_time,
+    String end_time,
+    String open_days,
+  ) async {
+    try {
+      Response response = await post(
+        onboarding(2),
+        body: jsonEncode(
+          {
+            'user': user,
+            'type_of_estd': type_of_estd,
+            'type_of_cusine': type_of_cusine,
+            'start_time': start_time,
+            'end_time': end_time,
+            'open_days': open_days,
+          },
+        ),
+        headers: contentTypeJsonHeader,
+      );
+      if (response.statusCode == 201) {
+        print(response.body);
+      } else {
+        throw AppException(code: response.statusCode, message: response.body);
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> onboardingapi5(
+    String user,
+    String ac_number,
+    String type_of_ac,
+    String ifsc_code,
+    String pan_num,
+    String pan_name,
+    File pan_image,
+    //File fssai_image,
+  ) async {
+    try {
+      MultipartRequest request = MultipartRequest('POST', onboarding(5));
+
+      MultipartFile panImage =
+          await MultipartFile.fromPath('pan_image', pan_image.path);
+
+      request.files.addAll([panImage]);
+      request.fields.addAll({
+        'user': user,
+        'ac_number': ac_number,
+        'type_of_ac': type_of_ac,
+        'ifsc_code': ifsc_code,
+        'pan_num': pan_num,
+        'pan_name': pan_name,
+      });
+      StreamedResponse response = await request.send();
+      if (response.statusCode == 201) {
+        String body = await response.stream.bytesToString();
+        print(body);
+      } else {
+        throw AppException(
+            code: response.statusCode, message: response.reasonPhrase);
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> onboardingapi6(
+    String user,
+    String description,
+    String no_of_tables,
+    String max_table_size,
+    String cost_for_two,
+    String serving_time,
+    String recurring_event_date,
+    String recur_freq,
+    String event_start,
+    String event_end,
+    String event_desc,
+  ) async {
+    try {
+      Response response = await post(
+        onboarding(6),
+        body: jsonEncode(
+          {
+            'user': user,
+            'description': description,
+            'no_of_tables': no_of_tables,
+            'max_table_size': max_table_size,
+            'cost_for_two': cost_for_two,
+            'serving_time': serving_time,
+            'recurring_event_date': recurring_event_date,
+            'recur_freq': recur_freq,
+            'event_start': event_start,
+            'event_end': event_end,
+            'event_desc': event_desc,
+          },
+        ),
+        headers: contentTypeJsonHeader,
+      );
+      if (response.statusCode == 201) {
+        print(response.body);
+      } else {
+        throw AppException(code: response.statusCode, message: response.body);
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<bool> uploadImages(List<String> files, int index, String user) async {
     try {
       List<List<String>> fields = [
         ["front_fascia_day", "front_fascia_night", "street_view", "entrance"],
@@ -128,7 +242,7 @@ class OnboardingServices extends ApiServices {
       MultipartRequest request =
           MultipartRequest('POST', onboarding(index + 7));
       request.files.addAll(multipartFiles);
-      request.fields.addAll({'user': "31"});
+      request.fields.addAll({'user': user});
       StreamedResponse response = await request.send();
       if (response.statusCode == 201) {
         String body = await response.stream.bytesToString();

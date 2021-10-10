@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:readyplates_restaurants/pages/add_menu_page.dart';
+import 'package:readyplates_restaurants/src/home/screens/add_menu_page.dart';
+import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
 import 'package:readyplates_restaurants/src/login/screens/login_page.dart';
 import 'package:readyplates_restaurants/src/login/auth_services.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
@@ -16,6 +17,20 @@ class AuthController extends GetxController {
   final password2Controller = TextEditingController();
 
   RxBool isLoggedIn = false.obs;
+  int routeId = -1;
+  String userId = "-1";
+
+  @override
+  void onInit() {
+    super.onInit();
+  }
+
+  Future<void> getSharedPref() async {
+    await sfHelper.getLoggedIn().then((value) => isLoggedIn.value = value);
+    print(isLoggedIn.value);
+    await sfHelper.getUserId().then((value) => userId = value);
+    print(userId);
+  }
 
   String route(int id) {
     switch (id) {
@@ -69,7 +84,7 @@ class AuthController extends GetxController {
       if (routeId == 9) {
         isLoggedIn.value = true;
         sfHelper.setLoggedIn(true);
-        //TODO push to home
+        Get.offAllNamed(HomePage.id);
       } else
         Get.toNamed(route(routeId + 1));
     } catch (e) {

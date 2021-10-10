@@ -88,10 +88,14 @@ class _SignupPageState extends State<SignupPage> {
                       media.viewInsets.bottom == 0 ? kToolbarHeight / 1.5 : 0,
                 ),
                 Spacer(
-                  flex: media.viewInsets.bottom == 0 ? 3 : 1,
+                  flex: media.viewInsets.bottom == 0
+                      ? size.height > 800
+                          ? 3
+                          : 1
+                      : 1,
                 ),
                 Expanded(
-                  flex: 5,
+                  flex: size.height > 800 ? 5 : 6,
                   child: AnimatedContainer(
                     duration: Duration(milliseconds: 300),
                     width: size.width,
@@ -353,8 +357,7 @@ class _SignupPageState extends State<SignupPage> {
                               height: kToolbarHeight * 0.2,
                             ),
                             InkWell(
-                              onTap: () {
-                              },
+                              onTap: () {},
                               child: Container(
                                 width: size.width,
                                 height: 54,

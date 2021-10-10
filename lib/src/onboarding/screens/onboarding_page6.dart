@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 
 class OnboardingPage6 extends StatefulWidget {
   const OnboardingPage6({Key? key}) : super(key: key);
@@ -11,9 +12,9 @@ class OnboardingPage6 extends StatefulWidget {
 
 class _OnboardingPage6State extends State<OnboardingPage6> {
   final dobController = TextEditingController();
+  final controller = Get.find<OnboardingController>();
   String dob = '';
   DateTime? _selectedEventDate;
-  DateTime? _selectedMonthlyDate;
   void showEventDate() {
     showDatePicker(
       context: context,
@@ -25,12 +26,14 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
       if (pickedDate == null) {
         return;
       }
+      controller.recurrenceTime = pickedDate;
       setState(() {
         _selectedEventDate = pickedDate;
       });
     });
   }
 
+/* 
   void showMonthlyDate() {
     showDatePicker(
       context: context,
@@ -48,7 +51,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
       });
     });
   }
-
+ */
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -113,35 +116,31 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                 SizedBox(
                   height: 5,
                 ),
-                Container(
-                  // width: 341,
-
-                  height: 45,
-                  child: TextFormField(
-                    maxLines: 5,
-                    cursorColor: Color(0xff00ADB5),
-                    textAlign: TextAlign.left,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          width: 1,
-                          color: Color(0xffE0E0E0),
-                        ),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(6.0),
-                        ),
+                TextFormField(
+                  maxLines: 4,
+                  controller: controller.resDescript,
+                  cursorColor: Color(0xff00ADB5),
+                  textAlign: TextAlign.left,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 1,
+                        color: Color(0xffE0E0E0),
                       ),
-                      hintText:
-                          'Founded in 1954, Burger King is the second largest fast food hamburger chain in the world. The original Home of the Whopper, our commitment to premium ingredients, signature recipes, and family-friendly dining experiences is what has defined our brand for more than 50 successful years.',
-                      contentPadding: EdgeInsets.all(14),
-                      hintStyle: TextStyle(
-                        fontSize: 13,
-                        fontFamily: 'Inter',
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w500,
-                        letterSpacing: -0.264706,
-                        color: Color(0x979797).withOpacity(0.7),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(6.0),
                       ),
+                    ),
+                    hintText:
+                        'Founded in 1954, Burger King is the second largest fast food hamburger chain in the world. The original Home of the Whopper, our commitment to premium ingredients, signature recipes, and family-friendly dining experiences is what has defined our brand for more than 50 successful years.',
+                    contentPadding: EdgeInsets.all(14),
+                    hintStyle: TextStyle(
+                      fontSize: 15,
+                      fontFamily: 'Inter',
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: -0.264706,
+                      color: Color(0x979797).withOpacity(0.7),
                     ),
                   ),
                 ),
@@ -188,160 +187,218 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                 ),
                 Row(
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: 175,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(6)),
-                            border: Border.all(
-                              width: 1,
-                              color: Color(0xffE0E0E0),
-                              style: BorderStyle.solid,
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: 50,
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(6)),
+                              border: Border.all(
+                                width: 1,
+                                color: Color(0xffE0E0E0),
+                                style: BorderStyle.solid,
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Obx(
+                                  () => Text(
+                                    (controller.noOfTables.value
+                                                .toString()
+                                                .length ==
+                                            1
+                                        ? controller.noOfTables.value
+                                            .toString()
+                                            .padLeft(2, "0")
+                                        : controller.noOfTables.value
+                                            .toString()),
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontFamily: 'Inter',
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.w500,
+                                      letterSpacing: -0.264706,
+                                      color: Color(0xff979797).withOpacity(0.7),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      SizedBox.square(
+                                        dimension: 15,
+                                        child: InkWell(
+                                          onTap: () {
+                                            controller.noOfTables++;
+                                          },
+                                          child: Container(
+                                            height: 20,
+                                            width: 20,
+                                            alignment: Alignment.center,
+                                            child: FaIcon(
+                                              FontAwesomeIcons.chevronUp,
+                                              color: Color(0xff6E6D7A),
+                                              size: 15,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox.square(
+                                        dimension: 15,
+                                        child: InkWell(
+                                          onTap: () {
+                                            controller.noOfTables--;
+                                          },
+                                          child: Container(
+                                            height: 20,
+                                            width: 20,
+                                            alignment: Alignment.center,
+                                            child: FaIcon(
+                                              FontAwesomeIcons.chevronDown,
+                                              color: Color(0xff6E6D7A),
+                                              size: 15,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                '00',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontFamily: 'Inter',
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.w500,
-                                  letterSpacing: -0.264706,
-                                  color: Color(0xff979797).withOpacity(0.7),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 12),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      height: 13,
-                                      child: IconButton(
-                                          iconSize: 12,
-                                          icon: FaIcon(
-                                            FontAwesomeIcons.chevronUp,
-                                            color: Color(0xff6E6D7A),
-                                          ),
-                                          onPressed: () {}),
-                                    ),
-                                    Container(
-                                      height: 13,
-                                      child: IconButton(
-                                          iconSize: 12,
-                                          icon: FaIcon(
-                                            FontAwesomeIcons.chevronDown,
-                                            color: Color(0xff6E6D7A),
-                                          ),
-                                          onPressed: () {}),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
+                          SizedBox(
+                            height: 3,
                           ),
-                        ),
-                        SizedBox(
-                          height: 3,
-                        ),
-                        Text(
-                          'Enter No of tables present',
-                          style: TextStyle(
-                            fontSize: 9,
-                            fontFamily: 'Poppins',
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.normal,
-                            letterSpacing: -0.229412,
-                            color: Color(0xff6E6D7A),
-                          ),
-                        )
-                      ],
+                          Text(
+                            'Enter No of tables present',
+                            style: TextStyle(
+                              fontSize: 9,
+                              fontFamily: 'Poppins',
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.normal,
+                              letterSpacing: -0.229412,
+                              color: Color(0xff6E6D7A),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                     SizedBox(
                       width: 18,
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: 175,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(6)),
-                            border: Border.all(
-                              width: 1,
-                              color: Color(0xffE0E0E0),
-                              style: BorderStyle.solid,
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: 50,
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(6)),
+                              border: Border.all(
+                                width: 1,
+                                color: Color(0xffE0E0E0),
+                                style: BorderStyle.solid,
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Obx(
+                                  () => Text(
+                                    (controller.noOfSeats.value
+                                                .toString()
+                                                .length ==
+                                            1
+                                        ? controller.noOfSeats.value
+                                            .toString()
+                                            .padLeft(2, "0")
+                                        : controller.noOfSeats.value
+                                            .toString()),
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontFamily: 'Inter',
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.w500,
+                                      letterSpacing: -0.264706,
+                                      color: Color(0xff979797).withOpacity(0.7),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      SizedBox.square(
+                                        dimension: 15,
+                                        child: InkWell(
+                                          onTap: () {
+                                            controller.noOfSeats++;
+                                          },
+                                          child: Container(
+                                            height: 20,
+                                            width: 20,
+                                            alignment: Alignment.center,
+                                            child: FaIcon(
+                                              FontAwesomeIcons.chevronUp,
+                                              color: Color(0xff6E6D7A),
+                                              size: 15,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox.square(
+                                        dimension: 15,
+                                        child: InkWell(
+                                          onTap: () {
+                                            controller.noOfSeats--;
+                                          },
+                                          child: Container(
+                                            height: 20,
+                                            width: 20,
+                                            alignment: Alignment.center,
+                                            child: FaIcon(
+                                              FontAwesomeIcons.chevronDown,
+                                              color: Color(0xff6E6D7A),
+                                              size: 15,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                '00',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontFamily: 'Inter',
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.w500,
-                                  letterSpacing: -0.264706,
-                                  color: Color(0xff979797).withOpacity(0.7),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 12),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      height: 13,
-                                      child: IconButton(
-                                          iconSize: 12,
-                                          icon: FaIcon(
-                                            FontAwesomeIcons.chevronUp,
-                                            color: Color(0xff6E6D7A),
-                                          ),
-                                          onPressed: () {}),
-                                    ),
-                                    Container(
-                                      height: 13,
-                                      child: IconButton(
-                                          iconSize: 12,
-                                          icon: FaIcon(
-                                            FontAwesomeIcons.chevronDown,
-                                            color: Color(0xff6E6D7A),
-                                          ),
-                                          onPressed: () {}),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
+                          SizedBox(
+                            height: 3,
                           ),
-                        ),
-                        SizedBox(
-                          height: 3,
-                        ),
-                        Text(
-                          'Max table size (No of persons)',
-                          style: TextStyle(
-                            fontSize: 9,
-                            fontFamily: 'Poppins',
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.normal,
-                            letterSpacing: -0.229412,
-                            color: Color(0xff6E6D7A),
-                          ),
-                        )
-                      ],
+                          Text(
+                            'Max table size (No of persons)',
+                            style: TextStyle(
+                              fontSize: 9,
+                              fontFamily: 'Poppins',
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.normal,
+                              letterSpacing: -0.229412,
+                              color: Color(0xff6E6D7A),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -350,178 +407,241 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                 ),
                 Row(
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        RichText(
-                          text: TextSpan(
-                              text: 'Cost for two',
-                              style: TextStyle(
-                                fontSize: 13,
-                                fontFamily: 'Inter',
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w500,
-                                letterSpacing: -0.229412,
-                                color: Color(0xff2F2E41),
-                              ),
-                              children: [
-                                TextSpan(
-                                  text: ' *',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Color(0xffEB4132),
-                                  ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          RichText(
+                            text: TextSpan(
+                                text: 'Cost for two',
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  fontFamily: 'Inter',
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: -0.229412,
+                                  color: Color(0xff2F2E41),
                                 ),
-                              ]),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          width: 175,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(6)),
-                            border: Border.all(
-                              width: 1,
-                              color: Color(0xffE0E0E0),
-                              style: BorderStyle.solid,
+                                children: [
+                                  TextSpan(
+                                    text: ' *',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Color(0xffEB4132),
+                                    ),
+                                  ),
+                                ]),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Get.bottomSheet(BottomSheet(
+                                onClosing: () {},
+                                builder: (context) {
+                                  return Card(
+                                      margin: EdgeInsets.zero,
+                                      child: ListView(
+                                        shrinkWrap: true,
+                                        children: List.generate(20, (index) {
+                                          return (index + 1) * 50;
+                                        })
+                                            .map((e) => ListTile(
+                                                  title: Text(e.toString()),
+                                                  onTap: () {
+                                                    controller.costFor2.value =
+                                                        e;
+                                                    Get.back();
+                                                  },
+                                                ))
+                                            .toList(),
+                                      ));
+                                },
+                              ));
+                            },
+                            child: Container(
+                              height: 50,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(6)),
+                                border: Border.all(
+                                  width: 1,
+                                  color: Color(0xffE0E0E0),
+                                  style: BorderStyle.solid,
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Obx(
+                                    () => Text(
+                                      controller.costFor2.value.toString(),
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontFamily: 'Inter',
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.w500,
+                                        letterSpacing: -0.264706,
+                                        color:
+                                            Color(0xff979797).withOpacity(0.7),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 16,
+                                  ),
+                                  Text(
+                                    '₹',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontFamily: 'Inter',
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.w500,
+                                      letterSpacing: -0.264706,
+                                      color: Color(0xff979797).withOpacity(0.7),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                '00',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontFamily: 'Inter',
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.w500,
-                                  letterSpacing: -0.264706,
-                                  color: Color(0xff979797).withOpacity(0.7),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 16,
-                              ),
-                              Text(
-                                '₹',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontFamily: 'Inter',
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.w500,
-                                  letterSpacing: -0.264706,
-                                  color: Color(0xff979797).withOpacity(0.7),
-                                ),
-                              ),
-                            ],
+                          SizedBox(
+                            height: 3,
                           ),
-                        ),
-                        SizedBox(
-                          height: 3,
-                        ),
-                        Text(
-                          'Enter No of tables present',
-                          style: TextStyle(
-                            fontSize: 9,
-                            fontFamily: 'Poppins',
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.normal,
-                            letterSpacing: -0.229412,
-                            color: Color(0xff6E6D7A),
-                          ),
-                        )
-                      ],
+                          Text(
+                            'Enter No of tables present',
+                            style: TextStyle(
+                              fontSize: 9,
+                              fontFamily: 'Poppins',
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.normal,
+                              letterSpacing: -0.229412,
+                              color: Color(0xff6E6D7A),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                     SizedBox(
                       width: 18,
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        RichText(
-                          text: TextSpan(
-                              text: 'Serving time',
-                              style: TextStyle(
-                                fontSize: 13,
-                                fontFamily: 'Inter',
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w500,
-                                letterSpacing: -0.229412,
-                                color: Color(0xff2F2E41),
-                              ),
-                              children: [
-                                TextSpan(
-                                  text: ' *',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Color(0xffEB4132),
-                                  ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          RichText(
+                            text: TextSpan(
+                                text: 'Serving time',
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  fontFamily: 'Inter',
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: -0.229412,
+                                  color: Color(0xff2F2E41),
                                 ),
-                              ]),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          width: 175,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(6)),
-                            border: Border.all(
-                              width: 1,
-                              color: Color(0xffE0E0E0),
-                              style: BorderStyle.solid,
+                                children: [
+                                  TextSpan(
+                                    text: ' *',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Color(0xffEB4132),
+                                    ),
+                                  ),
+                                ]),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Get.bottomSheet(BottomSheet(
+                                onClosing: () {},
+                                builder: (context) {
+                                  return Card(
+                                      margin: EdgeInsets.zero,
+                                      child: ListView(
+                                        shrinkWrap: true,
+                                        children: List.generate(5, (index) {
+                                          return (index + 1) * 30;
+                                        })
+                                            .map((e) => ListTile(
+                                                  title: Text(e.toString() +
+                                                      " Minutes"),
+                                                  onTap: () {
+                                                    controller
+                                                        .servingTime.value = e;
+                                                    Get.back();
+                                                  },
+                                                ))
+                                            .toList(),
+                                      ));
+                                },
+                              ));
+                            },
+                            child: Container(
+                              height: 50,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(6)),
+                                border: Border.all(
+                                  width: 1,
+                                  color: Color(0xffE0E0E0),
+                                  style: BorderStyle.solid,
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Obx(
+                                    () => Text(
+                                      controller.servingTime.value.toString(),
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontFamily: 'Inter',
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.w500,
+                                        letterSpacing: -0.264706,
+                                        color:
+                                            Color(0xff979797).withOpacity(0.7),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 8,
+                                  ),
+                                  Text(
+                                    'mins',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontFamily: 'Inter',
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.w500,
+                                      letterSpacing: -0.264706,
+                                      color: Color(0xff979797).withOpacity(0.7),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                '00',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontFamily: 'Inter',
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.w500,
-                                  letterSpacing: -0.264706,
-                                  color: Color(0xff979797).withOpacity(0.7),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 8,
-                              ),
-                              Text(
-                                'mins',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontFamily: 'Inter',
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.w500,
-                                  letterSpacing: -0.264706,
-                                  color: Color(0xff979797).withOpacity(0.7),
-                                ),
-                              ),
-                            ],
+                          SizedBox(
+                            height: 3,
                           ),
-                        ),
-                        SizedBox(
-                          height: 3,
-                        ),
-                        Text(
-                          'Enter average serving time for two',
-                          style: TextStyle(
-                            fontSize: 9,
-                            fontFamily: 'Poppins',
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.normal,
-                            letterSpacing: -0.229412,
-                            color: Color(0xff6E6D7A),
-                          ),
-                        )
-                      ],
+                          Text(
+                            'Enter average serving time for two',
+                            style: TextStyle(
+                              fontSize: 9,
+                              fontFamily: 'Poppins',
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.normal,
+                              letterSpacing: -0.229412,
+                              color: Color(0xff6E6D7A),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -544,146 +664,183 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                 ),
                 Row(
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: 175,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(6)),
-                            border: Border.all(
-                              width: 1,
-                              color: Color(0xffE0E0E0),
-                              style: BorderStyle.solid,
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: 50,
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(6)),
+                              border: Border.all(
+                                width: 1,
+                                color: Color(0xffE0E0E0),
+                                style: BorderStyle.solid,
+                              ),
                             ),
-                          ),
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 14),
-                                  child: Text(
-                                    _selectedEventDate == null
-                                        ? 'Event Dates'
-                                        : '${_selectedEventDate!.year}/${_selectedEventDate!.month}/${_selectedEventDate!.day}',
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: 'Inter',
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.w500,
-                                      letterSpacing: -0.264706,
-                                      color: Color(0xff979797).withOpacity(0.7),
+                            child: Center(
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 14),
+                                    child: Text(
+                                      _selectedEventDate == null
+                                          ? 'Event Dates'
+                                          : '${_selectedEventDate!.year}/${_selectedEventDate!.month}/${_selectedEventDate!.day}',
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        fontFamily: 'Inter',
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.w500,
+                                        letterSpacing: -0.264706,
+                                        color:
+                                            Color(0xff979797).withOpacity(0.7),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 7.5),
-                                  child: InkWell(
-                                    onTap: () {
-                                      showEventDate();
-                                    },
-                                    child: Container(
-                                      width: 15,
-                                      height: 15,
-                                      child: Image(
-                                          image: AssetImage(
-                                              'assets/images/calendar.png')),
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 7.5),
+                                    child: InkWell(
+                                      onTap: () {
+                                        showEventDate();
+                                      },
+                                      child: Container(
+                                        width: 15,
+                                        height: 15,
+                                        child: Image(
+                                            image: AssetImage(
+                                                'assets/images/calendar.png')),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 3,
-                        ),
-                        Text(
-                          'Enter No of tables present',
-                          style: TextStyle(
-                            fontSize: 9,
-                            fontFamily: 'Poppins',
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.normal,
-                            letterSpacing: -0.229412,
-                            color: Color(0xff6E6D7A),
+                          SizedBox(
+                            height: 3,
                           ),
-                        )
-                      ],
+                          Text(
+                            'Enter No of tables present',
+                            style: TextStyle(
+                              fontSize: 9,
+                              fontFamily: 'Poppins',
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.normal,
+                              letterSpacing: -0.229412,
+                              color: Color(0xff6E6D7A),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                     SizedBox(
                       width: 18,
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: 175,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(6)),
-                            border: Border.all(
-                              width: 1,
-                              color: Color(0xffE0E0E0),
-                              style: BorderStyle.solid,
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: 50,
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(6)),
+                              border: Border.all(
+                                width: 1,
+                                color: Color(0xffE0E0E0),
+                                style: BorderStyle.solid,
+                              ),
+                            ),
+                            child: InkWell(
+                              onTap: () {
+                                Get.bottomSheet(BottomSheet(
+                                  onClosing: () {},
+                                  builder: (context) {
+                                    return Card(
+                                        margin: EdgeInsets.zero,
+                                        child: ListView(
+                                          shrinkWrap: true,
+                                          children:
+                                              ["Yearly", "Monthly", "Weekly"]
+                                                  .map((e) => ListTile(
+                                                        title: Text(e),
+                                                        onTap: () {
+                                                          controller
+                                                              .selectedRecurrence
+                                                              .value = e;
+                                                          Get.back();
+                                                        },
+                                                      ))
+                                                  .toList(),
+                                        ));
+                                  },
+                                ));
+                              },
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 14),
+                                      child: Obx(
+                                        () => Text(
+                                          controller.selectedRecurrence.value
+                                          /* _selectedMonthlyDate == null
+                                              ? 'Monthly'
+                                              : '${_selectedMonthlyDate!.year}/${_selectedMonthlyDate!.month}/${_selectedMonthlyDate!.day}' */
+                                          ,
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            fontFamily: 'Inter',
+                                            fontStyle: FontStyle.normal,
+                                            fontWeight: FontWeight.w500,
+                                            letterSpacing: -0.264706,
+                                            color: Color(0xff979797)
+                                                .withOpacity(0.7),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(right: 7.5),
+                                      child: InkWell(
+                                        onTap: () {},
+                                        child: Container(
+                                          width: 15,
+                                          height: 15,
+                                          child: Image(
+                                              image: AssetImage(
+                                                  'assets/images/calendar.png')),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
                           ),
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 14),
-                                  child: Text(
-                                    _selectedMonthlyDate == null
-                                        ? 'Monthly'
-                                        : '${_selectedMonthlyDate!.year}/${_selectedMonthlyDate!.month}/${_selectedMonthlyDate!.day}',
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: 'Inter',
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.w500,
-                                      letterSpacing: -0.264706,
-                                      color: Color(0xff979797).withOpacity(0.7),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 7.5),
-                                  child: InkWell(
-                                    onTap: () {
-                                      showMonthlyDate();
-                                    },
-                                    child: Container(
-                                      width: 15,
-                                      height: 15,
-                                      child: Image(
-                                          image: AssetImage(
-                                              'assets/images/calendar.png')),
-                                    ),
-                                  ),
-                                ),
-                              ],
+                          SizedBox(
+                            height: 3,
+                          ),
+                          Text(
+                            'Recurrance frequency',
+                            style: TextStyle(
+                              fontSize: 9,
+                              fontFamily: 'Poppins',
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.normal,
+                              letterSpacing: -0.229412,
+                              color: Color(0xff6E6D7A),
                             ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 3,
-                        ),
-                        Text(
-                          'Recurrance frequency',
-                          style: TextStyle(
-                            fontSize: 9,
-                            fontFamily: 'Poppins',
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.normal,
-                            letterSpacing: -0.229412,
-                            color: Color(0xff6E6D7A),
-                          ),
-                        )
-                      ],
+                          )
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -692,255 +849,390 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                 ),
                 //hgf
 
-                Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: 175,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(6)),
-                            border: Border.all(
-                              width: 1,
-                              color: Color(0xffE0E0E0),
-                              style: BorderStyle.solid,
-                            ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 8),
-                                child: Text(
-                                  '10:00',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontFamily: 'Inter',
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w500,
-                                    letterSpacing: -0.264706,
-                                    color: Color(0xff979797).withOpacity(0.7),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 5),
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      height: 13,
-                                      child: IconButton(
-                                          iconSize: 12,
-                                          icon: FaIcon(
-                                            FontAwesomeIcons.chevronUp,
-                                            color: Color(0xff6E6D7A),
-                                          ),
-                                          onPressed: () {}),
-                                    ),
-                                    Container(
-                                      height: 13,
-                                      child: IconButton(
-                                          iconSize: 12,
-                                          icon: FaIcon(
-                                            FontAwesomeIcons.chevronDown,
-                                            color: Color(0xff6E6D7A),
-                                          ),
-                                          onPressed: () {}),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              // SizedBox(
-                              //   width: 6,
-                              // ),
-                              Container(
-                                height: 35,
-                                width: 0,
-                                decoration: BoxDecoration(
+                Obx(
+                  () => Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 50,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(6)),
+                                border: Border.all(
+                                  width: 1,
                                   color: Color(0xffE0E0E0),
-                                  border: Border.all(
-                                    width: 1,
-                                    color: Color(0xffE0E0E0),
-                                    style: BorderStyle.solid,
-                                  ),
+                                  style: BorderStyle.solid,
                                 ),
                               ),
-                              SizedBox(
-                                width: 18,
-                              ),
-                              Container(
-                                height: 19,
-                                child: Text(
-                                  'AM',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontFamily: 'Inter',
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w500,
-                                    letterSpacing: -0.264706,
-                                    color: Color(0xff979797).withOpacity(0.7),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Text(
+                                    (controller.eventstartHour
+                                                    .toString()
+                                                    .length ==
+                                                1
+                                            ? controller.eventstartHour
+                                                .toString()
+                                                .padLeft(2, "0")
+                                            : controller.eventstartHour
+                                                .toString()) +
+                                        ":" +
+                                        (controller.eventstartMinute
+                                                    .toString()
+                                                    .length ==
+                                                1
+                                            ? controller.eventstartMinute
+                                                .toString()
+                                                .padLeft(2, "0")
+                                            : controller.eventstartMinute
+                                                .toString()),
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontFamily: 'Inter',
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.w500,
+                                      letterSpacing: -0.264706,
+                                      color: Color(0xff979797).withOpacity(0.7),
+                                    ),
                                   ),
-                                ),
-                              ),
-                              IconButton(
-                                  iconSize: 12,
-                                  padding: EdgeInsets.only(bottom: 4, top: 4),
-                                  icon: FaIcon(
-                                    FontAwesomeIcons.chevronDown,
-                                    color: Color(0xff6E6D7A),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      SizedBox.square(
+                                        dimension: 15,
+                                        child: InkWell(
+                                          onTap: () {
+                                            if (controller.eventstartMinute ==
+                                                30) {
+                                              if (controller.eventstartHour !=
+                                                  12) {
+                                                controller.eventstartHour + 1;
+                                              }
+                                              controller
+                                                  .eventstartMinute.value = 00;
+                                            } else {
+                                              if (controller.eventstartHour !=
+                                                  12)
+                                                controller.eventstartMinute
+                                                    .value = 30;
+                                            }
+                                          },
+                                          child: Container(
+                                            height: 20,
+                                            width: 20,
+                                            alignment: Alignment.center,
+                                            child: FaIcon(
+                                              FontAwesomeIcons.chevronUp,
+                                              color: Color(0xff6E6D7A),
+                                              size: 15,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox.square(
+                                        dimension: 15,
+                                        child: InkWell(
+                                          onTap: () {
+                                            if (controller.eventstartMinute ==
+                                                30) {
+                                              controller
+                                                  .eventstartMinute.value = 00;
+                                            } else {
+                                              if (controller.eventstartHour !=
+                                                  0) {
+                                                controller.eventstartMinute
+                                                    .value = 30;
+                                                controller.eventstartHour - 1;
+                                              }
+                                            }
+                                          },
+                                          child: Container(
+                                            height: 20,
+                                            width: 20,
+                                            alignment: Alignment.center,
+                                            child: FaIcon(
+                                              FontAwesomeIcons.chevronDown,
+                                              color: Color(0xff6E6D7A),
+                                              size: 15,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  onPressed: () {}),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 3,
-                        ),
-                        Text(
-                          'Select start time (hh:mm AM/PM)',
-                          style: TextStyle(
-                            fontSize: 9,
-                            fontFamily: 'Poppins',
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.normal,
-                            letterSpacing: -0.229412,
-                            color: Color(0xff6E6D7A),
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      width: 18,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: 175,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(6)),
-                            border: Border.all(
-                              width: 1,
-                              color: Color(0xffE0E0E0),
-                              style: BorderStyle.solid,
+                                  Container(
+                                    height: 35,
+                                    width: 0,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xffE0E0E0),
+                                      border: Border.all(
+                                        width: 1,
+                                        color: Color(0xffE0E0E0),
+                                        style: BorderStyle.solid,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: 19,
+                                    child: Text(
+                                      controller.eventendAmPm.value,
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontFamily: 'Inter',
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.w500,
+                                        letterSpacing: -0.264706,
+                                        color:
+                                            Color(0xff979797).withOpacity(0.7),
+                                      ),
+                                    ),
+                                  ),
+                                  InkWell(
+                                      child: Container(
+                                        padding:
+                                            EdgeInsets.only(bottom: 4, top: 4),
+                                        child: FaIcon(
+                                          controller.eventstartAmPm.value ==
+                                                  "AM"
+                                              ? FontAwesomeIcons.chevronDown
+                                              : FontAwesomeIcons.chevronUp,
+                                          size: 13,
+                                          color: Color(0xff6E6D7A),
+                                        ),
+                                      ),
+                                      onTap: () {
+                                        if (controller.eventstartAmPm.value ==
+                                            "AM") {
+                                          controller.eventstartAmPm.value =
+                                              "PM";
+                                        } else {
+                                          controller.eventstartAmPm.value =
+                                              "AM";
+                                        }
+                                      }),
+                                ],
+                              ),
                             ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 8),
-                                child: Text(
-                                  '10:00',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontFamily: 'Inter',
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w500,
-                                    letterSpacing: -0.264706,
-                                    color: Color(0xff979797).withOpacity(0.7),
-                                  ),
-                                ),
+                            SizedBox(
+                              height: 3,
+                            ),
+                            Text(
+                              'Select start time  (hh:mm AM/PM)',
+                              style: TextStyle(
+                                fontSize: 9,
+                                fontFamily: 'Poppins',
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.normal,
+                                letterSpacing: -0.229412,
+                                color: Color(0xff6E6D7A),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 5),
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      height: 13,
-                                      child: IconButton(
-                                          iconSize: 12,
-                                          icon: FaIcon(
-                                            FontAwesomeIcons.chevronUp,
-                                            color: Color(0xff6E6D7A),
-                                          ),
-                                          onPressed: () {}),
-                                    ),
-                                    Container(
-                                      height: 13,
-                                      child: IconButton(
-                                          iconSize: 12,
-                                          icon: FaIcon(
-                                            FontAwesomeIcons.chevronDown,
-                                            color: Color(0xff6E6D7A),
-                                          ),
-                                          onPressed: () {}),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              // SizedBox(
-                              //   width: 6,
-                              // ),
-                              Container(
-                                height: 35,
-                                width: 0,
-                                decoration: BoxDecoration(
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: 18,
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 50,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(6)),
+                                border: Border.all(
+                                  width: 1,
                                   color: Color(0xffE0E0E0),
-                                  border: Border.all(
-                                    width: 1,
-                                    color: Color(0xffE0E0E0),
-                                    style: BorderStyle.solid,
-                                  ),
+                                  style: BorderStyle.solid,
                                 ),
                               ),
-                              SizedBox(
-                                width: 18,
-                              ),
-                              Container(
-                                height: 19,
-                                child: Text(
-                                  'PM',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontFamily: 'Inter',
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w500,
-                                    letterSpacing: -0.264706,
-                                    color: Color(0xff979797).withOpacity(0.7),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Text(
+                                    (controller.eventendHour
+                                                    .toString()
+                                                    .length ==
+                                                1
+                                            ? controller.eventendHour
+                                                .toString()
+                                                .padLeft(2, "0")
+                                            : controller.eventendHour
+                                                .toString()) +
+                                        ":" +
+                                        (controller.eventendMinute
+                                                    .toString()
+                                                    .length ==
+                                                1
+                                            ? controller.eventendMinute
+                                                .toString()
+                                                .padLeft(2, "0")
+                                            : controller.eventendMinute
+                                                .toString()),
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontFamily: 'Inter',
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.w500,
+                                      letterSpacing: -0.264706,
+                                      color: Color(0xff979797).withOpacity(0.7),
+                                    ),
                                   ),
-                                ),
-                              ),
-                              IconButton(
-                                  iconSize: 12,
-                                  padding: EdgeInsets.only(bottom: 4, top: 4),
-                                  icon: FaIcon(
-                                    FontAwesomeIcons.chevronDown,
-                                    color: Color(0xff6E6D7A),
+
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      SizedBox.square(
+                                        dimension: 15,
+                                        child: InkWell(
+                                          onTap: () {
+                                            if (controller.eventendMinute ==
+                                                30) {
+                                              if (controller.eventendHour !=
+                                                  12) {
+                                                controller.eventendHour + 1;
+                                              }
+                                              controller.eventendMinute.value =
+                                                  00;
+                                            } else {
+                                              controller.eventendMinute.value =
+                                                  30;
+                                            }
+                                          },
+                                          child: Container(
+                                            height: 20,
+                                            width: 20,
+                                            alignment: Alignment.center,
+                                            child: FaIcon(
+                                              FontAwesomeIcons.chevronUp,
+                                              color: Color(0xff6E6D7A),
+                                              size: 15,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox.square(
+                                        dimension: 15,
+                                        child: InkWell(
+                                          onTap: () {
+                                            if (controller.eventendMinute ==
+                                                30) {
+                                              controller.eventendMinute.value =
+                                                  00;
+                                            } else {
+                                              if (controller.eventendHour !=
+                                                  0) {
+                                                controller
+                                                    .eventendMinute.value = 30;
+                                                controller.eventendHour - 1;
+                                              }
+                                            }
+                                          },
+                                          child: Container(
+                                            height: 20,
+                                            width: 20,
+                                            alignment: Alignment.center,
+                                            child: FaIcon(
+                                              FontAwesomeIcons.chevronDown,
+                                              color: Color(0xff6E6D7A),
+                                              size: 15,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  onPressed: () {}),
-                            ],
-                          ),
+                                  // SizedBox(
+                                  //   width: 6,
+                                  // ),
+                                  Container(
+                                    height: 35,
+                                    width: 0,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xffE0E0E0),
+                                      border: Border.all(
+                                        width: 1,
+                                        color: Color(0xffE0E0E0),
+                                        style: BorderStyle.solid,
+                                      ),
+                                    ),
+                                  ),
+
+                                  Container(
+                                    height: 19,
+                                    child: Text(
+                                      controller.eventendAmPm.value,
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontFamily: 'Inter',
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.w500,
+                                        letterSpacing: -0.264706,
+                                        color:
+                                            Color(0xff979797).withOpacity(0.7),
+                                      ),
+                                    ),
+                                  ),
+                                  InkWell(
+                                      child: Container(
+                                        padding:
+                                            EdgeInsets.only(bottom: 4, top: 4),
+                                        child: FaIcon(
+                                          controller.eventendAmPm.value == "AM"
+                                              ? FontAwesomeIcons.chevronDown
+                                              : FontAwesomeIcons.chevronUp,
+                                          size: 13,
+                                          color: Color(0xff6E6D7A),
+                                        ),
+                                      ),
+                                      onTap: () {
+                                        if (controller.eventendAmPm.value ==
+                                            "AM") {
+                                          controller.eventendAmPm.value = "PM";
+                                        } else {
+                                          controller.eventendAmPm.value = "AM";
+                                        }
+                                      }),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 3,
+                            ),
+                            Text(
+                              'Event end time (hh:mm AM/PM)',
+                              style: TextStyle(
+                                fontSize: 9,
+                                fontFamily: 'Poppins',
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.normal,
+                                letterSpacing: -0.229412,
+                                color: Color(0xff6E6D7A),
+                              ),
+                            )
+                          ],
                         ),
-                        SizedBox(
-                          height: 3,
-                        ),
-                        Text(
-                          'Event end time (hh:mm AM/PM)',
-                          style: TextStyle(
-                            fontSize: 9,
-                            fontFamily: 'Poppins',
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.normal,
-                            letterSpacing: -0.229412,
-                            color: Color(0xff6E6D7A),
-                          ),
-                        )
-                      ],
-                    ),
-                  ],
+                      ),
+                    ],
+                  ),
                 ),
-                SizedBox(
-                  height: 5,
-                ),
+
                 Container(
-                  // width: 341,
-                  height: 45,
                   child: TextFormField(
                     maxLines: 5,
+                    controller: controller.eventDesc,
                     cursorColor: Color(0xff00ADB5),
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
@@ -985,7 +1277,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                 ),
                 InkWell(
                   onTap: () {
-                    //TODO: API CALL
+                    controller.onboardingApi6();
                   },
                   child: Container(
                     // width: 343,

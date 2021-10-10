@@ -6,13 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
-// import 'package:readyplates_restaurants/src/screens/login_page.dart';
-import 'package:readyplates_restaurants/utils/utils.dart';
-// import 'package:http/http.dart' as http;
-// import 'dart:async';
-// import 'dart:convert';
 
 class OnboardingPage3 extends StatefulWidget {
   static const id = "/onboarding3";
@@ -40,7 +34,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(2021),
-      lastDate: DateTime.now(),
+      lastDate: DateTime(2030),
       currentDate: DateTime.now(),
     ).then((pickedDate) {
       if (pickedDate == null) {
@@ -405,7 +399,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                         child: Padding(
                           padding: const EdgeInsets.only(left: 12.5),
                           child: Text(
-                            '${controller.kycimg.path}',
+                            '${controller.kycimg.path.split('/').last}',
                             style: TextStyle(
                               fontSize: 13,
                               fontFamily: 'Inter',
@@ -430,11 +424,9 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                           print('Bytes: ${file.bytes}');
                           print('Size: ${file.size}');
                           print('Extension: ${file.extension}');
-                          print('Path: ${file.path}');
                           setState(() {
                             controller.kycimg = File(file.path!);
                           });
-                          print('From Path: ${file.path!}');
                         },
                         child: Container(
                           width: 45,
@@ -510,7 +502,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                         child: Padding(
                           padding: const EdgeInsets.only(left: 12.5),
                           child: Text(
-                            '${controller.gstinimg.path}',
+                            '${controller.gstinimg.path.split('/').last}',
                             style: TextStyle(
                               fontSize: 13,
                               fontFamily: 'Inter',
@@ -535,7 +527,6 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                           print('Bytes: ${file.bytes}');
                           print('Size: ${file.size}');
                           print('Extension: ${file.extension}');
-                          print('Path: ${file.path}');
                           setState(() {
                             controller.gstinimg = File(file.path!);
                           });
@@ -610,7 +601,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                         child: Padding(
                           padding: const EdgeInsets.only(left: 12.5),
                           child: Text(
-                            '${controller.fssaiimg.path}',
+                            '${controller.fssaiimg.path.split('/').last}',
                             style: TextStyle(
                               fontSize: 13,
                               fontFamily: 'Inter',

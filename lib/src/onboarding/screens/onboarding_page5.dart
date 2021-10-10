@@ -4,9 +4,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:readyplates_restaurants/utils/utils.dart';
-import 'package:open_file/open_file.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 
 class OnboardingPage5 extends StatefulWidget {
   const OnboardingPage5({Key? key}) : super(key: key);
@@ -16,15 +14,7 @@ class OnboardingPage5 extends StatefulWidget {
 }
 
 class _OnboardingPage5State extends State<OnboardingPage5> {
-  void openFile(PlatformFile file) {
-    OpenFile.open(file.path!);
-  }
-
-  Future<File> saveFilePermanently(PlatformFile file) async {
-    final appStorage = await getApplicationDocumentsDirectory();
-    final newFile = File('${appStorage.path}/${file.name}');
-    return File(file.path!).copy(newFile.path);
-  }
+  final controller = Get.find<OnboardingController>();
 
   @override
   Widget build(BuildContext context) {
@@ -94,6 +84,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   // width: 341,
                   height: 45,
                   child: TextFormField(
+                    controller: controller.ac_numberController,
                     cursorColor: Color(0xff00ADB5),
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
@@ -167,6 +158,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   // width: 341,
                   height: 45,
                   child: TextFormField(
+                    controller: controller.reac_numberController,
                     cursorColor: Color(0xff00ADB5),
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
@@ -239,7 +231,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                 Container(
                   // width: 341,
                   height: 45,
-                  child: DropdownButtonFormField(
+                  child: DropdownButtonFormField<String>(
                     icon: Padding(
                       padding: const EdgeInsets.only(right: 8.17),
                       child: FaIcon(
@@ -273,18 +265,11 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                         color: Color(0xff979797).withOpacity(0.7),
                       ),
                     ),
-                    items: [
-                      DropdownMenuItem(
-                          child: Text("Select Type of Account"), value: ""),
-                      DropdownMenuItem(
-                          child: Text("Current"), value: "Current"),
-                    ],
+                    items: controller.accType
+                        .map((e) => DropdownMenuItem(child: Text(e), value: e))
+                        .toList(),
                     onChanged: (newValue) {
-                      setState(() {
-                        // rescity = newValue.toString();
-
-                        print(newValue);
-                      });
+                      controller.typeOfAcc = newValue!;
                     },
                   ),
                 ),
@@ -319,6 +304,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   // width: 341,
                   height: 45,
                   child: TextFormField(
+                    controller: controller.ifsc_codeController,
                     cursorColor: Color(0xff00ADB5),
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
@@ -365,7 +351,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   height: 18,
                 ),
                 Text(
-                  'IFSC Code',
+                  'PAN Number of Restaurant',
                   style: TextStyle(
                     fontSize: 13,
                     fontFamily: 'Inter',
@@ -382,6 +368,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   // width: 341,
                   height: 45,
                   child: TextFormField(
+                    controller: controller.pan_numController,
                     cursorColor: Color(0xff00ADB5),
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
@@ -445,6 +432,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   // width: 341,
                   height: 45,
                   child: TextFormField(
+                    controller: controller.pan_nameController,
                     cursorColor: Color(0xff00ADB5),
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
@@ -477,7 +465,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   height: 18,
                 ),
                 Text(
-                  'Name of the PAN Card',
+                  'Uplaod PAN Card',
                   style: TextStyle(
                     fontSize: 13,
                     fontFamily: 'Inter',
@@ -508,7 +496,9 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                       Padding(
                         padding: const EdgeInsets.only(left: 12.5),
                         child: Text(
-                          'Please upload [ “png”, “jpg”, “jpeg”, “pdf”] files',
+                          controller.pan_image.path == ""
+                              ? 'Please upload [ “png”, “jpg”, “jpeg”, “pdf”] files'
+                              : controller.pan_image.path.split('/').last,
                           style: TextStyle(
                             fontSize: 13,
                             fontFamily: 'Inter',
@@ -526,16 +516,13 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                               .pickFiles(allowMultiple: true);
                           if (result == null) return;
                           final file = result.files.first;
-                          // openFile(file);
-
+                          controller.pan_image = File(file.path!);
                           print('Name: ${file.name}');
                           print('Bytes: ${file.bytes}');
                           print('Size: ${file.size}');
                           print('Extension: ${file.extension}');
                           print('Path: ${file.path}');
-                          final newFile = await saveFilePermanently(file);
                           print('From Path: ${file.path!}');
-                          print('To Path: ${newFile.path}');
                         },
                         child: Container(
                           width: size.width * 0.110,
@@ -569,7 +556,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                 ),
                 InkWell(
                   onTap: () {
-                    //TODO: SOMETHING
+                    controller.onboardingapi5();
                   },
                   child: Container(
                     // width: 343,

@@ -12,6 +12,7 @@ class OnboardingController extends GetxController {
   String uniqueId = "";
 
   OnboardingServices services = OnboardingServices();
+  final SharedPreferenceHelper sfHelper = Get.find();
 
   final resNameController = TextEditingController();
   final firstNameController = TextEditingController();
@@ -36,6 +37,8 @@ class OnboardingController extends GetxController {
   File gstinimg = File('');
   File fssaiimg = File('');
 
+  final resDescript = TextEditingController();
+
   RxInt startHour = 10.obs;
   RxInt startMinute = 00.obs;
 
@@ -45,6 +48,30 @@ class OnboardingController extends GetxController {
   List<String> amPm = ["AM", "PM"];
   RxString startAmPm = "AM".obs;
   RxString endAmPm = "PM".obs;
+
+  RxInt eventstartHour = 10.obs;
+  RxInt eventstartMinute = 00.obs;
+  RxInt eventendHour = 10.obs;
+  RxInt eventendMinute = 00.obs;
+  RxString eventstartAmPm = "AM".obs;
+  RxString eventendAmPm = "PM".obs;
+  final eventDesc = TextEditingController();
+  DateTime? recurrenceTime;
+
+  RxString selectedRecurrence = "Monthly".obs;
+
+  RxInt costFor2 = 0.obs;
+  RxInt servingTime = 0.obs;
+
+  RxInt noOfTables = 0.obs;
+  RxInt noOfSeats = 0.obs;
+
+  final ac_numberController = TextEditingController();
+  final reac_numberController = TextEditingController();
+  final ifsc_codeController = TextEditingController();
+  final pan_numController = TextEditingController();
+  final pan_nameController = TextEditingController();
+  File pan_image = File('');
 
   List<String> selectCategory = [
     'Burgers',
@@ -70,16 +97,24 @@ class OnboardingController extends GetxController {
   RxList<String> chooseCategory = <String>[].obs;
   List<String> selectDays = [
     'Monday',
-    'Thursday',
-    'Sunday',
     'Tuesday',
-    'Friday',
     'Wednesday',
+    'Thursday',
+    'Friday',
     'Saturday',
+    'Sunday',
   ];
   RxList<String> chooseDays = <String>[].obs;
   bool isChecked = false;
   bool isDays = false;
+
+  String typeOfAcc = "";
+  List<String> accType = ["Saving", "Current"];
+  RxString typeOfEstablishment = "".obs;
+
+  List<String> typeOfEsts = ["Dineout only", "Take Away"];
+
+  RxDouble value = 1.0.obs;
 
   @override
   void onInit() {
@@ -99,6 +134,7 @@ class OnboardingController extends GetxController {
         pocController.text,
         pocNumberController.text,
       );
+      sfHelper.setRestaurantName(resNameController.text);
       Get.toNamed(OnboardingPage2.id);
     } catch (e) {
       Get.snackbar("Error", e.toString());
@@ -139,6 +175,59 @@ class OnboardingController extends GetxController {
         fssaiimg,
       );
       Get.toNamed(Routes.onboarding4Route);
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+    }
+  }
+
+  Future<void> onboardingapi4() async {
+    try {
+      await services.onboardingapi4(
+        uniqueId,
+        typeOfEstablishment.value,
+        chooseCategory.toString(),
+        "${startHour.value}:${startMinute.value}${startAmPm}",
+        "${endHour.value}:${endMinute.value}${endAmPm}",
+        chooseDays.toList().toString(),
+      );
+      Get.toNamed(Routes.onboarding5Route);
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+    }
+  }
+
+  Future<void> onboardingapi5() async {
+    try {
+      await services.onboardingapi5(
+        uniqueId,
+        ac_numberController.text,
+        typeOfAcc,
+        ifsc_codeController.text,
+        pan_numController.text,
+        pan_nameController.text,
+        pan_image,
+      );
+      Get.toNamed(Routes.onboarding6Route);
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+    }
+  }
+
+  Future<void> onboardingApi6() async {
+    try {
+      await services.onboardingapi6(
+          uniqueId,
+          resDescript.text,
+          noOfTables.toString(),
+          noOfSeats.toString(),
+          costFor2.toString(),
+          servingTime.toString(),
+          "${recurrenceTime!.year}-${recurrenceTime!.month}-${recurrenceTime!.day}",
+          selectedRecurrence.value,
+          "${eventstartHour.value}:${eventstartMinute.value}${eventstartAmPm}",
+          "${eventendHour.value}:${eventendMinute.value}${eventendAmPm}",
+          eventDesc.text);
+      Get.toNamed(Routes.onboarding7Route);
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }
@@ -220,8 +309,11 @@ class OnboardingController extends GetxController {
   Future<void> uploadImage(List<String> files) async {
     try {
       imageLoading.value = true;
-      await services.uploadImages(files, pageIndex.value);
+      await services.uploadImages(files, pageIndex.value, uniqueId);
       imageLoading.value = false;
+      if (pageIndex.value == 3) {
+        Get.find<SharedPreferenceHelper>().setLoggedIn(true);
+      }
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }

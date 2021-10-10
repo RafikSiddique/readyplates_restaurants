@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:readyplates_restaurants/src/home/screens/add_menu_page.dart';
+import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 
 class OnboardingPage7 extends StatefulWidget {
@@ -82,11 +84,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
   }
 
   bool isImagesUploaded(List<String> list) {
-    return list[0] != "" &&
-        list[1] != "" &&
-        list[2] != "" &&
-        list[3] != "" &&
-        list[4] != "";
+    return list[0] != "" && list[1] != "" && list[2] != "" && list[3] != "";
   }
 
   @override
@@ -107,8 +105,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
               onPressed: () {
                 switch (onBoardingController.pageIndex.value) {
                   case 0:
-                    Navigator.pop(context);
-
+                    Get.back();
                     break;
                   case 1:
                     pageController.animateToPage(0,
@@ -227,25 +224,38 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                         }
                         break;
                       case 1:
-                        await onBoardingController
-                            .uploadImage(onBoardingController.ambienceImages);
-                        pageController.animateToPage(2,
-                            duration: Duration(milliseconds: 500),
-                            curve: Curves.ease);
+                        if (isImagesUploaded(
+                            onBoardingController.ambienceImages)) {
+                          await onBoardingController
+                              .uploadImage(onBoardingController.ambienceImages);
+                          pageController.animateToPage(2,
+                              duration: Duration(milliseconds: 500),
+                              curve: Curves.ease);
+                        } else {
+                          Get.snackbar("Error", "Upload all the images");
+                        }
                         break;
                       case 2:
-                        await onBoardingController
-                            .uploadImage(onBoardingController.foodImages);
-                        pageController.animateToPage(3,
-                            duration: Duration(milliseconds: 500),
-                            curve: Curves.ease);
+                        if (isImagesUploaded(onBoardingController.foodImages)) {
+                          await onBoardingController
+                              .uploadImage(onBoardingController.foodImages);
+                          pageController.animateToPage(3,
+                              duration: Duration(milliseconds: 500),
+                              curve: Curves.ease);
+                        } else {
+                          Get.snackbar("Error", "Upload all the images");
+                        }
                         break;
                       case 3:
-                        await onBoardingController
-                            .uploadImage(onBoardingController.foodImages);
-                        pageController.animateToPage(4,
-                            duration: Duration(milliseconds: 500),
-                            curve: Curves.ease);
+                        if (isImagesUploaded(
+                            onBoardingController.covidProtocol)) {
+                          await onBoardingController
+                              .uploadImage(onBoardingController.covidProtocol);
+
+                          Get.offAllNamed(HomePage.id);
+                        } else {
+                          Get.snackbar("Error", "Upload all the images");
+                        }
                         break;
                       default:
                     }
@@ -463,4 +473,3 @@ class ImageUploadCard extends StatelessWidget {
     );
   }
 }
-

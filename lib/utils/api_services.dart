@@ -8,4 +8,5 @@ class ApiServices {
   Uri get registerUri => accounts('register/');
   Uri get screenStat => accounts('screenstat/');
   Uri onboarding(int screen) => accounts("s${screen}/");
+  Uri get menu => accounts('menu/');
 }
