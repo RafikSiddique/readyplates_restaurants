@@ -244,31 +244,8 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                 SizedBox(
                   height: 29,
                 ),
-                RichText(
-                  text: TextSpan(
-                    text: 'Restaurant Operational Hours',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontFamily: 'Inter',
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w500,
-                      letterSpacing: -0.229412,
-                      color: Color(0xff2F2E41),
-                    ),
-                    children: [
-                      TextSpan(
-                        text: ' *',
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontFamily: 'Inter',
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w500,
-                          letterSpacing: -0.229412,
-                          color: Color(0xffEB4132),
-                        ),
-                      ),
-                    ],
-                  ),
+                FieldTitle(
+                  text: "Restaurant Operational Hours",
                 ),
                 SizedBox(
                   height: 5,

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/utils/utils.dart';
 import 'package:get/get.dart';
+import 'package:readyplates_restaurants/widgets/form_field.dart';
 
 class SignupPage extends StatefulWidget {
   static const id = "/signup";
@@ -205,6 +207,32 @@ class _SignupPageState extends State<SignupPage> {
                             SizedBox(
                               height: kToolbarHeight * 0.4,
                             ),
+                            AppFormField(
+                              title: "Account Number",
+                              hintText: "51115146854135168584",
+                              controller: controller.emailController,
+                              formatters: [
+                                FilteringTextInputFormatter.digitsOnly,
+                              ],
+                              validator: (p0) {
+                                if (p0 == null ||
+                                    p0 != controller.password2Controller.text) {
+                                  return "Account number does not match";
+                                }
+                              },
+                            ),
+                            AppFormField(
+                              title: "Password",
+                              hintText: "**** **** ****",
+                              controller: controller.passwordController,
+                              isPassword: true,
+                              validator: (p0) {
+                                if (p0 == null ||
+                                    p0 != controller.password2Controller) {
+                                  return "This password is not matching";
+                                }
+                              },
+                            ),
                             Text(
                               'Password',
                               textAlign: TextAlign.center,
@@ -328,7 +356,8 @@ class _SignupPageState extends State<SignupPage> {
                             InkWell(
                               onTap: () async {
                                 formKey.currentState!.save();
-                                await controller.signup();
+                                if (formKey.currentState!.validate())
+                                  await controller.signup();
                               },
                               child: Container(
                                 width: size.width,

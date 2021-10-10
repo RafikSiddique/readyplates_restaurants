@@ -45,6 +45,7 @@ class HomeController extends GetxController {
           "other_serving_size",
           spiceSlider.value.toString(),
           cost.text);
+      Get.back();
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }

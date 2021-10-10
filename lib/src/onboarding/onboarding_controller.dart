@@ -32,7 +32,7 @@ class OnboardingController extends GetxController {
   final gstpresentController = TextEditingController();
   final gstnumController = TextEditingController();
   final fssaistatusController = TextEditingController();
-  DateTime? expiry;
+  DateTime expiry = DateTime.now();
   File kycimg = File('');
   File gstinimg = File('');
   File fssaiimg = File('');
@@ -56,7 +56,7 @@ class OnboardingController extends GetxController {
   RxString eventstartAmPm = "AM".obs;
   RxString eventendAmPm = "PM".obs;
   final eventDesc = TextEditingController();
-  DateTime? recurrenceTime;
+  DateTime recurrenceTime = DateTime.now();
 
   RxString selectedRecurrence = "Monthly".obs;
 
@@ -169,7 +169,7 @@ class OnboardingController extends GetxController {
         gstpresentController.text,
         gstnumController.text,
         fssaistatusController.text,
-        "${expiry!.year}-${expiry!.month}-${expiry!.day}",
+        "${expiry.year}-${expiry.month}-${expiry.day}",
         kycimg,
         gstinimg,
         fssaiimg,
@@ -222,7 +222,7 @@ class OnboardingController extends GetxController {
           noOfSeats.toString(),
           costFor2.toString(),
           servingTime.toString(),
-          "${recurrenceTime!.year}-${recurrenceTime!.month}-${recurrenceTime!.day}",
+          "${recurrenceTime.year}-${recurrenceTime.month}-${recurrenceTime.day}",
           selectedRecurrence.value,
           "${eventstartHour.value}:${eventstartMinute.value}${eventstartAmPm}",
           "${eventendHour.value}:${eventendMinute.value}${eventendAmPm}",

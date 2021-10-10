@@ -81,7 +81,7 @@ class AuthController extends GetxController {
       Get.find<OnboardingController>().uniqueId = id;
 
       int routeId = await getScreen(id);
-      if (routeId == 9) {
+      if (routeId >= 9) {
         isLoggedIn.value = true;
         sfHelper.setLoggedIn(true);
         Get.offAllNamed(HomePage.id);
