@@ -103,7 +103,9 @@ class OnboardingController extends GetxController {
       gstinimg.delete();
       pan_image.delete();
       fssaiimg.delete();
-    } catch (e) {}
+    } catch (e) {
+      print(e);
+    }
     super.dispose();
   }
 

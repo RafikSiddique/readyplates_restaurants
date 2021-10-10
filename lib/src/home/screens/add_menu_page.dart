@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/models/fooditem_model.dart';
 import 'package:readyplates_restaurants/src/home/home_controller.dart';
 import 'package:readyplates_restaurants/src/home/screens/add_food_item.dart';
+import 'package:readyplates_restaurants/utils/api_services.dart';
 import 'package:readyplates_restaurants/widgets/edit_button.dart';
 
 class MenuPage extends StatelessWidget {
@@ -14,14 +15,14 @@ class MenuPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context);
     var size = media.size;
-    return Container(
-      child: SingleChildScrollView(
+    return Obx(
+      () => SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Column(
           children: [
             InkWell(
-              onTap: () {
-                controller.getFoodItems();
+              onTap: () async {
+                controller.isEditing = false;
                 Get.toNamed(AddFoodItem.id);
               },
               child: Card(
@@ -77,110 +78,127 @@ class MenuPage extends StatelessWidget {
                 ),
               ),
             ),
-            ...FoodItemModel.foodItems
-                .map(
-                  (e) => Card(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15)),
-                    margin: EdgeInsets.all(7),
-                    elevation: 4,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          SizedBox.square(
-                            dimension: size.width * 0.27,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Stack(
-                                children: [
-                                  Align(
-                                    alignment: Alignment.topCenter,
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(10),
-                                      child: Image.network(
-                                        e.image,
-                                        fit: BoxFit.cover,
-                                        height: size.width * 0.22,
-                                        width: size.width * 0.22,
+            if (controller.foodItems.length == 0)
+              Center(
+                child: Text(
+                  "No FoodItem added yet",
+                ),
+              )
+            else if (controller.foodItems.first.id == -1)
+              Align(
+                alignment: Alignment.center,
+                child: CircularProgressIndicator(),
+              )
+            else
+              ...controller.foodItems
+                  .map(
+                    (e) => Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                      margin: EdgeInsets.all(7),
+                      elevation: 4,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            SizedBox.square(
+                              dimension: size.width * 0.27,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Stack(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.topCenter,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: Image.network(
+                                          "https://readyplates.herokuapp.com" +
+                                              e.image1,
+                                          fit: BoxFit.cover,
+                                          height: size.width * 0.22,
+                                          width: size.width * 0.22,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Align(
-                                      alignment: Alignment.bottomCenter,
-                                      child: EditButton(
-                                        widthFraction: 0.18,
-                                        onTap: () {},
-                                      ))
-                                ],
+                                    Align(
+                                        alignment: Alignment.bottomCenter,
+                                        child: EditButton(
+                                          widthFraction: 0.18,
+                                          onTap: () {
+                                            controller.isEditing = true;
+                                            controller.foodItemModel = e;
+                                            Get.toNamed(AddFoodItem.id);
+                                          },
+                                        ))
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                          Expanded(
-                            child: SizedBox(
-                              height: size.width * 0.25,
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  FittedBox(
-                                    fit: BoxFit.scaleDown,
-                                    child: Text(
-                                      e.name,
+                            Expanded(
+                              child: SizedBox(
+                                height: size.width * 0.25,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    FittedBox(
+                                      fit: BoxFit.scaleDown,
+                                      child: Text(
+                                        e.name,
+                                        style: GoogleFonts.montserrat(
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: size.width * 0.05),
+                                      ),
+                                    ),
+                                    Text(
+                                      e.description,
                                       style: GoogleFonts.montserrat(
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: size.width * 0.05),
+                                          fontSize: size.width * 0.03),
                                     ),
-                                  ),
-                                  Text(
-                                    e.description,
-                                    style: GoogleFonts.montserrat(
-                                        fontSize: size.width * 0.03),
-                                  ),
-                                  Spacer(),
-                                  Row(
-                                    children: [
-                                      Image.asset((e.veg
-                                          ? "assets/images/veg.png"
-                                          : "assets/images/nonveg.png")),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      ...List.generate(
-                                        e.spiceLevel,
-                                        (index) => Image.asset(
-                                          'assets/images/spice.png',
-                                          color: index == 0
-                                              ? Color(0xff25A244)
-                                              : null,
+                                    Spacer(),
+                                    Row(
+                                      children: [
+                                        Image.asset((e.diet_type == "Veg"
+                                            ? "assets/images/veg.png"
+                                            : "assets/images/nonveg.png")),
+                                        SizedBox(
+                                          width: 10,
                                         ),
-                                      ),
-                                      Spacer(),
-                                      Text(
-                                        e.price,
-                                        style: TextStyle(
-                                          fontFamily: 'Inter-Bold',
-                                          fontSize: size.width * 0.04,
-                                          fontWeight: FontWeight.w500,
+                                        ...List.generate(
+                                          double.parse(e.spice_level).toInt(),
+                                          (index) => Image.asset(
+                                            'assets/images/spice.png',
+                                            color: index == 0
+                                                ? Color(0xff25A244)
+                                                : null,
+                                          ),
                                         ),
-                                      ),
-                                      SizedBox(
-                                        width: 20,
-                                      )
-                                    ],
-                                  ),
-                                ],
+                                        Spacer(),
+                                        Text(
+                                          e.cost,
+                                          style: TextStyle(
+                                            fontFamily: 'Inter-Bold',
+                                            fontSize: size.width * 0.04,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 20,
+                                        )
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                )
-                .toList(),
+                  )
+                  .toList(),
           ],
         ),
       ),

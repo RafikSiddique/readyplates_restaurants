@@ -68,18 +68,18 @@ class AuthController extends GetxController {
 
   Future<void> signup() async {
     try {
-      await services.signup(emailController.text, passwordController.text,
-          password2Controller.text);
+      String id = await services.signup(emailController.text,
+          passwordController.text, password2Controller.text);
 
-      await login(true);
-
+      sfHelper.setUserId(id);
+      Get.find<OnboardingController>().uniqueId = id;
       Get.toNamed(OnboardingPage1.id);
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }
   }
 
-  Future<void> login([bool isImplicit = false]) async {
+  Future<void> login() async {
     try {
       String id = await services.login(
         emailController.text,

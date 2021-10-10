@@ -7,50 +7,44 @@ class DropdownCategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(left: 16, right: 16),
-      width: MediaQuery.of(context).size.width,
-      // width: 341,
-      height: 45,
-      child: DropdownButtonFormField(
-          icon: Padding(
-            padding: const EdgeInsets.only(right: 8.17),
-            child: FaIcon(
-              FontAwesomeIcons.chevronDown,
-              color: Color(0xff000000),
-              size: 14.87,
+    return DropdownButtonFormField(
+        icon: Padding(
+          padding: const EdgeInsets.only(right: 8.17),
+          child: FaIcon(
+            FontAwesomeIcons.chevronDown,
+            color: Color(0xff000000),
+            size: 14.87,
+          ),
+        ),
+        decoration: InputDecoration(
+          border: OutlineInputBorder(
+            borderSide: BorderSide(
+              width: 1,
+              color: Color(0xffE0E0E0),
+              style: BorderStyle.solid,
+            ),
+            borderRadius: BorderRadius.all(
+              Radius.circular(6.0),
             ),
           ),
-          decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderSide: BorderSide(
-                width: 1,
-                color: Color(0xffE0E0E0),
-                style: BorderStyle.solid,
-              ),
-              borderRadius: BorderRadius.all(
-                Radius.circular(6.0),
-              ),
-            ),
-            hintText: 'Starter / Main Course / Desserts / Slides',
-            contentPadding: EdgeInsets.only(
-              left: 14,
-              top: 14,
-            ),
-            hintStyle: TextStyle(
-              fontSize: 13,
-              fontFamily: 'Inter',
-              fontStyle: FontStyle.normal,
-              fontWeight: FontWeight.w500,
-              letterSpacing: -0.264706,
-              color: Color(0xff979797).withOpacity(0.7),
-            ),
+          hintText: 'Starter / Main Course / Desserts / Slides',
+          contentPadding: EdgeInsets.only(
+            left: 14,
+            top: 14,
           ),
-          items: [
-            DropdownMenuItem(child: Text("Select Menu"), value: ""),
-            DropdownMenuItem(child: Text("ABC"), value: "ABC"),
-          ],
-          onChanged: onSelect),
-    );
+          hintStyle: TextStyle(
+            fontSize: 13,
+            fontFamily: 'Inter',
+            fontStyle: FontStyle.normal,
+            fontWeight: FontWeight.w500,
+            letterSpacing: -0.264706,
+            color: Color(0xff979797).withOpacity(0.7),
+          ),
+        ),
+        items: [
+          DropdownMenuItem(child: Text("Select Menu"), value: ""),
+          DropdownMenuItem(child: Text("ABC"), value: "ABC"),
+        ],
+        onChanged: onSelect);
   }
 }

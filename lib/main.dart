@@ -13,6 +13,7 @@ import 'package:readyplates_restaurants/src/login/screens/signup_page.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
 import 'package:readyplates_restaurants/src/staticscreens/opening_screen.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
+import 'package:readyplates_restaurants/utils/slider_track_shape.dart';
 import 'package:readyplates_restaurants/utils/utils.dart';
 
 import 'src/login/screens/signup_page.dart';
@@ -34,16 +35,14 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: Colors.teal,
-          sliderTheme: SliderThemeData(
-            trackHeight: 8,
-          ),
+          sliderTheme:
+              SliderThemeData(trackHeight: 8, trackShape: CustomTrackShape()),
           bottomNavigationBarTheme: BottomNavigationBarThemeData(
             selectedLabelStyle: TextStyle(
               fontSize: 13,
               fontFamily: 'Inter',
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.normal,
-              letterSpacing: -0.264706,
             ),
             selectedItemColor: Color(0xff00ADB5).withOpacity(0.7),
             unselectedItemColor: Color(0xff393E46),
@@ -52,7 +51,6 @@ class MyApp extends StatelessWidget {
               fontFamily: 'Inter',
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.normal,
-              letterSpacing: -0.264706,
             ),
           ),
           pageTransitionsTheme: PageTransitionsTheme(builders: {

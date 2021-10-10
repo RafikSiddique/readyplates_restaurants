@@ -8,7 +8,7 @@ import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 
 class AuthenticationServices extends ApiServices {
   SharedPreferenceHelper sharedPreferenceHelper = SharedPreferenceHelper();
-  Future<void> signup(
+  Future<String> signup(
     String email,
     String password,
     String password2,
@@ -29,7 +29,8 @@ class AuthenticationServices extends ApiServices {
       );
       if (response.statusCode == 201) {
         Map resp = json.decode(response.body);
-        print(resp);
+        print(resp["Id"]);
+        return resp['Id'].toString();
       } else {
         throw AppException(code: response.statusCode, message: response.body);
       }

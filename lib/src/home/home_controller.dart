@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:readyplates_restaurants/main.dart';
+import 'package:readyplates_restaurants/models/fooditem_model.dart';
 import 'package:readyplates_restaurants/src/home/home_services.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
@@ -10,10 +12,36 @@ import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 
 class HomeController extends GetxController {
   RxInt selectedIndex = 0.obs;
+  bool isEditing = false;
   final pageController = PageController();
+  FoodItemModel? foodItemModel;
+
   final SharedPreferenceHelper sfHelper = Get.find();
   final HomeServices homeServices = HomeServices();
 
+  void setEditing() {
+    nameController.text = foodItemModel!.name;
+    descController.text = foodItemModel!.description;
+    cost.text = foodItemModel!.cost;
+    spiceSlider.value = double.parse(foodItemModel!.spice_level);
+  }
+
+  RxList<FoodItemModel> foodItems = <FoodItemModel>[
+    FoodItemModel(
+        id: -1,
+        name: "name",
+        description: "description",
+        image1: "image1",
+        image2: "image2",
+        diet_type: "diet_type",
+        category: "category",
+        std_serving_size: "std_serving_size",
+        other_serving_size: "other_serving_size",
+        other_serving_cost: "other_serving_cost",
+        spice_level: "spice_level",
+        cost: "cost",
+        restaurant: "'restaurant'"),
+  ].obs;
   void onChanged(int i) {
     selectedIndex.value = i;
     pageController.animateToPage(i,
@@ -36,6 +64,12 @@ class HomeController extends GetxController {
       default:
         return "";
     }
+  }
+
+  @override
+  void onInit() {
+    getFoodItems();
+    super.onInit();
   }
 
   RxDouble spiceSlider = 1.0.obs;
@@ -66,6 +100,30 @@ class HomeController extends GetxController {
           "other_serving_size",
           spiceSlider.value.toString(),
           cost.text);
+      await getFoodItems();
+      Get.back();
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+    }
+  }
+
+  Future<void> editFoodItem(int id) async {
+    try {
+      String resname = await sfHelper.getRestaurantName();
+      await homeServices.addfooditem(
+          resname,
+          nameController.text,
+          descController.text,
+          image1,
+          image2,
+          dietType.value,
+          category.value,
+          servingSize,
+          "other_cost",
+          "other_serving_size",
+          spiceSlider.value.toString(),
+          cost.text);
+      await getFoodItems();
       Get.back();
     } catch (e) {
       Get.snackbar("Error", e.toString());
@@ -75,7 +133,7 @@ class HomeController extends GetxController {
   Future<void> getFoodItems() async {
     try {
       String id = await sfHelper.getUserId();
-      await homeServices.getMenu(id);
+      foodItems.value = await homeServices.getMenu(id);
     } catch (e) {}
   }
 

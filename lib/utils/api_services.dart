@@ -9,5 +9,6 @@ class ApiServices {
   Uri get screenStat => restaurants('screenstat/');
   Uri onboarding(int screen) => restaurants("s${screen}/");
   Uri get menu => restaurants('menu/');
+  Uri updateMenu(int id) => restaurants('menu/$id');
   Uri menuList(String id) => restaurants('menulist/$id/');
 }
