@@ -43,7 +43,7 @@ class DropdownDietType extends StatelessWidget {
         items: [
           DropdownMenuItem(child: Text("Select Diet Type"), value: ""),
           DropdownMenuItem(child: Text("Veg"), value: "Veg"),
-          DropdownMenuItem(child: Text(" Non-Veg"), value: "Non-Veg"),
+          DropdownMenuItem(child: Text("Non-Veg"), value: "Non-Veg"),
         ],
         onChanged: onSelect);
   }

@@ -78,6 +78,8 @@ class HomeController extends GetxController {
     nameController.clear();
     descController.clear();
     cost.clear();
+    image1 = File("");
+    image2 = File("");
     spiceSlider.value = 1;
   }
 

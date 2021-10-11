@@ -39,7 +39,7 @@ class AuthenticationServices extends ApiServices {
     }
   }
 
-  Future<String> login(
+  Future<List<String>> login(
     String username,
     String password,
   ) async {
@@ -60,10 +60,10 @@ class AuthenticationServices extends ApiServices {
         Map resp = json.decode(response.body);
         print(resp["ID"]);
         String id = resp["ID"].toString();
-
+        String resname = resp["Restaurant Name"].toString();
         print('User Id is ---->' + id);
         print(response.body);
-        return id;
+        return [id, resname];
       } else {
         throw AppException(code: response.statusCode, message: response.body);
       }

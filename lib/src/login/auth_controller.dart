@@ -81,12 +81,13 @@ class AuthController extends GetxController {
 
   Future<void> login() async {
     try {
-      String id = await services.login(
+      List<String> id = await services.login(
         emailController.text,
         passwordController.text,
       );
-      sfHelper.setUserId(id);
-      Get.find<OnboardingController>().uniqueId = id;
+      sfHelper.setUserId(id[0]);
+      sfHelper.setRestaurantName(id[1]);
+      Get.find<OnboardingController>().uniqueId = id[0];
 
       /* int routeId = await getScreen(id);
       if (routeId >= 9) { */

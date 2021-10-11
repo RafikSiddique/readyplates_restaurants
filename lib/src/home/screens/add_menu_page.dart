@@ -159,9 +159,6 @@ class MenuPage extends StatelessWidget {
                                           double.parse(e.spice_level).toInt(),
                                           (index) => Image.asset(
                                             'assets/images/spice.png',
-                                            color: index == 0
-                                                ? Color(0xff25A244)
-                                                : null,
                                           ),
                                         ),
                                         Spacer(),
