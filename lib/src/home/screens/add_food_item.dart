@@ -13,7 +13,7 @@ import 'package:readyplates_restaurants/widgets/dropdownstandard.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 
 String getUrl(String url) {
-  return "https://readyplates.herokuapp.com" + url;
+  return "http://202.53.174.5:8000/" + url;
 }
 
 class AddFoodItem extends StatefulWidget {

@@ -2,10 +2,8 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:readyplates_restaurants/models/fooditem_model.dart';
 import 'package:readyplates_restaurants/src/home/home_controller.dart';
 import 'package:readyplates_restaurants/src/home/screens/add_food_item.dart';
-import 'package:readyplates_restaurants/utils/api_services.dart';
 import 'package:readyplates_restaurants/widgets/edit_button.dart';
 
 class MenuPage extends StatelessWidget {
@@ -114,7 +112,7 @@ class MenuPage extends StatelessWidget {
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(10),
                                         child: Image.network(
-                                          "https://readyplates.herokuapp.com" +
+                                          "http://202.53.174.5:8000/" +
                                               e.image1,
                                           fit: BoxFit.cover,
                                           height: size.width * 0.22,

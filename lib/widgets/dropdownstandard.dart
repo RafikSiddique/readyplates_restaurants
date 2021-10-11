@@ -42,8 +42,12 @@ class DropdownStandard extends StatelessWidget {
           ),
         ),
         items: [
-          DropdownMenuItem(child: Text("Select Menu"), value: ""),
-          DropdownMenuItem(child: Text("ABC"), value: "ABC"),
+          DropdownMenuItem(
+              child: Text("Select Standard Serving Size"), value: ""),
+          DropdownMenuItem(child: Text("Full"), value: "Full"),
+          DropdownMenuItem(child: Text("Half"), value: "Half"),
+          DropdownMenuItem(child: Text("Quarter"), value: "Quarter"),
+          DropdownMenuItem(child: Text("Other"), value: "Other"),
         ],
         onChanged: onSelect);
   }

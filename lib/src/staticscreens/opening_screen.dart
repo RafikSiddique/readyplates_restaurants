@@ -152,15 +152,16 @@ class _OpeningScreenState extends State<OpeningScreen>
                             height: 54,
                             decoration: BoxDecoration(
                               // #FFFFFF
-                              color: Color(0xffFFFFFF).withOpacity(0.38),
-                              // color: Color.fromRGBO(255, 255, 255, 0.38),
+                              color: Color(0xffFFFFFF).withOpacity(0.40),
+                              // color: Color.fromRGBO(255, 255, 255, 0.38)#FFFFFF61
+
                               // borderRadius: BorderRadius.all(Radius.circular(6)),
                             ),
                             child: Center(
                               child: BackdropFilter(
                                 filter: ImageFilter.blur(
-                                  sigmaX: 17,
-                                  sigmaY: 17,
+                                  sigmaX: 6.5,
+                                  sigmaY: 6.5,
                                 ),
                                 child: Text(
                                   'LOGIN',
@@ -216,8 +217,8 @@ class _OpeningScreenState extends State<OpeningScreen>
                               child: Center(
                                 child: BackdropFilter(
                                   filter: ImageFilter.blur(
-                                    sigmaX: 10,
-                                    sigmaY: 10,
+                                    sigmaX: 6.2,
+                                    sigmaY: 6.2,
                                   ),
                                   child: Text(
                                     'SIGN UP',

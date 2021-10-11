@@ -42,8 +42,11 @@ class DropdownCategory extends StatelessWidget {
           ),
         ),
         items: [
-          DropdownMenuItem(child: Text("Select Menu"), value: ""),
-          DropdownMenuItem(child: Text("ABC"), value: "ABC"),
+          DropdownMenuItem(child: Text("Select Category"), value: ""),
+          DropdownMenuItem(child: Text("Starter"), value: "Starter"),
+          DropdownMenuItem(child: Text("Main Course"), value: "Main Course"),
+          DropdownMenuItem(child: Text("Desserts"), value: "Desserts"),
+          DropdownMenuItem(child: Text("Slides"), value: "Slides"),
         ],
         onChanged: onSelect);
   }
