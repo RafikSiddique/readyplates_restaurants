@@ -26,7 +26,6 @@ class FieldTitle extends StatelessWidget {
               fontFamily: fontFamily,
               fontStyle: FontStyle.normal,
               fontWeight: fontWeight,
-              letterSpacing: -0.229412,
               color: Color(0xff2F2E41),
             ),
             children: required

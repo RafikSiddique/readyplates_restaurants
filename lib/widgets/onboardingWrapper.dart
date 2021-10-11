@@ -18,9 +18,11 @@ class OnBoardingWrapper extends StatelessWidget {
           children: [
             child,
             if (onboardingController.loading.value)
-              BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                child: Center(child: CircularProgressIndicator()),
+              IgnorePointer(
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                  child: Center(child: CircularProgressIndicator()),
+                ),
               )
           ],
         ));

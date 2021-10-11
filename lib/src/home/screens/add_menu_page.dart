@@ -24,19 +24,11 @@ class MenuPage extends StatelessWidget {
                 Get.toNamed(AddFoodItem.id);
               },
               child: Card(
-                /*               height: 80,
-                width: MediaQuery.of(context).size.width, */
                 elevation: 4,
                 margin: EdgeInsets.all(7),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                /* decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(
-                    color: Color(0xffFFFFFF),
-                  ),
-                ), */
                 child: Padding(
                   padding: const EdgeInsets.all(10),
                   child: DottedBorder(
@@ -112,8 +104,7 @@ class MenuPage extends StatelessWidget {
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(10),
                                         child: Image.network(
-                                          "http://202.53.174.5:8000/" +
-                                              e.image1,
+                                          getUrl(e.image1),
                                           fit: BoxFit.cover,
                                           height: size.width * 0.22,
                                           width: size.width * 0.22,

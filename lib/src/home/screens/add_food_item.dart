@@ -13,7 +13,7 @@ import 'package:readyplates_restaurants/widgets/dropdownstandard.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 
 String getUrl(String url) {
-  return "http://202.53.174.5:8000/" + url;
+  return "http://202.53.174.5:8000" + url;
 }
 
 class AddFoodItem extends StatefulWidget {
@@ -145,7 +145,9 @@ class _AddFoodItemState extends State<AddFoodItem> {
                 SizedBox(
                   height: 16,
                 ),
-                FieldTitle(text: 'Name of the Item'),
+                FieldTitle(
+                  text: 'Name of the Item',
+                ),
                 SizedBox(
                   height: 5,
                 ),
