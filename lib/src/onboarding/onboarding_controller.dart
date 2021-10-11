@@ -3,10 +3,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_services.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 import 'package:readyplates_restaurants/utils/utils.dart';
+
+enum OnBoardingMethod { api1, api2, api3, api4, api5, api6, api7 }
 
 class OnboardingController extends GetxController {
   RxInt pageIndex = 0.obs;
@@ -74,9 +77,7 @@ class OnboardingController extends GetxController {
   final pan_nameController = TextEditingController();
 
   File pan_image = File('');
-
-  @override
-  void dispose() {
+  void clear() {
     resNameController.clear();
     firstNameController.clear();
     lastNameController.clear();
@@ -98,14 +99,10 @@ class OnboardingController extends GetxController {
     pan_numController.clear();
     pan_nameController.clear();
     eventDesc.clear();
-    try {
-      kycimg.delete();
-      gstinimg.delete();
-      pan_image.delete();
-      fssaiimg.delete();
-    } catch (e) {
-      print(e);
-    }
+  }
+
+  @override
+  void dispose() {
     super.dispose();
   }
 
@@ -158,7 +155,37 @@ class OnboardingController extends GetxController {
     super.onInit();
   }
 
-  Future<void> onboardingapi1() async {
+  final PageController pageController = PageController();
+
+  Future<void> onboardingApi(OnBoardingMethod method) async {
+    loading.value = true;
+    switch (method) {
+      case OnBoardingMethod.api1:
+        await _onboardingapi1();
+        break;
+      case OnBoardingMethod.api2:
+        await _onboardingapi2();
+        break;
+      case OnBoardingMethod.api3:
+        await _onboardingapi3();
+        break;
+      case OnBoardingMethod.api4:
+        await _onboardingapi4();
+        break;
+      case OnBoardingMethod.api5:
+        await _onboardingapi5();
+        break;
+      case OnBoardingMethod.api6:
+        await _onboardingApi6();
+        break;
+      case OnBoardingMethod.api7:
+        await _uploadImage();
+        break;
+    }
+    loading.value = false;
+  }
+
+  Future<void> _onboardingapi1() async {
     String ownName = firstNameController.text + " " + lastNameController.text;
     try {
       await services.onboardingapi1(
@@ -178,7 +205,7 @@ class OnboardingController extends GetxController {
     }
   }
 
-  Future<void> onboardingapi2() async {
+  Future<void> _onboardingapi2() async {
     String adress = address1Controller.text +
         " " +
         address2Controller.text +
@@ -199,7 +226,7 @@ class OnboardingController extends GetxController {
     }
   }
 
-  Future<void> onboardingapi3() async {
+  Future<void> _onboardingapi3() async {
     try {
       await services.onboardingapi3(
         uniqueId,
@@ -217,7 +244,7 @@ class OnboardingController extends GetxController {
     }
   }
 
-  Future<void> onboardingapi4() async {
+  Future<void> _onboardingapi4() async {
     try {
       await services.onboardingapi4(
         uniqueId,
@@ -233,7 +260,7 @@ class OnboardingController extends GetxController {
     }
   }
 
-  Future<void> onboardingapi5() async {
+  Future<void> _onboardingapi5() async {
     try {
       await services.onboardingapi5(
         uniqueId,
@@ -250,7 +277,7 @@ class OnboardingController extends GetxController {
     }
   }
 
-  Future<void> onboardingApi6() async {
+  Future<void> _onboardingApi6() async {
     try {
       await services.onboardingapi6(
           uniqueId,
@@ -342,14 +369,52 @@ class OnboardingController extends GetxController {
     'Restaurant COVID-19 protocol Images' //3
   ];
 
-  RxBool imageLoading = false.obs;
-  Future<void> uploadImage(List<String> files) async {
+  RxBool loading = false.obs;
+
+  bool isImagesUploaded(List<String> list) {
+    return list[0] != "" && list[1] != "" && list[2] != "" && list[3] != "";
+  }
+
+  Future<void> _uploadImage() async {
     try {
-      imageLoading.value = true;
-      await services.uploadImages(files, pageIndex.value, uniqueId);
-      imageLoading.value = false;
-      if (pageIndex.value == 3) {
-        Get.find<SharedPreferenceHelper>().setLoggedIn(true);
+      List<String> fields = [];
+      List<String> files = [];
+
+      switch (pageIndex.value) {
+        case 0:
+          fields = [
+            "front_fascia_day",
+            "front_fascia_night",
+            "street_view",
+            "entrance"
+          ];
+          files = fasciaImages;
+          break;
+        case 1:
+          fields = ["ambience1", "ambience2", "ambience3", "ambience4"];
+          files = ambienceImages;
+          break;
+        case 2:
+          fields = ["food1", "food2", "food3", "food4"];
+          files = foodImages;
+          break;
+        default:
+          fields = ["cv19prec1", "cv19prec2", "cv19prec3", "cv19prec4"];
+          files = covidProtocol;
+          break;
+      }
+      if (isImagesUploaded(files)) {
+        await services.uploadImages(files, pageIndex.value, fields, uniqueId);
+
+        if (pageIndex.value == 3) {
+          Get.find<SharedPreferenceHelper>().setLoggedIn(true);
+          Get.offAllNamed(HomePage.id);
+        } else {
+          pageController.animateToPage(pageIndex.value + 1,
+              duration: Duration(milliseconds: 500), curve: Curves.ease);
+        }
+      } else {
+        Get.snackbar("Error", "Uplaod All the Images");
       }
     } catch (e) {
       Get.snackbar("Error", e.toString());

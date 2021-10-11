@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
+import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
 
 class OnboardingPage4 extends StatefulWidget {
   const OnboardingPage4({Key? key}) : super(key: key);
@@ -16,7 +17,8 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
+    return OnBoardingWrapper(
+      onboardingController: controller,
       child: Scaffold(
         appBar: AppBar(
           toolbarHeight: 44,
@@ -781,7 +783,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                 ),
                 InkWell(
                   onTap: () {
-                    controller.onboardingapi4();
+                    controller.onboardingApi(OnBoardingMethod.api4);
                   },
                   child: Container(
                     // width: 343,

@@ -199,7 +199,7 @@ class _SignupPageState extends State<SignupPage> {
                               isPassword: true,
                               fontSize: 11,
                               matchVerification: true,
-                              secondVal: controller.password2Controller.text,
+                              secondVal: controller.password2Controller,
                               fontFamily: 'Inter-Bold',
                               bottomText:
                                   'Atleast 8 characters (Caps, Small & Special Characters)',
@@ -212,7 +212,7 @@ class _SignupPageState extends State<SignupPage> {
                               hintText: "**** **** ****",
                               controller: controller.password2Controller,
                               matchVerification: true,
-                              secondVal: controller.passwordController.text,
+                              secondVal: controller.passwordController,
                               isPassword: true,
                               fontSize: 11,
                               fontFamily: 'Inter-Bold',

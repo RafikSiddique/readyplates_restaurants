@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
+import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
 
 class OnboardingPage6 extends StatefulWidget {
   const OnboardingPage6({Key? key}) : super(key: key);
@@ -35,7 +36,8 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return OnBoardingWrapper(
+      onboardingController: controller,
       child: Scaffold(
         appBar: AppBar(
           toolbarHeight: 44,
@@ -545,8 +547,8 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                       margin: EdgeInsets.zero,
                                       child: ListView(
                                         shrinkWrap: true,
-                                        children: List.generate(5, (index) {
-                                          return (index + 1) * 30;
+                                        children: List.generate(6, (index) {
+                                          return (index + 1) * 15;
                                         })
                                             .map((e) => ListTile(
                                                   title: Text(e.toString() +
@@ -1259,7 +1261,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                 ),
                 InkWell(
                   onTap: () {
-                    controller.onboardingApi6();
+                    controller.onboardingApi(OnBoardingMethod.api6);
                   },
                   child: Container(
                     // width: 343,

@@ -7,6 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
+import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
 
 class OnboardingPage5 extends StatefulWidget {
   const OnboardingPage5({Key? key}) : super(key: key);
@@ -21,10 +22,10 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
+    return OnBoardingWrapper(
+      onboardingController: controller,
       child: Scaffold(
         appBar: AppBar(
-          toolbarHeight: 44,
           backgroundColor: Colors.white,
           elevation: 0,
           leading: IconButton(
@@ -63,8 +64,6 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   AppFormField(
                       title: 'Legal Entity Account Number',
                       hintText: '511122266514782',
-                      matchVerification: true,
-                      secondVal: controller.reac_numberController.text,
                       bottomText:
                           'Make sure it matches the name on your government ID',
                       inputType: TextInputType.number,
@@ -78,7 +77,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                       hintText: '511122266514782',
                       matchVerification: true,
                       bottomText: "Both fields should match",
-                      secondVal: controller.ac_numberController.text,
+                      secondVal: controller.ac_numberController,
                       inputType: TextInputType.number,
                       formatters: [FilteringTextInputFormatter.digitsOnly],
                       controller: controller.reac_numberController),
@@ -440,7 +439,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                     onTap: () {
                       formKey.currentState!.save();
                       if (formKey.currentState!.validate())
-                        controller.onboardingapi5();
+                        controller.onboardingApi(OnBoardingMethod.api5);
                     },
                     child: Container(
                       // width: 343,

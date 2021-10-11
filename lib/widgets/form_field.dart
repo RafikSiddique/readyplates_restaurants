@@ -18,7 +18,7 @@ class AppFormField extends StatelessWidget {
   final String fontFamily;
   final FontWeight fontWeight;
   final bool matchVerification;
-  final String? secondVal;
+  final TextEditingController? secondVal;
   AppFormField({
     Key? key,
     this.secondVal,
@@ -71,7 +71,7 @@ class AppFormField extends StatelessWidget {
                   }
                 } else {
                   if (matchVerification) {
-                    if (value != secondVal!) {
+                    if (value != secondVal!.text) {
                       return "The ${title} does not match";
                     }
                   }

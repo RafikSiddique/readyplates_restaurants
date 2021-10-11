@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
+import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
 
 class OnboardingPage3 extends StatefulWidget {
   static const id = "/onboarding3";
@@ -48,10 +49,10 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return OnBoardingWrapper(
+      onboardingController: controller,
       child: Scaffold(
         appBar: AppBar(
-          toolbarHeight: 44,
           backgroundColor: Colors.white,
           elevation: 0,
           leading: IconButton(
@@ -678,7 +679,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                         ),
                         onPressed: () async {
                           formKey.currentState!.save();
-                          await controller.onboardingapi3();
+                          controller.onboardingApi(OnBoardingMethod.api3);
                         },
                         child: Text('CONTINUE',
                             style: TextStyle(

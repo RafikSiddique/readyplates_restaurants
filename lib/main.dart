@@ -22,10 +22,13 @@ void main() async {
   Get.put(SharedPreferenceHelper());
   Get.put(OnboardingController());
   Get.put(AuthController());
-  runApp(MyApp());
+  runApp(MyApp(
+    key: null,
+  ));
 }
 
 class MyApp extends StatelessWidget {
+  MyApp({Key? key}) : super(key: key);
   final controller = Get.find<AuthController>();
 
   @override

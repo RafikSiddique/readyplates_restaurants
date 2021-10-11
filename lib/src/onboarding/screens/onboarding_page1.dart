@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
+import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
 
 class OnboardingPage1 extends StatefulWidget {
   static const id = "/onboarding1";
@@ -18,11 +19,11 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return OnBoardingWrapper(
+      onboardingController: controller,
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          toolbarHeight: 44,
           backgroundColor: Colors.white,
           elevation: 0,
           leading: IconButton(
@@ -310,7 +311,7 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                     onTap: () async {
                       formKey.currentState!.save();
                       if (formKey.currentState!.validate())
-                        await controller.onboardingapi1();
+                        controller.onboardingApi(OnBoardingMethod.api1);
                     },
                     child: Container(
                       height: 40.11,

@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
+import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
 
 class OnboardingPage7 extends StatefulWidget {
   const OnboardingPage7({Key? key}) : super(key: key);
@@ -15,7 +16,6 @@ class OnboardingPage7 extends StatefulWidget {
 }
 
 class _OnboardingPage7State extends State<OnboardingPage7> {
-  final PageController pageController = PageController();
   final OnboardingController onBoardingController = Get.find();
   List<Widget> images(Size size) {
     return [
@@ -82,17 +82,13 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
     });
   }
 
-  bool isImagesUploaded(List<String> list) {
-    return list[0] != "" && list[1] != "" && list[2] != "" && list[3] != "";
-  }
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
+    return OnBoardingWrapper(
+      onboardingController: onBoardingController,
       child: Scaffold(
         appBar: AppBar(
-          toolbarHeight: 44,
           backgroundColor: Colors.white,
           elevation: 0,
           leading: IconButton(
@@ -107,22 +103,22 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                     Get.back();
                     break;
                   case 1:
-                    pageController.animateToPage(0,
+                    onBoardingController.pageController.animateToPage(0,
                         duration: Duration(milliseconds: 500),
                         curve: Curves.ease);
                     break;
                   case 2:
-                    pageController.animateToPage(1,
+                    onBoardingController.pageController.animateToPage(1,
                         duration: Duration(milliseconds: 500),
                         curve: Curves.ease);
                     break;
                   case 3:
-                    pageController.animateToPage(2,
+                    onBoardingController.pageController.animateToPage(2,
                         duration: Duration(milliseconds: 500),
                         curve: Curves.ease);
                     break;
                   case 4:
-                    pageController.animateToPage(3,
+                    onBoardingController.pageController.animateToPage(3,
                         duration: Duration(milliseconds: 500),
                         curve: Curves.ease);
                     break;
@@ -151,7 +147,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
               children: [
                 Expanded(
                   child: PageView(
-                    controller: pageController,
+                    controller: onBoardingController.pageController,
                     physics: NeverScrollableScrollPhysics(),
                     allowImplicitScrolling: false,
                     onPageChanged: onPageChange,
@@ -209,55 +205,8 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                 ),
                 InkWell(
                   onTap: () async {
-                    switch (onBoardingController.pageIndex.value) {
-                      case 0:
-                        if (isImagesUploaded(
-                            onBoardingController.fasciaImages)) {
-                          await onBoardingController
-                              .uploadImage(onBoardingController.fasciaImages);
-                          pageController.animateToPage(1,
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.ease);
-                        } else {
-                          Get.snackbar("Error", "Upload all the images");
-                        }
-                        break;
-                      case 1:
-                        if (isImagesUploaded(
-                            onBoardingController.ambienceImages)) {
-                          await onBoardingController
-                              .uploadImage(onBoardingController.ambienceImages);
-                          pageController.animateToPage(2,
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.ease);
-                        } else {
-                          Get.snackbar("Error", "Upload all the images");
-                        }
-                        break;
-                      case 2:
-                        if (isImagesUploaded(onBoardingController.foodImages)) {
-                          await onBoardingController
-                              .uploadImage(onBoardingController.foodImages);
-                          pageController.animateToPage(3,
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.ease);
-                        } else {
-                          Get.snackbar("Error", "Upload all the images");
-                        }
-                        break;
-                      case 3:
-                        if (isImagesUploaded(
-                            onBoardingController.covidProtocol)) {
-                          await onBoardingController
-                              .uploadImage(onBoardingController.covidProtocol);
-
-                          Get.offAllNamed(HomePage.id);
-                        } else {
-                          Get.snackbar("Error", "Upload all the images");
-                        }
-                        break;
-                      default:
-                    }
+                    await onBoardingController
+                        .onboardingApi(OnBoardingMethod.api7);
                   },
                   child: InkWell(
                     child: Container(
@@ -267,22 +216,22 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                         color: Color(0xff7A7E83),
                         borderRadius: BorderRadius.all(Radius.circular(6)),
                       ),
-                      child: Center(
-                        child: onBoardingController.imageLoading.value
-                            ? CircularProgressIndicator()
-                            : Text(
-                                'CONTINUE',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 17,
-                                  fontFamily: 'Inter',
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.w600,
-                                  letterSpacing: -0.28,
-                                  color: Color(0xffE5E5E5),
-                                ),
-                              ),
-                      ),
+                      child: Obx(() => Center(
+                            child: onBoardingController.loading.value
+                                ? CircularProgressIndicator()
+                                : Text(
+                                    'CONTINUE',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                      fontFamily: 'Inter',
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.w600,
+                                      letterSpacing: -0.28,
+                                      color: Color(0xffE5E5E5),
+                                    ),
+                                  ),
+                          )),
                     ),
                   ),
                 ),

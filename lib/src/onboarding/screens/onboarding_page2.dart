@@ -8,6 +8,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
+import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
 
 class OnboardingPage2 extends StatefulWidget {
   static const id = "/onboarding2";
@@ -23,10 +24,10 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
-    return SafeArea(
+    return OnBoardingWrapper(
+      onboardingController: controller,
       child: Scaffold(
         appBar: AppBar(
-          toolbarHeight: 44,
           backgroundColor: Colors.white,
           elevation: 0,
           leading: IconButton(
@@ -372,7 +373,7 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
                         ),
                         onPressed: () async {
                           formKey.currentState!.save();
-                          await controller.onboardingapi2();
+                          await controller.onboardingApi(OnBoardingMethod.api2);
                         },
                         child: Text('CONTINUE',
                             style: TextStyle(

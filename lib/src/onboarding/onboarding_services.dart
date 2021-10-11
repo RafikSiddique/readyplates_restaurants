@@ -224,19 +224,14 @@ class OnboardingServices extends ApiServices {
     }
   }
 
-  Future<bool> uploadImages(List<String> files, int index, String user) async {
+  Future<bool> uploadImages(List<String> files, int index, List<String> fields , String user) async {
     try {
-      List<List<String>> fields = [
-        ["front_fascia_day", "front_fascia_night", "street_view", "entrance"],
-        ["ambience1", "ambience2", "ambience3", "ambience4"],
-        ["food1", "food2", "food3", "food4"],
-        ["cv19prec1", "cv19prec2", "cv19prec3", "cv19prec4"]
-      ];
+
       List<MultipartFile> multipartFiles = [];
 
       for (int i = 0; i < files.length; i++) {
         MultipartFile multipartFile =
-            await MultipartFile.fromPath(fields[index][i], files[i]);
+            await MultipartFile.fromPath(fields[i], files[i]);
         multipartFiles.add(multipartFile);
       }
       MultipartRequest request =

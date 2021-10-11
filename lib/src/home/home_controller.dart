@@ -8,7 +8,9 @@ import 'package:readyplates_restaurants/models/fooditem_model.dart';
 import 'package:readyplates_restaurants/src/home/home_services.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
+import 'package:readyplates_restaurants/src/staticscreens/opening_screen.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
+import 'package:readyplates_restaurants/utils/utils.dart';
 
 class HomeController extends GetxController {
   RxInt selectedIndex = 0.obs;
@@ -72,6 +74,13 @@ class HomeController extends GetxController {
     super.onInit();
   }
 
+  void clearController() {
+    nameController.clear();
+    descController.clear();
+    cost.clear();
+    spiceSlider.value = 1;
+  }
+
   RxDouble spiceSlider = 1.0.obs;
 
   final nameController = TextEditingController();
@@ -101,6 +110,7 @@ class HomeController extends GetxController {
           spiceSlider.value.toString(),
           cost.text);
       await getFoodItems();
+      clearController();
       Get.back();
     } catch (e) {
       Get.snackbar("Error", e.toString());
@@ -134,14 +144,22 @@ class HomeController extends GetxController {
     try {
       String id = await sfHelper.getUserId();
       foodItems.value = await homeServices.getMenu(id);
-    } catch (e) {}
+    } catch (e) {
+      foodItems.value = foodItems.length == 0
+          ? foodItems.first.id == -1
+              ? []
+              : foodItems
+          : [];
+      Get.snackbar("Error", e.toString());
+    }
   }
 
   Future<void> logout() async {
     await sfHelper.clear();
     Get.find<AuthController>().clearAll();
-    Get.find<AuthController>().dispose();
-    Get.find<OnboardingController>().dispose();
-    runApp(MyApp());
+
+    Get.find<OnboardingController>().clear();
+
+    Get.offAllNamed(Routes.openingscreenRoute);
   }
 }
