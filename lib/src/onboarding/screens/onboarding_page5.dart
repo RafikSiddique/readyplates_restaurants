@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
+import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
 
@@ -84,32 +85,11 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   SizedBox(
                     height: 18,
                   ),
-                  RichText(
-                    text: TextSpan(
-                        text: 'Type of Account',
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontFamily: 'Inter',
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w500,
-                          letterSpacing: -0.229412,
-                          color: Color(0xff2F2E41),
-                        ),
-                        children: [
-                          TextSpan(
-                            text: ' *',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Color(0xffEB4132),
-                            ),
-                          ),
-                        ]),
-                  ),
+                  FieldTitle(text: "Type of Account"),
                   SizedBox(
                     height: 5,
                   ),
                   Container(
-                    // width: 341,
                     height: 45,
                     child: DropdownButtonFormField<String>(
                       icon: Padding(
@@ -157,27 +137,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   SizedBox(
                     height: 18,
                   ),
-                  RichText(
-                    text: TextSpan(
-                        text: 'IFSC Code',
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontFamily: 'Inter',
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w500,
-                          letterSpacing: -0.229412,
-                          color: Color(0xff2F2E41),
-                        ),
-                        children: [
-                          TextSpan(
-                            text: ' *',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Color(0xffEB4132),
-                            ),
-                          ),
-                        ]),
-                  ),
+                  FieldTitle(text: "IFSC Code"),
                   SizedBox(
                     height: 5,
                   ),
@@ -231,17 +191,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   SizedBox(
                     height: 18,
                   ),
-                  Text(
-                    'PAN Number of Restaurant',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontFamily: 'Inter',
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w500,
-                      letterSpacing: -0.229412,
-                      color: Color(0xff2F2E41),
-                    ),
-                  ),
+                  FieldTitle(text: "PAN Number of Restaurant", required: false),
                   SizedBox(
                     height: 5,
                   ),
@@ -295,16 +245,9 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   SizedBox(
                     height: 18,
                   ),
-                  Text(
-                    'Name of the PAN Card',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontFamily: 'Inter',
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w500,
-                      letterSpacing: -0.229412,
-                      color: Color(0xff2F2E41),
-                    ),
+                  FieldTitle(
+                    text: "Name of the PAN Card",
+                    required: false,
                   ),
                   SizedBox(
                     height: 5,
@@ -345,16 +288,9 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   SizedBox(
                     height: 18,
                   ),
-                  Text(
-                    'Uplaod PAN Card',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontFamily: 'Inter',
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w500,
-                      letterSpacing: -0.229412,
-                      color: Color(0xff2F2E41),
-                    ),
+                  FieldTitle(
+                    text: "Uplaod PAN Card",
+                    required: false,
                   ),
                   SizedBox(
                     height: 5.08,
@@ -390,6 +326,9 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                             ),
                             textAlign: TextAlign.center,
                           ),
+                        ),
+                        SizedBox(
+                          height: 18,
                         ),
                         InkWell(
                           onTap: () async {

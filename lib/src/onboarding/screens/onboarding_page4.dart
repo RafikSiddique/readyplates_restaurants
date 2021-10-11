@@ -21,7 +21,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
       onboardingController: controller,
       child: Scaffold(
         appBar: AppBar(
-          toolbarHeight: 44,
+          // toolbarHeight: 44,
           backgroundColor: Colors.white,
           elevation: 0,
           leading: IconButton(
@@ -41,7 +41,6 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
               fontFamily: 'Inter',
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.w500,
-              letterSpacing: -0.226667,
               color: Color(0xff393E46),
             ),
           ),
@@ -56,30 +55,8 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                 SizedBox(
                   height: 29,
                 ),
-                RichText(
-                  text: TextSpan(
-                      text: 'Type of Establishment',
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontFamily: 'Inter',
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w500,
-                        letterSpacing: -0.229412,
-                        color: Color(0xff2F2E41),
-                      ),
-                      children: [
-                        TextSpan(
-                          text: ' *',
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontFamily: 'Inter',
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: -0.229412,
-                            color: Color(0xffEB4132),
-                          ),
-                        ),
-                      ]),
+                FieldTitle(
+                  text: "Type of Establishment",
                 ),
                 SizedBox(
                   height: 5,
@@ -135,31 +112,8 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                 SizedBox(
                   height: 29,
                 ),
-                RichText(
-                  text: TextSpan(
-                    text: 'Type of Cuisines',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontFamily: 'Inter',
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w500,
-                      letterSpacing: -0.229412,
-                      color: Color(0xff2F2E41),
-                    ),
-                    children: [
-                      TextSpan(
-                        text: ' *',
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontFamily: 'Inter',
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w500,
-                          letterSpacing: -0.229412,
-                          color: Color(0xffEB4132),
-                        ),
-                      ),
-                    ],
-                  ),
+                FieldTitle(
+                  text: "Type of Cuisines",
                 ),
                 SizedBox(
                   height: 15.05,
@@ -175,14 +129,16 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                 children: [
                                   Container(
                                     child: Checkbox(
-                                      checkColor: Colors.white,
+                                      activeColor: Colors.white,
+                                      checkColor: Color(0xff00ADB5),
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(4),
                                           side: BorderSide(
                                             color: Color(0xffE0E0E0),
-                                            width: 1,
-                                            style: BorderStyle.solid,
+
+                                            width: 10,
+                                            // style: BorderStyle.solid,
                                           )),
                                       value: controller.chooseCategory
                                           .contains(category),
@@ -202,7 +158,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                     ),
                                   ),
                                   SizedBox(
-                                    width: 5,
+                                    width: 10,
                                   ),
                                   Container(
                                     width: size.width * 0.15,
@@ -216,7 +172,6 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                           fontFamily: 'Inter',
                                           fontStyle: FontStyle.normal,
                                           fontWeight: FontWeight.normal,
-                                          letterSpacing: -0.264706,
                                           color: Color(0xff2F2E41)
                                               .withOpacity(0.7),
                                         ),
@@ -650,6 +605,9 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                         }
                                       },
                                     ),
+                                    SizedBox(
+                                      width: size.width * 0.010,
+                                    ),
                                     Container(
                                       alignment: Alignment.centerLeft,
                                       width: size.width * 0.15,
@@ -662,7 +620,6 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                             fontFamily: 'Inter',
                                             fontStyle: FontStyle.normal,
                                             fontWeight: FontWeight.normal,
-                                            letterSpacing: -0.264706,
                                             color: Color(0xff2F2E41)
                                                 .withOpacity(0.7),
                                           ),
@@ -675,109 +632,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                           .toList(),
                     ],
                   ),
-                  /* Column(
-                        children: [
-                          ...controller.selectDays
-                              .sublist(3, 5)
-                              .map((days) => Row(
-                                    children: [
-                                      Checkbox(
-                                        checkColor: Colors.white,
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(4),
-                                            side: BorderSide(
-                                              color: Color(0xffE0E0E0),
-                                              width: 1,
-                                              style: BorderStyle.solid,
-                                            )),
-                                        value: controller.chooseDays
-                                            .contains(days),
-                                        onChanged: (value) {
-                                          if (controller.chooseDays
-                                              .contains(days)) {
-                                            controller.chooseDays.remove(days);
-                                          } else {
-                                            controller.chooseDays.add(days);
-                                          }
-                                        },
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Container(
-                                        width: 85,
-                                        child: Text(
-                                          days,
-                                          style: TextStyle(
-                                            fontSize: 13,
-                                            fontFamily: 'Inter',
-                                            fontStyle: FontStyle.normal,
-                                            fontWeight: FontWeight.normal,
-                                            letterSpacing: -0.264706,
-                                            color: Color(0xff2F2E41)
-                                                .withOpacity(0.7),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ))
-                              .toList(),
-                        ], */
                 ),
-                /* Column(
-                        children: [
-                          ...controller.selectDays
-                              .sublist(5, 7)
-                              .map((days) => Row(
-                                    children: [
-                                      Checkbox(
-                                        checkColor: Colors.white,
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(4),
-                                            side: BorderSide(
-                                              color: Color(0xffE0E0E0),
-                                              width: 1,
-                                              style: BorderStyle.solid,
-                                            )),
-                                        value: controller.chooseDays
-                                            .contains(days),
-                                        onChanged: (value) {
-                                          if (controller.chooseDays
-                                              .contains(days)) {
-                                            controller.chooseDays.remove(days);
-                                          } else {
-                                            controller.chooseDays.add(days);
-                                          }
-                                        },
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Container(
-                                        width: 85,
-                                        child: Text(
-                                          days,
-                                          style: TextStyle(
-                                            fontSize: 13,
-                                            fontFamily: 'Inter',
-                                            fontStyle: FontStyle.normal,
-                                            fontWeight: FontWeight.normal,
-                                            letterSpacing: -0.264706,
-                                            color: Color(0xff2F2E41)
-                                                .withOpacity(0.7),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ))
-                              .toList(),
-                        ],
-                      ), */
-                // ],
-                //),
-                //),
                 SizedBox(
                   height: 29,
                 ),
@@ -789,7 +644,9 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                     // width: 343,
                     height: 40.11,
                     decoration: BoxDecoration(
-                      color: Color(0xff7A7E83),
+                      color: (controller.isChecked) == true
+                          ? Color(0xff222831)
+                          : Color(0xff7A7E83),
                       borderRadius: BorderRadius.all(Radius.circular(6)),
                     ),
                     child: Center(

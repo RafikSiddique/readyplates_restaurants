@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
+import 'package:readyplates_restaurants/widgets/field_title.dart';
+import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
 
 class OnboardingPage6 extends StatefulWidget {
@@ -40,7 +42,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
       onboardingController: controller,
       child: Scaffold(
         appBar: AppBar(
-          toolbarHeight: 44,
+          // toolbarHeight: 44,
           backgroundColor: Colors.white,
           elevation: 0,
           leading: IconButton(
@@ -74,26 +76,34 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                 SizedBox(
                   height: 8,
                 ),
-                RichText(
-                  text: TextSpan(
-                      text: 'Restaurant Description',
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontFamily: 'Inter',
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w500,
-                        letterSpacing: -0.229412,
-                        color: Color(0xff2F2E41),
-                      ),
-                      children: [
-                        TextSpan(
-                          text: ' *',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xffEB4132),
-                          ),
-                        ),
-                      ]),
+                // RichText(
+                //   text: TextSpan(
+                //       text: 'Restaurant Description',
+                //       style: TextStyle(
+                //         fontSize: 13,
+                //         fontFamily: 'Inter',
+                //         fontStyle: FontStyle.normal,
+                //         fontWeight: FontWeight.w500,
+                //         letterSpacing: -0.229412,
+                //         color: Color(0xff2F2E41),
+                //       ),
+                //       children: [
+                //         TextSpan(
+                //           text: ' *',
+                //           style: TextStyle(
+                //             fontSize: 16,
+                //             color: Color(0xffEB4132),
+                //           ),
+                //         ),
+                //       ]),
+                // ),
+                AppFormField(
+                  line: 4,
+                  title: 'Restaurant Description',
+                  hintText:
+                      'Founded in 1954, Burger King is the second largest fast food hamburger chain in the world. The original Home of the Whopper, our commitment to premium ingredients, signature recipes, and family-friendly dining experiences is what has defined our brand for more than 50 successful years.',
+                  hintfontSize: 15,
+                  controller: controller.resDescript,
                 ),
                 SizedBox(
                   height: 5,
@@ -143,27 +153,28 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                 SizedBox(
                   height: 15,
                 ),
-                RichText(
-                  text: TextSpan(
-                      text: 'Table Information',
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontFamily: 'Inter',
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w500,
-                        letterSpacing: -0.229412,
-                        color: Color(0xff2F2E41),
-                      ),
-                      children: [
-                        TextSpan(
-                          text: ' *',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xffEB4132),
-                          ),
-                        ),
-                      ]),
-                ),
+                FieldTitle(text: 'Table Information'),
+                // RichText(
+                //   text: TextSpan(
+                //       text: 'Table Information',
+                //       style: TextStyle(
+                //         fontSize: 13,
+                //         fontFamily: 'Inter',
+                //         fontStyle: FontStyle.normal,
+                //         fontWeight: FontWeight.w500,
+                //         letterSpacing: -0.229412,
+                //         color: Color(0xff2F2E41),
+                //       ),
+                //       children: [
+                //         TextSpan(
+                //           text: ' *',
+                //           style: TextStyle(
+                //             fontSize: 16,
+                //             color: Color(0xffEB4132),
+                //           ),
+                //         ),
+                //       ]),
+                // ),
                 SizedBox(
                   height: 5,
                 ),
@@ -395,27 +406,28 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          RichText(
-                            text: TextSpan(
-                                text: 'Cost for two',
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  fontFamily: 'Inter',
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.w500,
-                                  letterSpacing: -0.229412,
-                                  color: Color(0xff2F2E41),
-                                ),
-                                children: [
-                                  TextSpan(
-                                    text: ' *',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      color: Color(0xffEB4132),
-                                    ),
-                                  ),
-                                ]),
-                          ),
+                          FieldTitle(text: 'Cost for two'),
+                          // RichText(
+                          //   text: TextSpan(
+                          //       text: 'Cost for two',
+                          //       style: TextStyle(
+                          //         fontSize: 13,
+                          //         fontFamily: 'Inter',
+                          //         fontStyle: FontStyle.normal,
+                          //         fontWeight: FontWeight.w500,
+                          //         letterSpacing: -0.229412,
+                          //         color: Color(0xff2F2E41),
+                          //       ),
+                          //       children: [
+                          //         TextSpan(
+                          //           text: ' *',
+                          //           style: TextStyle(
+                          //             fontSize: 16,
+                          //             color: Color(0xffEB4132),
+                          //           ),
+                          //         ),
+                          //       ]),
+                          // ),
                           SizedBox(
                             height: 5,
                           ),
@@ -514,27 +526,28 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          RichText(
-                            text: TextSpan(
-                                text: 'Serving time',
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  fontFamily: 'Inter',
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.w500,
-                                  letterSpacing: -0.229412,
-                                  color: Color(0xff2F2E41),
-                                ),
-                                children: [
-                                  TextSpan(
-                                    text: ' *',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      color: Color(0xffEB4132),
-                                    ),
-                                  ),
-                                ]),
-                          ),
+                          FieldTitle(text: 'Serving time'),
+                          // RichText(
+                          //   text: TextSpan(
+                          //       text: 'Serving time',
+                          //       style: TextStyle(
+                          //         fontSize: 13,
+                          //         fontFamily: 'Inter',
+                          //         fontStyle: FontStyle.normal,
+                          //         fontWeight: FontWeight.w500,
+                          //         letterSpacing: -0.229412,
+                          //         color: Color(0xff2F2E41),
+                          //       ),
+                          //       children: [
+                          //         TextSpan(
+                          //           text: ' *',
+                          //           style: TextStyle(
+                          //             fontSize: 16,
+                          //             color: Color(0xffEB4132),
+                          //           ),
+                          //         ),
+                          //       ]),
+                          // ),
                           SizedBox(
                             height: 5,
                           ),
@@ -632,17 +645,21 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                 SizedBox(
                   height: 15,
                 ),
-                Text(
-                  'Recurring events (optional)',
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontFamily: 'Inter',
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: -0.229412,
-                    color: Color(0xff2F2E41),
-                  ),
+                FieldTitle(
+                  text: 'Recurring events (optional)',
+                  required: false,
                 ),
+                // Text(
+                //   'Recurring events (optional)',
+                //   style: TextStyle(
+                //     fontSize: 13,
+                //     fontFamily: 'Inter',
+                //     fontStyle: FontStyle.normal,
+                //     fontWeight: FontWeight.w500,
+                //     letterSpacing: -0.229412,
+                //     color: Color(0xff2F2E41),
+                //   ),
+                // ),
                 SizedBox(
                   height: 5,
                 ),
