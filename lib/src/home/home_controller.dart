@@ -122,7 +122,8 @@ class HomeController extends GetxController {
   Future<void> editFoodItem(int id) async {
     try {
       String resname = await sfHelper.getRestaurantName();
-      await homeServices.addfooditem(
+      await homeServices.editFoodItem(
+          id,
           resname,
           nameController.text,
           descController.text,
