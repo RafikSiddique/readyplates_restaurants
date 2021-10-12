@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 
+// ignore: must_be_immutable
 class AppFormField extends StatelessWidget {
+  final int? line;
   final bool isRequired;
   final String title;
   final String? Function(String?)? validator;
@@ -15,16 +16,19 @@ class AppFormField extends StatelessWidget {
   final List<TextInputFormatter>? formatters;
   final TextInputType inputType;
   final double fontSize;
+  final double hintfontSize;
   final String fontFamily;
   final FontWeight fontWeight;
   final bool matchVerification;
   final TextEditingController? secondVal;
   AppFormField({
     Key? key,
+    this.line,
     this.secondVal,
     this.matchVerification = false,
     this.isRequired = true,
-    this.fontSize = 12,
+    this.fontSize = 13,
+    this.hintfontSize = 12,
     this.fontFamily = 'Inter-Bold',
     this.fontWeight = FontWeight.w500,
     required this.title,
@@ -61,6 +65,7 @@ class AppFormField extends StatelessWidget {
             ),
           StatefulBuilder(builder: (context, setState) {
             return TextFormField(
+              maxLines: line,
               obscureText: isPassword ? obSecureText : false,
               inputFormatters: formatters,
               controller: controller,
@@ -89,6 +94,8 @@ class AppFormField extends StatelessWidget {
                 contentPadding: EdgeInsets.only(
                   left: 14,
                   top: 14,
+                  right: 14,
+                  bottom: 14,
                 ),
                 suffixIcon: isPassword
                     ? IconButton(
@@ -100,12 +107,12 @@ class AppFormField extends StatelessWidget {
                         icon: Icon(obSecureText ? Icons.lock : Icons.lock_open))
                     : null,
                 hintStyle: TextStyle(
-                  fontSize: 12,
+                  fontSize: hintfontSize,
                   letterSpacing: 0.24,
                   fontFamily: 'Inter-Regular',
                   fontStyle: FontStyle.normal,
                   fontWeight: FontWeight.w600,
-                  color: Color(0xff9CA3AF),
+                  color: Color(0x979797).withOpacity(0.7),
                 ),
               ),
             );
@@ -123,7 +130,6 @@ class AppFormField extends StatelessWidget {
                 fontFamily: 'Poppins',
                 fontStyle: FontStyle.normal,
                 fontWeight: FontWeight.normal,
-                letterSpacing: -0.229412,
                 color: Color(0xff6E6D7A),
               ),
             ),

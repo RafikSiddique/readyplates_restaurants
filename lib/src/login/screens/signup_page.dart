@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
@@ -231,7 +230,13 @@ class _SignupPageState extends State<SignupPage> {
                                 width: size.width,
                                 height: 54,
                                 decoration: BoxDecoration(
-                                  color: Color(0xff7A7E83),
+                                  color: (controller.emailController == true &&
+                                          controller.passwordController ==
+                                              true &&
+                                          controller.password2Controller ==
+                                              true)
+                                      ? Color(0xff222831)
+                                      : Color(0xff7A7E83),
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(6)),
                                 ),

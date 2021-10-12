@@ -3,12 +3,10 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:readyplates_restaurants/main.dart';
 import 'package:readyplates_restaurants/models/fooditem_model.dart';
 import 'package:readyplates_restaurants/src/home/home_services.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
-import 'package:readyplates_restaurants/src/staticscreens/opening_screen.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 import 'package:readyplates_restaurants/utils/utils.dart';
 
