@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
+import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
 
 class OnboardingPage7 extends StatefulWidget {
@@ -24,29 +24,9 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            RichText(
-              text: TextSpan(
-                  text: onBoardingController.titleText[o],
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontFamily: 'Inter',
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: -0.229412,
-                    color: Color(0xff2F2E41),
-                  ),
-                  children: [
-                    TextSpan(
-                      text: ' *',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Color(0xffEB4132),
-                      ),
-                    ),
-                  ]),
-            ),
+            FieldTitle(text: '${onBoardingController.titleText[o]}'),
             SizedBox(
-              height: size.height * 0.001,
+              height: 5,
             ),
             ImageCard(
               path: onBoardingController.selectedImages[o],
@@ -54,7 +34,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
               height: size.height * 0.24,
             ),
             SizedBox(
-              height: size.height * 0.01,
+              height: 7,
             ),
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               for (int i = 0;

@@ -207,7 +207,10 @@ class _LoginPageState extends State<LoginPage> {
                               width: size.width,
                               height: 54,
                               decoration: BoxDecoration(
-                                color: Color(0xff7A7E83),
+                                color: (controller.emailController == true &&
+                                        controller.passwordController == true)
+                                    ? Color(0xff222831)
+                                    : Color(0xff7A7E83),
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(6)),
                               ),

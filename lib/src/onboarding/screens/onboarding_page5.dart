@@ -63,25 +63,27 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                     height: 8,
                   ),
                   AppFormField(
-                      title: 'Legal Entity Account Number',
-                      hintText: '511122266514782',
-                      bottomText:
-                          'Make sure it matches the name on your government ID',
-                      inputType: TextInputType.number,
-                      formatters: [FilteringTextInputFormatter.digitsOnly],
-                      controller: controller.ac_numberController),
+                    title: 'Legal Entity Account Number',
+                    hintText: '511122266514782',
+                    bottomText:
+                        'Make sure it matches the name on your government ID',
+                    inputType: TextInputType.number,
+                    formatters: [FilteringTextInputFormatter.digitsOnly],
+                    controller: controller.ac_numberController,
+                  ),
                   SizedBox(
                     height: 5,
                   ),
                   AppFormField(
-                      title: 'Re-Enter Account Number',
-                      hintText: '511122266514782',
-                      matchVerification: true,
-                      bottomText: "Both fields should match",
-                      secondVal: controller.ac_numberController,
-                      inputType: TextInputType.number,
-                      formatters: [FilteringTextInputFormatter.digitsOnly],
-                      controller: controller.reac_numberController),
+                    title: 'Re-Enter Account Number',
+                    hintText: '511122266514782',
+                    matchVerification: true,
+                    bottomText: "Both fields should match",
+                    secondVal: controller.ac_numberController,
+                    inputType: TextInputType.number,
+                    formatters: [FilteringTextInputFormatter.digitsOnly],
+                    controller: controller.reac_numberController,
+                  ),
                   SizedBox(
                     height: 18,
                   ),
@@ -137,153 +139,34 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   SizedBox(
                     height: 18,
                   ),
-                  FieldTitle(text: "IFSC Code"),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Container(
-                    // width: 341,
-                    height: 45,
-                    child: TextFormField(
-                      controller: controller.ifsc_codeController,
-                      cursorColor: Color(0xff00ADB5),
-                      textAlign: TextAlign.left,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            width: 1,
-                            color: Color(0xffE0E0E0),
-                          ),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(6.0),
-                          ),
-                        ),
-                        hintText: 'HDFC000042',
-                        contentPadding: EdgeInsets.only(
-                          left: 14,
-                          top: 14,
-                        ),
-                        hintStyle: TextStyle(
-                          fontSize: 13,
-                          fontFamily: 'Inter',
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w500,
-                          letterSpacing: -0.264706,
-                          color: Color(0x979797).withOpacity(0.7),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 3.02,
-                  ),
-                  Text(
-                    'Enter a valid IFSC Code',
-                    style: TextStyle(
-                      fontSize: 9,
-                      fontFamily: 'Poppins',
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.normal,
-                      letterSpacing: -0.229412,
-                      color: Color(0xff6E6D7A),
-                    ),
+                  AppFormField(
+                    title: 'IFSC Code',
+                    hintText: 'HDFC000042',
+
+                    bottomText: "Enter a valid IFSC Code",
+
+                    // formatters: [FilteringTextInputFormatter.digitsOnly],
+                    controller: controller.ifsc_codeController,
                   ),
                   SizedBox(
                     height: 18,
                   ),
-                  FieldTitle(text: "PAN Number of Restaurant", required: false),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Container(
-                    // width: 341,
-                    height: 45,
-                    child: TextFormField(
-                      controller: controller.pan_numController,
-                      cursorColor: Color(0xff00ADB5),
-                      textAlign: TextAlign.left,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            width: 1,
-                            color: Color(0xffE0E0E0),
-                          ),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(6.0),
-                          ),
-                        ),
-                        hintText: 'BSUTA1568A',
-                        contentPadding: EdgeInsets.only(
-                          left: 14,
-                          top: 14,
-                        ),
-                        hintStyle: TextStyle(
-                          fontSize: 13,
-                          fontFamily: 'Inter',
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w500,
-                          letterSpacing: -0.264706,
-                          color: Color(0x979797).withOpacity(0.7),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 3.02,
-                  ),
-                  Text(
-                    'PAN of the registered legal entity',
-                    style: TextStyle(
-                      fontSize: 9,
-                      fontFamily: 'Poppins',
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.normal,
-                      letterSpacing: -0.229412,
-                      color: Color(0xff6E6D7A),
-                    ),
+                  AppFormField(
+                    title: 'PAN Number of Restaurant',
+                    hintText: 'BSUTA1568A',
+                    isRequired: false,
+                    bottomText: "PAN of the registered legal entity",
+                    controller: controller.pan_numController,
                   ),
                   SizedBox(
                     height: 18,
                   ),
-                  FieldTitle(
-                    text: "Name of the PAN Card",
-                    required: false,
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Container(
-                    // width: 341,
-                    height: 45,
-                    child: TextFormField(
-                      controller: controller.pan_nameController,
-                      cursorColor: Color(0xff00ADB5),
-                      textAlign: TextAlign.left,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              width: 1,
-                              color: Color(0xffE0E0E0),
-                              style: BorderStyle.solid),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(6.0),
-                          ),
-                        ),
-                        hintText: 'Snack Shack Fast Foods',
-                        contentPadding: EdgeInsets.only(
-                          left: 14,
-                          top: 14,
-                        ),
-                        hintStyle: TextStyle(
-                          fontSize: 13,
-                          fontFamily: 'Inter',
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w500,
-                          letterSpacing: -0.264706,
-                          color: Color(0x979797).withOpacity(0.7),
-                        ),
-                      ),
-                    ),
+                  AppFormField(
+                    title: 'Name of the PAN Card',
+                    hintText: 'Bliss Bistro & Cafe',
+                    isRequired: false,
+                    bottomText: "PAN of the registered legal entity",
+                    controller: controller.pan_nameController,
                   ),
                   SizedBox(
                     height: 18,
@@ -412,8 +295,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                       fontSize: 8,
                       fontFamily: 'Montserrat',
                       fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w500,
-                      letterSpacing: -0.229412,
+                      fontWeight: FontWeight.w400,
                       color: Color(0xff6E6D7A),
                     ),
                   ),

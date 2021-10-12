@@ -1,13 +1,15 @@
 import 'dart:async';
-
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geocode/geocode.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
+import 'package:readyplates_restaurants/widgets/field_title.dart';
+import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
 
 class OnboardingPage2 extends StatefulWidget {
@@ -23,12 +25,14 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     var media = MediaQuery.of(context).size;
     return OnBoardingWrapper(
       onboardingController: controller,
       child: Scaffold(
+        backgroundColor: Color(0xffE5E5E5),
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: Color(0xffE5E5E5),
           elevation: 0,
           leading: IconButton(
               iconSize: 14.83,
@@ -53,339 +57,176 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
         body: SingleChildScrollView(
           child: Form(
             key: formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 8),
-                Padding(
-                  padding: const EdgeInsets.only(left: 17),
-                  child: RichText(
-                    text: TextSpan(
-                        text: 'Restaurant Address',
-                        style: TextStyle(
-                          fontSize: 13,
-                          letterSpacing: -0.229412,
-                          color: Color(0xff2F2E41),
-                        ),
-                        children: [
-                          TextSpan(
-                            text: ' *',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Color(0xffEB4132),
-                            ),
-                          ),
-                        ]),
-                  ),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Container(
-                  height: 45,
-                  margin: EdgeInsets.only(left: 17, right: 15),
-                  width: MediaQuery.of(context).size.width,
-                  child: TextFormField(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 16, right: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 8),
+
+                  AppFormField(
+                    title: "Restaurant Address",
+                    hintText: "Address Line 1",
                     controller: controller.address1Controller,
-                    decoration: InputDecoration(
-                      hintText: "Address Line 1",
-                      hintStyle: TextStyle(
-                          fontSize: 15,
-                          letterSpacing: -0.264706,
-                          color: Color(0xff2F2E41).withOpacity(0.7)),
-                      border: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(width: 0, color: Color(0xffE0E0E0)),
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(6),
-                          topRight: Radius.circular(6),
-                          bottomLeft: Radius.circular(0),
-                          bottomRight: Radius.circular(0),
-                        ),
-                      ),
-                    ),
+                    borderRadius:
+                        BorderRadius.vertical(top: Radius.circular(6)),
                   ),
-                ),
-                Container(
-                  height: 45,
-                  margin: EdgeInsets.only(left: 17, right: 15),
-                  width: MediaQuery.of(context).size.width,
-                  child: TextFormField(
+
+                  AppFormField(
+                    title: '',
+                    hintText: "Address Line 2",
                     controller: controller.address2Controller,
-                    decoration: InputDecoration(
-                      hintText: "Address Line 2",
-                      hintStyle: TextStyle(
-                          fontSize: 15,
-                          letterSpacing: -0.264706,
-                          color: Color(0xff2F2E41).withOpacity(0.7)),
-                      border: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(width: 0.5, color: Color(0xffE0E0E0)),
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(0),
-                          topRight: Radius.circular(0),
-                          bottomLeft: Radius.circular(0),
-                          bottomRight: Radius.circular(0),
-                        ),
-                      ),
-                    ),
+                    borderRadius:
+                        BorderRadius.vertical(bottom: Radius.circular(0)),
                   ),
-                ),
-                Container(
-                  height: 45,
-                  margin: EdgeInsets.only(left: 17, right: 15),
-                  width: MediaQuery.of(context).size.width,
-                  child: TextFormField(
+                  AppFormField(
+                    title: '',
+                    hintText: "Nearby Landmark",
                     controller: controller.nearbylandnarkController,
-                    decoration: InputDecoration(
-                      hintText: "Nearby Landmark",
-                      hintStyle: TextStyle(
-                          fontSize: 15,
-                          letterSpacing: -0.264706,
-                          color: Color(0xff2F2E41).withOpacity(0.7)),
-                      border: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(width: 0, color: Color(0xffE0E0E0)),
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(0),
-                          topRight: Radius.circular(0),
-                          bottomLeft: Radius.circular(6),
-                          bottomRight: Radius.circular(6),
-                        ),
-                      ),
-                    ),
+                    borderRadius:
+                        BorderRadius.vertical(bottom: Radius.circular(6)),
+                    bottomText:
+                        'Make sure it matches the name on your government ID',
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 17),
-                  child: Text(
-                      "Make sure it matches the name on your government ID",
+
+                  SizedBox(height: 20),
+
+                  AppFormField(
+                    title: "Postal Code",
+                    hintText: "+91 XXXXXXXXXX",
+                    controller: controller.postalcodeController,
+                    inputType: TextInputType.number,
+                    formatters: [FilteringTextInputFormatter.digitsOnly],
+                  ),
+
+                  SizedBox(
+                    height: 20,
+                  ),
+                  FieldTitle(text: 'Locate Restaurant on Map'),
+
+                  // RichText(
+
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Container(
+                    height: 159,
+                    child: FutureBuilder<Position>(
+                        future: Geolocator.getCurrentPosition(),
+                        builder: (context, snapshot) {
+                          if (!snapshot.hasError && snapshot.data != null) {
+                            return OpenContainer(
+                              transitionDuration: Duration(milliseconds: 500),
+                              closedBuilder: (context, action) {
+                                return IgnorePointer(
+                                  child: SelectLocation(
+                                    latLng: LatLng(snapshot.data!.latitude,
+                                        snapshot.data!.longitude),
+                                    setLocation: (p0) {},
+                                  ),
+                                );
+                              },
+                              openBuilder: (context, action) {
+                                return SelectLocation(
+                                  isOpen: true,
+                                  latLng: LatLng(snapshot.data!.latitude,
+                                      snapshot.data!.longitude),
+                                  setLocation: (p0) async {
+                                    GeoCode geoCode = GeoCode();
+                                    controller.latitudeController.text =
+                                        p0.latitude.toString();
+                                    controller.longitudeController.text =
+                                        p0.longitude.toString();
+                                    final address =
+                                        await geoCode.reverseGeocoding(
+                                            latitude: p0.latitude,
+                                            longitude: p0.longitude);
+
+                                    controller.address1Controller.text =
+                                        address.streetAddress.toString();
+                                    controller.address2Controller.text =
+                                        address.region.toString();
+                                    controller.postalcodeController.text =
+                                        address.postal.toString();
+                                  },
+                                );
+                              },
+                            );
+                          } else {
+                            return Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                        }),
+                    width: MediaQuery.of(context).size.width,
+                  ),
+                  SizedBox(
+                    height: 3,
+                  ),
+                  Text("Please locate restaurant on Map",
                       style: TextStyle(
                         fontSize: 9,
                         color: Color(0xff2F2E41),
+                        fontFamily: 'Poppins',
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.normal,
                       )),
-                ),
-                SizedBox(height: 18),
-                Padding(
-                  padding: const EdgeInsets.only(left: 17),
-                  child: RichText(
-                    text: TextSpan(
-                        text: 'Postal Code',
-                        style: TextStyle(
-                          fontSize: 13,
-                          letterSpacing: -0.229412,
-                          color: Color(0xff2F2E41),
-                        ),
-                        children: [
-                          TextSpan(
-                            text: ' *',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Color(0xffEB4132),
-                            ),
-                          ),
-                        ]),
+                  SizedBox(
+                    height: 20,
                   ),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Container(
-                  height: 45,
-                  margin: EdgeInsets.only(
-                    left: 17,
-                    right: 17,
-                  ),
-                  width: MediaQuery.of(context).size.width,
-                  child: TextFormField(
-                    controller: controller.postalcodeController,
-                    decoration: InputDecoration(
-                      hintText: "xxxxxxx",
-                      hintStyle: TextStyle(
-                          fontSize: 15,
-                          letterSpacing: -0.264706,
-                          color: Color(0xff2F2E41).withOpacity(0.7)),
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 17),
-                  child: RichText(
-                    text: TextSpan(
-                        text: 'Locate Restaurant on Map ',
-                        style: TextStyle(
-                          fontSize: 13,
-                          letterSpacing: -0.229412,
-                          color: Color(0xff2F2E41),
-                        ),
-                        children: [
-                          TextSpan(
-                            text: ' *',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Color(0xffEB4132),
-                            ),
-                          ),
-                        ]),
-                  ),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Container(
-                  margin: EdgeInsets.only(
-                    left: 17,
-                    right: 17,
-                  ),
-                  height: 159,
-                  child: FutureBuilder<Position>(
-                      future: Geolocator.getCurrentPosition(),
-                      builder: (context, snapshot) {
-                        if (!snapshot.hasError && snapshot.data != null) {
-                          return OpenContainer(
-                            transitionDuration: Duration(milliseconds: 500),
-                            closedBuilder: (context, action) {
-                              return IgnorePointer(
-                                child: SelectLocation(
-                                  latLng: LatLng(snapshot.data!.latitude,
-                                      snapshot.data!.longitude),
-                                  setLocation: (p0) {},
-                                ),
-                              );
-                            },
-                            openBuilder: (context, action) {
-                              return SelectLocation(
-                                isOpen: true,
-                                latLng: LatLng(snapshot.data!.latitude,
-                                    snapshot.data!.longitude),
-                                setLocation: (p0) async {
-                                  GeoCode geoCode = GeoCode();
-                                  controller.latitudeController.text =
-                                      p0.latitude.toString();
-                                  controller.longitudeController.text =
-                                      p0.longitude.toString();
-                                  final address =
-                                      await geoCode.reverseGeocoding(
-                                          latitude: p0.latitude,
-                                          longitude: p0.longitude);
 
-                                  controller.address1Controller.text =
-                                      address.streetAddress.toString();
-                                  controller.address2Controller.text =
-                                      address.region.toString();
-                                  controller.postalcodeController.text =
-                                      address.postal.toString();
-                                },
-                              );
-                            },
-                          );
-                        } else {
-                          return Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        }
-                      }),
-                  width: MediaQuery.of(context).size.width,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 17),
-                  child: Text("Please locate restaurant on Map",
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: Color(0xff2F2E41),
-                      )),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 17),
-                  child: Text("Latitude",
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: Color(0xff2F2E41),
-                      )),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Container(
-                  height: 45,
-                  margin: EdgeInsets.only(
-                    left: 17,
-                    right: 17,
-                  ),
-                  width: MediaQuery.of(context).size.width,
-                  child: TextFormField(
+                  AppFormField(
+                    title: 'Latitude',
+                    hintText: "Latitude",
+                    isRequired: false,
                     controller: controller.latitudeController,
-                    decoration: InputDecoration(
-                      fillColor: Color(0xFFE6E6E6),
-                      border: OutlineInputBorder(),
-                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 17),
-                  child: Text("Longitude",
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: Color(0xff2F2E41),
-                      )),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Container(
-                  height: 45,
-                  margin: EdgeInsets.only(
-                    left: 17,
-                    right: 17,
+
+                  SizedBox(
+                    height: 20,
                   ),
-                  width: MediaQuery.of(context).size.width,
-                  child: TextFormField(
+
+                  AppFormField(
+                    title: 'Longitute',
+                    hintText: "Longitute",
+                    isRequired: false,
                     controller: controller.longitudeController,
-                    decoration: InputDecoration(
-                      fillColor: Color(0xFFE6E6E6),
-                      border: OutlineInputBorder(),
+                  ),
+
+                  SizedBox(height: 20),
+                  InkWell(
+                    onTap: () async {
+                      formKey.currentState!.save();
+
+                      if (formKey.currentState!.validate())
+                        controller.onboardingApi(OnBoardingMethod.api2);
+                    },
+                    child: Container(
+                      height: 40.11,
+                      decoration: BoxDecoration(
+                        color: Color(0xff7A7E83),
+                        borderRadius: BorderRadius.all(Radius.circular(6)),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'CONTINUE',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: -0.28,
+                            color: Color(0xffE5E5E5),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.only(left: 17, right: 15),
-                  child: SizedBox(
-                    height: 54,
-                    width: MediaQuery.of(context).size.width,
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: Color(0xff7A7E83),
-                          side: BorderSide(
-                              width: 1.5,
-                              color: Color.fromRGBO(255, 255, 255, 0.5)),
-                        ),
-                        onPressed: () async {
-                          formKey.currentState!.save();
-                          await controller.onboardingApi(OnBoardingMethod.api2);
-                        },
-                        child: Text('CONTINUE',
-                            style: TextStyle(
-                              color: Color(0xffE5E5E5),
-                              fontSize: 17,
-                            ))),
+
+                  SizedBox(
+                    height: 5.89,
                   ),
-                ),
-                SizedBox(
-                  height: 17,
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

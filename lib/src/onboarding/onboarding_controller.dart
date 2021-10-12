@@ -21,6 +21,8 @@ class OnboardingController extends GetxController {
   final resNameController = TextEditingController();
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
+  final ownemailController = TextEditingController();
+
   final ownMobileController = TextEditingController();
   String rescity = '';
   final pocController = TextEditingController();

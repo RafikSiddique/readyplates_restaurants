@@ -44,8 +44,8 @@ class HomePage extends StatelessWidget {
         ),
         appBar: AppBar(
           elevation: 0,
-          toolbarHeight: 44,
           centerTitle: true,
+          toolbarHeight: 44,
           backgroundColor: Colors.transparent,
           actions: [
             IconButton(

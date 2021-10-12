@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
+import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
 
@@ -59,6 +60,7 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                   AppFormField(
                     title: "Restaurant Name",
                     hintText: "Snack Shack Fast Food Restaurant",
+                    hintfontSize: 15,
                     controller: controller.resNameController,
                     validator: (p0) {
                       if (p0 == null ||
@@ -73,6 +75,7 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                   AppFormField(
                     title: "Owner Name",
                     hintText: "First Name",
+                    hintfontSize: 15,
                     controller: controller.firstNameController,
                     borderRadius:
                         BorderRadius.vertical(top: Radius.circular(6)),
@@ -80,80 +83,27 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                   AppFormField(
                     title: '',
                     hintText: "Last Name",
+                    hintfontSize: 15,
                     controller: controller.lastNameController,
                     borderRadius:
                         BorderRadius.vertical(bottom: Radius.circular(6)),
-                  ),
-                  SizedBox(
-                    height: 3,
-                  ),
-                  Text(
-                    'Make sure it matches the name on your government ID',
-                    style: TextStyle(
-                      fontSize: 9,
-                      letterSpacing: -0.229412,
-                      color: Color(0xff6E6D7A),
-                    ),
+                    bottomText:
+                        'Make sure it matches the name on your government ID',
                   ),
                   SizedBox(
                     height: 18,
                   ),
-                  Text(
-                    'Owner Email ID',
-                    style: TextStyle(
-                      fontSize: 13,
-                      letterSpacing: -0.229412,
-                      color: Color(0xff2F2E41),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Container(
-                    height: 45,
-                    child: TextFormField(
-                      textAlign: TextAlign.left,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(width: 1, color: Color(0xffE0E0E0)),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(6.0),
-                          ),
-                        ),
-                        hintText: 'username@aol.com',
-                        contentPadding: EdgeInsets.only(
-                          left: 14,
-                          top: 14,
-                        ),
-                        hintStyle: TextStyle(
-                          fontSize: 15,
-                          letterSpacing: -0.264706,
-                          color: Color(0xff2F2E41).withOpacity(0.7),
-                        ),
-                      ),
-                    ),
+                  AppFormField(
+                    title: 'Owner Email ID',
+                    hintText: 'username@aol.com',
+                    hintfontSize: 15,
+                    controller: controller.ownemailController,
                   ),
                   SizedBox(
                     height: 18,
                   ),
-                  RichText(
-                    text: TextSpan(
-                        text: 'Owner Mobile Number',
-                        style: TextStyle(
-                          fontSize: 13,
-                          letterSpacing: -0.229412,
-                          color: Color(0xff2F2E41),
-                        ),
-                        children: [
-                          TextSpan(
-                            text: ' *',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Color(0xffEB4132),
-                            ),
-                          ),
-                        ]),
+                  FieldTitle(
+                    text: 'Owner Mobile Number',
                   ),
                   SizedBox(
                     height: 5,
@@ -174,26 +124,40 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                         ),
                         hintText: '+91 XXXXXXXXXX',
                         suffixIcon: Container(
-                          decoration: BoxDecoration(
-                            border: Border(
-                              left: BorderSide(
-                                  color: Color(0xffE0E0E0), width: 1),
-                            ),
-                          ),
-                          child: TextButton(
-                            child: Padding(
-                              padding: EdgeInsets.only(right: 20, left: 20),
-                              child: Text(
-                                'Verify',
-                                style: TextStyle(
-                                  decoration: TextDecoration.underline,
-                                  fontSize: 15,
-                                  letterSpacing: -0.264706,
-                                  color: Color(0xffEB4132).withOpacity(0.7),
+                          width: 115,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Container(
+                                height: 35,
+                                width: 0,
+                                decoration: BoxDecoration(
+                                  color: Color(0xffE0E0E0),
+                                  border: Border.all(
+                                    width: 1,
+                                    color: Color(0xffE0E0E0),
+                                    style: BorderStyle.solid,
+                                  ),
                                 ),
                               ),
-                            ),
-                            onPressed: () {},
+                              TextButton(
+                                child: Padding(
+                                  padding: EdgeInsets.only(right: 20, left: 20),
+                                  child: Text(
+                                    'Verify',
+                                    style: TextStyle(
+                                      decoration: TextDecoration.underline,
+                                      fontWeight: FontWeight.bold,
+                                      fontStyle: FontStyle.normal,
+                                      fontFamily: 'Inter',
+                                      fontSize: 15,
+                                      color: Color(0xffEB4132).withOpacity(0.7),
+                                    ),
+                                  ),
+                                ),
+                                onPressed: () {},
+                              ),
+                            ],
                           ),
                         ),
                         contentPadding:
@@ -213,30 +177,14 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                     'Will be used to make all future correspondence/communications',
                     style: TextStyle(
                       fontSize: 9,
-                      letterSpacing: -0.229412,
                       color: Color(0xff6E6D7A),
                     ),
                   ),
                   SizedBox(
                     height: 18,
                   ),
-                  RichText(
-                    text: TextSpan(
-                        text: 'Restaurant City',
-                        style: TextStyle(
-                          fontSize: 13,
-                          letterSpacing: -0.229412,
-                          color: Color(0xff2F2E41),
-                        ),
-                        children: [
-                          TextSpan(
-                            text: ' *',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Color(0xffEB4132),
-                            ),
-                          ),
-                        ]),
+                  FieldTitle(
+                    text: 'Restaurant City',
                   ),
                   SizedBox(
                     height: 5,
@@ -269,12 +217,12 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                         ),
                         hintStyle: TextStyle(
                           fontSize: 15,
-                          letterSpacing: -0.264706,
-                          color: Color(0xff2F2E41).withOpacity(0.7),
+                          color: Color(0xff979797).withOpacity(0.7),
                         ),
                       ),
                       items: [
-                        DropdownMenuItem(child: Text("Select City"), value: ""),
+                        DropdownMenuItem(
+                            child: Text("Mumbai"), value: "Mumbai"),
                         DropdownMenuItem(child: Text("Pune"), value: "Pune"),
                       ],
                       onChanged: (newValue) {
@@ -292,6 +240,7 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                   AppFormField(
                     title: "Restaurant Point of Contact (POC)",
                     hintText: "Owner/Co-Owner/Manager etc",
+                    hintfontSize: 15,
                     controller: controller.pocController,
                   ),
                   SizedBox(
@@ -300,6 +249,7 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                   AppFormField(
                     title: "Restaurant POC Mobile Number",
                     hintText: "+91 XXXXXXXXXX",
+                    hintfontSize: 15,
                     controller: controller.pocNumberController,
                     inputType: TextInputType.number,
                     formatters: [FilteringTextInputFormatter.digitsOnly],
@@ -325,7 +275,7 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 17,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w600,
                             letterSpacing: -0.28,
                             color: Color(0xffE5E5E5),
                           ),

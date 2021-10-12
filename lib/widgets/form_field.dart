@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 
+// ignore: must_be_immutable
 class AppFormField extends StatelessWidget {
   final int? line;
   final bool isRequired;
@@ -26,7 +27,7 @@ class AppFormField extends StatelessWidget {
     this.secondVal,
     this.matchVerification = false,
     this.isRequired = true,
-    this.fontSize = 12,
+    this.fontSize = 13,
     this.hintfontSize = 12,
     this.fontFamily = 'Inter-Bold',
     this.fontWeight = FontWeight.w500,
@@ -93,6 +94,8 @@ class AppFormField extends StatelessWidget {
                 contentPadding: EdgeInsets.only(
                   left: 14,
                   top: 14,
+                  right: 14,
+                  bottom: 14,
                 ),
                 suffixIcon: isPassword
                     ? IconButton(
@@ -127,7 +130,6 @@ class AppFormField extends StatelessWidget {
                 fontFamily: 'Poppins',
                 fontStyle: FontStyle.normal,
                 fontWeight: FontWeight.normal,
-                letterSpacing: -0.229412,
                 color: Color(0xff6E6D7A),
               ),
             ),
