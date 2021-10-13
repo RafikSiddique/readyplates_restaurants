@@ -12,21 +12,13 @@ import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
 
-class OnboardingPage2 extends StatefulWidget {
+class OnboardingPage2 extends StatelessWidget {
   static const id = "/onboarding2";
-  const OnboardingPage2({Key? key}) : super(key: key);
-
-  @override
-  State<OnboardingPage2> createState() => _OnboardingPage2State();
-}
-
-class _OnboardingPage2State extends State<OnboardingPage2> {
+  OnboardingPage2({Key? key}) : super(key: key);
   final controller = Get.find<OnboardingController>();
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    // ignore: unused_local_variable
-    var media = MediaQuery.of(context).size;
     return OnBoardingWrapper(
       onboardingController: controller,
       child: Scaffold(
@@ -53,7 +45,6 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
             ),
           ),
         ),
-        //backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Form(
             key: formKey,

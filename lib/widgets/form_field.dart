@@ -64,55 +64,67 @@ class AppFormField extends StatelessWidget {
               height: 7,
             ),
           StatefulBuilder(builder: (context, setState) {
-            return TextFormField(
-              maxLines: line,
-              obscureText: isPassword ? obSecureText : false,
-              inputFormatters: formatters,
-              controller: controller,
-              validator: (value) {
-                if (value == "") {
-                  if (isRequired) {
-                    return "This Field is required";
-                  }
-                } else {
-                  if (matchVerification) {
-                    if (value != secondVal!.text) {
-                      return "The ${title} does not match";
+            return Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  width: 1,
+                  color: controller.text != ""
+                      ? Color(0xff00ADB5)
+                      : Color(0xffE0E0E0),
+                ),
+                borderRadius: borderRadius,
+              ),
+              child: TextFormField(
+                maxLines: line,
+                obscureText: isPassword ? obSecureText : false,
+                inputFormatters: formatters,
+                controller: controller,
+                validator: (value) {
+                  if (value == "") {
+                    if (isRequired) {
+                      return "This Field is required";
+                    }
+                  } else {
+                    if (matchVerification) {
+                      if (value != secondVal!.text) {
+                        return "The ${title} does not match";
+                      }
                     }
                   }
-                }
-                if (validator != null) return validator!(value);
-              },
-              textAlign: TextAlign.left,
-              keyboardType: inputType,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(width: 1, color: Color(0xffBEC5D1)),
-                  borderRadius: borderRadius,
-                ),
-                hintText: hintText,
-                contentPadding: EdgeInsets.only(
-                  left: 14,
-                  top: 14,
-                  right: 14,
-                  bottom: 14,
-                ),
-                suffixIcon: isPassword
-                    ? IconButton(
-                        onPressed: () {
-                          setState(() {
-                            obSecureText = !obSecureText;
-                          });
-                        },
-                        icon: Icon(obSecureText ? Icons.lock : Icons.lock_open))
-                    : null,
-                hintStyle: TextStyle(
-                  fontSize: hintfontSize,
-                  letterSpacing: 0.24,
-                  fontFamily: 'Inter-Regular',
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.w600,
-                  color: Color(0x979797).withOpacity(0.7),
+                  if (validator != null) return validator!(value);
+                },
+                textAlign: TextAlign.left,
+                keyboardType: inputType,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: borderRadius,
+                  ),
+                  hintText: hintText,
+                  contentPadding: EdgeInsets.only(
+                    left: 14,
+                    top: 14,
+                    right: 14,
+                    bottom: 14,
+                  ),
+                  suffixIcon: isPassword
+                      ? IconButton(
+                          onPressed: () {
+                            setState(() {
+                              obSecureText = !obSecureText;
+                            });
+                          },
+                          icon:
+                              Icon(obSecureText ? Icons.lock : Icons.lock_open))
+                      : null,
+                  hintStyle: TextStyle(
+                    fontSize: hintfontSize,
+                    letterSpacing: 0.24,
+                    fontFamily: 'Inter-Regular',
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0x979797).withOpacity(0.7),
+                  ),
                 ),
               ),
             );
