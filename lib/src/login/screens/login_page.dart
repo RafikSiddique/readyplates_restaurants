@@ -169,6 +169,7 @@ class _LoginPageState extends State<LoginPage> {
                           AppFormField(
                             title: "Password",
                             hintText: "** ** **",
+                            line: 1,
                             fontSize: 12,
                             controller: controller.passwordController,
                             isPassword: true,
@@ -207,10 +208,12 @@ class _LoginPageState extends State<LoginPage> {
                               width: size.width,
                               height: 54,
                               decoration: BoxDecoration(
-                                color: (controller.emailController == true &&
-                                        controller.passwordController == true)
-                                    ? Color(0xff222831)
-                                    : Color(0xff7A7E83),
+                                color:
+                                    controller.emailController.text.isEmpty &&
+                                            controller
+                                                .passwordController.text.isEmpty
+                                        ? Color(0xff7A7E83)
+                                        : Color(0xff222831),
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(6)),
                               ),

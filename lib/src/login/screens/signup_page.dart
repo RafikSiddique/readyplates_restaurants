@@ -197,6 +197,7 @@ class _SignupPageState extends State<SignupPage> {
                               controller: controller.passwordController,
                               isPassword: true,
                               fontSize: 11,
+                              line: 1,
                               matchVerification: true,
                               secondVal: controller.password2Controller,
                               fontFamily: 'Inter-Bold',
@@ -214,6 +215,7 @@ class _SignupPageState extends State<SignupPage> {
                               secondVal: controller.passwordController,
                               isPassword: true,
                               fontSize: 11,
+                              line: 1,
                               fontFamily: 'Inter-Bold',
                               bottomText: 'Please re-enter password',
                             ),
@@ -230,13 +232,14 @@ class _SignupPageState extends State<SignupPage> {
                                 width: size.width,
                                 height: 54,
                                 decoration: BoxDecoration(
-                                  color: (controller.emailController == true &&
-                                          controller.passwordController ==
-                                              true &&
-                                          controller.password2Controller ==
-                                              true)
-                                      ? Color(0xff222831)
-                                      : Color(0xff7A7E83),
+                                  color: (controller
+                                              .emailController.text.isEmpty &&
+                                          controller.passwordController.text
+                                              .isEmpty &&
+                                          controller
+                                              .password2Controller.text.isEmpty)
+                                      ? Color(0xff7A7E83)
+                                      : Color(0xff222831),
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(6)),
                                 ),

@@ -109,18 +109,30 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                     height: 5,
                   ),
                   Container(
-                    height: 45,
+                    // height: 45,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(6.0),
+                      ),
+                      border: Border.all(
+                        width: 1,
+                        color: controller.ownMobileController.text.isEmpty
+                            ? Color(0xffE0E0E0)
+                            : Color(0xff00ADB5),
+                      ),
+                    ),
                     child: TextFormField(
                       controller: controller.ownMobileController,
                       keyboardType: TextInputType.number,
                       textAlign: TextAlign.left,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(width: 1, color: Color(0xffE0E0E0)),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(6.0),
-                          ),
+                          borderSide: BorderSide.none,
+                          // borderSide:
+                          //     BorderSide(width: 1, color: Color(0xffE0E0E0)),
+                          // borderRadius: BorderRadius.all(
+                          //   Radius.circular(6.0),
+                          // ),
                         ),
                         hintText: '+91 XXXXXXXXXX',
                         suffixIcon: Container(
@@ -135,8 +147,10 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                                   color: Color(0xffE0E0E0),
                                   border: Border.all(
                                     width: 1,
-                                    color: Color(0xffE0E0E0),
-                                    style: BorderStyle.solid,
+                                    color: controller
+                                            .ownMobileController.text.isEmpty
+                                        ? Color(0xffE0E0E0)
+                                        : Color(0xff00ADB5),
                                   ),
                                 ),
                               ),
@@ -151,7 +165,10 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                                       fontStyle: FontStyle.normal,
                                       fontFamily: 'Inter',
                                       fontSize: 15,
-                                      color: Color(0xffEB4132).withOpacity(0.7),
+                                      color: controller
+                                              .ownMobileController.text.isEmpty
+                                          ? Color(0xffEB4132).withOpacity(0.7)
+                                          : Color(0xff00ADB5).withOpacity(0.7),
                                     ),
                                   ),
                                 ),
@@ -190,7 +207,18 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                     height: 5,
                   ),
                   Container(
-                    height: 45,
+                    // height: 45,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        width: 1,
+                        color: controller.ownMobileController.text.isEmpty
+                            ? Color(0xffE0E0E0)
+                            : Color(0xff00ADB5),
+                      ),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(6.0),
+                      ),
+                    ),
                     child: DropdownButtonFormField(
                       icon: Padding(
                         padding: const EdgeInsets.only(
@@ -199,16 +227,15 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                         child: FaIcon(
                           FontAwesomeIcons.chevronDown,
                           color: Color(0xff000000),
-                          size: 14.87,
+                          size: 14.83,
                         ),
                       ),
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(width: 1, color: Color(0xffE0E0E0)),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(6.0),
-                          ),
+                          borderSide: BorderSide.none,
+                          // borderRadius: BorderRadius.all(
+                          //   Radius.circular(6.0),
+                          // ),
                         ),
                         hintText: 'Select City',
                         contentPadding: EdgeInsets.only(
@@ -266,7 +293,11 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                     child: Container(
                       height: 40.11,
                       decoration: BoxDecoration(
-                        color: Color(0xff7A7E83),
+                        color: (controller.resNameController.text.isEmpty &&
+                                controller.firstNameController.text.isEmpty &&
+                                controller.lastNameController.text.isEmpty)
+                            ? Color(0xff7A7E83)
+                            : Color(0xff222831),
                         borderRadius: BorderRadius.all(Radius.circular(6)),
                       ),
                       child: Center(

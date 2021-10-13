@@ -66,7 +66,19 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                   ),
                   Container(
                     // width: 341,
-                    height: 45,
+                    // height: 45,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(6.0),
+                      ),
+                      border: Border.all(
+                        width: 1,
+                        color: controller.gstinimg.path.isEmpty
+                            ? Color(0xffE0E0E0)
+                            : Color(0xff00ADB5),
+                        style: BorderStyle.solid,
+                      ),
+                    ),
                     child: DropdownButtonFormField<String>(
                       icon: Padding(
                         padding: const EdgeInsets.only(right: 8.17),
@@ -78,14 +90,10 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                       ),
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            width: 1,
-                            color: Color(0xffE0E0E0),
-                            style: BorderStyle.solid,
-                          ),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(6.0),
-                          ),
+                          borderSide: BorderSide.none,
+                          // borderRadius: BorderRadius.all(
+                          //   Radius.circular(6.0),
+                          // ),
                         ),
                         hintText: 'Dineout only / Dineout & Delivery Both',
                         contentPadding: EdgeInsets.only(
@@ -136,11 +144,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(4),
-                                            side: BorderSide(
-                                              color: Color(0xffE0E0E0),
-                                              width: 1,
-                                              style: BorderStyle.solid,
-                                            )),
+                                            side: BorderSide.none),
                                         value: controller.chooseCategory
                                             .contains(category),
                                         onChanged: (value) {

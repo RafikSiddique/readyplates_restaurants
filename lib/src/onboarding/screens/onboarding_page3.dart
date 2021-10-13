@@ -131,7 +131,9 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                     decoration: BoxDecoration(
                       border: Border.all(
                         width: 1,
-                        color: Color(0xffE0E0E0),
+                        color: controller.expiry == ''
+                            ? Color(0xffE0E0E0)
+                            : Color(0xff00ADB5),
                         style: BorderStyle.solid,
                       ),
                       borderRadius: BorderRadius.all(
@@ -211,7 +213,9 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                     decoration: BoxDecoration(
                       border: Border.all(
                         width: 1,
-                        color: Color(0xffE0E0E0),
+                        color: controller.kycimg.path.isEmpty
+                            ? Color(0xffE0E0E0)
+                            : Color(0xff00ADB5),
                         style: BorderStyle.solid,
                       ),
                       borderRadius: BorderRadius.all(
@@ -304,7 +308,9 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                     decoration: BoxDecoration(
                       border: Border.all(
                         width: 1,
-                        color: Color(0xffE0E0E0),
+                        color: controller.gstinimg.path.isEmpty
+                            ? Color(0xffE0E0E0)
+                            : Color(0xff00ADB5),
                         style: BorderStyle.solid,
                       ),
                       borderRadius: BorderRadius.all(
@@ -395,7 +401,9 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                     decoration: BoxDecoration(
                       border: Border.all(
                         width: 1,
-                        color: Color(0xffE0E0E0),
+                        color: controller.fssaiimg.path.isEmpty
+                            ? Color(0xffE0E0E0)
+                            : Color(0xff00ADB5),
                         style: BorderStyle.solid,
                       ),
                       borderRadius: BorderRadius.all(
@@ -477,12 +485,16 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                     width: MediaQuery.of(context).size.width,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Color(0xff7A7E83),
+                          primary: controller.gstpresentController.text.isEmpty
+                              ? Color(0xff7A7E83)
+                              : Color(0xff222831),
                           side: BorderSide(
-                              width: 1.5,
-                              color: Color.fromRGBO(255, 255, 255, 0.5)),
+                            width: 1.5,
+                            color: Color.fromRGBO(255, 255, 255, 0.5),
+                          ),
                         ),
                         onPressed: () async {
+                          print(controller.expiry);
                           formKey.currentState!.save();
                           if (formKey.currentState!.validate())
                             controller.onboardingApi(OnBoardingMethod.api3);

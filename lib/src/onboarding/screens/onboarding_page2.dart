@@ -22,7 +22,7 @@ class OnboardingPage2 extends StatelessWidget {
     return OnBoardingWrapper(
       onboardingController: controller,
       child: Scaffold(
-        backgroundColor: Color(0xffE5E5E5),
+        backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Color(0xffE5E5E5),
           elevation: 0,
@@ -195,7 +195,9 @@ class OnboardingPage2 extends StatelessWidget {
                     child: Container(
                       height: 40.11,
                       decoration: BoxDecoration(
-                        color: Color(0xff7A7E83),
+                        color: controller.postalcodeController.text.isEmpty
+                            ? Color(0xff7A7E83)
+                            : Color(0xff222831),
                         borderRadius: BorderRadius.all(Radius.circular(6)),
                       ),
                       child: Center(
