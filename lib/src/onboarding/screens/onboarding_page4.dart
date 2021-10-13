@@ -227,7 +227,9 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                       BorderRadius.all(Radius.circular(6)),
                                   border: Border.all(
                                     width: 1,
-                                    color: Color(0xffE0E0E0),
+                                    color: controller.startMinute == false
+                                        ? Color(0xffE0E0E0)
+                                        : Color(0xff00ADB5),
                                     style: BorderStyle.solid,
                                   ),
                                 ),
@@ -343,7 +345,9 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                         color: Color(0xffE0E0E0),
                                         border: Border.all(
                                           width: 1,
-                                          color: Color(0xffE0E0E0),
+                                          color: controller.startHour == false
+                                              ? Color(0xffE0E0E0)
+                                              : Color(0xff00ADB5),
                                           style: BorderStyle.solid,
                                         ),
                                       ),
@@ -416,7 +420,9 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                       BorderRadius.all(Radius.circular(6)),
                                   border: Border.all(
                                     width: 1,
-                                    color: Color(0xffE0E0E0),
+                                    color: controller.startHour == false
+                                        ? Color(0xffE0E0E0)
+                                        : Color(0xff00ADB5),
                                     style: BorderStyle.solid,
                                   ),
                                 ),
@@ -518,7 +524,9 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                         color: Color(0xffE0E0E0),
                                         border: Border.all(
                                           width: 1,
-                                          color: Color(0xffE0E0E0),
+                                          color: controller.startHour == false
+                                              ? Color(0xffE0E0E0)
+                                              : Color(0xff00ADB5),
                                           style: BorderStyle.solid,
                                         ),
                                       ),
