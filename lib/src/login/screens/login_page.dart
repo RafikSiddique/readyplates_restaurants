@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
+import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 
 class LoginPage extends StatefulWidget {
@@ -117,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
                                       iconSize: 14.83,
                                       icon: FaIcon(
                                         FontAwesomeIcons.chevronLeft,
-                                        color: Color(0xff000000),
+                                        color: MyTheme.iconColor,
                                       ),
                                       onPressed: () {
                                         Get.back();
@@ -142,7 +143,7 @@ class _LoginPageState extends State<LoginPage> {
                                             fontWeight: FontWeight.w500,
                                             fontStyle: FontStyle.normal,
                                             letterSpacing: -0.226667,
-                                            color: Color(0xff393E46),
+                                            color: MyTheme.appbartextColor,
                                           ),
                                         ),
                                       ),
@@ -190,7 +191,7 @@ class _LoginPageState extends State<LoginPage> {
                                   fontStyle: FontStyle.normal,
                                   fontWeight: FontWeight.normal,
                                   letterSpacing: -0.229412,
-                                  color: Color(0xffEB4132),
+                                  color: MyTheme.starColor,
                                 ),
                               ),
                             ],
@@ -212,8 +213,8 @@ class _LoginPageState extends State<LoginPage> {
                                     controller.emailController.text.isEmpty &&
                                             controller
                                                 .passwordController.text.isEmpty
-                                        ? Color(0xff7A7E83)
-                                        : Color(0xff222831),
+                                        ? MyTheme.buttonColor
+                                        : MyTheme.buttonchangeColor,
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(6)),
                               ),
@@ -226,7 +227,7 @@ class _LoginPageState extends State<LoginPage> {
                                     fontFamily: 'Inter-Regular',
                                     fontStyle: FontStyle.normal,
                                     fontWeight: FontWeight.w600,
-                                    color: Color(0xffE5E5E5),
+                                    color: MyTheme.buttontextColor,
                                   ),
                                 ),
                               ),

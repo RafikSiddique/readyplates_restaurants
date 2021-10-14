@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:readyplates_restaurants/utils/my_color.dart';
 
 class DropdownStandard extends StatelessWidget {
   final void Function(String?) onSelect;
@@ -12,7 +13,7 @@ class DropdownStandard extends StatelessWidget {
           padding: const EdgeInsets.only(right: 8.17),
           child: FaIcon(
             FontAwesomeIcons.chevronDown,
-            color: Color(0xff000000),
+            color: MyTheme.iconColor,
             size: 14.87,
           ),
         ),
@@ -20,7 +21,7 @@ class DropdownStandard extends StatelessWidget {
           border: OutlineInputBorder(
             borderSide: BorderSide(
               width: 1,
-              color: Color(0xffE0E0E0),
+              color: MyTheme.borderColor,
               style: BorderStyle.solid,
             ),
             borderRadius: BorderRadius.all(
@@ -37,8 +38,7 @@ class DropdownStandard extends StatelessWidget {
             fontFamily: 'Inter',
             fontStyle: FontStyle.normal,
             fontWeight: FontWeight.w500,
-            letterSpacing: -0.264706,
-            color: Color(0xff979797).withOpacity(0.7),
+            color: MyTheme.hinttextColor,
           ),
         ),
         items: [

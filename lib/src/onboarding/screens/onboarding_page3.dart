@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
+import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
@@ -54,14 +55,15 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
     return OnBoardingWrapper(
       onboardingController: controller,
       child: Scaffold(
+        backgroundColor: MyTheme.appbackgroundColor,
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: MyTheme.appbackgroundColor,
           elevation: 0,
           leading: IconButton(
               iconSize: 14.83,
               icon: FaIcon(
                 FontAwesomeIcons.chevronLeft,
-                color: Color(0xff000000),
+                color: MyTheme.iconColor,
               ),
               onPressed: () {
                 Get.back();
@@ -71,8 +73,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
             'Partner Onboarding',
             style: TextStyle(
               fontSize: 17,
-              letterSpacing: -0.226667,
-              color: Color(0xff393E46),
+              color: MyTheme.appbartextColor,
             ),
           ),
         ),
@@ -131,9 +132,9 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                     decoration: BoxDecoration(
                       border: Border.all(
                         width: 1,
-                        color: controller.expiry == ''
-                            ? Color(0xffE0E0E0)
-                            : Color(0xff00ADB5),
+                        color: controller.expiry == DateTime(1900)
+                            ? MyTheme.borderColor
+                            : MyTheme.borderchangeColor,
                         style: BorderStyle.solid,
                       ),
                       borderRadius: BorderRadius.all(
@@ -155,7 +156,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                               fontStyle: FontStyle.normal,
                               fontWeight: FontWeight.w500,
                               letterSpacing: -0.264706,
-                              color: Color(0xff979797).withOpacity(0.7),
+                              color: MyTheme.hinttextColor,
                             ),
                             textAlign: TextAlign.center,
                           ),
@@ -167,7 +168,6 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                           child: Container(
                             width: 45,
                             decoration: BoxDecoration(
-                              // color: Color(0xffEFEFEF),
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(0),
                                 topRight: Radius.circular(6.0),
@@ -205,17 +205,13 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   ),
                   Container(
                     height: 45.68,
-                    // margin: EdgeInsets.only(
-                    //   left: 17,
-                    //   right: 17,
-                    // ),
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
                       border: Border.all(
                         width: 1,
                         color: controller.kycimg.path.isEmpty
-                            ? Color(0xffE0E0E0)
-                            : Color(0xff00ADB5),
+                            ? MyTheme.borderColor
+                            : MyTheme.borderchangeColor,
                         style: BorderStyle.solid,
                       ),
                       borderRadius: BorderRadius.all(
@@ -229,14 +225,17 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                           child: Padding(
                             padding: const EdgeInsets.only(left: 12.5),
                             child: Text(
-                              '${controller.kycimg.path.split('/').last}',
+                              controller.kycimg.path.isEmpty
+                                  ? 'Please upload [ “png”, “jpg”, “jpeg”] images'
+                                  : '${controller.kycimg.path.split('/').last}',
                               style: TextStyle(
                                 fontSize: 13,
                                 fontFamily: 'Inter',
                                 fontStyle: FontStyle.normal,
                                 fontWeight: FontWeight.w500,
-                                letterSpacing: -0.264706,
-                                color: Color(0xff979797).withOpacity(0.7),
+                                color: controller.kycimg.path.isEmpty
+                                    ? MyTheme.hinttextColor
+                                    : MyTheme.hinttextchangeColor,
                               ),
                               textAlign: TextAlign.left,
                             ),
@@ -309,8 +308,8 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                       border: Border.all(
                         width: 1,
                         color: controller.gstinimg.path.isEmpty
-                            ? Color(0xffE0E0E0)
-                            : Color(0xff00ADB5),
+                            ? MyTheme.borderColor
+                            : MyTheme.borderchangeColor,
                         style: BorderStyle.solid,
                       ),
                       borderRadius: BorderRadius.all(
@@ -324,14 +323,17 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                           child: Padding(
                             padding: const EdgeInsets.only(left: 12.5),
                             child: Text(
-                              '${controller.gstinimg.path.split('/').last}',
+                              controller.gstinimg.path.isEmpty
+                                  ? 'Please upload [ “png”, “jpg”, “jpeg”, “pdf”] files'
+                                  : '${controller.gstinimg.path.split('/').last}',
                               style: TextStyle(
                                 fontSize: 13,
                                 fontFamily: 'Inter',
                                 fontStyle: FontStyle.normal,
                                 fontWeight: FontWeight.w500,
-                                letterSpacing: -0.264706,
-                                color: Color(0xff979797).withOpacity(0.7),
+                                color: controller.kycimg.path.isEmpty
+                                    ? MyTheme.hinttextColor
+                                    : MyTheme.hinttextchangeColor,
                               ),
                               textAlign: TextAlign.left,
                             ),
@@ -417,14 +419,18 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                           child: Padding(
                             padding: const EdgeInsets.only(left: 12.5),
                             child: Text(
-                              '${controller.fssaiimg.path.split('/').last}',
+                              controller.fssaiimg.path.isEmpty
+                                  ? 'Please upload [ “png”, “jpg”, “jpeg”, “pdf”] files'
+                                  : '${controller.fssaiimg.path.split('/').last}',
                               style: TextStyle(
                                 fontSize: 13,
                                 fontFamily: 'Inter',
                                 fontStyle: FontStyle.normal,
                                 fontWeight: FontWeight.w500,
                                 letterSpacing: -0.264706,
-                                color: Color(0xff979797).withOpacity(0.7),
+                                color: controller.kycimg.path.isEmpty
+                                    ? MyTheme.hinttextColor
+                                    : MyTheme.hinttextchangeColor,
                               ),
                               textAlign: TextAlign.left,
                             ),
@@ -486,8 +492,8 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           primary: controller.gstpresentController.text.isEmpty
-                              ? Color(0xff7A7E83)
-                              : Color(0xff222831),
+                              ? MyTheme.buttonColor
+                              : MyTheme.buttonchangeColor,
                           side: BorderSide(
                             width: 1.5,
                             color: Color.fromRGBO(255, 255, 255, 0.5),
@@ -502,7 +508,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                         },
                         child: Text('CONTINUE',
                             style: TextStyle(
-                              color: Color(0xffE5E5E5),
+                              color: MyTheme.buttontextColor,
                               fontSize: 17,
                             ))),
                   ),

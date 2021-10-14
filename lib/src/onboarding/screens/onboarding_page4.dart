@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
+import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
 
@@ -21,15 +22,15 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
     return OnBoardingWrapper(
       onboardingController: controller,
       child: Scaffold(
+        backgroundColor: MyTheme.appbackgroundColor,
         appBar: AppBar(
-          // toolbarHeight: 44,
-          backgroundColor: Colors.white,
+          backgroundColor: MyTheme.appbackgroundColor,
           elevation: 0,
           leading: IconButton(
               iconSize: 14.83,
               icon: FaIcon(
                 FontAwesomeIcons.chevronLeft,
-                color: Color(0xff000000),
+                color: MyTheme.iconColor,
               ),
               onPressed: () {
                 Get.back();
@@ -42,11 +43,10 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
               fontFamily: 'Inter',
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.w500,
-              color: Color(0xff393E46),
+              color: MyTheme.appbartextColor,
             ),
           ),
         ),
-        backgroundColor: Colors.white,
         body: Padding(
           padding: const EdgeInsets.only(left: 16, right: 16),
           child: SingleChildScrollView(
@@ -74,8 +74,8 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                       border: Border.all(
                         width: 1,
                         color: controller.gstinimg.path.isEmpty
-                            ? Color(0xffE0E0E0)
-                            : Color(0xff00ADB5),
+                            ? MyTheme.borderColor
+                            : MyTheme.borderchangeColor,
                         style: BorderStyle.solid,
                       ),
                     ),
@@ -84,7 +84,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                         padding: const EdgeInsets.only(right: 8.17),
                         child: FaIcon(
                           FontAwesomeIcons.chevronDown,
-                          color: Color(0xff000000),
+                          color: MyTheme.iconColor,
                           size: 14.87,
                         ),
                       ),
@@ -105,7 +105,9 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                           fontFamily: 'Inter',
                           fontStyle: FontStyle.normal,
                           fontWeight: FontWeight.w500,
-                          color: Color(0xff979797).withOpacity(0.7),
+                          color: controller.typeOfEstablishment.value.isEmpty
+                              ? MyTheme.hinttextColor
+                              : MyTheme.hinttextchangeColor,
                         ),
                       ),
                       items: controller.typeOfEsts
@@ -140,13 +142,14 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                     Container(
                                       child: Checkbox(
                                         activeColor: Colors.white,
-                                        checkColor: Color(0xff00ADB5),
+                                        checkColor: MyTheme.checkColor,
                                         shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(4),
-                                            side: BorderSide.none),
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                        ),
                                         value: controller.chooseCategory
                                             .contains(category),
+                                        tristate: false,
                                         onChanged: (value) {
                                           if (controller.chooseCategory
                                               .contains(category)) {
@@ -177,8 +180,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                             fontFamily: 'Inter',
                                             fontStyle: FontStyle.normal,
                                             fontWeight: FontWeight.normal,
-                                            color: Color(0xff2F2E41)
-                                                .withOpacity(0.7),
+                                            color: MyTheme.checkboxtextColor,
                                           ),
                                         ),
                                       ),
@@ -199,7 +201,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                       fontFamily: 'Poppins',
                       fontStyle: FontStyle.normal,
                       fontWeight: FontWeight.normal,
-                      color: Color(0xffEB4132),
+                      color: MyTheme.checkboxbottomtextColor,
                     ),
                   ),
                   SizedBox(
@@ -227,9 +229,9 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                       BorderRadius.all(Radius.circular(6)),
                                   border: Border.all(
                                     width: 1,
-                                    color: controller.startMinute == false
-                                        ? Color(0xffE0E0E0)
-                                        : Color(0xff00ADB5),
+                                    color: controller.startHour.value == true
+                                        ? MyTheme.borderColor
+                                        : MyTheme.borderchangeColor,
                                     style: BorderStyle.solid,
                                   ),
                                 ),
@@ -264,8 +266,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                           fontFamily: 'Inter',
                                           fontStyle: FontStyle.normal,
                                           fontWeight: FontWeight.w500,
-                                          color: Color(0xff979797)
-                                              .withOpacity(0.7),
+                                          color: MyTheme.hinttextColor,
                                         ),
                                       ),
                                     ),
@@ -299,7 +300,8 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                               alignment: Alignment.center,
                                               child: FaIcon(
                                                 FontAwesomeIcons.chevronUp,
-                                                color: Color(0xff6E6D7A),
+                                                color:
+                                                    MyTheme.dropdownarrowColor,
                                                 size: 12,
                                               ),
                                             ),
@@ -330,7 +332,8 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                               alignment: Alignment.center,
                                               child: FaIcon(
                                                 FontAwesomeIcons.chevronDown,
-                                                color: Color(0xff6E6D7A),
+                                                color:
+                                                    MyTheme.dropdownarrowColor,
                                                 size: 12,
                                               ),
                                             ),
@@ -346,8 +349,8 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                         border: Border.all(
                                           width: 1,
                                           color: controller.startHour == false
-                                              ? Color(0xffE0E0E0)
-                                              : Color(0xff00ADB5),
+                                              ? MyTheme.borderColor
+                                              : MyTheme.borderchangeColor,
                                           style: BorderStyle.solid,
                                         ),
                                       ),
@@ -361,8 +364,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                           fontFamily: 'Inter',
                                           fontStyle: FontStyle.normal,
                                           fontWeight: FontWeight.w500,
-                                          color: Color(0xff979797)
-                                              .withOpacity(0.7),
+                                          color: MyTheme.hinttextColor,
                                         ),
                                       ),
                                     ),
@@ -375,7 +377,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                                 ? FontAwesomeIcons.chevronDown
                                                 : FontAwesomeIcons.chevronUp,
                                             size: 12,
-                                            color: Color(0xff6E6D7A),
+                                            color: MyTheme.dropdownarrowColor,
                                           ),
                                         ),
                                         onTap: () {
@@ -399,8 +401,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                   fontFamily: 'Poppins',
                                   fontStyle: FontStyle.normal,
                                   fontWeight: FontWeight.normal,
-                                  letterSpacing: -0.229412,
-                                  color: Color(0xff6E6D7A),
+                                  color: MyTheme.bottomtextColor,
                                 ),
                               )
                             ],
@@ -421,8 +422,8 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                   border: Border.all(
                                     width: 1,
                                     color: controller.startHour == false
-                                        ? Color(0xffE0E0E0)
-                                        : Color(0xff00ADB5),
+                                        ? MyTheme.borderColor
+                                        : MyTheme.borderchangeColor,
                                     style: BorderStyle.solid,
                                   ),
                                 ),
@@ -451,8 +452,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                         fontFamily: 'Inter',
                                         fontStyle: FontStyle.normal,
                                         fontWeight: FontWeight.w500,
-                                        color:
-                                            Color(0xff979797).withOpacity(0.7),
+                                        color: MyTheme.hinttextColor,
                                       ),
                                     ),
                                     Column(
@@ -480,7 +480,8 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                               alignment: Alignment.center,
                                               child: FaIcon(
                                                 FontAwesomeIcons.chevronUp,
-                                                color: Color(0xff6E6D7A),
+                                                color:
+                                                    MyTheme.dropdownarrowColor,
                                                 size: 12,
                                               ),
                                             ),
@@ -509,7 +510,8 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                               alignment: Alignment.center,
                                               child: FaIcon(
                                                 FontAwesomeIcons.chevronDown,
-                                                color: Color(0xff6E6D7A),
+                                                color:
+                                                    MyTheme.dropdownarrowColor,
                                                 size: 12,
                                               ),
                                             ),
@@ -521,12 +523,11 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                       height: 35,
                                       width: 0,
                                       decoration: BoxDecoration(
-                                        color: Color(0xffE0E0E0),
                                         border: Border.all(
                                           width: 1,
                                           color: controller.startHour == false
-                                              ? Color(0xffE0E0E0)
-                                              : Color(0xff00ADB5),
+                                              ? MyTheme.borderColor
+                                              : MyTheme.borderchangeColor,
                                           style: BorderStyle.solid,
                                         ),
                                       ),
@@ -540,8 +541,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                           fontFamily: 'Inter',
                                           fontStyle: FontStyle.normal,
                                           fontWeight: FontWeight.w500,
-                                          color: Color(0xff979797)
-                                              .withOpacity(0.7),
+                                          color: MyTheme.hinttextColor,
                                         ),
                                       ),
                                     ),
@@ -554,7 +554,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                                 ? FontAwesomeIcons.chevronDown
                                                 : FontAwesomeIcons.chevronUp,
                                             size: 12,
-                                            color: Color(0xff6E6D7A),
+                                            color: MyTheme.dropdownarrowColor,
                                           ),
                                         ),
                                         onTap: () {
@@ -579,7 +579,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                   fontStyle: FontStyle.normal,
                                   fontWeight: FontWeight.normal,
                                   letterSpacing: -0.229412,
-                                  color: Color(0xff6E6D7A),
+                                  color: MyTheme.hinttextColor,
                                 ),
                               )
                             ],
@@ -612,15 +612,12 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Checkbox(
-                                        checkColor: Colors.white,
+                                        activeColor: Colors.white,
+                                        checkColor: MyTheme.checkColor,
                                         shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(4),
-                                            side: BorderSide(
-                                              color: Color(0xffE0E0E0),
-                                              width: 1,
-                                              style: BorderStyle.solid,
-                                            )),
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                        ),
                                         value: controller.chooseDays
                                             .contains(days),
                                         onChanged: (value) {
@@ -650,8 +647,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                               fontFamily: 'Inter',
                                               fontStyle: FontStyle.normal,
                                               fontWeight: FontWeight.normal,
-                                              color: Color(0xff2F2E41)
-                                                  .withOpacity(0.7),
+                                              color: MyTheme.hinttextColor,
                                             ),
                                           ),
                                         ),
@@ -678,8 +674,8 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                       decoration: BoxDecoration(
                         color: (controller.isChecked == true &&
                                 controller.isDays == true)
-                            ? Color(0xff222831)
-                            : Color(0xff7A7E83),
+                            ? MyTheme.buttonchangeColor
+                            : MyTheme.buttonColor,
                         borderRadius: BorderRadius.all(Radius.circular(6)),
                       ),
                       child: Center(
@@ -690,7 +686,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                             fontSize: 17,
                             fontWeight: FontWeight.bold,
                             letterSpacing: -0.28,
-                            color: Color(0xffE5E5E5),
+                            color: MyTheme.buttontextColor,
                           ),
                         ),
                       ),

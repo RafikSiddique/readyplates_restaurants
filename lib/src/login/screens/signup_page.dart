@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:get/get.dart';
+import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 
 class SignupPage extends StatefulWidget {
@@ -142,7 +143,7 @@ class _SignupPageState extends State<SignupPage> {
                                         iconSize: 14.83,
                                         icon: FaIcon(
                                           FontAwesomeIcons.chevronLeft,
-                                          color: Color(0xff000000),
+                                          color: MyTheme.iconColor,
                                         ),
                                         onPressed: () {
                                           Get.back();
@@ -166,8 +167,7 @@ class _SignupPageState extends State<SignupPage> {
                                               fontFamily: 'Inter-Bold',
                                               fontWeight: FontWeight.w500,
                                               fontStyle: FontStyle.normal,
-                                              letterSpacing: -0.226667,
-                                              color: Color(0xff393E46),
+                                              color: MyTheme.appbartextColor,
                                             ),
                                           ),
                                         ),
@@ -238,8 +238,8 @@ class _SignupPageState extends State<SignupPage> {
                                               .isEmpty &&
                                           controller
                                               .password2Controller.text.isEmpty)
-                                      ? Color(0xff7A7E83)
-                                      : Color(0xff222831),
+                                      ? MyTheme.buttonColor
+                                      : MyTheme.buttonchangeColor,
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(6)),
                                 ),
@@ -252,7 +252,7 @@ class _SignupPageState extends State<SignupPage> {
                                       fontFamily: 'Inter-Regular',
                                       fontStyle: FontStyle.normal,
                                       fontWeight: FontWeight.w600,
-                                      color: Color(0xffE5E5E5),
+                                      color: MyTheme.buttontextColor,
                                     ),
                                   ),
                                 ),

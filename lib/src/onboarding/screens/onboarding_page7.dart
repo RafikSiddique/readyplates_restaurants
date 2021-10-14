@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
+import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
 
@@ -68,14 +69,15 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
     return OnBoardingWrapper(
       onboardingController: onBoardingController,
       child: Scaffold(
+        backgroundColor: MyTheme.appbackgroundColor,
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: MyTheme.appbackgroundColor,
           elevation: 0,
           leading: IconButton(
               iconSize: 14.83,
               icon: FaIcon(
                 FontAwesomeIcons.chevronLeft,
-                color: Color(0xff000000),
+                color: MyTheme.iconColor,
               ),
               onPressed: () {
                 switch (onBoardingController.pageIndex.value) {
@@ -113,8 +115,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
               fontFamily: 'Inter',
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.w500,
-              letterSpacing: -0.226667,
-              color: Color(0xff393E46),
+              color: MyTheme.appbartextColor,
             ),
           ),
         ),
@@ -193,7 +194,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                       // width: 343,
                       height: 40.11,
                       decoration: BoxDecoration(
-                        color: Color(0xff7A7E83),
+                        color: MyTheme.buttonColor,
                         borderRadius: BorderRadius.all(Radius.circular(6)),
                       ),
                       child: Obx(() => Center(
@@ -208,7 +209,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                                       fontStyle: FontStyle.normal,
                                       fontWeight: FontWeight.w600,
                                       letterSpacing: -0.28,
-                                      color: Color(0xffE5E5E5),
+                                      color: MyTheme.buttontextColor,
                                     ),
                                   ),
                           )),
@@ -303,7 +304,7 @@ class ImageUploadCard extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           width: 1,
-          color: Color(0xffE0E0E0),
+          color: MyTheme.borderColor,
           style: BorderStyle.solid,
         ),
         borderRadius: BorderRadius.all(Radius.circular(6)),
@@ -335,7 +336,7 @@ class ImageUploadCard extends StatelessWidget {
               color: Color(0xffFFFFFF),
               border: Border.all(
                 width: 1,
-                color: Color(0xffE0E0E0),
+                color: MyTheme.borderColor,
                 style: BorderStyle.solid,
               ),
               borderRadius: BorderRadius.only(
@@ -355,7 +356,7 @@ class ImageUploadCard extends StatelessWidget {
                       fontStyle: FontStyle.normal,
                       fontWeight: FontWeight.normal,
                       letterSpacing: -0.229412,
-                      color: Color(0xff6E6D7A),
+                      color: MyTheme.bottomtextColor,
                     ),
                     textAlign: TextAlign.center,
                   ),

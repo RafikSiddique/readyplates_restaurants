@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
+import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
@@ -18,6 +19,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
   final controller = Get.find<OnboardingController>();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   String dob = '';
+  String rec = '';
   DateTime? _selectedEventDate;
   void showEventDate() {
     showDatePicker(
@@ -42,14 +44,15 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
     return OnBoardingWrapper(
       onboardingController: controller,
       child: Scaffold(
+        backgroundColor: MyTheme.appbackgroundColor,
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: MyTheme.appbackgroundColor,
           elevation: 0,
           leading: IconButton(
               iconSize: 14.83,
               icon: FaIcon(
                 FontAwesomeIcons.chevronLeft,
-                color: Color(0xff000000),
+                color: MyTheme.appbartextColor,
               ),
               onPressed: () {
                 Get.back();
@@ -62,8 +65,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
               fontFamily: 'Inter',
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.w500,
-              letterSpacing: -0.226667,
-              color: Color(0xff393E46),
+              color: MyTheme.appbartextColor,
             ),
           ),
         ),
@@ -110,7 +112,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                     BorderRadius.all(Radius.circular(6)),
                                 border: Border.all(
                                   width: 1,
-                                  color: Color(0xffE0E0E0),
+                                  color: MyTheme.borderColor,
                                   style: BorderStyle.solid,
                                 ),
                               ),
@@ -133,8 +135,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                         fontFamily: 'Inter',
                                         fontStyle: FontStyle.normal,
                                         fontWeight: FontWeight.bold,
-                                        color:
-                                            Color(0xff979797).withOpacity(0.7),
+                                        color: MyTheme.hinttextColor,
                                       ),
                                     ),
                                   ),
@@ -158,7 +159,8 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                               alignment: Alignment.center,
                                               child: FaIcon(
                                                 FontAwesomeIcons.chevronUp,
-                                                color: Color(0xff6E6D7A),
+                                                color:
+                                                    MyTheme.dropdownarrowColor,
                                                 size: 15,
                                               ),
                                             ),
@@ -180,7 +182,8 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                               alignment: Alignment.center,
                                               child: FaIcon(
                                                 FontAwesomeIcons.chevronDown,
-                                                color: Color(0xff6E6D7A),
+                                                color:
+                                                    MyTheme.dropdownarrowColor,
                                                 size: 15,
                                               ),
                                             ),
@@ -202,8 +205,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                 fontFamily: 'Poppins',
                                 fontStyle: FontStyle.normal,
                                 fontWeight: FontWeight.normal,
-                                letterSpacing: -0.229412,
-                                color: Color(0xff6E6D7A),
+                                color: MyTheme.bottomtextColor,
                               ),
                             )
                           ],
@@ -223,7 +225,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                     BorderRadius.all(Radius.circular(6)),
                                 border: Border.all(
                                   width: 1,
-                                  color: Color(0xffE0E0E0),
+                                  color: MyTheme.borderColor,
                                   style: BorderStyle.solid,
                                 ),
                               ),
@@ -246,8 +248,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                         fontFamily: 'Inter',
                                         fontStyle: FontStyle.normal,
                                         fontWeight: FontWeight.bold,
-                                        color:
-                                            Color(0xff979797).withOpacity(0.7),
+                                        color: MyTheme.hinttextColor,
                                       ),
                                     ),
                                   ),
@@ -271,7 +272,8 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                               alignment: Alignment.center,
                                               child: FaIcon(
                                                 FontAwesomeIcons.chevronUp,
-                                                color: Color(0xff6E6D7A),
+                                                color:
+                                                    MyTheme.dropdownarrowColor,
                                                 size: 15,
                                               ),
                                             ),
@@ -293,7 +295,8 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                               alignment: Alignment.center,
                                               child: FaIcon(
                                                 FontAwesomeIcons.chevronDown,
-                                                color: Color(0xff6E6D7A),
+                                                color:
+                                                    MyTheme.dropdownarrowColor,
                                                 size: 15,
                                               ),
                                             ),
@@ -315,8 +318,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                 fontFamily: 'Poppins',
                                 fontStyle: FontStyle.normal,
                                 fontWeight: FontWeight.normal,
-                                letterSpacing: -0.229412,
-                                color: Color(0xff6E6D7A),
+                                color: MyTheme.bottomtextColor,
                               ),
                             )
                           ],
@@ -369,7 +371,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                       BorderRadius.all(Radius.circular(6)),
                                   border: Border.all(
                                     width: 1,
-                                    color: Color(0xffE0E0E0),
+                                    color: MyTheme.borderColor,
                                     style: BorderStyle.solid,
                                   ),
                                 ),
@@ -384,8 +386,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                           fontFamily: 'Inter',
                                           fontStyle: FontStyle.normal,
                                           fontWeight: FontWeight.bold,
-                                          color: Color(0xff979797)
-                                              .withOpacity(0.7),
+                                          color: MyTheme.hinttextColor,
                                         ),
                                       ),
                                     ),
@@ -399,8 +400,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                         fontFamily: 'Inter',
                                         fontStyle: FontStyle.normal,
                                         fontWeight: FontWeight.bold,
-                                        color:
-                                            Color(0xff2F2E41).withOpacity(0.7),
+                                        color: MyTheme.checkboxtextColor,
                                       ),
                                     ),
                                   ],
@@ -417,8 +417,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                 fontFamily: 'Poppins',
                                 fontStyle: FontStyle.normal,
                                 fontWeight: FontWeight.normal,
-                                letterSpacing: -0.229412,
-                                color: Color(0xff6E6D7A),
+                                color: MyTheme.bottomtextColor,
                               ),
                             )
                           ],
@@ -453,6 +452,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                                     onTap: () {
                                                       controller.servingTime
                                                           .value = e;
+
                                                       Get.back();
                                                     },
                                                   ))
@@ -468,7 +468,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                       BorderRadius.all(Radius.circular(6)),
                                   border: Border.all(
                                     width: 1,
-                                    color: Color(0xffE0E0E0),
+                                    color: MyTheme.borderColor,
                                     style: BorderStyle.solid,
                                   ),
                                 ),
@@ -483,8 +483,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                           fontFamily: 'Inter',
                                           fontStyle: FontStyle.normal,
                                           fontWeight: FontWeight.bold,
-                                          color: Color(0xff979797)
-                                              .withOpacity(0.7),
+                                          color: MyTheme.hinttextColor,
                                         ),
                                       ),
                                     ),
@@ -498,8 +497,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                         fontFamily: 'Inter',
                                         fontStyle: FontStyle.normal,
                                         fontWeight: FontWeight.bold,
-                                        color:
-                                            Color(0xff2F2E41).withOpacity(0.7),
+                                        color: MyTheme.checkboxtextColor,
                                       ),
                                     ),
                                   ],
@@ -516,8 +514,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                 fontFamily: 'Poppins',
                                 fontStyle: FontStyle.normal,
                                 fontWeight: FontWeight.normal,
-                                letterSpacing: -0.229412,
-                                color: Color(0xff6E6D7A),
+                                color: MyTheme.bottomtextColor,
                               ),
                             )
                           ],
@@ -549,7 +546,9 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                     BorderRadius.all(Radius.circular(6)),
                                 border: Border.all(
                                   width: 1,
-                                  color: Color(0xffE0E0E0),
+                                  color: _selectedEventDate == null
+                                      ? MyTheme.borderColor
+                                      : MyTheme.borderchangeColor,
                                   style: BorderStyle.solid,
                                 ),
                               ),
@@ -560,17 +559,23 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(left: 14),
-                                      child: Text(
-                                        _selectedEventDate == null
-                                            ? 'Event Dates'
-                                            : '${_selectedEventDate!.year}/${_selectedEventDate!.month}/${_selectedEventDate!.day}',
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          fontFamily: 'Inter',
-                                          fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.bold,
-                                          color: Color(0xff979797)
-                                              .withOpacity(0.7),
+                                      child: InkWell(
+                                        onTap: () {
+                                          showEventDate();
+                                        },
+                                        child: Text(
+                                          _selectedEventDate == null
+                                              ? 'Event Dates'
+                                              : '${_selectedEventDate!.year}/${_selectedEventDate!.month}/${_selectedEventDate!.day}',
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            fontFamily: 'Inter',
+                                            fontStyle: FontStyle.normal,
+                                            fontWeight: FontWeight.w500,
+                                            color: _selectedEventDate == null
+                                                ? MyTheme.hinttextColor
+                                                : MyTheme.hinttextchangeColor,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -605,7 +610,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                 fontStyle: FontStyle.normal,
                                 fontWeight: FontWeight.normal,
                                 letterSpacing: -0.229412,
-                                color: Color(0xff6E6D7A),
+                                color: MyTheme.bottomtextColor,
                               ),
                             )
                           ],
@@ -625,7 +630,9 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                     BorderRadius.all(Radius.circular(6)),
                                 border: Border.all(
                                   width: 1,
-                                  color: Color(0xffE0E0E0),
+                                  color: rec.isEmpty
+                                      ? MyTheme.borderColor
+                                      : MyTheme.borderchangeColor,
                                   style: BorderStyle.solid,
                                 ),
                               ),
@@ -646,6 +653,14 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                                             controller
                                                                 .selectedRecurrence
                                                                 .value = e;
+                                                            setState(() {
+                                                              rec = controller
+                                                                  .servingTime
+                                                                  .value
+                                                                  .toString();
+                                                            });
+                                                            //controller.servingTime.value.toString()
+                                                            //e.toString();
                                                             Get.back();
                                                           },
                                                         ))
@@ -673,9 +688,8 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                               fontSize: 15,
                                               fontFamily: 'Inter',
                                               fontStyle: FontStyle.normal,
-                                              fontWeight: FontWeight.bold,
-                                              color: Color(0xff979797)
-                                                  .withOpacity(0.7),
+                                              fontWeight: FontWeight.w500,
+                                              color: MyTheme.hinttextColor,
                                             ),
                                           ),
                                         ),
@@ -684,7 +698,41 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                         padding:
                                             const EdgeInsets.only(right: 7.5),
                                         child: InkWell(
-                                          onTap: () {},
+                                          onTap: () {
+                                            Get.bottomSheet(BottomSheet(
+                                              onClosing: () {},
+                                              builder: (context) {
+                                                return Card(
+                                                    margin: EdgeInsets.zero,
+                                                    child: ListView(
+                                                      shrinkWrap: true,
+                                                      children: [
+                                                        "Yearly",
+                                                        "Monthly",
+                                                        "Weekly"
+                                                      ]
+                                                          .map((e) => ListTile(
+                                                                title: Text(e),
+                                                                onTap: () {
+                                                                  controller
+                                                                      .selectedRecurrence
+                                                                      .value = e;
+                                                                  setState(() {
+                                                                    rec = controller
+                                                                        .servingTime
+                                                                        .value
+                                                                        .toString();
+                                                                  });
+                                                                  //controller.servingTime.value.toString()
+                                                                  //e.toString();
+                                                                  Get.back();
+                                                                },
+                                                              ))
+                                                          .toList(),
+                                                    ));
+                                              },
+                                            ));
+                                          },
                                           child: Container(
                                             width: 20,
                                             height: 20,
@@ -709,8 +757,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                 fontFamily: 'Poppins',
                                 fontStyle: FontStyle.normal,
                                 fontWeight: FontWeight.normal,
-                                letterSpacing: -0.229412,
-                                color: Color(0xff6E6D7A),
+                                color: MyTheme.bottomtextColor,
                               ),
                             )
                           ],
@@ -737,7 +784,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                       BorderRadius.all(Radius.circular(6)),
                                   border: Border.all(
                                     width: 1,
-                                    color: Color(0xffE0E0E0),
+                                    color: MyTheme.borderColor,
                                     style: BorderStyle.solid,
                                   ),
                                 ),
@@ -768,8 +815,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                         fontFamily: 'Inter',
                                         fontStyle: FontStyle.normal,
                                         fontWeight: FontWeight.w500,
-                                        color:
-                                            Color(0xff979797).withOpacity(0.7),
+                                        color: MyTheme.hinttextColor,
                                       ),
                                     ),
                                     Column(
@@ -803,7 +849,8 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                               alignment: Alignment.center,
                                               child: FaIcon(
                                                 FontAwesomeIcons.chevronUp,
-                                                color: Color(0xff6E6D7A),
+                                                color:
+                                                    MyTheme.dropdownarrowColor,
                                                 size: 15,
                                               ),
                                             ),
@@ -832,7 +879,8 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                               alignment: Alignment.center,
                                               child: FaIcon(
                                                 FontAwesomeIcons.chevronDown,
-                                                color: Color(0xff6E6D7A),
+                                                color:
+                                                    MyTheme.dropdownarrowColor,
                                                 size: 15,
                                               ),
                                             ),
@@ -844,10 +892,9 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                       height: 35,
                                       width: 0,
                                       decoration: BoxDecoration(
-                                        color: Color(0xffE0E0E0),
                                         border: Border.all(
                                           width: 1,
-                                          color: Color(0xffE0E0E0),
+                                          color: MyTheme.borderColor,
                                           style: BorderStyle.solid,
                                         ),
                                       ),
@@ -861,8 +908,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                           fontFamily: 'Inter',
                                           fontStyle: FontStyle.normal,
                                           fontWeight: FontWeight.w500,
-                                          color: Color(0xff979797)
-                                              .withOpacity(0.7),
+                                          color: MyTheme.hinttextColor,
                                         ),
                                       ),
                                     ),
@@ -876,7 +922,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                                 ? FontAwesomeIcons.chevronDown
                                                 : FontAwesomeIcons.chevronUp,
                                             size: 13,
-                                            color: Color(0xff6E6D7A),
+                                            color: MyTheme.dropdownarrowColor,
                                           ),
                                         ),
                                         onTap: () {
@@ -902,8 +948,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                   fontFamily: 'Poppins',
                                   fontStyle: FontStyle.normal,
                                   fontWeight: FontWeight.normal,
-                                  letterSpacing: -0.229412,
-                                  color: Color(0xff6E6D7A),
+                                  color: MyTheme.bottomtextColor,
                                 ),
                               )
                             ],
@@ -923,7 +968,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                       BorderRadius.all(Radius.circular(6)),
                                   border: Border.all(
                                     width: 1,
-                                    color: Color(0xffE0E0E0),
+                                    color: MyTheme.borderColor,
                                     style: BorderStyle.solid,
                                   ),
                                 ),
@@ -956,8 +1001,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                         fontFamily: 'Inter',
                                         fontStyle: FontStyle.normal,
                                         fontWeight: FontWeight.w500,
-                                        color:
-                                            Color(0xff979797).withOpacity(0.7),
+                                        color: MyTheme.hinttextColor,
                                       ),
                                     ),
 
@@ -990,7 +1034,8 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                               alignment: Alignment.center,
                                               child: FaIcon(
                                                 FontAwesomeIcons.chevronUp,
-                                                color: Color(0xff6E6D7A),
+                                                color:
+                                                    MyTheme.dropdownarrowColor,
                                                 size: 15,
                                               ),
                                             ),
@@ -1019,7 +1064,8 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                               alignment: Alignment.center,
                                               child: FaIcon(
                                                 FontAwesomeIcons.chevronDown,
-                                                color: Color(0xff6E6D7A),
+                                                color:
+                                                    MyTheme.dropdownarrowColor,
                                                 size: 15,
                                               ),
                                             ),
@@ -1034,10 +1080,9 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                       height: 35,
                                       width: 0,
                                       decoration: BoxDecoration(
-                                        color: Color(0xffE0E0E0),
                                         border: Border.all(
                                           width: 1,
-                                          color: Color(0xffE0E0E0),
+                                          color: MyTheme.borderColor,
                                           style: BorderStyle.solid,
                                         ),
                                       ),
@@ -1052,9 +1097,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                           fontFamily: 'Inter',
                                           fontStyle: FontStyle.normal,
                                           fontWeight: FontWeight.w500,
-                                          letterSpacing: -0.264706,
-                                          color: Color(0xff979797)
-                                              .withOpacity(0.7),
+                                          color: MyTheme.hinttextColor,
                                         ),
                                       ),
                                     ),
@@ -1068,7 +1111,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                                 ? FontAwesomeIcons.chevronDown
                                                 : FontAwesomeIcons.chevronUp,
                                             size: 13,
-                                            color: Color(0xff6E6D7A),
+                                            color: MyTheme.dropdownarrowColor,
                                           ),
                                         ),
                                         onTap: () {
@@ -1094,8 +1137,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                   fontFamily: 'Poppins',
                                   fontStyle: FontStyle.normal,
                                   fontWeight: FontWeight.normal,
-                                  letterSpacing: -0.229412,
-                                  color: Color(0xff6E6D7A),
+                                  color: MyTheme.bottomtextColor,
                                 ),
                               )
                             ],
@@ -1130,7 +1172,9 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                       // width: 343,
                       height: 40.11,
                       decoration: BoxDecoration(
-                        color: Color(0xff7A7E83),
+                        color: controller.eventDesc.value.text.isEmpty
+                            ? MyTheme.buttonColor
+                            : MyTheme.buttonchangeColor,
                         borderRadius: BorderRadius.all(Radius.circular(6)),
                       ),
                       child: Center(
@@ -1142,8 +1186,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                             fontFamily: 'Inter',
                             fontStyle: FontStyle.normal,
                             fontWeight: FontWeight.w600,
-                            letterSpacing: -0.28,
-                            color: Color(0xffE5E5E5),
+                            color: MyTheme.buttontextColor,
                           ),
                         ),
                       ),

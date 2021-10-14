@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:readyplates_restaurants/utils/my_color.dart';
 
 class FieldTitle extends StatelessWidget {
   final String text;
@@ -26,7 +27,7 @@ class FieldTitle extends StatelessWidget {
               fontFamily: fontFamily,
               fontStyle: FontStyle.normal,
               fontWeight: fontWeight,
-              color: Color(0xff2F2E41),
+              color: MyTheme.labelColor,
             ),
             children: required
                 ? [
@@ -34,7 +35,7 @@ class FieldTitle extends StatelessWidget {
                       text: ' *',
                       style: TextStyle(
                         fontSize: fontSize + 3,
-                        color: Color(0xffEB4132),
+                        color: MyTheme.starColor,
                       ),
                     ),
                   ]

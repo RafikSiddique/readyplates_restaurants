@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:readyplates_restaurants/src/home/home_controller.dart';
+import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/dropdowncategory.dart';
 import 'package:readyplates_restaurants/widgets/dropdowndiettype.dart';
 import 'package:readyplates_restaurants/widgets/dropdownstandard.dart';
@@ -60,7 +61,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
             iconSize: 14.83,
             icon: FaIcon(
               FontAwesomeIcons.chevronLeft,
-              color: Color(0xff000000),
+              color: MyTheme.iconColor,
             ),
             onPressed: () {
               Get.back();
@@ -73,7 +74,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
             fontFamily: 'Inter',
             fontStyle: FontStyle.normal,
             fontWeight: FontWeight.w500,
-            color: Color(0xff393E46),
+            color: MyTheme.appbartextColor,
           ),
         ),
       ),
@@ -100,7 +101,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
                       color: Color(0xffFFFFFF),
                       border: Border.all(
                         width: 1,
-                        color: Color(0xffE0E0E0),
+                        color: MyTheme.borderColor,
                       ),
                       borderRadius: BorderRadius.all(Radius.circular(6)),
                     ),
@@ -142,7 +143,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
                       color: Color(0xffFFFFFF),
                       border: Border.all(
                         width: 1,
-                        color: Color(0xffE0E0E0),
+                        color: MyTheme.borderColor,
                       ),
                       borderRadius: BorderRadius.all(Radius.circular(6)),
                     ),
@@ -242,11 +243,13 @@ class _AddFoodItemState extends State<AddFoodItem> {
                               fontFamily: 'Inter',
                               fontStyle: FontStyle.normal,
                               fontWeight: FontWeight.w500,
-                              color: Color(0xff979797).withOpacity(0.7),
+                              color: MyTheme.hinttextColor,
                             ),
                             border: OutlineInputBorder(
                               borderSide: BorderSide(
-                                  width: 0, color: Color(0xffE0E0E0)),
+                                width: 0,
+                                color: MyTheme.borderColor,
+                              ),
                               borderRadius: BorderRadius.circular(6),
                             ),
                           ),
@@ -318,7 +321,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
                   fontFamily: 'Poppins',
                   fontStyle: FontStyle.normal,
                   fontWeight: FontWeight.normal,
-                  color: Color(0xff6E6D7A),
+                  color: MyTheme.bottomtextColor,
                 ),
               ),
               SizedBox(
@@ -329,7 +332,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
                 style: GoogleFonts.montserrat(
                   fontSize: 13,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xff6E6D7A),
+                  color: MyTheme.bottomtextColor,
                 ),
               ),
               SizedBox(
@@ -338,7 +341,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
               Container(
                 decoration: BoxDecoration(
                     border: Border.all(
-                      color: Color(0xffE0E0E0),
+                      color: MyTheme.borderColor,
                     ),
                     borderRadius: BorderRadius.circular(10)),
                 padding: EdgeInsets.all(8),

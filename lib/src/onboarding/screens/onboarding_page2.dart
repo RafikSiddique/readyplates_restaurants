@@ -8,6 +8,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
+import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
@@ -22,15 +23,15 @@ class OnboardingPage2 extends StatelessWidget {
     return OnBoardingWrapper(
       onboardingController: controller,
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: MyTheme.appbackgroundColor,
         appBar: AppBar(
-          backgroundColor: Color(0xffE5E5E5),
+          backgroundColor: MyTheme.appbackgroundColor,
           elevation: 0,
           leading: IconButton(
               iconSize: 14.83,
               icon: FaIcon(
                 FontAwesomeIcons.chevronLeft,
-                color: Color(0xff000000),
+                color: MyTheme.iconColor,
               ),
               onPressed: () {
                 Get.back();
@@ -41,7 +42,7 @@ class OnboardingPage2 extends StatelessWidget {
             style: TextStyle(
               fontSize: 17,
               letterSpacing: -0.226667,
-              color: Color(0xff393E46),
+              color: MyTheme.appbartextColor,
             ),
           ),
         ),
@@ -196,8 +197,8 @@ class OnboardingPage2 extends StatelessWidget {
                       height: 40.11,
                       decoration: BoxDecoration(
                         color: controller.postalcodeController.text.isEmpty
-                            ? Color(0xff7A7E83)
-                            : Color(0xff222831),
+                            ? MyTheme.buttonColor
+                            : MyTheme.buttonchangeColor,
                         borderRadius: BorderRadius.all(Radius.circular(6)),
                       ),
                       child: Center(
@@ -208,7 +209,7 @@ class OnboardingPage2 extends StatelessWidget {
                             fontSize: 17,
                             fontWeight: FontWeight.bold,
                             letterSpacing: -0.28,
-                            color: Color(0xffE5E5E5),
+                            color: MyTheme.buttontextColor,
                           ),
                         ),
                       ),

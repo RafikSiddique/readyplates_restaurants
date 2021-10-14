@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 
 // ignore: must_be_immutable
@@ -69,8 +70,8 @@ class AppFormField extends StatelessWidget {
                 border: Border.all(
                   width: 1,
                   color: controller.text != ""
-                      ? Color(0xff00ADB5)
-                      : Color(0xffE0E0E0),
+                      ? MyTheme.buttonchangeColor
+                      : MyTheme.buttonColor,
                 ),
                 borderRadius: borderRadius,
               ),
@@ -123,7 +124,9 @@ class AppFormField extends StatelessWidget {
                     fontFamily: 'Inter-Regular',
                     fontStyle: FontStyle.normal,
                     fontWeight: FontWeight.w600,
-                    color: Color(0x979797).withOpacity(0.7),
+                    color: controller.text != ''
+                        ? MyTheme.hinttextColor
+                        : MyTheme.hinttextchangeColor,
                   ),
                 ),
               ),
@@ -142,7 +145,7 @@ class AppFormField extends StatelessWidget {
                 fontFamily: 'Poppins',
                 fontStyle: FontStyle.normal,
                 fontWeight: FontWeight.normal,
-                color: Color(0xff6E6D7A),
+                color: MyTheme.bottomtextColor,
               ),
             ),
         ],

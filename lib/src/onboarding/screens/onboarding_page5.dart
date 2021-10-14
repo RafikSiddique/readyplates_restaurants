@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:open_file/open_file.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
+import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
@@ -20,20 +23,31 @@ class OnboardingPage5 extends StatefulWidget {
 class _OnboardingPage5State extends State<OnboardingPage5> {
   final controller = Get.find<OnboardingController>();
   final formKey = GlobalKey<FormState>();
+  void openFile(PlatformFile file) {
+    OpenFile.open(file.path!);
+  }
+
+  Future<File> saveFilePermanently(PlatformFile file) async {
+    final appStorage = await getApplicationDocumentsDirectory();
+    final newFile = File('${appStorage.path}/${file.name}');
+    return File(file.path!).copy(newFile.path);
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return OnBoardingWrapper(
       onboardingController: controller,
       child: Scaffold(
+        backgroundColor: MyTheme.appbackgroundColor,
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: MyTheme.appbackgroundColor,
           elevation: 0,
           leading: IconButton(
               iconSize: 14.83,
               icon: FaIcon(
                 FontAwesomeIcons.chevronLeft,
-                color: Color(0xff000000),
+                color: MyTheme.iconColor,
               ),
               onPressed: () {
                 Get.back();
@@ -46,8 +60,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
               fontFamily: 'Inter',
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.w500,
-              letterSpacing: -0.226667,
-              color: Color(0xff393E46),
+              color: MyTheme.appbartextColor,
             ),
           ),
         ),
@@ -100,8 +113,8 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                       border: Border.all(
                         width: 1,
                         color: controller.typeOfAcc == ''
-                            ? Color(0xffE0E0E0)
-                            : Color(0xff00ADB5),
+                            ? MyTheme.borderColor
+                            : MyTheme.borderchangeColor,
                         style: BorderStyle.solid,
                       ),
                     ),
@@ -110,7 +123,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                         padding: const EdgeInsets.only(right: 8.17),
                         child: FaIcon(
                           FontAwesomeIcons.chevronDown,
-                          color: Color(0xff000000),
+                          color: MyTheme.iconColor,
                           size: 14.87,
                         ),
                       ),
@@ -130,8 +143,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                           fontFamily: 'Inter',
                           fontStyle: FontStyle.normal,
                           fontWeight: FontWeight.w500,
-                          letterSpacing: -0.264706,
-                          color: Color(0xff979797).withOpacity(0.7),
+                          color: MyTheme.hinttextColor,
                         ),
                       ),
                       items: controller.accType
@@ -190,7 +202,9 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                     decoration: BoxDecoration(
                       border: Border.all(
                         width: 1,
-                        color: Color(0xffE0E0E0),
+                        color: controller.pan_image.path.isEmpty
+                            ? MyTheme.borderColor
+                            : MyTheme.borderchangeColor,
                         style: BorderStyle.solid,
                       ),
                       borderRadius: BorderRadius.all(
@@ -203,16 +217,17 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                         Padding(
                           padding: const EdgeInsets.only(left: 12.5),
                           child: Text(
-                            controller.pan_image.path == ""
+                            controller.pan_image.path.isEmpty
                                 ? 'Please upload [ “png”, “jpg”, “jpeg”, “pdf”] files'
-                                : controller.pan_image.path.split('/').last,
+                                : '${controller.pan_image.path.split('/').last}',
                             style: TextStyle(
                               fontSize: 13,
                               fontFamily: 'Inter',
                               fontStyle: FontStyle.normal,
                               fontWeight: FontWeight.w500,
-                              letterSpacing: -0.264706,
-                              color: Color(0xff979797).withOpacity(0.7),
+                              color: controller.pan_image.path.isEmpty
+                                  ? MyTheme.hinttextColor
+                                  : MyTheme.hinttextchangeColor,
                             ),
                             textAlign: TextAlign.center,
                           ),
@@ -233,6 +248,9 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                             print('Extension: ${file.extension}');
                             print('Path: ${file.path}');
                             print('From Path: ${file.path!}');
+                            setState(() {
+                              controller.pan_image = File(file.path!);
+                            });
                           },
                           child: Container(
                             width: size.width * 0.110,
@@ -274,7 +292,9 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                       // width: 343,
                       height: 40.11,
                       decoration: BoxDecoration(
-                        color: Color(0xff7A7E83),
+                        color: controller.pan_image.path.isEmpty
+                            ? MyTheme.buttonColor
+                            : MyTheme.buttonchangeColor,
                         borderRadius: BorderRadius.all(Radius.circular(6)),
                       ),
                       child: Center(
@@ -287,7 +307,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                             fontStyle: FontStyle.normal,
                             fontWeight: FontWeight.w600,
                             letterSpacing: -0.28,
-                            color: Color(0xffE5E5E5),
+                            color: MyTheme.buttontextColor,
                           ),
                         ),
                       ),
@@ -303,7 +323,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                       fontFamily: 'Montserrat',
                       fontStyle: FontStyle.normal,
                       fontWeight: FontWeight.w400,
-                      color: Color(0xff6E6D7A),
+                      color: MyTheme.bottomtextColor,
                     ),
                   ),
                   SizedBox(

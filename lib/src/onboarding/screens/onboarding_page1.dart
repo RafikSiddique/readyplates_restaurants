@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
+import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
@@ -23,15 +24,15 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
     return OnBoardingWrapper(
       onboardingController: controller,
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: MyTheme.appbackgroundColor,
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: MyTheme.appbackgroundColor,
           elevation: 0,
           leading: IconButton(
               iconSize: 14.83,
               icon: FaIcon(
                 FontAwesomeIcons.chevronLeft,
-                color: Color(0xff000000),
+                color: MyTheme.iconColor,
               ),
               onPressed: () {
                 Get.back();
@@ -42,7 +43,7 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
             style: TextStyle(
               fontSize: 17,
               letterSpacing: -0.226667,
-              color: Color(0xff393E46),
+              color: MyTheme.appbartextColor,
             ),
           ),
         ),
@@ -117,8 +118,8 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                       border: Border.all(
                         width: 1,
                         color: controller.ownMobileController.text.isEmpty
-                            ? Color(0xffE0E0E0)
-                            : Color(0xff00ADB5),
+                            ? MyTheme.borderColor
+                            : MyTheme.borderchangeColor,
                       ),
                     ),
                     child: TextFormField(
@@ -144,13 +145,12 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                                 height: 35,
                                 width: 0,
                                 decoration: BoxDecoration(
-                                  color: Color(0xffE0E0E0),
                                   border: Border.all(
                                     width: 1,
                                     color: controller
                                             .ownMobileController.text.isEmpty
-                                        ? Color(0xffE0E0E0)
-                                        : Color(0xff00ADB5),
+                                        ? MyTheme.borderColor
+                                        : MyTheme.borderchangeColor,
                                   ),
                                 ),
                               ),
@@ -167,8 +167,8 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                                       fontSize: 15,
                                       color: controller
                                               .ownMobileController.text.isEmpty
-                                          ? Color(0xffEB4132).withOpacity(0.7)
-                                          : Color(0xff00ADB5).withOpacity(0.7),
+                                          ? MyTheme.verifytextColor
+                                          : MyTheme.verifytextchngeColor,
                                     ),
                                   ),
                                 ),
@@ -181,8 +181,9 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                             EdgeInsets.only(left: 14, top: 14, right: 24),
                         hintStyle: TextStyle(
                           fontSize: 15,
-                          letterSpacing: -0.264706,
-                          color: Color(0xff2F2E41).withOpacity(0.7),
+                          color: MyTheme.hinttextColor,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
@@ -194,7 +195,7 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                     'Will be used to make all future correspondence/communications',
                     style: TextStyle(
                       fontSize: 9,
-                      color: Color(0xff6E6D7A),
+                      color: MyTheme.bottomtextColor,
                     ),
                   ),
                   SizedBox(
@@ -212,8 +213,8 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                       border: Border.all(
                         width: 1,
                         color: controller.ownMobileController.text.isEmpty
-                            ? Color(0xffE0E0E0)
-                            : Color(0xff00ADB5),
+                            ? MyTheme.borderColor
+                            : MyTheme.borderchangeColor,
                       ),
                       borderRadius: BorderRadius.all(
                         Radius.circular(6.0),
@@ -226,7 +227,7 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                         ),
                         child: FaIcon(
                           FontAwesomeIcons.chevronDown,
-                          color: Color(0xff000000),
+                          color: MyTheme.iconColor,
                           size: 14.83,
                         ),
                       ),
@@ -244,7 +245,7 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                         ),
                         hintStyle: TextStyle(
                           fontSize: 15,
-                          color: Color(0xff979797).withOpacity(0.7),
+                          color: MyTheme.hinttextColor,
                         ),
                       ),
                       items: [
@@ -296,8 +297,8 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                         color: (controller.resNameController.text.isEmpty &&
                                 controller.firstNameController.text.isEmpty &&
                                 controller.lastNameController.text.isEmpty)
-                            ? Color(0xff7A7E83)
-                            : Color(0xff222831),
+                            ? MyTheme.buttonColor
+                            : MyTheme.buttonchangeColor,
                         borderRadius: BorderRadius.all(Radius.circular(6)),
                       ),
                       child: Center(
@@ -308,7 +309,7 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                             fontSize: 17,
                             fontWeight: FontWeight.w600,
                             letterSpacing: -0.28,
-                            color: Color(0xffE5E5E5),
+                            color: MyTheme.buttontextColor,
                           ),
                         ),
                       ),
