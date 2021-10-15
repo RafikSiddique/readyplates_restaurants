@@ -11,18 +11,18 @@ class AddItem extends StatelessWidget {
         color: Color(0xffFFFFFF),
         borderRadius: BorderRadius.all(Radius.circular(10)),
         boxShadow: [
-          // BoxShadow(
-          //   color: Color.fromRGBO(188, 202, 224, 0.1),
-          //   offset: Offset(0, -1),
-          //   blurRadius: 4,
-          //   spreadRadius: 0,
-          // ),
-          // BoxShadow(
-          //   color: Color.fromRGBO(188, 202, 224, 0.4),
-          //   offset: Offset(0, 2),
-          //   blurRadius: 4,
-          //   spreadRadius: 0,
-          // )
+          BoxShadow(
+            color: Color.fromRGBO(188, 202, 224, 0.1),
+            offset: Offset(0, -1),
+            blurRadius: 4,
+            spreadRadius: 0,
+          ),
+          BoxShadow(
+            color: Color.fromRGBO(188, 202, 224, 0.4),
+            offset: Offset(0, 2),
+            blurRadius: 4,
+            spreadRadius: 0,
+          )
         ],
       ),
       child: Padding(

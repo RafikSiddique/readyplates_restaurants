@@ -13,11 +13,54 @@ import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
 
-class OnboardingPage2 extends StatelessWidget {
+class OnboardingPage2 extends StatefulWidget {
   static const id = "/onboarding2";
   OnboardingPage2({Key? key}) : super(key: key);
+
+  @override
+  State<OnboardingPage2> createState() => _OnboardingPage2State();
+}
+
+class _OnboardingPage2State extends State<OnboardingPage2> {
   final controller = Get.find<OnboardingController>();
+
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  @override
+  void initState() {
+    controller.address1Controller.addListener(() {
+      setState(() {});
+    });
+    controller.address2Controller.addListener(() {
+      setState(() {});
+    });
+    controller.nearbylandnarkController.addListener(() {
+      setState(() {});
+    });
+    controller.postalcodeController.addListener(() {
+      setState(() {});
+    });
+    controller.latitudeController.addListener(() {
+      setState(() {});
+    });
+    controller.longitudeController.addListener(() {
+      setState(() {});
+    });
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.address1Controller.dispose();
+    controller.address2Controller.dispose();
+    controller.nearbylandnarkController.dispose();
+    controller.postalcodeController.dispose();
+    controller.latitudeController.dispose();
+    controller.latitudeController.dispose();
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return OnBoardingWrapper(
@@ -196,7 +239,12 @@ class OnboardingPage2 extends StatelessWidget {
                     child: Container(
                       height: 40.11,
                       decoration: BoxDecoration(
-                        color: controller.postalcodeController.text.isEmpty
+                        color: (controller.address1Controller.text.isEmpty ||
+                                controller.address2Controller.text.isEmpty ||
+                                controller
+                                    .nearbylandnarkController.text.isEmpty ||
+                                controller.latitudeController.text.isEmpty ||
+                                controller.longitudeController.text.isEmpty)
                             ? MyTheme.buttonColor
                             : MyTheme.buttonchangeColor,
                         borderRadius: BorderRadius.all(Radius.circular(6)),

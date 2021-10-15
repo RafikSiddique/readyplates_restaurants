@@ -70,8 +70,8 @@ class AppFormField extends StatelessWidget {
                 border: Border.all(
                   width: 1,
                   color: controller.text != ""
-                      ? MyTheme.buttonchangeColor
-                      : MyTheme.buttonColor,
+                      ? MyTheme.borderchangeColor
+                      : MyTheme.borderColor,
                 ),
                 borderRadius: borderRadius,
               ),
@@ -120,13 +120,13 @@ class AppFormField extends StatelessWidget {
                       : null,
                   hintStyle: TextStyle(
                     fontSize: hintfontSize,
-                    letterSpacing: 0.24,
                     fontFamily: 'Inter-Regular',
                     fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: -0.26,
                     color: controller.text != ''
-                        ? MyTheme.hinttextColor
-                        : MyTheme.hinttextchangeColor,
+                        ? MyTheme.hinttextchangeColor
+                        : MyTheme.hinttextColor,
                   ),
                 ),
               ),

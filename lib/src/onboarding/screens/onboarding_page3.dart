@@ -51,6 +51,30 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
   }
 
   @override
+  void initState() {
+    controller.address1Controller.addListener(() {
+      setState(() {});
+    });
+    controller.address2Controller.addListener(() {
+      setState(() {});
+    });
+    controller.nearbylandnarkController.addListener(() {
+      setState(() {});
+    });
+    controller.postalcodeController.addListener(() {
+      setState(() {});
+    });
+    controller.latitudeController.addListener(() {
+      setState(() {});
+    });
+    controller.longitudeController.addListener(() {
+      setState(() {});
+    });
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return OnBoardingWrapper(
       onboardingController: controller,

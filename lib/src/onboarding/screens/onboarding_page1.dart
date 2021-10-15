@@ -20,6 +20,44 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
+  void initState() {
+    controller.resNameController.addListener(() {
+      setState(() {});
+    });
+    controller.firstNameController.addListener(() {
+      setState(() {});
+    });
+    controller.lastNameController.addListener(() {
+      setState(() {});
+    });
+    controller.ownemailController.addListener(() {
+      setState(() {});
+    });
+    controller.ownMobileController.addListener(() {
+      setState(() {});
+    });
+    controller.pocController.addListener(() {
+      setState(() {});
+    });
+    controller.pocNumberController.addListener(() {
+      setState(() {});
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.resNameController.dispose();
+    controller.firstNameController.dispose();
+    controller.lastNameController.dispose();
+    controller.ownemailController.dispose();
+    controller.ownMobileController.dispose();
+    controller.pocController.dispose();
+    controller.pocNumberController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return OnBoardingWrapper(
       onboardingController: controller,
@@ -60,7 +98,7 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                   ),
                   AppFormField(
                     title: "Restaurant Name",
-                    hintText: "Snack Shack Fast Food Restaurant",
+                    hintText: "Your Restaurant Name",
                     hintfontSize: 15,
                     controller: controller.resNameController,
                     validator: (p0) {
@@ -165,10 +203,7 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                                       fontStyle: FontStyle.normal,
                                       fontFamily: 'Inter',
                                       fontSize: 15,
-                                      color: controller
-                                              .ownMobileController.text.isEmpty
-                                          ? MyTheme.verifytextColor
-                                          : MyTheme.verifytextchngeColor,
+                                      color: MyTheme.verifytextColor,
                                     ),
                                   ),
                                 ),
@@ -182,8 +217,9 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                         hintStyle: TextStyle(
                           fontSize: 15,
                           color: MyTheme.hinttextColor,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w600,
+                          fontFamily: 'Inter-Regular',
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: -0.26,
                         ),
                       ),
                     ),
@@ -192,10 +228,14 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                     height: 3,
                   ),
                   Text(
-                    'Will be used to make all future correspondence/communications',
+                    controller.ownMobileController.text.isEmpty
+                        ? 'Will be used to make all future correspondence/communications'
+                        : 'Press “Verify” to authenticate mobile number',
                     style: TextStyle(
                       fontSize: 9,
-                      color: MyTheme.bottomtextColor,
+                      color: controller.ownMobileController.text.isEmpty
+                          ? MyTheme.bottomtextColor
+                          : MyTheme.starColor,
                     ),
                   ),
                   SizedBox(
@@ -212,7 +252,7 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                     decoration: BoxDecoration(
                       border: Border.all(
                         width: 1,
-                        color: controller.ownMobileController.text.isEmpty
+                        color: controller.rescity.isEmpty
                             ? MyTheme.borderColor
                             : MyTheme.borderchangeColor,
                       ),
@@ -245,10 +285,13 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                         ),
                         hintStyle: TextStyle(
                           fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: -0.26,
                           color: MyTheme.hinttextColor,
                         ),
                       ),
                       items: [
+                        DropdownMenuItem(child: Text(""), value: ""),
                         DropdownMenuItem(
                             child: Text("Mumbai"), value: "Mumbai"),
                         DropdownMenuItem(child: Text("Pune"), value: "Pune"),
@@ -294,9 +337,14 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                     child: Container(
                       height: 40.11,
                       decoration: BoxDecoration(
-                        color: (controller.resNameController.text.isEmpty &&
-                                controller.firstNameController.text.isEmpty &&
-                                controller.lastNameController.text.isEmpty)
+                        color: (controller.resNameController.text.isEmpty ||
+                                controller.firstNameController.text.isEmpty ||
+                                controller.lastNameController.text.isEmpty ||
+                                controller.ownemailController.text.isEmpty ||
+                                controller.ownMobileController.text.isEmpty ||
+                                controller.rescity.isEmpty ||
+                                controller.pocController.text.isEmpty ||
+                                controller.pocNumberController.text.isEmpty)
                             ? MyTheme.buttonColor
                             : MyTheme.buttonchangeColor,
                         borderRadius: BorderRadius.all(Radius.circular(6)),
