@@ -79,6 +79,7 @@ class OnboardingController extends GetxController {
   final pan_nameController = TextEditingController();
 
   File pan_image = File('');
+
   void clear() {
     resNameController.clear();
     firstNameController.clear();
@@ -154,6 +155,7 @@ class OnboardingController extends GetxController {
   @override
   void onInit() {
     SharedPreferenceHelper().getUserId().then((value) => uniqueId = value);
+
     super.onInit();
   }
 
