@@ -137,39 +137,47 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                         ...controller.selectCategory
                             //      .sublist(0, 6)
                             .map((category) => Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Container(
-                                      child: Checkbox(
-                                        activeColor: Colors.white,
-                                        checkColor: MyTheme.checkColor,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(4),
+                                      child: ConstrainedBox(
+                                        constraints: BoxConstraints(
+                                            maxHeight: size.height,
+                                            maxWidth: size.width * 0.055),
+                                        child: Checkbox(
+                                          materialTapTargetSize:
+                                              MaterialTapTargetSize.shrinkWrap,
+                                          activeColor: MyTheme.checkColor,
+                                          checkColor: Colors.white,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                          ),
+                                          value: controller.chooseCategory
+                                              .contains(category),
+                                          tristate: false,
+                                          onChanged: (value) {
+                                            if (controller.chooseCategory
+                                                .contains(category)) {
+                                              controller.chooseCategory
+                                                  .remove(category);
+                                            } else {
+                                              controller.chooseCategory
+                                                  .add(category);
+                                            }
+                                            setState(() {
+                                              controller.isChecked = value!;
+                                            });
+                                          },
                                         ),
-                                        value: controller.chooseCategory
-                                            .contains(category),
-                                        tristate: false,
-                                        onChanged: (value) {
-                                          if (controller.chooseCategory
-                                              .contains(category)) {
-                                            controller.chooseCategory
-                                                .remove(category);
-                                          } else {
-                                            controller.chooseCategory
-                                                .add(category);
-                                          }
-                                          setState(() {
-                                            controller.isChecked = value!;
-                                          });
-                                        },
                                       ),
                                     ),
                                     SizedBox(
                                       width: 10,
                                     ),
                                     Container(
-                                      width: size.width * 0.15,
+                                      width: 85,
                                       alignment: Alignment.centerLeft,
                                       child: FittedBox(
                                         fit: BoxFit.scaleDown,
@@ -184,6 +192,9 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                           ),
                                         ),
                                       ),
+                                    ),
+                                    SizedBox(
+                                      width: 6,
                                     ),
                                   ],
                                 ))
@@ -535,9 +546,9 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                     Container(
                                       height: 19,
                                       child: Text(
-                                        controller.endAmPm.value,
+                                        controller.eventstartAmPm.value,
                                         style: TextStyle(
-                                          fontSize: 16,
+                                          fontSize: 15,
                                           fontFamily: 'Inter',
                                           fontStyle: FontStyle.normal,
                                           fontWeight: FontWeight.w500,
@@ -550,7 +561,8 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                           padding: EdgeInsets.only(
                                               bottom: 4, top: 4),
                                           child: FaIcon(
-                                            controller.startAmPm.value == "AM"
+                                            controller.eventstartAmPm.value ==
+                                                    "AM"
                                                 ? FontAwesomeIcons.chevronDown
                                                 : FontAwesomeIcons.chevronUp,
                                             size: 12,
@@ -558,11 +570,13 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                           ),
                                         ),
                                         onTap: () {
-                                          if (controller.startAmPm.value ==
+                                          if (controller.eventstartAmPm.value ==
                                               "AM") {
-                                            controller.startAmPm.value = "PM";
+                                            controller.eventstartAmPm.value =
+                                                "PM";
                                           } else {
-                                            controller.startAmPm.value = "AM";
+                                            controller.eventstartAmPm.value =
+                                                "AM";
                                           }
                                         }),
                                   ],
@@ -579,7 +593,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                   fontStyle: FontStyle.normal,
                                   fontWeight: FontWeight.normal,
                                   letterSpacing: -0.229412,
-                                  color: MyTheme.hinttextColor,
+                                  color: MyTheme.bottomtextColor,
                                 ),
                               )
                             ],
@@ -600,7 +614,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                   Obx(
                     () => Wrap(
                       direction: Axis.horizontal,
-                      //crossAxisAlignment: CrossAxisAlignment.start,
+                      // crossAxisAlignment: WrapCrossAlignment.,
                       children: [
                         /*     Column(
                           children: [ */
@@ -611,29 +625,41 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      Checkbox(
-                                        activeColor: Colors.white,
-                                        checkColor: MyTheme.checkColor,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(4),
+                                      Container(
+                                        child: ConstrainedBox(
+                                          constraints: BoxConstraints(
+                                            maxHeight: size.height,
+                                            maxWidth: size.width * 0.055,
+                                          ),
+                                          child: Checkbox(
+                                            materialTapTargetSize:
+                                                MaterialTapTargetSize
+                                                    .shrinkWrap,
+                                            activeColor: MyTheme.checkColor,
+                                            checkColor: Colors.white,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(4),
+                                            ),
+                                            value: controller.chooseDays
+                                                .contains(days),
+                                            onChanged: (value) {
+                                              if (controller.chooseDays
+                                                  .contains(days)) {
+                                                controller.chooseDays
+                                                    .remove(days);
+                                              } else {
+                                                controller.chooseDays.add(days);
+                                              }
+                                              setState(() {
+                                                controller.isDays = value!;
+                                              });
+                                            },
+                                          ),
                                         ),
-                                        value: controller.chooseDays
-                                            .contains(days),
-                                        onChanged: (value) {
-                                          if (controller.chooseDays
-                                              .contains(days)) {
-                                            controller.chooseDays.remove(days);
-                                          } else {
-                                            controller.chooseDays.add(days);
-                                          }
-                                          setState(() {
-                                            controller.isDays = value!;
-                                          });
-                                        },
                                       ),
                                       SizedBox(
-                                        width: size.width * 0.010,
+                                        width: 10,
                                       ),
                                       Container(
                                         alignment: Alignment.centerLeft,
@@ -647,10 +673,13 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                               fontFamily: 'Inter',
                                               fontStyle: FontStyle.normal,
                                               fontWeight: FontWeight.normal,
-                                              color: MyTheme.hinttextColor,
+                                              color: MyTheme.checkboxtextColor,
                                             ),
                                           ),
                                         ),
+                                      ),
+                                      SizedBox(
+                                        width: 6,
                                       ),
                                     ],
                                   ),
