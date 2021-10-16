@@ -10,6 +10,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
+import 'package:readyplates_restaurants/widgets/file_picker.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
 
@@ -197,88 +198,99 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   SizedBox(
                     height: 5.08,
                   ),
-                  Container(
-                    height: 45.68,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        width: 1,
-                        color: controller.pan_image.path.isEmpty
-                            ? MyTheme.borderColor
-                            : MyTheme.borderchangeColor,
-                        style: BorderStyle.solid,
-                      ),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(6.0),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 12.5),
-                          child: Text(
-                            controller.pan_image.path.isEmpty
-                                ? 'Please upload [ “png”, “jpg”, “jpeg”, “pdf”] files'
-                                : '${controller.pan_image.path.split('/').last}',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontFamily: 'Inter',
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w500,
-                              color: controller.pan_image.path.isEmpty
-                                  ? MyTheme.hinttextColor
-                                  : MyTheme.hinttextchangeColor,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 18,
-                        ),
-                        InkWell(
-                          onTap: () async {
-                            final result = await FilePicker.platform
-                                .pickFiles(allowMultiple: true);
-                            if (result == null) return;
-                            final file = result.files.first;
-                            controller.pan_image = File(file.path!);
-                            print('Name: ${file.name}');
-                            print('Bytes: ${file.bytes}');
-                            print('Size: ${file.size}');
-                            print('Extension: ${file.extension}');
-                            print('Path: ${file.path}');
-                            print('From Path: ${file.path!}');
-                            setState(() {
-                              controller.pan_image = File(file.path!);
-                            });
-                          },
-                          child: Container(
-                            width: size.width * 0.110,
-                            decoration: BoxDecoration(
-                              color: Color(0xffEFEFEF),
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(0),
-                                topRight: Radius.circular(6.0),
-                                bottomLeft: Radius.circular(0),
-                                bottomRight: Radius.circular(6.0),
-                              ),
-                            ),
-                            child: Center(
-                              child: Container(
-                                width: 20,
-                                height: 20,
-                                child: Image(
-                                  image: AssetImage(
-                                    'assets/images/upload.png',
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                  PickFiles(
+                    uploadborderColor: controller.pan_image.path.isEmpty
+                        ? MyTheme.borderColor
+                        : MyTheme.borderchangeColor,
+                    uploadText: controller.pan_image.path.isEmpty
+                        ? 'Please upload [ “png”, “jpg”, “jpeg”] images'
+                        : '${controller.pan_image.path.split('/').last}',
+                    uploadtextColor: controller.pan_image.path.isEmpty
+                        ? MyTheme.hinttextColor
+                        : MyTheme.hinttextchangeColor,
                   ),
+                  // Container(
+                  //   height: 45.68,
+                  //   decoration: BoxDecoration(
+                  //     border: Border.all(
+                  //       width: 1,
+                  //       color: controller.pan_image.path.isEmpty
+                  //           ? MyTheme.borderColor
+                  //           : MyTheme.borderchangeColor,
+                  //       style: BorderStyle.solid,
+                  //     ),
+                  //     borderRadius: BorderRadius.all(
+                  //       Radius.circular(6.0),
+                  //     ),
+                  //   ),
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //     children: [
+                  //       Padding(
+                  //         padding: const EdgeInsets.only(left: 12.5),
+                  //         child: Text(
+                  //           controller.pan_image.path.isEmpty
+                  //               ? 'Please upload [ “png”, “jpg”, “jpeg”, “pdf”] files'
+                  //               : '${controller.pan_image.path.split('/').last}',
+                  //           style: TextStyle(
+                  //             fontSize: 13,
+                  //             fontFamily: 'Inter',
+                  //             fontStyle: FontStyle.normal,
+                  //             fontWeight: FontWeight.w500,
+                  //             color: controller.pan_image.path.isEmpty
+                  //                 ? MyTheme.hinttextColor
+                  //                 : MyTheme.hinttextchangeColor,
+                  //           ),
+                  //           textAlign: TextAlign.center,
+                  //         ),
+                  //       ),
+                  //       SizedBox(
+                  //         height: 18,
+                  //       ),
+                  //       InkWell(
+                  //         onTap: () async {
+                  //           final result = await FilePicker.platform
+                  //               .pickFiles(allowMultiple: true);
+                  //           if (result == null) return;
+                  //           final file = result.files.first;
+                  //           controller.pan_image = File(file.path!);
+                  //           print('Name: ${file.name}');
+                  //           print('Bytes: ${file.bytes}');
+                  //           print('Size: ${file.size}');
+                  //           print('Extension: ${file.extension}');
+                  //           print('Path: ${file.path}');
+                  //           print('From Path: ${file.path!}');
+                  //           setState(() {
+                  //             controller.pan_image = File(file.path!);
+                  //           });
+                  //         },
+                  //         child: Container(
+                  //           width: size.width * 0.110,
+                  //           decoration: BoxDecoration(
+                  //             color: Color(0xffEFEFEF),
+                  //             borderRadius: BorderRadius.only(
+                  //               topLeft: Radius.circular(0),
+                  //               topRight: Radius.circular(6.0),
+                  //               bottomLeft: Radius.circular(0),
+                  //               bottomRight: Radius.circular(6.0),
+                  //             ),
+                  //           ),
+                  //           child: Center(
+                  //             child: Container(
+                  //               width: 20,
+                  //               height: 20,
+                  //               child: Image(
+                  //                 image: AssetImage(
+                  //                   'assets/images/upload.png',
+                  //                 ),
+                  //               ),
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
                   SizedBox(
                     height: 18,
                   ),

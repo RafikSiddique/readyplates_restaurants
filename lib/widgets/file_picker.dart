@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
-import 'package:readyplates_restaurants/utils/my_color.dart';
 
 class PickFiles extends StatelessWidget {
   final Color uploadborderColor;
@@ -30,7 +29,6 @@ class PickFiles extends StatelessWidget {
     final newFile = File('${appStorage.path}/${file.name}');
     return File(file.path!).copy(newFile.path);
   }
-  // '${controller.kycimg.path.split('/').last}'
 
   @override
   Widget build(BuildContext context) {
@@ -80,6 +78,8 @@ class PickFiles extends StatelessWidget {
               print('Extension: ${file.extension}');
 
               controller.kycimg = File(file.path!);
+              controller.gstinimg = File(file.path!);
+              controller.fssaiimg = File(file.path!);
             },
             child: Container(
               width: 45,

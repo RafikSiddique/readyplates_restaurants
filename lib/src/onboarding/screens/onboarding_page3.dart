@@ -261,7 +261,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   //         child: Padding(
                   //           padding: const EdgeInsets.only(left: 12.5),
                   //           child: Text(
-                  //             controller.kycimg.path.isEmpty
+                  //            c
                   //                 ? 'Please upload [ “png”, “jpg”, “jpeg”] images'
                   //                 : '${controller.kycimg.path.split('/').last}',
                   //             style: TextStyle(
@@ -332,7 +332,17 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   SizedBox(
                     height: 5,
                   ),
-
+                  PickFiles(
+                    uploadborderColor: controller.gstinimg.path.isEmpty
+                        ? MyTheme.borderColor
+                        : MyTheme.borderchangeColor,
+                    uploadText: controller.gstinimg.path.isEmpty
+                        ? 'Please upload [ “png”, “jpg”, “jpeg”, “pdf”] files'
+                        : '${controller.gstinimg.path.split('/').last}',
+                    uploadtextColor: controller.gstinimg.path.isEmpty
+                        ? MyTheme.hinttextColor
+                        : MyTheme.hinttextchangeColor,
+                  ),
                   // Container(
                   //   height: 45.68,
                   //   // margin: EdgeInsets.only(
@@ -428,6 +438,17 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
 
                   SizedBox(
                     height: 5.08,
+                  ),
+                  PickFiles(
+                    uploadborderColor: controller.fssaiimg.path.isEmpty
+                        ? MyTheme.borderColor
+                        : MyTheme.borderchangeColor,
+                    uploadText: controller.fssaiimg.path.isEmpty
+                        ? 'Please upload [ “png”, “jpg”, “jpeg”, “pdf”] files'
+                        : '${controller.fssaiimg.path.split('/').last}',
+                    uploadtextColor: controller.fssaiimg.path.isEmpty
+                        ? MyTheme.hinttextColor
+                        : MyTheme.hinttextchangeColor,
                   ),
                   // Container(
                   //   height: 45.68,
