@@ -238,6 +238,9 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                     uploadtextColor: controller.kycimg.path.isEmpty
                         ? MyTheme.hinttextColor
                         : MyTheme.hinttextchangeColor,
+                    onFilePicked: (p0) {
+                      controller.kycimg = p0;
+                    },
                   ),
                   // Container(
                   //   height: 45.68,
@@ -342,6 +345,9 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                     uploadtextColor: controller.gstinimg.path.isEmpty
                         ? MyTheme.hinttextColor
                         : MyTheme.hinttextchangeColor,
+                    onFilePicked: (p0) {
+                      controller.gstinimg = p0;
+                    },
                   ),
                   // Container(
                   //   height: 45.68,
@@ -449,6 +455,9 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                     uploadtextColor: controller.fssaiimg.path.isEmpty
                         ? MyTheme.hinttextColor
                         : MyTheme.hinttextchangeColor,
+                    onFilePicked: (p0) {
+                      controller.fssaiimg = p0;
+                    },
                   ),
                   // Container(
                   //   height: 45.68,

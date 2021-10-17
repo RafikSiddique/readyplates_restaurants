@@ -1,33 +1,27 @@
 import 'dart:io';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:open_file/open_file.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 
 class PickFiles extends StatelessWidget {
   final Color uploadborderColor;
   final String uploadText;
   final Color uploadtextColor;
+  final void Function(File) onFilePicked;
 
   PickFiles({
     Key? key,
     required this.uploadborderColor,
     required this.uploadText,
     required this.uploadtextColor,
+    required this.onFilePicked,
   }) : super(key: key);
   final controller = Get.find<OnboardingController>();
 
   void openFile(PlatformFile file) {
     OpenFile.open(file.path!);
-  }
-
-  Future<File> saveFilePermanently(PlatformFile file) async {
-    final appStorage = await getApplicationDocumentsDirectory();
-    final newFile = File('${appStorage.path}/${file.name}');
-    return File(file.path!).copy(newFile.path);
   }
 
   @override
@@ -70,16 +64,7 @@ class PickFiles extends StatelessWidget {
                   await FilePicker.platform.pickFiles(allowMultiple: true);
               if (result == null) return;
               final file = result.files.first;
-              // openFile(file);
-
-              print('Name: ${file.name}');
-              print('Bytes: ${file.bytes}');
-              print('Size: ${file.size}');
-              print('Extension: ${file.extension}');
-
-              controller.kycimg = File(file.path!);
-              controller.gstinimg = File(file.path!);
-              controller.fssaiimg = File(file.path!);
+              onFilePicked(File(file.path!));
             },
             child: Container(
               width: 45,
