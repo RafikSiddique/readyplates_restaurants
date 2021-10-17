@@ -6,7 +6,7 @@ import 'package:readyplates_restaurants/utils/exception.dart';
 import 'package:http/http.dart';
 
 class OnboardingServices extends ApiServices {
-  Future<void> onboardingapi1(
+  Future<String> onboardingapi1(
     String user,
     String res_name,
     String own_name,
@@ -31,7 +31,7 @@ class OnboardingServices extends ApiServices {
           headers: contentTypeJsonHeader);
       if (response.statusCode == 201) {
         Map resp = json.decode(response.body);
-        print(resp);
+        return resp["ID"];
       } else {
         throw AppException(code: response.statusCode, message: response.body);
       }
@@ -224,9 +224,9 @@ class OnboardingServices extends ApiServices {
     }
   }
 
-  Future<bool> uploadImages(List<String> files, int index, List<String> fields , String user) async {
+  Future<bool> uploadImages(
+      List<String> files, int index, List<String> fields, String user) async {
     try {
-
       List<MultipartFile> multipartFiles = [];
 
       for (int i = 0; i < files.length; i++) {

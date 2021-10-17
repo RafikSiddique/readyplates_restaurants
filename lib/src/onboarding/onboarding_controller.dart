@@ -14,6 +14,7 @@ enum OnBoardingMethod { api1, api2, api3, api4, api5, api6, api7 }
 class OnboardingController extends GetxController {
   RxInt pageIndex = 0.obs;
   String uniqueId = "";
+  String resId = "'";
 
   OnboardingServices services = OnboardingServices();
   final SharedPreferenceHelper sfHelper = Get.find();
@@ -192,7 +193,7 @@ class OnboardingController extends GetxController {
   Future<void> _onboardingapi1() async {
     String ownName = firstNameController.text + " " + lastNameController.text;
     try {
-      await services.onboardingapi1(
+      resId = await services.onboardingapi1(
         uniqueId,
         resNameController.text,
         ownName,
@@ -202,6 +203,7 @@ class OnboardingController extends GetxController {
         pocNumberController.text,
       );
       sfHelper.setRestaurantName(resNameController.text);
+      sfHelper.setRestaurantId(resId);
       await Geolocator.requestPermission();
       Get.toNamed(OnboardingPage2.id);
     } catch (e) {
