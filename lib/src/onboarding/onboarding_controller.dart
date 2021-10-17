@@ -286,7 +286,7 @@ class OnboardingController extends GetxController {
   Future<void> _onboardingApi6() async {
     try {
       await services.onboardingapi6(
-          uniqueId,
+          resId,
           resDescript.text,
           noOfTables.toString(),
           noOfSeats.toString(),
