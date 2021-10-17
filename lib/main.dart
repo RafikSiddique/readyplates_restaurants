@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
             TargetPlatform.android: CupertinoPageTransitionsBuilder()
           })),
       home: OpeningScreen(),
-      initialRoute: Routes.onboarding4Route,
+      // initialRoute: Routes.onboarding5Route,
       routes: {
         Routes.openingscreenRoute: (context) => OpeningScreen(),
         HomePage.id: (context) => HomePage(),
@@ -70,10 +70,10 @@ class MyApp extends StatelessWidget {
         OnboardingPage1.id: (context) => OnboardingPage1(),
         OnboardingPage2.id: (context) => OnboardingPage2(),
         OnboardingPage3.id: (context) => OnboardingPage3(),
-        Routes.onboarding4Route: (context) => OnboardingPage4(),
-        Routes.onboarding5Route: (context) => OnboardingPage5(),
-        Routes.onboarding6Route: (context) => OnboardingPage6(),
-        Routes.onboarding7Route: (context) => OnboardingPage7(),
+        OnboardingPage4.id: (context) => OnboardingPage4(),
+       OnboardingPage5.resId: (context) => OnboardingPage5(),
+       OnboardingPage6.resId: (context) => OnboardingPage6(),
+       OnboardingPage7.resId: (context) => OnboardingPage7(),
       },
     );
   }

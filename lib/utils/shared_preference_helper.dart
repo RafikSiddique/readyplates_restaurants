@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SharedPreferenceHelper {
   final String _isLoggedIn = "loggedin";
   final String _userId = "userId";
+   final String _resId = "resId";
   final String _onBoardingNumber = "onboarding";
   final String _restaurantName = "resName";
 
@@ -20,6 +21,20 @@ class SharedPreferenceHelper {
       throw AppException(message: "No such user found");
     } else
       return id;
+  }
+  Future<bool> setRestaurantId(String resId) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    bool success = await sharedPreferences.setString(_resId, resId);
+    return success;
+  }
+
+  Future<String> getRestaurantId() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    String? resId = sharedPreferences.getString(_resId);
+    if (resId == null) {
+      throw AppException(message: "No such user found");
+    } else
+      return resId;
   }
 
   Future<bool> setLoggedIn(bool loggedIn) async {

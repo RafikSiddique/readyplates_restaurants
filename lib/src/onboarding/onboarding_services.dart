@@ -31,7 +31,12 @@ class OnboardingServices extends ApiServices {
           headers: contentTypeJsonHeader);
       if (response.statusCode == 201) {
         Map resp = json.decode(response.body);
-        return resp["ID"];
+        print(resp["Id"]);
+        String id = resp["Id"].toString();
+        print('User Id is ---->' + id);
+        print(response.body);
+        print('object!!!!!!!!!!!!!!!!');
+        return resp["Id"];
       } else {
         throw AppException(code: response.statusCode, message: response.body);
       }

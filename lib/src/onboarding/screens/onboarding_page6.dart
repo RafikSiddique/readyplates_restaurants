@@ -8,6 +8,7 @@ import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
 
 class OnboardingPage6 extends StatefulWidget {
+    static const resId = "/onboarding6";
   const OnboardingPage6({Key? key}) : super(key: key);
 
   @override

@@ -1,11 +1,6 @@
-// import 'dart:io';
-
-// import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-// import 'package:open_file/open_file.dart';
-// import 'package:path_provider/path_provider.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
@@ -24,15 +19,6 @@ class OnboardingPage3 extends StatefulWidget {
 class _OnboardingPage3State extends State<OnboardingPage3> {
   final controller = Get.find<OnboardingController>();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  // void openFile(PlatformFile file) {
-  //   OpenFile.open(file.path!);
-  // }
-
-  // Future<File> saveFilePermanently(PlatformFile file) async {
-  //   final appStorage = await getApplicationDocumentsDirectory();
-  //   final newFile = File('${appStorage.path}/${file.name}');
-  //   return File(file.path!).copy(newFile.path);
-  // }
 
   void fssaiExpiryDate() {
     showDatePicker(
@@ -239,92 +225,11 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                         ? MyTheme.hinttextColor
                         : MyTheme.hinttextchangeColor,
                     onFilePicked: (p0) {
-                      controller.kycimg = p0;
+                      setState(() {
+                        controller.kycimg = p0;
+                      });
                     },
                   ),
-                  // Container(
-                  //   height: 45.68,
-                  //   width: MediaQuery.of(context).size.width,
-                  //   decoration: BoxDecoration(
-                  //     border: Border.all(
-                  //       width: 1,
-                  //       color: controller.kycimg.path.isEmpty
-                  //           ? MyTheme.borderColor
-                  //           : MyTheme.borderchangeColor,
-                  //       style: BorderStyle.solid,
-                  //     ),
-                  //     borderRadius: BorderRadius.all(
-                  //       Radius.circular(6.0),
-                  //     ),
-                  //   ),
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //     children: [
-                  //       Expanded(
-                  //         child: Padding(
-                  //           padding: const EdgeInsets.only(left: 12.5),
-                  //           child: Text(
-                  //            c
-                  //                 ? 'Please upload [ “png”, “jpg”, “jpeg”] images'
-                  //                 : '${controller.kycimg.path.split('/').last}',
-                  //             style: TextStyle(
-                  //               fontSize: 13,
-                  //               fontFamily: 'Inter',
-                  //               fontStyle: FontStyle.normal,
-                  //               fontWeight: FontWeight.w500,
-                  //               color: controller.kycimg.path.isEmpty
-                  //                   ? MyTheme.hinttextColor
-                  //                   : MyTheme.hinttextchangeColor,
-                  //             ),
-                  //             textAlign: TextAlign.left,
-                  //           ),
-                  //         ),
-                  //       ),
-                  //       InkWell(
-                  //         onTap: () async {
-                  //           final result = await FilePicker.platform
-                  //               .pickFiles(allowMultiple: true);
-                  //           if (result == null) return;
-                  //           final file = result.files.first;
-                  //           // openFile(file);
-
-                  //           print('Name: ${file.name}');
-                  //           print('Bytes: ${file.bytes}');
-                  //           print('Size: ${file.size}');
-                  //           print('Extension: ${file.extension}');
-                  //           setState(() {
-                  //             controller.kycimg = File(file.path!);
-                  //           });
-                  //         },
-                  //         child: Container(
-                  //           width: 45,
-                  //           decoration: BoxDecoration(
-                  //             color: Color(0xffEFEFEF),
-                  //             borderRadius: BorderRadius.only(
-                  //               topLeft: Radius.circular(0),
-                  //               topRight: Radius.circular(6.0),
-                  //               bottomLeft: Radius.circular(0),
-                  //               bottomRight: Radius.circular(6.0),
-                  //             ),
-                  //           ),
-                  //           child: Center(
-                  //             child: Container(
-                  //               width: 20,
-                  //               height: 20,
-                  //               child: Image(
-                  //                 image: AssetImage(
-                  //                   'assets/images/upload.png',
-                  //                 ),
-                  //               ),
-                  //             ),
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
-
-                  //
 
                   SizedBox(height: 26),
                   FieldTitle(
@@ -346,94 +251,11 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                         ? MyTheme.hinttextColor
                         : MyTheme.hinttextchangeColor,
                     onFilePicked: (p0) {
-                      controller.gstinimg = p0;
+                      setState(() {
+                        controller.gstinimg = p0;
+                      });
                     },
                   ),
-                  // Container(
-                  //   height: 45.68,
-                  //   // margin: EdgeInsets.only(
-                  //   //   left: 17,
-                  //   //   right: 17,
-                  //   // ),
-                  //   width: MediaQuery.of(context).size.width,
-                  //   decoration: BoxDecoration(
-                  //     border: Border.all(
-                  //       width: 1,
-                  //       color: controller.gstinimg.path.isEmpty
-                  //           ? MyTheme.borderColor
-                  //           : MyTheme.borderchangeColor,
-                  //       style: BorderStyle.solid,
-                  //     ),
-                  //     borderRadius: BorderRadius.all(
-                  //       Radius.circular(6.0),
-                  //     ),
-                  //   ),
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //     children: [
-                  //       Expanded(
-                  //         child: Padding(
-                  //           padding: const EdgeInsets.only(left: 12.5),
-                  //           child: Text(
-                  //             controller.gstinimg.path.isEmpty
-                  //                 ? 'Please upload [ “png”, “jpg”, “jpeg”, “pdf”] files'
-                  //                 : '${controller.gstinimg.path.split('/').last}',
-                  //             style: TextStyle(
-                  //               fontSize: 13,
-                  //               fontFamily: 'Inter',
-                  //               fontStyle: FontStyle.normal,
-                  //               fontWeight: FontWeight.w500,
-                  //               color: controller.kycimg.path.isEmpty
-                  //                   ? MyTheme.hinttextColor
-                  //                   : MyTheme.hinttextchangeColor,
-                  //             ),
-                  //             textAlign: TextAlign.left,
-                  //           ),
-                  //         ),
-                  //       ),
-                  //       InkWell(
-                  //         onTap: () async {
-                  //           final result = await FilePicker.platform
-                  //               .pickFiles(allowMultiple: false);
-                  //           if (result == null) return;
-                  //           final file = result.files.first;
-                  //           // openFile(file);
-
-                  //           print('Name: ${file.name}');
-                  //           print('Bytes: ${file.bytes}');
-                  //           print('Size: ${file.size}');
-                  //           print('Extension: ${file.extension}');
-                  //           setState(() {
-                  //             controller.gstinimg = File(file.path!);
-                  //           });
-                  //         },
-                  //         child: Container(
-                  //           width: 45,
-                  //           decoration: BoxDecoration(
-                  //             color: Color(0xffEFEFEF),
-                  //             borderRadius: BorderRadius.only(
-                  //               topLeft: Radius.circular(0),
-                  //               topRight: Radius.circular(6.0),
-                  //               bottomLeft: Radius.circular(0),
-                  //               bottomRight: Radius.circular(6.0),
-                  //             ),
-                  //           ),
-                  //           child: Center(
-                  //             child: Container(
-                  //               width: 20,
-                  //               height: 20,
-                  //               child: Image(
-                  //                 image: AssetImage(
-                  //                   'assets/images/upload.png',
-                  //                 ),
-                  //               ),
-                  //             ),
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
 
                   //
                   SizedBox(height: 26),
@@ -456,98 +278,11 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                         ? MyTheme.hinttextColor
                         : MyTheme.hinttextchangeColor,
                     onFilePicked: (p0) {
-                      controller.fssaiimg = p0;
+                      setState(() {
+                        controller.fssaiimg = p0;
+                      });
                     },
                   ),
-                  // Container(
-                  //   height: 45.68,
-                  //   // margin: EdgeInsets.only(
-                  //   //   left: 17,
-                  //   //   right: 17,
-                  //   // ),
-                  //   width: MediaQuery.of(context).size.width,
-                  //   decoration: BoxDecoration(
-                  //     border: Border.all(
-                  //       width: 1,
-                  //       color: controller.fssaiimg.path.isEmpty
-                  //           ? Color(0xffE0E0E0)
-                  //           : Color(0xff00ADB5),
-                  //       style: BorderStyle.solid,
-                  //     ),
-                  //     borderRadius: BorderRadius.all(
-                  //       Radius.circular(6.0),
-                  //     ),
-                  //   ),
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //     children: [
-                  //       Expanded(
-                  //         child: Padding(
-                  //           padding: const EdgeInsets.only(left: 12.5),
-                  //           child: Text(
-                  //             controller.fssaiimg.path.isEmpty
-                  //                 ? 'Please upload [ “png”, “jpg”, “jpeg”, “pdf”] files'
-                  //                 : '${controller.fssaiimg.path.split('/').last}',
-                  //             style: TextStyle(
-                  //               fontSize: 13,
-                  //               fontFamily: 'Inter',
-                  //               fontStyle: FontStyle.normal,
-                  //               fontWeight: FontWeight.w500,
-                  //               letterSpacing: -0.264706,
-                  //               color: controller.kycimg.path.isEmpty
-                  //                   ? MyTheme.hinttextColor
-                  //                   : MyTheme.hinttextchangeColor,
-                  //             ),
-                  //             textAlign: TextAlign.left,
-                  //           ),
-                  //         ),
-                  //       ),
-                  //       InkWell(
-                  //         onTap: () async {
-                  //           final result = await FilePicker.platform
-                  //               .pickFiles(allowMultiple: true);
-                  //           if (result == null) return;
-                  //           final file = result.files.first;
-                  //           // openFile(file);
-
-                  //           print('Name: ${file.name}');
-                  //           print('Bytes: ${file.bytes}');
-                  //           print('Size: ${file.size}');
-                  //           print('Extension: ${file.extension}');
-                  //           print('Path: ${file.path}');
-
-                  //           print('From Path: ${file.path!}');
-                  //           setState(() {
-                  //             controller.fssaiimg = File(file.path!);
-                  //           });
-                  //         },
-                  //         child: Container(
-                  //           width: 45,
-                  //           decoration: BoxDecoration(
-                  //             color: Color(0xffEFEFEF),
-                  //             borderRadius: BorderRadius.only(
-                  //               topLeft: Radius.circular(0),
-                  //               topRight: Radius.circular(6.0),
-                  //               bottomLeft: Radius.circular(0),
-                  //               bottomRight: Radius.circular(6.0),
-                  //             ),
-                  //           ),
-                  //           child: Center(
-                  //             child: Container(
-                  //               width: 20,
-                  //               height: 20,
-                  //               child: Image(
-                  //                 image: AssetImage(
-                  //                   'assets/images/upload.png',
-                  //                 ),
-                  //               ),
-                  //             ),
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
 
                   //
 
@@ -578,7 +313,6 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                           formKey.currentState!.save();
                           if (formKey.currentState!.validate())
                             controller.onboardingApi(OnBoardingMethod.api3);
-                          //controller.onboardingApi(OnBoardingMethod.api3);
                         },
                         child: Text('CONTINUE',
                             style: TextStyle(

@@ -15,6 +15,7 @@ import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
 
 class OnboardingPage5 extends StatefulWidget {
+    static const resId = "/onboarding5";
   const OnboardingPage5({Key? key}) : super(key: key);
 
   @override
@@ -209,7 +210,9 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                         ? MyTheme.hinttextColor
                         : MyTheme.hinttextchangeColor,
                     onFilePicked: (p0) {
-                      controller.pan_image = p0;
+                      setState(() {
+                        controller.pan_image = p0;
+                      });
                     },
                   ),
                   SizedBox(

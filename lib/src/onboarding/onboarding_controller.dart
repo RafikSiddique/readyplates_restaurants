@@ -14,7 +14,7 @@ enum OnBoardingMethod { api1, api2, api3, api4, api5, api6, api7 }
 class OnboardingController extends GetxController {
   RxInt pageIndex = 0.obs;
   String uniqueId = "";
-  String resId = "'";
+  String resId = "";
 
   OnboardingServices services = OnboardingServices();
   final SharedPreferenceHelper sfHelper = Get.find();
@@ -156,7 +156,7 @@ class OnboardingController extends GetxController {
   @override
   void onInit() {
     SharedPreferenceHelper().getUserId().then((value) => uniqueId = value);
-
+    SharedPreferenceHelper().getRestaurantId().then((value) => resId = value);
     super.onInit();
   }
 
@@ -204,6 +204,7 @@ class OnboardingController extends GetxController {
       );
       sfHelper.setRestaurantName(resNameController.text);
       sfHelper.setRestaurantId(resId);
+      print('ID:!!!!!!!!!!$resId');
       await Geolocator.requestPermission();
       Get.toNamed(OnboardingPage2.id);
     } catch (e) {
@@ -244,7 +245,7 @@ class OnboardingController extends GetxController {
         gstinimg,
         fssaiimg,
       );
-      Get.toNamed(Routes.onboarding4Route);
+      Get.toNamed(OnboardingPage3.id);
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }
@@ -260,7 +261,8 @@ class OnboardingController extends GetxController {
         "${endHour.value}:${endMinute.value}${endAmPm}",
         chooseDays.toList().toString(),
       );
-      Get.toNamed(Routes.onboarding5Route);
+      sfHelper.getRestaurantId();
+      Get.toNamed(OnboardingPage5.resId);
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }
@@ -269,7 +271,7 @@ class OnboardingController extends GetxController {
   Future<void> _onboardingapi5() async {
     try {
       await services.onboardingapi5(
-        uniqueId,
+        resId,
         ac_numberController.text,
         typeOfAcc,
         ifsc_codeController.text,
@@ -277,7 +279,8 @@ class OnboardingController extends GetxController {
         pan_nameController.text,
         pan_image,
       );
-      Get.toNamed(Routes.onboarding6Route);
+      Get.toNamed(OnboardingPage6.resId);
+      
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }
@@ -297,7 +300,7 @@ class OnboardingController extends GetxController {
           "${eventstartHour.value}:${eventstartMinute.value}${eventstartAmPm}",
           "${eventendHour.value}:${eventendMinute.value}${eventendAmPm}",
           eventDesc.text);
-      Get.toNamed(Routes.onboarding7Route);
+      Get.toNamed(OnboardingPage7.resId);
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }
