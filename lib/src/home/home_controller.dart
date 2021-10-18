@@ -95,9 +95,9 @@ class HomeController extends GetxController {
 
   Future<void> addFoodItem() async {
     try {
-      String resname = await sfHelper.getRestaurantName();
+      String resId = await sfHelper.getRestaurantId();
       await homeServices.addfooditem(
-          resname,
+          resId,
           nameController.text,
           descController.text,
           image1,
@@ -119,7 +119,7 @@ class HomeController extends GetxController {
 
   Future<void> editFoodItem(int id) async {
     try {
-      String resname = await sfHelper.getRestaurantName();
+      String resname = await sfHelper.getRestaurantId();
       await homeServices.editFoodItem(
           id,
           resname,
@@ -143,7 +143,7 @@ class HomeController extends GetxController {
 
   Future<void> getFoodItems() async {
     try {
-      String id = await sfHelper.getUserId();
+      String id = await sfHelper.getRestaurantId();
       foodItems.value = await homeServices.getMenu(id);
     } catch (e) {
       foodItems.value = foodItems.length == 0
