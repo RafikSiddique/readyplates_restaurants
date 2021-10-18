@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:http/http.dart';
 import 'package:readyplates_restaurants/models/fooditem_model.dart';
+import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/utils/api_services.dart';
 import 'package:readyplates_restaurants/utils/exception.dart';
 
@@ -30,7 +31,7 @@ class HomeServices extends ApiServices {
 
       request.files.addAll([image1M, image2M]);
       request.fields.addAll({
-        'restaurant': restaurant,
+        'restaurant': resId,
         'name': name,
         'description': description,
         'diet_type': diet_type,

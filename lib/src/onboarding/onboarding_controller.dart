@@ -7,14 +7,13 @@ import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_services.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
-import 'package:readyplates_restaurants/utils/utils.dart';
 
+String resId = "";
 enum OnBoardingMethod { api1, api2, api3, api4, api5, api6, api7 }
 
 class OnboardingController extends GetxController {
   RxInt pageIndex = 0.obs;
   String uniqueId = "";
-  String resId = "";
 
   OnboardingServices services = OnboardingServices();
   final SharedPreferenceHelper sfHelper = Get.find();
@@ -156,7 +155,9 @@ class OnboardingController extends GetxController {
   @override
   void onInit() {
     SharedPreferenceHelper().getUserId().then((value) => uniqueId = value);
-    SharedPreferenceHelper().getRestaurantId().then((value) => resId = value);
+    SharedPreferenceHelper()
+        .getRestaurantId()
+        .then((value) => resId = value.toString());
     super.onInit();
   }
 
@@ -204,8 +205,10 @@ class OnboardingController extends GetxController {
       );
       sfHelper.setRestaurantName(resNameController.text);
       sfHelper.setRestaurantId(resId);
-      print('ID:!!!!!!!!!!$resId');
+      sfHelper.getRestaurantId();
+      print('ID:1232323$resId');
       await Geolocator.requestPermission();
+
       Get.toNamed(OnboardingPage2.id);
     } catch (e) {
       Get.snackbar("Error", e.toString());
@@ -245,7 +248,7 @@ class OnboardingController extends GetxController {
         gstinimg,
         fssaiimg,
       );
-      Get.toNamed(OnboardingPage3.id);
+      Get.toNamed(OnboardingPage4.id);
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }
@@ -262,7 +265,7 @@ class OnboardingController extends GetxController {
         chooseDays.toList().toString(),
       );
       sfHelper.getRestaurantId();
-      Get.toNamed(OnboardingPage5.resId);
+      Get.toNamed(OnboardingPage5.id);
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }
@@ -280,7 +283,6 @@ class OnboardingController extends GetxController {
         pan_image,
       );
       Get.toNamed(OnboardingPage6.resId);
-      
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }

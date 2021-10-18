@@ -15,7 +15,7 @@ import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
 
 class OnboardingPage5 extends StatefulWidget {
-    static const resId = "/onboarding5";
+  static const id = "/onboarding5";
   const OnboardingPage5({Key? key}) : super(key: key);
 
   @override
@@ -37,6 +37,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     Size size = MediaQuery.of(context).size;
     return OnBoardingWrapper(
       onboardingController: controller,
