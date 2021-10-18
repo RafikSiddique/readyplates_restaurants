@@ -31,7 +31,7 @@ class HomeServices extends ApiServices {
 
       request.files.addAll([image1M, image2M]);
       request.fields.addAll({
-        'restaurant': resId,
+        'restaurant': restaurant,
         'name': name,
         'description': description,
         'diet_type': diet_type,

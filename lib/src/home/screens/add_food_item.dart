@@ -16,7 +16,7 @@ import 'package:readyplates_restaurants/widgets/form_field.dart';
 
 String getUrl(String url) {
   // // http://202.53.174.5:8000/
-  return "http://192.168.0.194:8000" + url;
+  return "http://202.53.174.5:8000" + url;
 }
 
 class AddFoodItem extends StatefulWidget {

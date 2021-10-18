@@ -143,7 +143,7 @@ class HomeController extends GetxController {
 
   Future<void> getFoodItems() async {
     try {
-      String id = await sfHelper.getUserId();
+      String id = await sfHelper.getRestaurantId();
       foodItems.value = await homeServices.getMenu(id);
     } catch (e) {
       foodItems.value = foodItems.length == 0
