@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SharedPreferenceHelper {
   final String _isLoggedIn = "loggedin";
   final String _userId = "userId";
-   final String _resId = "resId";
+  final String _resId = "resId";
   final String _onBoardingNumber = "onboarding";
   final String _restaurantName = "resName";
 
@@ -22,6 +22,7 @@ class SharedPreferenceHelper {
     } else
       return id;
   }
+
   Future<bool> setRestaurantId(String resId) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     bool success = await sharedPreferences.setString(_resId, resId);

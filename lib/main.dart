@@ -27,6 +27,8 @@ void main() async {
   ));
 }
 
+//This is a comment in main file
+//this i s ononther change
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
   final controller = Get.find<AuthController>();
@@ -71,9 +73,9 @@ class MyApp extends StatelessWidget {
         OnboardingPage2.id: (context) => OnboardingPage2(),
         OnboardingPage3.id: (context) => OnboardingPage3(),
         OnboardingPage4.id: (context) => OnboardingPage4(),
-       OnboardingPage5.resId: (context) => OnboardingPage5(),
-       OnboardingPage6.resId: (context) => OnboardingPage6(),
-       OnboardingPage7.resId: (context) => OnboardingPage7(),
+        OnboardingPage5.id: (context) => OnboardingPage5(),
+        OnboardingPage6.resId: (context) => OnboardingPage6(),
+        OnboardingPage7.resId: (context) => OnboardingPage7(),
       },
     );
   }
