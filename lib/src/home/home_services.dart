@@ -121,7 +121,8 @@ class HomeServices extends ApiServices {
         print(foodItems);
         return foodItems;
       } else {
-        throw AppException(code: response.statusCode, message: response.body);
+        throw AppException(
+            code: response.statusCode, message: response.reasonPhrase);
       }
     } catch (e) {
       rethrow;

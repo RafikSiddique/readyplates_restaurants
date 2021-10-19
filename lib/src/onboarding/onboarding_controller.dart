@@ -202,6 +202,7 @@ class OnboardingController extends GetxController {
         pocController.text,
         pocNumberController.text,
       );
+      this.resId = resId;
       sfHelper.setRestaurantName(resNameController.text);
       sfHelper.setRestaurantId(resId);
       print('ID:!!!!!!!!!!$resId');
@@ -245,7 +246,7 @@ class OnboardingController extends GetxController {
         gstinimg,
         fssaiimg,
       );
-      Get.toNamed(OnboardingPage3.id);
+      Get.toNamed(OnboardingPage4.id);
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }
@@ -280,7 +281,6 @@ class OnboardingController extends GetxController {
         pan_image,
       );
       Get.toNamed(OnboardingPage6.resId);
-      
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }
@@ -413,7 +413,7 @@ class OnboardingController extends GetxController {
           break;
       }
       if (isImagesUploaded(files)) {
-        await services.uploadImages(files, pageIndex.value, fields, uniqueId);
+        await services.uploadImages(files, pageIndex.value, fields, resId);
 
         if (pageIndex.value == 3) {
           Get.find<SharedPreferenceHelper>().setLoggedIn(true);

@@ -32,11 +32,11 @@ class OnboardingServices extends ApiServices {
       if (response.statusCode == 201) {
         Map resp = json.decode(response.body);
         print(resp["Id"]);
-        String id = resp["Id"].toString();
+        String id = resp["Restaurant ID"].toString();
         print('User Id is ---->' + id);
         print(response.body);
-        print('object!!!!!!!!!!!!!!!!');
-        return resp["Id"];
+
+        return id;
       } else {
         throw AppException(code: response.statusCode, message: response.body);
       }
@@ -156,7 +156,6 @@ class OnboardingServices extends ApiServices {
     String pan_num,
     String pan_name,
     File pan_image,
-    //File fssai_image,
   ) async {
     try {
       MultipartRequest request = MultipartRequest('POST', onboarding(5));
