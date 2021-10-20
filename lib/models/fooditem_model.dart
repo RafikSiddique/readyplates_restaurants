@@ -94,13 +94,14 @@ class FoodItemModel {
       other_serving_cost: map['other_serving_cost'],
       spice_level: map['spice_level'],
       cost: map['cost'],
-      restaurant: map['restaurant'],
+      restaurant: map['restaurant'].toString(),
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory FoodItemModel.fromJson(String source) => FoodItemModel.fromMap(json.decode(source));
+  factory FoodItemModel.fromJson(String source) =>
+      FoodItemModel.fromMap(json.decode(source));
 
   @override
   String toString() {
@@ -110,37 +111,37 @@ class FoodItemModel {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
+
     return other is FoodItemModel &&
-      other.id == id &&
-      other.name == name &&
-      other.description == description &&
-      other.image1 == image1 &&
-      other.image2 == image2 &&
-      other.diet_type == diet_type &&
-      other.category == category &&
-      other.std_serving_size == std_serving_size &&
-      other.other_serving_size == other_serving_size &&
-      other.other_serving_cost == other_serving_cost &&
-      other.spice_level == spice_level &&
-      other.cost == cost &&
-      other.restaurant == restaurant;
+        other.id == id &&
+        other.name == name &&
+        other.description == description &&
+        other.image1 == image1 &&
+        other.image2 == image2 &&
+        other.diet_type == diet_type &&
+        other.category == category &&
+        other.std_serving_size == std_serving_size &&
+        other.other_serving_size == other_serving_size &&
+        other.other_serving_cost == other_serving_cost &&
+        other.spice_level == spice_level &&
+        other.cost == cost &&
+        other.restaurant == restaurant;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-      name.hashCode ^
-      description.hashCode ^
-      image1.hashCode ^
-      image2.hashCode ^
-      diet_type.hashCode ^
-      category.hashCode ^
-      std_serving_size.hashCode ^
-      other_serving_size.hashCode ^
-      other_serving_cost.hashCode ^
-      spice_level.hashCode ^
-      cost.hashCode ^
-      restaurant.hashCode;
+        name.hashCode ^
+        description.hashCode ^
+        image1.hashCode ^
+        image2.hashCode ^
+        diet_type.hashCode ^
+        category.hashCode ^
+        std_serving_size.hashCode ^
+        other_serving_size.hashCode ^
+        other_serving_cost.hashCode ^
+        spice_level.hashCode ^
+        cost.hashCode ^
+        restaurant.hashCode;
   }
 }

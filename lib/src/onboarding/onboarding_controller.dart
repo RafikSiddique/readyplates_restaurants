@@ -8,11 +8,11 @@ import 'package:readyplates_restaurants/src/onboarding/onboarding_services.dart'
 import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 
-String resId = "";
 enum OnBoardingMethod { api1, api2, api3, api4, api5, api6, api7 }
 
 class OnboardingController extends GetxController {
   RxInt pageIndex = 0.obs;
+  String resId = "";
   String uniqueId = "";
 
   OnboardingServices services = OnboardingServices();

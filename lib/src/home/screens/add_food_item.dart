@@ -117,8 +117,6 @@ class _AddFoodItemState extends State<AddFoodItem> {
                           setState(() {});
                         },
                         child: Container(
-                          width: 60,
-                          height: 60,
                           child: controller.isEditing
                               ? Image.network(
                                   getUrl(controller.foodItemModel!.image1))
@@ -128,6 +126,8 @@ class _AddFoodItemState extends State<AddFoodItem> {
                                         'assets/images/imglogo.png',
                                       ),
                                       fit: BoxFit.fill,
+                                      width: 60,
+                                      height: 60,
                                     )
                                   : Image.file(controller.image1),
                         ),
@@ -159,8 +159,6 @@ class _AddFoodItemState extends State<AddFoodItem> {
                           setState(() {});
                         },
                         child: Container(
-                          width: 60,
-                          height: 60,
                           child: controller.isEditing
                               ? Image.network(
                                   getUrl(controller.foodItemModel!.image2))
@@ -169,6 +167,8 @@ class _AddFoodItemState extends State<AddFoodItem> {
                                       image: AssetImage(
                                         'assets/images/imglogo.png',
                                       ),
+                                      width: 60,
+                                      height: 60,
                                       fit: BoxFit.fill,
                                     )
                                   : Image.file(controller.image2),
@@ -195,7 +195,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
                 title: 'Description of the Item',
                 hintText: 'Food of the description',
                 hintfontSize: 15,
-                controller: controller.nameController,
+                controller: controller.descController,
                 bottomText: 'Max 20 Words',
               ),
               SizedBox(

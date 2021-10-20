@@ -108,25 +108,25 @@ class HomeServices extends ApiServices {
   }
 
   Future<List<FoodItemModel>> getMenu(String id) async {
-    try {
-      Response response = await get(
-        menuList(id),
-      );
+    //   try {
+    Response response = await get(
+      menuList(id),
+    );
 
-      print(response.body);
-      if (response.statusCode == 200) {
-        Map<String, dynamic> map = jsonDecode(response.body);
-        List<dynamic> list = map["Menu Items"];
-        List<FoodItemModel> foodItems =
-            list.map((e) => FoodItemModel.fromMap(e)).toList();
-        print(foodItems);
-        return foodItems;
-      } else {
-        throw AppException(
-            code: response.statusCode, message: response.reasonPhrase);
-      }
-    } catch (e) {
-      rethrow;
+    print(response.body);
+    if (response.statusCode == 200) {
+      List<dynamic> list = jsonDecode(response.body);
+
+      List<FoodItemModel> foodItems =
+          list.map((e) => FoodItemModel.fromMap(e)).toList();
+      print(foodItems);
+      return foodItems;
+    } else {
+      throw AppException(
+          code: response.statusCode, message: response.reasonPhrase);
     }
+/*     } catch (e) {
+      rethrow;
+    } */
   }
 }
