@@ -204,7 +204,7 @@ class OnboardingController extends GetxController {
         pocNumberController.text,
       );
       this.resId = resId;
-      sfHelper.setRestaurantName(resNameController.text);
+      //sfHelper.setRestaurantName(resNameController.text);
       sfHelper.setRestaurantId(resId);
       sfHelper.getRestaurantId();
       print('ID:1232323$resId');

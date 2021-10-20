@@ -214,6 +214,10 @@ class _AddFoodItemState extends State<AddFoodItem> {
                         height: 5,
                       ),
                       DropdownDietType(
+                        //THIS
+                        value: controller.dietType.value == ""
+                            ? null
+                            : controller.dietType.value,
                         onSelect: (p0) {
                           controller.dietType.value = p0!;
                         },

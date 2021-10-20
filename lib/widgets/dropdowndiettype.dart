@@ -4,7 +4,10 @@ import 'package:readyplates_restaurants/utils/my_color.dart';
 
 class DropdownDietType extends StatelessWidget {
   final void Function(String?) onSelect;
-  const DropdownDietType({Key? key, required this.onSelect}) : super(key: key);
+
+  //THIS
+  final String? value;
+  const DropdownDietType({Key? key, required this.onSelect, this.value}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +20,8 @@ class DropdownDietType extends StatelessWidget {
             size: 14.87,
           ),
         ),
+        //THIS
+        value: value,
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderSide: BorderSide(

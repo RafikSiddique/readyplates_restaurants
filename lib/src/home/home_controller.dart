@@ -23,6 +23,8 @@ class HomeController extends GetxController {
     nameController.text = foodItemModel!.name;
     descController.text = foodItemModel!.description;
     cost.text = foodItemModel!.cost;
+    //This
+    dietType.value = foodItemModel!.diet_type;
     spiceSlider.value = double.parse(foodItemModel!.spice_level);
   }
 

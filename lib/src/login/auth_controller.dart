@@ -85,7 +85,7 @@ class AuthController extends GetxController {
         passwordController.text,
       );
       sfHelper.setUserId(id[0]);
-      sfHelper.setRestaurantName(id[1]);
+      sfHelper.setRestaurantId(id[1]);
       Get.find<OnboardingController>().uniqueId = id[0];
 
       /* int routeId = await getScreen(id);

@@ -60,7 +60,7 @@ class AuthenticationServices extends ApiServices {
         Map resp = json.decode(response.body);
         print(resp["ID"]);
         String id = resp["ID"].toString();
-        String resname = resp["Restaurant Name"].toString();
+        String resname = resp["Restaurant ID"].toString();
         print('User Id is ---->' + id);
         print(response.body);
         return [id, resname];
