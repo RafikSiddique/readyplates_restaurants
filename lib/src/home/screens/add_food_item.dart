@@ -44,6 +44,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
   void initState() {
     if (controller.isEditing) {
       controller.setEditing();
+      setState(() {});
     } else {
       controller.clearController();
     }
@@ -117,19 +118,16 @@ class _AddFoodItemState extends State<AddFoodItem> {
                           setState(() {});
                         },
                         child: Container(
-                          child: controller.isEditing
-                              ? Image.network(
-                                  getUrl(controller.foodItemModel!.image1))
-                              : controller.image1.path == ""
-                                  ? Image(
-                                      image: AssetImage(
-                                        'assets/images/imglogo.png',
-                                      ),
-                                      fit: BoxFit.fill,
-                                      width: 60,
-                                      height: 60,
-                                    )
-                                  : Image.file(controller.image1),
+                          child: controller.image1.path == ""
+                              ? Image(
+                                  image: AssetImage(
+                                    'assets/images/imglogo.png',
+                                  ),
+                                  fit: BoxFit.fill,
+                                  width: 60,
+                                  height: 60,
+                                )
+                              : Image.file(controller.image1),
                         ),
                       ),
                     ),
@@ -317,6 +315,9 @@ class _AddFoodItemState extends State<AddFoodItem> {
                 height: 5,
               ),
               DropdownStandard(
+                value: controller.servingSize == ""
+                    ? null
+                    : controller.servingSize,
                 onSelect: (p0) {
                   controller.servingSize = p0!;
                 },

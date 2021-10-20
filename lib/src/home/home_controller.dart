@@ -3,8 +3,11 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:readyplates_restaurants/models/fooditem_model.dart';
 import 'package:readyplates_restaurants/src/home/home_services.dart';
+import 'package:readyplates_restaurants/src/home/screens/add_food_item.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
@@ -19,13 +22,24 @@ class HomeController extends GetxController {
   final SharedPreferenceHelper sfHelper = Get.find();
   final HomeServices homeServices = HomeServices();
 
-  void setEditing() {
+  void setEditing() async {
     nameController.text = foodItemModel!.name;
     descController.text = foodItemModel!.description;
     cost.text = foodItemModel!.cost;
-    //This
+    Directory path = await getApplicationDocumentsDirectory();
     dietType.value = foodItemModel!.diet_type;
+    servingSize = foodItemModel!.std_serving_size;
+    category.value = foodItemModel!.category;
     spiceSlider.value = double.parse(foodItemModel!.spice_level);
+    final folderPath = path.path + "/images";
+    await Directory(folderPath).create();
+    final res = await get(Uri.parse(getUrl(foodItemModel!.image1)));
+    image1 = File(path.path + "/pic1.png");
+    await image1.writeAsBytes(res.bodyBytes);
+
+    final res2 = await get(Uri.parse(getUrl(foodItemModel!.image2)));
+    image2 = File(path.path + "/pic2.png");
+    await image2.writeAsBytes(res2.bodyBytes);
   }
 
   RxList<FoodItemModel> foodItems = <FoodItemModel>[

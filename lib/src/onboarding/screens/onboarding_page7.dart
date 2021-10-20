@@ -10,7 +10,7 @@ import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
 
 class OnboardingPage7 extends StatefulWidget {
-    static const resId = "/onboarding7";
+  static const resId = "/onboarding7";
   const OnboardingPage7({Key? key}) : super(key: key);
 
   @override
@@ -33,7 +33,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
             ImageCard(
               path: onBoardingController.selectedImages[o],
               width: size.width,
-              height: size.height * 0.24,
+              height: size.height * 0.2,
             ),
             SizedBox(
               height: 7,
@@ -45,7 +45,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                 ImageCard(
                   path: onBoardingController.allImages()[o][i],
                   name: onBoardingController.allNames()[o][i],
-                  height: size.height * 0.079,
+                  height: size.height * 0.07,
                   onSelect: (selectedPath) {
                     setState(() {
                       onBoardingController.selectedImages[o] = selectedPath;
@@ -127,7 +127,8 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
             ),
             child: Column(
               children: [
-                Expanded(
+                Container(
+                  height: size.height * 0.33,
                   child: PageView(
                     controller: onBoardingController.pageController,
                     physics: NeverScrollableScrollPhysics(),
@@ -160,10 +161,11 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                   height: size.height * 0.015,
                 ),
                 Container(
-                  height: size.height * 0.42,
+                  height: size.height * 0.38,
                   child: Wrap(
-                    runSpacing: 5,
-                    spacing: 5,
+                    alignment: WrapAlignment.spaceBetween,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    runAlignment: WrapAlignment.spaceBetween,
                     children: [
                       for (int i = 0;
                           i < onBoardingController.allSelectionImage().length;
@@ -182,9 +184,10 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: size.height * 0.02,
-                ),
+                /*  SizedBox(
+                  height: size.height * 0.05,
+                ), */
+                Spacer(),
                 InkWell(
                   onTap: () async {
                     await onBoardingController
@@ -192,8 +195,6 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                   },
                   child: InkWell(
                     child: Container(
-                      // width: 343,
-                      height: 40.11,
                       decoration: BoxDecoration(
                         color: MyTheme.buttonColor,
                         borderRadius: BorderRadius.all(Radius.circular(6)),
@@ -289,18 +290,19 @@ class ImageUploadCard extends StatelessWidget {
   final String path;
   final void Function(String) selectImage;
   final String name;
-  const ImageUploadCard({
+  ImageUploadCard({
     Key? key,
     required this.path,
     required this.name,
     required this.selectImage,
   }) : super(key: key);
+  final ImagePicker imagePicker = ImagePicker();
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      width: size.width * 0.45,
+      width: size.width * 0.42,
       height: size.width * 0.4,
       decoration: BoxDecoration(
         border: Border.all(
@@ -364,7 +366,6 @@ class ImageUploadCard extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () async {
-                    ImagePicker imagePicker = ImagePicker();
                     XFile? file = await imagePicker.pickImage(
                         source: ImageSource.gallery);
                     if (file != null) {
