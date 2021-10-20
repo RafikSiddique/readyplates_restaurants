@@ -6,7 +6,7 @@ class SharedPreferenceHelper {
   final String _userId = "userId";
   final String _resId = "resId";
   final String _onBoardingNumber = "onboarding";
-  final String _restaurantName = "resName";
+  // final String _restaurantName = "resName";
 
   Future<bool> setUserId(String id) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();

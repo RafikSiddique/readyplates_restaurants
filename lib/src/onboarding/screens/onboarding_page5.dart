@@ -36,6 +36,37 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
   }
 
   @override
+  void initState() {
+    controller.ac_numberController.addListener(() {
+      setState(() {});
+    });
+    controller.reac_numberController.addListener(() {
+      setState(() {});
+    });
+    controller.ifsc_codeController.addListener(() {
+      setState(() {});
+    });
+    controller.pan_numController.addListener(() {
+      setState(() {});
+    });
+    controller.pan_nameController.addListener(() {
+      setState(() {});
+    });
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.ac_numberController.dispose();
+    controller.reac_numberController.dispose();
+    controller.ifsc_codeController.dispose();
+    controller.pan_numController.dispose();
+    controller.pan_nameController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
     Size size = MediaQuery.of(context).size;

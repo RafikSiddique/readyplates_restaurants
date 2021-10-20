@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:readyplates_restaurants/utils/my_color.dart';
 
 class DropdownStandard extends StatelessWidget {
   final void Function(String?) onSelect;
-  const DropdownStandard({Key? key, required this.onSelect}) : super(key: key);
+  final String? value;
+  const DropdownStandard({
+    Key? key,
+    required this.onSelect,
+    this.value,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +23,7 @@ class DropdownStandard extends StatelessWidget {
             size: 14.87,
           ),
         ),
+        value: value,
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderSide: BorderSide(

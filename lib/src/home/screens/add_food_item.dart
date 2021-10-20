@@ -270,6 +270,9 @@ class _AddFoodItemState extends State<AddFoodItem> {
                 height: 5,
               ),
               DropdownCategory(
+                value: controller.category.value == ""
+                    ? null
+                    : controller.category.value,
                 onSelect: (p0) {
                   controller.category.value = p0!;
                 },

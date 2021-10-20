@@ -126,7 +126,7 @@ class OnboardingServices extends ApiServices {
   ) async {
     try {
       Response response = await post(
-        onboarding(2),
+        onboarding(4),
         body: jsonEncode(
           {
             'user': user,

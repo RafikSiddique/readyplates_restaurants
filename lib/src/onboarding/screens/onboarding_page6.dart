@@ -8,7 +8,7 @@ import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
 
 class OnboardingPage6 extends StatefulWidget {
-    static const resId = "/onboarding6";
+  static const resId = "/onboarding6";
   const OnboardingPage6({Key? key}) : super(key: key);
 
   @override
@@ -38,6 +38,26 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
         _selectedEventDate = pickedDate;
       });
     });
+  }
+
+  @override
+  void initState() {
+    controller.resDescript.addListener(() {
+      setState(() {});
+    });
+    controller.eventDesc.addListener(() {
+      setState(() {});
+    });
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.resDescript.dispose();
+    controller.eventDesc.dispose();
+
+    super.dispose();
   }
 
   @override

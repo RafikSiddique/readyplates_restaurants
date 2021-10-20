@@ -7,7 +7,7 @@ import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
 
 class OnboardingPage4 extends StatefulWidget {
-   static const id = "/onboarding4";
+  static const id = "/onboarding4";
   const OnboardingPage4({Key? key}) : super(key: key);
 
   @override
@@ -17,6 +17,7 @@ class OnboardingPage4 extends StatefulWidget {
 class _OnboardingPage4State extends State<OnboardingPage4> {
   final controller = Get.find<OnboardingController>();
   final formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -74,7 +75,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                       ),
                       border: Border.all(
                         width: 1,
-                        color: controller.gstinimg.path.isEmpty
+                        color: controller.typeOfEstablishment.value.isEmpty
                             ? MyTheme.borderColor
                             : MyTheme.borderchangeColor,
                         style: BorderStyle.solid,
@@ -92,9 +93,6 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderSide: BorderSide.none,
-                          // borderRadius: BorderRadius.all(
-                          //   Radius.circular(6.0),
-                          // ),
                         ),
                         hintText: 'Dineout only / Dineout & Delivery Both',
                         contentPadding: EdgeInsets.only(
@@ -118,7 +116,9 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                           .toList(),
                       // value: controller.typeOfEstablishment.value,
                       onChanged: (newValue) {
-                        controller.typeOfEstablishment.value = newValue!;
+                        setState(() {
+                          controller.typeOfEstablishment.value = newValue!;
+                        });
                       },
                     ),
                   ),
@@ -241,9 +241,10 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                       BorderRadius.all(Radius.circular(6)),
                                   border: Border.all(
                                     width: 1,
-                                    color: controller.startHour.value == true
-                                        ? MyTheme.borderColor
-                                        : MyTheme.borderchangeColor,
+                                    color: MyTheme.borderColor,
+                                    // controller.startHour.value == true
+                                    //     ? MyTheme.borderColor
+                                    //     : MyTheme.borderchangeColor,
                                     style: BorderStyle.solid,
                                   ),
                                 ),
@@ -360,9 +361,10 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                         color: Color(0xffE0E0E0),
                                         border: Border.all(
                                           width: 1,
-                                          color: controller.startHour == false
-                                              ? MyTheme.borderColor
-                                              : MyTheme.borderchangeColor,
+                                          color: MyTheme.borderColor,
+                                          //  controller.startHour == false
+                                          //     ? MyTheme.borderColor
+                                          //     : MyTheme.borderchangeColor,
                                           style: BorderStyle.solid,
                                         ),
                                       ),
@@ -433,9 +435,10 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                       BorderRadius.all(Radius.circular(6)),
                                   border: Border.all(
                                     width: 1,
-                                    color: controller.startHour == false
-                                        ? MyTheme.borderColor
-                                        : MyTheme.borderchangeColor,
+                                    color: MyTheme.borderColor,
+                                    // controller.startHour == false
+                                    //     ? MyTheme.borderColor
+                                    //     : MyTheme.borderchangeColor,
                                     style: BorderStyle.solid,
                                   ),
                                 ),
@@ -537,9 +540,10 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                       decoration: BoxDecoration(
                                         border: Border.all(
                                           width: 1,
-                                          color: controller.startHour == false
-                                              ? MyTheme.borderColor
-                                              : MyTheme.borderchangeColor,
+                                          color: MyTheme.borderColor,
+                                          //  controller.startHour == false
+                                          //     ? MyTheme.borderColor
+                                          //     : MyTheme.borderchangeColor,
                                           style: BorderStyle.solid,
                                         ),
                                       ),

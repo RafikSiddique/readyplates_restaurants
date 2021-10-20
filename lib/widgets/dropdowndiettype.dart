@@ -7,7 +7,8 @@ class DropdownDietType extends StatelessWidget {
 
   //THIS
   final String? value;
-  const DropdownDietType({Key? key, required this.onSelect, this.value}) : super(key: key);
+  const DropdownDietType({Key? key, required this.onSelect, this.value})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class DropdownDietType extends StatelessWidget {
           child: FaIcon(
             FontAwesomeIcons.chevronDown,
             color: MyTheme.iconColor,
-            size: 14.87,
+            size: 14.83,
           ),
         ),
         //THIS
