@@ -115,7 +115,12 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                   SizedBox(
                     height: 15,
                   ),
-                  FieldTitle(text: 'Table Information'),
+                  FieldTitle(
+                    text: 'Table Information',
+                    fontFamily: 'Inter-Regular',
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
+                  ),
 
                   SizedBox(
                     height: 5,
@@ -356,7 +361,12 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            FieldTitle(text: 'Cost for two'),
+                            FieldTitle(
+                              text: 'Cost for two',
+                              fontFamily: 'Inter-Regular',
+                              fontSize: 13,
+                              fontWeight: FontWeight.w500,
+                            ),
                             SizedBox(
                               height: 5,
                             ),
@@ -451,7 +461,12 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            FieldTitle(text: 'Serving time'),
+                            FieldTitle(
+                              text: 'Serving time',
+                              fontFamily: 'Inter-Regular',
+                              fontSize: 13,
+                              fontWeight: FontWeight.w500,
+                            ),
                             SizedBox(
                               height: 5,
                             ),
@@ -549,6 +564,9 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                   FieldTitle(
                     text: 'Recurring events (optional)',
                     required: false,
+                    fontFamily: 'Inter-Regular',
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
                   ),
 
                   SizedBox(

@@ -26,7 +26,12 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            FieldTitle(text: '${onBoardingController.titleText[o]}'),
+            FieldTitle(
+              text: '${onBoardingController.titleText[o]}',
+              fontFamily: 'Inter-Regular',
+              fontSize: 13,
+              fontWeight: FontWeight.w500,
+            ),
             SizedBox(
               height: 5,
             ),
@@ -121,108 +126,109 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
           ),
         ),
         body: Padding(
-            padding: const EdgeInsets.only(
-              left: 16,
-              right: 16,
-            ),
-            child: Column(
-              children: [
-                Container(
-                  height: size.height * 0.33,
-                  child: PageView(
-                    controller: onBoardingController.pageController,
-                    physics: NeverScrollableScrollPhysics(),
-                    allowImplicitScrolling: false,
-                    onPageChanged: onPageChange,
-                    children: images(size),
-                  ),
+          padding: const EdgeInsets.only(
+            left: 16,
+            right: 16,
+          ),
+          child: Column(
+            children: [
+              Container(
+                height: size.height * 0.33,
+                child: PageView(
+                  controller: onBoardingController.pageController,
+                  physics: NeverScrollableScrollPhysics(),
+                  allowImplicitScrolling: false,
+                  onPageChanged: onPageChange,
+                  children: images(size),
                 ),
-                Obx(() => Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: List.generate(
-                            4,
-                            (index) => Container(
-                                  height: 5,
-                                  width: 5,
-                                  margin: EdgeInsets.all(4),
-                                  decoration: BoxDecoration(
-                                    color: index ==
-                                            onBoardingController.pageIndex.value
-                                        ? Color(0xff00ADB5)
-                                        : Color(0xffE0E0E0),
-                                    shape: BoxShape.circle,
-                                  ),
-                                )),
-                      ),
-                    )),
-                SizedBox(
-                  height: size.height * 0.015,
-                ),
-                Container(
-                  height: size.height * 0.38,
-                  child: Wrap(
-                    alignment: WrapAlignment.spaceBetween,
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    runAlignment: WrapAlignment.spaceBetween,
-                    children: [
-                      for (int i = 0;
-                          i < onBoardingController.allSelectionImage().length;
-                          i++)
-                        ImageUploadCard(
-                            name: onBoardingController.allNames()[
-                                onBoardingController.pageIndex.value][i],
-                            path: onBoardingController.allSelectionImage()[
-                                onBoardingController.pageIndex.value][i],
-                            selectImage: (path) {
-                              onBoardingController.allSelectionImage()[
-                                      onBoardingController.pageIndex.value][i] =
-                                  path;
-                              setState(() {});
-                            })
-                    ],
-                  ),
-                ),
-                /*  SizedBox(
-                  height: size.height * 0.05,
-                ), */
-                Spacer(),
-                InkWell(
-                  onTap: () async {
-                    await onBoardingController
-                        .onboardingApi(OnBoardingMethod.api7);
-                  },
-                  child: InkWell(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: MyTheme.buttonColor,
-                        borderRadius: BorderRadius.all(Radius.circular(6)),
-                      ),
-                      child: Obx(() => Center(
-                            child: onBoardingController.loading.value
-                                ? CircularProgressIndicator()
-                                : Text(
-                                    'CONTINUE',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 17,
-                                      fontFamily: 'Inter',
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.w600,
-                                      letterSpacing: -0.28,
-                                      color: MyTheme.buttontextColor,
-                                    ),
-                                  ),
-                          )),
+              ),
+              Obx(() => Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: List.generate(
+                          4,
+                          (index) => Container(
+                                height: 5,
+                                width: 5,
+                                margin: EdgeInsets.all(4),
+                                decoration: BoxDecoration(
+                                  color: index ==
+                                          onBoardingController.pageIndex.value
+                                      ? Color(0xff00ADB5)
+                                      : Color(0xffE0E0E0),
+                                  shape: BoxShape.circle,
+                                ),
+                              )),
                     ),
+                  )),
+              SizedBox(
+                height: size.height * 0.015,
+              ),
+              Container(
+                height: size.height * 0.38,
+                child: Wrap(
+                  alignment: WrapAlignment.spaceBetween,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  runAlignment: WrapAlignment.spaceBetween,
+                  children: [
+                    for (int i = 0;
+                        i < onBoardingController.allSelectionImage().length;
+                        i++)
+                      ImageUploadCard(
+                          name: onBoardingController.allNames()[
+                              onBoardingController.pageIndex.value][i],
+                          path: onBoardingController.allSelectionImage()[
+                              onBoardingController.pageIndex.value][i],
+                          selectImage: (path) {
+                            onBoardingController.allSelectionImage()[
+                                onBoardingController.pageIndex.value][i] = path;
+                            setState(() {});
+                          }),
+                  ],
+                ),
+              ),
+              // SizedBox(
+              //   height: size.height * 0.05,
+              // ),
+              Spacer(),
+              InkWell(
+                onTap: () async {
+                  await onBoardingController
+                      .onboardingApi(OnBoardingMethod.api7);
+                },
+                child: InkWell(
+                  child: Container(
+                    height: 40.11,
+                    decoration: BoxDecoration(
+                      color: MyTheme.buttonColor,
+                      borderRadius: BorderRadius.all(Radius.circular(6)),
+                    ),
+                    child: Obx(() => Center(
+                          child: onBoardingController.loading.value
+                              ? CircularProgressIndicator()
+                              : Text(
+                                  'CONTINUE',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                    fontFamily: 'Inter',
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w600,
+                                    letterSpacing: -0.28,
+                                    color: MyTheme.buttontextColor,
+                                  ),
+                                ),
+                        )),
                   ),
                 ),
-                SizedBox(
-                  height: size.height * 0.02,
-                ),
-              ],
-            )),
+              ),
+              SizedBox(
+                height: size.height * 0.02,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

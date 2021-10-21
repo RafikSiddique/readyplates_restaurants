@@ -123,7 +123,6 @@ class AppFormField extends StatelessWidget {
                     fontFamily: 'Inter-Regular',
                     fontStyle: FontStyle.normal,
                     fontWeight: FontWeight.w500,
-                    letterSpacing: -0.26,
                     color: controller.text != ''
                         ? MyTheme.hinttextchangeColor
                         : MyTheme.hinttextColor,

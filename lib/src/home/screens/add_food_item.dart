@@ -73,7 +73,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
           'Add Food Item',
           style: TextStyle(
             fontSize: 17,
-            fontFamily: 'Inter',
+            fontFamily: 'Inter-Regular',
             fontStyle: FontStyle.normal,
             fontWeight: FontWeight.w500,
             color: MyTheme.appbartextColor,
@@ -89,7 +89,12 @@ class _AddFoodItemState extends State<AddFoodItem> {
               SizedBox(
                 height: 16,
               ),
-              FieldTitle(text: "Add Food Item"),
+              FieldTitle(
+                text: "Add Food Item",
+                fontFamily: 'Inter-Regular',
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
+              ),
               SizedBox(
                 height: 5,
               ),
@@ -207,6 +212,9 @@ class _AddFoodItemState extends State<AddFoodItem> {
                     children: [
                       FieldTitle(
                         text: 'Diet Type',
+                        fontFamily: 'Inter-Regular',
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
                       ),
                       SizedBox(
                         height: 5,
@@ -231,7 +239,12 @@ class _AddFoodItemState extends State<AddFoodItem> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        FieldTitle(text: "Cost"),
+                        FieldTitle(
+                          text: "Cost",
+                          fontFamily: 'Inter-Regular',
+                          fontSize: 13,
+                          fontWeight: FontWeight.w500,
+                        ),
                         SizedBox(
                           height: 5,
                         ),
@@ -263,7 +276,12 @@ class _AddFoodItemState extends State<AddFoodItem> {
               SizedBox(
                 height: 16,
               ),
-              FieldTitle(text: "Category"),
+              FieldTitle(
+                text: "Category",
+                fontFamily: 'Inter-Regular',
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
+              ),
               SizedBox(
                 height: 5,
               ),
@@ -281,6 +299,9 @@ class _AddFoodItemState extends State<AddFoodItem> {
               FieldTitle(
                 text: "Spice Level",
                 required: false,
+                fontFamily: 'Inter-Regular',
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 2.0),
@@ -310,7 +331,12 @@ class _AddFoodItemState extends State<AddFoodItem> {
               SizedBox(
                 height: 16,
               ),
-              FieldTitle(text: "Standard Serving Size"),
+              FieldTitle(
+                text: "Standard Serving Size",
+                fontFamily: 'Inter-Regular',
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
+              ),
               SizedBox(
                 height: 5,
               ),

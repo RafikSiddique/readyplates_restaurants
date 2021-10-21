@@ -62,6 +62,9 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                   ),
                   FieldTitle(
                     text: "Type of Establishment",
+                    fontFamily: 'Inter-Regular',
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
                   ),
                   SizedBox(
                     height: 5,
@@ -127,6 +130,9 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                   ),
                   FieldTitle(
                     text: "Type of Cuisines",
+                    fontFamily: 'Inter-Regular',
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
                   ),
                   SizedBox(
                     height: 15.05,
@@ -221,6 +227,9 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                   ),
                   FieldTitle(
                     text: "Restaurant Operational Hours",
+                    fontFamily: 'Inter-Regular',
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
                   ),
                   SizedBox(
                     height: 5,
@@ -597,7 +606,6 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                   fontFamily: 'Poppins',
                                   fontStyle: FontStyle.normal,
                                   fontWeight: FontWeight.normal,
-                                  letterSpacing: -0.229412,
                                   color: MyTheme.bottomtextColor,
                                 ),
                               )
@@ -612,6 +620,9 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                   ),
                   FieldTitle(
                     text: 'Restaurant Operational Days',
+                    fontFamily: 'Inter-Regular',
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
                   ),
                   SizedBox(
                     height: 15,

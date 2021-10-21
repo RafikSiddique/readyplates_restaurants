@@ -143,6 +143,9 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                   ),
                   FieldTitle(
                     text: 'Owner Mobile Number',
+                    fontFamily: 'Inter-Regular',
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
                   ),
                   SizedBox(
                     height: 5,
@@ -243,6 +246,9 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                   ),
                   FieldTitle(
                     text: 'Restaurant City',
+                    fontFamily: 'Inter-Regular',
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
                   ),
                   SizedBox(
                     height: 5,
@@ -333,7 +339,6 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                       formKey.currentState!.save();
                       if (formKey.currentState!.validate())
                         controller.onboardingApi(OnBoardingMethod.api1);
-                        
                     },
                     child: Container(
                       height: 40.11,

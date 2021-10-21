@@ -132,6 +132,9 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   FieldTitle(
                     text: 'FSSAI Expiry Date',
                     required: false,
+                    fontFamily: 'Inter-Regular',
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
                   ),
 
                   SizedBox(
@@ -209,6 +212,9 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   FieldTitle(
                     text:
                         'Upload KYC (Aadhar Card/ Passport/Driving License/ Voter ID',
+                    fontFamily: 'Inter-Regular',
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
                   ),
 
                   SizedBox(
@@ -235,6 +241,9 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   FieldTitle(
                     text: 'Upload GSTIN Certificate',
                     required: false,
+                    fontFamily: 'Inter-Regular',
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
                   ),
 
                   SizedBox(
@@ -262,6 +271,9 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   FieldTitle(
                     text: 'Upload FSSAI Certificate',
                     required: false,
+                    fontFamily: 'Inter-Regular',
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
                   ),
 
                   SizedBox(

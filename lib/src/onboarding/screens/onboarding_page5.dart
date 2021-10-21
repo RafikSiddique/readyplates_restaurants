@@ -134,7 +134,12 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   SizedBox(
                     height: 18,
                   ),
-                  FieldTitle(text: "Type of Account"),
+                  FieldTitle(
+                    text: "Type of Account",
+                    fontFamily: 'Inter-Regular',
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
+                  ),
                   SizedBox(
                     height: 5,
                   ),
@@ -227,6 +232,9 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   FieldTitle(
                     text: "Uplaod PAN Card",
                     required: false,
+                    fontFamily: 'Inter-Regular',
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
                   ),
                   SizedBox(
                     height: 5.08,
