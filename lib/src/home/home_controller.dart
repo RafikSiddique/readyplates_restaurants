@@ -162,7 +162,7 @@ class HomeController extends GetxController {
       String id = await sfHelper.getRestaurantId();
       foodItems.value = await homeServices.getMenu(id);
     } catch (e) {
-      foodItems.value = foodItems.length == 0
+      foodItems.value = foodItems.length != 0
           ? foodItems.first.id == -1
               ? []
               : foodItems
