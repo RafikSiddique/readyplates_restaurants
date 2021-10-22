@@ -27,22 +27,22 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   void initState() {
-    controller.address1Controller.addListener(() {
+    controller.address1.addListener(() {
       setState(() {});
     });
-    controller.address2Controller.addListener(() {
+    controller.address2.addListener(() {
       setState(() {});
     });
-    controller.nearbylandnarkController.addListener(() {
+    controller.nearbylandnark.addListener(() {
       setState(() {});
     });
-    controller.postalcodeController.addListener(() {
+    controller.postalcode.addListener(() {
       setState(() {});
     });
-    controller.latitudeController.addListener(() {
+    controller.latitude.addListener(() {
       setState(() {});
     });
-    controller.longitudeController.addListener(() {
+    controller.longitude.addListener(() {
       setState(() {});
     });
 
@@ -51,12 +51,12 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
 
   @override
   void dispose() {
-    controller.address1Controller.dispose();
-    controller.address2Controller.dispose();
-    controller.nearbylandnarkController.dispose();
-    controller.postalcodeController.dispose();
-    controller.latitudeController.dispose();
-    controller.latitudeController.dispose();
+    controller.address1.dispose();
+    controller.address2.dispose();
+    controller.nearbylandnark.dispose();
+    controller.postalcode.dispose();
+    controller.latitude.dispose();
+    controller.latitude.dispose();
 
     super.dispose();
   }
@@ -102,7 +102,7 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
                   AppFormField(
                     title: "Restaurant Address",
                     hintText: "Address Line 1",
-                    controller: controller.address1Controller,
+                    controller: controller.address1,
                     borderRadius:
                         BorderRadius.vertical(top: Radius.circular(6)),
                   ),
@@ -110,14 +110,14 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
                   AppFormField(
                     title: '',
                     hintText: "Address Line 2",
-                    controller: controller.address2Controller,
+                    controller: controller.address2,
                     borderRadius:
                         BorderRadius.vertical(bottom: Radius.circular(0)),
                   ),
                   AppFormField(
                     title: '',
                     hintText: "Nearby Landmark",
-                    controller: controller.nearbylandnarkController,
+                    controller: controller.nearbylandnark,
                     borderRadius:
                         BorderRadius.vertical(bottom: Radius.circular(6)),
                     bottomText:
@@ -129,7 +129,7 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
                   AppFormField(
                     title: "Postal Code",
                     hintText: "+91 XXXXXXXXXX",
-                    controller: controller.postalcodeController,
+                    controller: controller.postalcode,
                     inputType: TextInputType.number,
                     formatters: [FilteringTextInputFormatter.digitsOnly],
                   ),
@@ -168,20 +168,20 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
                                       snapshot.data!.longitude),
                                   setLocation: (p0) async {
                                     GeoCode geoCode = GeoCode();
-                                    controller.latitudeController.text =
+                                    controller.latitude.text =
                                         p0.latitude.toString();
-                                    controller.longitudeController.text =
+                                    controller.longitude.text =
                                         p0.longitude.toString();
                                     final address =
                                         await geoCode.reverseGeocoding(
                                             latitude: p0.latitude,
                                             longitude: p0.longitude);
 
-                                    controller.address1Controller.text =
+                                    controller.address1.text =
                                         address.streetAddress.toString();
-                                    controller.address2Controller.text =
+                                    controller.address2.text =
                                         address.region.toString();
-                                    controller.postalcodeController.text =
+                                    controller.postalcode.text =
                                         address.postal.toString();
                                   },
                                 );
@@ -214,7 +214,7 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
                     title: 'Latitude',
                     hintText: "Latitude",
                     isRequired: false,
-                    controller: controller.latitudeController,
+                    controller: controller.latitude,
                   ),
 
                   SizedBox(
@@ -225,7 +225,7 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
                     title: 'Longitute',
                     hintText: "Longitute",
                     isRequired: false,
-                    controller: controller.longitudeController,
+                    controller: controller.longitude,
                   ),
 
                   SizedBox(height: 20),
@@ -239,12 +239,11 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
                     child: Container(
                       height: 40.11,
                       decoration: BoxDecoration(
-                        color: (controller.address1Controller.text.isEmpty ||
-                                controller.address2Controller.text.isEmpty ||
-                                controller
-                                    .nearbylandnarkController.text.isEmpty ||
-                                controller.latitudeController.text.isEmpty ||
-                                controller.longitudeController.text.isEmpty)
+                        color: (controller.address1.text.isEmpty ||
+                                controller.address2.text.isEmpty ||
+                                controller.nearbylandnark.text.isEmpty ||
+                                controller.latitude.text.isEmpty ||
+                                controller.longitude.text.isEmpty)
                             ? MyTheme.buttonColor
                             : MyTheme.buttonchangeColor,
                         borderRadius: BorderRadius.all(Radius.circular(6)),

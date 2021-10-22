@@ -188,7 +188,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
                 title: 'Name of the Item',
                 hintText: 'Name',
                 hintfontSize: 15,
-                controller: controller.nameController,
+                controller: controller.name,
                 bottomText: 'Max 5 Words',
               ),
               SizedBox(
@@ -198,7 +198,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
                 title: 'Description of the Item',
                 hintText: 'Food of the description',
                 hintfontSize: 15,
-                controller: controller.descController,
+                controller: controller.desc,
                 bottomText: 'Max 20 Words',
               ),
               SizedBox(

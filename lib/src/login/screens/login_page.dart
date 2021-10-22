@@ -162,7 +162,7 @@ class _LoginPageState extends State<LoginPage> {
                             hintText: "Registered E-Mail ID",
                             fontSize: 12,
                             inputType: TextInputType.text,
-                            controller: controller.emailController,
+                            controller: controller.email,
                           ),
                           SizedBox(
                             height: kToolbarHeight * 0.4,
@@ -172,7 +172,7 @@ class _LoginPageState extends State<LoginPage> {
                             hintText: "** ** **",
                             line: 1,
                             fontSize: 12,
-                            controller: controller.passwordController,
+                            controller: controller.password,
                             isPassword: true,
                           ),
                           SizedBox(
@@ -209,12 +209,10 @@ class _LoginPageState extends State<LoginPage> {
                               width: size.width,
                               height: 54,
                               decoration: BoxDecoration(
-                                color:
-                                    controller.emailController.text.isEmpty &&
-                                            controller
-                                                .passwordController.text.isEmpty
-                                        ? MyTheme.buttonColor
-                                        : MyTheme.buttonchangeColor,
+                                color: controller.email.text.isEmpty &&
+                                        controller.password.text.isEmpty
+                                    ? MyTheme.buttonColor
+                                    : MyTheme.buttonchangeColor,
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(6)),
                               ),

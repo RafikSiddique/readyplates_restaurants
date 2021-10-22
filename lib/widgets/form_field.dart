@@ -9,6 +9,7 @@ class AppFormField extends StatelessWidget {
   final bool isRequired;
   final String title;
   final String? Function(String?)? validator;
+  void Function(TextEditingController)? onchanged;
   final String hintText;
   final BorderRadius borderRadius;
   final TextEditingController controller;
@@ -39,6 +40,7 @@ class AppFormField extends StatelessWidget {
     this.isPassword = false,
     this.borderRadius = const BorderRadius.all(Radius.circular(6)),
     this.validator,
+    this.onchanged,
     required this.controller,
     this.bottomText,
   })  : assert(matchVerification ? secondVal != null : true),

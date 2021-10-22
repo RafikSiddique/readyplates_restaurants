@@ -37,19 +37,19 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
 
   @override
   void initState() {
-    controller.ac_numberController.addListener(() {
+    controller.ac_number.addListener(() {
       setState(() {});
     });
-    controller.reac_numberController.addListener(() {
+    controller.reac_number.addListener(() {
       setState(() {});
     });
-    controller.ifsc_codeController.addListener(() {
+    controller.ifsc_code.addListener(() {
       setState(() {});
     });
-    controller.pan_numController.addListener(() {
+    controller.pan_num.addListener(() {
       setState(() {});
     });
-    controller.pan_nameController.addListener(() {
+    controller.pan_name.addListener(() {
       setState(() {});
     });
 
@@ -58,11 +58,11 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
 
   @override
   void dispose() {
-    controller.ac_numberController.dispose();
-    controller.reac_numberController.dispose();
-    controller.ifsc_codeController.dispose();
-    controller.pan_numController.dispose();
-    controller.pan_nameController.dispose();
+    controller.ac_number.dispose();
+    controller.reac_number.dispose();
+    controller.ifsc_code.dispose();
+    controller.pan_num.dispose();
+    controller.pan_name.dispose();
     super.dispose();
   }
 
@@ -116,7 +116,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                         'Make sure it matches the name on your government ID',
                     inputType: TextInputType.number,
                     formatters: [FilteringTextInputFormatter.digitsOnly],
-                    controller: controller.ac_numberController,
+                    controller: controller.ac_number,
                   ),
                   SizedBox(
                     height: 5,
@@ -126,10 +126,10 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                     hintText: '511122266514782',
                     matchVerification: true,
                     bottomText: "Both fields should match",
-                    secondVal: controller.ac_numberController,
+                    secondVal: controller.ac_number,
                     inputType: TextInputType.number,
                     formatters: [FilteringTextInputFormatter.digitsOnly],
-                    controller: controller.reac_numberController,
+                    controller: controller.reac_number,
                   ),
                   SizedBox(
                     height: 18,
@@ -204,7 +204,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                     bottomText: "Enter a valid IFSC Code",
 
                     // formatters: [FilteringTextInputFormatter.digitsOnly],
-                    controller: controller.ifsc_codeController,
+                    controller: controller.ifsc_code,
                   ),
                   SizedBox(
                     height: 18,
@@ -214,7 +214,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                     hintText: 'BSUTA1568A',
                     isRequired: false,
                     bottomText: "PAN of the registered legal entity",
-                    controller: controller.pan_numController,
+                    controller: controller.pan_num,
                   ),
                   SizedBox(
                     height: 18,
@@ -224,7 +224,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                     hintText: 'Bliss Bistro & Cafe',
                     isRequired: false,
                     bottomText: "PAN of the registered legal entity",
-                    controller: controller.pan_nameController,
+                    controller: controller.pan_name,
                   ),
                   SizedBox(
                     height: 18,

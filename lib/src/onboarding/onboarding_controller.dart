@@ -17,27 +17,46 @@ class OnboardingController extends GetxController {
 
   OnboardingServices services = OnboardingServices();
   final SharedPreferenceHelper sfHelper = Get.find();
-
-  final resNameController = TextEditingController();
-  final firstNameController = TextEditingController();
-  final lastNameController = TextEditingController();
-  final ownemailController = TextEditingController();
-
-  final ownMobileController = TextEditingController();
+  late TextEditingController resName;
+  // final resNameController = TextEditingController();
+  late TextEditingController firstName;
+  late TextEditingController lastName;
+  late TextEditingController ownemail;
+  late TextEditingController ownMobile;
+  late TextEditingController poc;
+  late TextEditingController pocNumber;
   String rescity = '';
-  final pocController = TextEditingController();
-  final pocNumberController = TextEditingController();
+  //final firstNameController = TextEditingController();
+  // final lastNameController = TextEditingController();
+  //final ownemailController = TextEditingController();
 
-  final address1Controller = TextEditingController();
-  final address2Controller = TextEditingController();
-  final nearbylandnarkController = TextEditingController();
-  final postalcodeController = TextEditingController();
-  final latitudeController = TextEditingController();
-  final longitudeController = TextEditingController();
+  // final ownMobileController = TextEditingController();
 
-  final gstpresentController = TextEditingController();
-  final gstnumController = TextEditingController();
-  final fssaistatusController = TextEditingController();
+  //final pocController = TextEditingController();
+  //final pocNumberController = TextEditingController();
+
+  late TextEditingController address1;
+  late TextEditingController address2;
+  late TextEditingController nearbylandnark;
+  late TextEditingController postalcode;
+  late TextEditingController latitude;
+  late TextEditingController longitude;
+
+  // final address1Controller = TextEditingController();
+  //final address2Controller = TextEditingController();
+  // final nearbylandnarkController = TextEditingController();
+  // final postalcodeController = TextEditingController();
+  // final latitudeController = TextEditingController();
+  // final longitudeController = TextEditingController();
+
+  late TextEditingController gstpresent;
+  late TextEditingController gstnum;
+  late TextEditingController fssaistatus;
+
+  //final gstpresentController = TextEditingController();
+  //final gstnumController = TextEditingController();
+  //final fssaistatusController = TextEditingController();
+
   DateTime expiry = DateTime(1900);
   File kycimg = File('');
   File gstinimg = File('');
@@ -71,36 +90,42 @@ class OnboardingController extends GetxController {
 
   RxInt noOfTables = 0.obs;
   RxInt noOfSeats = 0.obs;
+  late TextEditingController ac_number;
+  late TextEditingController reac_number;
+  late TextEditingController ifsc_code;
+  late TextEditingController pan_num;
+  late TextEditingController pan_name;
 
-  final ac_numberController = TextEditingController();
-  final reac_numberController = TextEditingController();
-  final ifsc_codeController = TextEditingController();
-  final pan_numController = TextEditingController();
-  final pan_nameController = TextEditingController();
+  // final ac_numberController = TextEditingController();
+  // final reac_numberController = TextEditingController();
+  // final ifsc_codeController = TextEditingController();
+  //final pan_numController = TextEditingController();
+  //final pan_nameController = TextEditingController();
 
   File pan_image = File('');
 
   void clear() {
-    resNameController.clear();
-    firstNameController.clear();
-    lastNameController.clear();
-    ownMobileController.clear();
-    pocController.clear();
-    pocNumberController.clear();
-    address1Controller.clear();
-    address2Controller.clear();
-    nearbylandnarkController.clear();
-    postalcodeController.clear();
-    latitudeController.clear();
-    longitudeController.clear();
-    gstpresentController.clear();
-    gstnumController.clear();
-    fssaistatusController.clear();
-    ac_numberController.clear();
-    reac_numberController.clear();
-    ifsc_codeController.clear();
-    pan_numController.clear();
-    pan_nameController.clear();
+    resName.clear();
+    firstName.clear();
+    lastName.clear();
+    ownMobile.clear();
+    poc.clear();
+    pocNumber.clear();
+    address1.clear();
+    address2.clear();
+    nearbylandnark.clear();
+    postalcode.clear();
+    latitude.clear();
+    longitude.clear();
+
+    gstpresent.clear();
+    gstnum.clear();
+    fssaistatus.clear();
+    ac_number.clear();
+    reac_number.clear();
+    ifsc_code.clear();
+    pan_num.clear();
+    pan_name.clear();
     eventDesc.clear();
   }
 
@@ -158,6 +183,23 @@ class OnboardingController extends GetxController {
     SharedPreferenceHelper()
         .getRestaurantId()
         .then((value) => resId = value.toString());
+    resName = TextEditingController();
+    firstName = TextEditingController();
+    lastName = TextEditingController();
+    ownemail = TextEditingController();
+    ownMobile = TextEditingController();
+    poc = TextEditingController();
+    pocNumber = TextEditingController();
+    address1 = TextEditingController();
+    address2 = TextEditingController();
+    nearbylandnark = TextEditingController();
+    postalcode = TextEditingController();
+    latitude = TextEditingController();
+    longitude = TextEditingController();
+    gstpresent = TextEditingController();
+    gstnum = TextEditingController();
+    fssaistatus = TextEditingController();
+
     super.onInit();
   }
 
@@ -192,16 +234,16 @@ class OnboardingController extends GetxController {
   }
 
   Future<void> _onboardingapi1() async {
-    String ownName = firstNameController.text + " " + lastNameController.text;
+    String ownName = firstName.text + " " + lastName.text;
     try {
       resId = await services.onboardingapi1(
         uniqueId,
-        resNameController.text,
+        resName.text,
         ownName,
-        ownMobileController.text,
+        ownMobile.text,
         rescity,
-        pocController.text,
-        pocNumberController.text,
+        poc.text,
+        pocNumber.text,
       );
       this.resId = resId;
       //sfHelper.setRestaurantName(resNameController.text);
@@ -217,19 +259,16 @@ class OnboardingController extends GetxController {
   }
 
   Future<void> _onboardingapi2() async {
-    String adress = address1Controller.text +
-        " " +
-        address2Controller.text +
-        " " +
-        nearbylandnarkController.text;
+    String adress =
+        address1.text + " " + address2.text + " " + nearbylandnark.text;
 
     try {
       await services.onboardingapi2(
         uniqueId,
         adress,
-        postalcodeController.text,
-        latitudeController.text,
-        longitudeController.text,
+        postalcode.text,
+        latitude.text,
+        longitude.text,
       );
       Get.toNamed(OnboardingPage3.id);
     } catch (e) {
@@ -241,9 +280,9 @@ class OnboardingController extends GetxController {
     try {
       await services.onboardingapi3(
         uniqueId,
-        gstpresentController.text,
-        gstnumController.text,
-        fssaistatusController.text,
+        gstpresent.text,
+        gstnum.text,
+        fssaistatus.text,
         "${expiry.year}-${expiry.month}-${expiry.day}",
         kycimg,
         gstinimg,
@@ -276,11 +315,11 @@ class OnboardingController extends GetxController {
     try {
       await services.onboardingapi5(
         resId,
-        ac_numberController.text,
+        ac_number.text,
         typeOfAcc,
-        ifsc_codeController.text,
-        pan_numController.text,
-        pan_nameController.text,
+        ifsc_code.text,
+        pan_num.text,
+        pan_name.text,
         pan_image,
       );
       Get.toNamed(OnboardingPage6.resId);

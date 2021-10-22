@@ -10,9 +10,14 @@ import 'package:readyplates_restaurants/utils/utils.dart';
 class AuthController extends GetxController {
   final AuthenticationServices services = AuthenticationServices();
   final SharedPreferenceHelper sfHelper = Get.find();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  final password2Controller = TextEditingController();
+
+  late TextEditingController email;
+  late TextEditingController password;
+  late TextEditingController password2;
+
+  //final emailController = TextEditingController();
+  // final passwordController = TextEditingController();
+  //final password2Controller = TextEditingController();
 
   RxBool isLoggedIn = false.obs;
   int routeId = -1;
@@ -22,13 +27,16 @@ class AuthController extends GetxController {
     isLoggedIn.value = false;
     routeId = -1;
     userId = "-1";
-    emailController.clear();
-    password2Controller.clear();
-    passwordController.clear();
+    email.clear();
+    password2.clear();
+    password.clear();
   }
 
   @override
   void onInit() {
+    email = TextEditingController();
+    password = TextEditingController();
+    password2 = TextEditingController();
     super.onInit();
   }
 
@@ -67,8 +75,8 @@ class AuthController extends GetxController {
 
   Future<void> signup() async {
     try {
-      String id = await services.signup(emailController.text,
-          passwordController.text, password2Controller.text);
+      String id =
+          await services.signup(email.text, password.text, password2.text);
 
       sfHelper.setUserId(id);
       Get.find<OnboardingController>().uniqueId = id;
@@ -81,8 +89,8 @@ class AuthController extends GetxController {
   Future<void> login() async {
     try {
       List<String> id = await services.login(
-        emailController.text,
-        passwordController.text,
+        email.text,
+        password.text,
       );
       sfHelper.setUserId(id[0]);
       sfHelper.setRestaurantId(id[1]);

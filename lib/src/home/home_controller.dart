@@ -23,8 +23,8 @@ class HomeController extends GetxController {
   final HomeServices homeServices = HomeServices();
 
   void setEditing() async {
-    nameController.text = foodItemModel!.name;
-    descController.text = foodItemModel!.description;
+    name.text = foodItemModel!.name;
+    desc.text = foodItemModel!.description;
     cost.text = foodItemModel!.cost;
     Directory path = await getApplicationDocumentsDirectory();
     dietType.value = foodItemModel!.diet_type;
@@ -85,12 +85,15 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     getFoodItems();
+    name = TextEditingController();
+    desc = TextEditingController();
+
     super.onInit();
   }
 
   void clearController() {
-    nameController.clear();
-    descController.clear();
+    name.clear();
+    desc.clear();
     cost.clear();
     image1 = File("");
     image2 = File("");
@@ -98,9 +101,10 @@ class HomeController extends GetxController {
   }
 
   RxDouble spiceSlider = 1.0.obs;
-
-  final nameController = TextEditingController();
-  final descController = TextEditingController();
+  late TextEditingController name;
+  late TextEditingController desc;
+  // final nameController = TextEditingController();
+  //final descController = TextEditingController();
 
   File image1 = File("");
   File image2 = File("");
@@ -114,8 +118,8 @@ class HomeController extends GetxController {
       String resId = await sfHelper.getRestaurantId();
       await homeServices.addfooditem(
           resId,
-          nameController.text,
-          descController.text,
+          name.text,
+          desc.text,
           image1,
           image2,
           dietType.value,
@@ -139,8 +143,8 @@ class HomeController extends GetxController {
       await homeServices.editFoodItem(
           id,
           resname,
-          nameController.text,
-          descController.text,
+          name.text,
+          desc.text,
           image1,
           image2,
           dietType.value,

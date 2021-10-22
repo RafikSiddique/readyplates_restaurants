@@ -39,13 +39,13 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
 
   @override
   void initState() {
-    controller.gstpresentController.addListener(() {
+    controller.gstpresent.addListener(() {
       setState(() {});
     });
-    controller.gstnumController.addListener(() {
+    controller.gstnum.addListener(() {
       setState(() {});
     });
-    controller.fssaistatusController.addListener(() {
+    controller.fssaistatus.addListener(() {
       setState(() {});
     });
 
@@ -54,9 +54,9 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
 
   @override
   void dispose() {
-    controller.gstpresentController.dispose();
-    controller.gstnumController.dispose();
-    controller.fssaistatusController.dispose();
+    controller.gstpresent.dispose();
+    controller.gstnum.dispose();
+    controller.fssaistatus.dispose();
 
     super.dispose();
   }
@@ -101,7 +101,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   AppFormField(
                     title: "GSTIN Present",
                     hintText: "Yes/No/Applied/Acknowledgement Received",
-                    controller: controller.gstpresentController,
+                    controller: controller.gstpresent,
                   ),
 
                   SizedBox(height: 26),
@@ -113,7 +113,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                     title: 'Restaurant GSTIN',
                     hintText: "Eg.22AABCU9603R1ZX",
                     isRequired: false,
-                    controller: controller.gstnumController,
+                    controller: controller.gstnum,
                   ),
 
                   SizedBox(
@@ -124,7 +124,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                     title: 'FSSAI License Status',
                     hintText: "Yes/No/Applied/Acknowledgement Received",
                     isRequired: false,
-                    controller: controller.fssaistatusController,
+                    controller: controller.fssaistatus,
                   ),
 
                   SizedBox(height: 26),
@@ -304,11 +304,9 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                     width: MediaQuery.of(context).size.width,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: (controller
-                                      .gstpresentController.text.isEmpty ||
-                                  controller.gstnumController.text.isEmpty ||
-                                  controller
-                                      .fssaistatusController.text.isEmpty ||
+                          primary: (controller.gstpresent.text.isEmpty ||
+                                  controller.gstnum.text.isEmpty ||
+                                  controller.fssaistatus.text.isEmpty ||
                                   controller.expiry == DateTime(1900) ||
                                   controller.kycimg.path.isEmpty ||
                                   controller.gstinimg.path.isEmpty ||

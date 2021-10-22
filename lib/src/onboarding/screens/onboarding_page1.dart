@@ -21,25 +21,25 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
 
   @override
   void initState() {
-    controller.resNameController.addListener(() {
+    controller.resName.addListener(() {
       setState(() {});
     });
-    controller.firstNameController.addListener(() {
+    controller.firstName.addListener(() {
       setState(() {});
     });
-    controller.lastNameController.addListener(() {
+    controller.lastName.addListener(() {
       setState(() {});
     });
-    controller.ownemailController.addListener(() {
+    controller.ownemail.addListener(() {
       setState(() {});
     });
-    controller.ownMobileController.addListener(() {
+    controller.ownMobile.addListener(() {
       setState(() {});
     });
-    controller.pocController.addListener(() {
+    controller.poc.addListener(() {
       setState(() {});
     });
-    controller.pocNumberController.addListener(() {
+    controller.pocNumber.addListener(() {
       setState(() {});
     });
     super.initState();
@@ -47,13 +47,13 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
 
   @override
   void dispose() {
-    controller.resNameController.dispose();
-    controller.firstNameController.dispose();
-    controller.lastNameController.dispose();
-    controller.ownemailController.dispose();
-    controller.ownMobileController.dispose();
-    controller.pocController.dispose();
-    controller.pocNumberController.dispose();
+    controller.resName.dispose();
+    controller.firstName.dispose();
+    controller.lastName.dispose();
+    controller.ownemail.dispose();
+    controller.ownMobile.dispose();
+    controller.poc.dispose();
+    controller.pocNumber.dispose();
     super.dispose();
   }
 
@@ -97,13 +97,15 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                     height: 8,
                   ),
                   AppFormField(
+                    // onchanged: (val){
+                    //   controller.resName=val;
+                    // },
                     title: "Restaurant Name",
                     hintText: "Your Restaurant Name",
                     hintfontSize: 15,
-                    controller: controller.resNameController,
+                    controller: controller.resName,
                     validator: (p0) {
-                      if (p0 == null ||
-                          p0 != controller.resNameController.text) {
+                      if (p0 == null || p0 != controller.resName.text) {
                         return "Account number does not match";
                       }
                     },
@@ -112,10 +114,13 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                     height: 18,
                   ),
                   AppFormField(
+                    //  onchanged: (val){
+                    //   controller.firstName=val;
+                    // },
                     title: "Owner Name",
                     hintText: "First Name",
                     hintfontSize: 15,
-                    controller: controller.firstNameController,
+                    controller: controller.firstName,
                     borderRadius:
                         BorderRadius.vertical(top: Radius.circular(6)),
                   ),
@@ -123,7 +128,7 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                     title: '',
                     hintText: "Last Name",
                     hintfontSize: 15,
-                    controller: controller.lastNameController,
+                    controller: controller.lastName,
                     borderRadius:
                         BorderRadius.vertical(bottom: Radius.circular(6)),
                     bottomText:
@@ -136,7 +141,7 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                     title: 'Owner Email ID',
                     hintText: 'username@aol.com',
                     hintfontSize: 15,
-                    controller: controller.ownemailController,
+                    controller: controller.ownemail,
                   ),
                   SizedBox(
                     height: 18,
@@ -158,13 +163,13 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                       ),
                       border: Border.all(
                         width: 1,
-                        color: controller.ownMobileController.text.isEmpty
+                        color: controller.ownMobile.text.isEmpty
                             ? MyTheme.borderColor
                             : MyTheme.borderchangeColor,
                       ),
                     ),
                     child: TextFormField(
-                      controller: controller.ownMobileController,
+                      controller: controller.ownMobile,
                       keyboardType: TextInputType.number,
                       textAlign: TextAlign.left,
                       decoration: InputDecoration(
@@ -188,8 +193,7 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                                 decoration: BoxDecoration(
                                   border: Border.all(
                                     width: 1,
-                                    color: controller
-                                            .ownMobileController.text.isEmpty
+                                    color: controller.ownMobile.text.isEmpty
                                         ? MyTheme.borderColor
                                         : MyTheme.borderchangeColor,
                                   ),
@@ -231,12 +235,12 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                     height: 3,
                   ),
                   Text(
-                    controller.ownMobileController.text.isEmpty
+                    controller.ownMobile.text.isEmpty
                         ? 'Will be used to make all future correspondence/communications'
                         : 'Press “Verify” to authenticate mobile number',
                     style: TextStyle(
                       fontSize: 9,
-                      color: controller.ownMobileController.text.isEmpty
+                      color: controller.ownMobile.text.isEmpty
                           ? MyTheme.bottomtextColor
                           : MyTheme.starColor,
                     ),
@@ -318,7 +322,7 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                     title: "Restaurant Point of Contact (POC)",
                     hintText: "Owner/Co-Owner/Manager etc",
                     hintfontSize: 15,
-                    controller: controller.pocController,
+                    controller: controller.poc,
                   ),
                   SizedBox(
                     height: 18,
@@ -327,7 +331,7 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                     title: "Restaurant POC Mobile Number",
                     hintText: "+91 XXXXXXXXXX",
                     hintfontSize: 15,
-                    controller: controller.pocNumberController,
+                    controller: controller.pocNumber,
                     inputType: TextInputType.number,
                     formatters: [FilteringTextInputFormatter.digitsOnly],
                   ),
@@ -343,14 +347,14 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                     child: Container(
                       height: 40.11,
                       decoration: BoxDecoration(
-                        color: (controller.resNameController.text.isEmpty ||
-                                controller.firstNameController.text.isEmpty ||
-                                controller.lastNameController.text.isEmpty ||
-                                controller.ownemailController.text.isEmpty ||
-                                controller.ownMobileController.text.isEmpty ||
+                        color: (controller.resName.text.isEmpty ||
+                                controller.firstName.text.isEmpty ||
+                                controller.lastName.text.isEmpty ||
+                                controller.ownemail.text.isEmpty ||
+                                controller.ownMobile.text.isEmpty ||
                                 controller.rescity.isEmpty ||
-                                controller.pocController.text.isEmpty ||
-                                controller.pocNumberController.text.isEmpty)
+                                controller.poc.text.isEmpty ||
+                                controller.pocNumber.text.isEmpty)
                             ? MyTheme.buttonColor
                             : MyTheme.buttonchangeColor,
                         borderRadius: BorderRadius.all(Radius.circular(6)),

@@ -184,7 +184,7 @@ class _SignupPageState extends State<SignupPage> {
                             AppFormField(
                               title: "Email Address",
                               hintText: "someone@example.com",
-                              controller: controller.emailController,
+                              controller: controller.email,
                               fontSize: 11,
                               fontFamily: 'Inter-Bold',
                             ),
@@ -194,12 +194,12 @@ class _SignupPageState extends State<SignupPage> {
                             AppFormField(
                               title: "Password",
                               hintText: "**** **** ****",
-                              controller: controller.passwordController,
+                              controller: controller.password,
                               isPassword: true,
                               fontSize: 11,
                               line: 1,
                               matchVerification: true,
-                              secondVal: controller.password2Controller,
+                              secondVal: controller.password2,
                               fontFamily: 'Inter-Bold',
                               bottomText:
                                   'Atleast 8 characters (Caps, Small & Special Characters)',
@@ -210,9 +210,9 @@ class _SignupPageState extends State<SignupPage> {
                             AppFormField(
                               title: "Re-Confirm Password",
                               hintText: "**** **** ****",
-                              controller: controller.password2Controller,
+                              controller: controller.password2,
                               matchVerification: true,
-                              secondVal: controller.passwordController,
+                              secondVal: controller.password,
                               isPassword: true,
                               fontSize: 11,
                               line: 1,
@@ -232,12 +232,9 @@ class _SignupPageState extends State<SignupPage> {
                                 width: size.width,
                                 height: 54,
                                 decoration: BoxDecoration(
-                                  color: (controller
-                                              .emailController.text.isEmpty &&
-                                          controller.passwordController.text
-                                              .isEmpty &&
-                                          controller
-                                              .password2Controller.text.isEmpty)
+                                  color: (controller.email.text.isEmpty &&
+                                          controller.password.text.isEmpty &&
+                                          controller.password2.text.isEmpty)
                                       ? MyTheme.buttonColor
                                       : MyTheme.buttonchangeColor,
                                   borderRadius:
