@@ -24,6 +24,7 @@ class MyTheme {
   static Color buttonchangeColor = Color(0xff222831);
 
   static Color buttontextColor = Color(0xffE5E5E5);
+  static Color buttontextchangeColor = Color(0xffFFFFFF);
 
   static Color appbackgroundColor = Color(0xffFFFFFF);
 

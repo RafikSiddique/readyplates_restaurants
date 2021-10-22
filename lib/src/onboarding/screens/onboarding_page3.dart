@@ -7,6 +7,7 @@ import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/file_picker.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
+import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 
 class OnboardingPage3 extends StatefulWidget {
   static const id = "/onboarding3";
@@ -299,39 +300,68 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   //
 
                   SizedBox(height: 26),
-                  SizedBox(
-                    height: 45,
-                    width: MediaQuery.of(context).size.width,
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: (controller
-                                      .gstpresentController.text.isEmpty ||
-                                  controller.gstnumController.text.isEmpty ||
-                                  controller
-                                      .fssaistatusController.text.isEmpty ||
-                                  controller.expiry == DateTime(1900) ||
-                                  controller.kycimg.path.isEmpty ||
-                                  controller.gstinimg.path.isEmpty ||
-                                  controller.fssaiimg.path.isEmpty)
-                              ? MyTheme.buttonColor
-                              : MyTheme.buttonchangeColor,
-                          side: BorderSide(
-                            width: 1.5,
-                            color: Color.fromRGBO(255, 255, 255, 0.5),
-                          ),
-                        ),
-                        onPressed: () async {
-                          print(controller.expiry);
-                          formKey.currentState!.save();
-                          if (formKey.currentState!.validate())
-                            controller.onboardingApi(OnBoardingMethod.api3);
-                        },
-                        child: Text('CONTINUE',
-                            style: TextStyle(
-                              color: MyTheme.buttontextColor,
-                              fontSize: 17,
-                            ))),
+                  OnboardingButton(
+                    onTap: () {
+                      print(controller.expiry);
+                      formKey.currentState!.save();
+                      if (formKey.currentState!.validate())
+                        controller.onboardingApi(OnBoardingMethod.api3);
+                    },
+                    buttonbackgroundColor:
+                        (controller.gstpresentController.text.isEmpty ||
+                                controller.gstnumController.text.isEmpty ||
+                                controller.fssaistatusController.text.isEmpty ||
+                                controller.expiry == DateTime(1900) ||
+                                controller.kycimg.path.isEmpty ||
+                                controller.gstinimg.path.isEmpty ||
+                                controller.fssaiimg.path.isEmpty)
+                            ? MyTheme.buttonColor
+                            : MyTheme.buttonchangeColor,
+                    text: 'CONTINUE',
+                    buttontextColor:
+                        (controller.gstpresentController.text.isEmpty ||
+                                controller.gstnumController.text.isEmpty ||
+                                controller.fssaistatusController.text.isEmpty ||
+                                controller.expiry == DateTime(1900) ||
+                                controller.kycimg.path.isEmpty ||
+                                controller.gstinimg.path.isEmpty ||
+                                controller.fssaiimg.path.isEmpty)
+                            ? MyTheme.buttontextColor
+                            : MyTheme.buttontextchangeColor,
                   ),
+                  // SizedBox(
+                  //   height: 45,
+                  //   width: MediaQuery.of(context).size.width,
+                  //   child: ElevatedButton(
+                  //       style: ElevatedButton.styleFrom(
+                  //         primary: (controller
+                  //                     .gstpresentController.text.isEmpty ||
+                  //                 controller.gstnumController.text.isEmpty ||
+                  //                 controller
+                  //                     .fssaistatusController.text.isEmpty ||
+                  //                 controller.expiry == DateTime(1900) ||
+                  //                 controller.kycimg.path.isEmpty ||
+                  //                 controller.gstinimg.path.isEmpty ||
+                  //                 controller.fssaiimg.path.isEmpty)
+                  //             ? MyTheme.buttonColor
+                  //             : MyTheme.buttonchangeColor,
+                  //         side: BorderSide(
+                  //           width: 1.5,
+                  //           color: Color.fromRGBO(255, 255, 255, 0.5),
+                  //         ),
+                  //       ),
+                  //       onPressed: () async {
+                  //         print(controller.expiry);
+                  //         formKey.currentState!.save();
+                  //         if (formKey.currentState!.validate())
+                  //           controller.onboardingApi(OnBoardingMethod.api3);
+                  //       },
+                  //       child: Text('CONTINUE',
+                  //           style: TextStyle(
+                  //             color: MyTheme.buttontextColor,
+                  //             fontSize: 17,
+                  //           ))),
+                  // ),
                   SizedBox(
                     height: 5.89,
                   ),

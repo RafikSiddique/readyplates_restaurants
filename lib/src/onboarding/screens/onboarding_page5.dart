@@ -13,6 +13,7 @@ import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/file_picker.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
+import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 
 class OnboardingPage5 extends StatefulWidget {
   static const id = "/onboarding5";
@@ -258,37 +259,51 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   SizedBox(
                     height: 18,
                   ),
-                  InkWell(
+                  OnboardingButton(
                     onTap: () {
                       formKey.currentState!.save();
                       if (formKey.currentState!.validate())
                         controller.onboardingApi(OnBoardingMethod.api5);
                     },
-                    child: Container(
-                      // width: 343,
-                      height: 40.11,
-                      decoration: BoxDecoration(
-                        color: controller.pan_image.path.isEmpty
-                            ? MyTheme.buttonColor
-                            : MyTheme.buttonchangeColor,
-                        borderRadius: BorderRadius.all(Radius.circular(6)),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Click here to verify account',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 17,
-                            fontFamily: 'Inter',
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: -0.28,
-                            color: MyTheme.buttontextColor,
-                          ),
-                        ),
-                      ),
-                    ),
+                    buttonbackgroundColor: controller.pan_image.path.isEmpty
+                        ? MyTheme.buttonColor
+                        : MyTheme.buttonchangeColor,
+                    text: 'Click here to verify account',
+                    buttontextColor: controller.pan_image.path.isEmpty
+                        ? MyTheme.buttontextColor
+                        : MyTheme.buttontextchangeColor,
                   ),
+                  // InkWell(
+                  //   onTap: () {
+                  //     formKey.currentState!.save();
+                  //     if (formKey.currentState!.validate())
+                  //       controller.onboardingApi(OnBoardingMethod.api5);
+                  //   },
+                  //   child: Container(
+                  //     // width: 343,
+                  //     height: 40.11,
+                  //     decoration: BoxDecoration(
+                  //       color: controller.pan_image.path.isEmpty
+                  //           ? MyTheme.buttonColor
+                  //           : MyTheme.buttonchangeColor,
+                  //       borderRadius: BorderRadius.all(Radius.circular(6)),
+                  //     ),
+                  //     child: Center(
+                  //       child: Text(
+                  //         'Click here to verify account',
+                  //         textAlign: TextAlign.center,
+                  //         style: TextStyle(
+                  //           fontSize: 17,
+                  //           fontFamily: 'Inter',
+                  //           fontStyle: FontStyle.normal,
+                  //           fontWeight: FontWeight.w600,
+                  //           letterSpacing: -0.28,
+                  //           color: MyTheme.buttontextColor,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                   SizedBox(
                     height: 3,
                   ),
