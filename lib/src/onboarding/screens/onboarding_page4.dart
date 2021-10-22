@@ -5,6 +5,7 @@ import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dar
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
+import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 
 class OnboardingPage4 extends StatefulWidget {
   static const id = "/onboarding4";
@@ -707,36 +708,52 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                   SizedBox(
                     height: 30,
                   ),
-                  InkWell(
+                  OnboardingButton(
                     onTap: () {
                       formKey.currentState!.save();
                       if (formKey.currentState!.validate())
                         controller.onboardingApi(OnBoardingMethod.api4);
                     },
-                    child: Container(
-                      // width: 343,
-                      height: 40.11,
-                      decoration: BoxDecoration(
-                        color: (controller.isChecked == true &&
-                                controller.isDays == true)
-                            ? MyTheme.buttonchangeColor
-                            : MyTheme.buttonColor,
-                        borderRadius: BorderRadius.all(Radius.circular(6)),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'CONTINUE',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: -0.28,
-                            color: MyTheme.buttontextColor,
-                          ),
-                        ),
-                      ),
-                    ),
+                    buttonbackgroundColor: (controller.isChecked == true &&
+                            controller.isDays == true)
+                        ? MyTheme.buttonColor
+                        : MyTheme.buttonchangeColor,
+                    text: 'CONTINUE',
+                    buttontextColor: (controller.isChecked == true &&
+                            controller.isDays == true)
+                        ? MyTheme.buttontextColor
+                        : MyTheme.buttontextchangeColor,
                   ),
+                  // InkWell(
+                  //   onTap: () {
+                  //     formKey.currentState!.save();
+                  //     if (formKey.currentState!.validate())
+                  //       controller.onboardingApi(OnBoardingMethod.api4);
+                  //   },
+                  //   child: Container(
+                  //     // width: 343,
+                  //     height: 40.11,
+                  //     decoration: BoxDecoration(
+                  //       color: (controller.isChecked == true &&
+                  //               controller.isDays == true)
+                  //           ? MyTheme.buttonchangeColor
+                  //           : MyTheme.buttonColor,
+                  //       borderRadius: BorderRadius.all(Radius.circular(6)),
+                  //     ),
+                  //     child: Center(
+                  //       child: Text(
+                  //         'CONTINUE',
+                  //         textAlign: TextAlign.center,
+                  //         style: TextStyle(
+                  //           fontSize: 17,
+                  //           fontWeight: FontWeight.bold,
+                  //           letterSpacing: -0.28,
+                  //           color: MyTheme.buttontextColor,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                   SizedBox(
                     height: 5.89,
                   ),

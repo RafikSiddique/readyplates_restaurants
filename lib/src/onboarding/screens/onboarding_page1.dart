@@ -7,6 +7,7 @@ import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
+import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 
 class OnboardingPage1 extends StatefulWidget {
   static const id = "/onboarding1";
@@ -338,12 +339,13 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                   SizedBox(
                     height: 18,
                   ),
-                  InkWell(
-                    onTap: () async {
+                  OnboardingButton(
+                    onTap: () {
                       formKey.currentState!.save();
                       if (formKey.currentState!.validate())
                         controller.onboardingApi(OnBoardingMethod.api1);
                     },
+<<<<<<< HEAD
                     child: Container(
                       height: 40.11,
                       decoration: BoxDecoration(
@@ -352,27 +354,70 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                                 controller.lastName.text.isEmpty ||
                                 controller.ownemail.text.isEmpty ||
                                 controller.ownMobile.text.isEmpty ||
+=======
+                    buttonbackgroundColor:
+                        (controller.resNameController.text.isEmpty ||
+                                controller.firstNameController.text.isEmpty ||
+                                controller.lastNameController.text.isEmpty ||
+                                controller.ownemailController.text.isEmpty ||
+                                controller.ownMobileController.text.isEmpty ||
+>>>>>>> 7282d203bd23d7a77942249f51dc309113ccf804
                                 controller.rescity.isEmpty ||
                                 controller.poc.text.isEmpty ||
                                 controller.pocNumber.text.isEmpty)
                             ? MyTheme.buttonColor
                             : MyTheme.buttonchangeColor,
-                        borderRadius: BorderRadius.all(Radius.circular(6)),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'CONTINUE',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: -0.28,
-                            color: MyTheme.buttontextColor,
-                          ),
-                        ),
-                      ),
-                    ),
+                    text: 'CONTINUE',
+                    buttontextColor:
+                        (controller.resNameController.text.isEmpty ||
+                                controller.firstNameController.text.isEmpty ||
+                                controller.lastNameController.text.isEmpty ||
+                                controller.ownemailController.text.isEmpty ||
+                                controller.ownMobileController.text.isEmpty ||
+                                controller.rescity.isEmpty ||
+                                controller.pocController.text.isEmpty ||
+                                controller.pocNumberController.text.isEmpty)
+                            ? MyTheme.buttontextColor
+                            : MyTheme.buttontextchangeColor,
                   ),
+                  // SizedBox(
+                  //   height: 18,
+                  // ),
+                  // InkWell(
+                  //   onTap: () async {
+                  //     formKey.currentState!.save();
+                  //     if (formKey.currentState!.validate())
+                  //       controller.onboardingApi(OnBoardingMethod.api1);
+                  //   },
+                  //   child: Container(
+                  //     height: 40.11,
+                  //     decoration: BoxDecoration(
+                  //       color: (controller.resNameController.text.isEmpty ||
+                  //               controller.firstNameController.text.isEmpty ||
+                  //               controller.lastNameController.text.isEmpty ||
+                  //               controller.ownemailController.text.isEmpty ||
+                  //               controller.ownMobileController.text.isEmpty ||
+                  //               controller.rescity.isEmpty ||
+                  //               controller.pocController.text.isEmpty ||
+                  //               controller.pocNumberController.text.isEmpty)
+                  //           ? MyTheme.buttonColor
+                  //           : MyTheme.buttonchangeColor,
+                  //       borderRadius: BorderRadius.all(Radius.circular(6)),
+                  //     ),
+                  //     child: Center(
+                  //       child: Text(
+                  //         'CONTINUE',
+                  //         textAlign: TextAlign.center,
+                  //         style: TextStyle(
+                  //           fontSize: 17,
+                  //           fontWeight: FontWeight.w600,
+                  //           letterSpacing: -0.28,
+                  //           color: MyTheme.buttontextColor,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                   SizedBox(
                     height: 7.89,
                   ),

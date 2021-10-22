@@ -8,6 +8,7 @@ import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dar
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
+import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 
 class OnboardingPage7 extends StatefulWidget {
   static const resId = "/onboarding7";
@@ -166,11 +167,13 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                 height: size.height * 0.015,
               ),
               Container(
-                height: size.height * 0.38,
+                height: size.height * 0.15,
                 child: Wrap(
                   alignment: WrapAlignment.spaceBetween,
                   crossAxisAlignment: WrapCrossAlignment.center,
                   runAlignment: WrapAlignment.spaceBetween,
+                  runSpacing: 15,
+                  spacing: 15,
                   children: [
                     for (int i = 0;
                         i < onBoardingController.allSelectionImage().length;
@@ -189,40 +192,56 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                 ),
               ),
               // SizedBox(
-              //   height: size.height * 0.05,
+              //   height: size.height * 0.26,
               // ),
               Spacer(),
-              InkWell(
+              OnboardingButton(
                 onTap: () async {
                   await onBoardingController
                       .onboardingApi(OnBoardingMethod.api7);
                 },
-                child: InkWell(
-                  child: Container(
-                    height: 40.11,
-                    decoration: BoxDecoration(
-                      color: MyTheme.buttonColor,
-                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                    ),
-                    child: Obx(() => Center(
-                          child: onBoardingController.loading.value
-                              ? CircularProgressIndicator()
-                              : Text(
-                                  'CONTINUE',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                    fontFamily: 'Inter',
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w600,
-                                    letterSpacing: -0.28,
-                                    color: MyTheme.buttontextColor,
-                                  ),
-                                ),
-                        )),
-                  ),
-                ),
+                buttonbackgroundColor: onBoardingController.loading.value
+                    ? MyTheme.buttonColor
+                    : MyTheme.buttonchangeColor,
+                text: 'CONTINUE',
+                buttontextColor: onBoardingController.loading.value
+                    ? MyTheme.buttontextColor
+                    : MyTheme.buttontextchangeColor,
               ),
+              // InkWell(
+              //   onTap: () async {
+              //     await onBoardingController
+              //         .onboardingApi(OnBoardingMethod.api7);
+              //   },
+              //   child:
+
+              //   InkWell(
+              //     child: Container(
+              //       height: 40.11,
+              //       decoration: BoxDecoration(
+              //         color: MyTheme.buttonColor,
+              //         borderRadius: BorderRadius.all(Radius.circular(6)),
+              //       ),
+              //       child: Obx(() => Center(
+              //             child: onBoardingController.loading.value
+              //                 ? CircularProgressIndicator()
+              //                 : Text(
+              //                     'CONTINUE',
+              //                     textAlign: TextAlign.center,
+              //                     style: TextStyle(
+              //                       fontSize: 17,
+              //                       fontFamily: 'Inter',
+              //                       fontStyle: FontStyle.normal,
+              //                       fontWeight: FontWeight.w600,
+              //                       letterSpacing: -0.28,
+              //                       color: MyTheme.buttontextColor,
+              //                     ),
+              //                   ),
+              //           )),
+              //     ),
+              //   ),
+              // ),
+
               SizedBox(
                 height: size.height * 0.02,
               ),
@@ -356,7 +375,7 @@ class ImageUploadCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 12.5),
+                  padding: const EdgeInsets.only(left: 12),
                   child: Text(
                     name,
                     style: TextStyle(
@@ -364,7 +383,6 @@ class ImageUploadCard extends StatelessWidget {
                       fontFamily: 'Poppins',
                       fontStyle: FontStyle.normal,
                       fontWeight: FontWeight.normal,
-                      letterSpacing: -0.229412,
                       color: MyTheme.bottomtextColor,
                     ),
                     textAlign: TextAlign.center,

@@ -6,6 +6,7 @@ import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
+import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 
 class OnboardingPage6 extends StatefulWidget {
   static const resId = "/onboarding6";
@@ -1201,36 +1202,51 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                   SizedBox(
                     height: 15,
                   ),
-                  InkWell(
+                  OnboardingButton(
                     onTap: () {
                       formKey.currentState!.save();
                       if (formKey.currentState!.validate())
                         controller.onboardingApi(OnBoardingMethod.api6);
                     },
-                    child: Container(
-                      // width: 343,
-                      height: 40.11,
-                      decoration: BoxDecoration(
-                        color: controller.eventDesc.value.text.isEmpty
+                    buttonbackgroundColor:
+                        controller.eventDesc.value.text.isEmpty
                             ? MyTheme.buttonColor
                             : MyTheme.buttonchangeColor,
-                        borderRadius: BorderRadius.all(Radius.circular(6)),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'CONTINUE',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 17,
-                            fontFamily: 'Inter',
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w600,
-                            color: MyTheme.buttontextColor,
-                          ),
-                        ),
-                      ),
-                    ),
+                    text: 'CONTINUE',
+                    buttontextColor: controller.eventDesc.value.text.isEmpty
+                        ? MyTheme.buttontextColor
+                        : MyTheme.buttontextchangeColor,
                   ),
+                  // InkWell(
+                  //   onTap: () {
+                  //     formKey.currentState!.save();
+                  //     if (formKey.currentState!.validate())
+                  //       controller.onboardingApi(OnBoardingMethod.api6);
+                  //   },
+                  //   child: Container(
+                  //     // width: 343,
+                  //     height: 40.11,
+                  //     decoration: BoxDecoration(
+                  //       color: controller.eventDesc.value.text.isEmpty
+                  //           ? MyTheme.buttonColor
+                  //           : MyTheme.buttonchangeColor,
+                  //       borderRadius: BorderRadius.all(Radius.circular(6)),
+                  //     ),
+                  //     child: Center(
+                  //       child: Text(
+                  //         'CONTINUE',
+                  //         textAlign: TextAlign.center,
+                  //         style: TextStyle(
+                  //           fontSize: 17,
+                  //           fontFamily: 'Inter',
+                  //           fontStyle: FontStyle.normal,
+                  //           fontWeight: FontWeight.w600,
+                  //           color: MyTheme.buttontextColor,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                   SizedBox(
                     height: 6.89,
                   ),

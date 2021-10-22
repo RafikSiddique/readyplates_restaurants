@@ -61,7 +61,11 @@ class MyApp extends StatelessWidget {
             TargetPlatform.android: CupertinoPageTransitionsBuilder()
           })),
       home: OpeningScreen(),
+<<<<<<< HEAD
       //initialRoute: OnboardingPage1.id,
+=======
+      // initialRoute: OnboardingPage1.id,
+>>>>>>> 7282d203bd23d7a77942249f51dc309113ccf804
       routes: {
         Routes.openingscreenRoute: (context) => OpeningScreen(),
         HomePage.id: (context) => HomePage(),

@@ -12,6 +12,7 @@ import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
+import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 
 class OnboardingPage2 extends StatefulWidget {
   static const id = "/onboarding2";
@@ -229,13 +230,14 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
                   ),
 
                   SizedBox(height: 20),
-                  InkWell(
-                    onTap: () async {
+                  OnboardingButton(
+                    onTap: () {
                       formKey.currentState!.save();
 
                       if (formKey.currentState!.validate())
                         controller.onboardingApi(OnBoardingMethod.api2);
                     },
+<<<<<<< HEAD
                     child: Container(
                       height: 40.11,
                       decoration: BoxDecoration(
@@ -261,7 +263,60 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
                         ),
                       ),
                     ),
+=======
+                    buttonbackgroundColor: (controller
+                                .address1Controller.text.isEmpty ||
+                            controller.address2Controller.text.isEmpty ||
+                            controller.nearbylandnarkController.text.isEmpty ||
+                            controller.latitudeController.text.isEmpty ||
+                            controller.longitudeController.text.isEmpty)
+                        ? MyTheme.buttonColor
+                        : MyTheme.buttonchangeColor,
+                    text: 'CONTINUE',
+                    buttontextColor: (controller
+                                .address1Controller.text.isEmpty ||
+                            controller.address2Controller.text.isEmpty ||
+                            controller.nearbylandnarkController.text.isEmpty ||
+                            controller.latitudeController.text.isEmpty ||
+                            controller.longitudeController.text.isEmpty)
+                        ? MyTheme.buttontextColor
+                        : MyTheme.buttontextchangeColor,
+>>>>>>> 7282d203bd23d7a77942249f51dc309113ccf804
                   ),
+                  // InkWell(
+                  //   onTap: () async {
+                  //     formKey.currentState!.save();
+
+                  //     if (formKey.currentState!.validate())
+                  //       controller.onboardingApi(OnBoardingMethod.api2);
+                  //   },
+                  //   child: Container(
+                  //     height: 40.11,
+                  //     decoration: BoxDecoration(
+                  //       color: (controller.address1Controller.text.isEmpty ||
+                  //               controller.address2Controller.text.isEmpty ||
+                  //               controller
+                  //                   .nearbylandnarkController.text.isEmpty ||
+                  //               controller.latitudeController.text.isEmpty ||
+                  //               controller.longitudeController.text.isEmpty)
+                  //           ? MyTheme.buttonColor
+                  //           : MyTheme.buttonchangeColor,
+                  //       borderRadius: BorderRadius.all(Radius.circular(6)),
+                  //     ),
+                  //     child: Center(
+                  //       child: Text(
+                  //         'CONTINUE',
+                  //         textAlign: TextAlign.center,
+                  //         style: TextStyle(
+                  //           fontSize: 17,
+                  //           fontWeight: FontWeight.bold,
+                  //           letterSpacing: -0.28,
+                  //           color: MyTheme.buttontextColor,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
 
                   SizedBox(
                     height: 5.89,
