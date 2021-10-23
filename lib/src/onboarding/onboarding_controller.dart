@@ -199,7 +199,11 @@ class OnboardingController extends GetxController {
     gstpresent = TextEditingController();
     gstnum = TextEditingController();
     fssaistatus = TextEditingController();
-
+    ac_number = TextEditingController();
+    reac_number = TextEditingController();
+    ifsc_code = TextEditingController();
+    pan_num = TextEditingController();
+    pan_name = TextEditingController();
     super.onInit();
   }
 
