@@ -237,51 +237,21 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
                       if (formKey.currentState!.validate())
                         controller.onboardingApi(OnBoardingMethod.api2);
                     },
-<<<<<<< HEAD
-                    child: Container(
-                      height: 40.11,
-                      decoration: BoxDecoration(
-                        color: (controller.address1.text.isEmpty ||
-                                controller.address2.text.isEmpty ||
-                                controller.nearbylandnark.text.isEmpty ||
-                                controller.latitude.text.isEmpty ||
-                                controller.longitude.text.isEmpty)
-                            ? MyTheme.buttonColor
-                            : MyTheme.buttonchangeColor,
-                        borderRadius: BorderRadius.all(Radius.circular(6)),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'CONTINUE',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: -0.28,
-                            color: MyTheme.buttontextColor,
-                          ),
-                        ),
-                      ),
-                    ),
-=======
-                    buttonbackgroundColor: (controller
-                                .address1Controller.text.isEmpty ||
-                            controller.address2Controller.text.isEmpty ||
-                            controller.nearbylandnarkController.text.isEmpty ||
-                            controller.latitudeController.text.isEmpty ||
-                            controller.longitudeController.text.isEmpty)
+                    buttonbackgroundColor: (controller.address1.text.isEmpty ||
+                            controller.address2.text.isEmpty ||
+                            controller.nearbylandnark.text.isEmpty ||
+                            controller.latitude.text.isEmpty ||
+                            controller.longitude.text.isEmpty)
                         ? MyTheme.buttonColor
                         : MyTheme.buttonchangeColor,
                     text: 'CONTINUE',
-                    buttontextColor: (controller
-                                .address1Controller.text.isEmpty ||
-                            controller.address2Controller.text.isEmpty ||
-                            controller.nearbylandnarkController.text.isEmpty ||
-                            controller.latitudeController.text.isEmpty ||
-                            controller.longitudeController.text.isEmpty)
+                    buttontextColor: (controller.address1.text.isEmpty ||
+                            controller.address2.text.isEmpty ||
+                            controller.nearbylandnark.text.isEmpty ||
+                            controller.latitude.text.isEmpty ||
+                            controller.longitude.text.isEmpty)
                         ? MyTheme.buttontextColor
                         : MyTheme.buttontextchangeColor,
->>>>>>> 7282d203bd23d7a77942249f51dc309113ccf804
                   ),
                   // InkWell(
                   //   onTap: () async {

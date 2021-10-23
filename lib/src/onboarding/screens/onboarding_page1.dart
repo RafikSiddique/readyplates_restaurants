@@ -345,40 +345,27 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                       if (formKey.currentState!.validate())
                         controller.onboardingApi(OnBoardingMethod.api1);
                     },
-<<<<<<< HEAD
-                    child: Container(
-                      height: 40.11,
-                      decoration: BoxDecoration(
-                        color: (controller.resName.text.isEmpty ||
-                                controller.firstName.text.isEmpty ||
-                                controller.lastName.text.isEmpty ||
-                                controller.ownemail.text.isEmpty ||
-                                controller.ownMobile.text.isEmpty ||
-=======
-                    buttonbackgroundColor:
-                        (controller.resNameController.text.isEmpty ||
-                                controller.firstNameController.text.isEmpty ||
-                                controller.lastNameController.text.isEmpty ||
-                                controller.ownemailController.text.isEmpty ||
-                                controller.ownMobileController.text.isEmpty ||
->>>>>>> 7282d203bd23d7a77942249f51dc309113ccf804
-                                controller.rescity.isEmpty ||
-                                controller.poc.text.isEmpty ||
-                                controller.pocNumber.text.isEmpty)
-                            ? MyTheme.buttonColor
-                            : MyTheme.buttonchangeColor,
+                    buttonbackgroundColor: (controller.resName.text.isEmpty ||
+                            controller.firstName.text.isEmpty ||
+                            controller.lastName.text.isEmpty ||
+                            controller.ownemail.text.isEmpty ||
+                            controller.ownMobile.text.isEmpty ||
+                            controller.rescity.isEmpty ||
+                            controller.poc.text.isEmpty ||
+                            controller.pocNumber.text.isEmpty)
+                        ? MyTheme.buttonColor
+                        : MyTheme.buttonchangeColor,
                     text: 'CONTINUE',
-                    buttontextColor:
-                        (controller.resNameController.text.isEmpty ||
-                                controller.firstNameController.text.isEmpty ||
-                                controller.lastNameController.text.isEmpty ||
-                                controller.ownemailController.text.isEmpty ||
-                                controller.ownMobileController.text.isEmpty ||
-                                controller.rescity.isEmpty ||
-                                controller.pocController.text.isEmpty ||
-                                controller.pocNumberController.text.isEmpty)
-                            ? MyTheme.buttontextColor
-                            : MyTheme.buttontextchangeColor,
+                    buttontextColor: (controller.resName.text.isEmpty ||
+                            controller.firstName.text.isEmpty ||
+                            controller.lastName.text.isEmpty ||
+                            controller.ownemail.text.isEmpty ||
+                            controller.ownMobile.text.isEmpty ||
+                            controller.rescity.isEmpty ||
+                            controller.poc.text.isEmpty ||
+                            controller.pocNumber.text.isEmpty)
+                        ? MyTheme.buttontextColor
+                        : MyTheme.buttontextchangeColor,
                   ),
                   // SizedBox(
                   //   height: 18,

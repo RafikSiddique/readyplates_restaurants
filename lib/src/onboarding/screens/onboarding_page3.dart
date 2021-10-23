@@ -300,38 +300,6 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   //
 
                   SizedBox(height: 26),
-<<<<<<< HEAD
-                  SizedBox(
-                    height: 45,
-                    width: MediaQuery.of(context).size.width,
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: (controller.gstpresent.text.isEmpty ||
-                                  controller.gstnum.text.isEmpty ||
-                                  controller.fssaistatus.text.isEmpty ||
-                                  controller.expiry == DateTime(1900) ||
-                                  controller.kycimg.path.isEmpty ||
-                                  controller.gstinimg.path.isEmpty ||
-                                  controller.fssaiimg.path.isEmpty)
-                              ? MyTheme.buttonColor
-                              : MyTheme.buttonchangeColor,
-                          side: BorderSide(
-                            width: 1.5,
-                            color: Color.fromRGBO(255, 255, 255, 0.5),
-                          ),
-                        ),
-                        onPressed: () async {
-                          print(controller.expiry);
-                          formKey.currentState!.save();
-                          if (formKey.currentState!.validate())
-                            controller.onboardingApi(OnBoardingMethod.api3);
-                        },
-                        child: Text('CONTINUE',
-                            style: TextStyle(
-                              color: MyTheme.buttontextColor,
-                              fontSize: 17,
-                            ))),
-=======
                   OnboardingButton(
                     onTap: () {
                       print(controller.expiry);
@@ -340,9 +308,9 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                         controller.onboardingApi(OnBoardingMethod.api3);
                     },
                     buttonbackgroundColor:
-                        (controller.gstpresentController.text.isEmpty ||
-                                controller.gstnumController.text.isEmpty ||
-                                controller.fssaistatusController.text.isEmpty ||
+                        (controller.gstpresent.text.isEmpty ||
+                                controller.gstnum.text.isEmpty ||
+                                controller.fssaistatus.text.isEmpty ||
                                 controller.expiry == DateTime(1900) ||
                                 controller.kycimg.path.isEmpty ||
                                 controller.gstinimg.path.isEmpty ||
@@ -350,17 +318,15 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                             ? MyTheme.buttonColor
                             : MyTheme.buttonchangeColor,
                     text: 'CONTINUE',
-                    buttontextColor:
-                        (controller.gstpresentController.text.isEmpty ||
-                                controller.gstnumController.text.isEmpty ||
-                                controller.fssaistatusController.text.isEmpty ||
-                                controller.expiry == DateTime(1900) ||
-                                controller.kycimg.path.isEmpty ||
-                                controller.gstinimg.path.isEmpty ||
-                                controller.fssaiimg.path.isEmpty)
-                            ? MyTheme.buttontextColor
-                            : MyTheme.buttontextchangeColor,
->>>>>>> 7282d203bd23d7a77942249f51dc309113ccf804
+                    buttontextColor: (controller.gstpresent.text.isEmpty ||
+                            controller.gstnum.text.isEmpty ||
+                            controller.fssaistatus.text.isEmpty ||
+                            controller.expiry == DateTime(1900) ||
+                            controller.kycimg.path.isEmpty ||
+                            controller.gstinimg.path.isEmpty ||
+                            controller.fssaiimg.path.isEmpty)
+                        ? MyTheme.buttontextColor
+                        : MyTheme.buttontextchangeColor,
                   ),
                   // SizedBox(
                   //   height: 45,
