@@ -21,12 +21,13 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
 
   TimeOfDay currentTime = TimeOfDay.now();
   TimeOfDay? PickedTime;
-  Future<void> _selectTime(BuildContext context) async {
+
+  Future<void> _selectStartTime(BuildContext context) async {
     PickedTime = await showTimePicker(
       context: context,
       initialTime: currentTime,
       initialEntryMode: TimePickerEntryMode.dial,
-      helpText: 'Select Time ',
+      helpText: 'Select Start Time',
       confirmText: 'choose',
       cancelText: 'cancel',
       hourLabelText: 'hour',
@@ -35,8 +36,30 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
     if (PickedTime != null && PickedTime != currentTime) {
       setState(() {
         currentTime = PickedTime!;
-        controller.sartTime = PickedTime.toString();
+        controller.startTime = PickedTime.toString();
         print(PickedTime!.format(context));
+      });
+    }
+  }
+
+  TimeOfDay currentTime1 = TimeOfDay.now();
+  TimeOfDay? PickedTime1;
+  Future<void> _selectEndTime(BuildContext context) async {
+    PickedTime1 = await showTimePicker(
+      context: context,
+      initialTime: currentTime1,
+      initialEntryMode: TimePickerEntryMode.dial,
+      helpText: 'Select End Time',
+      confirmText: 'choose',
+      cancelText: 'cancel',
+      hourLabelText: 'hour',
+      minuteLabelText: 'minute',
+    );
+    if (PickedTime1 != null && PickedTime1 != currentTime1) {
+      setState(() {
+        currentTime1 = PickedTime1!;
+        controller.endTime = PickedTime1.toString();
+        print(PickedTime1!.format(context));
       });
     }
   }
@@ -278,7 +301,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                               ),
                               child: GestureDetector(
                                 onTap: () {
-                                  _selectTime(context);
+                                  _selectStartTime(context);
                                 },
                                 child: Center(
                                   child: Text(
@@ -286,7 +309,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                         ? '${currentTime.format(context)}'
                                         : '${currentTime.format(context)}',
                                     style: TextStyle(
-                                      fontSize: PickedTime == null ? 18 : 24,
+                                      fontSize: PickedTime == null ? 16 : 20,
                                       fontFamily: 'Inter',
                                       fontStyle: FontStyle.normal,
                                       fontWeight: FontWeight.w500,
@@ -337,15 +360,15 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                               ),
                               child: GestureDetector(
                                 onTap: () {
-                                  _selectTime(context);
+                                  _selectEndTime(context);
                                 },
                                 child: Center(
                                   child: Text(
-                                    PickedTime == null
-                                        ? '${currentTime.format(context)}'
-                                        : '${currentTime.format(context)}',
+                                    PickedTime1 == null
+                                        ? '${currentTime1.format(context)}'
+                                        : '${currentTime1.format(context)}',
                                     style: TextStyle(
-                                      fontSize: PickedTime == null ? 18 : 24,
+                                      fontSize: PickedTime1 == null ? 16 : 20,
                                       fontFamily: 'Inter',
                                       fontStyle: FontStyle.normal,
                                       fontWeight: FontWeight.w500,

@@ -58,7 +58,8 @@ class OnboardingController extends GetxController {
   //final fssaistatusController = TextEditingController();
 
   DateTime expiry = DateTime(1900);
-  String sartTime = '';
+  String startTime = '';
+  String endTime = '';
   File kycimg = File('');
   File gstinimg = File('');
   File fssaiimg = File('');
@@ -305,8 +306,8 @@ class OnboardingController extends GetxController {
         uniqueId,
         typeOfEstablishment.value,
         chooseCategory.toString(),
-        sartTime,
-        sartTime,
+        startTime,
+        endTime,
         // "${startHour.value}:${startMinute.value}${startAmPm}",
         // "${endHour.value}:${endMinute.value}${endAmPm}",
         chooseDays.toList().toString(),
