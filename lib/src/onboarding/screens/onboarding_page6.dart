@@ -188,84 +188,153 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                   style: BorderStyle.solid,
                                 ),
                               ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Obx(
-                                    () => Text(
-                                      (controller.noOfTables.value
-                                                  .toString()
-                                                  .length ==
-                                              1
-                                          ? controller.noOfTables.value
-                                              .toString()
-                                              .padLeft(2, "0")
-                                          : controller.noOfTables.value
-                                              .toString()),
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontFamily: 'Inter',
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.bold,
-                                        color: MyTheme.hinttextColor,
+                              child: InkWell(
+                                onTap: () {
+                                  Get.bottomSheet(BottomSheet(
+                                    onClosing: () {},
+                                    builder: (context) {
+                                      //  (controller.noOfTables.value
+                                      //             .toString()
+                                      //             .length ==
+                                      //         1
+                                      //     ? controller.noOfTables.value
+                                      //         .toString()
+                                      //         .padLeft(2, "0")
+                                      //     : controller.noOfTables.value
+                                      //         .toString())
+                                      return Card(
+                                          margin: EdgeInsets.zero,
+                                          child: ListView(
+                                            shrinkWrap: true,
+                                            children: List.generate(30,
+                                                    (index) {
+                                              return (index + 1);
+                                            })
+                                                .map((e) => ListTile(
+                                                      title: Text(e.toString()),
+                                                      onTap: () {
+                                                        controller.noOfTables
+                                                            .value = e;
+                                                        Get.back();
+                                                      },
+                                                    ))
+                                                .toList(),
+                                          ));
+                                    },
+                                  ));
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Obx(
+                                      () => Text(
+                                        controller.noOfTables.value
+                                            .toString()
+                                            .padLeft(2, "0"),
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontFamily: 'Inter',
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.bold,
+                                          color: MyTheme.hinttextColor,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 10),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        SizedBox.square(
-                                          dimension: 15,
-                                          child: InkWell(
-                                            onTap: () {
-                                              controller.noOfTables++;
-                                            },
-                                            child: Container(
-                                              height: 12,
-                                              width: 12,
-                                              alignment: Alignment.center,
-                                              child: FaIcon(
-                                                FontAwesomeIcons.chevronUp,
-                                                color:
-                                                    MyTheme.dropdownarrowColor,
-                                                size: 15,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 1,
-                                        ),
-                                        SizedBox.square(
-                                          dimension: 15,
-                                          child: InkWell(
-                                            onTap: () {
-                                              if (controller.noOfTables != 0)
-                                                controller.noOfTables--;
-                                            },
-                                            child: Container(
-                                              height: 12,
-                                              width: 12,
-                                              alignment: Alignment.center,
-                                              child: FaIcon(
-                                                FontAwesomeIcons.chevronDown,
-                                                color:
-                                                    MyTheme.dropdownarrowColor,
-                                                size: 15,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
+                                    SizedBox(
+                                      width: 16,
                                     ),
-                                  ),
-                                ],
+                                    Container(),
+                                    // Text(
+                                    //   '₹',
+                                    //   style: TextStyle(
+                                    //     fontSize: 16,
+                                    //     fontFamily: 'Inter',
+                                    //     fontStyle: FontStyle.normal,
+                                    //     fontWeight: FontWeight.bold,
+                                    //     color: MyTheme.checkboxtextColor,
+                                    //   ),
+                                    // ),
+                                  ],
+                                ),
                               ),
+                              //     Row(
+                              //   mainAxisAlignment: MainAxisAlignment.center,
+                              //   children: [
+                              //     Obx(
+                              //       () => Text(
+                              //         (controller.noOfTables.value
+                              //                     .toString()
+                              //                     .length ==
+                              //                 1
+                              //             ? controller.noOfTables.value
+                              //                 .toString()
+                              //                 .padLeft(2, "0")
+                              //             : controller.noOfTables.value
+                              //                 .toString()),
+                              //         style: TextStyle(
+                              //           fontSize: 16,
+                              //           fontFamily: 'Inter',
+                              //           fontStyle: FontStyle.normal,
+                              //           fontWeight: FontWeight.bold,
+                              //           color: MyTheme.hinttextColor,
+                              //         ),
+                              //       ),
+                              //     ),
+                              //     Padding(
+                              //       padding: const EdgeInsets.only(left: 10),
+                              //       child: Column(
+                              //         mainAxisAlignment:
+                              //             MainAxisAlignment.center,
+                              //         crossAxisAlignment:
+                              //             CrossAxisAlignment.center,
+                              //         children: [
+                              //           SizedBox.square(
+                              //             dimension: 15,
+                              //             child: InkWell(
+                              //               onTap: () {
+                              //                 controller.noOfTables++;
+                              //               },
+                              //               child: Container(
+                              //                 height: 12,
+                              //                 width: 12,
+                              //                 alignment: Alignment.center,
+                              //                 child: FaIcon(
+                              //                   FontAwesomeIcons.chevronUp,
+                              //                   color:
+                              //                       MyTheme.dropdownarrowColor,
+                              //                   size: 15,
+                              //                 ),
+                              //               ),
+                              //             ),
+                              //           ),
+                              //           SizedBox(
+                              //             height: 1,
+                              //           ),
+                              //           SizedBox.square(
+                              //             dimension: 15,
+                              //             child: InkWell(
+                              //               onTap: () {
+                              //                 if (controller.noOfTables != 0)
+                              //                   controller.noOfTables--;
+                              //               },
+                              //               child: Container(
+                              //                 height: 12,
+                              //                 width: 12,
+                              //                 alignment: Alignment.center,
+                              //                 child: FaIcon(
+                              //                   FontAwesomeIcons.chevronDown,
+                              //                   color:
+                              //                       MyTheme.dropdownarrowColor,
+                              //                   size: 15,
+                              //                 ),
+                              //               ),
+                              //             ),
+                              //           ),
+                              //         ],
+                              //       ),
+                              //     ),
+                              //   ],
+                              // ),
                             ),
                             SizedBox(
                               height: 3,
@@ -301,84 +370,144 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                   style: BorderStyle.solid,
                                 ),
                               ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Obx(
-                                    () => Text(
-                                      (controller.noOfSeats.value
-                                                  .toString()
-                                                  .length ==
-                                              1
-                                          ? controller.noOfSeats.value
-                                              .toString()
-                                              .padLeft(2, "0")
-                                          : controller.noOfSeats.value
-                                              .toString()),
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontFamily: 'Inter',
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.bold,
-                                        color: MyTheme.hinttextColor,
+                              child: InkWell(
+                                onTap: () {
+                                  Get.bottomSheet(BottomSheet(
+                                    onClosing: () {},
+                                    builder: (context) {
+                                      return Card(
+                                          margin: EdgeInsets.zero,
+                                          child: ListView(
+                                            shrinkWrap: true,
+                                            children: List.generate(30,
+                                                    (index) {
+                                              return (index + 1);
+                                            })
+                                                .map((e) => ListTile(
+                                                      title: Text(e.toString()),
+                                                      onTap: () {
+                                                        controller.noOfSeats
+                                                            .value = e;
+                                                        Get.back();
+                                                      },
+                                                    ))
+                                                .toList(),
+                                          ));
+                                    },
+                                  ));
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Obx(
+                                      () => Text(
+                                        controller.noOfSeats.value
+                                            .toString()
+                                            .padLeft(2, "0"),
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontFamily: 'Inter',
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.bold,
+                                          color: MyTheme.hinttextColor,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 10),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        SizedBox.square(
-                                          dimension: 15,
-                                          child: InkWell(
-                                            onTap: () {
-                                              controller.noOfSeats++;
-                                            },
-                                            child: Container(
-                                              height: 12,
-                                              width: 12,
-                                              alignment: Alignment.center,
-                                              child: FaIcon(
-                                                FontAwesomeIcons.chevronUp,
-                                                color:
-                                                    MyTheme.dropdownarrowColor,
-                                                size: 15,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 1,
-                                        ),
-                                        SizedBox.square(
-                                          dimension: 15,
-                                          child: InkWell(
-                                            onTap: () {
-                                              if (controller.noOfSeats != 0)
-                                                controller.noOfSeats--;
-                                            },
-                                            child: Container(
-                                              height: 12,
-                                              width: 12,
-                                              alignment: Alignment.center,
-                                              child: FaIcon(
-                                                FontAwesomeIcons.chevronDown,
-                                                color:
-                                                    MyTheme.dropdownarrowColor,
-                                                size: 15,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
+                                    SizedBox(
+                                      width: 16,
                                     ),
-                                  ),
-                                ],
+                                    Container(),
+                                    // Text(
+                                    //   '₹',
+                                    //   style: TextStyle(
+                                    //     fontSize: 16,
+                                    //     fontFamily: 'Inter',
+                                    //     fontStyle: FontStyle.normal,
+                                    //     fontWeight: FontWeight.bold,
+                                    //     color: MyTheme.checkboxtextColor,
+                                    //   ),
+                                    // ),
+                                  ],
+                                ),
                               ),
+                              //  Row(
+                              //   mainAxisAlignment: MainAxisAlignment.center,
+                              //   children: [
+                              //     Obx(
+                              //       () => Text(
+                              //         (controller.noOfSeats.value
+                              //                     .toString()
+                              //                     .length ==
+                              //                 1
+                              //             ? controller.noOfSeats.value
+                              //                 .toString()
+                              //                 .padLeft(2, "0")
+                              //             : controller.noOfSeats.value
+                              //                 .toString()),
+                              //         style: TextStyle(
+                              //           fontSize: 16,
+                              //           fontFamily: 'Inter',
+                              //           fontStyle: FontStyle.normal,
+                              //           fontWeight: FontWeight.bold,
+                              //           color: MyTheme.hinttextColor,
+                              //         ),
+                              //       ),
+                              //     ),
+                              //     Padding(
+                              //       padding: const EdgeInsets.only(left: 10),
+                              //       child: Column(
+                              //         mainAxisAlignment:
+                              //             MainAxisAlignment.center,
+                              //         crossAxisAlignment:
+                              //             CrossAxisAlignment.center,
+                              //         children: [
+                              //           SizedBox.square(
+                              //             dimension: 15,
+                              //             child: InkWell(
+                              //               onTap: () {
+                              //                 controller.noOfSeats++;
+                              //               },
+                              //               child: Container(
+                              //                 height: 12,
+                              //                 width: 12,
+                              //                 alignment: Alignment.center,
+                              //                 child: FaIcon(
+                              //                   FontAwesomeIcons.chevronUp,
+                              //                   color:
+                              //                       MyTheme.dropdownarrowColor,
+                              //                   size: 15,
+                              //                 ),
+                              //               ),
+                              //             ),
+                              //           ),
+                              //           SizedBox(
+                              //             height: 1,
+                              //           ),
+                              //           SizedBox.square(
+                              //             dimension: 15,
+                              //             child: InkWell(
+                              //               onTap: () {
+                              //                 if (controller.noOfSeats != 0)
+                              //                   controller.noOfSeats--;
+                              //               },
+                              //               child: Container(
+                              //                 height: 12,
+                              //                 width: 12,
+                              //                 alignment: Alignment.center,
+                              //                 child: FaIcon(
+                              //                   FontAwesomeIcons.chevronDown,
+                              //                   color:
+                              //                       MyTheme.dropdownarrowColor,
+                              //                   size: 15,
+                              //                 ),
+                              //               ),
+                              //             ),
+                              //           ),
+                              //         ],
+                              //       ),
+                              //     ),
+                              //   ],
+                              // ),
                             ),
                             SizedBox(
                               height: 3,
@@ -488,7 +617,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                               height: 3,
                             ),
                             Text(
-                              'Enter No of tables present',
+                              'Enter average cost for two per meal',
                               style: TextStyle(
                                 fontSize: 9,
                                 fontFamily: 'Poppins',
