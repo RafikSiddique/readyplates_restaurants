@@ -339,17 +339,20 @@ class OnboardingController extends GetxController {
   Future<void> _onboardingApi6() async {
     try {
       await services.onboardingapi6(
-          resId,
-          resDescript.text,
-          noOfTables.toString(),
-          noOfSeats.toString(),
-          costFor2.toString(),
-          servingTime.toString(),
-          "${recurrenceTime.year}-${recurrenceTime.month}-${recurrenceTime.day}",
-          selectedRecurrence.value,
-          "${eventstartHour.value}:${eventstartMinute.value}${eventstartAmPm}",
-          "${eventendHour.value}:${eventendMinute.value}${eventendAmPm}",
-          eventDesc.text);
+        resId,
+        resDescript.text,
+        noOfTables.toString(),
+        noOfSeats.toString(),
+        costFor2.toString(),
+        servingTime.toString(),
+        "${recurrenceTime.year}-${recurrenceTime.month}-${recurrenceTime.day}",
+        selectedRecurrence.value,
+        startTime,
+        endTime,
+        // "${eventstartHour.value}:${eventstartMinute.value}${eventstartAmPm}",
+        // "${eventendHour.value}:${eventendMinute.value}${eventendAmPm}",
+        eventDesc.text,
+      );
       Get.toNamed(OnboardingPage7.resId);
     } catch (e) {
       Get.snackbar("Error", e.toString());

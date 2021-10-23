@@ -41,6 +41,51 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
     });
   }
 
+  TimeOfDay currentTime = TimeOfDay.now();
+  TimeOfDay? PickedTime;
+
+  Future<void> _selectStartTime(BuildContext context) async {
+    PickedTime = await showTimePicker(
+      context: context,
+      initialTime: currentTime,
+      initialEntryMode: TimePickerEntryMode.dial,
+      helpText: 'Select Start Time',
+      confirmText: 'choose',
+      cancelText: 'cancel',
+      hourLabelText: 'hour',
+      minuteLabelText: 'minute',
+    );
+    if (PickedTime != null && PickedTime != currentTime) {
+      setState(() {
+        currentTime = PickedTime!;
+        controller.startTime = PickedTime.toString();
+        print(PickedTime!.format(context));
+      });
+    }
+  }
+
+  TimeOfDay currentTime1 = TimeOfDay.now();
+  TimeOfDay? PickedTime1;
+  Future<void> _selectEndTime(BuildContext context) async {
+    PickedTime1 = await showTimePicker(
+      context: context,
+      initialTime: currentTime1,
+      initialEntryMode: TimePickerEntryMode.dial,
+      helpText: 'Select End Time',
+      confirmText: 'choose',
+      cancelText: 'cancel',
+      hourLabelText: 'hour',
+      minuteLabelText: 'minute',
+    );
+    if (PickedTime1 != null && PickedTime1 != currentTime1) {
+      setState(() {
+        currentTime1 = PickedTime1!;
+        controller.endTime = PickedTime1.toString();
+        print(PickedTime1!.format(context));
+      });
+    }
+  }
+
   @override
   void initState() {
     controller.resDescript.addListener(() {
@@ -809,383 +854,502 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                     height: 5,
                   ),
                   //hgf
-
-                  Obx(
-                    () => Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                height: 45,
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(6)),
-                                  border: Border.all(
-                                    width: 1,
-                                    color: MyTheme.borderColor,
-                                    style: BorderStyle.solid,
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 45,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(6)),
+                                border: Border.all(
+                                  width: 1,
+                                  color: PickedTime == null
+                                      ? MyTheme.borderColor
+                                      : MyTheme.borderchangeColor,
+                                  style: BorderStyle.solid,
+                                ),
+                              ),
+                              child: GestureDetector(
+                                onTap: () {
+                                  _selectStartTime(context);
+                                },
+                                child: Center(
+                                  child: Text(
+                                    PickedTime == null
+                                        ? '${currentTime.format(context)}'
+                                        : '${currentTime.format(context)}',
+                                    style: TextStyle(
+                                      fontSize: PickedTime == null ? 16 : 20,
+                                      fontFamily: 'Inter',
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.w500,
+                                      color: PickedTime == null
+                                          ? MyTheme.hinttextColor
+                                          : MyTheme.hinttextchangeColor,
+                                    ),
+                                    textAlign: TextAlign.center,
                                   ),
                                 ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Text(
-                                      (controller.eventstartHour.toString().length ==
-                                                  1
-                                              ? controller.eventstartHour
-                                                  .toString()
-                                                  .padLeft(2, "0")
-                                              : controller.eventstartHour
-                                                  .toString()) +
-                                          ":" +
-                                          (controller.eventstartMinute
-                                                      .toString()
-                                                      .length ==
-                                                  1
-                                              ? controller.eventstartMinute
-                                                  .toString()
-                                                  .padLeft(2, "0")
-                                              : controller.eventstartMinute
-                                                  .toString()),
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontFamily: 'Inter',
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.w500,
-                                        color: MyTheme.hinttextColor,
-                                      ),
-                                    ),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        SizedBox.square(
-                                          dimension: 15,
-                                          child: InkWell(
-                                            onTap: () {
-                                              if (controller.eventstartMinute ==
-                                                  30) {
-                                                if (controller.eventstartHour !=
-                                                    12) {
-                                                  controller.eventstartHour + 1;
-                                                }
-                                                controller.eventstartMinute
-                                                    .value = 00;
-                                              } else {
-                                                if (controller.eventstartHour !=
-                                                    12)
-                                                  controller.eventstartMinute
-                                                      .value = 30;
-                                              }
-                                            },
-                                            child: Container(
-                                              height: 12,
-                                              width: 12,
-                                              alignment: Alignment.center,
-                                              child: FaIcon(
-                                                FontAwesomeIcons.chevronUp,
-                                                color:
-                                                    MyTheme.dropdownarrowColor,
-                                                size: 15,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox.square(
-                                          dimension: 15,
-                                          child: InkWell(
-                                            onTap: () {
-                                              if (controller.eventstartMinute ==
-                                                  30) {
-                                                controller.eventstartMinute
-                                                    .value = 00;
-                                              } else {
-                                                if (controller.eventstartHour !=
-                                                    0) {
-                                                  controller.eventstartMinute
-                                                      .value = 30;
-                                                  controller.eventstartHour - 1;
-                                                }
-                                              }
-                                            },
-                                            child: Container(
-                                              height: 12,
-                                              width: 12,
-                                              alignment: Alignment.center,
-                                              child: FaIcon(
-                                                FontAwesomeIcons.chevronDown,
-                                                color:
-                                                    MyTheme.dropdownarrowColor,
-                                                size: 15,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Container(
-                                      height: 35,
-                                      width: 0,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          width: 1,
-                                          color: MyTheme.borderColor,
-                                          style: BorderStyle.solid,
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      height: 18,
-                                      child: Text(
-                                        controller.eventendAmPm.value,
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          fontFamily: 'Inter',
-                                          fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.w500,
-                                          color: MyTheme.hinttextColor,
-                                        ),
-                                      ),
-                                    ),
-                                    InkWell(
-                                        child: Container(
-                                          padding: EdgeInsets.only(
-                                              bottom: 2, top: 4),
-                                          child: FaIcon(
-                                            controller.eventstartAmPm.value ==
-                                                    "AM"
-                                                ? FontAwesomeIcons.chevronDown
-                                                : FontAwesomeIcons.chevronUp,
-                                            size: 13,
-                                            color: MyTheme.dropdownarrowColor,
-                                          ),
-                                        ),
-                                        onTap: () {
-                                          if (controller.eventstartAmPm.value ==
-                                              "AM") {
-                                            controller.eventstartAmPm.value =
-                                                "PM";
-                                          } else {
-                                            controller.eventstartAmPm.value =
-                                                "AM";
-                                          }
-                                        }),
-                                  ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 3,
+                            ),
+                            Text(
+                              'Select start time (hh:mm AM/PM)',
+                              style: TextStyle(
+                                fontSize: 9,
+                                fontFamily: 'Poppins',
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.normal,
+                                color: MyTheme.bottomtextColor,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: 15,
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 45,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(6)),
+                                border: Border.all(
+                                  width: 1,
+                                  color: PickedTime1 == null
+                                      ? MyTheme.borderColor
+                                      : MyTheme.borderchangeColor,
+                                  style: BorderStyle.solid,
                                 ),
                               ),
-                              SizedBox(
-                                height: 3,
-                              ),
-                              Text(
-                                'Select start time  (hh:mm AM/PM)',
-                                style: TextStyle(
-                                  fontSize: 9,
-                                  fontFamily: 'Poppins',
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.normal,
-                                  color: MyTheme.bottomtextColor,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          width: 18,
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                height: 45,
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(6)),
-                                  border: Border.all(
-                                    width: 1,
-                                    color: MyTheme.borderColor,
-                                    style: BorderStyle.solid,
+                              child: GestureDetector(
+                                onTap: () {
+                                  _selectEndTime(context);
+                                },
+                                child: Center(
+                                  child: Text(
+                                    PickedTime1 == null
+                                        ? '${currentTime1.format(context)}'
+                                        : '${currentTime1.format(context)}',
+                                    style: TextStyle(
+                                      fontSize: PickedTime1 == null ? 16 : 20,
+                                      fontFamily: 'Inter',
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.w500,
+                                      color: PickedTime1 == null
+                                          ? MyTheme.hinttextColor
+                                          : MyTheme.hinttextchangeColor,
+                                    ),
+                                    textAlign: TextAlign.center,
                                   ),
                                 ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Text(
-                                      (controller.eventendHour
-                                                      .toString()
-                                                      .length ==
-                                                  1
-                                              ? controller.eventendHour
-                                                  .toString()
-                                                  .padLeft(2, "0")
-                                              : controller.eventendHour
-                                                  .toString()) +
-                                          ":" +
-                                          (controller.eventendMinute
-                                                      .toString()
-                                                      .length ==
-                                                  1
-                                              ? controller.eventendMinute
-                                                  .toString()
-                                                  .padLeft(2, "0")
-                                              : controller.eventendMinute
-                                                  .toString()),
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontFamily: 'Inter',
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.w500,
-                                        color: MyTheme.hinttextColor,
-                                      ),
-                                    ),
-
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        SizedBox.square(
-                                          dimension: 15,
-                                          child: InkWell(
-                                            onTap: () {
-                                              if (controller.eventendMinute ==
-                                                  30) {
-                                                if (controller.eventendHour !=
-                                                    12) {
-                                                  controller.eventendHour + 1;
-                                                }
-                                                controller
-                                                    .eventendMinute.value = 00;
-                                              } else {
-                                                controller
-                                                    .eventendMinute.value = 30;
-                                              }
-                                            },
-                                            child: Container(
-                                              height: 12,
-                                              width: 12,
-                                              alignment: Alignment.center,
-                                              child: FaIcon(
-                                                FontAwesomeIcons.chevronUp,
-                                                color:
-                                                    MyTheme.dropdownarrowColor,
-                                                size: 15,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox.square(
-                                          dimension: 15,
-                                          child: InkWell(
-                                            onTap: () {
-                                              if (controller.eventendMinute ==
-                                                  30) {
-                                                controller
-                                                    .eventendMinute.value = 00;
-                                              } else {
-                                                if (controller.eventendHour !=
-                                                    0) {
-                                                  controller.eventendMinute
-                                                      .value = 30;
-                                                  controller.eventendHour - 1;
-                                                }
-                                              }
-                                            },
-                                            child: Container(
-                                              height: 12,
-                                              width: 12,
-                                              alignment: Alignment.center,
-                                              child: FaIcon(
-                                                FontAwesomeIcons.chevronDown,
-                                                color:
-                                                    MyTheme.dropdownarrowColor,
-                                                size: 15,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    // SizedBox(
-                                    //   width: 6,
-                                    // ),
-                                    Container(
-                                      height: 35,
-                                      width: 0,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          width: 1,
-                                          color: MyTheme.borderColor,
-                                          style: BorderStyle.solid,
-                                        ),
-                                      ),
-                                    ),
-
-                                    Container(
-                                      height: 18,
-                                      child: Text(
-                                        controller.eventendAmPm.value,
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          fontFamily: 'Inter',
-                                          fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.w500,
-                                          color: MyTheme.hinttextColor,
-                                        ),
-                                      ),
-                                    ),
-                                    InkWell(
-                                        child: Container(
-                                          padding: EdgeInsets.only(
-                                              bottom: 2, top: 4),
-                                          child: FaIcon(
-                                            controller.eventendAmPm.value ==
-                                                    "AM"
-                                                ? FontAwesomeIcons.chevronDown
-                                                : FontAwesomeIcons.chevronUp,
-                                            size: 13,
-                                            color: MyTheme.dropdownarrowColor,
-                                          ),
-                                        ),
-                                        onTap: () {
-                                          if (controller.eventendAmPm.value ==
-                                              "AM") {
-                                            controller.eventendAmPm.value =
-                                                "PM";
-                                          } else {
-                                            controller.eventendAmPm.value =
-                                                "AM";
-                                          }
-                                        }),
-                                  ],
-                                ),
                               ),
-                              SizedBox(
-                                height: 3,
+                            ),
+                            SizedBox(
+                              height: 3,
+                            ),
+                            Text(
+                              'Select end time (hh:mm AM/PM)',
+                              style: TextStyle(
+                                fontSize: 9,
+                                fontFamily: 'Poppins',
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.normal,
+                                color: MyTheme.bottomtextColor,
                               ),
-                              Text(
-                                'Event end time (hh:mm AM/PM)',
-                                style: TextStyle(
-                                  fontSize: 9,
-                                  fontFamily: 'Poppins',
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.normal,
-                                  color: MyTheme.bottomtextColor,
-                                ),
-                              )
-                            ],
-                          ),
+                            )
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
+
+                  // Obx(
+                  //   () => Row(
+                  //     children: [
+                  //       Expanded(
+                  //         child: Column(
+                  //           crossAxisAlignment: CrossAxisAlignment.start,
+                  //           children: [
+                  //             Container(
+                  //               height: 45,
+                  //               decoration: BoxDecoration(
+                  //                 borderRadius:
+                  //                     BorderRadius.all(Radius.circular(6)),
+                  //                 border: Border.all(
+                  //                   width: 1,
+                  //                   color: MyTheme.borderColor,
+                  //                   style: BorderStyle.solid,
+                  //                 ),
+                  //               ),
+                  //               child: Row(
+                  //                 mainAxisAlignment:
+                  //                     MainAxisAlignment.spaceAround,
+                  //                 children: [
+                  //                   Text(
+                  //                     (controller.eventstartHour.toString().length ==
+                  //                                 1
+                  //                             ? controller.eventstartHour
+                  //                                 .toString()
+                  //                                 .padLeft(2, "0")
+                  //                             : controller.eventstartHour
+                  //                                 .toString()) +
+                  //                         ":" +
+                  //                         (controller.eventstartMinute
+                  //                                     .toString()
+                  //                                     .length ==
+                  //                                 1
+                  //                             ? controller.eventstartMinute
+                  //                                 .toString()
+                  //                                 .padLeft(2, "0")
+                  //                             : controller.eventstartMinute
+                  //                                 .toString()),
+                  //                     style: TextStyle(
+                  //                       fontSize: 15,
+                  //                       fontFamily: 'Inter',
+                  //                       fontStyle: FontStyle.normal,
+                  //                       fontWeight: FontWeight.w500,
+                  //                       color: MyTheme.hinttextColor,
+                  //                     ),
+                  //                   ),
+                  //                   Column(
+                  //                     mainAxisAlignment:
+                  //                         MainAxisAlignment.center,
+                  //                     crossAxisAlignment:
+                  //                         CrossAxisAlignment.center,
+                  //                     children: [
+                  //                       SizedBox.square(
+                  //                         dimension: 15,
+                  //                         child: InkWell(
+                  //                           onTap: () {
+                  //                             if (controller.eventstartMinute ==
+                  //                                 30) {
+                  //                               if (controller.eventstartHour !=
+                  //                                   12) {
+                  //                                 controller.eventstartHour + 1;
+                  //                               }
+                  //                               controller.eventstartMinute
+                  //                                   .value = 00;
+                  //                             } else {
+                  //                               if (controller.eventstartHour !=
+                  //                                   12)
+                  //                                 controller.eventstartMinute
+                  //                                     .value = 30;
+                  //                             }
+                  //                           },
+                  //                           child: Container(
+                  //                             height: 12,
+                  //                             width: 12,
+                  //                             alignment: Alignment.center,
+                  //                             child: FaIcon(
+                  //                               FontAwesomeIcons.chevronUp,
+                  //                               color:
+                  //                                   MyTheme.dropdownarrowColor,
+                  //                               size: 15,
+                  //                             ),
+                  //                           ),
+                  //                         ),
+                  //                       ),
+                  //                       SizedBox.square(
+                  //                         dimension: 15,
+                  //                         child: InkWell(
+                  //                           onTap: () {
+                  //                             if (controller.eventstartMinute ==
+                  //                                 30) {
+                  //                               controller.eventstartMinute
+                  //                                   .value = 00;
+                  //                             } else {
+                  //                               if (controller.eventstartHour !=
+                  //                                   0) {
+                  //                                 controller.eventstartMinute
+                  //                                     .value = 30;
+                  //                                 controller.eventstartHour - 1;
+                  //                               }
+                  //                             }
+                  //                           },
+                  //                           child: Container(
+                  //                             height: 12,
+                  //                             width: 12,
+                  //                             alignment: Alignment.center,
+                  //                             child: FaIcon(
+                  //                               FontAwesomeIcons.chevronDown,
+                  //                               color:
+                  //                                   MyTheme.dropdownarrowColor,
+                  //                               size: 15,
+                  //                             ),
+                  //                           ),
+                  //                         ),
+                  //                       ),
+                  //                     ],
+                  //                   ),
+                  //                   Container(
+                  //                     height: 35,
+                  //                     width: 0,
+                  //                     decoration: BoxDecoration(
+                  //                       border: Border.all(
+                  //                         width: 1,
+                  //                         color: MyTheme.borderColor,
+                  //                         style: BorderStyle.solid,
+                  //                       ),
+                  //                     ),
+                  //                   ),
+                  //                   Container(
+                  //                     height: 18,
+                  //                     child: Text(
+                  //                       controller.eventendAmPm.value,
+                  //                       style: TextStyle(
+                  //                         fontSize: 15,
+                  //                         fontFamily: 'Inter',
+                  //                         fontStyle: FontStyle.normal,
+                  //                         fontWeight: FontWeight.w500,
+                  //                         color: MyTheme.hinttextColor,
+                  //                       ),
+                  //                     ),
+                  //                   ),
+                  //                   InkWell(
+                  //                       child: Container(
+                  //                         padding: EdgeInsets.only(
+                  //                             bottom: 2, top: 4),
+                  //                         child: FaIcon(
+                  //                           controller.eventstartAmPm.value ==
+                  //                                   "AM"
+                  //                               ? FontAwesomeIcons.chevronDown
+                  //                               : FontAwesomeIcons.chevronUp,
+                  //                           size: 13,
+                  //                           color: MyTheme.dropdownarrowColor,
+                  //                         ),
+                  //                       ),
+                  //                       onTap: () {
+                  //                         if (controller.eventstartAmPm.value ==
+                  //                             "AM") {
+                  //                           controller.eventstartAmPm.value =
+                  //                               "PM";
+                  //                         } else {
+                  //                           controller.eventstartAmPm.value =
+                  //                               "AM";
+                  //                         }
+                  //                       }),
+                  //                 ],
+                  //               ),
+                  //             ),
+                  //             SizedBox(
+                  //               height: 3,
+                  //             ),
+                  //             Text(
+                  //               'Select start time  (hh:mm AM/PM)',
+                  //               style: TextStyle(
+                  //                 fontSize: 9,
+                  //                 fontFamily: 'Poppins',
+                  //                 fontStyle: FontStyle.normal,
+                  //                 fontWeight: FontWeight.normal,
+                  //                 color: MyTheme.bottomtextColor,
+                  //               ),
+                  //             )
+                  //           ],
+                  //         ),
+                  //       ),
+                  //       SizedBox(
+                  //         width: 18,
+                  //       ),
+                  //       Expanded(
+                  //         child: Column(
+                  //           crossAxisAlignment: CrossAxisAlignment.start,
+                  //           children: [
+                  //             Container(
+                  //               height: 45,
+                  //               decoration: BoxDecoration(
+                  //                 borderRadius:
+                  //                     BorderRadius.all(Radius.circular(6)),
+                  //                 border: Border.all(
+                  //                   width: 1,
+                  //                   color: MyTheme.borderColor,
+                  //                   style: BorderStyle.solid,
+                  //                 ),
+                  //               ),
+                  //               child: Row(
+                  //                 mainAxisAlignment:
+                  //                     MainAxisAlignment.spaceAround,
+                  //                 children: [
+                  //                   Text(
+                  //                     (controller.eventendHour
+                  //                                     .toString()
+                  //                                     .length ==
+                  //                                 1
+                  //                             ? controller.eventendHour
+                  //                                 .toString()
+                  //                                 .padLeft(2, "0")
+                  //                             : controller.eventendHour
+                  //                                 .toString()) +
+                  //                         ":" +
+                  //                         (controller.eventendMinute
+                  //                                     .toString()
+                  //                                     .length ==
+                  //                                 1
+                  //                             ? controller.eventendMinute
+                  //                                 .toString()
+                  //                                 .padLeft(2, "0")
+                  //                             : controller.eventendMinute
+                  //                                 .toString()),
+                  //                     style: TextStyle(
+                  //                       fontSize: 15,
+                  //                       fontFamily: 'Inter',
+                  //                       fontStyle: FontStyle.normal,
+                  //                       fontWeight: FontWeight.w500,
+                  //                       color: MyTheme.hinttextColor,
+                  //                     ),
+                  //                   ),
+
+                  //                   Column(
+                  //                     mainAxisAlignment:
+                  //                         MainAxisAlignment.center,
+                  //                     crossAxisAlignment:
+                  //                         CrossAxisAlignment.center,
+                  //                     children: [
+                  //                       SizedBox.square(
+                  //                         dimension: 15,
+                  //                         child: InkWell(
+                  //                           onTap: () {
+                  //                             if (controller.eventendMinute ==
+                  //                                 30) {
+                  //                               if (controller.eventendHour !=
+                  //                                   12) {
+                  //                                 controller.eventendHour + 1;
+                  //                               }
+                  //                               controller
+                  //                                   .eventendMinute.value = 00;
+                  //                             } else {
+                  //                               controller
+                  //                                   .eventendMinute.value = 30;
+                  //                             }
+                  //                           },
+                  //                           child: Container(
+                  //                             height: 12,
+                  //                             width: 12,
+                  //                             alignment: Alignment.center,
+                  //                             child: FaIcon(
+                  //                               FontAwesomeIcons.chevronUp,
+                  //                               color:
+                  //                                   MyTheme.dropdownarrowColor,
+                  //                               size: 15,
+                  //                             ),
+                  //                           ),
+                  //                         ),
+                  //                       ),
+                  //                       SizedBox.square(
+                  //                         dimension: 15,
+                  //                         child: InkWell(
+                  //                           onTap: () {
+                  //                             if (controller.eventendMinute ==
+                  //                                 30) {
+                  //                               controller
+                  //                                   .eventendMinute.value = 00;
+                  //                             } else {
+                  //                               if (controller.eventendHour !=
+                  //                                   0) {
+                  //                                 controller.eventendMinute
+                  //                                     .value = 30;
+                  //                                 controller.eventendHour - 1;
+                  //                               }
+                  //                             }
+                  //                           },
+                  //                           child: Container(
+                  //                             height: 12,
+                  //                             width: 12,
+                  //                             alignment: Alignment.center,
+                  //                             child: FaIcon(
+                  //                               FontAwesomeIcons.chevronDown,
+                  //                               color:
+                  //                                   MyTheme.dropdownarrowColor,
+                  //                               size: 15,
+                  //                             ),
+                  //                           ),
+                  //                         ),
+                  //                       ),
+                  //                     ],
+                  //                   ),
+                  //                   // SizedBox(
+                  //                   //   width: 6,
+                  //                   // ),
+                  //                   Container(
+                  //                     height: 35,
+                  //                     width: 0,
+                  //                     decoration: BoxDecoration(
+                  //                       border: Border.all(
+                  //                         width: 1,
+                  //                         color: MyTheme.borderColor,
+                  //                         style: BorderStyle.solid,
+                  //                       ),
+                  //                     ),
+                  //                   ),
+
+                  //                   Container(
+                  //                     height: 18,
+                  //                     child: Text(
+                  //                       controller.eventendAmPm.value,
+                  //                       style: TextStyle(
+                  //                         fontSize: 15,
+                  //                         fontFamily: 'Inter',
+                  //                         fontStyle: FontStyle.normal,
+                  //                         fontWeight: FontWeight.w500,
+                  //                         color: MyTheme.hinttextColor,
+                  //                       ),
+                  //                     ),
+                  //                   ),
+                  //                   InkWell(
+                  //                       child: Container(
+                  //                         padding: EdgeInsets.only(
+                  //                             bottom: 2, top: 4),
+                  //                         child: FaIcon(
+                  //                           controller.eventendAmPm.value ==
+                  //                                   "AM"
+                  //                               ? FontAwesomeIcons.chevronDown
+                  //                               : FontAwesomeIcons.chevronUp,
+                  //                           size: 13,
+                  //                           color: MyTheme.dropdownarrowColor,
+                  //                         ),
+                  //                       ),
+                  //                       onTap: () {
+                  //                         if (controller.eventendAmPm.value ==
+                  //                             "AM") {
+                  //                           controller.eventendAmPm.value =
+                  //                               "PM";
+                  //                         } else {
+                  //                           controller.eventendAmPm.value =
+                  //                               "AM";
+                  //                         }
+                  //                       }),
+                  //                 ],
+                  //               ),
+                  //             ),
+                  //             SizedBox(
+                  //               height: 3,
+                  //             ),
+                  //             Text(
+                  //               'Event end time (hh:mm AM/PM)',
+                  //               style: TextStyle(
+                  //                 fontSize: 9,
+                  //                 fontFamily: 'Poppins',
+                  //                 fontStyle: FontStyle.normal,
+                  //                 fontWeight: FontWeight.normal,
+                  //                 color: MyTheme.bottomtextColor,
+                  //               ),
+                  //             )
+                  //           ],
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
                   SizedBox(
                     height: 5,
                   ),

@@ -352,7 +352,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                     BorderRadius.all(Radius.circular(6)),
                                 border: Border.all(
                                   width: 1,
-                                  color: PickedTime == null
+                                  color: PickedTime1 == null
                                       ? MyTheme.borderColor
                                       : MyTheme.borderchangeColor,
                                   style: BorderStyle.solid,
@@ -372,7 +372,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                       fontFamily: 'Inter',
                                       fontStyle: FontStyle.normal,
                                       fontWeight: FontWeight.w500,
-                                      color: PickedTime == null
+                                      color: PickedTime1 == null
                                           ? MyTheme.hinttextColor
                                           : MyTheme.hinttextchangeColor,
                                     ),
