@@ -20,55 +20,55 @@ class OnboardingPage7 extends StatefulWidget {
 
 class _OnboardingPage7State extends State<OnboardingPage7> {
   final OnboardingController onBoardingController = Get.find();
-  List<Widget> images(Size size) {
-    return [
-      for (int o = 0; o < onBoardingController.allImages().length; o++)
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            FieldTitle(
-              text: '${onBoardingController.titleText[o]}',
-              fontFamily: 'Inter-Regular',
-              fontSize: 13,
-              fontWeight: FontWeight.w500,
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            ImageCard(
-              path: onBoardingController.selectedImages[o],
-              width: size.width,
-              height: size.height * 0.2,
-            ),
-            SizedBox(
-              height: 7,
-            ),
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              for (int i = 0;
-                  i < onBoardingController.allImages()[o].length;
-                  i++)
-                ImageCard(
-                  path: onBoardingController.allImages()[o][i],
-                  name: onBoardingController.allNames()[o][i],
-                  height: size.height * 0.07,
-                  onSelect: (selectedPath) {
-                    setState(() {
-                      onBoardingController.selectedImages[o] = selectedPath;
-                    });
-                  },
-                )
-            ]),
-          ],
-        ),
-    ];
-  }
+  // List<Widget> images(Size size) {
+  //   return [
+  //     for (int o = 0; o < onBoardingController.allImages().length; o++)
+  //       Column(
+  //         crossAxisAlignment: CrossAxisAlignment.start,
+  //         mainAxisSize: MainAxisSize.min,
+  //         children: [
+  //           FieldTitle(
+  //             text: '${onBoardingController.titleText[o]}',
+  //             fontFamily: 'Inter-Regular',
+  //             fontSize: 13,
+  //             fontWeight: FontWeight.w500,
+  //           ),
+  //           SizedBox(
+  //             height: 5,
+  //           ),
+  //           ImageCard(
+  //             path: onBoardingController.selectedImages[o],
+  //             width: size.width,
+  //             height: size.height * 0.2,
+  //           ),
+  //           SizedBox(
+  //             height: 7,
+  //           ),
+  //           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+  //             for (int i = 0;
+  //                 i < onBoardingController.allImages()[o].length;
+  //                 i++)
+  //               ImageCard(
+  //                 path: onBoardingController.allImages()[o][i],
+  //                 name: onBoardingController.allNames()[o][i],
+  //                 height: size.height * 0.07,
+  //                 onSelect: (selectedPath) {
+  //                   setState(() {
+  //                     onBoardingController.selectedImages[o] = selectedPath;
+  //                   });
+  //                 },
+  //               )
+  //           ]),
+  //         ],
+  //       ),
+  //   ];
+  // }
 
-  void onPageChange(int i) {
-    setState(() {
-      onBoardingController.pageIndex.value = i;
-    });
-  }
+  // void onPageChange(int i) {
+  //   setState(() {
+  //     onBoardingController.pageIndex.value = i;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -133,36 +133,36 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
           ),
           child: Column(
             children: [
-              Container(
-                height: size.height * 0.33,
-                child: PageView(
-                  controller: onBoardingController.pageController,
-                  physics: NeverScrollableScrollPhysics(),
-                  allowImplicitScrolling: false,
-                  onPageChanged: onPageChange,
-                  children: images(size),
-                ),
-              ),
-              Obx(() => Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: List.generate(
-                          4,
-                          (index) => Container(
-                                height: 5,
-                                width: 5,
-                                margin: EdgeInsets.all(4),
-                                decoration: BoxDecoration(
-                                  color: index ==
-                                          onBoardingController.pageIndex.value
-                                      ? Color(0xff00ADB5)
-                                      : Color(0xffE0E0E0),
-                                  shape: BoxShape.circle,
-                                ),
-                              )),
-                    ),
-                  )),
+              // Container(
+              //   height: size.height * 0.33,
+              //   child: PageView(
+              //     controller: onBoardingController.pageController,
+              //     physics: NeverScrollableScrollPhysics(),
+              //     allowImplicitScrolling: false,
+              //     onPageChanged: onPageChange,
+              //     children: images(size),
+              //   ),
+              // ),
+              // Obx(() => Center(
+              //       child: Row(
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         crossAxisAlignment: CrossAxisAlignment.center,
+              //         children: List.generate(
+              //             4,
+              //             (index) => Container(
+              //                   height: 5,
+              //                   width: 5,
+              //                   margin: EdgeInsets.all(4),
+              //                   decoration: BoxDecoration(
+              //                     color: index ==
+              //                             onBoardingController.pageIndex.value
+              //                         ? Color(0xff00ADB5)
+              //                         : Color(0xffE0E0E0),
+              //                     shape: BoxShape.circle,
+              //                   ),
+              //                 )),
+              //       ),
+              //     )),
               SizedBox(
                 height: size.height * 0.015,
               ),
@@ -253,63 +253,63 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
   }
 }
 
-class ImageCard extends StatelessWidget {
-  final String path;
-  final String? name;
-  final double width;
-  final double height;
-  final void Function(String)? onSelect;
-  const ImageCard(
-      {Key? key,
-      required this.path,
-      this.onSelect,
-      this.name,
-      this.width = 80,
-      this.height = 70})
-      : assert(name != null ? onSelect != null : true),
-        super(key: key);
+// class ImageCard extends StatelessWidget {
+//   final String path;
+//   final String? name;
+//   final double width;
+//   final double height;
+//   final void Function(String)? onSelect;
+//   const ImageCard(
+//       {Key? key,
+//       required this.path,
+//       this.onSelect,
+//       this.name,
+//       this.width = 80,
+//       this.height = 70})
+//       : assert(name != null ? onSelect != null : true),
+//         super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      child: InkWell(
-        onTap: () {
-          if (name != null) {
-            onSelect!(path);
-          }
-        },
-        child: Container(
-          height: height,
-          width: width,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(6),
-                child: Container(
-                  decoration: BoxDecoration(),
-                  child: Image.asset(
-                    path,
-                    height: name != null ? height - 15 : height,
-                    width: width,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              if (name != null)
-                FittedBox(
-                    child: Text(
-                  name!,
-                  style: TextStyle(fontSize: 10),
-                )),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return ClipRRect(
+//       child: InkWell(
+//         onTap: () {
+//           if (name != null) {
+//             onSelect!(path);
+//           }
+//         },
+//         child: Container(
+//           height: height,
+//           width: width,
+//           child: Column(
+//             crossAxisAlignment: CrossAxisAlignment.center,
+//             mainAxisSize: MainAxisSize.min,
+//             children: [
+//               ClipRRect(
+//                 borderRadius: BorderRadius.circular(6),
+//                 child: Container(
+//                   decoration: BoxDecoration(),
+//                   child: Image.asset(
+//                     path,
+//                     height: name != null ? height - 15 : height,
+//                     width: width,
+//                     fit: BoxFit.cover,
+//                   ),
+//                 ),
+//               ),
+//               if (name != null)
+//                 FittedBox(
+//                     child: Text(
+//                   name!,
+//                   style: TextStyle(fontSize: 10),
+//                 )),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 class ImageUploadCard extends StatelessWidget {
   final String path;
@@ -338,8 +338,8 @@ class ImageUploadCard extends StatelessWidget {
         }
       },
       child: Container(
-        width: size.width * 0.42,
-        height: size.width * 0.4,
+        width: size.width * 0.38,
+        height: size.width * 0.2,
         decoration: BoxDecoration(
           border: Border.all(
             width: 1,
@@ -353,33 +353,20 @@ class ImageUploadCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Spacer(),
-            InkWell(
-              onTap: () async {
-                print('object');
-
-                XFile? file =
-                    await imagePicker.pickImage(source: ImageSource.gallery);
-                if (file != null) {
-                  selectImage(file.path);
-                  print('gfdgggggdg${file.path.split('/').last}');
-                  print('gfdgggggdgrtetertet${path.split('/').last}');
-                }
-              },
-              child: Container(
-                width: path == "" ? 38 : size.width * 0.45,
-                height: path == "" ? 38 : size.width * 0.32,
-                alignment: Alignment.center,
-                child: path == ""
-                    ? Image(
-                        image: AssetImage(
-                          'assets/images/imglogo.png',
-                        ),
-                      )
-                    : Image.file(
-                        File(path),
-                        fit: BoxFit.contain,
+            Container(
+              width: path == "" ? 38 : size.width * 0.45,
+              height: path == "" ? 38 : size.width * 0.32,
+              alignment: Alignment.center,
+              child: path == ""
+                  ? Image(
+                      image: AssetImage(
+                        'assets/images/imglogo.png',
                       ),
-              ),
+                    )
+                  : Image.file(
+                      File(path),
+                      fit: BoxFit.contain,
+                    ),
             ),
             Spacer(),
             Container(
