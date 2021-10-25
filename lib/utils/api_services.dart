@@ -11,4 +11,5 @@ class ApiServices {
   Uri get menu => restaurants('menu/');
   Uri updateMenu(int id) => restaurants('menu/$id');
   Uri menuList(String id) => restaurants('menulist/$id/');
+  Uri resOrders(String id) => restaurants('restaurantorders/$id/');
 }
