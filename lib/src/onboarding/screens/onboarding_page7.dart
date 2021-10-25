@@ -201,12 +201,12 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                       .onboardingApi(OnBoardingMethod.api7);
                 },
                 buttonbackgroundColor: onBoardingController.loading.value
-                    ? MyTheme.buttonColor
-                    : MyTheme.buttonchangeColor,
+                    ? MyTheme.buttonchangeColor
+                    : MyTheme.buttonColor,
                 text: 'CONTINUE',
                 buttontextColor: onBoardingController.loading.value
-                    ? MyTheme.buttontextColor
-                    : MyTheme.buttontextchangeColor,
+                    ? MyTheme.buttontextchangeColor
+                    : MyTheme.buttontextColor,
               ),
               // InkWell(
               //   onTap: () async {
@@ -326,81 +326,102 @@ class ImageUploadCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Container(
-      width: size.width * 0.42,
-      height: size.width * 0.4,
-      decoration: BoxDecoration(
-        border: Border.all(
-          width: 1,
-          color: MyTheme.borderColor,
-          style: BorderStyle.solid,
-        ),
-        borderRadius: BorderRadius.all(Radius.circular(6)),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Spacer(),
-          Container(
-            width: path == "" ? 38 : size.width * 0.45,
-            height: path == "" ? 38 : size.width * 0.32,
-            alignment: Alignment.center,
-            child: path == ""
-                ? Image(
-                    image: AssetImage(
-                      'assets/images/imglogo.png',
-                    ),
-                  )
-                : Image.file(
-                    File(path),
-                    fit: BoxFit.contain,
-                  ),
+    return InkWell(
+      onTap: () async {
+        print('object');
+
+        XFile? file = await imagePicker.pickImage(source: ImageSource.gallery);
+        if (file != null) {
+          selectImage(file.path);
+          print('gfdgggggdg${file.path.split('/').last}');
+          print('gfdgggggdgrtetertet${path.split('/').last}');
+        }
+      },
+      child: Container(
+        width: size.width * 0.42,
+        height: size.width * 0.4,
+        decoration: BoxDecoration(
+          border: Border.all(
+            width: 1,
+            color: MyTheme.borderColor,
+            style: BorderStyle.solid,
           ),
-          Spacer(),
-          Container(
-            height: 27,
-            decoration: BoxDecoration(
-              color: Color(0xffFFFFFF),
-              border: Border.all(
-                width: 1,
-                color: MyTheme.borderColor,
-                style: BorderStyle.solid,
+          borderRadius: BorderRadius.all(Radius.circular(6)),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Spacer(),
+            InkWell(
+              onTap: () async {
+                print('object');
+
+                XFile? file =
+                    await imagePicker.pickImage(source: ImageSource.gallery);
+                if (file != null) {
+                  selectImage(file.path);
+                  print('gfdgggggdg${file.path.split('/').last}');
+                  print('gfdgggggdgrtetertet${path.split('/').last}');
+                }
+              },
+              child: Container(
+                width: path == "" ? 38 : size.width * 0.45,
+                height: path == "" ? 38 : size.width * 0.32,
+                alignment: Alignment.center,
+                child: path == ""
+                    ? Image(
+                        image: AssetImage(
+                          'assets/images/imglogo.png',
+                        ),
+                      )
+                    : Image.file(
+                        File(path),
+                        fit: BoxFit.contain,
+                      ),
               ),
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(6),
-                  bottomRight: Radius.circular(6)),
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 12),
-                  child: Text(
-                    name,
-                    style: TextStyle(
-                      fontSize: 9,
-                      fontFamily: 'Poppins',
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.normal,
-                      color: MyTheme.bottomtextColor,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
+            Spacer(),
+            Container(
+              height: 27,
+              decoration: BoxDecoration(
+                color: Color(0xffFFFFFF),
+                border: Border.all(
+                  width: 1,
+                  color: MyTheme.borderColor,
+                  style: BorderStyle.solid,
                 ),
-                InkWell(
-                  onTap: () async {
-                    XFile? file = await imagePicker.pickImage(
-                        source: ImageSource.gallery);
-                    if (file != null) {
-                      selectImage(file.path);
-                    }
-                  },
-                  child: Container(
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(6),
+                    bottomRight: Radius.circular(6)),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 12),
+                    child: Container(
+                      width: 80,
+                      child: Text(
+                        path == "" ? name : path.split('/').last,
+                        style: TextStyle(
+                          overflow: TextOverflow.ellipsis,
+                          fontSize: 9,
+                          fontFamily: 'Poppins',
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.normal,
+                          color: MyTheme.bottomtextColor,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                  Container(
                     width: 27,
                     height: 27,
                     decoration: BoxDecoration(
                       color: Color(0xffEFEFEF),
+                      // color: Colors.amber,
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(0),
                         topRight: Radius.circular(0),
@@ -412,6 +433,7 @@ class ImageUploadCard extends StatelessWidget {
                       child: Container(
                           width: 16,
                           height: 16,
+                          // color: Colors.red,
                           child: Image(
                             image: AssetImage(
                               'assets/images/upload.png',
@@ -419,11 +441,11 @@ class ImageUploadCard extends StatelessWidget {
                           )),
                     ),
                   ),
-                ),
-              ],
-            ),
-          )
-        ],
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

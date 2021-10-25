@@ -184,7 +184,9 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                     BorderRadius.all(Radius.circular(6)),
                                 border: Border.all(
                                   width: 1,
-                                  color: MyTheme.borderColor,
+                                  color: controller.noOfTables.value == 00
+                                      ? MyTheme.borderColor
+                                      : MyTheme.borderchangeColor,
                                   style: BorderStyle.solid,
                                 ),
                               ),
@@ -206,15 +208,17 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                           margin: EdgeInsets.zero,
                                           child: ListView(
                                             shrinkWrap: true,
-                                            children: List.generate(30,
+                                            children: List.generate(50,
                                                     (index) {
                                               return (index + 1);
                                             })
                                                 .map((e) => ListTile(
                                                       title: Text(e.toString()),
                                                       onTap: () {
-                                                        controller.noOfTables
-                                                            .value = e;
+                                                        setState(() {
+                                                          controller.noOfTables
+                                                              .value = e;
+                                                        });
                                                         Get.back();
                                                       },
                                                     ))
@@ -366,7 +370,9 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                     BorderRadius.all(Radius.circular(6)),
                                 border: Border.all(
                                   width: 1,
-                                  color: MyTheme.borderColor,
+                                  color: controller.noOfSeats.value == 00
+                                      ? MyTheme.borderColor
+                                      : MyTheme.borderchangeColor,
                                   style: BorderStyle.solid,
                                 ),
                               ),
@@ -379,15 +385,17 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                           margin: EdgeInsets.zero,
                                           child: ListView(
                                             shrinkWrap: true,
-                                            children: List.generate(30,
+                                            children: List.generate(50,
                                                     (index) {
                                               return (index + 1);
                                             })
                                                 .map((e) => ListTile(
                                                       title: Text(e.toString()),
                                                       onTap: () {
-                                                        controller.noOfSeats
-                                                            .value = e;
+                                                        setState(() {
+                                                          controller.noOfSeats
+                                                              .value = e;
+                                                        });
                                                         Get.back();
                                                       },
                                                     ))
@@ -560,8 +568,10 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                               .map((e) => ListTile(
                                                     title: Text(e.toString()),
                                                     onTap: () {
-                                                      controller
-                                                          .costFor2.value = e;
+                                                      setState(() {
+                                                        controller
+                                                            .costFor2.value = e;
+                                                      });
                                                       Get.back();
                                                     },
                                                   ))
@@ -577,7 +587,9 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                       BorderRadius.all(Radius.circular(6)),
                                   border: Border.all(
                                     width: 1,
-                                    color: MyTheme.borderColor,
+                                    color: controller.costFor2.value == 0
+                                        ? MyTheme.borderColor
+                                        : MyTheme.borderchangeColor,
                                     style: BorderStyle.solid,
                                   ),
                                 ),
@@ -661,8 +673,10 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                                     title: Text(e.toString() +
                                                         " Minutes"),
                                                     onTap: () {
-                                                      controller.servingTime
-                                                          .value = e;
+                                                      setState(() {
+                                                        controller.servingTime
+                                                            .value = e;
+                                                      });
 
                                                       Get.back();
                                                     },
@@ -679,7 +693,9 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                       BorderRadius.all(Radius.circular(6)),
                                   border: Border.all(
                                     width: 1,
-                                    color: MyTheme.borderColor,
+                                    color: controller.servingTime.value == 0
+                                        ? MyTheme.borderColor
+                                        : MyTheme.borderchangeColor,
                                     style: BorderStyle.solid,
                                   ),
                                 ),
@@ -1502,11 +1518,29 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                         controller.onboardingApi(OnBoardingMethod.api6);
                     },
                     buttonbackgroundColor:
-                        controller.eventDesc.value.text.isEmpty
+                        (controller.resDescript.text.isEmpty ||
+                                controller.noOfTables.value == 00 ||
+                                controller.noOfSeats.value == 00 ||
+                                controller.costFor2.value == 0 ||
+                                controller.servingTime.value == 0 ||
+                                _selectedEventDate == null ||
+                                rec.isEmpty ||
+                                PickedTime == null ||
+                                PickedTime1 == null ||
+                                controller.eventDesc.text.isEmpty)
                             ? MyTheme.buttonColor
                             : MyTheme.buttonchangeColor,
                     text: 'CONTINUE',
-                    buttontextColor: controller.eventDesc.value.text.isEmpty
+                    buttontextColor: (controller.resDescript.text.isEmpty ||
+                            controller.noOfTables.value == 00 ||
+                            controller.noOfSeats.value == 00 ||
+                            controller.costFor2.value == 0 ||
+                            controller.servingTime.value == 0 ||
+                            _selectedEventDate == null ||
+                            rec.isEmpty ||
+                            PickedTime == null ||
+                            PickedTime1 == null ||
+                            controller.eventDesc.text.isEmpty)
                         ? MyTheme.buttontextColor
                         : MyTheme.buttontextchangeColor,
                   ),

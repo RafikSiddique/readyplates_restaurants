@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:readyplates_restaurants/src/home/screens/add_food_item.dart';
 import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
+import 'package:readyplates_restaurants/src/login/screens/changepassword_page.dart';
+import 'package:readyplates_restaurants/src/login/screens/changepassword_page1.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/src/login/screens/login_page.dart';
 import 'package:readyplates_restaurants/src/login/screens/signup_page.dart';
@@ -61,12 +63,14 @@ class MyApp extends StatelessWidget {
             TargetPlatform.android: CupertinoPageTransitionsBuilder()
           })),
       home: OpeningScreen(),
-      initialRoute: OnboardingPage6.resId,
+      initialRoute: OnboardingPage7.resId,
       routes: {
         Routes.openingscreenRoute: (context) => OpeningScreen(),
         HomePage.id: (context) => HomePage(),
         SignupPage.id: (context) => SignupPage(),
         LoginPage.id: (context) => LoginPage(),
+        ChangePasswordPage.id: (context) => ChangePasswordPage(),
+        ChangePasswordPage1.id: (context) => ChangePasswordPage1(),
         RouteToScreen.id: (context) => RouteToScreen(),
         AddFoodItem.id: (context) => AddFoodItem(),
         OnboardingPage1.id: (context) => OnboardingPage1(),

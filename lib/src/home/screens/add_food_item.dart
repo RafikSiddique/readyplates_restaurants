@@ -13,6 +13,7 @@ import 'package:readyplates_restaurants/widgets/dropdowndiettype.dart';
 import 'package:readyplates_restaurants/widgets/dropdownstandard.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
+import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 
 String getUrl(String url) {
   // // http://202.53.174.5:8000/
@@ -42,6 +43,15 @@ class _AddFoodItemState extends State<AddFoodItem> {
 
   @override
   void initState() {
+    controller.name.addListener(() {
+      setState(() {});
+    });
+    controller.desc.addListener(() {
+      setState(() {});
+    });
+    controller.cost.addListener(() {
+      setState(() {});
+    });
     if (controller.isEditing) {
       controller.setEditing();
       setState(() {});
@@ -49,6 +59,14 @@ class _AddFoodItemState extends State<AddFoodItem> {
       controller.clearController();
     }
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.name.dispose();
+    controller.desc.dispose();
+    controller.cost.dispose();
+    super.dispose();
   }
 
   @override
@@ -108,7 +126,9 @@ class _AddFoodItemState extends State<AddFoodItem> {
                       color: Color(0xffFFFFFF),
                       border: Border.all(
                         width: 1,
-                        color: MyTheme.borderColor,
+                        color: controller.image1.path.isEmpty
+                            ? MyTheme.borderColor
+                            : MyTheme.borderchangeColor,
                       ),
                       borderRadius: BorderRadius.all(Radius.circular(6)),
                     ),
@@ -128,7 +148,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
                                   image: AssetImage(
                                     'assets/images/imglogo.png',
                                   ),
-                                  fit: BoxFit.fill,
+                                  fit: BoxFit.cover,
                                   width: 60,
                                   height: 60,
                                 )
@@ -147,7 +167,9 @@ class _AddFoodItemState extends State<AddFoodItem> {
                       color: Color(0xffFFFFFF),
                       border: Border.all(
                         width: 1,
-                        color: MyTheme.borderColor,
+                        color: controller.image2.path.isEmpty
+                            ? MyTheme.borderColor
+                            : MyTheme.borderchangeColor,
                       ),
                       borderRadius: BorderRadius.all(Radius.circular(6)),
                     ),
@@ -172,7 +194,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
                                       ),
                                       width: 60,
                                       height: 60,
-                                      fit: BoxFit.fill,
+                                      fit: BoxFit.cover,
                                     )
                                   : Image.file(controller.image2),
                         ),
@@ -221,6 +243,9 @@ class _AddFoodItemState extends State<AddFoodItem> {
                       ),
                       DropdownDietType(
                         //THIS
+                        color: controller.dietType == ""
+                            ? MyTheme.borderColor
+                            : MyTheme.borderchangeColor,
                         value: controller.dietType.value == ""
                             ? null
                             : controller.dietType.value,
@@ -239,37 +264,42 @@ class _AddFoodItemState extends State<AddFoodItem> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        FieldTitle(
-                          text: "Cost",
-                          fontFamily: 'Inter-Regular',
-                          fontSize: 13,
-                          fontWeight: FontWeight.w500,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        TextFormField(
-                          controller: controller.cost,
-                          decoration: InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 0),
+                        AppFormField(
+                            title: 'Cost',
                             hintText: '000.00 \$',
-                            hintStyle: TextStyle(
-                              fontSize: 13,
-                              fontFamily: 'Inter',
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w500,
-                              color: MyTheme.hinttextColor,
-                            ),
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                width: 0,
-                                color: MyTheme.borderColor,
-                              ),
-                              borderRadius: BorderRadius.circular(6),
-                            ),
-                          ),
-                        )
+                            hintfontSize: 15,
+                            controller: controller.cost),
+                        // FieldTitle(
+                        //   text: "Cost",
+                        //   fontFamily: 'Inter-Regular',
+                        //   fontSize: 13,
+                        //   fontWeight: FontWeight.w500,
+                        // ),
+                        // SizedBox(
+                        //   height: 5,
+                        // ),
+                        // TextFormField(
+                        //   controller: controller.cost,
+                        //   decoration: InputDecoration(
+                        //     contentPadding: EdgeInsets.symmetric(
+                        //         horizontal: 12, vertical: 0),
+                        //     hintText: '000.00 \$',
+                        //     hintStyle: TextStyle(
+                        //       fontSize: 13,
+                        //       fontFamily: 'Inter',
+                        //       fontStyle: FontStyle.normal,
+                        //       fontWeight: FontWeight.w500,
+                        //       color: MyTheme.hinttextColor,
+                        //     ),
+                        //     border: OutlineInputBorder(
+                        //       borderSide: BorderSide(
+                        //         width: 0,
+                        //         color: MyTheme.borderColor,
+                        //       ),
+                        //       borderRadius: BorderRadius.circular(6),
+                        //     ),
+                        //   ),
+                        // )
                       ]),
                 ),
               ]),
@@ -286,6 +316,9 @@ class _AddFoodItemState extends State<AddFoodItem> {
                 height: 5,
               ),
               DropdownCategory(
+                color: controller.category == ""
+                    ? MyTheme.borderColor
+                    : MyTheme.borderchangeColor,
                 value: controller.category.value == ""
                     ? null
                     : controller.category.value,
@@ -341,6 +374,9 @@ class _AddFoodItemState extends State<AddFoodItem> {
                 height: 5,
               ),
               DropdownStandard(
+                color: controller.servingSize == ''
+                    ? MyTheme.borderColor
+                    : MyTheme.borderchangeColor,
                 value: controller.servingSize == ""
                     ? null
                     : controller.servingSize,
@@ -418,33 +454,64 @@ class _AddFoodItemState extends State<AddFoodItem> {
               SizedBox(
                 height: 16,
               ),
-              InkWell(
+              OnboardingButton(
                 onTap: () {
                   if (controller.isEditing)
                     controller.editFoodItem(controller.foodItemModel!.id);
                   else
                     controller.addFoodItem();
                 },
-                child: Container(
-                  height: 40.11,
-                  decoration: BoxDecoration(
-                    color: Color(0xff7A7E83),
-                    borderRadius: BorderRadius.all(Radius.circular(6)),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'CONTINUE',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: -0.28,
-                        color: Color(0xffE5E5E5),
-                      ),
-                    ),
-                  ),
-                ),
+                buttonbackgroundColor: (controller.image1.path.isEmpty ||
+                        controller.image2.path.isEmpty ||
+                        controller.name.text.isEmpty ||
+                        controller.desc.text.isEmpty ||
+                        controller.dietType.value.isEmpty ||
+                        controller.cost.text.isEmpty ||
+                        controller.category.value.isEmpty ||
+                        controller.spiceSlider.value == '' ||
+                        controller.servingSize.isEmpty)
+                    ? MyTheme.buttonColor
+                    : MyTheme.buttonchangeColor,
+                text: 'CONTINUE',
+                buttontextColor: (controller.image1.path.isEmpty ||
+                        controller.image2.path.isEmpty ||
+                        controller.name.text.isEmpty ||
+                        controller.desc.text.isEmpty ||
+                        controller.dietType.value.isEmpty ||
+                        controller.cost.text.isEmpty ||
+                        controller.category.value.isEmpty ||
+                        controller.spiceSlider.value == '' ||
+                        controller.servingSize.isEmpty)
+                    ? MyTheme.buttontextColor
+                    : MyTheme.buttontextchangeColor,
               ),
+              // InkWell(
+              //   onTap: () {
+              //     if (controller.isEditing)
+              //       controller.editFoodItem(controller.foodItemModel!.id);
+              //     else
+              //       controller.addFoodItem();
+              //   },
+              //   child: Container(
+              //     height: 40.11,
+              //     decoration: BoxDecoration(
+              //       color: Color(0xff7A7E83),
+              //       borderRadius: BorderRadius.all(Radius.circular(6)),
+              //     ),
+              //     child: Center(
+              //       child: Text(
+              //         'CONTINUE',
+              //         textAlign: TextAlign.center,
+              //         style: TextStyle(
+              //           fontSize: 17,
+              //           fontWeight: FontWeight.w600,
+              //           letterSpacing: -0.28,
+              //           color: Color(0xffE5E5E5),
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
               SizedBox(
                 height: 5.89,
               ),

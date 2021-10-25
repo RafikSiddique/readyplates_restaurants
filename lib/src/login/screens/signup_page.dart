@@ -17,6 +17,29 @@ class SignupPage extends StatefulWidget {
 class _SignupPageState extends State<SignupPage> {
   final controller = Get.find<AuthController>();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  @override
+  void initState() {
+    controller.email.addListener(() {
+      setState(() {});
+    });
+    controller.password.addListener(() {
+      setState(() {});
+    });
+    controller.password2.addListener(() {
+      setState(() {});
+    });
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.email.dispose();
+    controller.password.dispose();
+    controller.password2.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -232,8 +255,8 @@ class _SignupPageState extends State<SignupPage> {
                                 width: size.width,
                                 height: 54,
                                 decoration: BoxDecoration(
-                                  color: (controller.email.text.isEmpty &&
-                                          controller.password.text.isEmpty &&
+                                  color: (controller.email.text.isEmpty ||
+                                          controller.password.text.isEmpty ||
                                           controller.password2.text.isEmpty)
                                       ? MyTheme.buttonColor
                                       : MyTheme.buttonchangeColor,
@@ -249,7 +272,12 @@ class _SignupPageState extends State<SignupPage> {
                                       fontFamily: 'Inter-Regular',
                                       fontStyle: FontStyle.normal,
                                       fontWeight: FontWeight.w600,
-                                      color: MyTheme.buttontextColor,
+                                      color: (controller.email.text.isEmpty ||
+                                              controller
+                                                  .password.text.isEmpty ||
+                                              controller.password2.text.isEmpty)
+                                          ? MyTheme.buttontextColor
+                                          : MyTheme.buttontextchangeColor,
                                     ),
                                   ),
                                 ),

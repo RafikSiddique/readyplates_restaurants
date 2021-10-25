@@ -87,7 +87,7 @@ class HomeController extends GetxController {
     getFoodItems();
     name = TextEditingController();
     desc = TextEditingController();
-
+    cost = TextEditingController();
     super.onInit();
   }
 
@@ -109,7 +109,7 @@ class HomeController extends GetxController {
   File image1 = File("");
   File image2 = File("");
   RxString dietType = "".obs;
-  final cost = TextEditingController();
+  late TextEditingController cost;
   RxString category = "".obs;
   String servingSize = "";
 

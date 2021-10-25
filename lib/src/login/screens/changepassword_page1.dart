@@ -5,15 +5,15 @@ import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 
-class LoginPage extends StatefulWidget {
-  static const id = "/login";
-  const LoginPage({Key? key}) : super(key: key);
+class ChangePasswordPage1 extends StatefulWidget {
+  static const id = "/changepasword1";
+  const ChangePasswordPage1({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<ChangePasswordPage1> createState() => _ChangePasswordPage1State();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _ChangePasswordPage1State extends State<ChangePasswordPage1> {
   final controller = Get.find<AuthController>();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
@@ -177,46 +177,48 @@ class _LoginPageState extends State<LoginPage> {
                             height: kToolbarHeight * 0.4,
                           ),
                           AppFormField(
-                            title: "Email Address",
-                            hintText: "Registered E-Mail ID",
+                            title: "New Password",
+                            hintText: "**** **** ****",
+                            line: 1,
                             fontSize: 12,
                             inputType: TextInputType.text,
                             controller: controller.email,
+                            isPassword: true,
                           ),
                           SizedBox(
                             height: kToolbarHeight * 0.4,
                           ),
                           AppFormField(
-                            title: "Password",
-                            hintText: "** ** **",
+                            title: "Confirm Password",
+                            hintText: "**** **** ****",
                             line: 1,
                             fontSize: 12,
                             controller: controller.password,
                             isPassword: true,
                           ),
+                          // SizedBox(
+                          //   height: 3,
+                          // ),
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.end,
+                          //   children: [
+                          //     Text(
+                          //       'Forgot Password ?',
+                          //       textAlign: TextAlign.center,
+                          //       style: TextStyle(
+                          //         decoration: TextDecoration.underline,
+                          //         fontSize: 10,
+                          //         fontFamily: 'Inter-Regular',
+                          //         fontStyle: FontStyle.normal,
+                          //         fontWeight: FontWeight.normal,
+                          //         letterSpacing: -0.229412,
+                          //         color: MyTheme.starColor,
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
                           SizedBox(
-                            height: 3,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text(
-                                'Forgot Password ?',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  decoration: TextDecoration.underline,
-                                  fontSize: 10,
-                                  fontFamily: 'Inter-Regular',
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.normal,
-                                  letterSpacing: -0.229412,
-                                  color: MyTheme.starColor,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: kToolbarHeight * 0.4,
+                            height: kToolbarHeight * 0.6,
                           ),
                           InkWell(
                             onTap: () async {
@@ -237,7 +239,7 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               child: Center(
                                 child: Text(
-                                  'Verify Password',
+                                  'Change Password',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontSize: 17,
@@ -253,52 +255,52 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             ),
                           ),
-                          SizedBox(
-                            height: kToolbarHeight * 0.15,
-                          ),
-                          InkWell(
-                            onTap: () {},
-                            child: Container(
-                              width: size.width,
-                              height: 54,
-                              decoration: BoxDecoration(
-                                color: Color(0xffF4F4F4),
-                                border: Border.all(
-                                  width: 1,
-                                  color: Color(0xffB9B9B9),
-                                ),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(6)),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    width: 26.42,
-                                    height: 27,
-                                    child:
-                                        Image.asset('assets/images/google.png'),
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Center(
-                                    child: Text(
-                                      'Sign up with Google',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontSize: 17,
-                                        fontFamily: 'Inter-Regular',
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.w600,
-                                        color: Color(0xff222222),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
+                          // SizedBox(
+                          //   height: kToolbarHeight * 0.15,
+                          // ),
+                          // InkWell(
+                          //   onTap: () {},
+                          //   child: Container(
+                          //     width: size.width,
+                          //     height: 54,
+                          //     decoration: BoxDecoration(
+                          //       color: Color(0xffF4F4F4),
+                          //       border: Border.all(
+                          //         width: 1,
+                          //         color: Color(0xffB9B9B9),
+                          //       ),
+                          //       borderRadius:
+                          //           BorderRadius.all(Radius.circular(6)),
+                          //     ),
+                          //     child: Row(
+                          //       mainAxisAlignment: MainAxisAlignment.center,
+                          //       children: [
+                          //         Container(
+                          //           width: 26.42,
+                          //           height: 27,
+                          //           child:
+                          //               Image.asset('assets/images/google.png'),
+                          //         ),
+                          //         SizedBox(
+                          //           width: 10,
+                          //         ),
+                          //         Center(
+                          //           child: Text(
+                          //             'Sign up with Google',
+                          //             textAlign: TextAlign.center,
+                          //             style: TextStyle(
+                          //               fontSize: 17,
+                          //               fontFamily: 'Inter-Regular',
+                          //               fontStyle: FontStyle.normal,
+                          //               fontWeight: FontWeight.w600,
+                          //               color: Color(0xff222222),
+                          //             ),
+                          //           ),
+                          //         ),
+                          //       ],
+                          //     ),
+                          //   ),
+                          // ),
                           SizedBox(
                             height: 10,
                           )

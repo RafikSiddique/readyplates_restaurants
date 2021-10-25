@@ -878,15 +878,23 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                       if (formKey.currentState!.validate())
                         controller.onboardingApi(OnBoardingMethod.api4);
                     },
-                    buttonbackgroundColor: (controller.isChecked == true &&
-                            controller.isDays == true)
-                        ? MyTheme.buttonColor
-                        : MyTheme.buttonchangeColor,
+                    buttonbackgroundColor:
+                        (controller.typeOfEstablishment.value.isEmpty ||
+                                controller.isChecked == false ||
+                                PickedTime == null ||
+                                PickedTime1 == null ||
+                                controller.isDays == false)
+                            ? MyTheme.buttonColor
+                            : MyTheme.buttonchangeColor,
                     text: 'CONTINUE',
-                    buttontextColor: (controller.isChecked == true &&
-                            controller.isDays == true)
-                        ? MyTheme.buttontextColor
-                        : MyTheme.buttontextchangeColor,
+                    buttontextColor:
+                        (controller.typeOfEstablishment.value.isEmpty ||
+                                controller.isChecked == false ||
+                                PickedTime == null ||
+                                PickedTime1 == null ||
+                                controller.isDays == false)
+                            ? MyTheme.buttontextColor
+                            : MyTheme.buttontextchangeColor,
                   ),
                   // InkWell(
                   //   onTap: () {
