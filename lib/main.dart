@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:readyplates_restaurants/src/home/home_controller.dart';
 import 'package:readyplates_restaurants/src/home/screens/add_food_item.dart';
 import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
@@ -24,6 +25,7 @@ void main() async {
   Get.put(SharedPreferenceHelper());
   Get.put(OnboardingController());
   Get.put(AuthController());
+  Get.put(HomeController());
   runApp(MyApp(
     key: null,
   ));
@@ -63,7 +65,7 @@ class MyApp extends StatelessWidget {
             TargetPlatform.android: CupertinoPageTransitionsBuilder()
           })),
       home: OpeningScreen(),
-      // initialRoute: HomePage.id,
+      initialRoute: HomePage.id,
       routes: {
         Routes.openingscreenRoute: (context) => OpeningScreen(),
         HomePage.id: (context) => HomePage(),

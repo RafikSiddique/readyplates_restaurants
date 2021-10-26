@@ -30,7 +30,7 @@ class AddFoodItem extends StatefulWidget {
 
 class _AddFoodItemState extends State<AddFoodItem> {
   final controller = Get.find<HomeController>();
-
+  bool add = true;
   void pickImage({
     required void Function(File) imageFile,
   }) async {
@@ -41,25 +41,26 @@ class _AddFoodItemState extends State<AddFoodItem> {
     }
   }
 
-  // @override
-  // void initState() {
-  //   controller.name.addListener(() {
-  //     setState(() {});
-  //   });
-  //   controller.desc.addListener(() {
-  //     setState(() {});
-  //   });
-  //   controller.cost.addListener(() {
-  //     setState(() {});
-  //   });
-  //   if (controller.isEditing) {
-  //     controller.setEditing();
-  //     setState(() {});
-  //   } else {
-  //     controller.clearController();
-  //   }
-  //   super.initState();
-  // }
+  @override
+  void initState() {
+    controller.name.addListener(() {
+      setState(() {});
+    });
+    controller.desc.addListener(() {
+      setState(() {});
+    });
+    controller.cost.addListener(() {
+      setState(() {});
+    });
+    if (controller.isEditing) {
+      controller.setEditing();
+      setState(() {});
+    } else {
+      controller.clearController();
+    }
+
+    super.initState();
+  }
 
   // @override
   // void dispose() {
@@ -409,46 +410,146 @@ class _AddFoodItemState extends State<AddFoodItem> {
               SizedBox(
                 height: 10,
               ),
-              Container(
-                decoration: BoxDecoration(
-                    border: Border.all(
-                      color: MyTheme.borderColor,
-                    ),
-                    borderRadius: BorderRadius.circular(10)),
-                padding: EdgeInsets.all(8),
-                child: DottedBorder(
-                  //color: Color(0Xff393E4),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.add_circle_outline_sharp,
-                          color: Color(0xff393E46),
-                          size: 18,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          "Add ",
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontFamily: 'Inter ',
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.normal,
-                            letterSpacing: -0.229412,
+              Visibility(
+                visible: false,
+                child: Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                        color: MyTheme.borderColor,
+                      ),
+                      borderRadius: BorderRadius.circular(10)),
+                  padding: EdgeInsets.all(8),
+                  child: DottedBorder(
+                    //color: Color(0Xff393E4),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.add_circle_outline_sharp,
                             color: Color(0xff393E46),
+                            size: 18,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            "Add ",
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontFamily: 'Inter ',
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.normal,
+                              letterSpacing: -0.229412,
+                              color: Color(0xff393E46),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    borderType: BorderType.RRect,
+                    radius: Radius.circular(10),
+                    dashPattern: [10, 5, 10, 5, 10, 5],
+                  ),
+                ),
+                replacement: Column(
+                  children: [
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                              child: AppFormField(
+                            title: 'Configration/Serving Name*',
+                            hintText: 'small',
+                            hintfontSize: 15,
+                            controller: controller.servingname,
+                            bottomText: 'Please type  name of configuration',
+                          )),
+                          SizedBox(
+                            width: 15,
+                          ),
+                          Expanded(
+                            child: AppFormField(
+                              title: 'Serving Cost',
+                              hintText: '9.50 \$',
+                              hintfontSize: 15,
+                              controller: controller.servingcost,
+                              bottomText: 'Enter Cost',
+                            ),
+                          ),
+                        ]),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: OutlinedButton.icon(
+                              icon: Icon(Icons.done),
+                              label: Text('Accept'),
+                              onPressed: () {},
+                            ),
+                          ),
+                          SizedBox(
+                            width: 15,
+                          ),
+                          Expanded(
+                            child: OutlinedButton.icon(
+                              icon: Icon(Icons.close),
+                              label: Text('Cancel'),
+                              onPressed: () {},
+                            ),
+                          ),
+                        ]),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                            color: MyTheme.borderColor,
+                          ),
+                          borderRadius: BorderRadius.circular(10)),
+                      padding: EdgeInsets.all(8),
+                      child: DottedBorder(
+                        //color: Color(0Xff393E4),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.add_circle_outline_sharp,
+                                color: Color(0xff393E46),
+                                size: 18,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                "Add ",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontFamily: 'Inter ',
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.normal,
+                                  letterSpacing: -0.229412,
+                                  color: Color(0xff393E46),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
-                  ),
 
-                  borderType: BorderType.RRect,
-                  radius: Radius.circular(10),
-                  dashPattern: [10, 5, 10, 5, 10, 5],
+                        borderType: BorderType.RRect,
+                        radius: Radius.circular(10),
+                        dashPattern: [10, 5, 10, 5, 10, 5],
+                      ),
+                    ),
+                  ],
                 ),
               ),
               SizedBox(

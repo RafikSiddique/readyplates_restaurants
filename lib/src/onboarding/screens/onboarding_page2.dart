@@ -50,17 +50,17 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
     super.initState();
   }
 
-  @override
-  void dispose() {
-    controller.address1.dispose();
-    controller.address2.dispose();
-    controller.nearbylandnark.dispose();
-    controller.postalcode.dispose();
-    controller.latitude.dispose();
-    controller.latitude.dispose();
+  // @override
+  // void dispose() {
+  //   controller.address1.dispose();
+  //   controller.address2.dispose();
+  //   controller.nearbylandnark.dispose();
+  //   controller.postalcode.dispose();
+  //   controller.latitude.dispose();
+  //   controller.latitude.dispose();
 
-    super.dispose();
-  }
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +129,7 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
 
                   AppFormField(
                     title: "Postal Code",
-                    hintText: "+91 XXXXXXXXXX",
+                    hintText: "XXXXXX",
                     controller: controller.postalcode,
                     inputType: TextInputType.number,
                     formatters: [FilteringTextInputFormatter.digitsOnly],

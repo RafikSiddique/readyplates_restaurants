@@ -84,10 +84,13 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
-    getFoodItems();
     name = TextEditingController();
     desc = TextEditingController();
     cost = TextEditingController();
+    servingname = TextEditingController();
+    servingcost = TextEditingController();
+    getFoodItems();
+
     super.onInit();
   }
 
@@ -95,6 +98,8 @@ class HomeController extends GetxController {
     name.clear();
     desc.clear();
     cost.clear();
+    servingname.clear();
+    servingcost.clear();
     image1 = File("");
     image2 = File("");
     spiceSlider.value = 1;
@@ -104,13 +109,14 @@ class HomeController extends GetxController {
   late TextEditingController name;
   late TextEditingController desc;
   late TextEditingController cost;
+  late TextEditingController servingname;
+  late TextEditingController servingcost;
   // final nameController = TextEditingController();
   //final descController = TextEditingController();
 
   File image1 = File("");
   File image2 = File("");
   RxString dietType = "".obs;
-
   RxString category = "".obs;
   String servingSize = "";
 

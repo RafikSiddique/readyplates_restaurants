@@ -43,20 +43,21 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
     controller.pocNumber.addListener(() {
       setState(() {});
     });
+
     super.initState();
   }
 
-  @override
-  void dispose() {
-    controller.resName.dispose();
-    controller.firstName.dispose();
-    controller.lastName.dispose();
-    controller.ownemail.dispose();
-    controller.ownMobile.dispose();
-    controller.poc.dispose();
-    controller.pocNumber.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   controller.resName.dispose();
+  //   controller.firstName.dispose();
+  //   controller.lastName.dispose();
+  //   controller.ownemail.dispose();
+  //   controller.ownMobile.dispose();
+  //   controller.poc.dispose();
+  //   controller.pocNumber.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {

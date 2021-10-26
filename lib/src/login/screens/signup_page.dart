@@ -206,7 +206,7 @@ class _SignupPageState extends State<SignupPage> {
                             ),
                             AppFormField(
                               title: "Email Address",
-                              hintText: "someone@example.com",
+                              hintText: "Eg aatef.sayyed@fladdra.com",
                               controller: controller.email,
                               fontSize: 11,
                               fontFamily: 'Inter-Bold',

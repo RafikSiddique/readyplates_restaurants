@@ -134,7 +134,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
           child: Column(
             children: [
               Container(
-                height: size.height * 0.33,
+                height: size.height * 0.12,
                 child: PageView(
                   controller: onBoardingController.pageController,
                   physics: NeverScrollableScrollPhysics(),
@@ -208,37 +208,37 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                     ? MyTheme.buttontextchangeColor
                     : MyTheme.buttontextColor,
               ),
-              InkWell(
-                onTap: () async {
-                  await onBoardingController
-                      .onboardingApi(OnBoardingMethod.api7);
-                },
-                child: InkWell(
-                  child: Container(
-                    height: 40.11,
-                    decoration: BoxDecoration(
-                      color: MyTheme.buttonColor,
-                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                    ),
-                    child: Obx(() => Center(
-                          child: onBoardingController.loading.value
-                              ? CircularProgressIndicator()
-                              : Text(
-                                  'CONTINUE',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                    fontFamily: 'Inter',
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w600,
-                                    letterSpacing: -0.28,
-                                    color: MyTheme.buttontextColor,
-                                  ),
-                                ),
-                        )),
-                  ),
-                ),
-              ),
+              // InkWell(
+              //   onTap: () async {
+              //     await onBoardingController
+              //         .onboardingApi(OnBoardingMethod.api7);
+              //   },
+              //   child: InkWell(
+              //     child: Container(
+              //       height: 40.11,
+              //       decoration: BoxDecoration(
+              //         color: MyTheme.buttonColor,
+              //         borderRadius: BorderRadius.all(Radius.circular(6)),
+              //       ),
+              //       child: Obx(() => Center(
+              //             child: onBoardingController.loading.value
+              //                 ? CircularProgressIndicator()
+              //                 : Text(
+              //                     'CONTINUE',
+              //                     textAlign: TextAlign.center,
+              //                     style: TextStyle(
+              //                       fontSize: 17,
+              //                       fontFamily: 'Inter',
+              //                       fontStyle: FontStyle.normal,
+              //                       fontWeight: FontWeight.w600,
+              //                       letterSpacing: -0.28,
+              //                       color: MyTheme.buttontextColor,
+              //                     ),
+              //                   ),
+              //           )),
+              //     ),
+              //   ),
+              // ),
 
               SizedBox(
                 height: size.height * 0.02,
@@ -336,7 +336,7 @@ class ImageUploadCard extends StatelessWidget {
         }
       },
       child: Container(
-        width: size.width * 0.38,
+        width: size.width * 0.35,
         height: size.width * 0.2,
         decoration: BoxDecoration(
           border: Border.all(
@@ -363,7 +363,7 @@ class ImageUploadCard extends StatelessWidget {
                     )
                   : Image.file(
                       File(path),
-                      fit: BoxFit.contain,
+                      fit: BoxFit.fill,
                     ),
             ),
             Spacer(),
@@ -419,9 +419,23 @@ class ImageUploadCard extends StatelessWidget {
                           width: 16,
                           height: 16,
                           // color: Colors.red,
-                          child: Image(
-                            image: AssetImage(
-                              'assets/images/upload.png',
+                          child: InkWell(
+                            onTap: () async {
+                              print('object');
+
+                              XFile? file = await imagePicker.pickImage(
+                                  source: ImageSource.gallery);
+                              if (file != null) {
+                                selectImage(file.path);
+                                print('gfdgggggdg${file.path.split('/').last}');
+                                print(
+                                    'gfdgggggdgrtetertet${path.split('/').last}');
+                              }
+                            },
+                            child: Ink.image(
+                              image: AssetImage(
+                                'assets/images/upload.png',
+                              ),
                             ),
                           )),
                     ),

@@ -38,20 +38,20 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
     });
   }
 
-  @override
-  void initState() {
-    controller.gstpresent.addListener(() {
-      setState(() {});
-    });
-    controller.gstnum.addListener(() {
-      setState(() {});
-    });
-    controller.fssaistatus.addListener(() {
-      setState(() {});
-    });
+  // @override
+  // void initState() {
+  //   controller.gstpresent.addListener(() {
+  //     setState(() {});
+  //   });
+  //   controller.gstnum.addListener(() {
+  //     setState(() {});
+  //   });
+  //   controller.fssaistatus.addListener(() {
+  //     setState(() {});
+  //   });
 
-    super.initState();
-  }
+  //   super.initState();
+  // }
 
   @override
   void dispose() {
@@ -163,7 +163,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                           padding: const EdgeInsets.only(left: 12.5),
                           child: Text(
                             controller.expiry == DateTime(1900)
-                                ? 'mm/dd/yyyy'
+                                ? 'yyyy/mm/dd'
                                 : '${controller.expiry.year}/${controller.expiry.month}/${controller.expiry.day}',
                             style: TextStyle(
                               fontSize: 13,
@@ -171,7 +171,9 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                               fontStyle: FontStyle.normal,
                               fontWeight: FontWeight.w500,
                               letterSpacing: -0.264706,
-                              color: MyTheme.hinttextColor,
+                              color: controller.expiry == DateTime(1900)
+                                  ? MyTheme.hinttextColor
+                                  : MyTheme.hinttextchangeColor,
                             ),
                             textAlign: TextAlign.center,
                           ),

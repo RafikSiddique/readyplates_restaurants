@@ -173,10 +173,16 @@ class OnboardingServices extends ApiServices {
         'pan_num': pan_num,
         'pan_name': pan_name,
       });
+      print('body1');
       StreamedResponse response = await request.send();
+      print('body2');
+      // String body = await response.stream.bytesToString();
+      // print(body);
       if (response.statusCode == 201) {
+        print('body3');
         String body = await response.stream.bytesToString();
         print(body);
+        print('body4');
       } else {
         throw AppException(
             code: response.statusCode, message: response.reasonPhrase);
