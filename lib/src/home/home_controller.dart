@@ -103,13 +103,14 @@ class HomeController extends GetxController {
   RxDouble spiceSlider = 1.0.obs;
   late TextEditingController name;
   late TextEditingController desc;
+  late TextEditingController cost;
   // final nameController = TextEditingController();
   //final descController = TextEditingController();
 
   File image1 = File("");
   File image2 = File("");
   RxString dietType = "".obs;
-  late TextEditingController cost;
+
   RxString category = "".obs;
   String servingSize = "";
 

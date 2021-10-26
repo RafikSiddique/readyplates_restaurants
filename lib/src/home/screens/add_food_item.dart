@@ -41,33 +41,33 @@ class _AddFoodItemState extends State<AddFoodItem> {
     }
   }
 
-  @override
-  void initState() {
-    controller.name.addListener(() {
-      setState(() {});
-    });
-    controller.desc.addListener(() {
-      setState(() {});
-    });
-    controller.cost.addListener(() {
-      setState(() {});
-    });
-    if (controller.isEditing) {
-      controller.setEditing();
-      setState(() {});
-    } else {
-      controller.clearController();
-    }
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   controller.name.addListener(() {
+  //     setState(() {});
+  //   });
+  //   controller.desc.addListener(() {
+  //     setState(() {});
+  //   });
+  //   controller.cost.addListener(() {
+  //     setState(() {});
+  //   });
+  //   if (controller.isEditing) {
+  //     controller.setEditing();
+  //     setState(() {});
+  //   } else {
+  //     controller.clearController();
+  //   }
+  //   super.initState();
+  // }
 
-  @override
-  void dispose() {
-    controller.name.dispose();
-    controller.desc.dispose();
-    controller.cost.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   controller.name.dispose();
+  //   controller.desc.dispose();
+  //   controller.cost.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
