@@ -30,7 +30,8 @@ class AddFoodItem extends StatefulWidget {
 
 class _AddFoodItemState extends State<AddFoodItem> {
   final controller = Get.find<HomeController>();
-  bool add = true;
+  bool isVisible = true;
+  bool isaccept = true;
   void pickImage({
     required void Function(File) imageFile,
   }) async {
@@ -73,6 +74,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 44,
@@ -410,8 +412,9 @@ class _AddFoodItemState extends State<AddFoodItem> {
               SizedBox(
                 height: 10,
               ),
+
               Visibility(
-                visible: false,
+                visible: isVisible,
                 child: Container(
                   decoration: BoxDecoration(
                       border: Border.all(
@@ -423,29 +426,36 @@ class _AddFoodItemState extends State<AddFoodItem> {
                     //color: Color(0Xff393E4),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.add_circle_outline_sharp,
-                            color: Color(0xff393E46),
-                            size: 18,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Add ",
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontFamily: 'Inter ',
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.normal,
-                              letterSpacing: -0.229412,
+                      child: InkWell(
+                        onTap: () {
+                          setState(() {
+                            isVisible = !isVisible;
+                          });
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.add_circle_outline_sharp,
                               color: Color(0xff393E46),
+                              size: 18,
                             ),
-                          ),
-                        ],
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              "Add ",
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontFamily: 'Inter ',
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.normal,
+                                letterSpacing: -0.229412,
+                                color: Color(0xff393E46),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
 
@@ -483,71 +493,80 @@ class _AddFoodItemState extends State<AddFoodItem> {
                     SizedBox(
                       height: 10,
                     ),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: OutlinedButton.icon(
-                              icon: Icon(Icons.done),
-                              label: Text('Accept'),
-                              onPressed: () {},
-                            ),
-                          ),
-                          SizedBox(
-                            width: 15,
-                          ),
-                          Expanded(
-                            child: OutlinedButton.icon(
-                              icon: Icon(Icons.close),
-                              label: Text('Cancel'),
-                              onPressed: () {},
-                            ),
-                          ),
-                        ]),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                            color: MyTheme.borderColor,
-                          ),
-                          borderRadius: BorderRadius.circular(10)),
-                      padding: EdgeInsets.all(8),
-                      child: DottedBorder(
-                        //color: Color(0Xff393E4),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.add_circle_outline_sharp,
-                                color: Color(0xff393E46),
-                                size: 18,
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                "Add ",
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontFamily: 'Inter ',
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.normal,
-                                  letterSpacing: -0.229412,
-                                  color: Color(0xff393E46),
+                    Visibility(
+                      visible: isaccept,
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: OutlinedButton.icon(
+                                style: OutlinedButton.styleFrom(
+                                  minimumSize: Size.fromHeight(45.0),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(6.0),
+                                  ),
+                                  side: BorderSide(
+                                      width: 1,
+                                      color: MyTheme.dropdownarrowColor),
                                 ),
+                                icon: Icon(
+                                  Icons.check_circle_outline_outlined,
+                                  color: MyTheme.doneiconColor,
+                                  size: 16,
+                                ),
+                                label: Text(
+                                  'Accept',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 15,
+                                    color: MyTheme.dropdownarrowColor,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    // isaccept = !isaccept;
+                                  });
+                                },
                               ),
-                            ],
-                          ),
-                        ),
-
-                        borderType: BorderType.RRect,
-                        radius: Radius.circular(10),
-                        dashPattern: [10, 5, 10, 5, 10, 5],
-                      ),
+                            ),
+                            SizedBox(
+                              width: 15,
+                            ),
+                            Expanded(
+                              child: OutlinedButton.icon(
+                                style: OutlinedButton.styleFrom(
+                                  minimumSize: Size.fromHeight(45.0),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(6.0),
+                                  ),
+                                  side: BorderSide(
+                                      width: 1,
+                                      color: MyTheme.dropdownarrowColor),
+                                ),
+                                icon: FaIcon(
+                                  FontAwesomeIcons.timesCircle,
+                                  color: MyTheme.closeiconColor,
+                                  size: 16,
+                                ),
+                                label: Text(
+                                  'Cancel',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 15,
+                                    color: MyTheme.dropdownarrowColor,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    isVisible = !isVisible;
+                                  });
+                                },
+                              ),
+                            ),
+                          ]),
+                      // replacement: replace, TODO:
                     ),
                   ],
                 ),

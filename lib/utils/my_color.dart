@@ -43,4 +43,8 @@ class MyTheme {
   static Color editbuttonColor = Color(0xffFFF0F3);
 
   static Color editbuttontextColor = Color(0xffFF6E42);
+
+  static Color doneiconColor = Color(0xff00ADB5);
+
+  static Color closeiconColor = Color(0xffEB4132);
 }
