@@ -53,6 +53,12 @@ class _AddFoodItemState extends State<AddFoodItem> {
     controller.cost.addListener(() {
       setState(() {});
     });
+    controller.servingname.addListener(() {
+      setState(() {});
+    });
+    controller.servingcost.addListener(() {
+      setState(() {});
+    });
     if (controller.isEditing) {
       controller.setEditing();
       setState(() {});
