@@ -28,140 +28,26 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
   List<Widget> images(Size size) {
     return [
       for (int o = 0; o < onBoardingController.allImages().length; o++)
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            new Swiper(
-                layout: SwiperLayout.CUSTOM,
-                customLayoutOption: new CustomLayoutOption(
-                        startIndex: -1, stateCount: 3)
-                    .addRotate([-45.0 / 180, 0.0, 45.0 / 180]).addTranslate([
-                  new Offset(-370.0, -40.0),
-                  new Offset(0.0, 0.0),
-                  new Offset(370.0, -40.0)
-                ]),
+        new Swiper(
 //class ImageUploadCard extends StatelessWidget {
 
-                itemWidth: MediaQuery.of(context).size.width,
-                itemHeight: 70,
-                itemBuilder: (context, index) {
-                  return ImageCard(
-                    path: onBoardingController.selectedImages[o],
-                    width: size.width,
+            itemWidth: MediaQuery.of(context).size.width,
+            autoplay: true,
+            itemBuilder: (context, index) {
+              return ImageCard(
+                path: onBoardingController.allImages()[o][index],
+                width: size.width,
+                height: null,
+              );
 
-                    // height: size.height * 0.2,
-                  );
-
-                  // Center(
-                  //   child: Image.asset(
-                  //     "assets/images/frontfascia.png",
-                  //     fit: BoxFit.contain,
-                  //   ),
-                  // );
-                },
-                itemCount: 4)
-
-            // new Swiper.children(
-            //   autoplay: false,
-            //   pagination: new SwiperPagination(
-            //       margin: new EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 30.0),
-            //       builder: new DotSwiperPaginationBuilder(
-            //           color: Colors.white30,
-            //           activeColor: Colors.white,
-            //           size: 20.0,
-            //           activeSize: 20.0)),
-            //   children: <Widget>[
-            //     Container(
-            //       height: 50,
-            //       width: 80,
-            //       child: new Image.asset(
-            //         "Food1.png",
-            //         fit: BoxFit.contain,
-            //       ),
-            //     ),
-            //     Container(
-            //       height: 50,
-            //       width: 80,
-            //       child: new Image.asset(
-            //         "Food2.png",
-            //         fit: BoxFit.contain,
-            //       ),
-            //     ),
-            //     Container(
-            //         height: 50,
-            //         width: 50,
-            //         child: new Image.asset("Food3.png", fit: BoxFit.contain))
-            //   ],
-            // )
-
-            // new Swiper(
-            //   itemBuilder: (BuildContext context, int index) {
-            //     return Container(
-            //       height: 50,
-            //       width: 100,
-            //       child: new Image.network(
-            //         "http://via.placeholder.com/350x150",
-            //         fit: BoxFit.fill,
-            //       ),
-            //     );
-            //   },
-            //   itemCount: 3,
-            //   pagination: new SwiperPagination(),
-            //   control: new SwiperControl(),
-            // ),
-
-            //  Swiper(
-            //    itemCount:4,
-            //  itemBuilder: (BuildContext context,int index){
-            //       return RoundedBeautifulCard(
-            //         index: index,
-            //       );
-            //  },
-            //  viewportFraction: 0.8,
-            //  scale: 0.9,
-            //  layout: SwiperLayout.STACK,
-            //  itemWidth: 300,
-            //  itemHeight: 400,
-            //  control: SwiperControl(),
-            //  pagination: SwiperPagination(),
-
-            //  )
-
-            // FieldTitle(
-            //   text: '${onBoardingController.titleText[o]}',
-            //   fontFamily: 'Inter-Regular',
-            //   fontSize: 13,
-            //   fontWeight: FontWeight.w500,
-            // ),
-            // SizedBox(
-            //   height: 5,
-            // ),
-            // ImageCard(
-            //   path: onBoardingController.selectedImages[o],
-            //   width: size.width,
-            //   height: size.height * 0.2,
-            // ),
-            // SizedBox(
-            //   height: 7,
-            // ),
-            // Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            //   for (int i = 0;
-            //       i < onBoardingController.allImages()[o].length;
-            //       i++)
-            //     ImageCard(
-            //       path: onBoardingController.allImages()[o][i],
-            //       name: onBoardingController.allNames()[o][i],
-            //       height: size.height * 0.07,
-            //       onSelect: (selectedPath) {
-            //         setState(() {
-            //           onBoardingController.selectedImages[o] = selectedPath;
-            //         });
-            //       },
-            //     )
-            // ]),
-          ],
-        ),
+              // Center(
+              //   child: Image.asset(
+              //     "assets/images/frontfascia.png",
+              //     fit: BoxFit.contain,
+              //   ),
+              // );
+            },
+            itemCount: 4),
     ];
   }
 
@@ -228,14 +114,13 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
           ),
         ),
         body: Padding(
-          padding: const EdgeInsets.only(
-            left: 16,
-            right: 16,
-          ),
+          padding: const EdgeInsets.all(8.0),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
             children: [
               Container(
-                height: size.height * 0.12,
+                height: size.height * 0.3,
                 child: PageView(
                   controller: onBoardingController.pageController,
                   physics: NeverScrollableScrollPhysics(),
@@ -243,6 +128,9 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                   onPageChanged: onPageChange,
                   children: images(size),
                 ),
+              ),
+              SizedBox(
+                height: size.height * 0.02,
               ),
               Obx(() => Center(
                     child: Row(
@@ -265,37 +153,78 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                     ),
                   )),
               SizedBox(
-                height: size.height * 0.035,
+                height: size.height * 0.02,
               ),
-              Container(
-                height: size.height * 0.30,
-                child: Wrap(
-                  alignment: WrapAlignment.spaceBetween,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  runAlignment: WrapAlignment.spaceBetween,
-                  runSpacing: 12,
-                  spacing: 25,
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    for (int i = 0;
-                        i < onBoardingController.allSelectionImage().length;
-                        i++)
-                      ImageUploadCard(
-                          name: onBoardingController.allNames()[
-                              onBoardingController.pageIndex.value][i],
-                          path: onBoardingController.allSelectionImage()[
-                              onBoardingController.pageIndex.value][i],
-                          selectImage: (path) {
-                            onBoardingController.allSelectionImage()[
-                                onBoardingController.pageIndex.value][i] = path;
-                            setState(() {});
-                          }),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        ImageUploadCard(
+                            path: onBoardingController.allSelectionImage()[
+                                onBoardingController.pageIndex.value][0],
+                            name: onBoardingController.allNames()[
+                                onBoardingController.pageIndex.value][0],
+                            selectImage: (path) {
+                              onBoardingController.allSelectionImage()[
+                                      onBoardingController.pageIndex.value][0] =
+                                  path;
+                              setState(() {});
+                            }),
+                        ImageUploadCard(
+                            path: onBoardingController.allSelectionImage()[
+                                onBoardingController.pageIndex.value][1],
+                            name: onBoardingController.allNames()[
+                                onBoardingController.pageIndex.value][1],
+                            selectImage: (path) {
+                              onBoardingController.allSelectionImage()[
+                                      onBoardingController.pageIndex.value][1] =
+                                  path;
+                              setState(() {});
+                            }),
+                      ],
+                    ),
+                    SizedBox(
+                      height: size.height * 0.02,
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        ImageUploadCard(
+                            path: onBoardingController.allSelectionImage()[
+                                onBoardingController.pageIndex.value][2],
+                            name: onBoardingController.allNames()[
+                                onBoardingController.pageIndex.value][2],
+                            selectImage: (path) {
+                              onBoardingController.allSelectionImage()[
+                                      onBoardingController.pageIndex.value][2] =
+                                  path;
+                              setState(() {});
+                            }),
+                        ImageUploadCard(
+                            path: onBoardingController.allSelectionImage()[
+                                onBoardingController.pageIndex.value][3],
+                            name: onBoardingController.allNames()[
+                                onBoardingController.pageIndex.value][3],
+                            selectImage: (path) {
+                              onBoardingController.allSelectionImage()[
+                                      onBoardingController.pageIndex.value][3] =
+                                  path;
+                              setState(() {});
+                            }),
+                      ],
+                    ),
                   ],
                 ),
               ),
               // SizedBox(
               //   height: size.height * 0.26,
               // ),
-              Spacer(),
+              //Spacer(),
               OnboardingButton(
                 onTap: () async {
                   await onBoardingController
@@ -356,7 +285,7 @@ class ImageCard extends StatelessWidget {
   final String path;
   final String? name;
   final double width;
-  final double height;
+  final double? height;
   final void Function(String)? onSelect;
   const ImageCard(
       {Key? key,
@@ -380,29 +309,19 @@ class ImageCard extends StatelessWidget {
         child: Container(
           height: height,
           width: width,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(6),
-                child: Container(
-                  decoration: BoxDecoration(),
-                  child: Image.asset(
-                    path,
-                    height: name != null ? height - 15 : height,
-                    width: width,
-                    fit: BoxFit.cover,
-                  ),
-                ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(6),
+            child: Container(
+              decoration: BoxDecoration(),
+              child: Image.asset(
+                path,
+                height: name != null
+                    ? (height != null ? height! - 15 : height)
+                    : height,
+                width: width,
+                fit: BoxFit.cover,
               ),
-              if (name != null)
-                FittedBox(
-                    child: Text(
-                  name!,
-                  style: TextStyle(fontSize: 10),
-                )),
-            ],
+            ),
           ),
         ),
       ),
@@ -437,8 +356,8 @@ class ImageUploadCard extends StatelessWidget {
         }
       },
       child: Container(
-        width: size.width * 0.35,
-        height: size.width * 0.2,
+        width: size.width * 0.42,
+        height: size.height * 0.17,
         decoration: BoxDecoration(
           border: Border.all(
             width: 1,
@@ -533,7 +452,7 @@ class ImageUploadCard extends StatelessWidget {
                                     'gfdgggggdgrtetertet${path.split('/').last}');
                               }
                             },
-                            child: Ink.image(
+                            child: Image(
                               image: AssetImage(
                                 'assets/images/upload.png',
                               ),

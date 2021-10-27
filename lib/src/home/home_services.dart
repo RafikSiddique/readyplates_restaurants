@@ -108,7 +108,7 @@ class HomeServices extends ApiServices {
   }
 
   Future<List<FoodItemModel>> getMenu(String id) async {
-    //   try {
+     try {
     Response response = await get(
       menuList(id),
     );
@@ -125,8 +125,8 @@ class HomeServices extends ApiServices {
       throw AppException(
           code: response.statusCode, message: response.reasonPhrase);
     }
-/*     } catch (e) {
+ } catch (e) {
       rethrow;
-    } */
+    } 
   }
 }
