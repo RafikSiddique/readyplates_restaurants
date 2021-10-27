@@ -409,7 +409,7 @@ class OnboardingController extends GetxController {
   List<String> demoPrecautionImage =
       List.generate(4, (index) => "assets/images/covid${index + 1}.png");
 
-  List<String> selectedImages = [
+  List<dynamic> selectedImages = [
     "assets/images/frontfascia.png", //0
     "assets/images/ambience1.png", //1
     "assets/images/Food1.png",
