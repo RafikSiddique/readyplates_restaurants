@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:get/get.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
@@ -32,14 +33,14 @@ class _SignupPageState extends State<SignupPage> {
     super.initState();
   }
 
-  @override
-  void dispose() {
-    controller.email.dispose();
-    controller.password.dispose();
-    controller.password2.dispose();
+  // @override
+  // void dispose() {
+  //   controller.email.dispose();
+  //   controller.password.dispose();
+  //   controller.password2.dispose();
 
-    super.dispose();
-  }
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -93,10 +94,8 @@ class _SignupPageState extends State<SignupPage> {
                             child: RichText(
                               text: TextSpan(
                                   text: 'READY',
-                                  style: TextStyle(
+                                  style: GoogleFonts.montserrat(
                                     fontSize: 30,
-                                    letterSpacing: -0.0769231,
-                                    fontFamily: 'Montserrat',
                                     fontStyle: FontStyle.normal,
                                     fontWeight: FontWeight.bold,
                                     color: Color.fromRGBO(255, 255, 255, 0.9),
@@ -104,10 +103,8 @@ class _SignupPageState extends State<SignupPage> {
                                   children: [
                                     TextSpan(
                                       text: ' Plates'.toUpperCase(),
-                                      style: TextStyle(
+                                      style: GoogleFonts.montserrat(
                                         fontSize: 30,
-                                        fontFamily: 'Montserrat',
-                                        letterSpacing: -0.0769231,
                                         fontStyle: FontStyle.normal,
                                         fontWeight: FontWeight.normal,
                                         color:
@@ -185,9 +182,8 @@ class _SignupPageState extends State<SignupPage> {
                                           child: Text(
                                             'Sign-up',
                                             textAlign: TextAlign.center,
-                                            style: TextStyle(
+                                            style: GoogleFonts.inter(
                                               fontSize: 17,
-                                              fontFamily: 'Inter-Bold',
                                               fontWeight: FontWeight.w500,
                                               fontStyle: FontStyle.normal,
                                               color: MyTheme.appbartextColor,
@@ -208,8 +204,7 @@ class _SignupPageState extends State<SignupPage> {
                               title: "Email Address",
                               hintText: "Eg aatef.sayyed@fladdra.com",
                               controller: controller.email,
-                              fontSize: 11,
-                              fontFamily: 'Inter-Bold',
+                              fontSize: 13,
                             ),
                             SizedBox(
                               height: kToolbarHeight * 0.4,
@@ -219,11 +214,10 @@ class _SignupPageState extends State<SignupPage> {
                               hintText: "**** **** ****",
                               controller: controller.password,
                               isPassword: true,
-                              fontSize: 11,
+                              fontSize: 13,
                               line: 1,
                               matchVerification: true,
                               secondVal: controller.password2,
-                              fontFamily: 'Inter-Bold',
                               bottomText:
                                   'Atleast 8 characters (Caps, Small & Special Characters)',
                             ),
@@ -237,9 +231,8 @@ class _SignupPageState extends State<SignupPage> {
                               matchVerification: true,
                               secondVal: controller.password,
                               isPassword: true,
-                              fontSize: 11,
+                              fontSize: 13,
                               line: 1,
-                              fontFamily: 'Inter-Bold',
                               bottomText: 'Please re-enter password',
                             ),
                             SizedBox(

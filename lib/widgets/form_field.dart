@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 
@@ -31,7 +32,7 @@ class AppFormField extends StatelessWidget {
     this.isRequired = true,
     this.fontSize = 13,
     this.hintfontSize = 12,
-    this.fontFamily = 'Inter-Bold',
+    this.fontFamily = 'Inter-Regular',
     this.fontWeight = FontWeight.w500,
     required this.title,
     this.inputType = TextInputType.text,
@@ -141,9 +142,8 @@ class AppFormField extends StatelessWidget {
             Text(
               bottomText!,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: GoogleFonts.poppins(
                 fontSize: 9,
-                fontFamily: 'Poppins',
                 fontStyle: FontStyle.normal,
                 fontWeight: FontWeight.normal,
                 color: MyTheme.bottomtextColor,

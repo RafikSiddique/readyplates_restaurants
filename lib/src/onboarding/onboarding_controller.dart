@@ -175,7 +175,12 @@ class OnboardingController extends GetxController {
   List<String> accType = ["Saving", "Current"];
   RxString typeOfEstablishment = "".obs;
 
-  List<String> typeOfEsts = ["Dineout only", "Take Away"];
+  List<String> typeOfEsts = [
+    "Dineout only",
+    "Take Away",
+    "Dineout & Delivery Both",
+    "Dine in"
+  ];
 
   RxDouble value = 1.0.obs;
 

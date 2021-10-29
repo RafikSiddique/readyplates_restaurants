@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/src/login/screens/login_page.dart';
@@ -49,10 +50,8 @@ class _OpeningScreenState extends State<OpeningScreen>
                   RichText(
                     text: TextSpan(
                         text: 'READY',
-                        style: TextStyle(
+                        style: GoogleFonts.montserrat(
                           fontSize: 30,
-                          letterSpacing: -0.0769231,
-                          fontFamily: 'Montserrat',
                           fontStyle: FontStyle.normal,
                           fontWeight: FontWeight.bold,
                           color: Color.fromRGBO(255, 255, 255, 0.9),
@@ -60,10 +59,8 @@ class _OpeningScreenState extends State<OpeningScreen>
                         children: [
                           TextSpan(
                             text: ' Plates'.toUpperCase(),
-                            style: TextStyle(
+                            style: GoogleFonts.montserrat(
                               fontSize: 30,
-                              fontFamily: 'Montserrat',
-                              letterSpacing: -0.0769231,
                               fontStyle: FontStyle.normal,
                               fontWeight: FontWeight.normal,
                               color: Color.fromRGBO(255, 255, 255, 0.9),
@@ -102,10 +99,8 @@ class _OpeningScreenState extends State<OpeningScreen>
                             child: RichText(
                               text: TextSpan(
                                   text: 'READY',
-                                  style: TextStyle(
+                                  style: GoogleFonts.montserrat(
                                     fontSize: 30,
-                                    letterSpacing: -0.0769231,
-                                    fontFamily: 'Montserrat',
                                     fontStyle: FontStyle.normal,
                                     fontWeight: FontWeight.bold,
                                     color: Color.fromRGBO(255, 255, 255, 0.9),
@@ -113,10 +108,8 @@ class _OpeningScreenState extends State<OpeningScreen>
                                   children: [
                                     TextSpan(
                                       text: ' Plates'.toUpperCase(),
-                                      style: TextStyle(
+                                      style: GoogleFonts.montserrat(
                                         fontSize: 30,
-                                        fontFamily: 'Montserrat',
-                                        letterSpacing: -0.0769231,
                                         fontStyle: FontStyle.normal,
                                         fontWeight: FontWeight.normal,
                                         color:
@@ -151,27 +144,21 @@ class _OpeningScreenState extends State<OpeningScreen>
                             width: size.width,
                             height: 54,
                             decoration: BoxDecoration(
-                              // #FFFFFF
-                              color: Color(0xffFFFFFF).withOpacity(0.40),
-                              // color: Color.fromRGBO(255, 255, 255, 0.38)#FFFFFF61
-
-                              // borderRadius: BorderRadius.all(Radius.circular(6)),
+                              color: Color(0xffEFEFEF).withOpacity(0.25),
                             ),
                             child: Center(
                               child: BackdropFilter(
                                 filter: ImageFilter.blur(
-                                  sigmaX: 6.5,
-                                  sigmaY: 6.5,
+                                  sigmaX: 9,
+                                  sigmaY: 9,
                                 ),
                                 child: Text(
                                   'LOGIN',
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(
+                                  style: GoogleFonts.inter(
                                     fontSize: 17,
-                                    fontFamily: 'Inter',
                                     fontStyle: FontStyle.normal,
                                     fontWeight: FontWeight.bold,
-                                    letterSpacing: -0.3,
                                     color: Color(0xff222831),
                                   ),
                                 ),
@@ -201,7 +188,7 @@ class _OpeningScreenState extends State<OpeningScreen>
                         },
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Color(0xffFFFFFF).withOpacity(0.2),
+                            color: Color(0xff000000).withOpacity(0.05),
                             border: Border.all(
                               width: 1.5,
                               color: Color(0xffFFFFFF).withOpacity(0.5),
@@ -222,12 +209,10 @@ class _OpeningScreenState extends State<OpeningScreen>
                                   child: Text(
                                     'SIGN UP',
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(
+                                    style: GoogleFonts.inter(
                                       fontSize: 17,
-                                      fontFamily: 'Inter',
                                       fontStyle: FontStyle.normal,
                                       fontWeight: FontWeight.bold,
-                                      letterSpacing: -0.3,
                                       color: Color(0xffFFFFFF),
                                     ),
                                   ),

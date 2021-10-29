@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:open_file/open_file.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 
@@ -9,10 +10,12 @@ class PickFiles extends StatelessWidget {
   final Color uploadborderColor;
   final String uploadText;
   final Color uploadtextColor;
+  final double fontSize;
   final void Function(File) onFilePicked;
 
   PickFiles({
     Key? key,
+    this.fontSize = 13,
     required this.uploadborderColor,
     required this.uploadText,
     required this.uploadtextColor,
@@ -47,9 +50,8 @@ class PickFiles extends StatelessWidget {
               padding: const EdgeInsets.only(left: 12.5),
               child: Text(
                 uploadText,
-                style: TextStyle(
-                  fontSize: 13,
-                  fontFamily: 'Inter',
+                style: GoogleFonts.inter(
+                  fontSize: fontSize,
                   fontStyle: FontStyle.normal,
                   fontWeight: FontWeight.w500,
                   color: uploadtextColor,

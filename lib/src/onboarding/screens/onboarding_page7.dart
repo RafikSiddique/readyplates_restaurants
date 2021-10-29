@@ -8,6 +8,7 @@ import 'package:flutter_card_swipper/flutter_card_swiper.dart';
 // import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
@@ -104,9 +105,8 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
           centerTitle: true,
           title: Text(
             'Restaurant Bio',
-            style: TextStyle(
+            style: GoogleFonts.inter(
               fontSize: 17,
-              fontFamily: 'Inter',
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.w500,
               color: MyTheme.appbartextColor,
@@ -238,37 +238,6 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                     ? MyTheme.buttontextchangeColor
                     : MyTheme.buttontextColor,
               ),
-              // InkWell(
-              //   onTap: () async {
-              //     await onBoardingController
-              //         .onboardingApi(OnBoardingMethod.api7);
-              //   },
-              //   child: InkWell(
-              //     child: Container(
-              //       height: 40.11,
-              //       decoration: BoxDecoration(
-              //         color: MyTheme.buttonColor,
-              //         borderRadius: BorderRadius.all(Radius.circular(6)),
-              //       ),
-              //       child: Obx(() => Center(
-              //             child: onBoardingController.loading.value
-              //                 ? CircularProgressIndicator()
-              //                 : Text(
-              //                     'CONTINUE',
-              //                     textAlign: TextAlign.center,
-              //                     style: TextStyle(
-              //                       fontSize: 17,
-              //                       fontFamily: 'Inter',
-              //                       fontStyle: FontStyle.normal,
-              //                       fontWeight: FontWeight.w600,
-              //                       letterSpacing: -0.28,
-              //                       color: MyTheme.buttontextColor,
-              //                     ),
-              //                   ),
-              //           )),
-              //     ),
-              //   ),
-              // ),
 
               SizedBox(
                 height: size.height * 0.02,
@@ -351,8 +320,8 @@ class ImageUploadCard extends StatelessWidget {
         XFile? file = await imagePicker.pickImage(source: ImageSource.gallery);
         if (file != null) {
           selectImage(file.path);
-          print('gfdgggggdg${file.path.split('/').last}');
-          print('gfdgggggdgrtetertet${path.split('/').last}');
+          print('object${file.path.split('/').last}');
+          print('object${path.split('/').last}');
         }
       },
       child: Container(
@@ -409,14 +378,14 @@ class ImageUploadCard extends StatelessWidget {
                       width: 80,
                       child: Text(
                         path == "" ? name : path.split('/').last,
-                        style: TextStyle(
+                        style: GoogleFonts.poppins(
+                            textStyle: TextStyle(
                           overflow: TextOverflow.ellipsis,
                           fontSize: 9,
-                          fontFamily: 'Poppins',
                           fontStyle: FontStyle.normal,
                           fontWeight: FontWeight.normal,
                           color: MyTheme.bottomtextColor,
-                        ),
+                        )),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -447,9 +416,8 @@ class ImageUploadCard extends StatelessWidget {
                                   source: ImageSource.gallery);
                               if (file != null) {
                                 selectImage(file.path);
-                                print('gfdgggggdg${file.path.split('/').last}');
-                                print(
-                                    'gfdgggggdgrtetertet${path.split('/').last}');
+                                print('object${file.path.split('/').last}');
+                                print('object${path.split('/').last}');
                               }
                             },
                             child: Image(

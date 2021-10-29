@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
@@ -57,19 +58,18 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
     super.initState();
   }
 
-  @override
-  void dispose() {
-    controller.ac_number.dispose();
-    controller.reac_number.dispose();
-    controller.ifsc_code.dispose();
-    controller.pan_num.dispose();
-    controller.pan_name.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   controller.ac_number.dispose();
+  //   controller.reac_number.dispose();
+  //   controller.ifsc_code.dispose();
+  //   controller.pan_num.dispose();
+  //   controller.pan_name.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
-    // ignore: unused_local_variable
     Size size = MediaQuery.of(context).size;
     return OnBoardingWrapper(
       onboardingController: controller,
@@ -90,11 +90,10 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
           centerTitle: true,
           title: Text(
             'Payment Setup',
-            style: TextStyle(
-              fontSize: 17,
-              fontFamily: 'Inter',
+            style: GoogleFonts.inter(
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.w500,
+              fontSize: 17,
               color: MyTheme.appbartextColor,
             ),
           ),
@@ -113,6 +112,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   AppFormField(
                     title: 'Legal Entity Account Number',
                     hintText: '511122266514782',
+                    hintfontSize: 15,
                     bottomText:
                         'Make sure it matches the name on your government ID',
                     inputType: TextInputType.number,
@@ -125,6 +125,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   AppFormField(
                     title: 'Re-Enter Account Number',
                     hintText: '511122266514782',
+                    hintfontSize: 15,
                     matchVerification: true,
                     bottomText: "Both fields should match",
                     secondVal: controller.ac_number,
@@ -179,7 +180,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                           top: 14,
                         ),
                         hintStyle: TextStyle(
-                          fontSize: 13,
+                          fontSize: 15,
                           fontFamily: 'Inter',
                           fontStyle: FontStyle.normal,
                           fontWeight: FontWeight.w500,
@@ -201,7 +202,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   AppFormField(
                     title: 'IFSC Code',
                     hintText: 'HDFC000042',
-
+                    hintfontSize: 15,
                     bottomText: "Enter a valid IFSC Code",
 
                     // formatters: [FilteringTextInputFormatter.digitsOnly],
@@ -213,6 +214,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   AppFormField(
                     title: 'PAN Number of Restaurant',
                     hintText: 'BSUTA1568A',
+                    hintfontSize: 15,
                     isRequired: false,
                     bottomText: "PAN of the registered legal entity",
                     controller: controller.pan_num,
@@ -223,6 +225,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   AppFormField(
                     title: 'Name of the PAN Card',
                     hintText: 'Bliss Bistro & Cafe',
+                    hintfontSize: 15,
                     isRequired: false,
                     bottomText: "PAN of the registered legal entity",
                     controller: controller.pan_name,
@@ -250,6 +253,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                     uploadtextColor: controller.pan_image.path.isEmpty
                         ? MyTheme.hinttextColor
                         : MyTheme.hinttextchangeColor,
+                    fontSize: controller.pan_image.path.isEmpty ? 15 : 13,
                     onFilePicked: (p0) {
                       setState(() {
                         controller.pan_image = p0;
@@ -273,47 +277,15 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                         ? MyTheme.buttontextColor
                         : MyTheme.buttontextchangeColor,
                   ),
-                  // InkWell(
-                  //   onTap: () {
-                  //     formKey.currentState!.save();
-                  //     if (formKey.currentState!.validate())
-                  //       controller.onboardingApi(OnBoardingMethod.api5);
-                  //   },
-                  //   child: Container(
-                  //     // width: 343,
-                  //     height: 40.11,
-                  //     decoration: BoxDecoration(
-                  //       color: controller.pan_image.path.isEmpty
-                  //           ? MyTheme.buttonColor
-                  //           : MyTheme.buttonchangeColor,
-                  //       borderRadius: BorderRadius.all(Radius.circular(6)),
-                  //     ),
-                  //     child: Center(
-                  //       child: Text(
-                  //         'Click here to verify account',
-                  //         textAlign: TextAlign.center,
-                  //         style: TextStyle(
-                  //           fontSize: 17,
-                  //           fontFamily: 'Inter',
-                  //           fontStyle: FontStyle.normal,
-                  //           fontWeight: FontWeight.w600,
-                  //           letterSpacing: -0.28,
-                  //           color: MyTheme.buttontextColor,
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
                   SizedBox(
                     height: 3,
                   ),
                   Text(
                     '₹ 1 will be credited to your account for verification',
-                    style: TextStyle(
+                    style: GoogleFonts.montserrat(
                       fontSize: 8,
-                      fontFamily: 'Montserrat',
                       fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w500,
                       color: MyTheme.bottomtextColor,
                     ),
                   ),

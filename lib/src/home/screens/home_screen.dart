@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/home/home_controller.dart';
 import 'package:readyplates_restaurants/src/home/screens/add_menu_page.dart';
 import 'package:readyplates_restaurants/src/home/screens/profile_page.dart';
@@ -60,12 +61,10 @@ class HomePage extends StatelessWidget {
           ],
           title: Obx(() => Text(
                 controller.title.value,
-                style: TextStyle(
-                  fontFamily: 'Inter',
+                style: GoogleFonts.inter(
                   fontStyle: FontStyle.normal,
                   fontWeight: FontWeight.w500,
                   fontSize: 17,
-                  letterSpacing: -0.226667,
                   color: Color(0xff393E46),
                 ),
               )),

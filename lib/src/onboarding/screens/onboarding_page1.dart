@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
@@ -80,9 +81,10 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
           centerTitle: true,
           title: Text(
             'Partner Onboarding',
-            style: TextStyle(
+            style: GoogleFonts.inter(
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w500,
               fontSize: 17,
-              letterSpacing: -0.226667,
               color: MyTheme.appbartextColor,
             ),
           ),
@@ -99,9 +101,6 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                     height: 8,
                   ),
                   AppFormField(
-                    // onchanged: (val){
-                    //   controller.resName=val;
-                    // },
                     title: "Restaurant Name",
                     hintText: "Your Restaurant Name",
                     hintfontSize: 15,
@@ -116,9 +115,6 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                     height: 18,
                   ),
                   AppFormField(
-                    //  onchanged: (val){
-                    //   controller.firstName=val;
-                    // },
                     title: "Owner Name",
                     hintText: "First Name",
                     hintfontSize: 15,
@@ -158,7 +154,6 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                     height: 5,
                   ),
                   Container(
-                    // height: 45,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(
                         Radius.circular(6.0),
@@ -177,11 +172,6 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderSide: BorderSide.none,
-                          // borderSide:
-                          //     BorderSide(width: 1, color: Color(0xffE0E0E0)),
-                          // borderRadius: BorderRadius.all(
-                          //   Radius.circular(6.0),
-                          // ),
                         ),
                         hintText: '+91 XXXXXXXXXX',
                         suffixIcon: Container(
@@ -228,7 +218,6 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                           color: MyTheme.hinttextColor,
                           fontFamily: 'Inter-Regular',
                           fontWeight: FontWeight.w500,
-                          letterSpacing: -0.26,
                         ),
                       ),
                     ),
@@ -240,8 +229,10 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                     controller.ownMobile.text.isEmpty
                         ? 'Will be used to make all future correspondence/communications'
                         : 'Press “Verify” to authenticate mobile number',
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                       fontSize: 9,
+                      fontWeight: FontWeight.normal,
+                      fontStyle: FontStyle.normal,
                       color: controller.ownMobile.text.isEmpty
                           ? MyTheme.bottomtextColor
                           : MyTheme.starColor,
@@ -260,7 +251,6 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                     height: 5,
                   ),
                   Container(
-                    // height: 45,
                     decoration: BoxDecoration(
                       border: Border.all(
                         width: 1,
@@ -286,9 +276,6 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderSide: BorderSide.none,
-                          // borderRadius: BorderRadius.all(
-                          //   Radius.circular(6.0),
-                          // ),
                         ),
                         hintText: 'Select City',
                         contentPadding: EdgeInsets.only(
@@ -298,7 +285,6 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                         hintStyle: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w500,
-                          letterSpacing: -0.26,
                           color: MyTheme.hinttextColor,
                         ),
                       ),
@@ -368,44 +354,6 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                         ? MyTheme.buttontextColor
                         : MyTheme.buttontextchangeColor,
                   ),
-                  // SizedBox(
-                  //   height: 18,
-                  // ),
-                  // InkWell(
-                  //   onTap: () async {
-                  //     formKey.currentState!.save();
-                  //     if (formKey.currentState!.validate())
-                  //       controller.onboardingApi(OnBoardingMethod.api1);
-                  //   },
-                  //   child: Container(
-                  //     height: 40.11,
-                  //     decoration: BoxDecoration(
-                  //       color: (controller.resNameController.text.isEmpty ||
-                  //               controller.firstNameController.text.isEmpty ||
-                  //               controller.lastNameController.text.isEmpty ||
-                  //               controller.ownemailController.text.isEmpty ||
-                  //               controller.ownMobileController.text.isEmpty ||
-                  //               controller.rescity.isEmpty ||
-                  //               controller.pocController.text.isEmpty ||
-                  //               controller.pocNumberController.text.isEmpty)
-                  //           ? MyTheme.buttonColor
-                  //           : MyTheme.buttonchangeColor,
-                  //       borderRadius: BorderRadius.all(Radius.circular(6)),
-                  //     ),
-                  //     child: Center(
-                  //       child: Text(
-                  //         'CONTINUE',
-                  //         textAlign: TextAlign.center,
-                  //         style: TextStyle(
-                  //           fontSize: 17,
-                  //           fontWeight: FontWeight.w600,
-                  //           letterSpacing: -0.28,
-                  //           color: MyTheme.buttontextColor,
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
                   SizedBox(
                     height: 7.89,
                   ),

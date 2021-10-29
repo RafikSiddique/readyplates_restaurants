@@ -50,7 +50,7 @@ class DropdownCategory extends StatelessWidget {
               top: 14,
             ),
             hintStyle: TextStyle(
-              fontSize: 13,
+              fontSize: 15,
               fontFamily: 'Inter',
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.w500,

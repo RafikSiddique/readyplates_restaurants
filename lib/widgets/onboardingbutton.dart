@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 // import 'package:readyplates_restaurants/utils/my_color.dart';
 
 class OnboardingButton extends StatelessWidget {
@@ -48,12 +49,10 @@ class OnboardingButton extends StatelessWidget {
               text,
               // 'CONTINUE',
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: GoogleFonts.inter(
                 fontSize: 17,
-                fontFamily: 'Inter-Regular',
                 fontWeight: FontWeight.w600,
-                letterSpacing: -0.28,
-                // color: MyTheme.buttontextColor,
+                fontStyle: FontStyle.normal,
                 color: buttontextColor,
               ),
             ),

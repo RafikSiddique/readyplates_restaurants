@@ -13,7 +13,7 @@ class FieldTitle extends StatelessWidget {
     this.required = true,
     this.fontWeight = FontWeight.w500,
     this.fontSize = 13,
-    this.fontFamily = 'Inter',
+    this.fontFamily = 'Inter-Regular',
   }) : super(key: key);
 
   @override

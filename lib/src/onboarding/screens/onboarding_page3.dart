@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
@@ -83,7 +84,9 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
           centerTitle: true,
           title: Text(
             'Partner Onboarding',
-            style: TextStyle(
+            style: GoogleFonts.inter(
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w500,
               fontSize: 17,
               color: MyTheme.appbartextColor,
             ),
@@ -102,6 +105,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   AppFormField(
                     title: "GSTIN Present",
                     hintText: "Yes/No/Applied/Acknowledgement Received",
+                    hintfontSize: 15,
                     controller: controller.gstpresent,
                   ),
 
@@ -113,6 +117,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   AppFormField(
                     title: 'Restaurant GSTIN',
                     hintText: "Eg.22AABCU9603R1ZX",
+                    hintfontSize: 15,
                     isRequired: false,
                     controller: controller.gstnum,
                   ),
@@ -124,6 +129,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   AppFormField(
                     title: 'FSSAI License Status',
                     hintText: "Yes/No/Applied/Acknowledgement Received",
+                    hintfontSize: 15,
                     isRequired: false,
                     controller: controller.fssaistatus,
                   ),
@@ -133,9 +139,6 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   FieldTitle(
                     text: 'FSSAI Expiry Date',
                     required: false,
-                    fontFamily: 'Inter-Regular',
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500,
                   ),
 
                   SizedBox(
@@ -165,12 +168,11 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                             controller.expiry == DateTime(1900)
                                 ? 'yyyy/mm/dd'
                                 : '${controller.expiry.year}/${controller.expiry.month}/${controller.expiry.day}',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontFamily: 'Inter',
+                            style: GoogleFonts.inter(
+                              fontSize:
+                                  controller.expiry == DateTime(1900) ? 15 : 13,
                               fontStyle: FontStyle.normal,
                               fontWeight: FontWeight.w500,
-                              letterSpacing: -0.264706,
                               color: controller.expiry == DateTime(1900)
                                   ? MyTheme.hinttextColor
                                   : MyTheme.hinttextchangeColor,
@@ -233,6 +235,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                     uploadtextColor: controller.kycimg.path.isEmpty
                         ? MyTheme.hinttextColor
                         : MyTheme.hinttextchangeColor,
+                    fontSize: controller.kycimg.path.isEmpty ? 15 : 13,
                     onFilePicked: (p0) {
                       setState(() {
                         controller.kycimg = p0;
@@ -262,6 +265,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                     uploadtextColor: controller.gstinimg.path.isEmpty
                         ? MyTheme.hinttextColor
                         : MyTheme.hinttextchangeColor,
+                    fontSize: controller.gstinimg.path.isEmpty ? 15 : 13,
                     onFilePicked: (p0) {
                       setState(() {
                         controller.gstinimg = p0;
@@ -292,6 +296,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                     uploadtextColor: controller.fssaiimg.path.isEmpty
                         ? MyTheme.hinttextColor
                         : MyTheme.hinttextchangeColor,
+                    fontSize: controller.fssaiimg.path.isEmpty ? 15 : 13,
                     onFilePicked: (p0) {
                       setState(() {
                         controller.fssaiimg = p0;
@@ -330,39 +335,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                         ? MyTheme.buttontextColor
                         : MyTheme.buttontextchangeColor,
                   ),
-                  // SizedBox(
-                  //   height: 45,
-                  //   width: MediaQuery.of(context).size.width,
-                  //   child: ElevatedButton(
-                  //       style: ElevatedButton.styleFrom(
-                  //         primary: (controller
-                  //                     .gstpresentController.text.isEmpty ||
-                  //                 controller.gstnumController.text.isEmpty ||
-                  //                 controller
-                  //                     .fssaistatusController.text.isEmpty ||
-                  //                 controller.expiry == DateTime(1900) ||
-                  //                 controller.kycimg.path.isEmpty ||
-                  //                 controller.gstinimg.path.isEmpty ||
-                  //                 controller.fssaiimg.path.isEmpty)
-                  //             ? MyTheme.buttonColor
-                  //             : MyTheme.buttonchangeColor,
-                  //         side: BorderSide(
-                  //           width: 1.5,
-                  //           color: Color.fromRGBO(255, 255, 255, 0.5),
-                  //         ),
-                  //       ),
-                  //       onPressed: () async {
-                  //         print(controller.expiry);
-                  //         formKey.currentState!.save();
-                  //         if (formKey.currentState!.validate())
-                  //           controller.onboardingApi(OnBoardingMethod.api3);
-                  //       },
-                  //       child: Text('CONTINUE',
-                  //           style: TextStyle(
-                  //             color: MyTheme.buttontextColor,
-                  //             fontSize: 17,
-                  //           ))),
-                  // ),
+
                   SizedBox(
                     height: 5.89,
                   ),

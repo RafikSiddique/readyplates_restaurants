@@ -35,29 +35,30 @@ class MenuPage extends StatelessWidget {
                     child: Center(
                       child: Container(
                         height: 80,
-                        width: 155,
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.add_circle_outline_sharp,
-                              color: Color(0xff393E46),
-                              size: 18,
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Text(
-                              "Add Items to Menu",
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontFamily: 'Inter ',
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.normal,
-                                letterSpacing: -0.229412,
+                        // width: 160,
+                        child: Center(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.add_circle_outline_sharp,
                                 color: Color(0xff393E46),
+                                size: 18,
                               ),
-                            ),
-                          ],
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                "Add Items to Menu",
+                                style: GoogleFonts.inter(
+                                  fontSize: 15,
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.normal,
+                                  color: Color(0xff393E46),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -72,6 +73,12 @@ class MenuPage extends StatelessWidget {
               Center(
                 child: Text(
                   "No FoodItem added yet",
+                  style: GoogleFonts.inter(
+                    fontSize: 15,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.normal,
+                    color: Color(0xff393E46),
+                  ),
                 ),
               )
             else if (controller.foodItems.first.id == -1)

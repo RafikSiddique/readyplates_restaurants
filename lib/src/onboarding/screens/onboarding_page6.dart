@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
@@ -98,13 +99,13 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
     super.initState();
   }
 
-  @override
-  void dispose() {
-    controller.resDescript.dispose();
-    controller.eventDesc.dispose();
+  // @override
+  // void dispose() {
+  //   controller.resDescript.dispose();
+  //   controller.eventDesc.dispose();
 
-    super.dispose();
-  }
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -127,9 +128,8 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
           centerTitle: true,
           title: Text(
             'Restaurant Bio',
-            style: TextStyle(
+            style: GoogleFonts.inter(
               fontSize: 17,
-              fontFamily: 'Inter',
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.w500,
               color: MyTheme.appbartextColor,
@@ -195,34 +195,28 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                   Get.bottomSheet(BottomSheet(
                                     onClosing: () {},
                                     builder: (context) {
-                                      //  (controller.noOfTables.value
-                                      //             .toString()
-                                      //             .length ==
-                                      //         1
-                                      //     ? controller.noOfTables.value
-                                      //         .toString()
-                                      //         .padLeft(2, "0")
-                                      //     : controller.noOfTables.value
-                                      //         .toString())
                                       return Card(
                                           margin: EdgeInsets.zero,
                                           child: ListView(
                                             shrinkWrap: true,
-                                            children: List.generate(50,
-                                                    (index) {
+                                            children:
+                                                List.generate(50, (index) {
                                               return (index + 1);
                                             })
-                                                .map((e) => ListTile(
-                                                      title: Text(e.toString()),
-                                                      onTap: () {
-                                                        setState(() {
-                                                          controller.noOfTables
-                                                              .value = e;
-                                                        });
-                                                        Get.back();
-                                                      },
-                                                    ))
-                                                .toList(),
+                                                    .map((e) => ListTile(
+                                                          title: Text(
+                                                            e.toString(),
+                                                          ),
+                                                          onTap: () {
+                                                            setState(() {
+                                                              controller
+                                                                  .noOfTables
+                                                                  .value = e;
+                                                            });
+                                                            Get.back();
+                                                          },
+                                                        ))
+                                                    .toList(),
                                           ));
                                     },
                                   ));
@@ -235,12 +229,14 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                         controller.noOfTables.value
                                             .toString()
                                             .padLeft(2, "0"),
-                                        style: TextStyle(
+                                        style: GoogleFonts.inter(
                                           fontSize: 16,
-                                          fontFamily: 'Inter',
                                           fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.bold,
-                                          color: MyTheme.hinttextColor,
+                                          fontWeight: FontWeight.w500,
+                                          color:
+                                              controller.noOfTables.value == 00
+                                                  ? MyTheme.hinttextColor
+                                                  : MyTheme.hinttextchangeColor,
                                         ),
                                       ),
                                     ),
@@ -248,106 +244,17 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                       width: 16,
                                     ),
                                     Container(),
-                                    // Text(
-                                    //   '₹',
-                                    //   style: TextStyle(
-                                    //     fontSize: 16,
-                                    //     fontFamily: 'Inter',
-                                    //     fontStyle: FontStyle.normal,
-                                    //     fontWeight: FontWeight.bold,
-                                    //     color: MyTheme.checkboxtextColor,
-                                    //   ),
-                                    // ),
                                   ],
                                 ),
                               ),
-                              //     Row(
-                              //   mainAxisAlignment: MainAxisAlignment.center,
-                              //   children: [
-                              //     Obx(
-                              //       () => Text(
-                              //         (controller.noOfTables.value
-                              //                     .toString()
-                              //                     .length ==
-                              //                 1
-                              //             ? controller.noOfTables.value
-                              //                 .toString()
-                              //                 .padLeft(2, "0")
-                              //             : controller.noOfTables.value
-                              //                 .toString()),
-                              //         style: TextStyle(
-                              //           fontSize: 16,
-                              //           fontFamily: 'Inter',
-                              //           fontStyle: FontStyle.normal,
-                              //           fontWeight: FontWeight.bold,
-                              //           color: MyTheme.hinttextColor,
-                              //         ),
-                              //       ),
-                              //     ),
-                              //     Padding(
-                              //       padding: const EdgeInsets.only(left: 10),
-                              //       child: Column(
-                              //         mainAxisAlignment:
-                              //             MainAxisAlignment.center,
-                              //         crossAxisAlignment:
-                              //             CrossAxisAlignment.center,
-                              //         children: [
-                              //           SizedBox.square(
-                              //             dimension: 15,
-                              //             child: InkWell(
-                              //               onTap: () {
-                              //                 controller.noOfTables++;
-                              //               },
-                              //               child: Container(
-                              //                 height: 12,
-                              //                 width: 12,
-                              //                 alignment: Alignment.center,
-                              //                 child: FaIcon(
-                              //                   FontAwesomeIcons.chevronUp,
-                              //                   color:
-                              //                       MyTheme.dropdownarrowColor,
-                              //                   size: 15,
-                              //                 ),
-                              //               ),
-                              //             ),
-                              //           ),
-                              //           SizedBox(
-                              //             height: 1,
-                              //           ),
-                              //           SizedBox.square(
-                              //             dimension: 15,
-                              //             child: InkWell(
-                              //               onTap: () {
-                              //                 if (controller.noOfTables != 0)
-                              //                   controller.noOfTables--;
-                              //               },
-                              //               child: Container(
-                              //                 height: 12,
-                              //                 width: 12,
-                              //                 alignment: Alignment.center,
-                              //                 child: FaIcon(
-                              //                   FontAwesomeIcons.chevronDown,
-                              //                   color:
-                              //                       MyTheme.dropdownarrowColor,
-                              //                   size: 15,
-                              //                 ),
-                              //               ),
-                              //             ),
-                              //           ),
-                              //         ],
-                              //       ),
-                              //     ),
-                              //   ],
-                              // ),
                             ),
                             SizedBox(
                               height: 3,
                             ),
                             Text(
                               'Enter No of tables present',
-                              style: TextStyle(
+                              style: GoogleFonts.poppins(
                                 fontSize: 9,
-                                fontFamily: 'Poppins',
                                 fontStyle: FontStyle.normal,
                                 fontWeight: FontWeight.normal,
                                 color: MyTheme.bottomtextColor,
@@ -412,12 +319,14 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                         controller.noOfSeats.value
                                             .toString()
                                             .padLeft(2, "0"),
-                                        style: TextStyle(
+                                        style: GoogleFonts.inter(
                                           fontSize: 16,
-                                          fontFamily: 'Inter',
                                           fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.bold,
-                                          color: MyTheme.hinttextColor,
+                                          fontWeight: FontWeight.w500,
+                                          color:
+                                              controller.noOfSeats.value == 00
+                                                  ? MyTheme.hinttextColor
+                                                  : MyTheme.hinttextchangeColor,
                                         ),
                                       ),
                                     ),
@@ -425,106 +334,17 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                       width: 16,
                                     ),
                                     Container(),
-                                    // Text(
-                                    //   '₹',
-                                    //   style: TextStyle(
-                                    //     fontSize: 16,
-                                    //     fontFamily: 'Inter',
-                                    //     fontStyle: FontStyle.normal,
-                                    //     fontWeight: FontWeight.bold,
-                                    //     color: MyTheme.checkboxtextColor,
-                                    //   ),
-                                    // ),
                                   ],
                                 ),
                               ),
-                              //  Row(
-                              //   mainAxisAlignment: MainAxisAlignment.center,
-                              //   children: [
-                              //     Obx(
-                              //       () => Text(
-                              //         (controller.noOfSeats.value
-                              //                     .toString()
-                              //                     .length ==
-                              //                 1
-                              //             ? controller.noOfSeats.value
-                              //                 .toString()
-                              //                 .padLeft(2, "0")
-                              //             : controller.noOfSeats.value
-                              //                 .toString()),
-                              //         style: TextStyle(
-                              //           fontSize: 16,
-                              //           fontFamily: 'Inter',
-                              //           fontStyle: FontStyle.normal,
-                              //           fontWeight: FontWeight.bold,
-                              //           color: MyTheme.hinttextColor,
-                              //         ),
-                              //       ),
-                              //     ),
-                              //     Padding(
-                              //       padding: const EdgeInsets.only(left: 10),
-                              //       child: Column(
-                              //         mainAxisAlignment:
-                              //             MainAxisAlignment.center,
-                              //         crossAxisAlignment:
-                              //             CrossAxisAlignment.center,
-                              //         children: [
-                              //           SizedBox.square(
-                              //             dimension: 15,
-                              //             child: InkWell(
-                              //               onTap: () {
-                              //                 controller.noOfSeats++;
-                              //               },
-                              //               child: Container(
-                              //                 height: 12,
-                              //                 width: 12,
-                              //                 alignment: Alignment.center,
-                              //                 child: FaIcon(
-                              //                   FontAwesomeIcons.chevronUp,
-                              //                   color:
-                              //                       MyTheme.dropdownarrowColor,
-                              //                   size: 15,
-                              //                 ),
-                              //               ),
-                              //             ),
-                              //           ),
-                              //           SizedBox(
-                              //             height: 1,
-                              //           ),
-                              //           SizedBox.square(
-                              //             dimension: 15,
-                              //             child: InkWell(
-                              //               onTap: () {
-                              //                 if (controller.noOfSeats != 0)
-                              //                   controller.noOfSeats--;
-                              //               },
-                              //               child: Container(
-                              //                 height: 12,
-                              //                 width: 12,
-                              //                 alignment: Alignment.center,
-                              //                 child: FaIcon(
-                              //                   FontAwesomeIcons.chevronDown,
-                              //                   color:
-                              //                       MyTheme.dropdownarrowColor,
-                              //                   size: 15,
-                              //                 ),
-                              //               ),
-                              //             ),
-                              //           ),
-                              //         ],
-                              //       ),
-                              //     ),
-                              //   ],
-                              // ),
                             ),
                             SizedBox(
                               height: 3,
                             ),
                             Text(
                               'Max table size (No of persons)',
-                              style: TextStyle(
+                              style: GoogleFonts.poppins(
                                 fontSize: 9,
-                                fontFamily: 'Poppins',
                                 fontStyle: FontStyle.normal,
                                 fontWeight: FontWeight.normal,
                                 color: MyTheme.bottomtextColor,
@@ -599,28 +419,26 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                     Obx(
                                       () => Text(
                                         controller.costFor2.value.toString(),
-                                        style: TextStyle(
+                                        style: GoogleFonts.inter(
                                           fontSize: 16,
-                                          fontFamily: 'Inter',
                                           fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.bold,
-                                          color: MyTheme.hinttextColor,
+                                          fontWeight: FontWeight.w500,
+                                          color: controller.costFor2.value == 00
+                                              ? MyTheme.hinttextColor
+                                              : MyTheme.hinttextchangeColor,
                                         ),
                                       ),
                                     ),
                                     SizedBox(
                                       width: 16,
                                     ),
-                                    Text(
-                                      '₹',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontFamily: 'Inter',
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.bold,
-                                        color: MyTheme.checkboxtextColor,
-                                      ),
-                                    ),
+                                    Text('₹',
+                                        style: GoogleFonts.inter(
+                                          fontSize: 16,
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.w500,
+                                          color: MyTheme.checkboxtextColor,
+                                        )),
                                   ],
                                 ),
                               ),
@@ -628,16 +446,13 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                             SizedBox(
                               height: 3,
                             ),
-                            Text(
-                              'Enter average cost for two per meal',
-                              style: TextStyle(
-                                fontSize: 9,
-                                fontFamily: 'Poppins',
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.normal,
-                                color: MyTheme.bottomtextColor,
-                              ),
-                            )
+                            Text('Enter average cost for two per meal',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 9,
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.normal,
+                                  color: MyTheme.bottomtextColor,
+                                ))
                           ],
                         ),
                       ),
@@ -704,26 +519,28 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                   children: [
                                     Obx(
                                       () => Text(
-                                        controller.servingTime.value.toString(),
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontFamily: 'Inter',
-                                          fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.bold,
-                                          color: MyTheme.hinttextColor,
-                                        ),
-                                      ),
+                                          controller.servingTime.value
+                                              .toString(),
+                                          style: GoogleFonts.inter(
+                                            fontSize: 16,
+                                            fontStyle: FontStyle.normal,
+                                            fontWeight: FontWeight.w500,
+                                            color: controller
+                                                        .servingTime.value ==
+                                                    00
+                                                ? MyTheme.hinttextColor
+                                                : MyTheme.hinttextchangeColor,
+                                          )),
                                     ),
                                     SizedBox(
                                       width: 8,
                                     ),
                                     Text(
                                       'mins',
-                                      style: TextStyle(
+                                      style: GoogleFonts.inter(
                                         fontSize: 13,
-                                        fontFamily: 'Inter',
                                         fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.bold,
+                                        fontWeight: FontWeight.w500,
                                         color: MyTheme.checkboxtextColor,
                                       ),
                                     ),
@@ -736,9 +553,8 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                             ),
                             Text(
                               'Enter average serving time for two',
-                              style: TextStyle(
+                              style: GoogleFonts.poppins(
                                 fontSize: 9,
-                                fontFamily: 'Poppins',
                                 fontStyle: FontStyle.normal,
                                 fontWeight: FontWeight.normal,
                                 color: MyTheme.bottomtextColor,
@@ -755,7 +571,6 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                   FieldTitle(
                     text: 'Recurring events (optional)',
                     required: false,
-                    fontFamily: 'Inter-Regular',
                     fontSize: 13,
                     fontWeight: FontWeight.w500,
                   ),
@@ -797,9 +612,8 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                           _selectedEventDate == null
                                               ? 'Event Dates'
                                               : '${_selectedEventDate!.year}/${_selectedEventDate!.month}/${_selectedEventDate!.day}',
-                                          style: TextStyle(
+                                          style: GoogleFonts.inter(
                                             fontSize: 15,
-                                            fontFamily: 'Inter',
                                             fontStyle: FontStyle.normal,
                                             fontWeight: FontWeight.w500,
                                             color: _selectedEventDate == null
@@ -832,17 +646,13 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                             SizedBox(
                               height: 3,
                             ),
-                            Text(
-                              'Enter No of tables present',
-                              style: TextStyle(
-                                fontSize: 9,
-                                fontFamily: 'Poppins',
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.normal,
-                                letterSpacing: -0.229412,
-                                color: MyTheme.bottomtextColor,
-                              ),
-                            )
+                            Text('Select Event Dates',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 9,
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.normal,
+                                  color: MyTheme.bottomtextColor,
+                                ))
                           ],
                         ),
                       ),
@@ -889,8 +699,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                                                   .value
                                                                   .toString();
                                                             });
-                                                            //controller.servingTime.value.toString()
-                                                            //e.toString();
+
                                                             Get.back();
                                                           },
                                                         ))
@@ -909,17 +718,14 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                             const EdgeInsets.only(left: 14),
                                         child: Obx(
                                           () => Text(
-                                            controller.selectedRecurrence.value
-                                            /* _selectedMonthlyDate == null
-                                                ? 'Monthly'
-                                                : '${_selectedMonthlyDate!.year}/${_selectedMonthlyDate!.month}/${_selectedMonthlyDate!.day}' */
-                                            ,
-                                            style: TextStyle(
+                                            controller.selectedRecurrence.value,
+                                            style: GoogleFonts.inter(
                                               fontSize: 15,
-                                              fontFamily: 'Inter',
                                               fontStyle: FontStyle.normal,
                                               fontWeight: FontWeight.w500,
-                                              color: MyTheme.hinttextColor,
+                                              color: rec == ''
+                                                  ? MyTheme.hinttextColor
+                                                  : MyTheme.hinttextchangeColor,
                                             ),
                                           ),
                                         ),
@@ -953,8 +759,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                                                         .value
                                                                         .toString();
                                                                   });
-                                                                  //controller.servingTime.value.toString()
-                                                                  //e.toString();
+
                                                                   Get.back();
                                                                 },
                                                               ))
@@ -982,9 +787,8 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                             ),
                             Text(
                               'Recurrance frequency',
-                              style: TextStyle(
+                              style: GoogleFonts.poppins(
                                 fontSize: 9,
-                                fontFamily: 'Poppins',
                                 fontStyle: FontStyle.normal,
                                 fontWeight: FontWeight.normal,
                                 color: MyTheme.bottomtextColor,
@@ -1027,9 +831,8 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                     PickedTime == null
                                         ? '${currentTime.format(context)}'
                                         : '${currentTime.format(context)}',
-                                    style: TextStyle(
-                                      fontSize: PickedTime == null ? 16 : 20,
-                                      fontFamily: 'Inter',
+                                    style: GoogleFonts.inter(
+                                      fontSize: PickedTime == null ? 16 : 18,
                                       fontStyle: FontStyle.normal,
                                       fontWeight: FontWeight.w500,
                                       color: PickedTime == null
@@ -1046,9 +849,8 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                             ),
                             Text(
                               'Select start time (hh:mm AM/PM)',
-                              style: TextStyle(
+                              style: GoogleFonts.poppins(
                                 fontSize: 9,
-                                fontFamily: 'Poppins',
                                 fontStyle: FontStyle.normal,
                                 fontWeight: FontWeight.normal,
                                 color: MyTheme.bottomtextColor,
@@ -1086,9 +888,8 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                                     PickedTime1 == null
                                         ? '${currentTime1.format(context)}'
                                         : '${currentTime1.format(context)}',
-                                    style: TextStyle(
-                                      fontSize: PickedTime1 == null ? 16 : 20,
-                                      fontFamily: 'Inter',
+                                    style: GoogleFonts.inter(
+                                      fontSize: PickedTime1 == null ? 16 : 18,
                                       fontStyle: FontStyle.normal,
                                       fontWeight: FontWeight.w500,
                                       color: PickedTime1 == null
@@ -1105,9 +906,8 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                             ),
                             Text(
                               'Select end time (hh:mm AM/PM)',
-                              style: TextStyle(
+                              style: GoogleFonts.poppins(
                                 fontSize: 9,
-                                fontFamily: 'Poppins',
                                 fontStyle: FontStyle.normal,
                                 fontWeight: FontWeight.normal,
                                 color: MyTheme.bottomtextColor,
@@ -1119,386 +919,9 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                     ],
                   ),
 
-                  // Obx(
-                  //   () => Row(
-                  //     children: [
-                  //       Expanded(
-                  //         child: Column(
-                  //           crossAxisAlignment: CrossAxisAlignment.start,
-                  //           children: [
-                  //             Container(
-                  //               height: 45,
-                  //               decoration: BoxDecoration(
-                  //                 borderRadius:
-                  //                     BorderRadius.all(Radius.circular(6)),
-                  //                 border: Border.all(
-                  //                   width: 1,
-                  //                   color: MyTheme.borderColor,
-                  //                   style: BorderStyle.solid,
-                  //                 ),
-                  //               ),
-                  //               child: Row(
-                  //                 mainAxisAlignment:
-                  //                     MainAxisAlignment.spaceAround,
-                  //                 children: [
-                  //                   Text(
-                  //                     (controller.eventstartHour.toString().length ==
-                  //                                 1
-                  //                             ? controller.eventstartHour
-                  //                                 .toString()
-                  //                                 .padLeft(2, "0")
-                  //                             : controller.eventstartHour
-                  //                                 .toString()) +
-                  //                         ":" +
-                  //                         (controller.eventstartMinute
-                  //                                     .toString()
-                  //                                     .length ==
-                  //                                 1
-                  //                             ? controller.eventstartMinute
-                  //                                 .toString()
-                  //                                 .padLeft(2, "0")
-                  //                             : controller.eventstartMinute
-                  //                                 .toString()),
-                  //                     style: TextStyle(
-                  //                       fontSize: 15,
-                  //                       fontFamily: 'Inter',
-                  //                       fontStyle: FontStyle.normal,
-                  //                       fontWeight: FontWeight.w500,
-                  //                       color: MyTheme.hinttextColor,
-                  //                     ),
-                  //                   ),
-                  //                   Column(
-                  //                     mainAxisAlignment:
-                  //                         MainAxisAlignment.center,
-                  //                     crossAxisAlignment:
-                  //                         CrossAxisAlignment.center,
-                  //                     children: [
-                  //                       SizedBox.square(
-                  //                         dimension: 15,
-                  //                         child: InkWell(
-                  //                           onTap: () {
-                  //                             if (controller.eventstartMinute ==
-                  //                                 30) {
-                  //                               if (controller.eventstartHour !=
-                  //                                   12) {
-                  //                                 controller.eventstartHour + 1;
-                  //                               }
-                  //                               controller.eventstartMinute
-                  //                                   .value = 00;
-                  //                             } else {
-                  //                               if (controller.eventstartHour !=
-                  //                                   12)
-                  //                                 controller.eventstartMinute
-                  //                                     .value = 30;
-                  //                             }
-                  //                           },
-                  //                           child: Container(
-                  //                             height: 12,
-                  //                             width: 12,
-                  //                             alignment: Alignment.center,
-                  //                             child: FaIcon(
-                  //                               FontAwesomeIcons.chevronUp,
-                  //                               color:
-                  //                                   MyTheme.dropdownarrowColor,
-                  //                               size: 15,
-                  //                             ),
-                  //                           ),
-                  //                         ),
-                  //                       ),
-                  //                       SizedBox.square(
-                  //                         dimension: 15,
-                  //                         child: InkWell(
-                  //                           onTap: () {
-                  //                             if (controller.eventstartMinute ==
-                  //                                 30) {
-                  //                               controller.eventstartMinute
-                  //                                   .value = 00;
-                  //                             } else {
-                  //                               if (controller.eventstartHour !=
-                  //                                   0) {
-                  //                                 controller.eventstartMinute
-                  //                                     .value = 30;
-                  //                                 controller.eventstartHour - 1;
-                  //                               }
-                  //                             }
-                  //                           },
-                  //                           child: Container(
-                  //                             height: 12,
-                  //                             width: 12,
-                  //                             alignment: Alignment.center,
-                  //                             child: FaIcon(
-                  //                               FontAwesomeIcons.chevronDown,
-                  //                               color:
-                  //                                   MyTheme.dropdownarrowColor,
-                  //                               size: 15,
-                  //                             ),
-                  //                           ),
-                  //                         ),
-                  //                       ),
-                  //                     ],
-                  //                   ),
-                  //                   Container(
-                  //                     height: 35,
-                  //                     width: 0,
-                  //                     decoration: BoxDecoration(
-                  //                       border: Border.all(
-                  //                         width: 1,
-                  //                         color: MyTheme.borderColor,
-                  //                         style: BorderStyle.solid,
-                  //                       ),
-                  //                     ),
-                  //                   ),
-                  //                   Container(
-                  //                     height: 18,
-                  //                     child: Text(
-                  //                       controller.eventendAmPm.value,
-                  //                       style: TextStyle(
-                  //                         fontSize: 15,
-                  //                         fontFamily: 'Inter',
-                  //                         fontStyle: FontStyle.normal,
-                  //                         fontWeight: FontWeight.w500,
-                  //                         color: MyTheme.hinttextColor,
-                  //                       ),
-                  //                     ),
-                  //                   ),
-                  //                   InkWell(
-                  //                       child: Container(
-                  //                         padding: EdgeInsets.only(
-                  //                             bottom: 2, top: 4),
-                  //                         child: FaIcon(
-                  //                           controller.eventstartAmPm.value ==
-                  //                                   "AM"
-                  //                               ? FontAwesomeIcons.chevronDown
-                  //                               : FontAwesomeIcons.chevronUp,
-                  //                           size: 13,
-                  //                           color: MyTheme.dropdownarrowColor,
-                  //                         ),
-                  //                       ),
-                  //                       onTap: () {
-                  //                         if (controller.eventstartAmPm.value ==
-                  //                             "AM") {
-                  //                           controller.eventstartAmPm.value =
-                  //                               "PM";
-                  //                         } else {
-                  //                           controller.eventstartAmPm.value =
-                  //                               "AM";
-                  //                         }
-                  //                       }),
-                  //                 ],
-                  //               ),
-                  //             ),
-                  //             SizedBox(
-                  //               height: 3,
-                  //             ),
-                  //             Text(
-                  //               'Select start time  (hh:mm AM/PM)',
-                  //               style: TextStyle(
-                  //                 fontSize: 9,
-                  //                 fontFamily: 'Poppins',
-                  //                 fontStyle: FontStyle.normal,
-                  //                 fontWeight: FontWeight.normal,
-                  //                 color: MyTheme.bottomtextColor,
-                  //               ),
-                  //             )
-                  //           ],
-                  //         ),
-                  //       ),
-                  //       SizedBox(
-                  //         width: 18,
-                  //       ),
-                  //       Expanded(
-                  //         child: Column(
-                  //           crossAxisAlignment: CrossAxisAlignment.start,
-                  //           children: [
-                  //             Container(
-                  //               height: 45,
-                  //               decoration: BoxDecoration(
-                  //                 borderRadius:
-                  //                     BorderRadius.all(Radius.circular(6)),
-                  //                 border: Border.all(
-                  //                   width: 1,
-                  //                   color: MyTheme.borderColor,
-                  //                   style: BorderStyle.solid,
-                  //                 ),
-                  //               ),
-                  //               child: Row(
-                  //                 mainAxisAlignment:
-                  //                     MainAxisAlignment.spaceAround,
-                  //                 children: [
-                  //                   Text(
-                  //                     (controller.eventendHour
-                  //                                     .toString()
-                  //                                     .length ==
-                  //                                 1
-                  //                             ? controller.eventendHour
-                  //                                 .toString()
-                  //                                 .padLeft(2, "0")
-                  //                             : controller.eventendHour
-                  //                                 .toString()) +
-                  //                         ":" +
-                  //                         (controller.eventendMinute
-                  //                                     .toString()
-                  //                                     .length ==
-                  //                                 1
-                  //                             ? controller.eventendMinute
-                  //                                 .toString()
-                  //                                 .padLeft(2, "0")
-                  //                             : controller.eventendMinute
-                  //                                 .toString()),
-                  //                     style: TextStyle(
-                  //                       fontSize: 15,
-                  //                       fontFamily: 'Inter',
-                  //                       fontStyle: FontStyle.normal,
-                  //                       fontWeight: FontWeight.w500,
-                  //                       color: MyTheme.hinttextColor,
-                  //                     ),
-                  //                   ),
-
-                  //                   Column(
-                  //                     mainAxisAlignment:
-                  //                         MainAxisAlignment.center,
-                  //                     crossAxisAlignment:
-                  //                         CrossAxisAlignment.center,
-                  //                     children: [
-                  //                       SizedBox.square(
-                  //                         dimension: 15,
-                  //                         child: InkWell(
-                  //                           onTap: () {
-                  //                             if (controller.eventendMinute ==
-                  //                                 30) {
-                  //                               if (controller.eventendHour !=
-                  //                                   12) {
-                  //                                 controller.eventendHour + 1;
-                  //                               }
-                  //                               controller
-                  //                                   .eventendMinute.value = 00;
-                  //                             } else {
-                  //                               controller
-                  //                                   .eventendMinute.value = 30;
-                  //                             }
-                  //                           },
-                  //                           child: Container(
-                  //                             height: 12,
-                  //                             width: 12,
-                  //                             alignment: Alignment.center,
-                  //                             child: FaIcon(
-                  //                               FontAwesomeIcons.chevronUp,
-                  //                               color:
-                  //                                   MyTheme.dropdownarrowColor,
-                  //                               size: 15,
-                  //                             ),
-                  //                           ),
-                  //                         ),
-                  //                       ),
-                  //                       SizedBox.square(
-                  //                         dimension: 15,
-                  //                         child: InkWell(
-                  //                           onTap: () {
-                  //                             if (controller.eventendMinute ==
-                  //                                 30) {
-                  //                               controller
-                  //                                   .eventendMinute.value = 00;
-                  //                             } else {
-                  //                               if (controller.eventendHour !=
-                  //                                   0) {
-                  //                                 controller.eventendMinute
-                  //                                     .value = 30;
-                  //                                 controller.eventendHour - 1;
-                  //                               }
-                  //                             }
-                  //                           },
-                  //                           child: Container(
-                  //                             height: 12,
-                  //                             width: 12,
-                  //                             alignment: Alignment.center,
-                  //                             child: FaIcon(
-                  //                               FontAwesomeIcons.chevronDown,
-                  //                               color:
-                  //                                   MyTheme.dropdownarrowColor,
-                  //                               size: 15,
-                  //                             ),
-                  //                           ),
-                  //                         ),
-                  //                       ),
-                  //                     ],
-                  //                   ),
-                  //                   // SizedBox(
-                  //                   //   width: 6,
-                  //                   // ),
-                  //                   Container(
-                  //                     height: 35,
-                  //                     width: 0,
-                  //                     decoration: BoxDecoration(
-                  //                       border: Border.all(
-                  //                         width: 1,
-                  //                         color: MyTheme.borderColor,
-                  //                         style: BorderStyle.solid,
-                  //                       ),
-                  //                     ),
-                  //                   ),
-
-                  //                   Container(
-                  //                     height: 18,
-                  //                     child: Text(
-                  //                       controller.eventendAmPm.value,
-                  //                       style: TextStyle(
-                  //                         fontSize: 15,
-                  //                         fontFamily: 'Inter',
-                  //                         fontStyle: FontStyle.normal,
-                  //                         fontWeight: FontWeight.w500,
-                  //                         color: MyTheme.hinttextColor,
-                  //                       ),
-                  //                     ),
-                  //                   ),
-                  //                   InkWell(
-                  //                       child: Container(
-                  //                         padding: EdgeInsets.only(
-                  //                             bottom: 2, top: 4),
-                  //                         child: FaIcon(
-                  //                           controller.eventendAmPm.value ==
-                  //                                   "AM"
-                  //                               ? FontAwesomeIcons.chevronDown
-                  //                               : FontAwesomeIcons.chevronUp,
-                  //                           size: 13,
-                  //                           color: MyTheme.dropdownarrowColor,
-                  //                         ),
-                  //                       ),
-                  //                       onTap: () {
-                  //                         if (controller.eventendAmPm.value ==
-                  //                             "AM") {
-                  //                           controller.eventendAmPm.value =
-                  //                               "PM";
-                  //                         } else {
-                  //                           controller.eventendAmPm.value =
-                  //                               "AM";
-                  //                         }
-                  //                       }),
-                  //                 ],
-                  //               ),
-                  //             ),
-                  //             SizedBox(
-                  //               height: 3,
-                  //             ),
-                  //             Text(
-                  //               'Event end time (hh:mm AM/PM)',
-                  //               style: TextStyle(
-                  //                 fontSize: 9,
-                  //                 fontFamily: 'Poppins',
-                  //                 fontStyle: FontStyle.normal,
-                  //                 fontWeight: FontWeight.normal,
-                  //                 color: MyTheme.bottomtextColor,
-                  //               ),
-                  //             )
-                  //           ],
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
                   SizedBox(
                     height: 5,
                   ),
-                  //hjghj
                   AppFormField(
                     line: 4,
                     title: '',
@@ -1544,36 +967,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                         ? MyTheme.buttontextColor
                         : MyTheme.buttontextchangeColor,
                   ),
-                  // InkWell(
-                  //   onTap: () {
-                  //     formKey.currentState!.save();
-                  //     if (formKey.currentState!.validate())
-                  //       controller.onboardingApi(OnBoardingMethod.api6);
-                  //   },
-                  //   child: Container(
-                  //     // width: 343,
-                  //     height: 40.11,
-                  //     decoration: BoxDecoration(
-                  //       color: controller.eventDesc.value.text.isEmpty
-                  //           ? MyTheme.buttonColor
-                  //           : MyTheme.buttonchangeColor,
-                  //       borderRadius: BorderRadius.all(Radius.circular(6)),
-                  //     ),
-                  //     child: Center(
-                  //       child: Text(
-                  //         'CONTINUE',
-                  //         textAlign: TextAlign.center,
-                  //         style: TextStyle(
-                  //           fontSize: 17,
-                  //           fontFamily: 'Inter',
-                  //           fontStyle: FontStyle.normal,
-                  //           fontWeight: FontWeight.w600,
-                  //           color: MyTheme.buttontextColor,
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
+
                   SizedBox(
                     height: 6.89,
                   ),

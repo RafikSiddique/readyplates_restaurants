@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
@@ -28,13 +29,13 @@ class _ChangePasswordPage1State extends State<ChangePasswordPage1> {
     super.initState();
   }
 
-  @override
-  void dispose() {
-    controller.email.dispose();
-    controller.password.dispose();
+  // @override
+  // void dispose() {
+  //   controller.email.dispose();
+  //   controller.password.dispose();
 
-    super.dispose();
-  }
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -82,10 +83,8 @@ class _ChangePasswordPage1State extends State<ChangePasswordPage1> {
                               child: RichText(
                                 text: TextSpan(
                                     text: 'READY',
-                                    style: TextStyle(
+                                    style: GoogleFonts.montserrat(
                                       fontSize: 30,
-                                      letterSpacing: -0.0769231,
-                                      fontFamily: 'Montserrat',
                                       fontStyle: FontStyle.normal,
                                       fontWeight: FontWeight.bold,
                                       color: Color.fromRGBO(255, 255, 255, 0.9),
@@ -93,10 +92,8 @@ class _ChangePasswordPage1State extends State<ChangePasswordPage1> {
                                     children: [
                                       TextSpan(
                                         text: ' Plates'.toUpperCase(),
-                                        style: TextStyle(
+                                        style: GoogleFonts.montserrat(
                                           fontSize: 30,
-                                          fontFamily: 'Montserrat',
-                                          letterSpacing: -0.0769231,
                                           fontStyle: FontStyle.normal,
                                           fontWeight: FontWeight.normal,
                                           color: Color.fromRGBO(
@@ -156,12 +153,10 @@ class _ChangePasswordPage1State extends State<ChangePasswordPage1> {
                                         child: Text(
                                           'Login',
                                           textAlign: TextAlign.center,
-                                          style: TextStyle(
+                                          style: GoogleFonts.inter(
                                             fontSize: 17,
-                                            fontFamily: 'Inter-Bold',
                                             fontWeight: FontWeight.w500,
                                             fontStyle: FontStyle.normal,
-                                            letterSpacing: -0.226667,
                                             color: MyTheme.appbartextColor,
                                           ),
                                         ),
@@ -179,6 +174,7 @@ class _ChangePasswordPage1State extends State<ChangePasswordPage1> {
                           AppFormField(
                             title: "New Password",
                             hintText: "**** **** ****",
+                            hintfontSize: 15,
                             line: 1,
                             fontSize: 12,
                             inputType: TextInputType.text,
@@ -191,32 +187,12 @@ class _ChangePasswordPage1State extends State<ChangePasswordPage1> {
                           AppFormField(
                             title: "Confirm Password",
                             hintText: "**** **** ****",
+                            hintfontSize: 15,
                             line: 1,
                             fontSize: 12,
                             controller: controller.password,
                             isPassword: true,
                           ),
-                          // SizedBox(
-                          //   height: 3,
-                          // ),
-                          // Row(
-                          //   mainAxisAlignment: MainAxisAlignment.end,
-                          //   children: [
-                          //     Text(
-                          //       'Forgot Password ?',
-                          //       textAlign: TextAlign.center,
-                          //       style: TextStyle(
-                          //         decoration: TextDecoration.underline,
-                          //         fontSize: 10,
-                          //         fontFamily: 'Inter-Regular',
-                          //         fontStyle: FontStyle.normal,
-                          //         fontWeight: FontWeight.normal,
-                          //         letterSpacing: -0.229412,
-                          //         color: MyTheme.starColor,
-                          //       ),
-                          //     ),
-                          //   ],
-                          // ),
                           SizedBox(
                             height: kToolbarHeight * 0.6,
                           ),
@@ -255,52 +231,6 @@ class _ChangePasswordPage1State extends State<ChangePasswordPage1> {
                               ),
                             ),
                           ),
-                          // SizedBox(
-                          //   height: kToolbarHeight * 0.15,
-                          // ),
-                          // InkWell(
-                          //   onTap: () {},
-                          //   child: Container(
-                          //     width: size.width,
-                          //     height: 54,
-                          //     decoration: BoxDecoration(
-                          //       color: Color(0xffF4F4F4),
-                          //       border: Border.all(
-                          //         width: 1,
-                          //         color: Color(0xffB9B9B9),
-                          //       ),
-                          //       borderRadius:
-                          //           BorderRadius.all(Radius.circular(6)),
-                          //     ),
-                          //     child: Row(
-                          //       mainAxisAlignment: MainAxisAlignment.center,
-                          //       children: [
-                          //         Container(
-                          //           width: 26.42,
-                          //           height: 27,
-                          //           child:
-                          //               Image.asset('assets/images/google.png'),
-                          //         ),
-                          //         SizedBox(
-                          //           width: 10,
-                          //         ),
-                          //         Center(
-                          //           child: Text(
-                          //             'Sign up with Google',
-                          //             textAlign: TextAlign.center,
-                          //             style: TextStyle(
-                          //               fontSize: 17,
-                          //               fontFamily: 'Inter-Regular',
-                          //               fontStyle: FontStyle.normal,
-                          //               fontWeight: FontWeight.w600,
-                          //               color: Color(0xff222222),
-                          //             ),
-                          //           ),
-                          //         ),
-                          //       ],
-                          //     ),
-                          //   ),
-                          // ),
                           SizedBox(
                             height: 10,
                           )

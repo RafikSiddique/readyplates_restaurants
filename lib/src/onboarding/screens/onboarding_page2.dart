@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geocode/geocode.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
@@ -83,9 +84,10 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
           centerTitle: true,
           title: Text(
             'Partner Onboarding',
-            style: TextStyle(
+            style: GoogleFonts.inter(
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w500,
               fontSize: 17,
-              letterSpacing: -0.226667,
               color: MyTheme.appbartextColor,
             ),
           ),
@@ -103,6 +105,7 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
                   AppFormField(
                     title: "Restaurant Address",
                     hintText: "Address Line 1",
+                    hintfontSize: 15,
                     controller: controller.address1,
                     borderRadius:
                         BorderRadius.vertical(top: Radius.circular(6)),
@@ -111,6 +114,7 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
                   AppFormField(
                     title: '',
                     hintText: "Address Line 2",
+                    hintfontSize: 15,
                     controller: controller.address2,
                     borderRadius:
                         BorderRadius.vertical(bottom: Radius.circular(0)),
@@ -118,6 +122,7 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
                   AppFormField(
                     title: '',
                     hintText: "Nearby Landmark",
+                    hintfontSize: 15,
                     controller: controller.nearbylandnark,
                     borderRadius:
                         BorderRadius.vertical(bottom: Radius.circular(6)),
@@ -130,6 +135,7 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
                   AppFormField(
                     title: "Postal Code",
                     hintText: "XXXXXX",
+                    hintfontSize: 15,
                     controller: controller.postalcode,
                     inputType: TextInputType.number,
                     formatters: [FilteringTextInputFormatter.digitsOnly],
@@ -138,7 +144,9 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
                   SizedBox(
                     height: 20,
                   ),
-                  FieldTitle(text: 'Locate Restaurant on Map'),
+                  FieldTitle(
+                    text: 'Locate Restaurant on Map',
+                  ),
 
                   // RichText(
 
@@ -200,10 +208,9 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
                     height: 3,
                   ),
                   Text("Please locate restaurant on Map",
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 9,
-                        color: Color(0xff2F2E41),
-                        fontFamily: 'Poppins',
+                        color: MyTheme.bottomtextColor,
                         fontStyle: FontStyle.normal,
                         fontWeight: FontWeight.normal,
                       )),
@@ -214,6 +221,7 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
                   AppFormField(
                     title: 'Latitude',
                     hintText: "Latitude",
+                    hintfontSize: 15,
                     isRequired: false,
                     controller: controller.latitude,
                   ),
@@ -225,6 +233,7 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
                   AppFormField(
                     title: 'Longitute',
                     hintText: "Longitute",
+                    hintfontSize: 15,
                     isRequired: false,
                     controller: controller.longitude,
                   ),
@@ -253,40 +262,6 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
                         ? MyTheme.buttontextColor
                         : MyTheme.buttontextchangeColor,
                   ),
-                  // InkWell(
-                  //   onTap: () async {
-                  //     formKey.currentState!.save();
-
-                  //     if (formKey.currentState!.validate())
-                  //       controller.onboardingApi(OnBoardingMethod.api2);
-                  //   },
-                  //   child: Container(
-                  //     height: 40.11,
-                  //     decoration: BoxDecoration(
-                  //       color: (controller.address1Controller.text.isEmpty ||
-                  //               controller.address2Controller.text.isEmpty ||
-                  //               controller
-                  //                   .nearbylandnarkController.text.isEmpty ||
-                  //               controller.latitudeController.text.isEmpty ||
-                  //               controller.longitudeController.text.isEmpty)
-                  //           ? MyTheme.buttonColor
-                  //           : MyTheme.buttonchangeColor,
-                  //       borderRadius: BorderRadius.all(Radius.circular(6)),
-                  //     ),
-                  //     child: Center(
-                  //       child: Text(
-                  //         'CONTINUE',
-                  //         textAlign: TextAlign.center,
-                  //         style: TextStyle(
-                  //           fontSize: 17,
-                  //           fontWeight: FontWeight.bold,
-                  //           letterSpacing: -0.28,
-                  //           color: MyTheme.buttontextColor,
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
 
                   SizedBox(
                     height: 5.89,

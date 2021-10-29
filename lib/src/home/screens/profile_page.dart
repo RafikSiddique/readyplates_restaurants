@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/widgets/edit_button.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -39,12 +40,10 @@ class ProfileListTile extends StatelessWidget {
               padding: const EdgeInsets.only(left: 11.0),
               child: Text(
                 title,
-                style: TextStyle(
+                style: GoogleFonts.inter(
                   fontSize: 15,
-                  fontFamily: 'Inter',
                   fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.w400,
-                  letterSpacing: -0.2,
+                  fontWeight: FontWeight.normal,
                   color: Color(0xff6C757D),
                 ),
               ),

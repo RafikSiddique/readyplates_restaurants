@@ -98,11 +98,10 @@ class _AddFoodItemState extends State<AddFoodItem> {
         centerTitle: true,
         title: Text(
           'Add Food Item',
-          style: TextStyle(
-            fontSize: 17,
-            fontFamily: 'Inter-Regular',
+          style: GoogleFonts.inter(
             fontStyle: FontStyle.normal,
             fontWeight: FontWeight.w500,
+            fontSize: 17,
             color: MyTheme.appbartextColor,
           ),
         ),
@@ -278,37 +277,6 @@ class _AddFoodItemState extends State<AddFoodItem> {
                             hintText: '000.00 \$',
                             hintfontSize: 15,
                             controller: controller.cost),
-                        // FieldTitle(
-                        //   text: "Cost",
-                        //   fontFamily: 'Inter-Regular',
-                        //   fontSize: 13,
-                        //   fontWeight: FontWeight.w500,
-                        // ),
-                        // SizedBox(
-                        //   height: 5,
-                        // ),
-                        // TextFormField(
-                        //   controller: controller.cost,
-                        //   decoration: InputDecoration(
-                        //     contentPadding: EdgeInsets.symmetric(
-                        //         horizontal: 12, vertical: 0),
-                        //     hintText: '000.00 \$',
-                        //     hintStyle: TextStyle(
-                        //       fontSize: 13,
-                        //       fontFamily: 'Inter',
-                        //       fontStyle: FontStyle.normal,
-                        //       fontWeight: FontWeight.w500,
-                        //       color: MyTheme.hinttextColor,
-                        //     ),
-                        //     border: OutlineInputBorder(
-                        //       borderSide: BorderSide(
-                        //         width: 0,
-                        //         color: MyTheme.borderColor,
-                        //       ),
-                        //       borderRadius: BorderRadius.circular(6),
-                        //     ),
-                        //   ),
-                        // )
                       ]),
                 ),
               ]),
@@ -418,7 +386,6 @@ class _AddFoodItemState extends State<AddFoodItem> {
               SizedBox(
                 height: 10,
               ),
-
               Visibility(
                 visible: isVisible,
                 child: Container(
@@ -531,7 +498,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
                                 ),
                                 onPressed: () {
                                   setState(() {
-                                    // isaccept = !isaccept;
+                                    isVisible = !isVisible;
                                   });
                                 },
                               ),
@@ -611,33 +578,6 @@ class _AddFoodItemState extends State<AddFoodItem> {
                     ? MyTheme.buttontextColor
                     : MyTheme.buttontextchangeColor,
               ),
-              // InkWell(
-              //   onTap: () {
-              //     if (controller.isEditing)
-              //       controller.editFoodItem(controller.foodItemModel!.id);
-              //     else
-              //       controller.addFoodItem();
-              //   },
-              //   child: Container(
-              //     height: 40.11,
-              //     decoration: BoxDecoration(
-              //       color: Color(0xff7A7E83),
-              //       borderRadius: BorderRadius.all(Radius.circular(6)),
-              //     ),
-              //     child: Center(
-              //       child: Text(
-              //         'CONTINUE',
-              //         textAlign: TextAlign.center,
-              //         style: TextStyle(
-              //           fontSize: 17,
-              //           fontWeight: FontWeight.w600,
-              //           letterSpacing: -0.28,
-              //           color: Color(0xffE5E5E5),
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
               SizedBox(
                 height: 5.89,
               ),
