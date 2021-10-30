@@ -3,7 +3,13 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/home/home_controller.dart';
 import 'package:readyplates_restaurants/src/home/screens/add_menu_page.dart';
+import 'package:readyplates_restaurants/src/home/screens/customer_otp_verify_page.dart';
+import 'package:readyplates_restaurants/src/home/screens/order_complete_page1.dart';
+import 'package:readyplates_restaurants/src/home/screens/order_complete_page2.dart';
+import 'package:readyplates_restaurants/src/home/screens/order_complete_page3.dart';
+import 'package:readyplates_restaurants/src/home/screens/performance_page.dart';
 import 'package:readyplates_restaurants/src/home/screens/profile_page.dart';
+import 'package:readyplates_restaurants/utils/my_color.dart';
 
 class HomePage extends StatelessWidget {
   static const id = "/home";
@@ -12,6 +18,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: MyTheme.backgroundColor,
         bottomNavigationBar: Obx(
           () => BottomNavigationBar(
             elevation: 1,
@@ -24,21 +31,43 @@ class HomePage extends StatelessWidget {
             items: [
               BottomNavigationBarItem(
                 label: 'Menu',
-                icon: Icon(
-                  Icons.flatware_outlined,
+                icon: Container(
+                  height: 20,
+                  width: 20.78,
+                  child: Image(
+                    image: AssetImage('assets/images/menu.png'),
+                  ),
                 ),
               ),
               BottomNavigationBarItem(
                 label: 'Performance',
-                icon: Icon(Icons.stacked_line_chart_sharp),
+                icon: Container(
+                  height: 20,
+                  width: 20.78,
+                  child: Image(
+                    image: AssetImage('assets/images/performance.png'),
+                  ),
+                ),
               ),
               BottomNavigationBarItem(
                 label: 'Orders',
-                icon: Icon(Icons.format_list_bulleted_sharp),
+                icon: Container(
+                  height: 20.72,
+                  width: 18,
+                  child: Image(
+                    image: AssetImage('assets/images/orders.png'),
+                  ),
+                ),
               ),
               BottomNavigationBarItem(
                 label: 'Profile',
-                icon: Icon(Icons.people_alt_outlined),
+                icon: Container(
+                  height: 20,
+                  width: 20.78,
+                  child: Image(
+                    image: AssetImage('assets/images/orders.png'),
+                  ),
+                ),
               ),
             ],
           ),
@@ -74,8 +103,15 @@ class HomePage extends StatelessWidget {
           physics: NeverScrollableScrollPhysics(),
           children: [
             MenuPage(),
-            Container(),
-            Container(),
+            PerformancePage(),
+            PageView(
+              children: [
+                OrderCompletePage1(),
+                CustomerOtpVerify(),
+                OrderCompletePage2(),
+                OrderCompletePage3(),
+              ],
+            ),
             ProfilePage(),
           ],
         ));

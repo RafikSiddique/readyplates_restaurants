@@ -47,4 +47,12 @@ class MyTheme {
   static Color doneiconColor = Color(0xff00ADB5);
 
   static Color closeiconColor = Color(0xffEB4132);
+
+  static Color backgroundColor = Color(0xffE5E5E5);
+
+  static Color textColor = Color(0xff7F7F7F);
+  static Color text1Color = Color(0xff222831);
+  static Color text2Color = Color(0xff4E535A);
+  static Color text3Color = Color(0xff393E46);
+  static Color numberColor = Color(0xff25A18E);
 }

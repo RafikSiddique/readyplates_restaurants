@@ -5,7 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:readyplates_restaurants/src/home/home_controller.dart';
 import 'package:readyplates_restaurants/src/home/screens/add_food_item.dart';
+import 'package:readyplates_restaurants/src/home/screens/customer_otp_verify_page.dart';
 import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
+import 'package:readyplates_restaurants/src/home/screens/order_complete_page1.dart';
+import 'package:readyplates_restaurants/src/home/screens/order_complete_page2.dart';
+import 'package:readyplates_restaurants/src/home/screens/order_complete_page3.dart';
+import 'package:readyplates_restaurants/src/home/screens/performance_page.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/src/login/screens/changepassword_page.dart';
 import 'package:readyplates_restaurants/src/login/screens/changepassword_page1.dart';
@@ -64,13 +69,18 @@ class MyApp extends StatelessWidget {
           pageTransitionsTheme: PageTransitionsTheme(builders: {
             TargetPlatform.android: CupertinoPageTransitionsBuilder()
           })),
-      home: OpeningScreen(),
-      // initialRoute: HomePage.id,
+      // home: OpeningScreen(),
+      initialRoute: HomePage.id,
       routes: {
         Routes.openingscreenRoute: (context) => OpeningScreen(),
         HomePage.id: (context) => HomePage(),
         SignupPage.id: (context) => SignupPage(),
         LoginPage.id: (context) => LoginPage(),
+        OrderCompletePage1.id: (context) => OrderCompletePage1(),
+        CustomerOtpVerify.id: (context) => CustomerOtpVerify(),
+        OrderCompletePage2.id: (context) => OrderCompletePage2(),
+        OrderCompletePage3.id: (context) => OrderCompletePage3(),
+        PerformancePage.id: (context) => PerformancePage(),
         ChangePasswordPage.id: (context) => ChangePasswordPage(),
         ChangePasswordPage1.id: (context) => ChangePasswordPage1(),
         RouteToScreen.id: (context) => RouteToScreen(),

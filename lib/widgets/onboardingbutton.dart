@@ -5,13 +5,16 @@ import 'package:google_fonts/google_fonts.dart';
 class OnboardingButton extends StatelessWidget {
   final void Function() onTap;
   final Color buttonbackgroundColor;
-
+  final List<BoxShadow>? boxShadow;
+  final FontWeight? fontWeight;
   final String text;
   final Color buttontextColor;
   const OnboardingButton(
       {Key? key,
       required this.onTap,
+      this.fontWeight = FontWeight.w600,
       required this.buttonbackgroundColor,
+      this.boxShadow,
       required this.text,
       required this.buttontextColor})
       : super(key: key);
@@ -42,6 +45,7 @@ class OnboardingButton extends StatelessWidget {
             //         controller.pocNumberController.text.isEmpty)
             //     ? MyTheme.buttonColor
             //     : MyTheme.buttonchangeColor,
+            boxShadow: boxShadow,
             borderRadius: BorderRadius.all(Radius.circular(6)),
           ),
           child: Center(
@@ -51,7 +55,7 @@ class OnboardingButton extends StatelessWidget {
               textAlign: TextAlign.center,
               style: GoogleFonts.inter(
                 fontSize: 17,
-                fontWeight: FontWeight.w600,
+                fontWeight: fontWeight,
                 fontStyle: FontStyle.normal,
                 color: buttontextColor,
               ),
