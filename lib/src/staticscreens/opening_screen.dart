@@ -4,6 +4,7 @@ import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:readyplates_restaurants/src/home/order_controller.dart';
 import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/src/login/screens/login_page.dart';
@@ -243,15 +244,18 @@ class _OpeningScreenState extends State<OpeningScreen>
     try {
       await controller.getSharedPref();
       if (controller.isLoggedIn.value) {
+        Get.put(OrderController());
         Get.offNamed(HomePage.id);
       } else {
-        //if (controller.userId == "-1") {
-        this.controller.animateToPage(1,
-            duration: Duration(milliseconds: 500), curve: Curves.ease);
-        /*  } else {
-        int id = await controller.getScreen(controller.userId);
-        Get.offNamed(controller.route(id));
-      } */
+        if (controller.userId == "-1") {
+          this.controller.animateToPage(1,
+              duration: Duration(milliseconds: 500), curve: Curves.ease);
+        } else {
+          //  int id = await controller.getScreen(controller.userId);
+          //Get.offNamed(controller.route(id + 1));
+          Get.put(OrderController());
+          Get.offNamed(HomePage.id);
+        }
       }
     } catch (e) {
       this.controller.animateToPage(1,

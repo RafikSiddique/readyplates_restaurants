@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:readyplates_restaurants/src/home/order_controller.dart';
 import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
 import 'package:readyplates_restaurants/src/login/auth_services.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
@@ -14,10 +16,6 @@ class AuthController extends GetxController {
   late TextEditingController email;
   late TextEditingController password;
   late TextEditingController password2;
-
-  //final emailController = TextEditingController();
-  // final passwordController = TextEditingController();
-  //final password2Controller = TextEditingController();
 
   RxBool isLoggedIn = false.obs;
   int routeId = -1;
@@ -77,7 +75,6 @@ class AuthController extends GetxController {
     try {
       String id =
           await services.signup(email.text, password.text, password2.text);
-
       sfHelper.setUserId(id);
       Get.find<OnboardingController>().uniqueId = id;
       Get.toNamed(OnboardingPage1.id);
@@ -95,19 +92,19 @@ class AuthController extends GetxController {
       sfHelper.setUserId(id[0]);
       sfHelper.setRestaurantId(id[1]);
       Get.find<OnboardingController>().uniqueId = id[0];
-
-      /* int routeId = await getScreen(id);
-      if (routeId >= 9) { */
-      isLoggedIn.value = true;
-      sfHelper.setLoggedIn(true);
-      Get.offAllNamed(HomePage.id);
-/*       } else {
+      //int routeId = await getScreen(id[0]);
+      if (10 >= 9) {
+        isLoggedIn.value = true;
+        sfHelper.setLoggedIn(true);
+        Get.put(OrderController());
+        Get.offAllNamed(HomePage.id);
+      } else {
         if (routeId == 1) {
           await Geolocator.requestPermission();
           ;
         }
         Get.toNamed(route(routeId + 1));
-      } */
+      }
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }

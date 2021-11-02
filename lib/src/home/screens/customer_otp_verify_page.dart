@@ -1,31 +1,49 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/state_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:readyplates_restaurants/models/orderitem_model.dart';
+import 'package:readyplates_restaurants/src/home/order_controller.dart';
 import 'package:readyplates_restaurants/src/home/screens/order_complete_page2.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 
-class CustomerOtpVerify extends StatelessWidget {
-  static const id = "/verify";
-  const CustomerOtpVerify({Key? key}) : super(key: key);
+class CustomerOtpVerify extends GetView<OrderController> {
+  final OrderModelApi orderModelApi;
+  const CustomerOtpVerify(this.orderModelApi, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyTheme.backgroundColor,
-      // appBar: AppBar(
-      //   backgroundColor: MyTheme.appbackgroundColor,
-      //   elevation: 0,
-      //   centerTitle: true,
-      //   title: Text(
-      //     'Customer Verification',
-      //     style: GoogleFonts.inter(
-      //       fontStyle: FontStyle.normal,
-      //       fontWeight: FontWeight.w500,
-      //       fontSize: 17,
-      //       color: MyTheme.appbartextColor,
-      //     ),
-      //   ),
-      // ),
+      appBar: AppBar(
+        elevation: 0,
+        centerTitle: true,
+        toolbarHeight: 44,
+        backgroundColor: Colors.transparent,
+        actions: [
+          IconButton(
+            onPressed: () {
+              //controller.logout();
+            },
+            icon: Icon(
+              Icons.power_settings_new,
+              color: Colors.black,
+            ),
+          )
+        ],
+        automaticallyImplyLeading: false,
+        title: Text(
+          "Order ${orderModelApi.id}",
+          style: GoogleFonts.inter(
+            fontStyle: FontStyle.normal,
+            fontWeight: FontWeight.w500,
+            fontSize: 17,
+            color: Color(0xff393E46),
+          ),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16, top: 3),
         child: Container(
@@ -81,89 +99,80 @@ class CustomerOtpVerify extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      for (var i = 0;
-                          i < 4;
-                          //  controller.otpFields.length;
-                          i++)
+                      for (var i = 0; i < controller.otpFields.length; i++)
                         Container(
                           width: 40,
-                          height: 45,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6),
-                            color: Colors.white,
-                            border: Border.all(
-                              width: 1,
-                              color: Color(0xff71757B),
-                            ),
-                          ),
+                          height: 50,
                           margin: EdgeInsets.all(8),
                           child: TextField(
                             textAlign: TextAlign.center,
                             style: GoogleFonts.montserrat(
-                              fontStyle: FontStyle.normal,
-                              fontSize: 24,
-                              color: Colors.red,
-                              fontWeight: FontWeight.w600,
-                            ),
-                            // controller: controller.otpText[i],
+                                fontSize: 18, fontWeight: FontWeight.w600),
+                            controller: controller.otpText[i],
                             textAlignVertical: TextAlignVertical.bottom,
-                            // focusNode:
-                            //     controller.otpFields[i],
+                            focusNode: controller.otpFields[i],
                             maxLength: 1,
-                            // inputFormatters: [
-                            //   FilteringTextInputFormatter
-                            //       .digitsOnly,
-                            // ],
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly,
+                            ],
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               counterText: "",
                               hintText: (i + 1).toString(),
-                              hintStyle: GoogleFonts.montserrat(
-                                fontStyle: FontStyle.normal,
-                                color: MyTheme.text1Color,
-                                fontSize: 24,
-                                fontWeight: FontWeight.w600,
+                              hintStyle: TextStyle(
+                                color: Colors.grey.shade300,
                               ),
                               border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
+                                borderSide: BorderSide(
+                                  width: 1,
+                                  color: MyTheme.borderColor,
+                                ),
+                                borderRadius: BorderRadius.circular(6.0),
                               ),
                             ),
                             onChanged: (value) {
-                              // if (value.length == 1) {
-                              //   controller.otp.value += value;
-                              //   if (i != 5)
-                              //     controller.otpFields[i + 1]
-                              //         .requestFocus();
-                              // } else {
-                              //   if (i != 0) {
-                              //     controller.otp.value =
-                              //         controller.otp.value
-                              //             .substring(0, i);
-                              //     controller.otpFields[i - 1]
-                              //         .requestFocus();
-                              //   }
-                              // }
+                              if (value.length == 1) {
+                                controller.otp += value;
+                                if (i < 5) {
+                                  controller.otpFields[i + 1].requestFocus();
+                                } else {
+                                  if (orderModelApi.pin.toString() ==
+                                      controller.otp) {
+                                    controller.otpVerification.value =
+                                        controller.otpVerified;
+                                  } else {
+                                    controller.otpVerification.value =
+                                        controller.incorrect;
+                                  }
+                                }
+                              } else {
+                                if (i != 0) {
+                                  controller.otp =
+                                      controller.otp.substring(0, i);
+                                  controller.otpFields[i - 1].requestFocus();
+                                }
+                              }
                             },
                           ),
-                        ),
+                        )
                     ],
                   ),
                   SizedBox(
                     height: 15,
                   ),
-                  Container(
-                    width: 250,
-                    child: Text("OTP Verified",
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.inter(
-                          textStyle: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            fontStyle: FontStyle.normal,
-                            color: MyTheme.doneiconColor,
-                          ),
-                        )),
-                  ),
+                  Obx(() => Text(controller.otpVerification.value,
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.inter(
+                        textStyle: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          fontStyle: FontStyle.normal,
+                          color: controller.otpVerification.value ==
+                                  controller.otpVerified
+                              ? MyTheme.doneiconColor
+                              : Colors.red,
+                        ),
+                      ))),
                   SizedBox(
                     height: 15,
                   ),
@@ -177,8 +186,12 @@ class CustomerOtpVerify extends StatelessWidget {
                       )
                     ],
                     fontWeight: FontWeight.bold,
-                    onTap: () {
-                      Navigator.pushNamed(context, OrderCompletePage2.id);
+                    onTap: () async {
+                      if (controller.otpVerified == controller.otpVerified) {
+                        await controller.updateStatus(orderModelApi.id, 1);
+                        
+                        Navigator.pop(context);
+                      }
                     },
                     buttonbackgroundColor: MyTheme.text1Color,
                     text: 'Confirm',

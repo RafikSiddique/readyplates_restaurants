@@ -72,228 +72,203 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return OnBoardingWrapper(
+      appBarTitle: 'Payment Setup',
       onboardingController: controller,
-      child: Scaffold(
-        backgroundColor: MyTheme.appbackgroundColor,
-        appBar: AppBar(
-          backgroundColor: MyTheme.appbackgroundColor,
-          elevation: 0,
-          leading: IconButton(
-              iconSize: 14.83,
-              icon: FaIcon(
-                FontAwesomeIcons.chevronLeft,
-                color: MyTheme.iconColor,
-              ),
-              onPressed: () {
-                Get.back();
-              }),
-          centerTitle: true,
-          title: Text(
-            'Payment Setup',
-            style: GoogleFonts.inter(
-              fontStyle: FontStyle.normal,
-              fontWeight: FontWeight.w500,
-              fontSize: 17,
-              color: MyTheme.appbartextColor,
-            ),
-          ),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.only(left: 16, right: 16),
-          child: SingleChildScrollView(
-            child: Form(
-              key: formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 8,
-                  ),
-                  AppFormField(
-                    title: 'Legal Entity Account Number',
-                    hintText: '511122266514782',
-                    hintfontSize: 15,
-                    bottomText:
-                        'Make sure it matches the name on your government ID',
-                    inputType: TextInputType.number,
-                    formatters: [FilteringTextInputFormatter.digitsOnly],
-                    controller: controller.ac_number,
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  AppFormField(
-                    title: 'Re-Enter Account Number',
-                    hintText: '511122266514782',
-                    hintfontSize: 15,
-                    matchVerification: true,
-                    bottomText: "Both fields should match",
-                    secondVal: controller.ac_number,
-                    inputType: TextInputType.number,
-                    formatters: [FilteringTextInputFormatter.digitsOnly],
-                    controller: controller.reac_number,
-                  ),
-                  SizedBox(
-                    height: 18,
-                  ),
-                  FieldTitle(
-                    text: "Type of Account",
-                    fontFamily: 'Inter-Regular',
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Container(
-                    height: 45,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(6.0),
-                      ),
-                      border: Border.all(
-                        width: 1,
-                        color: controller.typeOfAcc == ''
-                            ? MyTheme.borderColor
-                            : MyTheme.borderchangeColor,
-                        style: BorderStyle.solid,
-                      ),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 16, right: 16),
+        child: SingleChildScrollView(
+          child: Form(
+            key: formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 8,
+                ),
+                AppFormField(
+                  title: 'Legal Entity Account Number',
+                  hintText: '511122266514782',
+                  hintfontSize: 15,
+                  bottomText:
+                      'Make sure it matches the name on your government ID',
+                  inputType: TextInputType.number,
+                  formatters: [FilteringTextInputFormatter.digitsOnly],
+                  controller: controller.ac_number,
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                AppFormField(
+                  title: 'Re-Enter Account Number',
+                  hintText: '511122266514782',
+                  hintfontSize: 15,
+                  matchVerification: true,
+                  bottomText: "Both fields should match",
+                  secondVal: controller.ac_number,
+                  inputType: TextInputType.number,
+                  formatters: [FilteringTextInputFormatter.digitsOnly],
+                  controller: controller.reac_number,
+                ),
+                SizedBox(
+                  height: 18,
+                ),
+                FieldTitle(
+                  text: "Type of Account",
+                  fontFamily: 'Inter-Regular',
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Container(
+                  height: 45,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(6.0),
                     ),
-                    child: DropdownButtonFormField<String>(
-                      icon: Padding(
-                        padding: const EdgeInsets.only(right: 8.17),
-                        child: FaIcon(
-                          FontAwesomeIcons.chevronDown,
-                          color: MyTheme.iconColor,
-                          size: 14.87,
-                        ),
-                      ),
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(borderSide: BorderSide.none
-                            // borderRadius: BorderRadius.all(
-                            //   Radius.circular(6.0),
-                            // ),
-                            ),
-                        hintText: 'Current/Savings',
-                        contentPadding: EdgeInsets.only(
-                          left: 14,
-                          top: 14,
-                        ),
-                        hintStyle: TextStyle(
-                          fontSize: 15,
-                          fontFamily: 'Inter',
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w500,
-                          color: MyTheme.hinttextColor,
-                        ),
-                      ),
-                      items: controller.accType
-                          .map(
-                              (e) => DropdownMenuItem(child: Text(e), value: e))
-                          .toList(),
-                      onChanged: (newValue) {
-                        controller.typeOfAcc = newValue!;
-                      },
+                    border: Border.all(
+                      width: 1,
+                      color: controller.typeOfAcc == ''
+                          ? MyTheme.borderColor
+                          : MyTheme.borderchangeColor,
+                      style: BorderStyle.solid,
                     ),
                   ),
-                  SizedBox(
-                    height: 18,
+                  child: DropdownButtonFormField<String>(
+                    icon: Padding(
+                      padding: const EdgeInsets.only(right: 8.17),
+                      child: FaIcon(
+                        FontAwesomeIcons.chevronDown,
+                        color: MyTheme.iconColor,
+                        size: 14.87,
+                      ),
+                    ),
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(borderSide: BorderSide.none
+                          // borderRadius: BorderRadius.all(
+                          //   Radius.circular(6.0),
+                          // ),
+                          ),
+                      hintText: 'Current/Savings',
+                      contentPadding: EdgeInsets.only(
+                        left: 14,
+                        top: 14,
+                      ),
+                      hintStyle: TextStyle(
+                        fontSize: 15,
+                        fontFamily: 'Inter',
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.w500,
+                        color: MyTheme.hinttextColor,
+                      ),
+                    ),
+                    items: controller.accType
+                        .map(
+                            (e) => DropdownMenuItem(child: Text(e), value: e))
+                        .toList(),
+                    onChanged: (newValue) {
+                      controller.typeOfAcc = newValue!;
+                    },
                   ),
-                  AppFormField(
-                    title: 'IFSC Code',
-                    hintText: 'HDFC000042',
-                    hintfontSize: 15,
-                    bottomText: "Enter a valid IFSC Code",
+                ),
+                SizedBox(
+                  height: 18,
+                ),
+                AppFormField(
+                  title: 'IFSC Code',
+                  hintText: 'HDFC000042',
+                  hintfontSize: 15,
+                  bottomText: "Enter a valid IFSC Code",
 
-                    // formatters: [FilteringTextInputFormatter.digitsOnly],
-                    controller: controller.ifsc_code,
-                  ),
-                  SizedBox(
-                    height: 18,
-                  ),
-                  AppFormField(
-                    title: 'PAN Number of Restaurant',
-                    hintText: 'BSUTA1568A',
-                    hintfontSize: 15,
-                    isRequired: false,
-                    bottomText: "PAN of the registered legal entity",
-                    controller: controller.pan_num,
-                  ),
-                  SizedBox(
-                    height: 18,
-                  ),
-                  AppFormField(
-                    title: 'Name of the PAN Card',
-                    hintText: 'Bliss Bistro & Cafe',
-                    hintfontSize: 15,
-                    isRequired: false,
-                    bottomText: "PAN of the registered legal entity",
-                    controller: controller.pan_name,
-                  ),
-                  SizedBox(
-                    height: 18,
-                  ),
-                  FieldTitle(
-                    text: "Uplaod PAN Card",
-                    required: false,
-                    fontFamily: 'Inter-Regular',
-                    fontSize: 13,
+                  // formatters: [FilteringTextInputFormatter.digitsOnly],
+                  controller: controller.ifsc_code,
+                ),
+                SizedBox(
+                  height: 18,
+                ),
+                AppFormField(
+                  title: 'PAN Number of Restaurant',
+                  hintText: 'BSUTA1568A',
+                  hintfontSize: 15,
+                  isRequired: false,
+                  bottomText: "PAN of the registered legal entity",
+                  controller: controller.pan_num,
+                ),
+                SizedBox(
+                  height: 18,
+                ),
+                AppFormField(
+                  title: 'Name of the PAN Card',
+                  hintText: 'Bliss Bistro & Cafe',
+                  hintfontSize: 15,
+                  isRequired: false,
+                  bottomText: "PAN of the registered legal entity",
+                  controller: controller.pan_name,
+                ),
+                SizedBox(
+                  height: 18,
+                ),
+                FieldTitle(
+                  text: "Uplaod PAN Card",
+                  required: false,
+                  fontFamily: 'Inter-Regular',
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                ),
+                SizedBox(
+                  height: 5.08,
+                ),
+                PickFiles(
+                  uploadborderColor: controller.pan_image.path.isEmpty
+                      ? MyTheme.borderColor
+                      : MyTheme.borderchangeColor,
+                  uploadText: controller.pan_image.path.isEmpty
+                      ? 'Please upload [ “png”, “jpg”, “jpeg”] images'
+                      : '${controller.pan_image.path.split('/').last}',
+                  uploadtextColor: controller.pan_image.path.isEmpty
+                      ? MyTheme.hinttextColor
+                      : MyTheme.hinttextchangeColor,
+                  fontSize: controller.pan_image.path.isEmpty ? 15 : 13,
+                  onFilePicked: (p0) {
+                    setState(() {
+                      controller.pan_image = p0;
+                    });
+                  },
+                ),
+                SizedBox(
+                  height: 18,
+                ),
+                OnboardingButton(
+                  onTap: () {
+                    formKey.currentState!.save();
+                    if (formKey.currentState!.validate())
+                      controller.onboardingApi(OnBoardingMethod.api5);
+                  },
+                  buttonbackgroundColor: controller.pan_image.path.isEmpty
+                      ? MyTheme.buttonColor
+                      : MyTheme.buttonchangeColor,
+                  text: 'Click here to verify account',
+                  buttontextColor: controller.pan_image.path.isEmpty
+                      ? MyTheme.buttontextColor
+                      : MyTheme.buttontextchangeColor,
+                ),
+                SizedBox(
+                  height: 3,
+                ),
+                Text(
+                  '₹ 1 will be credited to your account for verification',
+                  style: GoogleFonts.montserrat(
+                    fontSize: 8,
+                    fontStyle: FontStyle.normal,
                     fontWeight: FontWeight.w500,
+                    color: MyTheme.bottomtextColor,
                   ),
-                  SizedBox(
-                    height: 5.08,
-                  ),
-                  PickFiles(
-                    uploadborderColor: controller.pan_image.path.isEmpty
-                        ? MyTheme.borderColor
-                        : MyTheme.borderchangeColor,
-                    uploadText: controller.pan_image.path.isEmpty
-                        ? 'Please upload [ “png”, “jpg”, “jpeg”] images'
-                        : '${controller.pan_image.path.split('/').last}',
-                    uploadtextColor: controller.pan_image.path.isEmpty
-                        ? MyTheme.hinttextColor
-                        : MyTheme.hinttextchangeColor,
-                    fontSize: controller.pan_image.path.isEmpty ? 15 : 13,
-                    onFilePicked: (p0) {
-                      setState(() {
-                        controller.pan_image = p0;
-                      });
-                    },
-                  ),
-                  SizedBox(
-                    height: 18,
-                  ),
-                  OnboardingButton(
-                    onTap: () {
-                      formKey.currentState!.save();
-                      if (formKey.currentState!.validate())
-                        controller.onboardingApi(OnBoardingMethod.api5);
-                    },
-                    buttonbackgroundColor: controller.pan_image.path.isEmpty
-                        ? MyTheme.buttonColor
-                        : MyTheme.buttonchangeColor,
-                    text: 'Click here to verify account',
-                    buttontextColor: controller.pan_image.path.isEmpty
-                        ? MyTheme.buttontextColor
-                        : MyTheme.buttontextchangeColor,
-                  ),
-                  SizedBox(
-                    height: 3,
-                  ),
-                  Text(
-                    '₹ 1 will be credited to your account for verification',
-                    style: GoogleFonts.montserrat(
-                      fontSize: 8,
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w500,
-                      color: MyTheme.bottomtextColor,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 6,
-                  ),
-                ],
-              ),
+                ),
+                SizedBox(
+                  height: 6,
+                ),
+              ],
             ),
           ),
         ),

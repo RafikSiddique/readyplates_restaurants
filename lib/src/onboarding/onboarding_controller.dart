@@ -17,8 +17,19 @@ class OnboardingController extends GetxController {
 
   OnboardingServices services = OnboardingServices();
   final SharedPreferenceHelper sfHelper = Get.find();
+
+  ///OnBoarding 1
+  void initControllers1() {
+    resName = TextEditingController();
+    firstName = TextEditingController();
+    lastName = TextEditingController();
+    ownemail = TextEditingController();
+    ownMobile = TextEditingController();
+    poc = TextEditingController();
+    pocNumber = TextEditingController();
+  }
+
   late TextEditingController resName;
-  // final resNameController = TextEditingController();
   late TextEditingController firstName;
   late TextEditingController lastName;
   late TextEditingController ownemail;
@@ -26,14 +37,27 @@ class OnboardingController extends GetxController {
   late TextEditingController poc;
   late TextEditingController pocNumber;
   String rescity = '';
-  //final firstNameController = TextEditingController();
-  // final lastNameController = TextEditingController();
-  //final ownemailController = TextEditingController();
 
-  // final ownMobileController = TextEditingController();
+  ///OnBoarding 2
+  void dispose1() {
+    resName.dispose();
+    firstName.dispose();
+    lastName.dispose();
+    ownemail.dispose();
+    ownMobile.dispose();
+    poc.dispose();
+    pocNumber.dispose();
 
-  //final pocController = TextEditingController();
-  //final pocNumberController = TextEditingController();
+    address1 = TextEditingController();
+    address2 = TextEditingController();
+    nearbylandnark = TextEditingController();
+    postalcode = TextEditingController();
+    latitude = TextEditingController();
+    longitude = TextEditingController();
+    gstpresent = TextEditingController();
+    gstnum = TextEditingController();
+    fssaistatus = TextEditingController();
+  }
 
   late TextEditingController address1;
   late TextEditingController address2;
@@ -41,21 +65,11 @@ class OnboardingController extends GetxController {
   late TextEditingController postalcode;
   late TextEditingController latitude;
   late TextEditingController longitude;
-
-  // final address1Controller = TextEditingController();
-  //final address2Controller = TextEditingController();
-  // final nearbylandnarkController = TextEditingController();
-  // final postalcodeController = TextEditingController();
-  // final latitudeController = TextEditingController();
-  // final longitudeController = TextEditingController();
-
   late TextEditingController gstpresent;
   late TextEditingController gstnum;
   late TextEditingController fssaistatus;
 
-  //final gstpresentController = TextEditingController();
-  //final gstnumController = TextEditingController();
-  //final fssaistatusController = TextEditingController();
+  void dispose2() {}
 
   DateTime expiry = DateTime(1900);
   String startTime = '';
@@ -97,13 +111,6 @@ class OnboardingController extends GetxController {
   late TextEditingController ifsc_code;
   late TextEditingController pan_num;
   late TextEditingController pan_name;
-
-  // final ac_numberController = TextEditingController();
-  // final reac_numberController = TextEditingController();
-  // final ifsc_codeController = TextEditingController();
-  //final pan_numController = TextEditingController();
-  //final pan_nameController = TextEditingController();
-
   File pan_image = File('');
 
   void clear() {

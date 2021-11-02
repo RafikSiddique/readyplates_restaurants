@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:readyplates_restaurants/models/orderitem_model.dart';
 import 'package:readyplates_restaurants/src/home/home_controller.dart';
 import 'package:readyplates_restaurants/src/home/screens/add_menu_page.dart';
 import 'package:readyplates_restaurants/src/home/screens/customer_otp_verify_page.dart';
@@ -15,6 +16,13 @@ class HomePage extends StatelessWidget {
   static const id = "/home";
   HomePage({Key? key}) : super(key: key);
   final controller = Get.put(HomeController());
+  final orderPageController = PageController();
+  OrderModelApi? orderModelApi;
+  void moveToOTP(OrderModelApi orderModel) {
+    orderPageController.animateToPage(1,
+        duration: const Duration(milliseconds: 500), curve: Curves.ease);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,14 +112,22 @@ class HomePage extends StatelessWidget {
           children: [
             MenuPage(),
             PerformancePage(),
-            PageView(
+            OrderCompletePage1(),
+  /*           PageView(
+              allowImplicitScrolling: false,
+              controller: orderPageController,
+              
               children: [
-                OrderCompletePage1(),
-                CustomerOtpVerify(),
+                OrderCompletePage1(
+                ),
+                CustomerOtpVerify(
+                  orderModelApi!,
+                  moveToOtp: () {},
+                ),
                 OrderCompletePage2(),
                 OrderCompletePage3(),
               ],
-            ),
+            ), */
             ProfilePage(),
           ],
         ));

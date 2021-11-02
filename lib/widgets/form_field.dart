@@ -5,7 +5,7 @@ import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 
 // ignore: must_be_immutable
-class AppFormField extends StatelessWidget {
+class AppFormField extends StatefulWidget {
   final int? line;
   final bool isRequired;
   final String title;
@@ -47,7 +47,22 @@ class AppFormField extends StatelessWidget {
   })  : assert(matchVerification ? secondVal != null : true),
         super(key: key);
 
+  @override
+  State<AppFormField> createState() => _AppFormFieldState();
+}
+
+class _AppFormFieldState extends State<AppFormField> {
   bool obSecureText = true;
+
+  @override
+  void initState() {
+    widget.controller.addListener(() {
+      if (widget.controller.text.length == 0 || widget.controller.text != "") {
+        setState(() {});
+      }
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,15 +70,15 @@ class AppFormField extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (title != "")
+          if (widget.title != "")
             FieldTitle(
-              text: title,
-              required: isRequired,
-              fontSize: fontSize,
-              fontFamily: fontFamily,
-              fontWeight: fontWeight,
+              text: widget.title,
+              required: widget.isRequired,
+              fontSize: widget.fontSize,
+              fontFamily: widget.fontFamily,
+              fontWeight: widget.fontWeight,
             ),
-          if (title != "")
+          if (widget.title != "")
             SizedBox(
               height: 7,
             ),
@@ -72,46 +87,46 @@ class AppFormField extends StatelessWidget {
               decoration: BoxDecoration(
                 border: Border.all(
                   width: 1,
-                  color: controller.text != ""
+                  color: widget.controller.text != ""
                       ? MyTheme.borderchangeColor
                       : MyTheme.borderColor,
                 ),
-                borderRadius: borderRadius,
+                borderRadius: widget.borderRadius,
               ),
               child: TextFormField(
-                maxLines: line,
-                obscureText: isPassword ? obSecureText : false,
-                inputFormatters: formatters,
-                controller: controller,
+                maxLines: widget.line,
+                obscureText: widget.isPassword ? obSecureText : false,
+                inputFormatters: widget.formatters,
+                controller: widget.controller,
                 validator: (value) {
                   if (value == "") {
-                    if (isRequired) {
+                    if (widget.isRequired) {
                       return "This Field is required";
                     }
                   } else {
-                    if (matchVerification) {
-                      if (value != secondVal!.text) {
-                        return "The ${title} does not match";
+                    if (widget.matchVerification) {
+                      if (value != widget.secondVal!.text) {
+                        return "The ${widget.title} does not match";
                       }
                     }
                   }
-                  if (validator != null) return validator!(value);
+                  if (widget.validator != null) return widget.validator!(value);
                 },
                 textAlign: TextAlign.left,
-                keyboardType: inputType,
+                keyboardType: widget.inputType,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderSide: BorderSide.none,
-                    borderRadius: borderRadius,
+                    borderRadius: widget.borderRadius,
                   ),
-                  hintText: hintText,
+                  hintText: widget.hintText,
                   contentPadding: EdgeInsets.only(
                     left: 14,
                     top: 14,
                     right: 14,
                     bottom: 14,
                   ),
-                  suffixIcon: isPassword
+                  suffixIcon: widget.isPassword
                       ? IconButton(
                           onPressed: () {
                             setState(() {
@@ -122,11 +137,11 @@ class AppFormField extends StatelessWidget {
                               Icon(obSecureText ? Icons.lock : Icons.lock_open))
                       : null,
                   hintStyle: TextStyle(
-                    fontSize: hintfontSize,
+                    fontSize: widget.hintfontSize,
                     fontFamily: 'Inter-Regular',
                     fontStyle: FontStyle.normal,
                     fontWeight: FontWeight.w500,
-                    color: controller.text != ''
+                    color: widget.controller.text != ''
                         ? MyTheme.hinttextchangeColor
                         : MyTheme.hinttextColor,
                   ),
@@ -134,13 +149,13 @@ class AppFormField extends StatelessWidget {
               ),
             );
           }),
-          if (bottomText != null)
+          if (widget.bottomText != null)
             SizedBox(
               height: 3,
             ),
-          if (bottomText != null)
+          if (widget.bottomText != null)
             Text(
-              bottomText!,
+              widget.bottomText!,
               textAlign: TextAlign.center,
               style: GoogleFonts.poppins(
                 fontSize: 9,

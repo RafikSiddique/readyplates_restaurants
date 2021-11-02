@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:readyplates_restaurants/utils/api_services.dart';
 import 'package:readyplates_restaurants/utils/exception.dart';
 import 'package:http/http.dart';
@@ -36,7 +35,6 @@ class OnboardingServices extends ApiServices {
         String resid = resp1['Restaurant ID'].toString();
         print('User Id is ---->' + resid);
         print(response.body);
-        print('object!!!!!!!!!!!!!!!!');
         return resid;
       } else {
         throw AppException(code: response.statusCode, message: response.body);

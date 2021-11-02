@@ -42,33 +42,6 @@ class _AddFoodItemState extends State<AddFoodItem> {
     }
   }
 
-  @override
-  void initState() {
-    controller.name.addListener(() {
-      setState(() {});
-    });
-    controller.desc.addListener(() {
-      setState(() {});
-    });
-    controller.cost.addListener(() {
-      setState(() {});
-    });
-    controller.servingname.addListener(() {
-      setState(() {});
-    });
-    controller.servingcost.addListener(() {
-      setState(() {});
-    });
-    if (controller.isEditing) {
-      controller.setEditing();
-      setState(() {});
-    } else {
-      controller.clearController();
-    }
-
-    super.initState();
-  }
-
   // @override
   // void dispose() {
   //   controller.name.dispose();

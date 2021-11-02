@@ -63,187 +63,132 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
     Size size = MediaQuery.of(context).size;
     return OnBoardingWrapper(
       onboardingController: onBoardingController,
-      child: Scaffold(
-        backgroundColor: MyTheme.appbackgroundColor,
-        appBar: AppBar(
-          backgroundColor: MyTheme.appbackgroundColor,
-          elevation: 0,
-          leading: IconButton(
-              iconSize: 14.83,
-              icon: FaIcon(
-                FontAwesomeIcons.chevronLeft,
-                color: MyTheme.iconColor,
+      appBarTitle: 'Restaurant Bio',
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              height: size.height * 0.3,
+              child: PageView(
+                controller: onBoardingController.pageController,
+                physics: NeverScrollableScrollPhysics(),
+                allowImplicitScrolling: false,
+                onPageChanged: onPageChange,
+                children: images(size),
               ),
-              onPressed: () {
-                switch (onBoardingController.pageIndex.value) {
-                  case 0:
-                    Get.back();
-                    break;
-                  case 1:
-                    onBoardingController.pageController.animateToPage(0,
-                        duration: Duration(milliseconds: 500),
-                        curve: Curves.ease);
-                    break;
-                  case 2:
-                    onBoardingController.pageController.animateToPage(1,
-                        duration: Duration(milliseconds: 500),
-                        curve: Curves.ease);
-                    break;
-                  case 3:
-                    onBoardingController.pageController.animateToPage(2,
-                        duration: Duration(milliseconds: 500),
-                        curve: Curves.ease);
-                    break;
-                  case 4:
-                    onBoardingController.pageController.animateToPage(3,
-                        duration: Duration(milliseconds: 500),
-                        curve: Curves.ease);
-                    break;
-                  default:
-                }
-              }),
-          centerTitle: true,
-          title: Text(
-            'Restaurant Bio',
-            style: GoogleFonts.inter(
-              fontSize: 17,
-              fontStyle: FontStyle.normal,
-              fontWeight: FontWeight.w500,
-              color: MyTheme.appbartextColor,
             ),
-          ),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                height: size.height * 0.3,
-                child: PageView(
-                  controller: onBoardingController.pageController,
-                  physics: NeverScrollableScrollPhysics(),
-                  allowImplicitScrolling: false,
-                  onPageChanged: onPageChange,
-                  children: images(size),
-                ),
+            SizedBox(
+              height: size.height * 0.02,
+            ),
+            Obx(() => Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: List.generate(
+                        4,
+                        (index) => Container(
+                              height: 5,
+                              width: 5,
+                              margin: EdgeInsets.all(4),
+                              decoration: BoxDecoration(
+                                color: index ==
+                                        onBoardingController.pageIndex.value
+                                    ? Color(0xff00ADB5)
+                                    : Color(0xffE0E0E0),
+                                shape: BoxShape.circle,
+                              ),
+                            )),
+                  ),
+                )),
+            SizedBox(
+              height: size.height * 0.02,
+            ),
+            Expanded(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      ImageUploadCard(
+                          path: onBoardingController.allSelectionImage()[
+                              onBoardingController.pageIndex.value][0],
+                          name: onBoardingController.allNames()[
+                              onBoardingController.pageIndex.value][0],
+                          selectImage: (path) {
+                            onBoardingController.allSelectionImage()[
+                                onBoardingController.pageIndex.value][0] = path;
+                            setState(() {});
+                          }),
+                      ImageUploadCard(
+                          path: onBoardingController.allSelectionImage()[
+                              onBoardingController.pageIndex.value][1],
+                          name: onBoardingController.allNames()[
+                              onBoardingController.pageIndex.value][1],
+                          selectImage: (path) {
+                            onBoardingController.allSelectionImage()[
+                                onBoardingController.pageIndex.value][1] = path;
+                            setState(() {});
+                          }),
+                    ],
+                  ),
+                  SizedBox(
+                    height: size.height * 0.02,
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      ImageUploadCard(
+                          path: onBoardingController.allSelectionImage()[
+                              onBoardingController.pageIndex.value][2],
+                          name: onBoardingController.allNames()[
+                              onBoardingController.pageIndex.value][2],
+                          selectImage: (path) {
+                            onBoardingController.allSelectionImage()[
+                                onBoardingController.pageIndex.value][2] = path;
+                            setState(() {});
+                          }),
+                      ImageUploadCard(
+                          path: onBoardingController.allSelectionImage()[
+                              onBoardingController.pageIndex.value][3],
+                          name: onBoardingController.allNames()[
+                              onBoardingController.pageIndex.value][3],
+                          selectImage: (path) {
+                            onBoardingController.allSelectionImage()[
+                                onBoardingController.pageIndex.value][3] = path;
+                            setState(() {});
+                          }),
+                    ],
+                  ),
+                ],
               ),
-              SizedBox(
-                height: size.height * 0.02,
-              ),
-              Obx(() => Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: List.generate(
-                          4,
-                          (index) => Container(
-                                height: 5,
-                                width: 5,
-                                margin: EdgeInsets.all(4),
-                                decoration: BoxDecoration(
-                                  color: index ==
-                                          onBoardingController.pageIndex.value
-                                      ? Color(0xff00ADB5)
-                                      : Color(0xffE0E0E0),
-                                  shape: BoxShape.circle,
-                                ),
-                              )),
-                    ),
-                  )),
-              SizedBox(
-                height: size.height * 0.02,
-              ),
-              Expanded(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        ImageUploadCard(
-                            path: onBoardingController.allSelectionImage()[
-                                onBoardingController.pageIndex.value][0],
-                            name: onBoardingController.allNames()[
-                                onBoardingController.pageIndex.value][0],
-                            selectImage: (path) {
-                              onBoardingController.allSelectionImage()[
-                                      onBoardingController.pageIndex.value][0] =
-                                  path;
-                              setState(() {});
-                            }),
-                        ImageUploadCard(
-                            path: onBoardingController.allSelectionImage()[
-                                onBoardingController.pageIndex.value][1],
-                            name: onBoardingController.allNames()[
-                                onBoardingController.pageIndex.value][1],
-                            selectImage: (path) {
-                              onBoardingController.allSelectionImage()[
-                                      onBoardingController.pageIndex.value][1] =
-                                  path;
-                              setState(() {});
-                            }),
-                      ],
-                    ),
-                    SizedBox(
-                      height: size.height * 0.02,
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        ImageUploadCard(
-                            path: onBoardingController.allSelectionImage()[
-                                onBoardingController.pageIndex.value][2],
-                            name: onBoardingController.allNames()[
-                                onBoardingController.pageIndex.value][2],
-                            selectImage: (path) {
-                              onBoardingController.allSelectionImage()[
-                                      onBoardingController.pageIndex.value][2] =
-                                  path;
-                              setState(() {});
-                            }),
-                        ImageUploadCard(
-                            path: onBoardingController.allSelectionImage()[
-                                onBoardingController.pageIndex.value][3],
-                            name: onBoardingController.allNames()[
-                                onBoardingController.pageIndex.value][3],
-                            selectImage: (path) {
-                              onBoardingController.allSelectionImage()[
-                                      onBoardingController.pageIndex.value][3] =
-                                  path;
-                              setState(() {});
-                            }),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              // SizedBox(
-              //   height: size.height * 0.26,
-              // ),
-              //Spacer(),
-              OnboardingButton(
-                onTap: () async {
-                  await onBoardingController
-                      .onboardingApi(OnBoardingMethod.api7);
-                },
-                buttonbackgroundColor: onBoardingController.loading.value
-                    ? MyTheme.buttonchangeColor
-                    : MyTheme.buttonColor,
-                text: 'CONTINUE',
-                buttontextColor: onBoardingController.loading.value
-                    ? MyTheme.buttontextchangeColor
-                    : MyTheme.buttontextColor,
-              ),
+            ),
+            // SizedBox(
+            //   height: size.height * 0.26,
+            // ),
+            //Spacer(),
+            OnboardingButton(
+              onTap: () async {
+                await onBoardingController.onboardingApi(OnBoardingMethod.api7);
+              },
+              buttonbackgroundColor: onBoardingController.loading.value
+                  ? MyTheme.buttonchangeColor
+                  : MyTheme.buttonColor,
+              text: 'CONTINUE',
+              buttontextColor: onBoardingController.loading.value
+                  ? MyTheme.buttontextchangeColor
+                  : MyTheme.buttontextColor,
+            ),
 
-              SizedBox(
-                height: size.height * 0.02,
-              ),
-            ],
-          ),
+            SizedBox(
+              height: size.height * 0.02,
+            ),
+          ],
         ),
       ),
     );
@@ -315,8 +260,6 @@ class ImageUploadCard extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return InkWell(
       onTap: () async {
-        print('object');
-
         XFile? file = await imagePicker.pickImage(source: ImageSource.gallery);
         if (file != null) {
           selectImage(file.path);
@@ -339,23 +282,23 @@ class ImageUploadCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Spacer(),
-            Container(
-              width: path == "" ? 38 : size.width * 0.45,
-              height: path == "" ? 38 : size.width * 0.32,
-              alignment: Alignment.center,
-              child: path == ""
-                  ? Image(
-                      image: AssetImage(
-                        'assets/images/imglogo.png',
+            Expanded(
+              child: Container(
+                width: path == "" ? 38 : size.width * 0.42,
+                height: path == "" ? 38 : (size.height * 0.17) - 30,
+                alignment: Alignment.center,
+                child: path == ""
+                    ? Image(
+                        image: AssetImage(
+                          'assets/images/imglogo.png',
+                        ),
+                      )
+                    : Image.file(
+                        File(path),
+                        fit: BoxFit.cover,
                       ),
-                    )
-                  : Image.file(
-                      File(path),
-                      fit: BoxFit.fill,
-                    ),
+              ),
             ),
-            Spacer(),
             Container(
               height: 27,
               decoration: BoxDecoration(

@@ -1,12 +1,13 @@
-import 'package:flutter/material.dart';
+/* import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:readyplates_restaurants/models/orderitem_model.dart';
 import 'package:readyplates_restaurants/src/home/screens/order_complete_page3.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 
 class OrderCompletePage2 extends StatelessWidget {
-  static const id = "/order2";
-  const OrderCompletePage2({Key? key}) : super(key: key);
+  final OrderModelApi orderModelApi;
+  const OrderCompletePage2({Key? key, required this.orderModelApi}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -407,3 +408,4 @@ class OrderCompletePage2 extends StatelessWidget {
     );
   }
 }
+ */
