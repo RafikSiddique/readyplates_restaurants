@@ -55,4 +55,10 @@ class MyTheme {
   static Color text2Color = Color(0xff4E535A);
   static Color text3Color = Color(0xff393E46);
   static Color numberColor = Color(0xff25A18E);
+  static Color containerColor = Color(0xffEFEFEF);
+
+  static Color imgtextColor = Color(0xff979797);
+
+  static Color ratingfillColor = Color(0xffFFD000);
+
 }

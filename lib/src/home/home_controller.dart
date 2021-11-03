@@ -89,6 +89,8 @@ class HomeController extends GetxController {
     cost = TextEditingController();
     servingname = TextEditingController();
     servingcost = TextEditingController();
+
+    feedback = TextEditingController();
     getFoodItems();
 
     super.onInit();
@@ -100,6 +102,7 @@ class HomeController extends GetxController {
     cost.clear();
     servingname.clear();
     servingcost.clear();
+    feedback.clear();
     image1 = File("");
     image2 = File("");
     spiceSlider.value = 1;
@@ -111,6 +114,7 @@ class HomeController extends GetxController {
   late TextEditingController cost;
   late TextEditingController servingname;
   late TextEditingController servingcost;
+  late TextEditingController feedback;
   // final nameController = TextEditingController();
   //final descController = TextEditingController();
 

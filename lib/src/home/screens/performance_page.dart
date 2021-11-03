@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:readyplates_restaurants/src/home/screens/feedback_page.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 import 'package:readyplates_restaurants/widgets/perfomance_circle.dart';
@@ -229,7 +230,9 @@ class _PerformancePageState extends State<PerformancePage> {
                         height: 12,
                       ),
                       OnboardingButton(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(context, FeedbackPage.id);
+                        },
                         buttonbackgroundColor: MyTheme.text1Color,
                         text: 'View Detailed Feedback',
                         buttontextColor: MyTheme.appbackgroundColor,
