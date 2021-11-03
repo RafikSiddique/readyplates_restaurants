@@ -70,8 +70,8 @@ class MyApp extends StatelessWidget {
           pageTransitionsTheme: PageTransitionsTheme(builders: {
             TargetPlatform.android: CupertinoPageTransitionsBuilder()
           })),
-      home: OpeningScreen(),
-      // initialRoute: FeedbackPage.id,
+      // home: OpeningScreen(),
+      initialRoute: FeedbackPage.id,
       routes: {
         Routes.openingscreenRoute: (context) => OpeningScreen(),
         HomePage.id: (context) => HomePage(),
