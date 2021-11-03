@@ -133,7 +133,7 @@ class CustomerOtpVerify extends GetView<OrderController> {
                             onChanged: (value) {
                               if (value.length == 1) {
                                 controller.otp += value;
-                                if (i < 5) {
+                                if (i < 3) {
                                   controller.otpFields[i + 1].requestFocus();
                                 } else {
                                   if (orderModelApi.pin.toString() ==
@@ -187,9 +187,15 @@ class CustomerOtpVerify extends GetView<OrderController> {
                     ],
                     fontWeight: FontWeight.bold,
                     onTap: () async {
-                      if (controller.otpVerified == controller.otpVerified) {
+                      if (controller.otpVerification.value ==
+                          controller.otpVerified) {
                         await controller.updateStatus(orderModelApi.id, 1);
-                        
+                        controller.otpVerification.value = "";
+                        controller.otp = "";
+                        for (var i = 0; i < controller.otpText.length; i++) {
+                          controller.otpText[i].clear();
+                        }
+
                         Navigator.pop(context);
                       }
                     },

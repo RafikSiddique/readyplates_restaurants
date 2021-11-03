@@ -22,11 +22,14 @@ class OnBoardingWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        Get.showSnackbar(GetBar(
-          title: "Warning",
-          message:
-              "You can't you back at this stage, if you want to edit, you can edit after logging in",
-        ));
+        Get.showSnackbar(
+          GetBar(
+            title: "Warning",
+            message:
+                "You can't you back at this stage, if you want to edit, you can edit after logging in",
+            duration: Duration(seconds: 2),
+          ),
+        );
         return false;
       },
       child: Obx(() => Stack(
@@ -46,6 +49,7 @@ class OnBoardingWrapper extends StatelessWidget {
                         onPressed: () {
                           Get.showSnackbar(GetBar(
                             title: "Warning",
+                            duration: Duration(seconds: 2),
                             message:
                                 "You can't you back at this stage, if you want to edit, you can edit after logging in",
                           ));

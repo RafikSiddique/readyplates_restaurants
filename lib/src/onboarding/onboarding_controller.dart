@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
+import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_services.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
@@ -333,6 +334,9 @@ class OnboardingController extends GetxController {
 
   Future<void> _onboardingapi5() async {
     try {
+      if (resId == "") {
+        resId = await sfHelper.getRestaurantId();
+      }
       await services.onboardingapi5(
         resId,
         ac_number.text,
@@ -350,6 +354,9 @@ class OnboardingController extends GetxController {
 
   Future<void> _onboardingApi6() async {
     try {
+      if (resId == "") {
+        resId = await sfHelper.getRestaurantId();
+      }
       await services.onboardingapi6(
         resId,
         resDescript.text,
@@ -451,6 +458,9 @@ class OnboardingController extends GetxController {
 
   Future<void> _uploadImage() async {
     try {
+      if (resId == "") {
+        resId = await sfHelper.getRestaurantId();
+      }
       List<String> fields = [];
       List<String> files = [];
 
@@ -482,6 +492,7 @@ class OnboardingController extends GetxController {
 
         if (pageIndex.value == 3) {
           Get.find<SharedPreferenceHelper>().setLoggedIn(true);
+          Get.find<AuthController>().isLoggedIn.value = true;
           Get.offAllNamed(HomePage.id);
         } else {
           pageController.animateToPage(pageIndex.value + 1,

@@ -241,6 +241,8 @@ class _OpeningScreenState extends State<OpeningScreen>
   Future<void> afterFirstLayout(BuildContext context) async {
     final controller = Get.find<AuthController>();
     await Future.delayed(Duration(seconds: 2));
+    print(controller.userId);
+    print(controller.isLoggedIn);
     try {
       await controller.getSharedPref();
       if (controller.isLoggedIn.value) {
@@ -251,10 +253,10 @@ class _OpeningScreenState extends State<OpeningScreen>
           this.controller.animateToPage(1,
               duration: Duration(milliseconds: 500), curve: Curves.ease);
         } else {
-          //  int id = await controller.getScreen(controller.userId);
-          //Get.offNamed(controller.route(id + 1));
-          Get.put(OrderController());
-          Get.offNamed(HomePage.id);
+          int id = await controller.getScreen(controller.userId);
+          Get.offNamed(controller.route(id + 1));
+          //Get.put(OrderController());
+          //Get.offNamed(HomePage.id);
         }
       }
     } catch (e) {

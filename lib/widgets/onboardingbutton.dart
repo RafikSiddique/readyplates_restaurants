@@ -22,44 +22,22 @@ class OnboardingButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: InkWell(
-        onTap: onTap,
-
-        //  () async {
-        //   formKey.currentState!.save();
-        //   if (formKey.currentState!.validate())
-        //     controller.onboardingApi(OnBoardingMethod.api1);
-        // },
-        child: Container(
-          height: 40.11,
-          decoration: BoxDecoration(
-            color: buttonbackgroundColor,
-            //  (
-            //    controller.resNameController.text.isEmpty ||
-            //         controller.firstNameController.text.isEmpty ||
-            //         controller.lastNameController.text.isEmpty ||
-            //         controller.ownemailController.text.isEmpty ||
-            //         controller.ownMobileController.text.isEmpty ||
-            //         controller.rescity.isEmpty ||
-            //         controller.pocController.text.isEmpty ||
-            //         controller.pocNumberController.text.isEmpty)
-            //     ? MyTheme.buttonColor
-            //     : MyTheme.buttonchangeColor,
-            boxShadow: boxShadow,
-            borderRadius: BorderRadius.all(Radius.circular(6)),
-          ),
-          child: Center(
-            child: Text(
-              text,
-              // 'CONTINUE',
-              textAlign: TextAlign.center,
-              style: GoogleFonts.inter(
-                fontSize: 17,
-                fontWeight: fontWeight,
-                fontStyle: FontStyle.normal,
-                color: buttontextColor,
-              ),
-            ),
+      width: double.infinity,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            primary: buttonbackgroundColor,
+            elevation: 2,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(6))),
+        onPressed: onTap,
+        child: Text(
+          text,
+          textAlign: TextAlign.center,
+          style: GoogleFonts.inter(
+            fontSize: 17,
+            fontWeight: fontWeight,
+            fontStyle: FontStyle.normal,
+            color: buttontextColor,
           ),
         ),
       ),

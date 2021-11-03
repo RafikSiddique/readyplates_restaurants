@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:http/http.dart';
 import 'package:readyplates_restaurants/models/orderitem_model.dart';
 import 'package:readyplates_restaurants/utils/api_services.dart';
@@ -7,7 +8,8 @@ import 'package:readyplates_restaurants/utils/exception.dart';
 class OrderServices extends ApiServices {
   Future<List<OrderModelApi>> getOrder(String id) async {
     try {
-      Response response = await get(resOrders(id));
+      Response response =
+          await get(resOrders(id), headers: contentTypeJsonHeader);
 
       if (response.statusCode == 200) {
         Map<String, dynamic> map = jsonDecode(response.body);
@@ -26,13 +28,15 @@ class OrderServices extends ApiServices {
 
   Future<void> updateStatus(int id, int status) async {
     try {
-      Response response = await put(
-        updateStatusUrl,
-        headers: contentTypeJsonHeader,
-        body: jsonEncode({'id': id, 'status': status}),
-      );
+      var request = MultipartRequest('PUT', updateStatusUrl);
+      request.fields.addAll({
+        'id': id.toString(),
+        'status': status.toString(),
+      });
+      var response = await request.send();
       if (response.statusCode != 202) {
-        throw AppException(code: response.statusCode, message: response.body);
+        throw AppException(
+            code: response.statusCode, message: response.reasonPhrase);
       }
     } catch (e) {
       rethrow;

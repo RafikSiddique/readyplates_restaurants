@@ -8,6 +8,32 @@ class OrderController extends GetxController {
   final SharedPreferenceHelper sfHelper = Get.find();
   final OrderServices services = OrderServices();
   RxList<OrderModelApi> orderList = <OrderModelApi>[].obs;
+  RxBool loading = false.obs;
+
+  List<String> months() => [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
+
+  final List<String> weekDays = [
+    "Monday",
+    "Tuesday",
+    "Wednessday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
 
   late List<TextEditingController> otpText;
   String otp = '';
@@ -15,8 +41,8 @@ class OrderController extends GetxController {
   @override
   void onInit() {
     getOrderItems();
-    otpFields = List.generate(6, (index) => FocusNode());
-    otpText = List.generate(6, (index) => TextEditingController());
+    otpFields = List.generate(4, (index) => FocusNode());
+    otpText = List.generate(4, (index) => TextEditingController());
     super.onInit();
   }
 
@@ -27,19 +53,27 @@ class OrderController extends GetxController {
 
   Future<void> getOrderItems() async {
     try {
+      loading.value = true;
       String id = await sfHelper.getRestaurantId();
       orderList.value = await services.getOrder(id);
+      loading.value = false;
       orderList.sort((a, b) => a.status.index.compareTo(b.status.index));
+      update();
     } catch (e) {
+      loading.value = false;
       Get.snackbar("Error", e.toString());
     }
   }
 
   Future<void> updateStatus(int id, int status) async {
     try {
+      loading.value = true;
       await services.updateStatus(id, status);
       await getOrderItems();
+      loading.value = false;
     } catch (e) {
+      loading.value = false;
+
       Get.snackbar("Error", e.toString());
     }
   }
