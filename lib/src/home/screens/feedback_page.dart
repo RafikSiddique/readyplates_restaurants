@@ -243,7 +243,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 height: 228,
                 width: MediaQuery.of(context).size.width,
                 child: Image.asset(
-                  'assets/images/camera.png',
+                  'assets/images/feedbackimg.png',
                   fit: BoxFit.fill,
                 ),
               ),
