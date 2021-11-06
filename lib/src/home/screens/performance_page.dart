@@ -84,7 +84,7 @@ class _PerformancePageState extends State<PerformancePage> {
                 height: 11,
               ),
               Container(
-                height: 207,
+                height: MediaQuery.of(context).size.height * 0.35,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.white,
@@ -230,6 +230,7 @@ class _PerformancePageState extends State<PerformancePage> {
                         height: 12,
                       ),
                       OnboardingButton(
+                        height: 44,
                         onTap: () {
                           Navigator.pushNamed(context, FeedbackPage.id);
                         },

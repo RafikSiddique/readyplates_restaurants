@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
+import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 
 class ChangePasswordPage1 extends StatefulWidget {
   static const id = "/changepasword1";
@@ -196,40 +197,23 @@ class _ChangePasswordPage1State extends State<ChangePasswordPage1> {
                           SizedBox(
                             height: kToolbarHeight * 0.6,
                           ),
-                          InkWell(
+                          OnboardingButton(
+                            height: 54,
                             onTap: () async {
                               formKey.currentState!.save();
                               if (formKey.currentState!.validate())
                                 await controller.login();
                             },
-                            child: Container(
-                              width: size.width,
-                              height: 54,
-                              decoration: BoxDecoration(
-                                color: (controller.email.text.isEmpty ||
+                            buttonbackgroundColor:
+                                (controller.email.text.isEmpty ||
                                         controller.password.text.isEmpty)
                                     ? MyTheme.buttonColor
                                     : MyTheme.buttonchangeColor,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(6)),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  'Change Password',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                    fontFamily: 'Inter-Regular',
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w600,
-                                    color: (controller.email.text.isEmpty ||
-                                            controller.password.text.isEmpty)
-                                        ? MyTheme.buttontextColor
-                                        : MyTheme.buttontextchangeColor,
-                                  ),
-                                ),
-                              ),
-                            ),
+                            text: 'Change Password',
+                            buttontextColor: (controller.email.text.isEmpty ||
+                                    controller.password.text.isEmpty)
+                                ? MyTheme.buttontextColor
+                                : MyTheme.buttontextchangeColor,
                           ),
                           SizedBox(
                             height: 10,

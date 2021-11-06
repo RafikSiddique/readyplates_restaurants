@@ -8,12 +8,14 @@ class OnboardingButton extends StatelessWidget {
   final List<BoxShadow>? boxShadow;
   final FontWeight? fontWeight;
   final String text;
+  final double? height;
   final Color buttontextColor;
   const OnboardingButton(
       {Key? key,
       required this.onTap,
       this.fontWeight = FontWeight.w600,
       required this.buttonbackgroundColor,
+      this.height = 40.11,
       this.boxShadow,
       required this.text,
       required this.buttontextColor})
@@ -22,6 +24,7 @@ class OnboardingButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: height,
       width: double.infinity,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
