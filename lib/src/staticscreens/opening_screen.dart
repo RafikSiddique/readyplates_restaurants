@@ -253,10 +253,10 @@ class _OpeningScreenState extends State<OpeningScreen>
           this.controller.animateToPage(1,
               duration: Duration(milliseconds: 500), curve: Curves.ease);
         } else {
-          int id = await controller.getScreen(controller.userId);
-          Get.offNamed(controller.route(id + 1));
-          //Get.put(OrderController());
-          //Get.offNamed(HomePage.id);
+   /*        int id = await controller.getScreen(controller.userId);
+          Get.offNamed(controller.route(id + 1)); */
+          Get.put(OrderController());
+          Get.offNamed(HomePage.id);
         }
       }
     } catch (e) {

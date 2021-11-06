@@ -41,7 +41,7 @@ class AuthController extends GetxController {
   Future<void> getSharedPref() async {
     isLoggedIn.value = await sfHelper.getLoggedIn();
     print(isLoggedIn.value);
-    userId  = await sfHelper.getUserId();
+    userId = await sfHelper.getUserId();
     print(userId);
   }
 
@@ -92,7 +92,7 @@ class AuthController extends GetxController {
       sfHelper.setUserId(id[0]);
       sfHelper.setRestaurantId(id[1]);
       Get.find<OnboardingController>().uniqueId = id[0];
-      int routeId = await getScreen(id[0]);
+      int routeId = 10; // await getScreen(id[0]);
       if (routeId >= 9) {
         isLoggedIn.value = true;
         sfHelper.setLoggedIn(true);
