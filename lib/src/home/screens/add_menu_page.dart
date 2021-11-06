@@ -21,6 +21,7 @@ class MenuPage extends StatelessWidget {
             InkWell(
               onTap: () async {
                 controller.isEditing = false;
+                controller.clearController();
                 Get.toNamed(AddFoodItem.id);
               },
               child: Card(
@@ -125,6 +126,7 @@ class MenuPage extends StatelessWidget {
                                           onTap: () {
                                             controller.isEditing = true;
                                             controller.foodItemModel = e;
+                                            controller.setEditing();
                                             Get.toNamed(AddFoodItem.id);
                                           },
                                         ))

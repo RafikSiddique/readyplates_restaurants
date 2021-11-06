@@ -7,6 +7,7 @@ import 'package:http/http.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:readyplates_restaurants/models/fooditem_model.dart';
 import 'package:readyplates_restaurants/src/home/home_services.dart';
+import 'package:readyplates_restaurants/src/home/order_controller.dart';
 import 'package:readyplates_restaurants/src/home/screens/add_food_item.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
@@ -191,7 +192,8 @@ class HomeController extends GetxController {
     Get.find<AuthController>().clearAll();
 
     Get.find<OnboardingController>().clear();
-
+  Get.find<OrderController>().orderList.value =  [];
+   foodItems.value =  [];
     Get.offAllNamed(Routes.openingscreenRoute);
   }
 }
