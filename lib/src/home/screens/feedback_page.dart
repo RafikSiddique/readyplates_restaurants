@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/home/home_controller.dart';
+import 'package:readyplates_restaurants/src/home/screens/performance_page.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 import 'package:readyplates_restaurants/widgets/text_widget.dart';
@@ -261,7 +262,12 @@ class _FeedbackPageState extends State<FeedbackPage> {
               ),
               OnboardingButton(
                 height: 44,
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    PerformancePage.id,
+                  );
+                },
                 buttonbackgroundColor: MyTheme.buttonchangeColor,
                 text: 'Back',
                 buttontextColor: MyTheme.buttontextchangeColor,

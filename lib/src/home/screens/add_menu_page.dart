@@ -146,14 +146,28 @@ class MenuPage extends StatelessWidget {
                                       child: Text(
                                         e.name,
                                         style: GoogleFonts.montserrat(
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: size.width * 0.05),
+                                          textStyle: TextStyle(
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: size.width * 0.05,
+                                              overflow: TextOverflow.clip,
+                                              ),
+                                        ),
                                       ),
                                     ),
-                                    Text(
-                                      e.description,
-                                      style: GoogleFonts.montserrat(
-                                          fontSize: size.width * 0.03),
+                                    Container(
+                                      height: 45,
+                                      child: SingleChildScrollView(
+                                        scrollDirection: Axis.vertical,
+                                        child: Text(
+                                          e.description,
+                                          style: GoogleFonts.montserrat(
+                                            textStyle: TextStyle(
+                                              fontWeight: FontWeight.w500,
+                                              overflow: TextOverflow.clip,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                     Spacer(),
                                     Row(
