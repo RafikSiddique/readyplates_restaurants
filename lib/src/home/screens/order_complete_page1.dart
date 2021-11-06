@@ -4,13 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:readyplates_restaurants/models/orderitem_model.dart';
 import 'package:readyplates_restaurants/src/home/order_controller.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
-import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 import 'package:readyplates_restaurants/widgets/order_widget.dart';
 
-import 'customer_otp_verify_page.dart';
 
 class OrderCompletePage1 extends GetView<OrderController> {
   const OrderCompletePage1({

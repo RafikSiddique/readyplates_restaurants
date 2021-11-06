@@ -222,13 +222,22 @@ class _FeedbackPageState extends State<FeedbackPage> {
                     )),
                 height: 92,
                 width: MediaQuery.of(context).size.width,
-                child: Text(
-                  'The restaurant ambience was good. However, the food was not tasty and it was stale. Need to further improve the serving time',
-                  style: GoogleFonts.inter(
-                    fontSize: 12,
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.normal,
-                    color: MyTheme.text3Color,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Text(
+                      'The restaurant ambience was good. However, the food was not tasty and it was stale. Need to further improve the serving timeThe restaurant ambience was good. However, the food was not tasty and it was stale. Need to further improve the serving time The restaurant ambience was good. However, the food was not tasty and it was stale. Need to further improve the serving timeThe restaurant ambience was good. However, the food was not tasty and it was stale. Need to further improve the serving time',
+                      textAlign: TextAlign.justify,
+                      style: GoogleFonts.inter(
+                          textStyle: TextStyle(
+                        overflow: TextOverflow.visible,
+                        fontSize: 12,
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.normal,
+                        color: MyTheme.text3Color,
+                      )),
+                    ),
                   ),
                 ),
               ),
@@ -251,6 +260,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 height: 16,
               ),
               OnboardingButton(
+                height: 44,
                 onTap: () {},
                 buttonbackgroundColor: MyTheme.buttonchangeColor,
                 text: 'Back',

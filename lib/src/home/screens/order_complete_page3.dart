@@ -16,7 +16,7 @@ class OrderCompletePage3 extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              height: 272,
+              height: MediaQuery.of(context).size.height * 0.48,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: Colors.white,
@@ -189,6 +189,7 @@ class OrderCompletePage3 extends StatelessWidget {
                       height: 9,
                     ),
                     OnboardingButton(
+                      height: 44,
                       onTap: () {},
                       buttonbackgroundColor: MyTheme.buttonColor,
                       text: 'Order Completed',
@@ -365,7 +366,7 @@ class OrderCompletePage3 extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          width: 280,
+                          width: MediaQuery.of(context).size.width * 0.7,
                           child: Text(
                               "Press button to enter OTP after customer arrival",
                               style: GoogleFonts.inter(

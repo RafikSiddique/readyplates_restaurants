@@ -6,6 +6,7 @@ import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:get/get.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
+import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 
 class SignupPage extends StatefulWidget {
   static const id = "/signup";
@@ -238,43 +239,25 @@ class _SignupPageState extends State<SignupPage> {
                             SizedBox(
                               height: kToolbarHeight * 0.4,
                             ),
-                            InkWell(
+                            OnboardingButton(
+                              height: 54,
                               onTap: () async {
                                 formKey.currentState!.save();
                                 if (formKey.currentState!.validate())
                                   await controller.signup();
                               },
-                              child: Container(
-                                width: size.width,
-                                height: 54,
-                                decoration: BoxDecoration(
-                                  color: (controller.email.text.isEmpty ||
+                              buttonbackgroundColor:
+                                  (controller.email.text.isEmpty ||
                                           controller.password.text.isEmpty ||
                                           controller.password2.text.isEmpty)
                                       ? MyTheme.buttonColor
                                       : MyTheme.buttonchangeColor,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(6)),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'Verify Password',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 17,
-                                      fontFamily: 'Inter-Regular',
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.w600,
-                                      color: (controller.email.text.isEmpty ||
-                                              controller
-                                                  .password.text.isEmpty ||
-                                              controller.password2.text.isEmpty)
-                                          ? MyTheme.buttontextColor
-                                          : MyTheme.buttontextchangeColor,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              text: 'Verify Password',
+                              buttontextColor: (controller.email.text.isEmpty ||
+                                      controller.password.text.isEmpty ||
+                                      controller.password2.text.isEmpty)
+                                  ? MyTheme.buttontextColor
+                                  : MyTheme.buttontextchangeColor,
                             ),
                             SizedBox(
                               height: kToolbarHeight * 0.2,
