@@ -143,14 +143,19 @@ class MenuPage extends StatelessWidget {
                                   children: [
                                     FittedBox(
                                       fit: BoxFit.scaleDown,
-                                      child: Text(
-                                        e.name,
-                                        style: GoogleFonts.montserrat(
-                                          textStyle: TextStyle(
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 16),
+                                        child: Text(
+                                          e.name,
+                                          textAlign: TextAlign.left,
+                                          style: GoogleFonts.montserrat(
+                                            textStyle: TextStyle(
                                               fontWeight: FontWeight.w500,
                                               fontSize: size.width * 0.05,
                                               overflow: TextOverflow.clip,
-                                              ),
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -158,12 +163,17 @@ class MenuPage extends StatelessWidget {
                                       height: 45,
                                       child: SingleChildScrollView(
                                         scrollDirection: Axis.vertical,
-                                        child: Text(
-                                          e.description,
-                                          style: GoogleFonts.montserrat(
-                                            textStyle: TextStyle(
-                                              fontWeight: FontWeight.w500,
-                                              overflow: TextOverflow.clip,
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 16),
+                                          child: Text(
+                                            e.description,
+                                            textAlign: TextAlign.left,
+                                            style: GoogleFonts.montserrat(
+                                              textStyle: TextStyle(
+                                                fontWeight: FontWeight.w500,
+                                                overflow: TextOverflow.clip,
+                                              ),
                                             ),
                                           ),
                                         ),
