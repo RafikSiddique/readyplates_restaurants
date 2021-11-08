@@ -5,3 +5,5 @@ export 'onboarding_page4.dart';
 export 'onboarding_page5.dart';
 export 'onboarding_page6.dart';
 export 'onboarding_page7.dart';
+export 'onboarding_page8.dart';
+export 'onboarding_page9.dart';

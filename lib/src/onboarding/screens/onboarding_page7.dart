@@ -1,375 +1,276 @@
 import 'dart:io';
 
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_card_swipper/flutter_card_swiper.dart';
-
+import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:open_file/open_file.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
+import 'package:readyplates_restaurants/widgets/field_title.dart';
+import 'package:readyplates_restaurants/widgets/file_picker.dart';
+import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
 import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 
 class OnboardingPage7 extends StatefulWidget {
-  static const resId = "/onboarding7";
+  static const id = "/onboarding7";
   const OnboardingPage7({Key? key}) : super(key: key);
 
   @override
-  _OnboardingPage7State createState() => _OnboardingPage7State();
+  State<OnboardingPage7> createState() => _OnboardingPage7State();
 }
 
 class _OnboardingPage7State extends State<OnboardingPage7> {
-  final OnboardingController onBoardingController = Get.find();
-  List<Widget> images(Size size) {
-    return [
-      for (int o = 0; o < onBoardingController.allImages().length; o++)
-        new Swiper(
-//class ImageUploadCard extends StatelessWidget {
-
-            itemWidth: MediaQuery.of(context).size.width,
-            autoplay: true,
-            itemBuilder: (context, index) {
-              return ImageCard(
-                path: onBoardingController.allImages()[o][index],
-                width: size.width,
-                height: null,
-              );
-
-              // Center(
-              //   child: Image.asset(
-              //     "assets/images/frontfascia.png",
-              //     fit: BoxFit.contain,
-              //   ),
-              // );
-            },
-            itemCount: 4),
-    ];
+  final controller = Get.find<OnboardingController>();
+  final formKey = GlobalKey<FormState>();
+  void openFile(PlatformFile file) {
+    OpenFile.open(file.path!);
   }
 
-  void onPageChange(int i) {
-    setState(() {
-      onBoardingController.pageIndex.value = i;
+  Future<File> saveFilePermanently(PlatformFile file) async {
+    final appStorage = await getApplicationDocumentsDirectory();
+    final newFile = File('${appStorage.path}/${file.name}');
+    return File(file.path!).copy(newFile.path);
+  }
+
+  @override
+  void initState() {
+    controller.ac_number.addListener(() {
+      setState(() {});
     });
+    controller.reac_number.addListener(() {
+      setState(() {});
+    });
+    controller.ifsc_code.addListener(() {
+      setState(() {});
+    });
+    controller.pan_num.addListener(() {
+      setState(() {});
+    });
+    controller.pan_name.addListener(() {
+      setState(() {});
+    });
+
+    super.initState();
   }
+
+  // @override
+  // void dispose() {
+  //   controller.ac_number.dispose();
+  //   controller.reac_number.dispose();
+  //   controller.ifsc_code.dispose();
+  //   controller.pan_num.dispose();
+  //   controller.pan_name.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return OnBoardingWrapper(
-      onboardingController: onBoardingController,
-      appBarTitle: 'Restaurant Bio',
+      appBarTitle: 'Payment Setup',
+      onboardingController: controller,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              height: size.height * 0.3,
-              child: PageView(
-                controller: onBoardingController.pageController,
-                physics: NeverScrollableScrollPhysics(),
-                allowImplicitScrolling: false,
-                onPageChanged: onPageChange,
-                children: images(size),
-              ),
-            ),
-            SizedBox(
-              height: size.height * 0.02,
-            ),
-            Obx(() => Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: List.generate(
-                        4,
-                        (index) => Container(
-                              height: 5,
-                              width: 5,
-                              margin: EdgeInsets.all(4),
-                              decoration: BoxDecoration(
-                                color: index ==
-                                        onBoardingController.pageIndex.value
-                                    ? Color(0xff00ADB5)
-                                    : Color(0xffE0E0E0),
-                                shape: BoxShape.circle,
-                              ),
-                            )),
-                  ),
-                )),
-            SizedBox(
-              height: size.height * 0.02,
-            ),
-            Expanded(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      ImageUploadCard(
-                          path: onBoardingController.allSelectionImage()[
-                              onBoardingController.pageIndex.value][0],
-                          name: onBoardingController.allNames()[
-                              onBoardingController.pageIndex.value][0],
-                          selectImage: (path) {
-                            onBoardingController.allSelectionImage()[
-                                onBoardingController.pageIndex.value][0] = path;
-                            setState(() {});
-                          }),
-                      ImageUploadCard(
-                          path: onBoardingController.allSelectionImage()[
-                              onBoardingController.pageIndex.value][1],
-                          name: onBoardingController.allNames()[
-                              onBoardingController.pageIndex.value][1],
-                          selectImage: (path) {
-                            onBoardingController.allSelectionImage()[
-                                onBoardingController.pageIndex.value][1] = path;
-                            setState(() {});
-                          }),
-                    ],
-                  ),
-                  SizedBox(
-                    height: size.height * 0.02,
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      ImageUploadCard(
-                          path: onBoardingController.allSelectionImage()[
-                              onBoardingController.pageIndex.value][2],
-                          name: onBoardingController.allNames()[
-                              onBoardingController.pageIndex.value][2],
-                          selectImage: (path) {
-                            onBoardingController.allSelectionImage()[
-                                onBoardingController.pageIndex.value][2] = path;
-                            setState(() {});
-                          }),
-                      ImageUploadCard(
-                          path: onBoardingController.allSelectionImage()[
-                              onBoardingController.pageIndex.value][3],
-                          name: onBoardingController.allNames()[
-                              onBoardingController.pageIndex.value][3],
-                          selectImage: (path) {
-                            onBoardingController.allSelectionImage()[
-                                onBoardingController.pageIndex.value][3] = path;
-                            setState(() {});
-                          }),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            // SizedBox(
-            //   height: size.height * 0.26,
-            // ),
-            //Spacer(),
-            OnboardingButton(
-              onTap: () async {
-                await onBoardingController.onboardingApi(OnBoardingMethod.api7);
-              },
-              buttonbackgroundColor: onBoardingController.loading.value
-                  ? MyTheme.buttonchangeColor
-                  : MyTheme.buttonColor,
-              text: 'CONTINUE',
-              buttontextColor: onBoardingController.loading.value
-                  ? MyTheme.buttontextchangeColor
-                  : MyTheme.buttontextColor,
-            ),
-
-            SizedBox(
-              height: size.height * 0.02,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class ImageCard extends StatelessWidget {
-  final String path;
-  final String? name;
-  final double width;
-  final double? height;
-  final void Function(String)? onSelect;
-  const ImageCard(
-      {Key? key,
-      required this.path,
-      this.onSelect,
-      this.name,
-      this.width = 80,
-      this.height = 70})
-      : assert(name != null ? onSelect != null : true),
-        super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      child: InkWell(
-        onTap: () {
-          if (name != null) {
-            onSelect!(path);
-          }
-        },
-        child: Container(
-          height: height,
-          width: width,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(6),
-            child: Container(
-              decoration: BoxDecoration(),
-              child: Image.asset(
-                path,
-                height: name != null
-                    ? (height != null ? height! - 15 : height)
-                    : height,
-                width: width,
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class ImageUploadCard extends StatelessWidget {
-  final String path;
-  final void Function(String) selectImage;
-  final String name;
-  ImageUploadCard({
-    Key? key,
-    required this.path,
-    required this.name,
-    required this.selectImage,
-  }) : super(key: key);
-  final ImagePicker imagePicker = ImagePicker();
-
-  @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return InkWell(
-      onTap: () async {
-        XFile? file = await imagePicker.pickImage(source: ImageSource.gallery);
-        if (file != null) {
-          selectImage(file.path);
-          print('object${file.path.split('/').last}');
-          print('object${path.split('/').last}');
-        }
-      },
-      child: Container(
-        width: size.width * 0.42,
-        height: size.height * 0.17,
-        decoration: BoxDecoration(
-          border: Border.all(
-            width: 1,
-            color: MyTheme.borderColor,
-            style: BorderStyle.solid,
-          ),
-          borderRadius: BorderRadius.all(Radius.circular(6)),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Expanded(
-              child: Container(
-                width: path == "" ? 38 : size.width * 0.42,
-                height: path == "" ? 38 : (size.height * 0.17) - 30,
-                alignment: Alignment.center,
-                child: path == ""
-                    ? Image(
-                        image: AssetImage(
-                          'assets/images/imglogo.png',
-                        ),
-                      )
-                    : Image.file(
-                        File(path),
-                        fit: BoxFit.cover,
-                      ),
-              ),
-            ),
-            Container(
-              height: 27,
-              decoration: BoxDecoration(
-                color: Color(0xffFFFFFF),
-                border: Border.all(
-                  width: 1,
-                  color: MyTheme.borderColor,
-                  style: BorderStyle.solid,
+        padding: const EdgeInsets.only(left: 16, right: 16),
+        child: SingleChildScrollView(
+          child: Form(
+            key: formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 8,
                 ),
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(6),
-                    bottomRight: Radius.circular(6)),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 12),
-                    child: Container(
-                      width: 80,
-                      child: Text(
-                        path == "" ? name : path.split('/').last,
-                        style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
-                          overflow: TextOverflow.ellipsis,
-                          fontSize: 9,
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.normal,
-                          color: MyTheme.bottomtextColor,
-                        )),
-                        textAlign: TextAlign.center,
-                      ),
+                AppFormField(
+                  title: 'Legal Entity Account Number',
+                  hintText: '511122266514782',
+                  hintfontSize: 15,
+                  bottomText:
+                      'Make sure it matches the name on your government ID',
+                  inputType: TextInputType.number,
+                  formatters: [FilteringTextInputFormatter.digitsOnly],
+                  controller: controller.ac_number,
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                AppFormField(
+                  title: 'Re-Enter Account Number',
+                  hintText: '511122266514782',
+                  hintfontSize: 15,
+                  matchVerification: true,
+                  bottomText: "Both fields should match",
+                  secondVal: controller.ac_number,
+                  inputType: TextInputType.number,
+                  formatters: [FilteringTextInputFormatter.digitsOnly],
+                  controller: controller.reac_number,
+                ),
+                SizedBox(
+                  height: 18,
+                ),
+                FieldTitle(
+                  text: "Type of Account",
+                  fontFamily: 'Inter-Regular',
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Container(
+                  height: 45,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(6.0),
+                    ),
+                    border: Border.all(
+                      width: 1,
+                      color: controller.typeOfAcc == ''
+                          ? MyTheme.borderColor
+                          : MyTheme.borderchangeColor,
+                      style: BorderStyle.solid,
                     ),
                   ),
-                  Container(
-                    width: 27,
-                    height: 27,
-                    decoration: BoxDecoration(
-                      color: Color(0xffEFEFEF),
-                      // color: Colors.amber,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(0),
-                        topRight: Radius.circular(0),
-                        bottomLeft: Radius.circular(0),
-                        bottomRight: Radius.circular(6.0),
+                  child: DropdownButtonFormField<String>(
+                    icon: Padding(
+                      padding: const EdgeInsets.only(right: 8.17),
+                      child: FaIcon(
+                        FontAwesomeIcons.chevronDown,
+                        color: MyTheme.iconColor,
+                        size: 14.87,
                       ),
                     ),
-                    child: Center(
-                      child: Container(
-                          width: 16,
-                          height: 16,
-                          // color: Colors.red,
-                          child: InkWell(
-                            onTap: () async {
-                              print('object');
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(borderSide: BorderSide.none
+                          // borderRadius: BorderRadius.all(
+                          //   Radius.circular(6.0),
+                          // ),
+                          ),
+                      hintText: 'Current/Savings',
+                      contentPadding: EdgeInsets.only(
+                        left: 14,
+                        top: 14,
+                      ),
+                      hintStyle: TextStyle(
+                        fontSize: 15,
+                        fontFamily: 'Inter',
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.w500,
+                        color: MyTheme.hinttextColor,
+                      ),
+                    ),
+                    items: controller.accType
+                        .map(
+                            (e) => DropdownMenuItem(child: Text(e), value: e))
+                        .toList(),
+                    onChanged: (newValue) {
+                      controller.typeOfAcc = newValue!;
+                    },
+                  ),
+                ),
+                SizedBox(
+                  height: 18,
+                ),
+                AppFormField(
+                  title: 'IFSC Code',
+                  hintText: 'HDFC000042',
+                  hintfontSize: 15,
+                  bottomText: "Enter a valid IFSC Code",
 
-                              XFile? file = await imagePicker.pickImage(
-                                  source: ImageSource.gallery);
-                              if (file != null) {
-                                selectImage(file.path);
-                                print('object${file.path.split('/').last}');
-                                print('object${path.split('/').last}');
-                              }
-                            },
-                            child: Image(
-                              image: AssetImage(
-                                'assets/images/upload.png',
-                              ),
-                            ),
-                          )),
-                    ),
+                  // formatters: [FilteringTextInputFormatter.digitsOnly],
+                  controller: controller.ifsc_code,
+                ),
+                SizedBox(
+                  height: 18,
+                ),
+                AppFormField(
+                  title: 'PAN Number of Restaurant',
+                  hintText: 'BSUTA1568A',
+                  hintfontSize: 15,
+                  isRequired: false,
+                  bottomText: "PAN of the registered legal entity",
+                  controller: controller.pan_num,
+                ),
+                SizedBox(
+                  height: 18,
+                ),
+                AppFormField(
+                  title: 'Name of the PAN Card',
+                  hintText: 'Bliss Bistro & Cafe',
+                  hintfontSize: 15,
+                  isRequired: false,
+                  bottomText: "PAN of the registered legal entity",
+                  controller: controller.pan_name,
+                ),
+                SizedBox(
+                  height: 18,
+                ),
+                FieldTitle(
+                  text: "Uplaod PAN Card",
+                  required: false,
+                  fontFamily: 'Inter-Regular',
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                ),
+                SizedBox(
+                  height: 5.08,
+                ),
+                PickFiles(
+                  uploadborderColor: controller.pan_image.path.isEmpty
+                      ? MyTheme.borderColor
+                      : MyTheme.borderchangeColor,
+                  uploadText: controller.pan_image.path.isEmpty
+                      ? 'Please upload [ “png”, “jpg”, “jpeg”] images'
+                      : '${controller.pan_image.path.split('/').last}',
+                  uploadtextColor: controller.pan_image.path.isEmpty
+                      ? MyTheme.hinttextColor
+                      : MyTheme.hinttextchangeColor,
+                  fontSize: controller.pan_image.path.isEmpty ? 15 : 13,
+                  onFilePicked: (p0) {
+                    setState(() {
+                      controller.pan_image = p0;
+                    });
+                  },
+                ),
+                SizedBox(
+                  height: 18,
+                ),
+                OnboardingButton(
+                  onTap: () {
+                    formKey.currentState!.save();
+                    if (formKey.currentState!.validate())
+                      controller.onboardingApi(OnBoardingMethod.api5);
+                  },
+                  buttonbackgroundColor: controller.pan_image.path.isEmpty
+                      ? MyTheme.buttonColor
+                      : MyTheme.buttonchangeColor,
+                  text: 'Click here to verify account',
+                  buttontextColor: controller.pan_image.path.isEmpty
+                      ? MyTheme.buttontextColor
+                      : MyTheme.buttontextchangeColor,
+                ),
+                SizedBox(
+                  height: 3,
+                ),
+                Text(
+                  '₹ 1 will be credited to your account for verification',
+                  style: GoogleFonts.montserrat(
+                    fontSize: 8,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w500,
+                    color: MyTheme.bottomtextColor,
                   ),
-                ],
-              ),
-            )
-          ],
+                ),
+                SizedBox(
+                  height: 6,
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );

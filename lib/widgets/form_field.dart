@@ -156,7 +156,7 @@ class _AppFormFieldState extends State<AppFormField> {
           if (widget.bottomText != null)
             Text(
               widget.bottomText!,
-              textAlign: TextAlign.center,
+              textAlign: TextAlign.left,
               style: GoogleFonts.poppins(
                 fontSize: 9,
                 fontStyle: FontStyle.normal,

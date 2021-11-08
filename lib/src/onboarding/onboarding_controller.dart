@@ -7,6 +7,8 @@ import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_services.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
+import 'package:readyplates_restaurants/src/onboarding/screens/onboarding_page5.dart';
+import 'package:readyplates_restaurants/src/onboarding/screens/onboarding_page6.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 
 enum OnBoardingMethod { api1, api2, api3, api4, api5, api6, api7 }
@@ -183,12 +185,7 @@ class OnboardingController extends GetxController {
   List<String> accType = ["Saving", "Current"];
   RxString typeOfEstablishment = "".obs;
 
-  List<String> typeOfEsts = [
-    "Dineout only",
-    "Take Away",
-    "Dineout & Delivery Both",
-    "Dine in"
-  ];
+  List<String> typeOfEsts = ["US", "United Kingdom", "Swizerland", "Finland"];
 
   RxDouble value = 1.0.obs;
 
@@ -346,7 +343,7 @@ class OnboardingController extends GetxController {
         pan_name.text,
         pan_image,
       );
-      Get.toNamed(OnboardingPage6.resId);
+      Get.toNamed(OnboardingPage6.id);
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }
@@ -372,7 +369,7 @@ class OnboardingController extends GetxController {
         // "${eventendHour.value}:${eventendMinute.value}${eventendAmPm}",
         eventDesc.text,
       );
-      Get.toNamed(OnboardingPage7.resId);
+      Get.toNamed(OnboardingPage7.id);
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }

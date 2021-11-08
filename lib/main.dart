@@ -17,6 +17,8 @@ import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dar
 import 'package:readyplates_restaurants/src/login/screens/login_page.dart';
 import 'package:readyplates_restaurants/src/login/screens/signup_page.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
+import 'package:readyplates_restaurants/src/onboarding/screens/onboarding_page5.dart';
+import 'package:readyplates_restaurants/src/onboarding/screens/onboarding_page6.dart';
 import 'package:readyplates_restaurants/src/staticscreens/opening_screen.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 import 'package:readyplates_restaurants/utils/slider_track_shape.dart';
@@ -30,7 +32,7 @@ void main() async {
   Get.put(OnboardingController());
   Get.put(AuthController());
   Get.put(HomeController());
-   Get.put(OrderController());
+  Get.put(OrderController());
   runApp(MyApp(
     key: null,
   ));
@@ -69,8 +71,8 @@ class MyApp extends StatelessWidget {
           pageTransitionsTheme: PageTransitionsTheme(builders: {
             TargetPlatform.android: CupertinoPageTransitionsBuilder()
           })),
-       home: OpeningScreen(),
-      // initialRoute: OrderCompletePage3.id ,  
+      home: OpeningScreen(),
+      // initialRoute:OnboardingPage7.id,
       routes: {
         Routes.openingscreenRoute: (context) => OpeningScreen(),
         HomePage.id: (context) => HomePage(),
@@ -88,8 +90,10 @@ class MyApp extends StatelessWidget {
         OnboardingPage3.id: (context) => OnboardingPage3(),
         OnboardingPage4.id: (context) => OnboardingPage4(),
         OnboardingPage5.id: (context) => OnboardingPage5(),
-        OnboardingPage6.resId: (context) => OnboardingPage6(),
-        OnboardingPage7.resId: (context) => OnboardingPage7(),
+        OnboardingPage6.id: (context) => OnboardingPage6(),
+        OnboardingPage7.id: (context) => OnboardingPage7(),
+        OnboardingPage8.resId: (context) => OnboardingPage8(),
+        OnboardingPage9.resId: (context) => OnboardingPage9(),
       },
     );
   }

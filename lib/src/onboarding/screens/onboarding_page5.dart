@@ -1,17 +1,12 @@
 import 'dart:io';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
-import 'package:readyplates_restaurants/widgets/field_title.dart';
-import 'package:readyplates_restaurants/widgets/file_picker.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
 import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
@@ -72,7 +67,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return OnBoardingWrapper(
-      appBarTitle: 'Payment Setup',
+      appBarTitle: 'Public Business Information',
       onboardingController: controller,
       child: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16),
@@ -83,161 +78,77 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: 8,
+                  height: 17,
                 ),
                 AppFormField(
-                  title: 'Legal Entity Account Number',
-                  hintText: '511122266514782',
+                  title: 'Statement Descriptor',
+                  hintText: 'nevadafastfood.com',
                   hintfontSize: 15,
                   bottomText:
-                      'Make sure it matches the name on your government ID',
+                      "This is the business name that will show up on the customer’s bank or credit card statements Choose something they will recognize to help prevent disputes",
                   inputType: TextInputType.number,
                   formatters: [FilteringTextInputFormatter.digitsOnly],
                   controller: controller.ac_number,
                 ),
                 SizedBox(
-                  height: 5,
+                  height: 17,
                 ),
                 AppFormField(
-                  title: 'Re-Enter Account Number',
-                  hintText: '511122266514782',
+                  title: 'Shortened Descriptor',
+                  hintText: 'NEVADAFASTFOOD',
                   hintfontSize: 15,
-                  matchVerification: true,
-                  bottomText: "Both fields should match",
-                  secondVal: controller.ac_number,
-                  inputType: TextInputType.number,
-                  formatters: [FilteringTextInputFormatter.digitsOnly],
-                  controller: controller.reac_number,
-                ),
-                SizedBox(
-                  height: 18,
-                ),
-                FieldTitle(
-                  text: "Type of Account",
-                  fontFamily: 'Inter-Regular',
-                  fontSize: 13,
-                  fontWeight: FontWeight.w500,
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Container(
-                  height: 45,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(6.0),
-                    ),
-                    border: Border.all(
-                      width: 1,
-                      color: controller.typeOfAcc == ''
-                          ? MyTheme.borderColor
-                          : MyTheme.borderchangeColor,
-                      style: BorderStyle.solid,
-                    ),
-                  ),
-                  child: DropdownButtonFormField<String>(
-                    icon: Padding(
-                      padding: const EdgeInsets.only(right: 8.17),
-                      child: FaIcon(
-                        FontAwesomeIcons.chevronDown,
-                        color: MyTheme.iconColor,
-                        size: 14.87,
-                      ),
-                    ),
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(borderSide: BorderSide.none
-                          // borderRadius: BorderRadius.all(
-                          //   Radius.circular(6.0),
-                          // ),
-                          ),
-                      hintText: 'Current/Savings',
-                      contentPadding: EdgeInsets.only(
-                        left: 14,
-                        top: 14,
-                      ),
-                      hintStyle: TextStyle(
-                        fontSize: 15,
-                        fontFamily: 'Inter',
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w500,
-                        color: MyTheme.hinttextColor,
-                      ),
-                    ),
-                    items: controller.accType
-                        .map(
-                            (e) => DropdownMenuItem(child: Text(e), value: e))
-                        .toList(),
-                    onChanged: (newValue) {
-                      controller.typeOfAcc = newValue!;
-                    },
-                  ),
-                ),
-                SizedBox(
-                  height: 18,
-                ),
-                AppFormField(
-                  title: 'IFSC Code',
-                  hintText: 'HDFC000042',
-                  hintfontSize: 15,
-                  bottomText: "Enter a valid IFSC Code",
-
-                  // formatters: [FilteringTextInputFormatter.digitsOnly],
                   controller: controller.ifsc_code,
                 ),
                 SizedBox(
-                  height: 18,
+                  height: 17,
                 ),
                 AppFormField(
-                  title: 'PAN Number of Restaurant',
-                  hintText: 'BSUTA1568A',
+                  title: 'Business Website',
+                  hintText: 'http://nevadafastfoods.com/',
                   hintfontSize: 15,
-                  isRequired: false,
-                  bottomText: "PAN of the registered legal entity",
+                  controller: controller.ifsc_code,
+                ),
+                SizedBox(
+                  height: 17,
+                ),
+                AppFormField(
+                  title: 'Support Website',
+                  hintText: 'http://nevadafastfoods.com/',
+                  hintfontSize: 15,
+                  controller: controller.ifsc_code,
+                ),
+                SizedBox(
+                  height: 17,
+                ),
+                AppFormField(
+                  title: 'Privacy Policy',
+                  hintText: 'http://nevadafastfoods.com/privacypolicy',
+                  hintfontSize: 15,
+                  isRequired: true,
                   controller: controller.pan_num,
                 ),
                 SizedBox(
-                  height: 18,
+                  height: 17,
                 ),
                 AppFormField(
-                  title: 'Name of the PAN Card',
-                  hintText: 'Bliss Bistro & Cafe',
+                  title: 'Terms of Service',
+                  hintText: 'http://nevadafastfoods.com/termsofservice',
                   hintfontSize: 15,
-                  isRequired: false,
-                  bottomText: "PAN of the registered legal entity",
+                  isRequired: true,
                   controller: controller.pan_name,
                 ),
                 SizedBox(
-                  height: 18,
+                  height: 17,
                 ),
-                FieldTitle(
-                  text: "Uplaod PAN Card",
-                  required: false,
-                  fontFamily: 'Inter-Regular',
-                  fontSize: 13,
-                  fontWeight: FontWeight.w500,
-                ),
-                SizedBox(
-                  height: 5.08,
-                ),
-                PickFiles(
-                  uploadborderColor: controller.pan_image.path.isEmpty
-                      ? MyTheme.borderColor
-                      : MyTheme.borderchangeColor,
-                  uploadText: controller.pan_image.path.isEmpty
-                      ? 'Please upload [ “png”, “jpg”, “jpeg”] images'
-                      : '${controller.pan_image.path.split('/').last}',
-                  uploadtextColor: controller.pan_image.path.isEmpty
-                      ? MyTheme.hinttextColor
-                      : MyTheme.hinttextchangeColor,
-                  fontSize: controller.pan_image.path.isEmpty ? 15 : 13,
-                  onFilePicked: (p0) {
-                    setState(() {
-                      controller.pan_image = p0;
-                    });
-                  },
+                AppFormField(
+                  title: 'FSOL License Number',
+                  hintText: '67534289110934',
+                  hintfontSize: 15,
+                  isRequired: true,
+                  controller: controller.pan_name,
                 ),
                 SizedBox(
-                  height: 18,
+                  height: 25,
                 ),
                 OnboardingButton(
                   onTap: () {
@@ -248,22 +159,10 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   buttonbackgroundColor: controller.pan_image.path.isEmpty
                       ? MyTheme.buttonColor
                       : MyTheme.buttonchangeColor,
-                  text: 'Click here to verify account',
+                  text: 'CONTINUE',
                   buttontextColor: controller.pan_image.path.isEmpty
                       ? MyTheme.buttontextColor
                       : MyTheme.buttontextchangeColor,
-                ),
-                SizedBox(
-                  height: 3,
-                ),
-                Text(
-                  '₹ 1 will be credited to your account for verification',
-                  style: GoogleFonts.montserrat(
-                    fontSize: 8,
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w500,
-                    color: MyTheme.bottomtextColor,
-                  ),
                 ),
                 SizedBox(
                   height: 6,

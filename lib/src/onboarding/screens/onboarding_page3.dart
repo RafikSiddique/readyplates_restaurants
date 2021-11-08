@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
-import 'package:readyplates_restaurants/widgets/file_picker.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
 import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
@@ -21,27 +20,10 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
   final controller = Get.find<OnboardingController>();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  void fssaiExpiryDate() {
-    showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2021),
-      lastDate: DateTime(2030),
-      currentDate: DateTime.now(),
-    ).then((pickedDate) {
-      if (pickedDate == null) {
-        return;
-      }
-      setState(() {
-        controller.expiry = pickedDate;
-      });
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return OnBoardingWrapper(
-      appBarTitle: 'Partner Onboarding',
+      appBarTitle: 'Account Settings',
       onboardingController: controller,
       child: SingleChildScrollView(
         child: Form(
@@ -52,210 +34,189 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 8),
+                SizedBox(height: 14),
                 AppFormField(
-                  title: "GSTIN Present",
-                  hintText: "Yes/No/Applied/Acknowledgement Received",
+                  title: "Legal Entity Account Number",
+                  hintText: "511122266514782",
                   hintfontSize: 15,
                   controller: controller.gstpresent,
+                  bottomText: 'Please enter a valid Account Number',
                 ),
-                SizedBox(height: 26),
-                SizedBox(
-                  height: 5,
-                ),
+                SizedBox(height: 14),
+
                 AppFormField(
-                  title: 'Restaurant GSTIN',
-                  hintText: "Eg.22AABCU9603R1ZX",
+                  title: 'Account Name',
+                  hintText: "Youraccountname",
                   hintfontSize: 15,
-                  isRequired: false,
                   controller: controller.gstnum,
                 ),
 
-                SizedBox(
-                  height: 26,
+                SizedBox(height: 14),
+                // address
+                AppFormField(
+                  title: "Business Address",
+                  hintText: "Address Line 1",
+                  hintfontSize: 15,
+                  controller: controller.address1,
+                  isRequired: false,
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(6)),
                 ),
 
                 AppFormField(
-                  title: 'FSSAI License Status',
-                  hintText: "Yes/No/Applied/Acknowledgement Received",
+                  title: '',
+                  hintText: "Address Line 2",
                   hintfontSize: 15,
+                  controller: controller.address2,
                   isRequired: false,
-                  controller: controller.fssaistatus,
+                  borderRadius:
+                      BorderRadius.vertical(bottom: Radius.circular(0)),
                 ),
 
-                SizedBox(height: 26),
-
+                AppFormField(
+                  title: '',
+                  hintText: "Address Line 3",
+                  hintfontSize: 15,
+                  controller: controller.address2,
+                  isRequired: false,
+                  borderRadius:
+                      BorderRadius.vertical(bottom: Radius.circular(0)),
+                ),
+                AppFormField(
+                  title: '',
+                  hintText: "State",
+                  hintfontSize: 15,
+                  controller: controller.address2,
+                  isRequired: false,
+                  borderRadius:
+                      BorderRadius.vertical(bottom: Radius.circular(0)),
+                ),
+                AppFormField(
+                  title: '',
+                  hintText: "City",
+                  hintfontSize: 15,
+                  controller: controller.address2,
+                  isRequired: false,
+                  borderRadius:
+                      BorderRadius.vertical(bottom: Radius.circular(0)),
+                ),
+                AppFormField(
+                  title: '',
+                  hintText: "Pin Code",
+                  hintfontSize: 15,
+                  controller: controller.nearbylandnark,
+                  isRequired: false,
+                  borderRadius:
+                      BorderRadius.vertical(bottom: Radius.circular(6)),
+                ),
+                SizedBox(height: 14),
                 FieldTitle(
-                  text: 'FSSAI Expiry Date',
-                  required: false,
+                  text: 'Phone Verification',
+                  fontFamily: 'Inter-Regular',
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
                 ),
-
                 SizedBox(
                   height: 5,
                 ),
                 Container(
-                  height: 45.68,
-                  width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 1,
-                      color: controller.expiry == DateTime(1900)
-                          ? MyTheme.borderColor
-                          : MyTheme.borderchangeColor,
-                      style: BorderStyle.solid,
-                    ),
                     borderRadius: BorderRadius.all(
                       Radius.circular(6.0),
                     ),
+                    border: Border.all(
+                      width: 1,
+                      color: controller.ownMobile.text.isEmpty
+                          ? MyTheme.borderColor
+                          : MyTheme.borderchangeColor,
+                    ),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 12.5),
-                        child: Text(
-                          controller.expiry == DateTime(1900)
-                              ? 'yyyy/mm/dd'
-                              : '${controller.expiry.year}/${controller.expiry.month}/${controller.expiry.day}',
-                          style: GoogleFonts.inter(
-                            fontSize:
-                                controller.expiry == DateTime(1900) ? 15 : 13,
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w500,
-                            color: controller.expiry == DateTime(1900)
-                                ? MyTheme.hinttextColor
-                                : MyTheme.hinttextchangeColor,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
+                  child: TextFormField(
+                    controller: controller.ownMobile,
+                    keyboardType: TextInputType.number,
+                    textAlign: TextAlign.left,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
                       ),
-                      InkWell(
-                        onTap: () {
-                          fssaiExpiryDate();
-                        },
-                        child: Container(
-                          width: 45,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(0),
-                              topRight: Radius.circular(6.0),
-                              bottomLeft: Radius.circular(0),
-                              bottomRight: Radius.circular(6.0),
-                            ),
-                          ),
-                          child: Center(
-                            child: Container(
-                              width: 20,
-                              height: 20,
-                              child: Image(
-                                image: AssetImage(
-                                  'assets/images/calendar.png',
+                      hintText: '+1 415 569 2700',
+                      suffixIcon: Container(
+                        width: 115,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              height: 35,
+                              width: 0,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  width: 1,
+                                  color: controller.ownMobile.text.isEmpty
+                                      ? MyTheme.borderColor
+                                      : MyTheme.borderchangeColor,
                                 ),
                               ),
                             ),
-                          ),
+                            TextButton(
+                              child: Padding(
+                                padding: EdgeInsets.only(right: 20, left: 20),
+                                child: Text(
+                                  'Verify',
+                                  style: TextStyle(
+                                    decoration: TextDecoration.underline,
+                                    fontWeight: FontWeight.bold,
+                                    fontStyle: FontStyle.normal,
+                                    fontFamily: 'Inter',
+                                    fontSize: 15,
+                                    color: MyTheme.verifytextColor,
+                                  ),
+                                ),
+                              ),
+                              onPressed: () {},
+                            ),
+                          ],
                         ),
                       ),
-                    ],
+                      contentPadding:
+                          EdgeInsets.only(left: 14, top: 14, right: 24),
+                      hintStyle: TextStyle(
+                        fontSize: 15,
+                        color: MyTheme.hinttextColor,
+                        fontFamily: 'Inter-Regular',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
                   ),
                 ),
-
-                //
-
-                SizedBox(height: 26),
-                FieldTitle(
-                  text:
-                      'Upload KYC (Aadhar Card/ Passport/Driving License/ Voter ID',
-                  fontFamily: 'Inter-Regular',
-                  fontSize: 13,
-                  fontWeight: FontWeight.w500,
+                SizedBox(
+                  height: 2.56,
+                ),
+                Text(
+                  controller.ownMobile.text.isEmpty
+                      ? 'Tap “Verify” button after entering phone number'
+                      : 'Press “Verify” to authenticate mobile number',
+                  style: GoogleFonts.poppins(
+                    fontSize: 9,
+                    fontWeight: FontWeight.normal,
+                    fontStyle: FontStyle.normal,
+                    color: controller.ownMobile.text.isEmpty
+                        ? MyTheme.bottomtextColor
+                        : MyTheme.starColor,
+                  ),
+                ),
+                SizedBox(
+                  height: 14,
+                ),
+                AppFormField(
+                  title: 'Time Zone',
+                  hintText: "America - Washington DC",
+                  hintfontSize: 15,
+                  controller: controller.fssaistatus,
                 ),
 
                 SizedBox(
-                  height: 5,
-                ),
-                PickFiles(
-                  uploadborderColor: controller.kycimg.path.isEmpty
-                      ? MyTheme.borderColor
-                      : MyTheme.borderchangeColor,
-                  uploadText: controller.kycimg.path.isEmpty
-                      ? 'Please upload [ “png”, “jpg”, “jpeg”] images'
-                      : '${controller.kycimg.path.split('/').last}',
-                  uploadtextColor: controller.kycimg.path.isEmpty
-                      ? MyTheme.hinttextColor
-                      : MyTheme.hinttextchangeColor,
-                  fontSize: controller.kycimg.path.isEmpty ? 15 : 13,
-                  onFilePicked: (p0) {
-                    setState(() {
-                      controller.kycimg = p0;
-                    });
-                  },
+                  height: 14,
                 ),
 
-                SizedBox(height: 26),
-                FieldTitle(
-                  text: 'Upload GSTIN Certificate',
-                  required: false,
-                  fontFamily: 'Inter-Regular',
-                  fontSize: 13,
-                  fontWeight: FontWeight.w500,
-                ),
-
-                SizedBox(
-                  height: 5,
-                ),
-                PickFiles(
-                  uploadborderColor: controller.gstinimg.path.isEmpty
-                      ? MyTheme.borderColor
-                      : MyTheme.borderchangeColor,
-                  uploadText: controller.gstinimg.path.isEmpty
-                      ? 'Please upload [ “png”, “jpg”, “jpeg”, “pdf”] files'
-                      : '${controller.gstinimg.path.split('/').last}',
-                  uploadtextColor: controller.gstinimg.path.isEmpty
-                      ? MyTheme.hinttextColor
-                      : MyTheme.hinttextchangeColor,
-                  fontSize: controller.gstinimg.path.isEmpty ? 15 : 13,
-                  onFilePicked: (p0) {
-                    setState(() {
-                      controller.gstinimg = p0;
-                    });
-                  },
-                ),
-
-                //
-                SizedBox(height: 26),
-                FieldTitle(
-                  text: 'Upload FSSAI Certificate',
-                  required: false,
-                  fontFamily: 'Inter-Regular',
-                  fontSize: 13,
-                  fontWeight: FontWeight.w500,
-                ),
-
-                SizedBox(
-                  height: 5.08,
-                ),
-                PickFiles(
-                  uploadborderColor: controller.fssaiimg.path.isEmpty
-                      ? MyTheme.borderColor
-                      : MyTheme.borderchangeColor,
-                  uploadText: controller.fssaiimg.path.isEmpty
-                      ? 'Please upload [ “png”, “jpg”, “jpeg”, “pdf”] files'
-                      : '${controller.fssaiimg.path.split('/').last}',
-                  uploadtextColor: controller.fssaiimg.path.isEmpty
-                      ? MyTheme.hinttextColor
-                      : MyTheme.hinttextchangeColor,
-                  fontSize: controller.fssaiimg.path.isEmpty ? 15 : 13,
-                  onFilePicked: (p0) {
-                    setState(() {
-                      controller.fssaiimg = p0;
-                    });
-                  },
-                ),
-
-                //
-
-                SizedBox(height: 26),
                 OnboardingButton(
                   onTap: () {
                     print(controller.expiry);
@@ -283,9 +244,8 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                       ? MyTheme.buttontextColor
                       : MyTheme.buttontextchangeColor,
                 ),
-
                 SizedBox(
-                  height: 5.89,
+                  height: 6.87,
                 ),
               ],
             ),
