@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -64,19 +65,51 @@ class _AppFormFieldState extends State<AppFormField> {
     super.initState();
   }
 
+  bool _Switchvalue = true;
   @override
   Widget build(BuildContext context) {
+    Transform widgets;
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (widget.title != "")
-            FieldTitle(
-              text: widget.title,
-              required: widget.isRequired,
-              fontSize: widget.fontSize,
-              fontFamily: widget.fontFamily,
-              fontWeight: widget.fontWeight,
+            Row(
+              children: [
+                FieldTitle(
+                  text: widget.title,
+                  required: widget.isRequired,
+                  fontSize: widget.fontSize,
+                  fontFamily: widget.fontFamily,
+                  fontWeight: widget.fontWeight,
+                ),
+                if (widget.title == 'Support Address')
+                  Transform.scale(
+                    scale: 0.6,
+                    child: CupertinoSwitch(
+                        thumbColor: Colors.white,
+                        activeColor: MyTheme.editbuttontextColor,
+                        value: _Switchvalue,
+                        onChanged: (Value) {
+                          setState(() {
+                            _Switchvalue = Value;
+                          });
+                        }),
+                  ),
+                if (widget.title == 'Support Address')
+                  Text(
+                    'Use Business Address',
+                    textAlign: TextAlign.left,
+                    style: GoogleFonts.nunito(
+                      textStyle: TextStyle(
+                        fontSize: 13,
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.normal,
+                        color: MyTheme.bottomtextColor,
+                      ),
+                    ),
+                  ),
+              ],
             ),
           if (widget.title != "")
             SizedBox(

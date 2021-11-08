@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -65,6 +66,8 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
       });
     }
   }
+
+  bool _Switchvalue = true;
 
   @override
   Widget build(BuildContext context) {
@@ -219,11 +222,27 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                 SizedBox(
                   height: 22,
                 ),
-                FieldTitle(
-                  text: "Support Phone Number",
-                  fontFamily: 'Inter-Regular',
-                  fontSize: 13,
-                  fontWeight: FontWeight.w500,
+                Row(
+                  children: [
+                    FieldTitle(
+                      text: "Support Phone Number",
+                      fontFamily: 'Inter-Regular',
+                      fontSize: 13,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    Transform.scale(
+                      scale: 0.6,
+                      child: CupertinoSwitch(
+                          thumbColor: Colors.white,
+                          activeColor: MyTheme.doneiconColor,
+                          value: _Switchvalue,
+                          onChanged: (Value) {
+                            setState(() {
+                              _Switchvalue = Value;
+                            });
+                          }),
+                    ),
+                  ],
                 ),
                 SizedBox(
                   height: 22,
