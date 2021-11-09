@@ -7,6 +7,7 @@ import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
 import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
+import 'package:readyplates_restaurants/widgets/timezone.dart';
 
 class OnboardingPage3 extends StatefulWidget {
   static const id = "/onboarding3";
@@ -206,11 +207,22 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                 SizedBox(
                   height: 14,
                 ),
-                AppFormField(
-                  title: 'Time Zone',
-                  hintText: "America - Washington DC",
-                  hintfontSize: 15,
-                  controller: controller.fssaistatus,
+                FieldTitle(
+                  text: "Time Zone",
+                  fontFamily: 'Inter-Regular',
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                TimeZone(
+                  onSelect: (p0) {
+                    controller.timezone.value = p0!;
+                  },
+                  color: controller.timezone == ""
+                      ? MyTheme.borderColor
+                      : MyTheme.borderchangeColor,
                 ),
 
                 SizedBox(
