@@ -39,8 +39,8 @@ class HomePage extends StatelessWidget {
                 icon: Container(
                   height: 20,
                   width: 20.78,
-                  child: Image(
-                    image: AssetImage('assets/images/menu.png'),
+                  child: Image.asset(
+                    'assets/images/bottombaar1.png',
                   ),
                 ),
               ),
@@ -49,8 +49,8 @@ class HomePage extends StatelessWidget {
                 icon: Container(
                   height: 20,
                   width: 20.78,
-                  child: Image(
-                    image: AssetImage('assets/images/performance.png'),
+                  child: Image.asset(
+                    'assets/images/bottombaar2.png',
                   ),
                 ),
               ),
@@ -59,8 +59,8 @@ class HomePage extends StatelessWidget {
                 icon: Container(
                   height: 20.72,
                   width: 18,
-                  child: Image(
-                    image: AssetImage('assets/images/orders.png'),
+                  child: Image.asset(
+                    'assets/images/bottombaar3.png',
                   ),
                 ),
               ),
@@ -69,8 +69,8 @@ class HomePage extends StatelessWidget {
                 icon: Container(
                   height: 20,
                   width: 20.78,
-                  child: Image(
-                    image: AssetImage('assets/images/orders.png'),
+                  child: Image.asset(
+                    'assets/images/bottombaar4.png',
                   ),
                 ),
               ),
@@ -110,7 +110,7 @@ class HomePage extends StatelessWidget {
             MenuPage(),
             PerformancePage(),
             OrderCompletePage1(),
-  /*           PageView(
+            /*           PageView(
               allowImplicitScrolling: false,
               controller: orderPageController,
               

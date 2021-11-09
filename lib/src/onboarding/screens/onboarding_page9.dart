@@ -264,7 +264,7 @@ class ImageUploadCard extends StatelessWidget {
       },
       child: Container(
         width: size.width * 0.42,
-        height: size.height * 0.17,
+        height: size.height * 0.20,
         decoration: BoxDecoration(
           border: Border.all(
             width: 1,

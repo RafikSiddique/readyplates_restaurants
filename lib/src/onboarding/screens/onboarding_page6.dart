@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:open_file/open_file.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
+import 'package:readyplates_restaurants/widgets/business.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/file_picker.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
@@ -40,16 +41,27 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: 8,
+                  height: 17,
                 ),
-                AppFormField(
-                  title: 'Type of Business',
-                  hintText: 'Corporation',
-                  hintfontSize: 15,
-                  controller: controller.ac_number,
+                FieldTitle(
+                  text: "Type of Business",
+                  fontFamily: 'Inter-Regular',
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
                 ),
                 SizedBox(
-                  height: 17,
+                  height: 5,
+                ),
+                Business(
+                  onSelect: (p0) {
+                    controller.businesstype.value = p0!;
+                  },
+                  color: controller.businesstype == ""
+                      ? MyTheme.borderColor
+                      : MyTheme.borderchangeColor,
+                ),
+                SizedBox(
+                  height: 25,
                 ),
                 AppFormField(
                   title: ' Name of Business',
@@ -126,7 +138,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                     });
                   },
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.29),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.28),
                 OnboardingButton(
                   onTap: () {
                     formKey.currentState!.save();

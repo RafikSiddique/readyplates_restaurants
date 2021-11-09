@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
@@ -86,8 +85,6 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   hintfontSize: 15,
                   bottomText:
                       "This is the business name that will show up on the customer’s bank or credit card statements Choose something they will recognize to help prevent disputes",
-                  inputType: TextInputType.number,
-                  formatters: [FilteringTextInputFormatter.digitsOnly],
                   controller: controller.ac_number,
                 ),
                 SizedBox(

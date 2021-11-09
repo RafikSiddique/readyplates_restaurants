@@ -199,8 +199,8 @@ class _AddFoodItemState extends State<AddFoodItem> {
                 height: 16,
               ),
               AppFormField(
-                title: 'Description of the Item',
-                hintText: 'Food of the description',
+                title: 'Name of the Item',
+                hintText: 'Food Item Description',
                 hintfontSize: 15,
                 controller: controller.desc,
                 bottomText: 'Max 20 Words',

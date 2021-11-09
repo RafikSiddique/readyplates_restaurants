@@ -202,6 +202,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                                       controller.noOfTables.value
                                           .toString()
                                           .padLeft(2, "0"),
+                                      textAlign: TextAlign.center,
                                       style: GoogleFonts.inter(
                                         fontSize: 16,
                                         fontStyle: FontStyle.normal,
@@ -290,6 +291,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                                       controller.noOfSeats.value
                                           .toString()
                                           .padLeft(2, "0"),
+                                      textAlign: TextAlign.center,
                                       style: GoogleFonts.inter(
                                         fontSize: 16,
                                         fontStyle: FontStyle.normal,
@@ -330,105 +332,106 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                 ),
                 Row(
                   children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          FieldTitle(
-                            text: 'Cost for two',
-                            fontFamily: 'Inter-Regular',
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500,
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Get.bottomSheet(BottomSheet(
-                                onClosing: () {},
-                                builder: (context) {
-                                  return Card(
-                                      margin: EdgeInsets.zero,
-                                      child: ListView(
-                                        shrinkWrap: true,
-                                        children: List.generate(20, (index) {
-                                          return (index + 1) * 50;
-                                        })
-                                            .map((e) => ListTile(
-                                                  title: Text(e.toString()),
-                                                  onTap: () {
-                                                    setState(() {
-                                                      controller
-                                                          .costFor2.value = e;
-                                                    });
-                                                    Get.back();
-                                                  },
-                                                ))
-                                            .toList(),
-                                      ));
-                                },
-                              ));
-                            },
-                            child: Container(
-                              height: 45,
-                              decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(6)),
-                                border: Border.all(
-                                  width: 1,
-                                  color: controller.costFor2.value == 0
-                                      ? MyTheme.borderColor
-                                      : MyTheme.borderchangeColor,
-                                  style: BorderStyle.solid,
-                                ),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Obx(
-                                    () => Text(
-                                      controller.costFor2.value.toString(),
-                                      style: GoogleFonts.inter(
-                                        fontSize: 16,
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.w500,
-                                        color: controller.costFor2.value == 00
-                                            ? MyTheme.hinttextColor
-                                            : MyTheme.hinttextchangeColor,
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 16,
-                                  ),
-                                  Text('₹',
-                                      style: GoogleFonts.inter(
-                                        fontSize: 16,
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.w500,
-                                        color: MyTheme.checkboxtextColor,
-                                      )),
-                                ],
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 3,
-                          ),
-                          Text('Enter average cost for two per meal',
-                              style: GoogleFonts.poppins(
-                                fontSize: 9,
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.normal,
-                                color: MyTheme.bottomtextColor,
-                              ))
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      width: 18,
-                    ),
+                    // Expanded(
+                    //   child: Column(
+                    //     crossAxisAlignment: CrossAxisAlignment.start,
+                    //     children: [
+                    //       FieldTitle(
+                    //         text: 'Cost for two',
+                    //         fontFamily: 'Inter-Regular',
+                    //         fontSize: 13,
+                    //         fontWeight: FontWeight.w500,
+                    //       ),
+                    //       SizedBox(
+                    //         height: 5,
+                    //       ),
+                    //       InkWell(
+                    //         onTap: () {
+                    //           Get.bottomSheet(BottomSheet(
+                    //             onClosing: () {},
+                    //             builder: (context) {
+                    //               return Card(
+                    //                   margin: EdgeInsets.zero,
+                    //                   child: ListView(
+                    //                     shrinkWrap: true,
+                    //                     children: List.generate(20, (index) {
+                    //                       return (index + 1) * 50;
+                    //                     })
+                    //                         .map((e) => ListTile(
+                    //                               title: Text(e.toString()),
+                    //                               onTap: () {
+                    //                                 setState(() {
+                    //                                   controller
+                    //                                       .costFor2.value = e;
+                    //                                 });
+                    //                                 Get.back();
+                    //                               },
+                    //                             ))
+                    //                         .toList(),
+                    //                   ));
+                    //             },
+                    //           ));
+                    //         },
+                    //         child: Container(
+                    //           height: 45,
+                    //           decoration: BoxDecoration(
+                    //             borderRadius:
+                    //                 BorderRadius.all(Radius.circular(6)),
+                    //             border: Border.all(
+                    //               width: 1,
+                    //               color: controller.costFor2.value == 0
+                    //                   ? MyTheme.borderColor
+                    //                   : MyTheme.borderchangeColor,
+                    //               style: BorderStyle.solid,
+                    //             ),
+                    //           ),
+                    //           child: Row(
+                    //             mainAxisAlignment: MainAxisAlignment.center,
+                    //             children: [
+                    //               Obx(
+                    //                 () => Text(
+                    //                   controller.costFor2.value.toString(),
+                    //                   textAlign: TextAlign.center,
+                    //                   style: GoogleFonts.inter(
+                    //                     fontSize: 16,
+                    //                     fontStyle: FontStyle.normal,
+                    //                     fontWeight: FontWeight.w500,
+                    //                     color: controller.costFor2.value == 00
+                    //                         ? MyTheme.hinttextColor
+                    //                         : MyTheme.hinttextchangeColor,
+                    //                   ),
+                    //                 ),
+                    //               ),
+                    //               SizedBox(
+                    //                 width: 16,
+                    //               ),
+                    //               Text('₹',
+                    //                   style: GoogleFonts.inter(
+                    //                     fontSize: 16,
+                    //                     fontStyle: FontStyle.normal,
+                    //                     fontWeight: FontWeight.w500,
+                    //                     color: MyTheme.checkboxtextColor,
+                    //                   )),
+                    //             ],
+                    //           ),
+                    //         ),
+                    //       ),
+                    //       SizedBox(
+                    //         height: 3,
+                    //       ),
+                    //       Text('Enter average cost for two per meal',
+                    //           style: GoogleFonts.poppins(
+                    //             fontSize: 9,
+                    //             fontStyle: FontStyle.normal,
+                    //             fontWeight: FontWeight.normal,
+                    //             color: MyTheme.bottomtextColor,
+                    //           ))
+                    //     ],
+                    //   ),
+                    // ),
+                    // SizedBox(
+                    //   width: 18,
+                    // ),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -490,6 +493,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                                   Obx(
                                     () => Text(
                                         controller.servingTime.value.toString(),
+                                        textAlign: TextAlign.center,
                                         style: GoogleFonts.inter(
                                           fontSize: 16,
                                           fontStyle: FontStyle.normal,
@@ -505,8 +509,9 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                                   ),
                                   Text(
                                     'mins',
+                                    textAlign: TextAlign.center,
                                     style: GoogleFonts.inter(
-                                      fontSize: 13,
+                                      fontSize: 16,
                                       fontStyle: FontStyle.normal,
                                       fontWeight: FontWeight.w500,
                                       color: MyTheme.checkboxtextColor,
@@ -531,6 +536,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                         ],
                       ),
                     ),
+                    Spacer(),
                   ],
                 ),
                 SizedBox(
@@ -570,6 +576,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
+                                  Spacer(),
                                   Padding(
                                     padding: const EdgeInsets.only(left: 14),
                                     child: InkWell(
@@ -580,6 +587,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                                         _selectedEventDate == null
                                             ? 'Event Dates'
                                             : '${_selectedEventDate!.year}/${_selectedEventDate!.month}/${_selectedEventDate!.day}',
+                                        textAlign: TextAlign.center,
                                         style: GoogleFonts.inter(
                                           fontSize: 15,
                                           fontStyle: FontStyle.normal,
@@ -591,6 +599,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                                       ),
                                     ),
                                   ),
+                                  Spacer(),
                                   Padding(
                                     padding: const EdgeInsets.only(right: 7.5),
                                     child: InkWell(
@@ -680,6 +689,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
+                                    Spacer(),
                                     Padding(
                                       padding: const EdgeInsets.only(left: 14),
                                       child: Obx(
@@ -696,6 +706,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                                         ),
                                       ),
                                     ),
+                                    Spacer(),
                                     Padding(
                                       padding:
                                           const EdgeInsets.only(right: 7.5),
@@ -714,7 +725,9 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                                                       "Weekly"
                                                     ]
                                                         .map((e) => ListTile(
-                                                              title: Text(e),
+                                                              title: Text(
+                                                                e,
+                                                              ),
                                                               onTap: () {
                                                                 controller
                                                                     .selectedRecurrence
@@ -798,7 +811,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                                       ? '${currentTime.format(context)}'
                                       : '${currentTime.format(context)}',
                                   style: GoogleFonts.inter(
-                                    fontSize: PickedTime == null ? 16 : 18,
+                                    fontSize: 16,
                                     fontStyle: FontStyle.normal,
                                     fontWeight: FontWeight.w500,
                                     color: PickedTime == null
@@ -855,7 +868,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                                       ? '${currentTime1.format(context)}'
                                       : '${currentTime1.format(context)}',
                                   style: GoogleFonts.inter(
-                                    fontSize: PickedTime1 == null ? 16 : 18,
+                                    fontSize: 16,
                                     fontStyle: FontStyle.normal,
                                     fontWeight: FontWeight.w500,
                                     color: PickedTime1 == null

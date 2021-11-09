@@ -115,6 +115,7 @@ class OnboardingController extends GetxController {
   late TextEditingController pan_num;
   late TextEditingController pan_name;
   File pan_image = File('');
+  RxString businesstype = "".obs;
 
   void clear() {
     resName.clear();

@@ -30,7 +30,7 @@ class PickFiles extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 45.68,
+      height: 49,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         border: Border.all(

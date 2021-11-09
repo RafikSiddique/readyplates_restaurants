@@ -136,76 +136,76 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                         borderSide: BorderSide.none,
                       ),
                       hintText: '+1 415 569 2700',
-                      suffixIcon: Container(
-                        width: 115,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Container(
-                              height: 35,
-                              width: 0,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  width: 1,
-                                  color: controller.ownMobile.text.isEmpty
-                                      ? MyTheme.borderColor
-                                      : MyTheme.borderchangeColor,
+                      suffixIcon: Padding(
+                        padding: const EdgeInsets.only(right: 40),
+                        child: Container(
+                          width: 115,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Container(
+                                height: 35,
+                                width: 0,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    width: 1,
+                                    color: controller.ownMobile.text.isEmpty
+                                        ? MyTheme.borderColor
+                                        : MyTheme.borderchangeColor,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Container(
-                              width: 100,
-                              // height: 45,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(6.0),
+                              Container(
+                                width: 100,
+                                // height: 45,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(6.0),
+                                  ),
                                 ),
-                              ),
-                              child: DropdownButtonFormField<String>(
-                                isExpanded: true,
-                                icon: Padding(
-                                  padding: const EdgeInsets.only(right: 8.17),
-                                  child: FaIcon(
+                                child: DropdownButtonFormField<String>(
+                                  isExpanded: true,
+                                  icon: FaIcon(
                                     FontAwesomeIcons.chevronDown,
                                     color: MyTheme.iconColor,
                                     size: 14.87,
                                   ),
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    hintText: 'US',
+                                    contentPadding: EdgeInsets.only(
+                                      left: 14,
+                                      top: 14,
+                                    ),
+                                    hintStyle: GoogleFonts.inter(
+                                      fontSize: 15,
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.w500,
+                                      color: controller
+                                              .typeOfEstablishment.value.isEmpty
+                                          ? MyTheme.hinttextColor
+                                          : MyTheme.hinttextchangeColor,
+                                    ),
+                                  ),
+                                  items: controller.typeOfEsts
+                                      .map(
+                                        (e) => DropdownMenuItem(
+                                            child: Text(e), value: e),
+                                      )
+                                      .toList(),
+                                  // value: controller.typeOfEstablishment.value,
+                                  onChanged: (newValue) {
+                                    setState(() {
+                                      controller.typeOfEstablishment.value =
+                                          newValue!;
+                                    });
+                                  },
                                 ),
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                  ),
-                                  hintText: 'US',
-                                  contentPadding: EdgeInsets.only(
-                                    left: 14,
-                                    top: 14,
-                                  ),
-                                  hintStyle: GoogleFonts.inter(
-                                    fontSize: 15,
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w500,
-                                    color: controller
-                                            .typeOfEstablishment.value.isEmpty
-                                        ? MyTheme.hinttextColor
-                                        : MyTheme.hinttextchangeColor,
-                                  ),
-                                ),
-                                items: controller.typeOfEsts
-                                    .map(
-                                      (e) => DropdownMenuItem(
-                                          child: Text(e), value: e),
-                                    )
-                                    .toList(),
-                                // value: controller.typeOfEstablishment.value,
-                                onChanged: (newValue) {
-                                  setState(() {
-                                    controller.typeOfEstablishment.value =
-                                        newValue!;
-                                  });
-                                },
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       contentPadding:

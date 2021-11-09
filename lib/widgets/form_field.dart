@@ -32,7 +32,7 @@ class AppFormField extends StatefulWidget {
     this.matchVerification = false,
     this.isRequired = true,
     this.fontSize = 13,
-    this.hintfontSize = 12,
+    this.hintfontSize = 15,
     this.fontFamily = 'Inter-Regular',
     this.fontWeight = FontWeight.w500,
     required this.title,
@@ -127,6 +127,13 @@ class _AppFormFieldState extends State<AppFormField> {
                 borderRadius: widget.borderRadius,
               ),
               child: TextFormField(
+                textCapitalization: TextCapitalization.characters,
+                style: GoogleFonts.inter(
+                  fontSize: 15,
+                  color: MyTheme.hinttextchangeColor,
+                  fontStyle: FontStyle.normal,
+                  fontWeight: FontWeight.w500,
+                ),
                 maxLines: widget.line,
                 obscureText: widget.isPassword ? obSecureText : false,
                 inputFormatters: widget.formatters,
@@ -169,14 +176,11 @@ class _AppFormFieldState extends State<AppFormField> {
                           icon:
                               Icon(obSecureText ? Icons.lock : Icons.lock_open))
                       : null,
-                  hintStyle: TextStyle(
+                  hintStyle: GoogleFonts.inter(
                     fontSize: widget.hintfontSize,
-                    fontFamily: 'Inter-Regular',
                     fontStyle: FontStyle.normal,
                     fontWeight: FontWeight.w500,
-                    color: widget.controller.text != ''
-                        ? MyTheme.hinttextchangeColor
-                        : MyTheme.hinttextColor,
+                    color: MyTheme.hinttextColor,
                   ),
                 ),
               ),

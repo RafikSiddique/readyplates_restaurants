@@ -81,10 +81,10 @@ class _PerformancePageState extends State<PerformancePage> {
                 ),
               ),
               SizedBox(
-                height: 11,
+                height: 27,
               ),
               Container(
-                height: MediaQuery.of(context).size.height * 0.35,
+                height: MediaQuery.of(context).size.height * 0.23,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.white,
@@ -238,6 +238,9 @@ class _PerformancePageState extends State<PerformancePage> {
                         text: 'View Detailed Feedback',
                         buttontextColor: MyTheme.appbackgroundColor,
                         fontWeight: FontWeight.bold,
+                      ),
+                      SizedBox(
+                        height: 16,
                       ),
                     ],
                   ),

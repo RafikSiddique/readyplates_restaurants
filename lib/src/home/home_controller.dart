@@ -23,6 +23,9 @@ class HomeController extends GetxController {
   final SharedPreferenceHelper sfHelper = Get.find();
   final HomeServices homeServices = HomeServices();
 
+  // List<String> bottomBarIcons = List.generate(1,
+  //     (index) => "assets/images/bottombaar" + (index + 1).toString() + ".png");
+
   void setEditing() async {
     name.text = foodItemModel!.name;
     desc.text = foodItemModel!.description;
@@ -192,8 +195,8 @@ class HomeController extends GetxController {
     Get.find<AuthController>().clearAll();
 
     Get.find<OnboardingController>().clear();
-  Get.find<OrderController>().orderList.value =  [];
-   foodItems.value =  [];
+    Get.find<OrderController>().orderList.value = [];
+    foodItems.value = [];
     Get.offAllNamed(Routes.openingscreenRoute);
   }
 }

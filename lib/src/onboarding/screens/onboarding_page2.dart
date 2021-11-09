@@ -28,6 +28,7 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
 
   @override
   Widget build(BuildContext context) {
+    var media = MediaQuery.of(context);
     return OnBoardingWrapper(
       appBarTitle: 'Partner Onboarding',
       onboardingController: controller,
@@ -93,37 +94,76 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
               ),
               if (MediaQuery.of(context).viewInsets.bottom == 0)
                 Expanded(
-                  child: FutureBuilder<Position>(
-                      future: Geolocator.getCurrentPosition(),
-                      builder: (context, snapshot) {
-                        if (!snapshot.hasError && snapshot.data != null) {
-                          return SelectLocation(
-                            isOpen: true,
-                            latLng: LatLng(snapshot.data!.latitude,
-                                snapshot.data!.longitude),
-                            setLocation: (p0) async {
-                              GeoCode geoCode = GeoCode();
-                              controller.latitude.text = p0.latitude.toString();
-                              controller.longitude.text =
-                                  p0.longitude.toString();
-                              final address = await geoCode.reverseGeocoding(
-                                  latitude: p0.latitude,
-                                  longitude: p0.longitude);
+                  child: Stack(
+                    alignment: Alignment.topCenter,
+                    children: [
+                      FutureBuilder<Position>(
+                          future: Geolocator.getCurrentPosition(),
+                          builder: (context, snapshot) {
+                            if (!snapshot.hasError && snapshot.data != null) {
+                              return SelectLocation(
+                                isOpen: true,
+                                latLng: LatLng(snapshot.data!.latitude,
+                                    snapshot.data!.longitude),
+                                setLocation: (p0) async {
+                                  GeoCode geoCode = GeoCode();
+                                  controller.latitude.text =
+                                      p0.latitude.toString();
+                                  controller.longitude.text =
+                                      p0.longitude.toString();
+                                  final address =
+                                      await geoCode.reverseGeocoding(
+                                          latitude: p0.latitude,
+                                          longitude: p0.longitude);
 
-                              controller.address1.text =
-                                  address.streetAddress.toString();
-                              controller.address2.text =
-                                  address.region.toString();
-                              controller.postalcode.text =
-                                  address.postal.toString();
-                            },
-                          );
-                        } else {
-                          return Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        }
-                      }),
+                                  controller.address1.text =
+                                      address.streetAddress.toString();
+                                  controller.address2.text =
+                                      address.region.toString();
+                                  controller.postalcode.text =
+                                      address.postal.toString();
+                                },
+                              );
+                            } else {
+                              return Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            }
+                          }),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 10, right: 10, left: 10),
+                        child: Align(
+                          alignment: Alignment.topCenter,
+                          child: Container(
+                            height: 54,
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: TextField(
+                                // textAlign: TextAlign.center,
+                                controller: TextEditingController(),
+                                decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    hintText: "Search Any Location",
+                                    contentPadding: const EdgeInsets.only(
+                                        top: 27, left: 10),
+                                    suffixIcon: Padding(
+                                      padding: const EdgeInsets.only(top: 5),
+                                      child: Icon(
+                                        Icons.search,
+                                        color: Colors.grey,
+                                      ),
+                                    )),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               SizedBox(
                 height: 3,

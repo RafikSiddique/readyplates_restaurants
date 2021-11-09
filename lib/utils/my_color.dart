@@ -60,5 +60,4 @@ class MyTheme {
   static Color imgtextColor = Color(0xff979797);
 
   static Color ratingfillColor = Color(0xffFFD000);
-
 }

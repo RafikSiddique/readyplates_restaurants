@@ -145,13 +145,13 @@ class _OpeningScreenState extends State<OpeningScreen>
                             width: size.width,
                             height: 54,
                             decoration: BoxDecoration(
-                              color: Color(0xffEFEFEF).withOpacity(0.25),
+                              color: Color(0xffEFEFEF).withOpacity(0.30),
                             ),
                             child: Center(
                               child: BackdropFilter(
                                 filter: ImageFilter.blur(
-                                  sigmaX: 9,
-                                  sigmaY: 9,
+                                  sigmaX: 10,
+                                  sigmaY: 10,
                                 ),
                                 child: Text(
                                   'LOGIN',
@@ -197,7 +197,9 @@ class _OpeningScreenState extends State<OpeningScreen>
                             borderRadius: BorderRadius.all(Radius.circular(6)),
                           ),
                           child: ClipRRect(
-                            borderRadius: BorderRadius.all(Radius.circular(6)),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(6),
+                            ),
                             child: Container(
                               width: size.width,
                               height: 54,
@@ -253,7 +255,7 @@ class _OpeningScreenState extends State<OpeningScreen>
           this.controller.animateToPage(1,
               duration: Duration(milliseconds: 500), curve: Curves.ease);
         } else {
-   /*        int id = await controller.getScreen(controller.userId);
+          /*        int id = await controller.getScreen(controller.userId);
           Get.offNamed(controller.route(id + 1)); */
           Get.put(OrderController());
           Get.offNamed(HomePage.id);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:readyplates_restaurants/utils/my_color.dart';
 
@@ -44,14 +45,13 @@ class DropdownStandard extends StatelessWidget {
               //   Radius.circular(6.0),
               // ),
             ),
-            hintText: 'Full / Half / Quarter / Other',
+            hintText: 'Small / Medium / Large / Other',
             contentPadding: EdgeInsets.only(
               left: 14,
               top: 14,
             ),
-            hintStyle: TextStyle(
+            hintStyle: GoogleFonts.inter(
               fontSize: 15,
-              fontFamily: 'Inter',
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.w500,
               color: MyTheme.hinttextColor,
@@ -60,9 +60,9 @@ class DropdownStandard extends StatelessWidget {
           items: [
             DropdownMenuItem(
                 child: Text("Select Standard Serving Size"), value: ""),
-            DropdownMenuItem(child: Text("Full"), value: "Full"),
-            DropdownMenuItem(child: Text("Half"), value: "Half"),
-            DropdownMenuItem(child: Text("Quarter"), value: "Quarter"),
+            DropdownMenuItem(child: Text("Small"), value: "Small"),
+            DropdownMenuItem(child: Text("Medium"), value: "Medium"),
+            DropdownMenuItem(child: Text("Large"), value: "Large"),
             DropdownMenuItem(child: Text("Other"), value: "Other"),
           ],
           onChanged: onSelect),
