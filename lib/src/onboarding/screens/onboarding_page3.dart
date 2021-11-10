@@ -132,6 +132,12 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                     ),
                   ),
                   child: TextFormField(
+                    style: GoogleFonts.inter(
+                      fontSize: 15,
+                      color: MyTheme.hinttextchangeColor,
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.w500,
+                    ),
                     controller: controller.ownMobile,
                     keyboardType: TextInputType.number,
                     textAlign: TextAlign.left,

@@ -131,23 +131,29 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
                             }
                           }),
                       Padding(
-                        padding:
-                            const EdgeInsets.only(top: 10, right: 10, left: 10),
+                        padding: const EdgeInsets.only(top: 10, left: 10),
                         child: Align(
-                          alignment: Alignment.topCenter,
+                          alignment: Alignment.topLeft,
                           child: Container(
-                            height: 54,
+                            height: 50,
+                            width: MediaQuery.of(context).size.width * 0.6,
                             child: Card(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10)),
                               child: TextField(
                                 // textAlign: TextAlign.center,
                                 controller: TextEditingController(),
+
                                 decoration: InputDecoration(
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     hintText: "Search Any Location",
+                                    hintStyle: GoogleFonts.inter(
+                                      fontSize: 15,
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                                     contentPadding: const EdgeInsets.only(
                                         top: 27, left: 10),
                                     suffixIcon: Padding(
@@ -155,6 +161,7 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
                                       child: Icon(
                                         Icons.search,
                                         color: Colors.grey,
+                                        size: 22,
                                       ),
                                     )),
                               ),

@@ -55,18 +55,73 @@ class Business extends StatelessWidget {
             ),
           ),
           items: [
-            DropdownMenuItem(child: Text("Type of Business"), value: ""),
-            DropdownMenuItem(child: Text("Corporation"), value: "Corporation"),
             DropdownMenuItem(
-                child: Text("Indiviual, sole proprietor, or single-member LLC"),
-                value: "Indiviual, sole proprietor, or single-member LLC"),
+                child: Text(
+                  "Type of Business",
+                  style: GoogleFonts.inter(
+                    fontSize: 15,
+                    color: MyTheme.hinttextchangeColor,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                value: ""),
             DropdownMenuItem(
-                child: Text("Limited liability company (LLC)"),
+                child: Text(
+                  "Corporation",
+                  style: GoogleFonts.inter(
+                    fontSize: 15,
+                    color: MyTheme.hinttextchangeColor,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                value: "Corporation"),
+            DropdownMenuItem(
+              child: Text(
+                "Indiviual, sole proprietor, or single-member LLC",
+                style: GoogleFonts.inter(
+                  fontSize: 15,
+                  color: MyTheme.hinttextchangeColor,
+                  fontStyle: FontStyle.normal,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              value: "Indiviual, sole proprietor, or single-member LLC",
+            ),
+            DropdownMenuItem(
+                child: Text(
+                  "Limited liability company (LLC)",
+                  style: GoogleFonts.inter(
+                    fontSize: 15,
+                    color: MyTheme.hinttextchangeColor,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
                 value: "Limited liability company (LLC)"),
             DropdownMenuItem(
-                child: Text("Nonprofit organization"),
+                child: Text(
+                  "Nonprofit organization",
+                  style: GoogleFonts.inter(
+                    fontSize: 15,
+                    color: MyTheme.hinttextchangeColor,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
                 value: "Nonprofit organization"),
-            DropdownMenuItem(child: Text("Partnership"), value: "Partnership"),
+            DropdownMenuItem(
+                child: Text(
+                  "Partnership",
+                  style: GoogleFonts.inter(
+                    fontSize: 15,
+                    color: MyTheme.hinttextchangeColor,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                value: "Partnership"),
           ],
           onChanged: onSelect),
     );

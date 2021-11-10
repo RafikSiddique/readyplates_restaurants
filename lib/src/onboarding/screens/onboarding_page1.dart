@@ -141,6 +141,12 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                     ),
                   ),
                   child: TextFormField(
+                    style: GoogleFonts.inter(
+                      fontSize: 15,
+                      color: MyTheme.hinttextchangeColor,
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.w500,
+                    ),
                     controller: controller.ownMobile,
                     keyboardType: TextInputType.number,
                     textAlign: TextAlign.left,
@@ -260,13 +266,34 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                       hintStyle: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w500,
+                        fontStyle: FontStyle.normal,
                         color: MyTheme.hinttextColor,
                       ),
                     ),
                     items: [
                       DropdownMenuItem(child: Text(""), value: ""),
-                      DropdownMenuItem(child: Text("Mumbai"), value: "Mumbai"),
-                      DropdownMenuItem(child: Text("Pune"), value: "Pune"),
+                      DropdownMenuItem(
+                          child: Text(
+                            "Mumbai",
+                            style: GoogleFonts.inter(
+                              fontSize: 15,
+                              color: MyTheme.hinttextchangeColor,
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          value: "Mumbai"),
+                      DropdownMenuItem(
+                          child: Text(
+                            "Pune",
+                            style: GoogleFonts.inter(
+                              fontSize: 15,
+                              color: MyTheme.hinttextchangeColor,
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          value: "Pune"),
                     ],
                     onChanged: (newValue) {
                       setState(() {

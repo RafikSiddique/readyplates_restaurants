@@ -104,6 +104,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   hintText: 'http://nevadafastfoods.com/',
                   hintfontSize: 15,
                   controller: controller.ifsc_code,
+                  isRequired: false,
                 ),
                 SizedBox(
                   height: 17,
@@ -113,6 +114,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   hintText: 'http://nevadafastfoods.com/',
                   hintfontSize: 15,
                   controller: controller.ifsc_code,
+                  isRequired: false,
                 ),
                 SizedBox(
                   height: 17,
@@ -121,7 +123,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   title: 'Privacy Policy',
                   hintText: 'http://nevadafastfoods.com/privacypolicy',
                   hintfontSize: 15,
-                  isRequired: true,
+                  isRequired: false,
                   controller: controller.pan_num,
                 ),
                 SizedBox(
@@ -131,7 +133,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   title: 'Terms of Service',
                   hintText: 'http://nevadafastfoods.com/termsofservice',
                   hintfontSize: 15,
-                  isRequired: true,
+                  isRequired: false,
                   controller: controller.pan_name,
                 ),
                 SizedBox(

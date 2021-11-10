@@ -130,7 +130,6 @@ class OnboardingController extends GetxController {
     postalcode.clear();
     latitude.clear();
     longitude.clear();
-
     gstpresent.clear();
     gstnum.clear();
     fssaistatus.clear();

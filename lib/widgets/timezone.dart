@@ -55,9 +55,27 @@ class TimeZone extends StatelessWidget {
             ),
           ),
           items: [
-            DropdownMenuItem(child: Text("America - Washington DC"), value: ""),
             DropdownMenuItem(
-                child: Text("America - Washington"),
+                child: Text(
+                  "America - Washington DC",
+                  style: GoogleFonts.inter(
+                    fontSize: 15,
+                    color: MyTheme.hinttextchangeColor,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                value: ""),
+            DropdownMenuItem(
+                child: Text(
+                  "America - Washington",
+                  style: GoogleFonts.inter(
+                    fontSize: 15,
+                    color: MyTheme.hinttextchangeColor,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
                 value: "America - Washington"),
           ],
           onChanged: onSelect),
