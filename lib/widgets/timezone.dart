@@ -55,6 +55,7 @@ class TimeZone extends StatelessWidget {
             ),
           ),
           items: [
+            DropdownMenuItem(child: Text(""), value: ""),
             DropdownMenuItem(
                 child: Text(
                   "America - Washington DC",
@@ -65,7 +66,7 @@ class TimeZone extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                value: ""),
+                value: "America - Washington DC"),
             DropdownMenuItem(
                 child: Text(
                   "America - Washington",

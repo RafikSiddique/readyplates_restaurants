@@ -90,7 +90,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                   title: "Public Business Name",
                   hintText: "Nevada Fast Food Inc.",
                   hintfontSize: 15,
-                  controller: controller.gstpresent,
+                  controller: controller.pubbusinessName,
                   bottomText:
                       'Your public business name may be used on invoices and receipts. Please make sure it’s correct',
                 ),
@@ -101,7 +101,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                   title: "Support Email",
                   hintText: "contactus@nevadafastfoods.com",
                   hintfontSize: 15,
-                  controller: controller.gstpresent,
+                  controller: controller.supportEmail,
                 ),
                 SizedBox(
                   height: 22,
@@ -122,13 +122,13 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                     ),
                     border: Border.all(
                       width: 1,
-                      color: controller.ownMobile.text.isEmpty
+                      color: controller.supportNumber.text.isEmpty
                           ? MyTheme.borderColor
                           : MyTheme.borderchangeColor,
                     ),
                   ),
                   child: TextFormField(
-                    controller: controller.ownMobile,
+                    controller: controller.supportNumber,
                     keyboardType: TextInputType.number,
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
@@ -149,9 +149,10 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                                 decoration: BoxDecoration(
                                   border: Border.all(
                                     width: 1,
-                                    color: controller.ownMobile.text.isEmpty
-                                        ? MyTheme.borderColor
-                                        : MyTheme.borderchangeColor,
+                                    color:
+                                        controller.typeOfEstablishment.isEmpty
+                                            ? MyTheme.borderColor
+                                            : MyTheme.borderchangeColor,
                                   ),
                                 ),
                               ),
@@ -251,14 +252,14 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                   title: "Support Address",
                   hintText: "Address Line 1",
                   hintfontSize: 15,
-                  controller: controller.address1,
+                  controller: controller.addline1,
                   borderRadius: BorderRadius.vertical(top: Radius.circular(6)),
                 ),
                 AppFormField(
                   title: '',
                   hintText: "Address Line 2",
                   hintfontSize: 15,
-                  controller: controller.address2,
+                  controller: controller.addline2,
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(0)),
                 ),
@@ -266,7 +267,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                   title: '',
                   hintText: "Address Line 3",
                   hintfontSize: 15,
-                  controller: controller.address2,
+                  controller: controller.addline3,
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(0)),
                 ),
@@ -274,7 +275,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                   title: '',
                   hintText: "State",
                   hintfontSize: 15,
-                  controller: controller.address2,
+                  controller: controller.state,
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(0)),
                 ),
@@ -282,7 +283,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                   title: '',
                   hintText: "City",
                   hintfontSize: 15,
-                  controller: controller.address2,
+                  controller: controller.city,
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(0)),
                 ),
@@ -290,7 +291,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                   title: '',
                   hintText: "Pin Code",
                   hintfontSize: 15,
-                  controller: controller.nearbylandnark,
+                  controller: controller.pincode,
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(6)),
                 ),
@@ -304,22 +305,31 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                       controller.onboardingApi(OnBoardingMethod.api4);
                   },
                   buttonbackgroundColor:
-                      (controller.typeOfEstablishment.value.isEmpty ||
-                              controller.isChecked == false ||
-                              PickedTime == null ||
-                              PickedTime1 == null ||
-                              controller.isDays == false)
+                      (controller.pubbusinessName.text.isEmpty ||
+                              controller.supportEmail.text.isEmpty ||
+                              controller.supportNumber.text.isEmpty ||
+                              controller.typeOfEstablishment.value.isEmpty ||
+                              controller.addline1.text.isEmpty ||
+                              controller.addline2.text.isEmpty ||
+                              controller.addline3.text.isEmpty ||
+                              controller.state.text.isEmpty ||
+                              controller.city.text.isEmpty ||
+                              controller.pincode.text.isEmpty)
                           ? MyTheme.buttonColor
                           : MyTheme.buttonchangeColor,
                   text: 'CONTINUE',
-                  buttontextColor:
-                      (controller.typeOfEstablishment.value.isEmpty ||
-                              controller.isChecked == false ||
-                              PickedTime == null ||
-                              PickedTime1 == null ||
-                              controller.isDays == false)
-                          ? MyTheme.buttontextColor
-                          : MyTheme.buttontextchangeColor,
+                  buttontextColor: (controller.pubbusinessName.text.isEmpty ||
+                          controller.supportEmail.text.isEmpty ||
+                          controller.supportNumber.text.isEmpty ||
+                          controller.typeOfEstablishment.value.isEmpty ||
+                          controller.addline1.text.isEmpty ||
+                          controller.addline2.text.isEmpty ||
+                          controller.addline3.text.isEmpty ||
+                          controller.state.text.isEmpty ||
+                          controller.city.text.isEmpty ||
+                          controller.pincode.text.isEmpty)
+                      ? MyTheme.buttontextColor
+                      : MyTheme.buttontextchangeColor,
                 ),
                 SizedBox(
                   height: 4.89,

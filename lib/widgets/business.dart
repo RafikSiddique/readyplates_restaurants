@@ -80,6 +80,7 @@ class Business extends StatelessWidget {
             DropdownMenuItem(
               child: Text(
                 "Indiviual, sole proprietor, or single-member LLC",
+                overflow: TextOverflow.ellipsis,
                 style: GoogleFonts.inter(
                   fontSize: 15,
                   color: MyTheme.hinttextchangeColor,
@@ -92,6 +93,7 @@ class Business extends StatelessWidget {
             DropdownMenuItem(
                 child: Text(
                   "Limited liability company (LLC)",
+                  overflow: TextOverflow.ellipsis,
                   style: GoogleFonts.inter(
                     fontSize: 15,
                     color: MyTheme.hinttextchangeColor,
@@ -103,6 +105,7 @@ class Business extends StatelessWidget {
             DropdownMenuItem(
                 child: Text(
                   "Nonprofit organization",
+                  overflow: TextOverflow.ellipsis,
                   style: GoogleFonts.inter(
                     fontSize: 15,
                     color: MyTheme.hinttextchangeColor,

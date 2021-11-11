@@ -69,7 +69,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                   bottomText:
                       "Your name must exactly match the one listed on your IRS documents (e.g, Letter 147C or SS-4 Confirmation Letter), including capitalization and punctuation",
                   hintfontSize: 15,
-                  controller: controller.ifsc_code,
+                  controller: controller.nameOfBusiness,
                 ),
                 SizedBox(
                   height: 25,
@@ -78,7 +78,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                   title: 'Employer Identifaction Number EIN',
                   hintText: 'Enter 14 digit identification number',
                   hintfontSize: 15,
-                  controller: controller.ifsc_code,
+                  controller: controller.eiNumber,
                 ),
                 SizedBox(
                   height: 25,
@@ -94,19 +94,19 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                   height: 5.08,
                 ),
                 PickFiles(
-                  uploadborderColor: controller.pan_image.path.isEmpty
+                  uploadborderColor: controller.confirmLetter.path.isEmpty
                       ? MyTheme.borderColor
                       : MyTheme.borderchangeColor,
-                  uploadText: controller.pan_image.path.isEmpty
+                  uploadText: controller.confirmLetter.path.isEmpty
                       ? 'Please upload [ “png”, “jpg”, “Pdf”] Files'
-                      : '${controller.pan_image.path.split('/').last}',
-                  uploadtextColor: controller.pan_image.path.isEmpty
+                      : '${controller.confirmLetter.path.split('/').last}',
+                  uploadtextColor: controller.confirmLetter.path.isEmpty
                       ? MyTheme.hinttextColor
                       : MyTheme.hinttextchangeColor,
-                  fontSize: controller.pan_image.path.isEmpty ? 15 : 13,
+                  fontSize: controller.confirmLetter.path.isEmpty ? 15 : 13,
                   onFilePicked: (p0) {
                     setState(() {
-                      controller.pan_image = p0;
+                      controller.confirmLetter = p0;
                     });
                   },
                 ),
@@ -122,19 +122,19 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                   height: 5.08,
                 ),
                 PickFiles(
-                  uploadborderColor: controller.pan_image.path.isEmpty
+                  uploadborderColor: controller.uploadLetter.path.isEmpty
                       ? MyTheme.borderColor
                       : MyTheme.borderchangeColor,
-                  uploadText: controller.pan_image.path.isEmpty
+                  uploadText: controller.uploadLetter.path.isEmpty
                       ? 'Please upload [ “png”, “jpg”, “Pdf”] Files'
-                      : '${controller.pan_image.path.split('/').last}',
-                  uploadtextColor: controller.pan_image.path.isEmpty
+                      : '${controller.uploadLetter.path.split('/').last}',
+                  uploadtextColor: controller.uploadLetter.path.isEmpty
                       ? MyTheme.hinttextColor
                       : MyTheme.hinttextchangeColor,
-                  fontSize: controller.pan_image.path.isEmpty ? 15 : 13,
+                  fontSize: controller.uploadLetter.path.isEmpty ? 15 : 13,
                   onFilePicked: (p0) {
                     setState(() {
-                      controller.pan_image = p0;
+                      controller.uploadLetter = p0;
                     });
                   },
                 ),
@@ -145,11 +145,19 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                     if (formKey.currentState!.validate())
                       controller.onboardingApi(OnBoardingMethod.api5);
                   },
-                  buttonbackgroundColor: controller.pan_image.path.isEmpty
+                  buttonbackgroundColor: (controller.businesstype.isEmpty ||
+                          controller.nameOfBusiness.text.isEmpty ||
+                          controller.eiNumber.text.isEmpty ||
+                          controller.confirmLetter.path.isEmpty ||
+                          controller.uploadLetter.path.isEmpty)
                       ? MyTheme.buttonColor
                       : MyTheme.buttonchangeColor,
                   text: 'CONTINUE',
-                  buttontextColor: controller.pan_image.path.isEmpty
+                  buttontextColor: (controller.businesstype.isEmpty ||
+                          controller.nameOfBusiness.text.isEmpty ||
+                          controller.eiNumber.text.isEmpty ||
+                          controller.confirmLetter.path.isEmpty ||
+                          controller.uploadLetter.path.isEmpty)
                       ? MyTheme.buttontextColor
                       : MyTheme.buttontextchangeColor,
                 ),

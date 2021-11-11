@@ -24,21 +24,68 @@ class OnboardingController extends GetxController {
   ///OnBoarding 1
   void initControllers1() {
     resName = TextEditingController();
+
     firstName = TextEditingController();
     lastName = TextEditingController();
     ownemail = TextEditingController();
     ownMobile = TextEditingController();
     poc = TextEditingController();
     pocNumber = TextEditingController();
+    //
+    accNumber = TextEditingController();
+    accName = TextEditingController();
+    addline1 = TextEditingController();
+    addline2 = TextEditingController();
+    addline3 = TextEditingController();
+    state = TextEditingController();
+    city = TextEditingController();
+    pincode = TextEditingController();
+    phoneveify = TextEditingController();
+    pubbusinessName = TextEditingController();
+    supportEmail = TextEditingController();
+    supportNumber = TextEditingController();
+    statementDescriptor = TextEditingController();
+    shortenedDescriptor = TextEditingController();
+    businessWeb = TextEditingController();
+    supportWeb = TextEditingController();
+    privacy = TextEditingController();
+    termServices = TextEditingController();
+    fsolNumber = TextEditingController();
+    nameOfBusiness = TextEditingController();
+    eiNumber = TextEditingController();
   }
 
   late TextEditingController resName;
+
   late TextEditingController firstName;
   late TextEditingController lastName;
   late TextEditingController ownemail;
   late TextEditingController ownMobile;
   late TextEditingController poc;
   late TextEditingController pocNumber;
+  late TextEditingController accNumber;
+  late TextEditingController accName;
+  late TextEditingController addline1;
+  late TextEditingController addline2;
+  late TextEditingController addline3;
+  late TextEditingController state;
+  late TextEditingController city;
+  late TextEditingController pincode;
+  late TextEditingController phoneveify;
+  late TextEditingController pubbusinessName;
+  late TextEditingController supportEmail;
+  late TextEditingController supportNumber;
+
+  late TextEditingController statementDescriptor;
+  late TextEditingController shortenedDescriptor;
+  late TextEditingController businessWeb;
+  late TextEditingController supportWeb;
+  late TextEditingController privacy;
+  late TextEditingController termServices;
+  late TextEditingController fsolNumber;
+  late TextEditingController nameOfBusiness;
+  late TextEditingController eiNumber;
+
   String rescity = '';
 
   ///OnBoarding 2
@@ -50,6 +97,27 @@ class OnboardingController extends GetxController {
     ownMobile.dispose();
     poc.dispose();
     pocNumber.dispose();
+    accNumber.dispose();
+    accName.dispose();
+    addline1.dispose();
+    addline2.dispose();
+    addline3.dispose();
+    state.dispose();
+    city.dispose();
+    pincode.dispose();
+    phoneveify.dispose();
+    pubbusinessName.dispose();
+    supportEmail.dispose();
+    supportNumber.dispose();
+    statementDescriptor.dispose();
+    shortenedDescriptor.dispose();
+    businessWeb.dispose();
+    supportWeb.dispose();
+    privacy.dispose();
+    termServices.dispose();
+    fsolNumber.dispose();
+    nameOfBusiness.dispose();
+    eiNumber.dispose();
 
     address1 = TextEditingController();
     address2 = TextEditingController();
@@ -115,10 +183,13 @@ class OnboardingController extends GetxController {
   late TextEditingController pan_num;
   late TextEditingController pan_name;
   File pan_image = File('');
+  File confirmLetter = File('');
+  File uploadLetter = File('');
   RxString businesstype = "".obs;
   RxString timezone = "".obs;
   void clear() {
     resName.clear();
+
     firstName.clear();
     lastName.clear();
     ownMobile.clear();
@@ -139,6 +210,28 @@ class OnboardingController extends GetxController {
     pan_num.clear();
     pan_name.clear();
     eventDesc.clear();
+    //
+    accNumber.clear();
+    accName.clear();
+    addline1.clear();
+    addline2.clear();
+    addline3.clear();
+    state.clear();
+    city.clear();
+    pincode.clear();
+    phoneveify.clear();
+    pubbusinessName.clear();
+    supportEmail.clear();
+    supportNumber.clear();
+    statementDescriptor.clear();
+    shortenedDescriptor.clear();
+    businessWeb.clear();
+    supportWeb.clear();
+    privacy.clear();
+    termServices.clear();
+    fsolNumber.clear();
+    nameOfBusiness.clear();
+    eiNumber.clear();
   }
 
   @override
@@ -184,7 +277,7 @@ class OnboardingController extends GetxController {
   String typeOfAcc = "";
   List<String> accType = ["Saving", "Current"];
   RxString typeOfEstablishment = "".obs;
-
+  RxString supportCountry = "".obs;
   List<String> typeOfEsts = ["US", "United Kingdom", "Swizerland", "Finland"];
 
   RxDouble value = 1.0.obs;
@@ -216,6 +309,28 @@ class OnboardingController extends GetxController {
     ifsc_code = TextEditingController();
     pan_num = TextEditingController();
     pan_name = TextEditingController();
+    //
+    accNumber = TextEditingController();
+    accName = TextEditingController();
+    addline1 = TextEditingController();
+    addline2 = TextEditingController();
+    addline3 = TextEditingController();
+    state = TextEditingController();
+    city = TextEditingController();
+    pincode = TextEditingController();
+    phoneveify = TextEditingController();
+    pubbusinessName = TextEditingController();
+    supportEmail = TextEditingController();
+    supportNumber = TextEditingController();
+    statementDescriptor = TextEditingController();
+    shortenedDescriptor = TextEditingController();
+    businessWeb = TextEditingController();
+    supportWeb = TextEditingController();
+    privacy = TextEditingController();
+    termServices = TextEditingController();
+    fsolNumber = TextEditingController();
+    nameOfBusiness = TextEditingController();
+    eiNumber = TextEditingController();
     super.onInit();
   }
 

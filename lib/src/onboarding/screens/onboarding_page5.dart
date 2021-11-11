@@ -85,7 +85,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   hintfontSize: 15,
                   bottomText:
                       "This is the business name that will show up on the customer’s bank or credit card statements Choose something they will recognize to help prevent disputes",
-                  controller: controller.ac_number,
+                  controller: controller.statementDescriptor,
                 ),
                 SizedBox(
                   height: 17,
@@ -94,7 +94,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   title: 'Shortened Descriptor',
                   hintText: 'NEVADAFASTFOOD',
                   hintfontSize: 15,
-                  controller: controller.ifsc_code,
+                  controller: controller.shortenedDescriptor,
                 ),
                 SizedBox(
                   height: 17,
@@ -103,7 +103,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   title: 'Business Website',
                   hintText: 'http://nevadafastfoods.com/',
                   hintfontSize: 15,
-                  controller: controller.ifsc_code,
+                  controller: controller.businessWeb,
                   isRequired: false,
                 ),
                 SizedBox(
@@ -113,7 +113,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   title: 'Support Website',
                   hintText: 'http://nevadafastfoods.com/',
                   hintfontSize: 15,
-                  controller: controller.ifsc_code,
+                  controller: controller.supportWeb,
                   isRequired: false,
                 ),
                 SizedBox(
@@ -124,7 +124,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   hintText: 'http://nevadafastfoods.com/privacypolicy',
                   hintfontSize: 15,
                   isRequired: false,
-                  controller: controller.pan_num,
+                  controller: controller.privacy,
                 ),
                 SizedBox(
                   height: 17,
@@ -134,7 +134,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   hintText: 'http://nevadafastfoods.com/termsofservice',
                   hintfontSize: 15,
                   isRequired: false,
-                  controller: controller.pan_name,
+                  controller: controller.termServices,
                 ),
                 SizedBox(
                   height: 17,
@@ -144,7 +144,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   hintText: '67534289110934',
                   hintfontSize: 15,
                   isRequired: true,
-                  controller: controller.pan_name,
+                  controller: controller.fsolNumber,
                 ),
                 SizedBox(
                   height: 25,
@@ -155,13 +155,27 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                     if (formKey.currentState!.validate())
                       controller.onboardingApi(OnBoardingMethod.api5);
                   },
-                  buttonbackgroundColor: controller.pan_image.path.isEmpty
-                      ? MyTheme.buttonColor
-                      : MyTheme.buttonchangeColor,
+                  buttonbackgroundColor:
+                      (controller.statementDescriptor.text.isEmpty ||
+                              controller.shortenedDescriptor.text.isEmpty ||
+                              controller.businessWeb.text.isEmpty ||
+                              controller.supportWeb.text.isEmpty ||
+                              controller.privacy.text.isEmpty ||
+                              controller.termServices.text.isEmpty ||
+                              controller.fsolNumber.text.isEmpty)
+                          ? MyTheme.buttonColor
+                          : MyTheme.buttonchangeColor,
                   text: 'CONTINUE',
-                  buttontextColor: controller.pan_image.path.isEmpty
-                      ? MyTheme.buttontextColor
-                      : MyTheme.buttontextchangeColor,
+                  buttontextColor:
+                      (controller.statementDescriptor.text.isEmpty ||
+                              controller.shortenedDescriptor.text.isEmpty ||
+                              controller.businessWeb.text.isEmpty ||
+                              controller.supportWeb.text.isEmpty ||
+                              controller.privacy.text.isEmpty ||
+                              controller.termServices.text.isEmpty ||
+                              controller.fsolNumber.text.isEmpty)
+                          ? MyTheme.buttontextColor
+                          : MyTheme.buttontextchangeColor,
                 ),
                 SizedBox(
                   height: 6,

@@ -127,7 +127,7 @@ class _AppFormFieldState extends State<AppFormField> {
                 borderRadius: widget.borderRadius,
               ),
               child: TextFormField(
-                textCapitalization: TextCapitalization.characters,
+                // textCapitalization: TextCapitalization.characters,
                 style: GoogleFonts.inter(
                   fontSize: 15,
                   color: MyTheme.hinttextchangeColor,

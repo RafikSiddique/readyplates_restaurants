@@ -40,7 +40,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   title: "Legal Entity Account Number",
                   hintText: "511122266514782",
                   hintfontSize: 15,
-                  controller: controller.gstpresent,
+                  controller: controller.accNumber,
                   bottomText: 'Please enter a valid Account Number',
                 ),
                 SizedBox(height: 14),
@@ -49,7 +49,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   title: 'Account Name',
                   hintText: "Youraccountname",
                   hintfontSize: 15,
-                  controller: controller.gstnum,
+                  controller: controller.accName,
                 ),
 
                 SizedBox(height: 14),
@@ -58,7 +58,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   title: "Business Address",
                   hintText: "Address Line 1",
                   hintfontSize: 15,
-                  controller: controller.address1,
+                  controller: controller.addline1,
                   isRequired: false,
                   borderRadius: BorderRadius.vertical(top: Radius.circular(6)),
                 ),
@@ -67,7 +67,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   title: '',
                   hintText: "Address Line 2",
                   hintfontSize: 15,
-                  controller: controller.address2,
+                  controller: controller.addline2,
                   isRequired: false,
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(0)),
@@ -77,7 +77,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   title: '',
                   hintText: "Address Line 3",
                   hintfontSize: 15,
-                  controller: controller.address2,
+                  controller: controller.addline3,
                   isRequired: false,
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(0)),
@@ -86,7 +86,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   title: '',
                   hintText: "State",
                   hintfontSize: 15,
-                  controller: controller.address2,
+                  controller: controller.state,
                   isRequired: false,
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(0)),
@@ -95,7 +95,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   title: '',
                   hintText: "City",
                   hintfontSize: 15,
-                  controller: controller.address2,
+                  controller: controller.city,
                   isRequired: false,
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(0)),
@@ -104,7 +104,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   title: '',
                   hintText: "Pin Code",
                   hintfontSize: 15,
-                  controller: controller.nearbylandnark,
+                  controller: controller.pincode,
                   isRequired: false,
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(6)),
@@ -126,7 +126,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                     ),
                     border: Border.all(
                       width: 1,
-                      color: controller.ownMobile.text.isEmpty
+                      color: controller.phoneveify.text.isEmpty
                           ? MyTheme.borderColor
                           : MyTheme.borderchangeColor,
                     ),
@@ -138,7 +138,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                       fontStyle: FontStyle.normal,
                       fontWeight: FontWeight.w500,
                     ),
-                    controller: controller.ownMobile,
+                    controller: controller.phoneveify,
                     keyboardType: TextInputType.number,
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
@@ -157,7 +157,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                               decoration: BoxDecoration(
                                 border: Border.all(
                                   width: 1,
-                                  color: controller.ownMobile.text.isEmpty
+                                  color: controller.phoneveify.text.isEmpty
                                       ? MyTheme.borderColor
                                       : MyTheme.borderchangeColor,
                                 ),
@@ -198,14 +198,14 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   height: 2.56,
                 ),
                 Text(
-                  controller.ownMobile.text.isEmpty
+                  controller.phoneveify.text.isEmpty
                       ? 'Tap “Verify” button after entering phone number'
                       : 'Press “Verify” to authenticate mobile number',
                   style: GoogleFonts.poppins(
                     fontSize: 9,
                     fontWeight: FontWeight.normal,
                     fontStyle: FontStyle.normal,
-                    color: controller.ownMobile.text.isEmpty
+                    color: controller.phoneveify.text.isEmpty
                         ? MyTheme.bottomtextColor
                         : MyTheme.starColor,
                   ),
@@ -225,6 +225,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                 TimeZone(
                   onSelect: (p0) {
                     controller.timezone.value = p0!;
+                    setState(() {});
                   },
                   color: controller.timezone == ""
                       ? MyTheme.borderColor
@@ -242,23 +243,29 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                     if (formKey.currentState!.validate())
                       controller.onboardingApi(OnBoardingMethod.api3);
                   },
-                  buttonbackgroundColor: (controller.gstpresent.text.isEmpty ||
-                          controller.gstnum.text.isEmpty ||
-                          controller.fssaistatus.text.isEmpty ||
-                          controller.expiry == DateTime(1900) ||
-                          controller.kycimg.path.isEmpty ||
-                          controller.gstinimg.path.isEmpty ||
-                          controller.fssaiimg.path.isEmpty)
+                  buttonbackgroundColor: (controller.accNumber.text.isEmpty ||
+                          controller.accName.text.isEmpty ||
+                          controller.addline1.text.isEmpty ||
+                          controller.addline2.text.isEmpty ||
+                          controller.addline3.text.isEmpty ||
+                          controller.state.text.isEmpty ||
+                          controller.city.text.isEmpty ||
+                          controller.pincode.text.isEmpty ||
+                          controller.phoneveify.text.isEmpty ||
+                          controller.timezone.isEmpty)
                       ? MyTheme.buttonColor
                       : MyTheme.buttonchangeColor,
                   text: 'CONTINUE',
-                  buttontextColor: (controller.gstpresent.text.isEmpty ||
-                          controller.gstnum.text.isEmpty ||
-                          controller.fssaistatus.text.isEmpty ||
-                          controller.expiry == DateTime(1900) ||
-                          controller.kycimg.path.isEmpty ||
-                          controller.gstinimg.path.isEmpty ||
-                          controller.fssaiimg.path.isEmpty)
+                  buttontextColor: (controller.accNumber.text.isEmpty ||
+                          controller.accName.text.isEmpty ||
+                          controller.addline1.text.isEmpty ||
+                          controller.addline2.text.isEmpty ||
+                          controller.addline3.text.isEmpty ||
+                          controller.state.text.isEmpty ||
+                          controller.city.text.isEmpty ||
+                          controller.pincode.text.isEmpty ||
+                          controller.phoneveify.text.isEmpty ||
+                          controller.timezone.isEmpty)
                       ? MyTheme.buttontextColor
                       : MyTheme.buttontextchangeColor,
                 ),
