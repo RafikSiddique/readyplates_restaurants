@@ -54,17 +54,6 @@ class AuthController extends GetxController {
       case 3:
         return OnboardingPage3.id;
       case 4:
-        return Routes.onboarding4Route;
-      case 5:
-        return Routes.onboarding5Route;
-      case 6:
-        return Routes.onboarding6Route;
-      case 7:
-        return Routes.onboarding7Route;
-      case 8:
-        return Routes.onboarding8Route;
-      case 9:
-        return Routes.onboarding9Route;
 
       default:
         return OnboardingPage1.id;
@@ -75,7 +64,7 @@ class AuthController extends GetxController {
     try {
       String id =
           await services.signup(email.text, password.text, password2.text);
-      sfHelper.setUserId(id);
+      await sfHelper.setUserId(id);
       Get.find<OnboardingController>().uniqueId = id;
       Get.toNamed(OnboardingPage1.id);
     } catch (e) {
@@ -83,7 +72,7 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<void> login() async {
+  Future<void> login(bool isChangePass) async {
     try {
       List<String> id = await services.login(
         email.text,
@@ -93,18 +82,20 @@ class AuthController extends GetxController {
       sfHelper.setRestaurantId(id[1]);
       Get.find<OnboardingController>().uniqueId = id[0];
       int routeId = 10; // await getScreen(id[0]);
-      if (routeId >= 9) {
-        isLoggedIn.value = true;
-        sfHelper.setLoggedIn(true);
-        Get.put(OrderController());
-        Get.offAllNamed(HomePage.id);
-      } else {
-        if (routeId == 1) {
-          await Geolocator.requestPermission();
-          ;
+      if (!isChangePass) {
+        if (routeId >= 9) {
+          isLoggedIn.value = true;
+          sfHelper.setLoggedIn(true);
+          Get.put(OrderController());
+          Get.offAllNamed(HomePage.id);
+        } else {
+          if (routeId == 1) {
+            await Geolocator.requestPermission();
+            ;
+          }
+          Get.toNamed(route(routeId + 1));
         }
-        Get.toNamed(route(routeId + 1));
-      }
+      } else {}
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }

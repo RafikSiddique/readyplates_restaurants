@@ -25,10 +25,14 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
   final controller = Get.find<OnboardingController>();
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
+  bool isMapKeyboard = false;
+  int a = 0;
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context);
+    if (a == 0) if (media.viewInsets.bottom == 0) {
+      isMapKeyboard = false;
+    }
     return OnBoardingWrapper(
       appBarTitle: 'Partner Onboarding',
       onboardingController: controller,
@@ -92,7 +96,8 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
               SizedBox(
                 height: 5,
               ),
-              if (MediaQuery.of(context).viewInsets.bottom == 0)
+              if (MediaQuery.of(context).viewInsets.bottom == 0 &&
+                  !isMapKeyboard)
                 Expanded(
                   child: Stack(
                     alignment: Alignment.topCenter,
@@ -141,9 +146,10 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10)),
                               child: TextField(
-                                // textAlign: TextAlign.center,
-                                controller: TextEditingController(),
-
+                                onTap: () {
+                                  isMapKeyboard = true;
+                                  a = 0;
+                                },
                                 decoration: InputDecoration(
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),

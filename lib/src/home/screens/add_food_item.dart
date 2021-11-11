@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:readyplates_restaurants/src/home/home_controller.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
@@ -38,18 +39,19 @@ class _AddFoodItemState extends State<AddFoodItem> {
   }) async {
     final ImagePicker imagePicker = ImagePicker();
     XFile? file = await imagePicker.pickImage(source: ImageSource.gallery);
+
     if (file != null) {
-      imageFile(File(file.path));
+      File? croppedFile = await ImageCropper.cropImage(
+        sourcePath: file.path,
+        aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
+        aspectRatioPresets: [CropAspectRatioPreset.square],
+        cropStyle: CropStyle.rectangle,
+      );
+      if (croppedFile != null) {
+        imageFile(croppedFile);
+      }
     }
   }
-
-  // @override
-  // void dispose() {
-  //   controller.name.dispose();
-  //   controller.desc.dispose();
-  //   controller.cost.dispose();
-  //   super.dispose();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -98,77 +100,36 @@ class _AddFoodItemState extends State<AddFoodItem> {
               SizedBox(
                 height: 5,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    height: 164,
-                    width: size.width * 0.42,
-                    decoration: BoxDecoration(
-                      color: Color(0xffFFFFFF),
-                      border: Border.all(
-                        width: 1,
-                        color: controller.image1.path.isEmpty
-                            ? MyTheme.borderColor
-                            : MyTheme.borderchangeColor,
-                      ),
-                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                    ),
-                    child: Center(
-                      child: InkWell(
-                        onTap: () {
-                          pickImage(
-                            imageFile: (p0) {
-                              controller.image1 = p0;
-                            },
-                          );
-                          setState(() {});
-                        },
-                        child: Container(
-                          child: controller.image1.path == ""
-                              ? Image(
-                                  image: AssetImage(
-                                    'assets/images/imglogo.png',
-                                  ),
-                                  fit: BoxFit.cover,
-                                  width: 60,
-                                  height: 60,
-                                )
-                              : Image.file(controller.image1),
+              Center(
+                child: InkWell(
+                  onTap: () {
+                    pickImage(
+                      imageFile: (p0) {
+                        controller.image2 = p0;
+                        setState(() {});
+                      },
+                    );
+                  },
+                  child: SizedBox.square(
+                    dimension: size.width * 0.9,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Color(0xffFFFFFF),
+                        border: Border.all(
+                          width: 1,
+                          color: controller.image2.path.isEmpty
+                              ? MyTheme.borderColor
+                              : MyTheme.borderchangeColor,
                         ),
+                        borderRadius: BorderRadius.all(Radius.circular(6)),
                       ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 16,
-                  ),
-                  Container(
-                    height: 164,
-                    width: size.width * 0.42,
-                    decoration: BoxDecoration(
-                      color: Color(0xffFFFFFF),
-                      border: Border.all(
-                        width: 1,
-                        color: controller.image2.path.isEmpty
-                            ? MyTheme.borderColor
-                            : MyTheme.borderchangeColor,
-                      ),
-                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                    ),
-                    child: Center(
-                      child: InkWell(
-                        onTap: () {
-                          pickImage(
-                            imageFile: (p0) {
-                              controller.image2 = p0;
-                            },
-                          );
-                          setState(() {});
-                        },
+                      child: Center(
                         child: Container(
                           child: controller.isEditing
                               ? Image.network(
-                                  getUrl(controller.foodItemModel!.image2))
+                                  getUrl(controller.foodItemModel!.image2),
+                                  fit: BoxFit.cover,
+                                )
                               : controller.image2.path == ""
                                   ? Image(
                                       image: AssetImage(
@@ -178,12 +139,15 @@ class _AddFoodItemState extends State<AddFoodItem> {
                                       height: 60,
                                       fit: BoxFit.cover,
                                     )
-                                  : Image.file(controller.image2),
+                                  : Image.file(
+                                      controller.image2,
+                                      fit: BoxFit.cover,
+                                    ),
                         ),
                       ),
                     ),
                   ),
-                ],
+                ),
               ),
               SizedBox(
                 height: 16,
@@ -462,7 +426,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
                                 ),
                                 icon: Icon(
                                   Icons.check_circle_outline_outlined,
-                                  color: MyTheme.doneiconColor,
+                                  color: MyTheme.borderchangeColor,
                                   size: 16,
                                 ),
                                 label: Text(

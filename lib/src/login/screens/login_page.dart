@@ -9,7 +9,8 @@ import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 
 class LoginPage extends StatefulWidget {
   static const id = "/login";
-  const LoginPage({Key? key}) : super(key: key);
+  final bool isChangePassword;
+  const LoginPage({Key? key, this.isChangePassword = true}) : super(key: key);
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -217,7 +218,7 @@ class _LoginPageState extends State<LoginPage> {
                             onTap: () async {
                               formKey.currentState!.save();
                               if (formKey.currentState!.validate())
-                                await controller.login();
+                                await controller.login(widget.isChangePassword);
                             },
                             buttonbackgroundColor:
                                 (controller.email.text.isEmpty ||

@@ -9,6 +9,8 @@ import 'package:readyplates_restaurants/src/onboarding/onboarding_services.dart'
 import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/onboarding_page5.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/onboarding_page6.dart';
+import 'package:readyplates_restaurants/utils/cities.dart';
+import 'package:readyplates_restaurants/utils/city.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 
 enum OnBoardingMethod { api1, api2, api3, api4, api5, api6, api7 }
@@ -85,6 +87,15 @@ class OnboardingController extends GetxController {
   late TextEditingController fsolNumber;
   late TextEditingController nameOfBusiness;
   late TextEditingController eiNumber;
+
+  late TextEditingController businessaccNumber;
+  late TextEditingController businessaccName;
+  late TextEditingController businessaddline1;
+  late TextEditingController businessaddline2;
+  late TextEditingController businessaddline3;
+  late TextEditingController businessstate;
+  late TextEditingController businesscity;
+  late TextEditingController businesspincode;
 
   String rescity = '';
 
@@ -378,14 +389,59 @@ class OnboardingController extends GetxController {
       );
       this.resId = resId;
       //sfHelper.setRestaurantName(resNameController.text);
-      sfHelper.setRestaurantId(resId);
-      sfHelper.getRestaurantId();
+      await sfHelper.setRestaurantId(resId);
       print('ID:1232323$resId');
       await Geolocator.requestPermission();
 
       Get.toNamed(OnboardingPage2.id);
     } catch (e) {
       Get.snackbar("Error", e.toString());
+    }
+  }
+
+  RxList<States> rxStates =
+      List<States>.from(details.map((e) => States.fromMap(e))).obs;
+
+  void searchState(String query) {
+    rxStates.value = List<States>.from(details.map((e) => States.fromMap(e)));
+    if (query != "") {
+      rxStates.value = rxStates
+          .where((p0) => p0.name.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+    }
+    rxStates.sort((a, b) => a.name.compareTo(b.name));
+  }
+
+  void search(int stateId, String query) {
+    try {
+      List<States> states =
+          List<States>.from(details.map((e) => States.fromMap(e)));
+      //  rxStates.value = states;
+      if (query.trim() == "") {
+        int i = rxStates.indexWhere((element) => element.id == stateId);
+        List<City> city =
+            states.firstWhere((element) => element.id == stateId).city;
+        city.sort((a, b) => a.name.compareTo(b.name));
+        rxStates[i].city.value = city;
+      } else {
+        int i = rxStates.indexWhere((element) => element.id == stateId);
+        print(i);
+        print("RX Things");
+        print(rxStates[i]);
+        print(rxStates[i].city);
+        States state = states.firstWhere((element) => element.id == stateId);
+        print("Original Things");
+        print(state);
+        print(state.city);
+        List<City> city = state.city
+            .where((p0) => p0.name.toLowerCase().contains(query.toLowerCase()))
+            .toList();
+        city.sort((a, b) => a.name.compareTo(b.name));
+        print(city);
+        rxStates[i].city.value = city;
+      }
+    } catch (e) {
+      print(e);
     }
   }
 
@@ -433,11 +489,9 @@ class OnboardingController extends GetxController {
         chooseCategory.toString(),
         startTime,
         endTime,
-        // "${startHour.value}:${startMinute.value}${startAmPm}",
-        // "${endHour.value}:${endMinute.value}${endAmPm}",
         chooseDays.toList().toString(),
       );
-      sfHelper.getRestaurantId();
+      //sfHelper.getRestaurantId();
       Get.toNamed(OnboardingPage8.resId);
     } catch (e) {
       Get.snackbar("Error", e.toString());

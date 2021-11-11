@@ -177,7 +177,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                                       child: Checkbox(
                                         materialTapTargetSize:
                                             MaterialTapTargetSize.shrinkWrap,
-                                        activeColor: MyTheme.checkColor,
+                                        activeColor: MyTheme.borderchangeColor,
                                         checkColor: Colors.white,
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
@@ -394,12 +394,8 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                 Obx(
                   () => Wrap(
                     direction: Axis.horizontal,
-                    // crossAxisAlignment: WrapCrossAlignment.,
                     children: [
-                      /*     Column(
-                        children: [ */
                       ...controller.selectDays
-                          //.sublist(0, 3)
                           .map((days) => Container(
                                 width: size.width * 0.29,
                                 child: Row(
@@ -414,7 +410,8 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                                         child: Checkbox(
                                           materialTapTargetSize:
                                               MaterialTapTargetSize.shrinkWrap,
-                                          activeColor: MyTheme.checkColor,
+                                          activeColor:
+                                              MyTheme.borderchangeColor,
                                           checkColor: Colors.white,
                                           shape: RoundedRectangleBorder(
                                             borderRadius:
@@ -484,7 +481,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                     formKey.currentState!.save();
                     if (formKey.currentState!.validate())
                       controller.onboardingApi(OnBoardingMethod.api4);
-                    // Get.toNamed(OnboardingPage8.resId);
+                    Get.toNamed(OnboardingPage8.resId);
                   },
                   buttonbackgroundColor:
                       (controller.typeOfEstablishment.value.isEmpty ||

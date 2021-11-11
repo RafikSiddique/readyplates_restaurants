@@ -18,7 +18,7 @@ class SharedPreferenceHelper {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String? id = sharedPreferences.getString(_userId);
     if (id == null) {
-      throw AppException(message: "No such user found");
+      throw AppException(message: "No such user found", code: 100);
     } else
       return id;
   }
@@ -33,7 +33,7 @@ class SharedPreferenceHelper {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String? resId = sharedPreferences.getString(_resId);
     if (resId == null) {
-      throw AppException(message: "No such user found");
+      throw AppException(message: "No such user found", code: 100);
     } else
       return resId;
   }

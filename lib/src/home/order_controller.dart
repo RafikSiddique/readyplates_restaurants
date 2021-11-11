@@ -25,7 +25,7 @@ class OrderController extends GetxController {
         "December",
       ];
 
-  final List<String> weekDays = [
+  final List<String> weekos = [
     "Monday",
     "Tuesday",
     "Wednessday",

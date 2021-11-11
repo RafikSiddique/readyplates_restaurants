@@ -168,7 +168,7 @@ class CustomerOtpVerify extends GetView<OrderController> {
                           fontStyle: FontStyle.normal,
                           color: controller.otpVerification.value ==
                                   controller.otpVerified
-                              ? MyTheme.doneiconColor
+                              ? MyTheme.borderchangeColor
                               : Colors.red,
                         ),
                       ))),

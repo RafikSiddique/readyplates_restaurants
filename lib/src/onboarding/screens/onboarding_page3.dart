@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
@@ -106,6 +107,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   hintText: "Pin Code",
                   hintfontSize: 15,
                   controller: controller.pincode,
+                  formatters: [FilteringTextInputFormatter.digitsOnly],
                   isRequired: false,
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(6)),
@@ -239,10 +241,23 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
 
                 OnboardingButton(
                   onTap: () {
-                    // print(controller.expiry);
-                    // formKey.currentState!.save();
-                    // if (formKey.currentState!.validate())
-                    //   controller.onboardingApi(OnBoardingMethod.api3);
+                    controller.businessaccNumber = TextEditingController();
+                    controller.businessaccName = TextEditingController();
+                    controller.businessaddline1 = TextEditingController();
+                    controller.businessaddline2 = TextEditingController();
+                    controller.businessaddline3 = TextEditingController();
+                    controller.businessstate = TextEditingController();
+                    controller.businesscity = TextEditingController();
+                    controller.businesspincode = TextEditingController();
+                    controller.businessaccNumber.text =
+                        controller.accNumber.text;
+                    controller.businessaccName.text = controller.accName.text;
+                    controller.businessaddline1.text = controller.addline1.text;
+                    controller.businessaddline2.text = controller.addline2.text;
+                    controller.businessaddline3.text = controller.addline3.text;
+                    controller.businessstate.text = controller.state.text;
+                    controller.businesscity.text = controller.city.text;
+                    controller.businesspincode.text = controller.pincode.text;
                     Get.toNamed(OnboardingPage4.id);
                   },
                   buttonbackgroundColor: (controller.accNumber.text.isEmpty ||

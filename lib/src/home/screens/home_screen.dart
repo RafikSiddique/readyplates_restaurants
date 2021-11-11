@@ -20,62 +20,36 @@ class HomePage extends StatelessWidget {
         duration: const Duration(milliseconds: 500), curve: Curves.ease);
   }
 
+  final List<String> bottomBarIcons =
+      List.generate(4, (index) => 'assets/images/bottombaar${index + 1}.png');
+  final List<String> label = ["Menu", "Performance", "Orders", "Profile"];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: MyTheme.backgroundColor,
         bottomNavigationBar: Obx(
           () => BottomNavigationBar(
-            elevation: 1,
-            currentIndex: controller.selectedIndex.value,
-            type: BottomNavigationBarType.fixed,
-            backgroundColor: Color(0xFFFFFFFF),
-            selectedFontSize: 20,
-            unselectedFontSize: 20,
-            onTap: controller.onChanged,
-            items: [
-              BottomNavigationBarItem(
-                label: 'Menu',
-                icon: Container(
-                  height: 20,
-                  width: 20.78,
-                  child: Image.asset(
-                    'assets/images/bottombaar1.png',
-                  ),
-                ),
-              ),
-              BottomNavigationBarItem(
-                label: 'Performance',
-                icon: Container(
-                  height: 20,
-                  width: 20.78,
-                  child: Image.asset(
-                    'assets/images/bottombaar2.png',
-                  ),
-                ),
-              ),
-              BottomNavigationBarItem(
-                label: 'Orders',
-                icon: Container(
-                  height: 20.72,
-                  width: 18,
-                  child: Image.asset(
-                    'assets/images/bottombaar3.png',
-                  ),
-                ),
-              ),
-              BottomNavigationBarItem(
-                label: 'Profile',
-                icon: Container(
-                  height: 20,
-                  width: 20.78,
-                  child: Image.asset(
-                    'assets/images/bottombaar4.png',
-                  ),
-                ),
-              ),
-            ],
-          ),
+              elevation: 1,
+              currentIndex: controller.selectedIndex.value,
+              type: BottomNavigationBarType.fixed,
+              backgroundColor: Color(0xFFFFFFFF),
+              selectedFontSize: 20,
+              unselectedFontSize: 20,
+              onTap: controller.onChanged,
+              items: [
+                for (var i = 0; i < bottomBarIcons.length; i++)
+                  BottomNavigationBarItem(
+                      icon: SizedBox.square(
+                        dimension: 20,
+                        child: Image.asset(
+                          bottomBarIcons[i],
+                          color: controller.selectedIndex.value == i
+                              ? MyTheme.borderchangeColor
+                              : null,
+                        ),
+                      ),
+                      label: label[i])
+              ]),
         ),
         appBar: AppBar(
           elevation: 0,
@@ -110,21 +84,6 @@ class HomePage extends StatelessWidget {
             MenuPage(),
             PerformancePage(),
             OrderCompletePage1(),
-            /*           PageView(
-              allowImplicitScrolling: false,
-              controller: orderPageController,
-              
-              children: [
-                OrderCompletePage1(
-                ),
-                CustomerOtpVerify(
-                  orderModelApi!,
-                  moveToOtp: () {},
-                ),
-                OrderCompletePage2(),
-                OrderCompletePage3(),
-              ],
-            ), */
             ProfilePage(),
           ],
         ));

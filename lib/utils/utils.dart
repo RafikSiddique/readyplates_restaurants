@@ -1,4 +1,4 @@
-class Routes {
+/* class Routes {
   static String openingscreenRoute = "/openingscreen";
   static String signupRoute = "/signup";
   static String loginRoute = "/login";
@@ -12,3 +12,4 @@ class Routes {
   static String onboarding8Route = "/onboarding8";
   static String onboarding9Route = "/onboarding9";
 }
+ */

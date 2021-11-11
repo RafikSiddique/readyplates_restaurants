@@ -107,120 +107,10 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                 SizedBox(
                   height: 22,
                 ),
-                FieldTitle(
-                  text: 'Support Phone Number',
-                  fontFamily: 'Inter-Regular',
-                  fontSize: 13,
-                  fontWeight: FontWeight.w500,
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(6.0),
-                    ),
-                    border: Border.all(
-                      width: 1,
-                      color: controller.supportNumber.text.isEmpty
-                          ? MyTheme.borderColor
-                          : MyTheme.borderchangeColor,
-                    ),
-                  ),
-                  child: TextFormField(
-                    controller: controller.supportNumber,
-                    keyboardType: TextInputType.number,
-                    textAlign: TextAlign.left,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                      ),
-                      hintText: '+1 415 569 2700',
-                      suffixIcon: Padding(
-                        padding: const EdgeInsets.only(right: 40),
-                        child: Container(
-                          width: 115,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Container(
-                                height: 35,
-                                width: 0,
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    width: 1,
-                                    color:
-                                        controller.typeOfEstablishment.isEmpty
-                                            ? MyTheme.borderColor
-                                            : MyTheme.borderchangeColor,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: 100,
-                                // height: 45,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(6.0),
-                                  ),
-                                ),
-                                child: DropdownButtonFormField<String>(
-                                  isExpanded: true,
-                                  icon: FaIcon(
-                                    FontAwesomeIcons.chevronDown,
-                                    color: MyTheme.iconColor,
-                                    size: 14.87,
-                                  ),
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                      borderSide: BorderSide.none,
-                                    ),
-                                    hintText: 'US',
-                                    contentPadding: EdgeInsets.only(
-                                      left: 14,
-                                      top: 14,
-                                    ),
-                                    hintStyle: GoogleFonts.inter(
-                                      fontSize: 15,
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.w500,
-                                      color: controller
-                                              .typeOfEstablishment.value.isEmpty
-                                          ? MyTheme.hinttextColor
-                                          : MyTheme.hinttextchangeColor,
-                                    ),
-                                  ),
-                                  items: controller.typeOfEsts
-                                      .map(
-                                        (e) => DropdownMenuItem(
-                                            child: Text(e), value: e),
-                                      )
-                                      .toList(),
-                                  // value: controller.typeOfEstablishment.value,
-                                  onChanged: (newValue) {
-                                    setState(() {
-                                      controller.typeOfEstablishment.value =
-                                          newValue!;
-                                    });
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      contentPadding:
-                          EdgeInsets.only(left: 14, top: 14, right: 24),
-                      hintStyle: TextStyle(
-                        fontSize: 15,
-                        color: MyTheme.hinttextColor,
-                        fontFamily: 'Inter-Regular',
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                ),
+                AppFormField(
+                    title: "Support Phone Number",
+                    hintText: '+1 415 569 2700',
+                    controller: controller.supportNumber),
                 SizedBox(
                   height: 22,
                 ),
@@ -236,7 +126,8 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                       scale: 0.6,
                       child: CupertinoSwitch(
                           thumbColor: Colors.white,
-                          activeColor: MyTheme.doneiconColor,
+                          activeColor: MyTheme.borderchangeColor,
+                          trackColor: MyTheme.editbuttontextColor,
                           value: _Switchvalue,
                           onChanged: (Value) {
                             setState(() {
@@ -253,14 +144,39 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                   title: "Support Address",
                   hintText: "Address Line 1",
                   hintfontSize: 15,
-                  controller: controller.addline1,
+                  controller: controller.businessaddline1,
+                  onSwitch: (value) {
+                    if (value) {
+                      controller.businessaccNumber.text =
+                          controller.accNumber.text;
+                      controller.businessaccName.text = controller.accName.text;
+                      controller.businessaddline1.text =
+                          controller.addline1.text;
+                      controller.businessaddline2.text =
+                          controller.addline2.text;
+                      controller.businessaddline3.text =
+                          controller.addline3.text;
+                      controller.businessstate.text = controller.state.text;
+                      controller.businesscity.text = controller.city.text;
+                      controller.businesspincode.text = controller.pincode.text;
+                    } else {
+                      controller.businessaccNumber.clear();
+                      controller.businessaccName.clear();
+                      controller.businessaddline1.clear();
+                      controller.businessaddline2.clear();
+                      controller.businessaddline3.clear();
+                      controller.businessstate.clear();
+                      controller.businesscity.clear();
+                      controller.businesspincode.clear();
+                    }
+                  },
                   borderRadius: BorderRadius.vertical(top: Radius.circular(6)),
                 ),
                 AppFormField(
                   title: '',
                   hintText: "Address Line 2",
                   hintfontSize: 15,
-                  controller: controller.addline2,
+                  controller: controller.businessaddline2,
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(0)),
                 ),
@@ -268,7 +184,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                   title: '',
                   hintText: "Address Line 3",
                   hintfontSize: 15,
-                  controller: controller.addline3,
+                  controller: controller.businessaddline3,
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(0)),
                 ),
@@ -276,7 +192,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                   title: '',
                   hintText: "State",
                   hintfontSize: 15,
-                  controller: controller.state,
+                  controller: controller.businessstate,
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(0)),
                 ),
@@ -284,7 +200,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                   title: '',
                   hintText: "City",
                   hintfontSize: 15,
-                  controller: controller.city,
+                  controller: controller.businesscity,
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(0)),
                 ),
@@ -292,7 +208,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                   title: '',
                   hintText: "Pin Code",
                   hintfontSize: 15,
-                  controller: controller.pincode,
+                  controller: controller.businesspincode,
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(6)),
                 ),

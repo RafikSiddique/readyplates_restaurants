@@ -28,8 +28,6 @@ class MyTheme {
 
   static Color appbackgroundColor = Color(0xffFFFFFF);
 
-  static Color checkColor = Color(0xff00ADB5);
-
   static Color checkboxtextColor = Color(0xff2F2E41).withOpacity(0.7);
 
   static Color checkboxbottomtextColor = Color(0xffEB4132);
@@ -44,7 +42,6 @@ class MyTheme {
 
   static Color editbuttontextColor = Color(0xffFF6E42);
 
-  static Color doneiconColor = Color(0xff00ADB5);
 
   static Color closeiconColor = Color(0xffEB4132);
 

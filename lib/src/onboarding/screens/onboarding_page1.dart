@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
+import 'package:readyplates_restaurants/widgets/city_selector.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
@@ -154,7 +155,7 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                       border: OutlineInputBorder(
                         borderSide: BorderSide.none,
                       ),
-                      hintText: '+91 XXXXXXXXXX',
+                      hintText: '+1 415 569 2700',
                       suffixIcon: Container(
                         width: 115,
                         child: Row(
@@ -231,78 +232,39 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                 SizedBox(
                   height: 5,
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 1,
-                      color: controller.rescity.isEmpty
-                          ? MyTheme.borderColor
-                          : MyTheme.borderchangeColor,
-                    ),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(6.0),
-                    ),
-                  ),
-                  child: DropdownButtonFormField(
-                    icon: Padding(
-                      padding: const EdgeInsets.only(
-                        right: 12.21,
+                GestureDetector(
+                  onTap: () {
+                    controller.rxStates
+                        .sort((a, b) => a.name.compareTo(b.name));
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          content: CitySelectorSheet(),
+                        );
+                      },
+                    );
+                  },
+                  child: Container(
+                      width: double.infinity,
+                      height: 50,
+                      alignment: Alignment.centerLeft,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          width: 1,
+                          color: controller.rescity.isEmpty
+                              ? MyTheme.borderColor
+                              : MyTheme.borderchangeColor,
+                        ),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(6.0),
+                        ),
                       ),
-                      child: FaIcon(
-                        FontAwesomeIcons.chevronDown,
-                        color: MyTheme.iconColor,
-                        size: 14.83,
-                      ),
-                    ),
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                      ),
-                      hintText: 'Select City',
-                      contentPadding: EdgeInsets.only(
-                        left: 14,
-                        top: 14,
-                      ),
-                      hintStyle: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                        fontStyle: FontStyle.normal,
-                        color: MyTheme.hinttextColor,
-                      ),
-                    ),
-                    items: [
-                      DropdownMenuItem(child: Text(""), value: ""),
-                      DropdownMenuItem(
-                          child: Text(
-                            "Mumbai",
-                            style: GoogleFonts.inter(
-                              fontSize: 15,
-                              color: MyTheme.hinttextchangeColor,
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          value: "Mumbai"),
-                      DropdownMenuItem(
-                          child: Text(
-                            "Pune",
-                            style: GoogleFonts.inter(
-                              fontSize: 15,
-                              color: MyTheme.hinttextchangeColor,
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          value: "Pune"),
-                    ],
-                    onChanged: (newValue) {
-                      setState(() {
-                        controller.rescity = newValue.toString();
-
-                        print(newValue);
-                      });
-                    },
-                  ),
+                      child: Text(controller.rescity == ""
+                          ? "Select City"
+                          : controller.rescity)),
                 ),
                 SizedBox(
                   height: 18,
@@ -318,7 +280,7 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                 ),
                 AppFormField(
                   title: "Restaurant POC Mobile Number",
-                  hintText: "+91 XXXXXXXXXX",
+                  hintText: '+1 415 569 2700',
                   hintfontSize: 15,
                   controller: controller.pocNumber,
                   inputType: TextInputType.number,

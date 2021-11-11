@@ -65,7 +65,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                   height: 25,
                 ),
                 AppFormField(
-                  title: ' Name of Business',
+                  title: 'Name of Business',
                   hintText: 'Nevada Fast Food Inc.',
                   bottomText:
                       "Your name must exactly match the one listed on your IRS documents (e.g, Letter 147C or SS-4 Confirmation Letter), including capitalization and punctuation",
@@ -78,6 +78,8 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                 AppFormField(
                   title: 'Employer Identifaction Number EIN',
                   hintText: 'Enter 14 digit identification number',
+                  minLength: 14,
+                  maxLength: 14,
                   hintfontSize: 15,
                   controller: controller.eiNumber,
                 ),
@@ -139,12 +141,8 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                     });
                   },
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.28),
                 OnboardingButton(
                   onTap: () {
-                    // formKey.currentState!.save();
-                    // if (formKey.currentState!.validate())
-                    //   controller.onboardingApi(OnBoardingMethod.api5);
                     Get.toNamed(OnboardingPage7.id);
                   },
                   buttonbackgroundColor: (controller.businesstype.isEmpty ||
@@ -162,9 +160,6 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                           controller.uploadLetter.path.isEmpty)
                       ? MyTheme.buttontextColor
                       : MyTheme.buttontextchangeColor,
-                ),
-                SizedBox(
-                  height: 6,
                 ),
               ],
             ),

@@ -12,6 +12,7 @@ class AppFormField extends StatefulWidget {
   final String title;
   final String? Function(String?)? validator;
   void Function(TextEditingController)? onchanged;
+  void Function(bool)? onSwitch;
   final String hintText;
   final BorderRadius borderRadius;
   final TextEditingController controller;
@@ -24,6 +25,8 @@ class AppFormField extends StatefulWidget {
   final String fontFamily;
   final FontWeight fontWeight;
   final bool matchVerification;
+  final int? maxLength;
+  final int? minLength;
   final TextEditingController? secondVal;
   AppFormField({
     Key? key,
@@ -45,6 +48,9 @@ class AppFormField extends StatefulWidget {
     this.onchanged,
     required this.controller,
     this.bottomText,
+    this.maxLength,
+    this.onSwitch,
+    this.minLength,
   })  : assert(matchVerification ? secondVal != null : true),
         super(key: key);
 
@@ -88,9 +94,11 @@ class _AppFormFieldState extends State<AppFormField> {
                     scale: 0.6,
                     child: CupertinoSwitch(
                         thumbColor: Colors.white,
-                        activeColor: MyTheme.editbuttontextColor,
+                        trackColor: MyTheme.editbuttontextColor,
+                        activeColor: MyTheme.borderchangeColor,
                         value: _Switchvalue,
                         onChanged: (Value) {
+                          if (widget.onSwitch != null) widget.onSwitch!(Value);
                           setState(() {
                             _Switchvalue = Value;
                           });
@@ -138,10 +146,16 @@ class _AppFormFieldState extends State<AppFormField> {
                 obscureText: widget.isPassword ? obSecureText : false,
                 inputFormatters: widget.formatters,
                 controller: widget.controller,
+                maxLength: widget.maxLength,
                 validator: (value) {
                   if (value == "") {
                     if (widget.isRequired) {
                       return "This Field is required";
+                    }
+                    if (widget.minLength != null) {
+                      if (value!.length < widget.minLength!) {
+                        return "Invalid, Minimum length should be ${widget.minLength} digits";
+                      }
                     }
                   } else {
                     if (widget.matchVerification) {

@@ -8,16 +8,26 @@ class TimeZone extends StatelessWidget {
   final void Function(String?) onSelect;
   final String? value;
   final Color color;
-  const TimeZone({
+  TimeZone({
     Key? key,
     required this.onSelect,
     this.value,
     required this.color,
   }) : super(key: key);
 
+  final List<String> timeZones = [
+    "Eastern Standard Time : Washington DC, (GMT-5)",
+    "Central Standard Time : Chicago (GMT-6)",
+    "Mountain Standard Time ; Denver (GMT-7)",
+    "Pacific Standard Time : Los Angeles (GMT-8)",
+    "Alaska Standard Time : Anchorage (GMT-9)",
+    "Hawaii-Aleutian Standard Time : Honolulu (GMT-10)",
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(
           Radius.circular(6.0),
@@ -54,31 +64,17 @@ class TimeZone extends StatelessWidget {
               color: MyTheme.hinttextColor,
             ),
           ),
-          items: [
-            DropdownMenuItem(child: Text(""), value: ""),
-            DropdownMenuItem(
-                child: Text(
-                  "America - Washington DC",
-                  style: GoogleFonts.inter(
-                    fontSize: 15,
-                    color: MyTheme.hinttextchangeColor,
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                value: "America - Washington DC"),
-            DropdownMenuItem(
-                child: Text(
-                  "America - Washington",
-                  style: GoogleFonts.inter(
-                    fontSize: 15,
-                    color: MyTheme.hinttextchangeColor,
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                value: "America - Washington"),
-          ],
+          items: timeZones
+              .map((e) => DropdownMenuItem(
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.7,
+                      child: FittedBox(
+                        child: Text(e),
+                      ),
+                    ),
+                    value: e,
+                  ))
+              .toList(),
           onChanged: onSelect),
     );
   }

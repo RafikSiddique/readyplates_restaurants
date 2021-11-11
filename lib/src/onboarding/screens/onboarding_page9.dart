@@ -5,6 +5,7 @@ import 'package:flutter_card_swipper/flutter_card_swiper.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
@@ -238,7 +239,7 @@ class ImageCard extends StatelessWidget {
   }
 }
 
-class ImageUploadCard extends StatelessWidget {
+class ImageUploadCard extends StatefulWidget {
   final String path;
   final void Function(String) selectImage;
   final String name;
@@ -248,19 +249,47 @@ class ImageUploadCard extends StatelessWidget {
     required this.name,
     required this.selectImage,
   }) : super(key: key);
+
+  @override
+  State<ImageUploadCard> createState() => _ImageUploadCardState();
+}
+
+class _ImageUploadCardState extends State<ImageUploadCard> {
   final ImagePicker imagePicker = ImagePicker();
+
+  Future<void> pickImage({
+    required void Function(File) imageFile,
+  }) async {
+    XFile? file = await imagePicker.pickImage(source: ImageSource.gallery);
+
+    if (file != null) {
+      File? croppedFile = await ImageCropper.cropImage(
+        sourcePath: file.path,
+        aspectRatio: CropAspectRatio(ratioX: 4, ratioY: 3),
+        aspectRatioPresets: [CropAspectRatioPreset.square],
+        cropStyle: CropStyle.rectangle,
+      );
+      if (croppedFile != null) {
+        imageFile(croppedFile);
+        setState(() {
+          fileName = file.name;
+        });
+      }
+    }
+  }
+
+  String fileName = "";
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return InkWell(
       onTap: () async {
-        XFile? file = await imagePicker.pickImage(source: ImageSource.gallery);
-        if (file != null) {
-          selectImage(file.path);
-          print('object${file.path.split('/').last}');
-          print('object${path.split('/').last}');
-        }
+        await pickImage(
+          imageFile: (p0) {
+            widget.selectImage(p0.path);
+          },
+        );
       },
       child: Container(
         width: size.width * 0.42,
@@ -279,17 +308,17 @@ class ImageUploadCard extends StatelessWidget {
           children: [
             Expanded(
               child: Container(
-                width: path == "" ? 38 : size.width * 0.42,
-                height: path == "" ? 38 : (size.height * 0.17) - 30,
+                width: widget.path == "" ? 38 : size.width * 0.42,
+                height: widget.path == "" ? 38 : (size.height * 0.17) - 30,
                 alignment: Alignment.center,
-                child: path == ""
+                child: widget.path == ""
                     ? Image(
                         image: AssetImage(
                           'assets/images/imglogo.png',
                         ),
                       )
                     : Image.file(
-                        File(path),
+                        File(widget.path),
                         fit: BoxFit.cover,
                       ),
               ),
@@ -315,7 +344,7 @@ class ImageUploadCard extends StatelessWidget {
                     child: Container(
                       width: 80,
                       child: Text(
-                        path == "" ? name : path.split('/').last,
+                        widget.path == "" ? widget.name : fileName,
                         style: GoogleFonts.poppins(
                             textStyle: TextStyle(
                           overflow: TextOverflow.ellipsis,
@@ -346,22 +375,9 @@ class ImageUploadCard extends StatelessWidget {
                           width: 16,
                           height: 16,
                           // color: Colors.red,
-                          child: InkWell(
-                            onTap: () async {
-                              print('object');
-
-                              XFile? file = await imagePicker.pickImage(
-                                  source: ImageSource.gallery);
-                              if (file != null) {
-                                selectImage(file.path);
-                                print('object${file.path.split('/').last}');
-                                print('object${path.split('/').last}');
-                              }
-                            },
-                            child: Image(
-                              image: AssetImage(
-                                'assets/images/upload.png',
-                              ),
+                          child: Image(
+                            image: AssetImage(
+                              'assets/images/upload.png',
                             ),
                           )),
                     ),

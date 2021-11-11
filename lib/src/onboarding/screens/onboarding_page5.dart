@@ -22,50 +22,9 @@ class OnboardingPage5 extends StatefulWidget {
 class _OnboardingPage5State extends State<OnboardingPage5> {
   final controller = Get.find<OnboardingController>();
   final formKey = GlobalKey<FormState>();
-  void openFile(PlatformFile file) {
-    OpenFile.open(file.path!);
-  }
-
-  Future<File> saveFilePermanently(PlatformFile file) async {
-    final appStorage = await getApplicationDocumentsDirectory();
-    final newFile = File('${appStorage.path}/${file.name}');
-    return File(file.path!).copy(newFile.path);
-  }
-
-  @override
-  void initState() {
-    controller.ac_number.addListener(() {
-      setState(() {});
-    });
-    controller.reac_number.addListener(() {
-      setState(() {});
-    });
-    controller.ifsc_code.addListener(() {
-      setState(() {});
-    });
-    controller.pan_num.addListener(() {
-      setState(() {});
-    });
-    controller.pan_name.addListener(() {
-      setState(() {});
-    });
-
-    super.initState();
-  }
-
-  // @override
-  // void dispose() {
-  //   controller.ac_number.dispose();
-  //   controller.reac_number.dispose();
-  //   controller.ifsc_code.dispose();
-  //   controller.pan_num.dispose();
-  //   controller.pan_name.dispose();
-  //   super.dispose();
-  // }
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return OnBoardingWrapper(
       appBarTitle: 'Public Business Information',
       onboardingController: controller,

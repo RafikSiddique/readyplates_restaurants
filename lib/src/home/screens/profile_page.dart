@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:readyplates_restaurants/src/login/screens/login_page.dart';
 import 'package:readyplates_restaurants/widgets/edit_button.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -9,7 +11,11 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        ProfileListTile(title: "Change Password", onTap: () {}),
+        ProfileListTile(
+            title: "Change Password",
+            onTap: () {
+              Get.toNamed(LoginPage.id, arguments: true);
+            }),
         ProfileListTile(title: "Restaurant Detail", onTap: () {}),
         ProfileListTile(title: "Restaurant Bio", onTap: () {}),
         ProfileListTile(title: "Payment Setup", onTap: () {}),

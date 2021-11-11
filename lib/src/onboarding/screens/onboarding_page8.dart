@@ -537,7 +537,6 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                         ],
                       ),
                     ),
-                    Spacer(),
                   ],
                 ),
                 SizedBox(

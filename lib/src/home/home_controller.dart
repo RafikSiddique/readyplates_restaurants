@@ -11,6 +11,7 @@ import 'package:readyplates_restaurants/src/home/order_controller.dart';
 import 'package:readyplates_restaurants/src/home/screens/add_food_item.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
+import 'package:readyplates_restaurants/src/staticscreens/opening_screen.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 import 'package:readyplates_restaurants/utils/utils.dart';
 
@@ -190,6 +191,17 @@ class HomeController extends GetxController {
     }
   }
 
+  RxList<Map<String, dynamic>> feedbacks = <Map<String, dynamic>>[].obs;
+
+  Future<void> getFeedbacks() async {
+    try {
+      String id = await sfHelper.getRestaurantId();
+      //feedbacks.value = await homeServices.getFeedbacks(id);
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+    }
+  }
+
   Future<void> logout() async {
     await sfHelper.clear();
     Get.find<AuthController>().clearAll();
@@ -197,6 +209,6 @@ class HomeController extends GetxController {
     Get.find<OnboardingController>().clear();
     Get.find<OrderController>().orderList.value = [];
     foodItems.value = [];
-    Get.offAllNamed(Routes.openingscreenRoute);
+    Get.offAllNamed(OpeningScreen.id);
   }
 }
