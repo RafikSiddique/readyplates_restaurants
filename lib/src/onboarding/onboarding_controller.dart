@@ -438,7 +438,7 @@ class OnboardingController extends GetxController {
         chooseDays.toList().toString(),
       );
       sfHelper.getRestaurantId();
-      Get.toNamed(OnboardingPage5.id);
+      Get.toNamed(OnboardingPage8.resId);
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }
@@ -484,7 +484,8 @@ class OnboardingController extends GetxController {
         // "${eventendHour.value}:${eventendMinute.value}${eventendAmPm}",
         eventDesc.text,
       );
-      Get.toNamed(OnboardingPage7.id);
+
+      Get.toNamed(OnboardingPage9.resId);
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }

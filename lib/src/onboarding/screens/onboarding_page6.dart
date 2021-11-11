@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:open_file/open_file.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
+import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/business.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
@@ -141,9 +142,10 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                 SizedBox(height: MediaQuery.of(context).size.height * 0.28),
                 OnboardingButton(
                   onTap: () {
-                    formKey.currentState!.save();
-                    if (formKey.currentState!.validate())
-                      controller.onboardingApi(OnBoardingMethod.api5);
+                    // formKey.currentState!.save();
+                    // if (formKey.currentState!.validate())
+                    //   controller.onboardingApi(OnBoardingMethod.api5);
+                    Get.toNamed(OnboardingPage7.id);
                   },
                   buttonbackgroundColor: (controller.businesstype.isEmpty ||
                           controller.nameOfBusiness.text.isEmpty ||

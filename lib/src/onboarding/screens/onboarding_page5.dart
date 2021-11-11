@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
+import 'package:readyplates_restaurants/src/onboarding/screens/onboarding_page6.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
@@ -151,9 +152,10 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                 ),
                 OnboardingButton(
                   onTap: () {
-                    formKey.currentState!.save();
-                    if (formKey.currentState!.validate())
-                      controller.onboardingApi(OnBoardingMethod.api5);
+                    // formKey.currentState!.save();
+                    // if (formKey.currentState!.validate())
+                    //   controller.onboardingApi(OnBoardingMethod.api5);
+                    Get.toNamed(OnboardingPage6.id);
                   },
                   buttonbackgroundColor:
                       (controller.statementDescriptor.text.isEmpty ||
