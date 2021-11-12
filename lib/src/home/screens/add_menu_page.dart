@@ -1,5 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/home/home_controller.dart';
@@ -194,18 +195,20 @@ class MenuPage extends StatelessWidget {
                                     Spacer(),
                                     Row(
                                       children: [
-                                        Image.asset(
-                                          (e.diet_type == "1"
-                                              ? "assets/images/vegan.jpeg"
-                                              : "assets/images/veg.png"),
-                                          color: e.diet_type == "2"
-                                              ? Colors.brown
-                                              : e.diet_type == "0"
-                                                  ? Colors.green
-                                                  : null,
-                                          height: 20,
-                                          width: 20,
-                                        ),
+                                        e.diet_type == "1"
+                                            ? SvgPicture.asset(
+                                                "assets/images/vegan.svg",
+                                                height: 20,
+                                                width: 20,
+                                              )
+                                            : Image.asset(
+                                                ("assets/images/veg.png"),
+                                                color: e.diet_type == "2"
+                                                    ? Color(0xffBC580B)
+                                                    : null,
+                                                height: 20,
+                                                width: 20,
+                                              ),
                                         SizedBox(
                                           width: 10,
                                         ),

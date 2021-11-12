@@ -29,6 +29,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_card_swipper: ^0.4.0
+  flutter_svg: ^0.23.0+1
   font_awesome_flutter: ^9.1.0
   geocode: null
   geolocator: ^7.7.0
