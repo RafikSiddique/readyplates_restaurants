@@ -15,20 +15,14 @@ import 'package:readyplates_restaurants/utils/slider_track_shape.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Get.put(SharedPreferenceHelper());
-  Get.put(OnboardingController());
   Get.put(AuthController());
-  Get.put(HomeController());
-  Get.put(OrderController());
-  runApp(MyApp(
-    key: null,
-  ));
+  runApp(MyApp());
 }
 
 //This is a comment in main file
 //this i s ononther change
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
-  final controller = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +54,6 @@ class MyApp extends StatelessWidget {
       home: OpeningScreen(),
       onGenerateRoute: Routes.onGenerateRoute,
       // initialRoute: OnboardingPage2.id,
-
     );
   }
 }

@@ -13,12 +13,8 @@ class HomePage extends StatelessWidget {
   static const id = "/home";
   HomePage({Key? key}) : super(key: key);
   final controller = Get.put(HomeController());
-  final orderPageController = PageController();
   OrderModelApi? orderModelApi;
-  void moveToOTP(OrderModelApi orderModel) {
-    orderPageController.animateToPage(1,
-        duration: const Duration(milliseconds: 500), curve: Curves.ease);
-  }
+
 
   final List<String> bottomBarIcons =
       List.generate(4, (index) => 'assets/images/bottombaar${index + 1}.png');

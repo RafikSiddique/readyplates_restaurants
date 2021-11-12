@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:readyplates_restaurants/models/feedback_model.dart';
 import 'package:readyplates_restaurants/src/home/home_controller.dart';
+import 'package:readyplates_restaurants/src/home/screens/add_food_item.dart';
 import 'package:readyplates_restaurants/src/home/screens/performance_page.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
@@ -10,8 +12,8 @@ import 'package:readyplates_restaurants/widgets/text_widget.dart';
 import 'package:smooth_star_rating_null_safety/smooth_star_rating_null_safety.dart';
 
 class FeedbackPage extends StatefulWidget {
-  static const id = "/feedback";
-  const FeedbackPage({Key? key}) : super(key: key);
+  final FeedbackModel feedbackModel;
+  FeedbackPage({Key? key, required this.feedbackModel}) : super(key: key);
 
   @override
   State<FeedbackPage> createState() => _FeedbackPageState();
@@ -20,10 +22,31 @@ class FeedbackPage extends StatefulWidget {
 class _FeedbackPageState extends State<FeedbackPage> {
   final controller = Get.find<HomeController>();
 
-  var rating1 = 0.0;
-  var rating2 = 0.0;
-  var rating3 = 0.0;
-  var rating4 = 0.0;
+  FeedbackModel get feedbackModel => widget.feedbackModel;
+  List<String> ratingText = [
+    '',
+    'Poor',
+    'Average',
+    'Good',
+    'Very Good',
+    'Excellent'
+  ];
+  stringText(String value) {
+    if (value == "0.0")
+      return ratingText[0];
+    else if (value == "1.0")
+      return ratingText[1];
+    else if (value == "2.0")
+      return ratingText[2];
+    else if (value == "3.0")
+      return ratingText[3];
+    else if (value == "4.0")
+      return ratingText[4];
+    else if (value == "5.0")
+      return ratingText[5];
+    else
+      return ratingText[0];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,24 +94,18 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SmoothStarRating(
-                    rating: rating1,
+                    rating: double.parse(feedbackModel.overall_experience),
                     filledIconData: Icons.star,
                     halfFilledIconData: Icons.star_half,
                     defaultIconData: Icons.star_border,
                     allowHalfRating: false,
-                    onRatingChanged: (value) {
-                      setState(() {
-                        rating1 = value;
-                        value = value;
-                      });
-                    },
                     starCount: 5,
                     size: 30,
                     spacing: 22,
                     borderColor: MyTheme.ratingfillColor,
                     color: MyTheme.ratingfillColor,
                   ),
-                  Text('Excellent',
+                  Text(stringText(feedbackModel.overall_experience),
                       style: GoogleFonts.inter(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
@@ -109,24 +126,18 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SmoothStarRating(
-                    rating: rating2,
+                    rating: double.parse(feedbackModel.taste),
                     filledIconData: Icons.star,
                     halfFilledIconData: Icons.star_half,
                     defaultIconData: Icons.star_border,
                     allowHalfRating: false,
-                    onRatingChanged: (value) {
-                      setState(() {
-                        rating2 = value;
-                        value = value;
-                      });
-                    },
                     starCount: 5,
                     size: 30,
                     spacing: 22,
                     borderColor: MyTheme.ratingfillColor,
                     color: MyTheme.ratingfillColor,
                   ),
-                  Text("Poor",
+                  Text(stringText(feedbackModel.taste),
                       style: GoogleFonts.inter(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
@@ -147,24 +158,18 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SmoothStarRating(
-                    rating: rating3,
+                    rating: double.parse(feedbackModel.ambience),
                     filledIconData: Icons.star,
                     halfFilledIconData: Icons.star_half,
                     defaultIconData: Icons.star_border,
                     allowHalfRating: false,
-                    onRatingChanged: (value) {
-                      setState(() {
-                        rating3 = value;
-                        value = value;
-                      });
-                    },
                     starCount: 5,
                     size: 30,
                     spacing: 22,
                     borderColor: MyTheme.ratingfillColor,
                     color: MyTheme.ratingfillColor,
                   ),
-                  Text("Good",
+                  Text(stringText(feedbackModel.ambience),
                       style: GoogleFonts.inter(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
@@ -185,24 +190,18 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SmoothStarRating(
-                    rating: rating4,
+                    rating: double.parse(feedbackModel.serving_time),
                     filledIconData: Icons.star,
                     halfFilledIconData: Icons.star_half,
                     defaultIconData: Icons.star_border,
                     allowHalfRating: false,
-                    onRatingChanged: (value) {
-                      setState(() {
-                        rating4 = value;
-                        value = value;
-                      });
-                    },
                     starCount: 5,
                     size: 30,
                     spacing: 22,
                     borderColor: MyTheme.ratingfillColor,
                     color: MyTheme.ratingfillColor,
                   ),
-                  Text("Average",
+                  Text(stringText(feedbackModel.serving_time),
                       style: GoogleFonts.inter(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
@@ -228,7 +227,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                   child: SingleChildScrollView(
                     scrollDirection: Axis.vertical,
                     child: Text(
-                      'The restaurant ambience was good. However, the food was not tasty and it was stale. Need to further improve the serving timeThe restaurant ambience was good. However, the food was not tasty and it was stale. Need to further improve the serving time The restaurant ambience was good. However, the food was not tasty and it was stale. Need to further improve the serving timeThe restaurant ambience was good. However, the food was not tasty and it was stale. Need to further improve the serving time',
+                      feedbackModel.feedback,
                       textAlign: TextAlign.justify,
                       style: GoogleFonts.inter(
                           textStyle: TextStyle(
@@ -252,26 +251,44 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 ),
                 height: 228,
                 width: MediaQuery.of(context).size.width,
-                child: Image.asset(
-                  'assets/images/feedbackimg.png',
-                  fit: BoxFit.fill,
+                child: Image.network(
+                  getUrl(feedbackModel.image),
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image(
+                          image: AssetImage("assets/images/imgLogo.png"),
+                        ),
+                        Text(
+                          "Mo Image Provided",
+                          style: GoogleFonts.inter(),
+                        )
+                      ],
+                    );
+                  },
                 ),
               ),
               SizedBox(
                 height: 16,
               ),
-              OnboardingButton(
-                height: 44,
-                onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    PerformancePage.id,
-                  );
-                },
-                buttonbackgroundColor: MyTheme.buttonchangeColor,
-                text: 'Back',
-                buttontextColor: MyTheme.buttontextchangeColor,
-                fontWeight: FontWeight.bold,
+              Hero(
+                tag: feedbackModel.id,
+                child: OnboardingButton(
+                  height: 44,
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      PerformancePage.id,
+                    );
+                  },
+                  buttonbackgroundColor: MyTheme.buttonchangeColor,
+                  text: 'Back',
+                  buttontextColor: MyTheme.buttontextchangeColor,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               SizedBox(
                 height: 17,

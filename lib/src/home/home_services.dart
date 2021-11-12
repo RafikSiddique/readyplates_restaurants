@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart';
+import 'package:readyplates_restaurants/models/feedback_model.dart';
 import 'package:readyplates_restaurants/models/fooditem_model.dart';
 // import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/utils/api_services.dart';
@@ -101,11 +102,18 @@ class HomeServices extends ApiServices {
     }
   }
 
-  Future<List<Map<String, dynamic>>> getFeedbacks(String id) async {
+  Future<List<FeedbackModel>> getFeedbacks(String id) async {
     try {
+      print(id);
       Response response = await get(feedbacks(id));
-      if (response.statusCode == 201) {
-        return jsonDecode(response.body);
+      print("Hi");
+      print(response.statusCode);
+      print(response.reasonPhrase);
+      print(response.body);
+      if (response.statusCode == 200) {
+        print(response.body);
+        List<dynamic> data = jsonDecode(response.body);
+        return data.map((e) => FeedbackModel.fromMap(e)).toList();
       } else {
         throw AppException(
             message: response.reasonPhrase, code: response.statusCode);

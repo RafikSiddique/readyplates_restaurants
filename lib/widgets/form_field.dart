@@ -74,7 +74,6 @@ class _AppFormFieldState extends State<AppFormField> {
   bool _Switchvalue = true;
   @override
   Widget build(BuildContext context) {
-    Transform widgets;
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

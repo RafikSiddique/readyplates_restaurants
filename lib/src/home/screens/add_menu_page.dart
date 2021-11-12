@@ -10,7 +10,6 @@ class MenuPage extends StatelessWidget {
   MenuPage({Key? key}) : super(key: key);
   final controller = Get.find<HomeController>();
 
-  
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context);
@@ -184,9 +183,18 @@ class MenuPage extends StatelessWidget {
                                     Spacer(),
                                     Row(
                                       children: [
-                                        Image.asset((e.diet_type == "Veg"
-                                            ? "assets/images/veg.png"
-                                            : "assets/images/nonveg.png")),
+                                        Image.asset(
+                                          (e.diet_type == "1"
+                                              ? "assets/images/vegan.jpeg"
+                                              : "assets/images/veg.png"),
+                                          color: e.diet_type == "2"
+                                              ? Colors.brown
+                                              : e.diet_type == "0"
+                                                  ? Colors.green
+                                                  : null,
+                                          height: 20,
+                                          width: 20,
+                                        ),
                                         SizedBox(
                                           width: 10,
                                         ),

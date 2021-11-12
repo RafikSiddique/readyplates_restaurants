@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:readyplates_restaurants/models/feedback_model.dart';
 import 'package:readyplates_restaurants/models/fooditem_model.dart';
 import 'package:readyplates_restaurants/src/home/home_services.dart';
 import 'package:readyplates_restaurants/src/home/order_controller.dart';
@@ -59,11 +61,28 @@ class HomeController extends GetxController {
         cost: "cost",
         restaurant: "'restaurant'"),
   ].obs;
+  Timer? timer;
   void onChanged(int i) {
     selectedIndex.value = i;
+
     pageController.animateToPage(i,
         duration: Duration(milliseconds: 500), curve: Curves.ease);
     title.value = getTitle(i);
+    if (i == 1) {
+      getFeedbacksFirst();
+      timer = Timer.periodic(Duration(seconds: 5), (t) async {
+        await getFeedbacks();
+        print("Feedback Get");
+      });
+    } else if (i == 2) {
+      timer = Timer.periodic(Duration(seconds: 2), (t) async {
+        await Get.find<OrderController>().getOrderItemsWithoutLoad();
+        print("Orders Get");
+      });
+    } else {
+      timer = Timer(Duration(seconds: 0), () {});
+      if (timer != null && timer!.isActive) timer!.cancel();
+    }
   }
 
   RxString title = "Menu".obs;
@@ -183,12 +202,24 @@ class HomeController extends GetxController {
     }
   }
 
-  RxList<Map<String, dynamic>> feedbacks = <Map<String, dynamic>>[].obs;
+  RxList<FeedbackModel> feedbacks = <FeedbackModel>[].obs;
+  RxBool feedbackLoading = false.obs;
+  Future<void> getFeedbacksFirst() async {
+    try {
+      feedbackLoading.value = true;
+      String id = await sfHelper.getRestaurantId();
+      feedbacks.value = await homeServices.getFeedbacks(id);
+      feedbackLoading.value = false;
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+      feedbackLoading.value = false;
+    }
+  }
 
   Future<void> getFeedbacks() async {
     try {
       String id = await sfHelper.getRestaurantId();
-      //feedbacks.value = await homeServices.getFeedbacks(id);
+      feedbacks.value = await homeServices.getFeedbacks(id);
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }

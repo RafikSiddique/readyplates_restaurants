@@ -65,6 +65,18 @@ class OrderController extends GetxController {
     }
   }
 
+  Future<void> getOrderItemsWithoutLoad() async {
+    try {
+      String id = await sfHelper.getRestaurantId();
+      orderList.value = await services.getOrder(id);
+      orderList.sort((a, b) => a.status.index.compareTo(b.status.index));
+      update();
+    } catch (e) {
+      loading.value = false;
+      Get.snackbar("Error", e.toString());
+    }
+  }
+
   Future<void> updateStatus(int id, int status) async {
     try {
       loading.value = true;

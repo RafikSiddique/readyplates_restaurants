@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:readyplates_restaurants/src/home/home_controller.dart';
 import 'package:readyplates_restaurants/src/home/order_controller.dart';
 import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
 import 'package:readyplates_restaurants/src/login/auth_services.dart';
@@ -78,21 +79,23 @@ class AuthController extends GetxController {
         email.text,
         password.text,
       );
-      sfHelper.setUserId(id[0]);
-      sfHelper.setRestaurantId(id[1]);
-      Get.find<OnboardingController>().uniqueId = id[0];
-      int routeId = 10; // await getScreen(id[0]);
+      await sfHelper.setUserId(id[0]);
+      await sfHelper.setRestaurantId(id[1]);
+      //   int routeId = 10; // await getScreen(id[0]);
       if (!isChangePass) {
         //if (routeId >= 9) {
-          isLoggedIn.value = true;
-          sfHelper.setLoggedIn(true);
-          Get.put(OrderController());
-          Get.offAllNamed(HomePage.id);
- /*        } else {
+        isLoggedIn.value = true;
+        sfHelper.setLoggedIn(true);
+        Get.put(HomeController());
+        Get.put(OrderController());
+        Get.offAllNamed(HomePage.id);
+        /*        } else {
           if (routeId == 1) {
             await Geolocator.requestPermission();
             ;
           }
+      Get.find<OnboardingController>().uniqueId = id[0];
+
           Get.toNamed(route(routeId + 1));
         } */
       } else {}

@@ -32,8 +32,6 @@ class Routes {
             return SignupPage();
           case OrderCompletePage3.id:
             return OrderCompletePage3();
-          case FeedbackPage.id:
-            return FeedbackPage();
           case PerformancePage.id:
             return PerformancePage();
           case ChangePasswordPage.id:

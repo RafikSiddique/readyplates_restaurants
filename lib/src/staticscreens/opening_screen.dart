@@ -4,6 +4,7 @@ import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:readyplates_restaurants/src/home/home_controller.dart';
 import 'package:readyplates_restaurants/src/home/order_controller.dart';
 import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
@@ -244,23 +245,23 @@ class _OpeningScreenState extends State<OpeningScreen>
   @override
   Future<void> afterFirstLayout(BuildContext context) async {
     final controller = Get.find<AuthController>();
-    await Future.delayed(Duration(seconds: 2));
     print(controller.userId);
     print(controller.isLoggedIn);
     try {
       await controller.getSharedPref();
       if (controller.isLoggedIn.value) {
+        Get.put(HomeController());
         Get.put(OrderController());
         Get.offNamed(HomePage.id);
       } else {
         String resId = await SharedPreferenceHelper().getRestaurantId();
-       /*  if (controller.userId != "-1" && resId != "" && resId != "null") {
+        /*  if (controller.userId != "-1" && resId != "" && resId != "null") {
           Get.put(OrderController());
           Get.offNamed(HomePage.id);
         } else { */
-          this.controller.animateToPage(1,
-              duration: Duration(milliseconds: 500), curve: Curves.ease);
-          /*        int id = await controller.getScreen(controller.userId);
+        this.controller.animateToPage(1,
+            duration: Duration(milliseconds: 500), curve: Curves.ease);
+        /*        int id = await controller.getScreen(controller.userId);
           Get.offNamed(controller.route(id + 1)); */
 
         //}
