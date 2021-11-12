@@ -45,7 +45,7 @@ class DropdownStandard extends StatelessWidget {
               //   Radius.circular(6.0),
               // ),
             ),
-            hintText: 'Small / Medium / Large / Other',
+            hintText: 'Choose Serving Size',
             contentPadding: EdgeInsets.only(
               left: 14,
               top: 14,
@@ -59,11 +59,71 @@ class DropdownStandard extends StatelessWidget {
           ),
           items: [
             DropdownMenuItem(
-                child: Text("Select Standard Serving Size"), value: ""),
-            DropdownMenuItem(child: Text("Small"), value: "Small"),
-            DropdownMenuItem(child: Text("Medium"), value: "Medium"),
-            DropdownMenuItem(child: Text("Large"), value: "Large"),
-            DropdownMenuItem(child: Text("Other"), value: "Other"),
+                child: Text(
+                  "Select Standard Serving Size",
+                  style: GoogleFonts.inter(
+                    fontSize: 15,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w500,
+                    color: MyTheme.hinttextchangeColor,
+                  ),
+                ),
+                value: ""),
+            DropdownMenuItem(
+                child: Text(
+                  "Small",
+                  style: GoogleFonts.inter(
+                    fontSize: 15,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w500,
+                    color: MyTheme.hinttextchangeColor,
+                  ),
+                ),
+                value: "Small"),
+            DropdownMenuItem(
+                child: Text(
+                  "Medium",
+                  style: GoogleFonts.inter(
+                    fontSize: 15,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w500,
+                    color: MyTheme.hinttextchangeColor,
+                  ),
+                ),
+                value: "Medium"),
+            DropdownMenuItem(
+                child: Text(
+                  "Large",
+                  style: GoogleFonts.inter(
+                    fontSize: 15,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w500,
+                    color: MyTheme.hinttextchangeColor,
+                  ),
+                ),
+                value: "Large"),
+            DropdownMenuItem(
+                child: Text(
+                  "Other",
+                  style: GoogleFonts.inter(
+                    fontSize: 15,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w500,
+                    color: MyTheme.hinttextchangeColor,
+                  ),
+                ),
+                value: "Other"),
+            DropdownMenuItem(
+                child: Text(
+                  "Not Applicable",
+                  style: GoogleFonts.inter(
+                    fontSize: 15,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w500,
+                    color: MyTheme.hinttextchangeColor,
+                  ),
+                ),
+                value: "Not Applicable"),
           ],
           onChanged: onSelect),
     );

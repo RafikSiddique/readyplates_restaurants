@@ -55,6 +55,14 @@ class OnboardingController extends GetxController {
     fsolNumber = TextEditingController();
     nameOfBusiness = TextEditingController();
     eiNumber = TextEditingController();
+    businessaccNumber = TextEditingController();
+    businessaccName = TextEditingController();
+    businessaddline1 = TextEditingController();
+    businessaddline2 = TextEditingController();
+    businessaddline3 = TextEditingController();
+    businessstate = TextEditingController();
+    businesscity = TextEditingController();
+    businesspincode = TextEditingController();
   }
 
   late TextEditingController resName;
@@ -129,6 +137,14 @@ class OnboardingController extends GetxController {
     fsolNumber.dispose();
     nameOfBusiness.dispose();
     eiNumber.dispose();
+    businessaccNumber.dispose();
+    businessaccName.dispose();
+    businessaddline1.dispose();
+    businessaddline2.dispose();
+    businessaddline3.dispose();
+    businessstate.dispose();
+    businesscity.dispose();
+    businesspincode.dispose();
 
     address1 = TextEditingController();
     address2 = TextEditingController();
@@ -243,6 +259,14 @@ class OnboardingController extends GetxController {
     fsolNumber.clear();
     nameOfBusiness.clear();
     eiNumber.clear();
+    businessaccNumber.clear();
+    businessaccName.clear();
+    businessaddline1.clear();
+    businessaddline2.clear();
+    businessaddline3.clear();
+    businessstate.clear();
+    businesscity.clear();
+    businesspincode.clear();
   }
 
   @override
@@ -289,7 +313,10 @@ class OnboardingController extends GetxController {
   List<String> accType = ["Saving", "Current"];
   RxString typeOfEstablishment = "".obs;
   RxString supportCountry = "".obs;
-  List<String> typeOfEsts = ["US", "United Kingdom", "Swizerland", "Finland"];
+  List<String> typeOfEsts = [
+    "Dine In",
+    "Dine In & Delivery Both",
+  ];
 
   RxDouble value = 1.0.obs;
 
@@ -342,6 +369,15 @@ class OnboardingController extends GetxController {
     fsolNumber = TextEditingController();
     nameOfBusiness = TextEditingController();
     eiNumber = TextEditingController();
+    businessaccNumber = TextEditingController();
+    businessaccName = TextEditingController();
+    businessaddline1 = TextEditingController();
+    businessaddline2 = TextEditingController();
+    businessaddline3 = TextEditingController();
+    businessstate = TextEditingController();
+    businesscity = TextEditingController();
+    businesspincode = TextEditingController();
+
     super.onInit();
   }
 

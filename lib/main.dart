@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:readyplates_restaurants/src/home/home_controller.dart';
 import 'package:readyplates_restaurants/src/home/order_controller.dart';
+import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
+import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
 import 'package:readyplates_restaurants/src/staticscreens/opening_screen.dart';
 import 'package:readyplates_restaurants/utils/routes.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
@@ -53,7 +55,6 @@ class MyApp extends StatelessWidget {
           })),
       home: OpeningScreen(),
       onGenerateRoute: Routes.onGenerateRoute,
-      // initialRoute: OnboardingPage2.id,
     );
   }
 }

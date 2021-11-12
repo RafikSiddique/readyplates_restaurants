@@ -287,7 +287,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                       : MyTheme.buttontextchangeColor,
                 ),
                 SizedBox(
-                  height: 6.87,
+                  height: 16,
                 ),
               ],
             ),

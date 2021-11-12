@@ -515,7 +515,9 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                                       fontSize: 16,
                                       fontStyle: FontStyle.normal,
                                       fontWeight: FontWeight.w500,
-                                      color: MyTheme.checkboxtextColor,
+                                      color: controller.servingTime.value == 00
+                                          ? MyTheme.hinttextColor
+                                          : MyTheme.checkboxtextColor,
                                     ),
                                   ),
                                 ],
@@ -589,7 +591,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                                             : '${_selectedEventDate!.year}/${_selectedEventDate!.month}/${_selectedEventDate!.day}',
                                         textAlign: TextAlign.center,
                                         style: GoogleFonts.inter(
-                                          fontSize: 15,
+                                          fontSize: 16,
                                           fontStyle: FontStyle.normal,
                                           fontWeight: FontWeight.w500,
                                           color: _selectedEventDate == null
@@ -696,7 +698,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                                         () => Text(
                                           controller.selectedRecurrence.value,
                                           style: GoogleFonts.inter(
-                                            fontSize: 15,
+                                            fontSize: 16,
                                             fontStyle: FontStyle.normal,
                                             fontWeight: FontWeight.w500,
                                             color: rec == ''
@@ -923,7 +925,6 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                   buttonbackgroundColor: (controller.resDescript.text.isEmpty ||
                           controller.noOfTables.value == 00 ||
                           controller.noOfSeats.value == 00 ||
-                          controller.costFor2.value == 0 ||
                           controller.servingTime.value == 0 ||
                           _selectedEventDate == null ||
                           rec.isEmpty ||
@@ -936,7 +937,6 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                   buttontextColor: (controller.resDescript.text.isEmpty ||
                           controller.noOfTables.value == 00 ||
                           controller.noOfSeats.value == 00 ||
-                          controller.costFor2.value == 0 ||
                           controller.servingTime.value == 0 ||
                           _selectedEventDate == null ||
                           rec.isEmpty ||
@@ -948,7 +948,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                 ),
 
                 SizedBox(
-                  height: 6.89,
+                  height: 16,
                 ),
               ],
             ),

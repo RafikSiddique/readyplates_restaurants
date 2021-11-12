@@ -139,7 +139,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                           : MyTheme.buttontextchangeColor,
                 ),
                 SizedBox(
-                  height: 6,
+                  height: 16,
                 ),
               ],
             ),

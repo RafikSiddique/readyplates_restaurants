@@ -58,11 +58,61 @@ class DropdownCategory extends StatelessWidget {
             ),
           ),
           items: [
-            DropdownMenuItem(child: Text("Select Category"), value: ""),
-            DropdownMenuItem(child: Text("Starter"), value: "Starter"),
-            DropdownMenuItem(child: Text("Main Course"), value: "Main Course"),
-            DropdownMenuItem(child: Text("Desserts"), value: "Desserts"),
-            DropdownMenuItem(child: Text("Sides"), value: "Sides"),
+            DropdownMenuItem(
+                child: Text(
+                  "Select Category",
+                  style: GoogleFonts.inter(
+                    fontSize: 13,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w500,
+                    color: MyTheme.hinttextchangeColor,
+                  ),
+                ),
+                value: ""),
+            DropdownMenuItem(
+                child: Text(
+                  "Starter",
+                  style: GoogleFonts.inter(
+                    fontSize: 13,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w500,
+                    color: MyTheme.hinttextchangeColor,
+                  ),
+                ),
+                value: "Starter"),
+            DropdownMenuItem(
+                child: Text(
+                  "Main Course",
+                  style: GoogleFonts.inter(
+                    fontSize: 13,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w500,
+                    color: MyTheme.hinttextchangeColor,
+                  ),
+                ),
+                value: "Main Course"),
+            DropdownMenuItem(
+                child: Text(
+                  "Desserts",
+                  style: GoogleFonts.inter(
+                    fontSize: 13,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w500,
+                    color: MyTheme.hinttextchangeColor,
+                  ),
+                ),
+                value: "Desserts"),
+            DropdownMenuItem(
+                child: Text(
+                  "Sides",
+                  style: GoogleFonts.inter(
+                    fontSize: 13,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w500,
+                    color: MyTheme.hinttextchangeColor,
+                  ),
+                ),
+                value: "Sides"),
           ],
           onChanged: onSelect),
     );
