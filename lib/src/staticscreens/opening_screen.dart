@@ -244,22 +244,26 @@ class _OpeningScreenState extends State<OpeningScreen>
 
   @override
   Future<void> afterFirstLayout(BuildContext context) async {
-    final controller = Get.find<AuthController>();
-    print(controller.userId);
-    print(controller.isLoggedIn);
+    final AuthController authController = Get.find<AuthController>();
+    await Future.delayed(Duration(seconds: 1));
+    print(authController.userId);
     try {
-      await controller.getSharedPref();
-      if (controller.isLoggedIn.value) {
+      await authController.getSharedPref();
+      if (authController.isLoggedIn.value) {
+        print("Logged In");
         Get.put(HomeController());
         Get.put(OrderController());
         Get.offNamed(HomePage.id);
       } else {
-        String resId = await SharedPreferenceHelper().getRestaurantId();
+        print("Not Logged In");
+
+        // String resId = await SharedPreferenceHelper().getRestaurantId();
         /*  if (controller.userId != "-1" && resId != "" && resId != "null") {
           Get.put(OrderController());
           Get.offNamed(HomePage.id);
         } else { */
-        this.controller.animateToPage(1,
+
+        controller.animateToPage(1,
             duration: Duration(milliseconds: 500), curve: Curves.ease);
         /*        int id = await controller.getScreen(controller.userId);
           Get.offNamed(controller.route(id + 1)); */
@@ -267,7 +271,9 @@ class _OpeningScreenState extends State<OpeningScreen>
         //}
       }
     } catch (e) {
-      this.controller.animateToPage(1,
+      print(e);
+
+      controller.animateToPage(1,
           duration: Duration(milliseconds: 500), curve: Curves.ease);
     }
   }

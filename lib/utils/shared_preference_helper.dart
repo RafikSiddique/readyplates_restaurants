@@ -14,13 +14,10 @@ class SharedPreferenceHelper {
     return success;
   }
 
-  Future<String> getUserId() async {
+  Future<String?> getUserId() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String? id = sharedPreferences.getString(_userId);
-    if (id == null) {
-      throw AppException(message: "No such user found", code: 100);
-    } else
-      return id;
+    return id;
   }
 
   Future<bool> setRestaurantId(String resId) async {

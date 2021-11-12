@@ -42,7 +42,7 @@ class AuthController extends GetxController {
   Future<void> getSharedPref() async {
     isLoggedIn.value = await sfHelper.getLoggedIn();
     print(isLoggedIn.value);
-    userId = await sfHelper.getUserId();
+    userId = await sfHelper.getUserId() ?? "-1";
     print(userId);
   }
 

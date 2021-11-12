@@ -322,7 +322,7 @@ class OnboardingController extends GetxController {
 
   @override
   void onInit() {
-    SharedPreferenceHelper().getUserId().then((value) => uniqueId = value);
+    SharedPreferenceHelper().getUserId().then((value) => uniqueId = value??"-1");
     SharedPreferenceHelper()
         .getRestaurantId()
         .then((value) => resId = value.toString());
