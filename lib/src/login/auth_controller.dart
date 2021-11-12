@@ -66,7 +66,9 @@ class AuthController extends GetxController {
       String id =
           await services.signup(email.text, password.text, password2.text);
       await sfHelper.setUserId(id);
-      Get.find<OnboardingController>().uniqueId = id;
+final oController=
+Get.put(OnboardingController());
+      oController.uniqueId = id;
       Get.toNamed(OnboardingPage1.id);
     } catch (e) {
       Get.snackbar("Error", e.toString());
