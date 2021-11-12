@@ -28,28 +28,37 @@ class HomePage extends StatelessWidget {
     return Scaffold(
         backgroundColor: MyTheme.backgroundColor,
         bottomNavigationBar: Obx(
-          () => BottomNavigationBar(
-              elevation: 1,
-              currentIndex: controller.selectedIndex.value,
-              type: BottomNavigationBarType.fixed,
-              backgroundColor: Color(0xFFFFFFFF),
-              selectedFontSize: 20,
-              unselectedFontSize: 20,
-              onTap: controller.onChanged,
-              items: [
-                for (var i = 0; i < bottomBarIcons.length; i++)
-                  BottomNavigationBarItem(
-                      icon: SizedBox.square(
-                        dimension: 20,
-                        child: Image.asset(
-                          bottomBarIcons[i],
-                          color: controller.selectedIndex.value == i
-                              ? MyTheme.borderchangeColor
-                              : null,
+          () => Container(
+            height: 60,
+            decoration: BoxDecoration(boxShadow: [
+              BoxShadow(
+                color: Color(0xff000000).withOpacity(0.25),
+                blurRadius: 4,
+              )
+            ]),
+            child: BottomNavigationBar(
+                elevation: 1,
+                currentIndex: controller.selectedIndex.value,
+                type: BottomNavigationBarType.fixed,
+                backgroundColor: Color(0xFFFFFFFF),
+                selectedFontSize: 20,
+                unselectedFontSize: 20,
+                onTap: controller.onChanged,
+                items: [
+                  for (var i = 0; i < bottomBarIcons.length; i++)
+                    BottomNavigationBarItem(
+                        icon: SizedBox.square(
+                          dimension: 20,
+                          child: Image.asset(
+                            bottomBarIcons[i],
+                            color: controller.selectedIndex.value == i
+                                ? MyTheme.borderchangeColor
+                                : null,
+                          ),
                         ),
-                      ),
-                      label: label[i])
-              ]),
+                        label: label[i])
+                ]),
+          ),
         ),
         appBar: AppBar(
           elevation: 0,

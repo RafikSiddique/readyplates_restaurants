@@ -44,7 +44,7 @@ class DropdownDietType extends StatelessWidget {
               //   Radius.circular(6.0),
               // ),
             ),
-            hintText: 'Vegan/Meat/Vegetarian',
+            hintText: 'Vegan/Meat/Veg',
             contentPadding: EdgeInsets.only(
               left: 14,
               top: 14,
@@ -58,11 +58,39 @@ class DropdownDietType extends StatelessWidget {
           ),
           items: [
             DropdownMenuItem(
-              child: Text("Vegetarian"),
+              child: Text(
+                "Veg",
+                style: GoogleFonts.inter(
+                  fontSize: 15,
+                  fontStyle: FontStyle.normal,
+                  fontWeight: FontWeight.w500,
+                  color: MyTheme.hinttextchangeColor,
+                ),
+              ),
               value: "0",
             ),
-            DropdownMenuItem(child: Text("Vegan"), value: "1"),
-            DropdownMenuItem(child: Text("Meat"), value: "2"),
+            DropdownMenuItem(
+                child: Text(
+                  "Vegan",
+                  style: GoogleFonts.inter(
+                    fontSize: 15,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w500,
+                    color: MyTheme.hinttextchangeColor,
+                  ),
+                ),
+                value: "1"),
+            DropdownMenuItem(
+                child: Text(
+                  "Meat",
+                  style: GoogleFonts.inter(
+                    fontSize: 15,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w500,
+                    color: MyTheme.hinttextchangeColor,
+                  ),
+                ),
+                value: "2"),
           ],
           onChanged: onSelect),
     );

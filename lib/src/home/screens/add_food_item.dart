@@ -60,6 +60,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         toolbarHeight: 44,
         backgroundColor: Colors.white,
@@ -203,6 +204,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
                                   : controller.dietType.value,
                               onSelect: (p0) {
                                 controller.dietType.value = p0!;
+                                setState(() {});
                               },
                             ),
                           ],
@@ -531,7 +533,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
                       : MyTheme.buttontextchangeColor,
                 ),
                 SizedBox(
-                  height: 5.89,
+                  height: 16,
                 ),
               ],
             ),

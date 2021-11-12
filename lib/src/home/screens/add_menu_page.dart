@@ -4,13 +4,13 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/home/home_controller.dart';
 import 'package:readyplates_restaurants/src/home/screens/add_food_item.dart';
+import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/edit_button.dart';
 
 class MenuPage extends StatelessWidget {
   MenuPage({Key? key}) : super(key: key);
   final controller = Get.find<HomeController>();
 
-  
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context);
@@ -146,20 +146,28 @@ class MenuPage extends StatelessWidget {
                                     FittedBox(
                                       fit: BoxFit.scaleDown,
                                       child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 16),
-                                        child: Text(
-                                          e.name,
-                                          textAlign: TextAlign.left,
-                                          style: GoogleFonts.montserrat(
-                                            textStyle: TextStyle(
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: size.width * 0.05,
-                                              overflow: TextOverflow.clip,
+                                        padding: const EdgeInsets.only(
+                                            right: 16, top: 5),
+                                        child: Container(
+                                          width: size.width * 0.5,
+                                          child: Text(
+                                            e.name,
+                                            textAlign: TextAlign.left,
+                                            style: GoogleFonts.montserrat(
+                                              textStyle: TextStyle(
+                                                fontWeight: FontWeight.w500,
+                                                fontStyle: FontStyle.normal,
+                                                fontSize: 16,
+                                                color: MyTheme.text1Color,
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
+                                    ),
+                                    SizedBox(
+                                      height: 4,
                                     ),
                                     Container(
                                       height: 45,
@@ -173,7 +181,9 @@ class MenuPage extends StatelessWidget {
                                             textAlign: TextAlign.left,
                                             style: GoogleFonts.montserrat(
                                               textStyle: TextStyle(
-                                                fontWeight: FontWeight.w500,
+                                                fontWeight: FontWeight.normal,
+                                                fontStyle: FontStyle.normal,
+                                                fontSize: 9,
                                                 overflow: TextOverflow.clip,
                                               ),
                                             ),

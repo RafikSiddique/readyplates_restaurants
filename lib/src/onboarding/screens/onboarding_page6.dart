@@ -106,7 +106,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                   uploadtextColor: controller.confirmLetter.path.isEmpty
                       ? MyTheme.hinttextColor
                       : MyTheme.hinttextchangeColor,
-                  fontSize: controller.confirmLetter.path.isEmpty ? 15 : 13,
+                  fontSize: 15,
                   onFilePicked: (p0) {
                     setState(() {
                       controller.confirmLetter = p0;
@@ -134,12 +134,15 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                   uploadtextColor: controller.uploadLetter.path.isEmpty
                       ? MyTheme.hinttextColor
                       : MyTheme.hinttextchangeColor,
-                  fontSize: controller.uploadLetter.path.isEmpty ? 15 : 13,
+                  fontSize: 15,
                   onFilePicked: (p0) {
                     setState(() {
                       controller.uploadLetter = p0;
                     });
                   },
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.27,
                 ),
                 OnboardingButton(
                   onTap: () {
@@ -160,6 +163,9 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                           controller.uploadLetter.path.isEmpty)
                       ? MyTheme.buttontextColor
                       : MyTheme.buttontextchangeColor,
+                ),
+                SizedBox(
+                  height: 16,
                 ),
               ],
             ),

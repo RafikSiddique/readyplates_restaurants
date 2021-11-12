@@ -246,25 +246,35 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                     );
                   },
                   child: Container(
-                      width: double.infinity,
-                      height: 50,
-                      alignment: Alignment.centerLeft,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          width: 1,
-                          color: controller.rescity.isEmpty
-                              ? MyTheme.borderColor
-                              : MyTheme.borderchangeColor,
-                        ),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(6.0),
-                        ),
+                    width: double.infinity,
+                    height: 50,
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        width: 1,
+                        color: controller.rescity.isEmpty
+                            ? MyTheme.borderColor
+                            : MyTheme.borderchangeColor,
                       ),
-                      child: Text(controller.rescity == ""
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(6.0),
+                      ),
+                    ),
+                    child: Text(
+                      controller.rescity == ""
                           ? "Select City"
-                          : controller.rescity)),
+                          : controller.rescity,
+                      style: GoogleFonts.inter(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        fontStyle: FontStyle.normal,
+                        color: controller.rescity == ""
+                            ? MyTheme.hinttextColor
+                            : MyTheme.hinttextchangeColor,
+                      ),
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: 18,
@@ -318,7 +328,7 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                       : MyTheme.buttontextchangeColor,
                 ),
                 SizedBox(
-                  height: 7.89,
+                  height: 16,
                 ),
               ],
             ),

@@ -182,7 +182,7 @@ class _OnboardingPage9State extends State<OnboardingPage9> {
             ),
 
             SizedBox(
-              height: size.height * 0.02,
+              height: 16,
             ),
           ],
         ),

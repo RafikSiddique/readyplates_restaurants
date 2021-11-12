@@ -67,9 +67,17 @@ class TimeZone extends StatelessWidget {
           items: timeZones
               .map((e) => DropdownMenuItem(
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 0.7,
+                      // width: MediaQuery.of(context).size.width * 0.7,
                       child: FittedBox(
-                        child: Text(e),
+                        child: Text(
+                          e,
+                          style: GoogleFonts.inter(
+                            fontSize: 15,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.w500,
+                            color: MyTheme.hinttextchangeColor,
+                          ),
+                        ),
                       ),
                     ),
                     value: e,

@@ -136,7 +136,16 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                     ),
                     items: controller.typeOfEsts
                         .map(
-                          (e) => DropdownMenuItem(child: Text(e), value: e),
+                          (e) => DropdownMenuItem(
+                              child: Text(
+                                e,
+                                style: GoogleFonts.inter(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500,
+                                    fontStyle: FontStyle.normal,
+                                    color: MyTheme.hinttextchangeColor),
+                              ),
+                              value: e),
                         )
                         .toList(),
                     // value: controller.typeOfEstablishment.value,
@@ -502,7 +511,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                           : MyTheme.buttontextchangeColor,
                 ),
                 SizedBox(
-                  height: 5.89,
+                  height: 16,
                 ),
               ],
             ),
