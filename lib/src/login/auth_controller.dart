@@ -83,18 +83,18 @@ class AuthController extends GetxController {
       Get.find<OnboardingController>().uniqueId = id[0];
       int routeId = 10; // await getScreen(id[0]);
       if (!isChangePass) {
-        if (routeId >= 9) {
+        //if (routeId >= 9) {
           isLoggedIn.value = true;
           sfHelper.setLoggedIn(true);
           Get.put(OrderController());
           Get.offAllNamed(HomePage.id);
-        } else {
+ /*        } else {
           if (routeId == 1) {
             await Geolocator.requestPermission();
             ;
           }
           Get.toNamed(route(routeId + 1));
-        }
+        } */
       } else {}
     } catch (e) {
       Get.snackbar("Error", e.toString());

@@ -13,7 +13,6 @@ class HomeServices extends ApiServices {
     String name,
     String description,
     File image1,
-    File image2,
     String diet_type,
     String category,
     String std_serving_size,
@@ -26,10 +25,8 @@ class HomeServices extends ApiServices {
       MultipartRequest request = MultipartRequest('POST', menu);
       MultipartFile image1M =
           await MultipartFile.fromPath('image1', image1.path);
-      MultipartFile image2M =
-          await MultipartFile.fromPath('image2', image2.path);
 
-      request.files.addAll([image1M, image2M]);
+      request.files.addAll([image1M]);
       request.fields.addAll({
         'restaurant': restaurant,
         'name': name,
@@ -63,7 +60,6 @@ class HomeServices extends ApiServices {
     String name,
     String description,
     File image1,
-    File image2,
     String diet_type,
     String category,
     String std_serving_size,
@@ -76,10 +72,8 @@ class HomeServices extends ApiServices {
       MultipartRequest request = MultipartRequest('PUT', updateMenu(id));
       MultipartFile image1M =
           await MultipartFile.fromPath('image1', image1.path);
-      MultipartFile image2M =
-          await MultipartFile.fromPath('image2', image2.path);
 
-      request.files.addAll([image1M, image2M]);
+      request.files.addAll([image1M]);
       request.fields.addAll({
         'restaurant': restaurant,
         'name': name,

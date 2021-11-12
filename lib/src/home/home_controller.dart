@@ -41,10 +41,6 @@ class HomeController extends GetxController {
     final res = await get(Uri.parse(getUrl(foodItemModel!.image1)));
     image1 = File(path.path + "/pic1.png");
     await image1.writeAsBytes(res.bodyBytes);
-
-    final res2 = await get(Uri.parse(getUrl(foodItemModel!.image2)));
-    image2 = File(path.path + "/pic2.png");
-    await image2.writeAsBytes(res2.bodyBytes);
   }
 
   RxList<FoodItemModel> foodItems = <FoodItemModel>[
@@ -109,7 +105,6 @@ class HomeController extends GetxController {
     servingcost.clear();
     feedback.clear();
     image1 = File("");
-    image2 = File("");
     spiceSlider.value = 1;
   }
 
@@ -124,7 +119,6 @@ class HomeController extends GetxController {
   //final descController = TextEditingController();
 
   File image1 = File("");
-  File image2 = File("");
   RxString dietType = "".obs;
   RxString category = "".obs;
   String servingSize = "";
@@ -137,7 +131,6 @@ class HomeController extends GetxController {
           name.text,
           desc.text,
           image1,
-          image2,
           dietType.value,
           category.value,
           servingSize,
@@ -162,7 +155,6 @@ class HomeController extends GetxController {
           name.text,
           desc.text,
           image1,
-          image2,
           dietType.value,
           category.value,
           servingSize,

@@ -254,16 +254,16 @@ class _OpeningScreenState extends State<OpeningScreen>
         Get.offNamed(HomePage.id);
       } else {
         String resId = await SharedPreferenceHelper().getRestaurantId();
-        if (controller.userId != "-1" && resId != "" && resId != "null") {
+       /*  if (controller.userId != "-1" && resId != "" && resId != "null") {
           Get.put(OrderController());
           Get.offNamed(HomePage.id);
-        } else {
+        } else { */
           this.controller.animateToPage(1,
               duration: Duration(milliseconds: 500), curve: Curves.ease);
           /*        int id = await controller.getScreen(controller.userId);
           Get.offNamed(controller.route(id + 1)); */
 
-        }
+        //}
       }
     } catch (e) {
       this.controller.animateToPage(1,

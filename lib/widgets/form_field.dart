@@ -147,6 +147,7 @@ class _AppFormFieldState extends State<AppFormField> {
                 inputFormatters: widget.formatters,
                 controller: widget.controller,
                 maxLength: widget.maxLength,
+
                 validator: (value) {
                   if (value == "") {
                     if (widget.isRequired) {
@@ -173,6 +174,7 @@ class _AppFormFieldState extends State<AppFormField> {
                     borderSide: BorderSide.none,
                     borderRadius: widget.borderRadius,
                   ),
+                  counterText: "",
                   hintText: widget.hintText,
                   contentPadding: EdgeInsets.only(
                     left: 14,
