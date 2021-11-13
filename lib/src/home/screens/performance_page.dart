@@ -16,7 +16,9 @@ class PerformancePage extends GetView<HomeController> {
   //static const id = "/performance";
 
   double calculateStar(double value) {
-    return (value * 10 / 5) / 2;
+    return value.isNaN || value.isNegative || value == 0
+        ? 0
+        : (value * 10 / 5) / 2;
   }
 
   @override
@@ -310,9 +312,13 @@ class FeedbackWidget extends StatelessWidget {
 extension Operation on List<double> {
   double sum() {
     double total = 0;
-    forEach((element) {
-      total += element;
-    });
-    return total;
+    if (length == 0)
+      return 0;
+    else {
+      forEach((element) {
+        total += element;
+      });
+      return total;
+    }
   }
 }
