@@ -34,7 +34,7 @@ class CustomerOtpVerify extends GetView<OrderController> {
         ],
         automaticallyImplyLeading: false,
         title: Text(
-          "Order ${orderModelApi.id}",
+          "Order #${orderModelApi.id}",
           style: GoogleFonts.inter(
             fontStyle: FontStyle.normal,
             fontWeight: FontWeight.w500,
@@ -46,7 +46,6 @@ class CustomerOtpVerify extends GetView<OrderController> {
       body: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16, top: 3),
         child: Container(
-          height: MediaQuery.of(context).size.height * 0.8,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),

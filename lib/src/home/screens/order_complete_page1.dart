@@ -22,7 +22,9 @@ class OrderCompletePage1 extends GetView<OrderController> {
               backgroundColor: MyTheme.backgroundColor,
               body: Padding(
                 padding: const EdgeInsets.only(left: 16, right: 16, top: 4),
-                child: Obx(() => controller.orderList.isEmpty
+                child: Obx(() => controller.active.isEmpty &&
+                        controller.ended.isEmpty &&
+                        controller.inProgress.isEmpty
                     ? Center(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -50,13 +52,23 @@ class OrderCompletePage1 extends GetView<OrderController> {
                           await controller.getOrderItems();
                         },
                         child: ListView(
-                          physics: BouncingScrollPhysics(),
-                          shrinkWrap: true,
-                          padding: EdgeInsets.zero,
-                          children: controller.orderList
-                              .map((element) => OrderWidget(element: element))
-                              .toList(),
-                        ),
+                            physics: BouncingScrollPhysics(),
+                            shrinkWrap: true,
+                            padding: EdgeInsets.zero,
+                            children: [
+                              ...controller.active
+                                  .map((element) =>
+                                      OrderWidget(element: element))
+                                  .toList(),
+                              ...controller.inProgress
+                                  .map((element) =>
+                                      OrderWidget(element: element))
+                                  .toList(),
+                              ...controller.ended
+                                  .map((element) =>
+                                      OrderWidget(element: element))
+                                  .toList(),
+                            ]),
                       )),
               )),
           if (controller.loading.value)

@@ -7,7 +7,10 @@ import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 class OrderController extends GetxController {
   final SharedPreferenceHelper sfHelper = Get.find();
   final OrderServices services = OrderServices();
-  RxList<OrderModelApi> orderList = <OrderModelApi>[].obs;
+  RxList<OrderModelApi> active = <OrderModelApi>[].obs;
+  RxList<OrderModelApi> inProgress = <OrderModelApi>[].obs;
+  RxList<OrderModelApi> ended = <OrderModelApi>[].obs;
+
   RxBool loading = false.obs;
 
   List<String> months() => [
@@ -55,9 +58,22 @@ class OrderController extends GetxController {
     try {
       loading.value = true;
       String id = await sfHelper.getRestaurantId();
-      orderList.value = await services.getOrder(id);
+      List<OrderModelApi> orderList = await services.getOrder(id);
       loading.value = false;
-      orderList.sort((a, b) => a.status.index.compareTo(b.status.index));
+      active.value = orderList
+          .where((element) => element.status == OrderState.placed)
+          .toList();
+      active.sort((a, b) => b.id.compareTo(a.id));
+
+      inProgress.value = orderList
+          .where((element) => element.status == OrderState.inProgress)
+          .toList();
+      inProgress.sort((a, b) => b.id.compareTo(a.id));
+
+      ended.value =
+          orderList.where((element) => element.status.index > 1).toList();
+      ended.sort((a, b) => b.id.compareTo(a.id));
+
       update();
     } catch (e) {
       loading.value = false;
@@ -68,8 +84,21 @@ class OrderController extends GetxController {
   Future<void> getOrderItemsWithoutLoad() async {
     try {
       String id = await sfHelper.getRestaurantId();
-      orderList.value = await services.getOrder(id);
-      orderList.sort((a, b) => a.status.index.compareTo(b.status.index));
+      final orderList = await services.getOrder(id);
+      active.value = orderList
+          .where((element) => element.status == OrderState.placed)
+          .toList();
+      active.sort((a, b) => b.id.compareTo(a.id));
+
+      inProgress.value = orderList
+          .where((element) => element.status == OrderState.inProgress)
+          .toList();
+      inProgress.sort((a, b) => b.id.compareTo(a.id));
+
+      ended.value =
+          orderList.where((element) => element.status.index > 1).toList();
+      ended.sort((a, b) => b.id.compareTo(a.id));
+
       update();
     } catch (e) {
       loading.value = false;
