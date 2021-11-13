@@ -228,8 +228,10 @@ class HomeController extends GetxController {
   Future<void> logout() async {
     await sfHelper.clear();
     Get.find<AuthController>().clearAll();
-
-    Get.find<OnboardingController>().clear();
+    bool isOnBordingInit = Get.isRegistered<OnboardingController>();
+    if (isOnBordingInit) {
+      Get.find<OnboardingController>().clear();
+    }
     Get.find<OrderController>().orderList.value = [];
     foodItems.value = [];
     Get.offAllNamed(OpeningScreen.id);
