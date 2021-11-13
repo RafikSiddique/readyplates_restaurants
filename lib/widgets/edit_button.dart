@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 
 class EditButton extends StatelessWidget {
@@ -33,9 +34,8 @@ class EditButton extends StatelessWidget {
                 ),
                 Text(
                   'EDIT',
-                  style: TextStyle(
+                  style: GoogleFonts.inter(
                     fontSize: 12,
-                    fontFamily: 'Inter',
                     color: MyTheme.editbuttontextColor,
                   ),
                 )

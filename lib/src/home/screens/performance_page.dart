@@ -13,7 +13,7 @@ import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 import 'package:readyplates_restaurants/widgets/perfomance_circle.dart';
 
 class PerformancePage extends GetView<HomeController> {
-  static const id = "/performance";
+  //static const id = "/performance";
 
   double calculateStar(double value) {
     return (value * 10 / 5) / 2;
@@ -173,12 +173,10 @@ class FeedbackWidget extends StatelessWidget {
               Spacer(),
               Text("Order #${feedbackModel.id}",
                   style: GoogleFonts.inter(
-                    textStyle: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                      fontStyle: FontStyle.normal,
-                      color: MyTheme.text3Color,
-                    ),
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                    fontStyle: FontStyle.normal,
+                    color: MyTheme.text3Color,
                   )),
               Spacer(),
             ]),
@@ -190,23 +188,19 @@ class FeedbackWidget extends StatelessWidget {
               children: [
                 Text("Overall Experience",
                     style: GoogleFonts.nunitoSans(
-                      textStyle: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.normal,
-                        fontStyle: FontStyle.normal,
-                        color: MyTheme.text3Color,
-                      ),
+                      fontSize: 15,
+                      fontWeight: FontWeight.normal,
+                      fontStyle: FontStyle.normal,
+                      color: MyTheme.text3Color,
                     )),
                 Spacer(),
                 Text(feedbackModel.overall_experience.toString(),
                     textAlign: TextAlign.right,
                     style: GoogleFonts.nunito(
-                      textStyle: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.normal,
-                        fontStyle: FontStyle.normal,
-                        color: MyTheme.text2Color,
-                      ),
+                      fontSize: 15,
+                      fontWeight: FontWeight.normal,
+                      fontStyle: FontStyle.normal,
+                      color: MyTheme.text2Color,
                     ))
               ],
             ),
@@ -218,23 +212,19 @@ class FeedbackWidget extends StatelessWidget {
               children: [
                 Text("Taste",
                     style: GoogleFonts.nunitoSans(
-                      textStyle: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.normal,
-                        fontStyle: FontStyle.normal,
-                        color: MyTheme.text3Color,
-                      ),
+                      fontSize: 15,
+                      fontWeight: FontWeight.normal,
+                      fontStyle: FontStyle.normal,
+                      color: MyTheme.text3Color,
                     )),
                 Spacer(),
                 Text(feedbackModel.taste,
                     textAlign: TextAlign.right,
                     style: GoogleFonts.nunito(
-                      textStyle: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.normal,
-                        fontStyle: FontStyle.normal,
-                        color: MyTheme.text2Color,
-                      ),
+                      fontSize: 15,
+                      fontWeight: FontWeight.normal,
+                      fontStyle: FontStyle.normal,
+                      color: MyTheme.text2Color,
                     ))
               ],
             ),
@@ -246,23 +236,19 @@ class FeedbackWidget extends StatelessWidget {
               children: [
                 Text("Ambience",
                     style: GoogleFonts.nunitoSans(
-                      textStyle: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.normal,
-                        fontStyle: FontStyle.normal,
-                        color: MyTheme.text3Color,
-                      ),
+                      fontSize: 15,
+                      fontWeight: FontWeight.normal,
+                      fontStyle: FontStyle.normal,
+                      color: MyTheme.text3Color,
                     )),
                 Spacer(),
                 Text(feedbackModel.ambience,
                     textAlign: TextAlign.right,
                     style: GoogleFonts.nunito(
-                      textStyle: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.normal,
-                        fontStyle: FontStyle.normal,
-                        color: MyTheme.text2Color,
-                      ),
+                      fontSize: 15,
+                      fontWeight: FontWeight.normal,
+                      fontStyle: FontStyle.normal,
+                      color: MyTheme.text2Color,
                     ))
               ],
             ),
@@ -274,23 +260,19 @@ class FeedbackWidget extends StatelessWidget {
               children: [
                 Text("Serving time",
                     style: GoogleFonts.nunitoSans(
-                      textStyle: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.normal,
-                        fontStyle: FontStyle.normal,
-                        color: MyTheme.text3Color,
-                      ),
+                      fontSize: 15,
+                      fontWeight: FontWeight.normal,
+                      fontStyle: FontStyle.normal,
+                      color: MyTheme.text3Color,
                     )),
                 Spacer(),
                 Text(feedbackModel.serving_time,
                     textAlign: TextAlign.right,
                     style: GoogleFonts.nunito(
-                      textStyle: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.normal,
-                        fontStyle: FontStyle.normal,
-                        color: MyTheme.text2Color,
-                      ),
+                      fontSize: 15,
+                      fontWeight: FontWeight.normal,
+                      fontStyle: FontStyle.normal,
+                      color: MyTheme.text2Color,
                     ))
               ],
             ),

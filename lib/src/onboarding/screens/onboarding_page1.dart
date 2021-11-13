@@ -178,11 +178,11 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                                 padding: EdgeInsets.only(right: 20, left: 20),
                                 child: Text(
                                   'Verify',
-                                  style: TextStyle(
+                                  style: GoogleFonts.inter(
                                     decoration: TextDecoration.underline,
                                     fontWeight: FontWeight.bold,
                                     fontStyle: FontStyle.normal,
-                                    fontFamily: 'Inter',
+                                    
                                     fontSize: 15,
                                     color: MyTheme.verifytextColor,
                                   ),

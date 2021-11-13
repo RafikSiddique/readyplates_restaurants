@@ -314,9 +314,8 @@ class _AddFoodItemState extends State<AddFoodItem> {
                 SizedBox(height: 3),
                 Text(
                   "Please Type in case of Other",
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     fontSize: 9,
-                    fontFamily: 'Poppins',
                     fontStyle: FontStyle.normal,
                     fontWeight: FontWeight.normal,
                     color: MyTheme.bottomtextColor,
@@ -368,9 +367,9 @@ class _AddFoodItemState extends State<AddFoodItem> {
                               ),
                               Text(
                                 "Add ",
-                                style: TextStyle(
+                                style: GoogleFonts.inter(
                                   fontSize: 15,
-                                  fontFamily: 'Inter ',
+                                  
                                   fontStyle: FontStyle.normal,
                                   fontWeight: FontWeight.normal,
                                   letterSpacing: -0.229412,

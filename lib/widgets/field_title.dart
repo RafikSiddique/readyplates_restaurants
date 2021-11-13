@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 
 class FieldTitle extends StatelessWidget {
@@ -22,9 +23,8 @@ class FieldTitle extends StatelessWidget {
       child: RichText(
         text: TextSpan(
             text: text,
-            style: TextStyle(
+            style: GoogleFonts.inter(
               fontSize: fontSize,
-              fontFamily: fontFamily,
               fontStyle: FontStyle.normal,
               fontWeight: fontWeight,
               color: MyTheme.labelColor,

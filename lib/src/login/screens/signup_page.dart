@@ -21,16 +21,6 @@ class _SignupPageState extends State<SignupPage> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   void initState() {
-    controller.email.addListener(() {
-      setState(() {});
-    });
-    controller.password.addListener(() {
-      setState(() {});
-    });
-    controller.password2.addListener(() {
-      setState(() {});
-    });
-
     super.initState();
   }
 
@@ -292,9 +282,8 @@ class _SignupPageState extends State<SignupPage> {
                                       child: Text(
                                         'Sign up with Google',
                                         textAlign: TextAlign.center,
-                                        style: TextStyle(
+                                        style: GoogleFonts.inter(
                                           fontSize: 17,
-                                          fontFamily: 'Inter-Regular',
                                           fontStyle: FontStyle.normal,
                                           fontWeight: FontWeight.w600,
                                           color: Color(0xff222222),

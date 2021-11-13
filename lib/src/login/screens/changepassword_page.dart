@@ -20,13 +20,6 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   void initState() {
-    controller.email.addListener(() {
-      setState(() {});
-    });
-    controller.password.addListener(() {
-      setState(() {});
-    });
-
     super.initState();
   }
 
@@ -199,8 +192,8 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                             height: 54,
                             onTap: () async {
                               formKey.currentState!.save();
-                              if (formKey.currentState!.validate()){}
-                               // await controller.login();
+                              if (formKey.currentState!.validate()) {}
+                              // await controller.login();
                             },
                             buttonbackgroundColor:
                                 (controller.email.text.isEmpty ||

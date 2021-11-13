@@ -32,10 +32,11 @@ class PlaceApiProvider {
 
   final sessionToken;
 
-  Future<List<Suggestion>?> fetchSuggestions(
-      String input, String lang, double? lat, double? long) async {
+  String googleApiKey = "AIzaSyDDH_xYPf0FhaZ20eG30NfaTMdNs9ykZdc";
+
+  Future<List<Suggestion>> fetchSuggestions(String input, String lang) async {
     final String request =
-        'https://maps.googleapis.com/maps/api/place/autocomplete/json?input=$input&location=$lat,$long&radius=11000&language=$lang&components=country:in&key="TDDO"&sessiontoken=$sessionToken';
+        'https://maps.googleapis.com/maps/api/place/autocomplete/json?input=$input&language=$lang&components=country:in&key=$googleApiKey&sessiontoken=$sessionToken';
 
     Uri req = Uri.parse(request);
     final response = await client.get(req);
@@ -59,7 +60,7 @@ class PlaceApiProvider {
 
   Future<Place> getPlaceDetailFromId(String? placeId) async {
     final request =
-        'https://maps.googleapis.com/maps/api/place/details/json?place_id=$placeId&fields=geometry&key="TODO"&sessiontoken=$sessionToken';
+        'https://maps.googleapis.com/maps/api/place/details/json?place_id=$placeId&fields=geometry&key=$googleApiKey&sessiontoken=$sessionToken';
     Uri req = Uri.parse(request);
     final response = await client.get(req);
 

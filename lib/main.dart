@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/src/staticscreens/opening_screen.dart';
 import 'package:readyplates_restaurants/utils/routes.dart';
@@ -30,17 +31,15 @@ class MyApp extends StatelessWidget {
           sliderTheme:
               SliderThemeData(trackHeight: 8, trackShape: CustomTrackShape()),
           bottomNavigationBarTheme: BottomNavigationBarThemeData(
-            selectedLabelStyle: TextStyle(
+            selectedLabelStyle: GoogleFonts.inter(
               fontSize: 13,
-              fontFamily: 'Inter',
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.normal,
             ),
             selectedItemColor: Color(0xff00ADB5).withOpacity(0.7),
             unselectedItemColor: Color(0xff393E46),
-            unselectedLabelStyle: TextStyle(
+            unselectedLabelStyle: GoogleFonts.inter(
               fontSize: 13,
-              fontFamily: 'Inter',
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.normal,
             ),

@@ -162,15 +162,13 @@ class CustomerOtpVerify extends GetView<OrderController> {
                   Obx(() => Text(controller.otpVerification.value,
                       textAlign: TextAlign.center,
                       style: GoogleFonts.inter(
-                        textStyle: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          fontStyle: FontStyle.normal,
-                          color: controller.otpVerification.value ==
-                                  controller.otpVerified
-                              ? MyTheme.borderchangeColor
-                              : Colors.red,
-                        ),
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        fontStyle: FontStyle.normal,
+                        color: controller.otpVerification.value ==
+                                controller.otpVerified
+                            ? MyTheme.borderchangeColor
+                            : Colors.red,
                       ))),
                   SizedBox(
                     height: 15,

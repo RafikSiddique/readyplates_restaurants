@@ -279,10 +279,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 child: OnboardingButton(
                   height: 44,
                   onTap: () {
-                    Navigator.pushNamed(
-                      context,
-                      PerformancePage.id,
-                    );
+                    Get.back();
                   },
                   buttonbackgroundColor: MyTheme.buttonchangeColor,
                   text: 'Back',

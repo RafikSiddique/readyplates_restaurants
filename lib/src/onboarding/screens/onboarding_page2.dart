@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:geocode/geocode.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -8,10 +9,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
+import 'package:readyplates_restaurants/utils/place_search.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
 import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
+import 'package:uuid/uuid.dart';
 
 class OnboardingPage2 extends StatefulWidget {
   static const id = "/onboarding2";
@@ -96,88 +99,37 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
               SizedBox(
                 height: 5,
               ),
-              if (MediaQuery.of(context).viewInsets.bottom == 0 &&
-                  !isMapKeyboard)
-                Expanded(
-                  child: Stack(
-                    alignment: Alignment.topCenter,
-                    children: [
-                      FutureBuilder<Position>(
-                          future: Geolocator.getCurrentPosition(),
-                          builder: (context, snapshot) {
-                            if (!snapshot.hasError && snapshot.data != null) {
-                              return SelectLocation(
-                                isOpen: true,
-                                latLng: LatLng(snapshot.data!.latitude,
-                                    snapshot.data!.longitude),
-                                setLocation: (p0) async {
-                                  GeoCode geoCode = GeoCode();
-                                  controller.latitude.text =
-                                      p0.latitude.toString();
-                                  controller.longitude.text =
-                                      p0.longitude.toString();
-                                  final address =
-                                      await geoCode.reverseGeocoding(
-                                          latitude: p0.latitude,
-                                          longitude: p0.longitude);
+              Expanded(
+                child: FutureBuilder<Position>(
+                    future: Geolocator.getCurrentPosition(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasError && snapshot.data != null) {
+                        return SelectLocation(
+                          isOpen: true,
+                          latLng: LatLng(snapshot.data!.latitude,
+                              snapshot.data!.longitude),
+                          setLocation: (p0) async {
+                            GeoCode geoCode = GeoCode();
+                            controller.latitude.text = p0.latitude.toString();
+                            controller.longitude.text = p0.longitude.toString();
+                            final address = await geoCode.reverseGeocoding(
+                                latitude: p0.latitude, longitude: p0.longitude);
 
-                                  controller.address1.text =
-                                      address.streetAddress.toString();
-                                  controller.address2.text =
-                                      address.region.toString();
-                                  controller.postalcode.text =
-                                      address.postal.toString();
-                                },
-                              );
-                            } else {
-                              return Center(
-                                child: CircularProgressIndicator(),
-                              );
-                            }
-                          }),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10, left: 10),
-                        child: Align(
-                          alignment: Alignment.topLeft,
-                          child: Container(
-                            height: 50,
-                            width: MediaQuery.of(context).size.width * 0.6,
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: TextField(
-                                onTap: () {
-                                  isMapKeyboard = true;
-                                  a = 0;
-                                },
-                                decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    hintText: "Search Any Location",
-                                    hintStyle: GoogleFonts.inter(
-                                      fontSize: 15,
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                    contentPadding: const EdgeInsets.only(
-                                        top: 27, left: 10),
-                                    suffixIcon: Padding(
-                                      padding: const EdgeInsets.only(top: 5),
-                                      child: Icon(
-                                        Icons.search,
-                                        color: Colors.grey,
-                                        size: 22,
-                                      ),
-                                    )),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                            controller.address1.text =
+                                address.streetAddress.toString();
+                            controller.address2.text =
+                                address.region.toString();
+                            controller.postalcode.text =
+                                address.postal.toString();
+                          },
+                        );
+                      } else {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                    }),
+              ),
               SizedBox(
                 height: 3,
               ),
@@ -344,7 +296,54 @@ class _SelectLocationState extends State<SelectLocation> {
                   controller?.animateCamera(CameraUpdate.zoomOut());
                 })
               ],
-            ))
+            )),
+        Padding(
+          padding: const EdgeInsets.only(top: 10, left: 10),
+          child: Align(
+            alignment: Alignment.topLeft,
+            child: Container(
+              height: 50,
+              width: MediaQuery.of(context).size.width * 0.6,
+              child: Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                child: //TypeAheadField<Suggestion>(
+                    //textFieldConfiguration:
+                    TextField(
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      hintText: "Search Any Location",
+                      hintStyle: GoogleFonts.inter(
+                        fontSize: 15,
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      contentPadding: const EdgeInsets.only(top: 27, left: 10),
+                      suffixIcon: Padding(
+                        padding: const EdgeInsets.only(top: 5),
+                        child: Icon(
+                          Icons.search,
+                          color: Colors.grey,
+                          size: 22,
+                        ),
+                      )),
+                ),
+                /*         itemBuilder: (BuildContext context, itemData) {
+                    return ListTile();
+                  },
+                  onSuggestionSelected: (Object? suggestion) {},
+                  suggestionsCallback: (String pattern) async {
+                    final session = Uuid().v4();
+                    return PlaceApiProvider(session).fetchSuggestions(
+                        pattern, Localizations.localeOf(context).languageCode);
+                  }, */
+                // ),
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }
