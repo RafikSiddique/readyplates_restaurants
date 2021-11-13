@@ -234,8 +234,9 @@ class HomeController extends GetxController {
       feedbacks.value = await homeServices.getFeedbacks(id);
     } catch (e) {
       if (e is AppException) {
+//        Get.snackbar("Error", e.toString());
+
       } else {
-        Get.snackbar("Error", e.toString());
       }
       timer?.cancel();
     }

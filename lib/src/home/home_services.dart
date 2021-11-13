@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:http/http.dart';
 import 'package:readyplates_restaurants/models/feedback_model.dart';
 import 'package:readyplates_restaurants/models/fooditem_model.dart';
+
 // import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/utils/api_services.dart';
 import 'package:readyplates_restaurants/utils/exception.dart';
@@ -36,17 +37,21 @@ class HomeServices extends ApiServices {
         'category': category,
         'std_serving_size': std_serving_size,
         'spice_level': spice_level,
-        "other_serving_cost": other_serving_cost,
-        "other_serving_size": other_serving_size,
         'cost': cost,
       });
+
+      //if (other_serving_cost.isNotEmpty && other_serving_size.isNotEmpty) {
+        request.fields.addAll({
+          "other_serving_cost": other_serving_cost.isEmpty ? "other_serving_cost" : other_serving_cost,
+          "other_serving_size": other_serving_size.isEmpty ? "other_serving_size" : other_serving_size ,
+        });
+      //}
+
       StreamedResponse response = await request.send();
-      if (response.statusCode == 201) {
-        String body = await response.stream.bytesToString();
-        print(body);
-      } else {
-        String body = await response.stream.bytesToString();
-        print(body);
+      String body = await response.stream.bytesToString();
+      print(body);
+      if (response.statusCode != 201) {
+
         throw AppException(
             code: response.statusCode, message: response.reasonPhrase);
       }
@@ -83,10 +88,14 @@ class HomeServices extends ApiServices {
         'category': category,
         'std_serving_size': std_serving_size,
         'spice_level': spice_level,
-        "other_serving_cost": other_serving_cost,
-        "other_serving_size": other_serving_size,
         'cost': cost,
       });
+      if (other_serving_cost.isNotEmpty && other_serving_size.isNotEmpty) {
+        request.fields.addAll({
+          "other_serving_cost": other_serving_cost,
+          "other_serving_size": other_serving_size,
+        });
+      }
       StreamedResponse response = await request.send();
       if (response.statusCode == 201) {
         String body = await response.stream.bytesToString();
@@ -106,7 +115,7 @@ class HomeServices extends ApiServices {
     try {
       print(id);
       Response response = await get(feedbacks(id));
-      print("Hi");
+
       print(response.statusCode);
       print(response.reasonPhrase);
       print(response.body);

@@ -86,6 +86,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
         ),
       ),
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.only(left: 16, right: 16),
           child: Form(
