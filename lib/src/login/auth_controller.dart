@@ -47,6 +47,7 @@ class AuthController extends GetxController {
   }
 
   String route(int id) {
+    final controller = Get.find<OnboardingController>();
     switch (id) {
       case 1:
         return OnboardingPage1.id;
@@ -55,7 +56,27 @@ class AuthController extends GetxController {
       case 3:
         return OnboardingPage3.id;
       case 4:
-
+        return OnboardingPage4.id;
+      case 5:
+        return OnboardingPage5.id;
+      case 6:
+        return OnboardingPage6.id;
+      case 7:
+        return OnboardingPage7.id;
+      case 8:
+        return OnboardingPage8.resId;
+      case 9:
+        controller.pageIndex.value = 0;
+        return OnboardingPage9.resId;
+      case 10:
+        controller.pageIndex.value = 1;
+        return OnboardingPage9.resId;
+      case 11:
+        controller.pageIndex.value = 2;
+        return OnboardingPage9.resId;
+      case 12:
+        controller.pageIndex.value = 3;
+        return OnboardingPage9.resId;
       default:
         return OnboardingPage1.id;
     }
@@ -66,8 +87,7 @@ class AuthController extends GetxController {
       String id =
           await services.signup(email.text, password.text, password2.text);
       await sfHelper.setUserId(id);
-final oController=
-Get.put(OnboardingController());
+      final oController = Get.put(OnboardingController());
       oController.uniqueId = id;
       Get.toNamed(OnboardingPage1.id);
     } catch (e) {
@@ -88,8 +108,10 @@ Get.put(OnboardingController());
         //if (routeId >= 9) {
         isLoggedIn.value = true;
         sfHelper.setLoggedIn(true);
-        Get.put(HomeController());
-        Get.put(OrderController());
+        final controller = Get.put(HomeController());
+        await controller.getFoodItems();
+        final oController = Get.put(OrderController());
+        await oController.getOrderItems();
         Get.offAllNamed(HomePage.id);
         /*        } else {
           if (routeId == 1) {

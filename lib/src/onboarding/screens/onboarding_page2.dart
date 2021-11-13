@@ -269,6 +269,7 @@ class _SelectLocationState extends State<SelectLocation> {
           zoomControlsEnabled: false,
           zoomGesturesEnabled: true,
           myLocationButtonEnabled: false,
+          tiltGesturesEnabled: true,
           rotateGesturesEnabled: widget.isOpen,
           onCameraIdle: () {
             widget.setLocation(lg);
@@ -307,39 +308,48 @@ class _SelectLocationState extends State<SelectLocation> {
               child: Card(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
-                child: //TypeAheadField<Suggestion>(
-                    //textFieldConfiguration:
-                    TextField(
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      hintText: "Search Any Location",
-                      hintStyle: GoogleFonts.inter(
-                        fontSize: 15,
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      contentPadding: const EdgeInsets.only(top: 27, left: 10),
-                      suffixIcon: Padding(
-                        padding: const EdgeInsets.only(top: 5),
-                        child: Icon(
-                          Icons.search,
-                          color: Colors.grey,
-                          size: 22,
+                child: TypeAheadField<Suggestion>(
+                  textFieldConfiguration: TextFieldConfiguration(
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                      )),
-                ),
-                /*         itemBuilder: (BuildContext context, itemData) {
-                    return ListTile();
+                        hintText: "Search Any Location",
+                        hintStyle: GoogleFonts.inter(
+                          fontSize: 15,
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        contentPadding:
+                            const EdgeInsets.only(top: 27, left: 10),
+                        suffixIcon: Padding(
+                          padding: const EdgeInsets.only(top: 5),
+                          child: Icon(
+                            Icons.search,
+                            color: Colors.grey,
+                            size: 22,
+                          ),
+                        )),
+                  ),
+                  itemBuilder: (BuildContext context, itemData) {
+                    return ListTile(
+                      title: Text(itemData.description.toString()),
+                    );
                   },
-                  onSuggestionSelected: (Object? suggestion) {},
+                  onSuggestionSelected: (Suggestion? suggestion) async {
+                    final session = Uuid().v4();
+
+                    Place place = await PlaceApiProvider(session)
+                        .getPlaceDetailFromId(suggestion!.placeId);
+                    controller?.animateCamera(CameraUpdate.newLatLng(
+                        LatLng(place.lat!, place.lang!)));
+                  },
                   suggestionsCallback: (String pattern) async {
                     final session = Uuid().v4();
-                    return PlaceApiProvider(session).fetchSuggestions(
-                        pattern, Localizations.localeOf(context).languageCode);
-                  }, */
-                // ),
+                    return PlaceApiProvider(session)
+                        .fetchSuggestions(pattern, 'en');
+                  },
+                ),
               ),
             ),
           ),

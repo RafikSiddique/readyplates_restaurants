@@ -14,6 +14,7 @@ import 'package:readyplates_restaurants/src/home/screens/add_food_item.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/src/staticscreens/opening_screen.dart';
+import 'package:readyplates_restaurants/utils/exception.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 import 'package:readyplates_restaurants/utils/utils.dart';
 
@@ -69,19 +70,31 @@ class HomeController extends GetxController {
         duration: Duration(milliseconds: 500), curve: Curves.ease);
     title.value = getTitle(i);
     if (i == 1) {
+      timer?.cancel();
       getFeedbacksFirst();
       timer = Timer.periodic(Duration(seconds: 5), (t) async {
         await getFeedbacks();
         print("Feedback Get");
+        timer = t;
       });
     } else if (i == 2) {
+      timer?.cancel();
+      Get.find<OrderController>().getOrderItems();
       timer = Timer.periodic(Duration(seconds: 2), (t) async {
         await Get.find<OrderController>().getOrderItemsWithoutLoad();
         print("Orders Get");
+        timer = t;
+      });
+    } else if (i == 0) {
+      timer?.cancel();
+
+      timer = Timer.periodic(Duration(seconds: 2), (t) async {
+        await getFoodItems();
+        print("FoodItems Get");
+        timer = t;
       });
     } else {
-      timer = Timer(Duration(seconds: 0), () {});
-      if (timer != null && timer!.isActive) timer!.cancel();
+      timer?.cancel();
     }
   }
 
@@ -109,10 +122,8 @@ class HomeController extends GetxController {
     cost = TextEditingController();
     servingname = TextEditingController();
     servingcost = TextEditingController();
-
     feedback = TextEditingController();
     getFoodItems();
-
     super.onInit();
   }
 
@@ -153,8 +164,8 @@ class HomeController extends GetxController {
           dietType.value,
           category.value,
           servingSize,
-          "other_cost",
-          "other_serving_size",
+          servingcost.text,
+          servingname.text,
           spiceSlider.value.toString(),
           cost.text);
       await getFoodItems();
@@ -177,8 +188,8 @@ class HomeController extends GetxController {
           dietType.value,
           category.value,
           servingSize,
-          "other_cost",
-          "other_serving_size",
+          servingcost.text,
+          servingname.text,
           spiceSlider.value.toString(),
           cost.text);
       await getFoodItems();
@@ -199,6 +210,7 @@ class HomeController extends GetxController {
               : foodItems
           : [];
       Get.snackbar("Error", e.toString());
+      timer?.cancel();
     }
   }
 
@@ -221,7 +233,11 @@ class HomeController extends GetxController {
       String id = await sfHelper.getRestaurantId();
       feedbacks.value = await homeServices.getFeedbacks(id);
     } catch (e) {
-      Get.snackbar("Error", e.toString());
+      if (e is AppException) {
+      } else {
+        Get.snackbar("Error", e.toString());
+      }
+      timer?.cancel();
     }
   }
 
@@ -232,6 +248,7 @@ class HomeController extends GetxController {
     if (isOnBordingInit) {
       Get.find<OnboardingController>().clear();
     }
+    selectedIndex.value = 0;
     Get.find<OrderController>().orderList.value = [];
     foodItems.value = [];
     Get.offAllNamed(OpeningScreen.id);

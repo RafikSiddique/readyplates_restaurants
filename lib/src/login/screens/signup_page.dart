@@ -229,26 +229,35 @@ class _SignupPageState extends State<SignupPage> {
                             SizedBox(
                               height: kToolbarHeight * 0.4,
                             ),
-                            OnboardingButton(
-                              height: 54,
-                              onTap: () async {
-                                formKey.currentState!.save();
-                                if (formKey.currentState!.validate())
-                                  await controller.signup();
-                              },
-                              buttonbackgroundColor:
-                                  (controller.email.text.isEmpty ||
-                                          controller.password.text.isEmpty ||
-                                          controller.password2.text.isEmpty)
-                                      ? MyTheme.buttonColor
-                                      : MyTheme.buttonchangeColor,
-                              text: 'Verify Password',
-                              buttontextColor: (controller.email.text.isEmpty ||
-                                      controller.password.text.isEmpty ||
-                                      controller.password2.text.isEmpty)
-                                  ? MyTheme.buttontextColor
-                                  : MyTheme.buttontextchangeColor,
-                            ),
+                            AnimatedBuilder(
+                                animation: Listenable.merge([
+                                  controller.email,
+                                  controller.password,
+                                  controller.password2
+                                ]),
+                                builder: (context, child) {
+                                  return OnboardingButton(
+                                    height: 54,
+                                    onTap: () async {
+                                      formKey.currentState!.save();
+                                      if (formKey.currentState!.validate())
+                                        await controller.signup();
+                                    },
+                                    buttonbackgroundColor: (controller
+                                                .email.text.isEmpty ||
+                                            controller.password.text.isEmpty ||
+                                            controller.password2.text.isEmpty)
+                                        ? MyTheme.buttonColor
+                                        : MyTheme.buttonchangeColor,
+                                    text: 'Verify Password',
+                                    buttontextColor: (controller
+                                                .email.text.isEmpty ||
+                                            controller.password.text.isEmpty ||
+                                            controller.password2.text.isEmpty)
+                                        ? MyTheme.buttontextColor
+                                        : MyTheme.buttontextchangeColor,
+                                  );
+                                }),
                             SizedBox(
                               height: kToolbarHeight * 0.2,
                             ),

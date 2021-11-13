@@ -32,11 +32,11 @@ class PlaceApiProvider {
 
   final sessionToken;
 
-  String googleApiKey = "AIzaSyDDH_xYPf0FhaZ20eG30NfaTMdNs9ykZdc";
+  String googleApiKey = "AIzaSyDR2to-aBls8N4Wqa4xt3Et5vk2GkVF2Do";
 
   Future<List<Suggestion>> fetchSuggestions(String input, String lang) async {
     final String request =
-        'https://maps.googleapis.com/maps/api/place/autocomplete/json?input=$input&language=$lang&components=country:in&key=$googleApiKey&sessiontoken=$sessionToken';
+        'https://maps.googleapis.com/maps/api/place/autocomplete/json?input=$input&language=$lang&components=country:us&key=$googleApiKey&sessiontoken=$sessionToken';
 
     Uri req = Uri.parse(request);
     final response = await client.get(req);
@@ -48,13 +48,13 @@ class PlaceApiProvider {
         return result['predictions']
             .map<Suggestion>((p) => Suggestion(p['place_id'], p['description']))
             .toList();
-      }
-      if (result['status'] == 'ZERO_RESULTS') {
+      } else if (result['status'] == 'ZERO_RESULTS') {
+        return [];
+      } else {
         return [];
       }
-      throw Exception(result['error_message']);
     } else {
-      throw Exception('Failed to fetch suggestion');
+      return [];
     }
   }
 

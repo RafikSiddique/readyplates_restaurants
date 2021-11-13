@@ -54,6 +54,38 @@ class _OnboardingPage9State extends State<OnboardingPage9> {
     });
   }
 
+  bool checkList(List<String> images) {
+    return images.length == 4 &&
+        (images[0] != "" &&
+            images[1] != "" &&
+            images[2] != "" &&
+            images[3] != "");
+  }
+
+  Color getButtonColor(Color disabled, Color enabled) {
+    switch (onBoardingController.pageIndex.value) {
+      case 0:
+        return checkList(onBoardingController.fasciaImages)
+            ? enabled
+            : disabled;
+      case 1:
+        return checkList(onBoardingController.ambienceImages)
+            ? enabled
+            : disabled;
+      case 2:
+        return checkList(onBoardingController.foodImages) ? enabled : disabled;
+      case 3:
+        return checkList(onBoardingController.covidProtocol)
+            ? enabled
+            : disabled;
+
+      default:
+        return checkList(onBoardingController.fasciaImages)
+            ? enabled
+            : disabled;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -164,23 +196,18 @@ class _OnboardingPage9State extends State<OnboardingPage9> {
                 ],
               ),
             ),
-            // SizedBox(
-            //   height: size.height * 0.26,
-            // ),
-            //Spacer(),
             OnboardingButton(
               onTap: () async {
                 await onBoardingController.onboardingApi(OnBoardingMethod.api7);
               },
-              buttonbackgroundColor: onBoardingController.loading.value
-                  ? MyTheme.buttonchangeColor
-                  : MyTheme.buttonColor,
+              buttonbackgroundColor: getButtonColor(
+                  MyTheme.buttonColor, MyTheme.buttonchangeColor),
               text: 'CONTINUE',
-              buttontextColor: onBoardingController.loading.value
-                  ? MyTheme.buttontextchangeColor
-                  : MyTheme.buttontextColor,
+              buttontextColor: getButtonColor(
+                MyTheme.buttontextColor,
+                MyTheme.buttontextchangeColor,
+              ),
             ),
-
             SizedBox(
               height: 16,
             ),

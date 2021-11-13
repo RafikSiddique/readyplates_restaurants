@@ -570,7 +570,7 @@ class OnboardingController extends GetxController {
         selectedRecurrence.value,
         startTime,
         endTime,
-        // "${eventstartHour.value}:${eventstartMinute.value}${eventstartAmPm}",
+        
         // "${eventendHour.value}:${eventendMinute.value}${eventendAmPm}",
         eventDesc.text,
       );

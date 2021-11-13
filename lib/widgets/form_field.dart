@@ -11,7 +11,7 @@ class AppFormField extends StatefulWidget {
   final bool isRequired;
   final String title;
   final String? Function(String?)? validator;
-  void Function(TextEditingController)? onchanged;
+  void Function(String)? onchanged;
   void Function(bool)? onSwitch;
   final String hintText;
   final BorderRadius borderRadius;
@@ -46,12 +46,13 @@ class AppFormField extends StatefulWidget {
     this.borderRadius = const BorderRadius.all(Radius.circular(6)),
     this.validator,
     this.onchanged,
-    required this.controller,
+    required TextEditingController controller,
     this.bottomText,
     this.maxLength,
     this.onSwitch,
     this.minLength,
   })  : assert(matchVerification ? secondVal != null : true),
+        this.controller = controller,
         super(key: key);
 
   @override
@@ -60,16 +61,13 @@ class AppFormField extends StatefulWidget {
 
 class _AppFormFieldState extends State<AppFormField> {
   bool obSecureText = true;
-
+  TextEditingController get controller => widget.controller;
   @override
   void initState() {
-    widget.controller.addListener(() {
-      if (widget.controller.text.length == 0 || widget.controller.text != "") {
-        setState(() {});
-      }
-    });
     super.initState();
   }
+
+  bool valid = true;
 
   bool _Switchvalue = true;
   @override
@@ -122,85 +120,107 @@ class _AppFormFieldState extends State<AppFormField> {
             SizedBox(
               height: 7,
             ),
-          StatefulBuilder(builder: (context, setState) {
-            return Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  width: 1,
-                  color: widget.controller.text != ""
-                      ? MyTheme.borderchangeColor
-                      : MyTheme.borderColor,
-                ),
-                borderRadius: widget.borderRadius,
-              ),
-              child: TextFormField(
-                // textCapitalization: TextCapitalization.characters,
-                style: GoogleFonts.inter(
-                  fontSize: 15,
-                  color: MyTheme.hinttextchangeColor,
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.w500,
-                ),
-                maxLines: widget.line,
-                obscureText: widget.isPassword ? obSecureText : false,
-                inputFormatters: widget.formatters,
-                controller: widget.controller,
-                maxLength: widget.maxLength,
+          ValueListenableBuilder<TextEditingValue>(
+              valueListenable: controller,
+              builder: (context, v, __) {
+                return Container(
+                    padding: EdgeInsets.only(
+                        top: widget.borderRadius == BorderRadius.zero ||
+                                widget.borderRadius.bottomLeft != 0
+                            ? valid
+                                ? 0
+                                : 10
+                            : 0),
+                    child: TextFormField(
+                      // textCapitalization: TextCapitalization.characters,
+                      style: GoogleFonts.inter(
+                        fontSize: 15,
+                        color: MyTheme.hinttextchangeColor,
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.w500,
+                      ),
 
-                validator: (value) {
-                  if (value == "") {
-                    if (widget.isRequired) {
-                      return "This Field is required";
-                    }
-                    if (widget.minLength != null) {
-                      if (value!.length < widget.minLength!) {
-                        return "Invalid, Minimum length should be ${widget.minLength} digits";
-                      }
-                    }
-                  } else {
-                    if (widget.matchVerification) {
-                      if (value != widget.secondVal!.text) {
-                        return "The ${widget.title} does not match";
-                      }
-                    }
-                  }
-                  if (widget.validator != null) return widget.validator!(value);
-                },
-                textAlign: TextAlign.left,
-                keyboardType: widget.inputType,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                    borderRadius: widget.borderRadius,
-                  ),
-                  counterText: "",
-                  hintText: widget.hintText,
-                  contentPadding: EdgeInsets.only(
-                    left: 14,
-                    top: 14,
-                    right: 14,
-                    bottom: 14,
-                  ),
-                  suffixIcon: widget.isPassword
-                      ? IconButton(
-                          onPressed: () {
+                      maxLines: widget.line,
+                      obscureText: widget.isPassword ? obSecureText : false,
+                      inputFormatters: widget.formatters,
+                      controller: controller,
+                      maxLength: widget.maxLength,
+
+                      validator: (value) {
+                        if (value == "") {
+                          if (widget.isRequired) {
                             setState(() {
-                              obSecureText = !obSecureText;
+                              valid = false;
                             });
-                          },
-                          icon:
-                              Icon(obSecureText ? Icons.lock : Icons.lock_open))
-                      : null,
-                  hintStyle: GoogleFonts.inter(
-                    fontSize: widget.hintfontSize,
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w500,
-                    color: MyTheme.hinttextColor,
-                  ),
-                ),
-              ),
-            );
-          }),
+                            return "This Field is required";
+                          }
+                          if (widget.minLength != null) {
+                            if (value!.length < widget.minLength!) {
+                              return "Invalid, Minimum length should be ${widget.minLength} digits";
+                            }
+                          }
+                        } else {
+                          if (widget.matchVerification) {
+                            if (value != widget.secondVal!.text) {
+                              return "The ${widget.title} does not match";
+                            }
+                          }
+                        }
+                        if (widget.validator != null)
+                          return widget.validator!(value);
+                      },
+                      textAlign: TextAlign.left,
+                      keyboardType: widget.inputType,
+                      decoration: InputDecoration(
+                        //serrorText: !widget.isRequired ? "" : null,
+
+                        errorStyle: TextStyle(
+                          height: 1,
+                          textBaseline: TextBaseline.ideographic,
+                        ),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            width: 1,
+                            color: v.text != ""
+                                ? MyTheme.borderchangeColor
+                                : MyTheme.borderColor,
+                          ),
+                          borderRadius: widget.borderRadius,
+                        ),
+
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            width: 1,
+                            color: v.text != ""
+                                ? MyTheme.borderchangeColor
+                                : MyTheme.borderColor,
+                          ),
+                          borderRadius: widget.borderRadius,
+                        ),
+
+                        counterText: "",
+                        hintText: widget.hintText,
+                        contentPadding: EdgeInsets.all(14),
+                        suffixIcon: widget.isPassword
+                            ? IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    obSecureText = !obSecureText;
+                                  });
+                                },
+                                icon: Icon(obSecureText
+                                    ? Icons.lock
+                                    : Icons.lock_open))
+                            : null,
+                        hintStyle: GoogleFonts.inter(
+                          fontSize: widget.hintfontSize,
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.w500,
+                          color: MyTheme.hinttextColor,
+                        ),
+                      ),
+                    ));
+              }),
           if (widget.bottomText != null)
             SizedBox(
               height: 3,
