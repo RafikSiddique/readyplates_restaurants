@@ -128,6 +128,11 @@ class CitySelectorSheet extends GetView<OnboardingController> {
                                 ]
                               : [
                                   ListTile(
+                                    onTap: () {
+                                      controller.rescity =
+                                          controller.rxStates[index].name;
+                                      Get.back();
+                                    },
                                     title:
                                         Text(controller.rxStates[index].name),
                                   )

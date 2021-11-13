@@ -70,7 +70,9 @@ class OrderWidget extends StatelessWidget {
                         SizedBox(
                           width: 9,
                         ),
-                        Text(e.menu.name,
+                        Expanded(
+                          child: Text(
+                            e.menu.name,
                             style: GoogleFonts.inter(
                               textStyle: TextStyle(
                                 fontSize: 15,
@@ -78,8 +80,13 @@ class OrderWidget extends StatelessWidget {
                                 fontStyle: FontStyle.normal,
                                 color: MyTheme.text3Color,
                               ),
-                            )),
-                        Spacer(),
+                            ),
+                            overflow: TextOverflow.fade,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
                         Text("\$ ${e.price}",
                             textAlign: TextAlign.right,
                             style: GoogleFonts.nunito(

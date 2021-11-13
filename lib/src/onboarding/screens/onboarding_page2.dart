@@ -333,16 +333,26 @@ class _SelectLocationState extends State<SelectLocation> {
                   ),
                   itemBuilder: (BuildContext context, itemData) {
                     return ListTile(
+                      onTap: () async {
+                        final session = Uuid().v4();
+
+                        Place place = await PlaceApiProvider(session)
+                            .getPlaceDetailFromId(itemData.placeId);
+                        controller?.animateCamera(CameraUpdate.newLatLng(
+                            LatLng(place.lat!, place.lang!)));
+                        FocusScope.of(context).unfocus();
+                      },
                       title: Text(itemData.description.toString()),
                     );
                   },
                   onSuggestionSelected: (Suggestion? suggestion) async {
-                    final session = Uuid().v4();
+                    FocusScope.of(context).unfocus();
+                    /*          final session = Uuid().v4();
 
                     Place place = await PlaceApiProvider(session)
                         .getPlaceDetailFromId(suggestion!.placeId);
                     controller?.animateCamera(CameraUpdate.newLatLng(
-                        LatLng(place.lat!, place.lang!)));
+                        LatLng(place.lat!, place.lang!))); */
                   },
                   suggestionsCallback: (String pattern) async {
                     final session = Uuid().v4();

@@ -259,11 +259,9 @@ class _FeedbackPageState extends State<FeedbackPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image(
-                          image: AssetImage("assets/images/imgLogo.png"),
-                        ),
+                        Image.asset("assets/images/imglogo.png"),
                         Text(
-                          "Mo Image Provided",
+                          "No Image Provided",
                           style: GoogleFonts.inter(),
                         )
                       ],
