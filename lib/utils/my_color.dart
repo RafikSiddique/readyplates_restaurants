@@ -42,7 +42,6 @@ class MyTheme {
 
   static Color editbuttontextColor = Color(0xffFF6E42);
 
-
   static Color closeiconColor = Color(0xffEB4132);
 
   static Color backgroundColor = Color(0xffE5E5E5);
@@ -57,4 +56,5 @@ class MyTheme {
   static Color imgtextColor = Color(0xff979797);
 
   static Color ratingfillColor = Color(0xffFFD000);
+  static Color priceColor = Color(0xff595959);
 }

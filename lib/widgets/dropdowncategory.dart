@@ -62,7 +62,7 @@ class DropdownCategory extends StatelessWidget {
                 child: Text(
                   "Select Category",
                   style: GoogleFonts.inter(
-                    fontSize: 13,
+                    fontSize: 15,
                     fontStyle: FontStyle.normal,
                     fontWeight: FontWeight.w500,
                     color: MyTheme.hinttextchangeColor,
@@ -73,7 +73,7 @@ class DropdownCategory extends StatelessWidget {
                 child: Text(
                   "Starter",
                   style: GoogleFonts.inter(
-                    fontSize: 13,
+                    fontSize: 15,
                     fontStyle: FontStyle.normal,
                     fontWeight: FontWeight.w500,
                     color: MyTheme.hinttextchangeColor,
@@ -84,7 +84,7 @@ class DropdownCategory extends StatelessWidget {
                 child: Text(
                   "Main Course",
                   style: GoogleFonts.inter(
-                    fontSize: 13,
+                    fontSize: 15,
                     fontStyle: FontStyle.normal,
                     fontWeight: FontWeight.w500,
                     color: MyTheme.hinttextchangeColor,
@@ -95,7 +95,7 @@ class DropdownCategory extends StatelessWidget {
                 child: Text(
                   "Desserts",
                   style: GoogleFonts.inter(
-                    fontSize: 13,
+                    fontSize: 15,
                     fontStyle: FontStyle.normal,
                     fontWeight: FontWeight.w500,
                     color: MyTheme.hinttextchangeColor,
@@ -106,7 +106,7 @@ class DropdownCategory extends StatelessWidget {
                 child: Text(
                   "Sides",
                   style: GoogleFonts.inter(
-                    fontSize: 13,
+                    fontSize: 15,
                     fontStyle: FontStyle.normal,
                     fontWeight: FontWeight.w500,
                     color: MyTheme.hinttextchangeColor,

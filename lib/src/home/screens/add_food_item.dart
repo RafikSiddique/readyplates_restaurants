@@ -224,7 +224,8 @@ class _AddFoodItemState extends State<AddFoodItem> {
                                   hintfontSize: 15,
                                   inputType: TextInputType.number,
                                   formatters: [
-                                    FilteringTextInputFormatter.digitsOnly
+                                    FilteringTextInputFormatter
+                                        .singleLineFormatter,
                                   ],
                                   controller: controller.cost),
                             ]),
@@ -369,7 +370,6 @@ class _AddFoodItemState extends State<AddFoodItem> {
                                 "Add ",
                                 style: GoogleFonts.inter(
                                   fontSize: 15,
-                                  
                                   fontStyle: FontStyle.normal,
                                   fontWeight: FontWeight.normal,
                                   letterSpacing: -0.229412,

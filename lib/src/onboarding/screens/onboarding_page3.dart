@@ -173,7 +173,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                                   'Verify',
                                   style: GoogleFonts.inter(
                                     decoration: TextDecoration.underline,
-                                    fontWeight: FontWeight.bold,
+                                    fontWeight: FontWeight.w500,
                                     fontStyle: FontStyle.normal,
                                     fontSize: 15,
                                     color: MyTheme.verifytextColor,
@@ -191,6 +191,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                         fontSize: 15,
                         color: MyTheme.hinttextColor,
                         fontWeight: FontWeight.w500,
+                        fontStyle: FontStyle.normal,
                       ),
                     ),
                   ),
