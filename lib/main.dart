@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,13 +9,14 @@ import 'package:readyplates_restaurants/utils/routes.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 import 'package:readyplates_restaurants/utils/slider_track_shape.dart';
 
+import 'src/login/screens/changepassword_page1.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Get.put(SharedPreferenceHelper());
   Get.put(AuthController());
   runApp(MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
@@ -27,7 +27,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: Colors.teal,
-
           sliderTheme:
               SliderThemeData(trackHeight: 8, trackShape: CustomTrackShape()),
           bottomNavigationBarTheme: BottomNavigationBarThemeData(
@@ -48,6 +47,7 @@ class MyApp extends StatelessWidget {
             TargetPlatform.android: CupertinoPageTransitionsBuilder()
           })),
       home: OpeningScreen(),
+      // initialRoute: ChangePasswordPage.id,
       onGenerateRoute: Routes.onGenerateRoute,
     );
   }

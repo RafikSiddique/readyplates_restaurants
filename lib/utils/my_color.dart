@@ -57,4 +57,5 @@ class MyTheme {
 
   static Color ratingfillColor = Color(0xffFFD000);
   static Color priceColor = Color(0xff595959);
+  static Color ordertextColor = Color(0xff4E535A).withOpacity(0.8);
 }

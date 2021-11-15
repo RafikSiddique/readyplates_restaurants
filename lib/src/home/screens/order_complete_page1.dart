@@ -56,14 +56,74 @@ class OrderCompletePage1 extends GetView<OrderController> {
                             shrinkWrap: true,
                             padding: EdgeInsets.zero,
                             children: [
+                              if (controller.active.isNotEmpty)
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 6),
+                                  child: Text(
+                                    "ACTIVE",
+                                    style: GoogleFonts.inter(
+                                      textStyle: TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w500,
+                                        fontStyle: FontStyle.normal,
+                                        color: MyTheme.ordertextColor,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              SizedBox(
+                                height: 10,
+                              ),
                               ...controller.active
                                   .map((element) =>
                                       OrderWidget(element: element))
                                   .toList(),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              if (controller.inProgress.isNotEmpty)
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 6),
+                                  child: Text(
+                                    "IN PROGRESS",
+                                    style: GoogleFonts.inter(
+                                      textStyle: TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w500,
+                                        fontStyle: FontStyle.normal,
+                                        color: MyTheme.ordertextColor,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              SizedBox(
+                                height: 10,
+                              ),
                               ...controller.inProgress
                                   .map((element) =>
                                       OrderWidget(element: element))
                                   .toList(),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              if (controller.ended.isNotEmpty)
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 6),
+                                  child: Text(
+                                    "PREVIOUS COMPLETED ORDERS",
+                                    style: GoogleFonts.inter(
+                                      textStyle: TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w500,
+                                        fontStyle: FontStyle.normal,
+                                        color: MyTheme.ordertextColor,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              SizedBox(
+                                height: 10,
+                              ),
                               ...controller.ended
                                   .map((element) =>
                                       OrderWidget(element: element))

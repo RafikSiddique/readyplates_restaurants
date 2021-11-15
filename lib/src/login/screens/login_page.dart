@@ -3,7 +3,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
+import 'package:readyplates_restaurants/src/login/screens/changepassword_page1.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
+import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 
@@ -19,17 +21,17 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final controller = Get.find<AuthController>();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  @override
-  void initState() {
-    controller.email.addListener(() {
-      setState(() {});
-    });
-    controller.password.addListener(() {
-      setState(() {});
-    });
+  // @override
+  // void initState() {
+  //   controller.email.addListener(() {
+  //     setState(() {});
+  //   });
+  //   controller.password.addListener(() {
+  //     setState(() {});
+  //   });
 
-    super.initState();
-  }
+  //   super.initState();
+  // }
 
   // @override
   // void dispose() {
@@ -153,7 +155,9 @@ class _LoginPageState extends State<LoginPage> {
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Text(
-                                          'Login',
+                                          widget.isChangePassword == true
+                                              ? "Change Password"
+                                              : 'Login',
                                           textAlign: TextAlign.center,
                                           style: GoogleFonts.inter(
                                             fontSize: 17,
@@ -194,22 +198,23 @@ class _LoginPageState extends State<LoginPage> {
                           SizedBox(
                             height: 3,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text(
-                                'Forgot Password ?',
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.inter(
-                                  decoration: TextDecoration.underline,
-                                  fontSize: 10,
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.normal,
-                                  color: MyTheme.starColor,
+                          if (widget.isChangePassword != true)
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text(
+                                  'Forgot Password ?',
+                                  textAlign: TextAlign.center,
+                                  style: GoogleFonts.inter(
+                                    decoration: TextDecoration.underline,
+                                    fontSize: 10,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.normal,
+                                    color: MyTheme.starColor,
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
+                              ],
+                            ),
                           SizedBox(
                             height: kToolbarHeight * 0.4,
                           ),
@@ -217,15 +222,18 @@ class _LoginPageState extends State<LoginPage> {
                             height: 54,
                             onTap: () async {
                               formKey.currentState!.save();
-                              if (formKey.currentState!.validate())
-                                await controller.login(widget.isChangePassword);
+                              if (formKey.currentState!.validate()) ;
+
+                              await controller.login(widget.isChangePassword);
                             },
                             buttonbackgroundColor:
                                 (controller.email.text.isEmpty ||
                                         controller.password.text.isEmpty)
                                     ? MyTheme.buttonColor
                                     : MyTheme.buttonchangeColor,
-                            text: 'Verify Password',
+                            text: controller.isLoggedIn == true
+                                ? 'Proceed'
+                                : 'Verify Password',
                             buttontextColor: (controller.email.text.isEmpty ||
                                     controller.password.text.isEmpty)
                                 ? MyTheme.buttontextColor
@@ -234,51 +242,52 @@ class _LoginPageState extends State<LoginPage> {
                           SizedBox(
                             height: kToolbarHeight * 0.15,
                           ),
-                          InkWell(
-                            onTap: () {},
-                            child: Container(
-                              width: size.width,
-                              height: 54,
-                              decoration: BoxDecoration(
-                                color: Color(0xffF4F4F4),
-                                border: Border.all(
-                                  width: 1,
-                                  color: Color(0xffB9B9B9),
+                          if (widget.isChangePassword != true)
+                            InkWell(
+                              onTap: () {},
+                              child: Container(
+                                width: size.width,
+                                height: 54,
+                                decoration: BoxDecoration(
+                                  color: Color(0xffF4F4F4),
+                                  border: Border.all(
+                                    width: 1,
+                                    color: Color(0xffB9B9B9),
+                                  ),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(6)),
                                 ),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(6)),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    width: 26.42,
-                                    height: 27,
-                                    child:
-                                        Image.asset('assets/images/google.png'),
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Center(
-                                    child: Text(
-                                      'Sign up with Google',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontSize: 17,
-                                        fontFamily: 'Inter-Regular',
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.w600,
-                                        color: Color(0xff222222),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      width: 26.42,
+                                      height: 27,
+                                      child: Image.asset(
+                                          'assets/images/google.png'),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Center(
+                                      child: Text(
+                                        'Sign up with Google',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 17,
+                                          fontFamily: 'Inter-Regular',
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.w600,
+                                          color: Color(0xff222222),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
                           SizedBox(
-                            height: 10,
+                            height: 16,
                           )
                         ],
                       ),

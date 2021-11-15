@@ -14,7 +14,9 @@ class ProfilePage extends StatelessWidget {
         ProfileListTile(
             title: "Change Password",
             onTap: () {
-              Get.toNamed(LoginPage.id, arguments: true);
+              Get.to(() => LoginPage(
+                    isChangePassword: true,
+                  ));
             }),
         ProfileListTile(title: "Restaurant Detail", onTap: () {}),
         ProfileListTile(title: "Restaurant Bio", onTap: () {}),

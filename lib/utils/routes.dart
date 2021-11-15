@@ -3,9 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:readyplates_restaurants/src/home/screens/add_food_item.dart';
 import 'package:readyplates_restaurants/src/home/screens/feedback_page.dart';
 import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
-import 'package:readyplates_restaurants/src/home/screens/order_complete_page3.dart';
 import 'package:readyplates_restaurants/src/home/screens/performance_page.dart';
-import 'package:readyplates_restaurants/src/login/screens/changepassword_page.dart';
 import 'package:readyplates_restaurants/src/login/screens/changepassword_page1.dart';
 import 'package:readyplates_restaurants/src/login/screens/login_page.dart';
 import 'package:readyplates_restaurants/src/login/screens/signup_page.dart';
@@ -30,8 +28,7 @@ class Routes {
               return LoginPage();
           case SignupPage.id:
             return SignupPage();
-          case ChangePasswordPage.id:
-            return ChangePasswordPage();
+
           case ChangePasswordPage1.id:
             return ChangePasswordPage1();
           case AddFoodItem.id:

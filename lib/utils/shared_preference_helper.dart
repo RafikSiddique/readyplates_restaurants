@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:readyplates_restaurants/utils/exception.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -7,7 +8,6 @@ class SharedPreferenceHelper {
   final String _resId = "resId";
   final String _onBoardingNumber = "onboarding";
   // final String _restaurantName = "resName";
-
   Future<bool> setUserId(String id) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     bool success = await sharedPreferences.setString(_userId, id);

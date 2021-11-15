@@ -236,8 +236,7 @@ class HomeController extends GetxController {
       if (e is AppException) {
 //        Get.snackbar("Error", e.toString());
 
-      } else {
-      }
+      } else {}
       timer?.cancel();
     }
   }

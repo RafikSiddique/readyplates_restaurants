@@ -14,7 +14,10 @@ import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 
 class OpeningScreen extends StatefulWidget {
   static const id = "/openingScreen";
-  OpeningScreen({Key? key}) : super(key: key);
+
+  OpeningScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<OpeningScreen> createState() => _OpeningScreenState();

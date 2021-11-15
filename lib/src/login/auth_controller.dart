@@ -5,6 +5,7 @@ import 'package:readyplates_restaurants/src/home/home_controller.dart';
 import 'package:readyplates_restaurants/src/home/order_controller.dart';
 import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
 import 'package:readyplates_restaurants/src/login/auth_services.dart';
+import 'package:readyplates_restaurants/src/login/screens/changepassword_page1.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
@@ -108,11 +109,15 @@ class AuthController extends GetxController {
         //if (routeId >= 9) {
         isLoggedIn.value = true;
         sfHelper.setLoggedIn(true);
+
         final controller = Get.put(HomeController());
         await controller.getFoodItems();
         final oController = Get.put(OrderController());
         await oController.getOrderItems();
         Get.offAllNamed(HomePage.id);
+        email.clear();
+        password.clear();
+        password2.clear();
         /*        } else {
           if (routeId == 1) {
             await Geolocator.requestPermission();
@@ -122,7 +127,26 @@ class AuthController extends GetxController {
 
           Get.toNamed(route(routeId + 1));
         } */
-      } else {}
+      } else {
+        print('object');
+        print(isChangePass);
+        Get.offNamed(ChangePasswordPage1.id);
+        password.clear();
+      }
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+    }
+  }
+
+  Future<void> changePassword() async {
+    try {
+      String id = await services.changePassword(
+        email.text,
+        password.text,
+      );
+      await sfHelper.setUserId(id[0]);
+      await sfHelper.setRestaurantId(id[1]);
+      Get.offAllNamed(HomePage.id);
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }

@@ -23,9 +23,7 @@ class AuthenticationServices extends ApiServices {
             'password2': password2,
           },
         ),
-        headers: {
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
+        headers: contentTypeJsonHeader,
       );
       if (response.statusCode == 201) {
         Map resp = json.decode(response.body);
@@ -52,9 +50,7 @@ class AuthenticationServices extends ApiServices {
             'password': password,
           },
         ),
-        headers: {
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
+        headers: contentTypeJsonHeader,
       );
       if (response.statusCode == 200) {
         Map resp = json.decode(response.body);
@@ -64,6 +60,35 @@ class AuthenticationServices extends ApiServices {
         print('User Id is ---->' + id);
         print(response.body);
         return [id, resname];
+      } else {
+        throw AppException(code: response.statusCode, message: response.body);
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<String> changePassword(
+    String email,
+    String password,
+  ) async {
+    try {
+      Response response = await post(
+        changePass,
+        body: jsonEncode(
+          {
+            'email': email,
+            'password': password,
+          },
+        ),
+        headers: contentTypeJsonHeader,
+      );
+      if (response.statusCode == 200) {
+        Map resp = json.decode(response.body);
+        print(resp["Success"].toString());
+
+        print(response.body);
+        return resp.toString();
       } else {
         throw AppException(code: response.statusCode, message: response.body);
       }

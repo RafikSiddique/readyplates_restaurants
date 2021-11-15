@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
@@ -18,17 +19,18 @@ class ChangePasswordPage1 extends StatefulWidget {
 class _ChangePasswordPage1State extends State<ChangePasswordPage1> {
   final controller = Get.find<AuthController>();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  @override
-  void initState() {
-    controller.email.addListener(() {
-      setState(() {});
-    });
-    controller.password.addListener(() {
-      setState(() {});
-    });
+  // @override
+  // void initState() {
+  //   controller.password.addListener(() {
+  //     setState(() {});
+  //   });
 
-    super.initState();
-  }
+  //   controller.password2.addListener(() {
+  //     setState(() {});
+  //   });
+
+  //   super.initState();
+  // }
 
   // @override
   // void dispose() {
@@ -146,13 +148,13 @@ class _ChangePasswordPage1State extends State<ChangePasswordPage1> {
                                 Align(
                                   alignment: Alignment.center,
                                   child: Hero(
-                                    tag: "login",
+                                    tag: "Change Password",
                                     child: Card(
                                       elevation: 0,
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Text(
-                                          'Login',
+                                          'Change Password',
                                           textAlign: TextAlign.center,
                                           style: GoogleFonts.inter(
                                             fontSize: 17,
@@ -179,7 +181,7 @@ class _ChangePasswordPage1State extends State<ChangePasswordPage1> {
                             line: 1,
                             fontSize: 12,
                             inputType: TextInputType.text,
-                            controller: controller.email,
+                            controller: controller.password,
                             isPassword: true,
                           ),
                           SizedBox(
@@ -191,7 +193,7 @@ class _ChangePasswordPage1State extends State<ChangePasswordPage1> {
                             hintfontSize: 15,
                             line: 1,
                             fontSize: 12,
-                            controller: controller.password,
+                            controller: controller.password2,
                             isPassword: true,
                           ),
                           SizedBox(
@@ -201,20 +203,20 @@ class _ChangePasswordPage1State extends State<ChangePasswordPage1> {
                             height: 54,
                             onTap: () async {
                               formKey.currentState!.save();
-                              if (formKey.currentState!.validate()) {
-                                //await controller.login();
-                              }
+                              if (formKey.currentState!.validate())
+                                await controller.changePassword();
                             },
                             buttonbackgroundColor:
-                                (controller.email.text.isEmpty ||
-                                        controller.password.text.isEmpty)
+                                (controller.password.text.isEmpty ||
+                                        controller.password2.text.isEmpty)
                                     ? MyTheme.buttonColor
                                     : MyTheme.buttonchangeColor,
                             text: 'Change Password',
-                            buttontextColor: (controller.email.text.isEmpty ||
-                                    controller.password.text.isEmpty)
-                                ? MyTheme.buttontextColor
-                                : MyTheme.buttontextchangeColor,
+                            buttontextColor:
+                                (controller.password.text.isEmpty ||
+                                        controller.password2.text.isEmpty)
+                                    ? MyTheme.buttontextColor
+                                    : MyTheme.buttontextchangeColor,
                           ),
                           SizedBox(
                             height: 10,
