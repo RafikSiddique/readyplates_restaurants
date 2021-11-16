@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
@@ -182,7 +181,6 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                                     decoration: TextDecoration.underline,
                                     fontWeight: FontWeight.bold,
                                     fontStyle: FontStyle.normal,
-                                    
                                     fontSize: 15,
                                     color: MyTheme.verifytextColor,
                                   ),

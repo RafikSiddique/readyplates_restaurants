@@ -29,7 +29,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    // Size size = MediaQuery.of(context).size;
     return OnBoardingWrapper(
       appBarTitle: 'Tax Information',
       onboardingController: controller,

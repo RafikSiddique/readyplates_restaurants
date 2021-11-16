@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:readyplates_restaurants/src/home/home_controller.dart';
-import 'package:readyplates_restaurants/src/home/order_controller.dart';
+import 'package:readyplates_restaurants/src/orders/order_controller.dart';
 import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
 import 'package:readyplates_restaurants/src/login/auth_services.dart';
 import 'package:readyplates_restaurants/src/login/screens/changepassword_page1.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
-import 'package:readyplates_restaurants/utils/utils.dart';
 
 class AuthController extends GetxController {
   final AuthenticationServices services = AuthenticationServices();

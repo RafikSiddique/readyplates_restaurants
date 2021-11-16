@@ -5,12 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/home/home_controller.dart';
-import 'package:readyplates_restaurants/src/home/order_controller.dart';
+import 'package:readyplates_restaurants/src/orders/order_controller.dart';
 import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/src/login/screens/login_page.dart';
 import 'package:readyplates_restaurants/src/login/screens/signup_page.dart';
-import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 
 class OpeningScreen extends StatefulWidget {
   static const id = "/openingScreen";

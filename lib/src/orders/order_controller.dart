@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:readyplates_restaurants/models/orderitem_model.dart';
-import 'package:readyplates_restaurants/src/home/order_services.dart';
+import 'package:readyplates_restaurants/src/orders/order_services.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 
 class OrderController extends GetxController {

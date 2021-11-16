@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/models/orderitem_model.dart';
 import 'package:readyplates_restaurants/src/home/home_controller.dart';
 import 'package:readyplates_restaurants/src/home/screens/add_menu_page.dart';
-import 'package:readyplates_restaurants/src/home/screens/order_complete_page1.dart';
+import 'package:readyplates_restaurants/src/orders/screens/order_complete_page1.dart';
 import 'package:readyplates_restaurants/src/home/screens/performance_page.dart';
 import 'package:readyplates_restaurants/src/home/screens/profile_page.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
@@ -14,7 +14,6 @@ class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
   final controller = Get.put(HomeController());
   OrderModelApi? orderModelApi;
-
 
   final List<String> bottomBarIcons =
       List.generate(4, (index) => 'assets/images/bottombaar${index + 1}.png');

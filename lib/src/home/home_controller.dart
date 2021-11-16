@@ -9,14 +9,13 @@ import 'package:path_provider/path_provider.dart';
 import 'package:readyplates_restaurants/models/feedback_model.dart';
 import 'package:readyplates_restaurants/models/fooditem_model.dart';
 import 'package:readyplates_restaurants/src/home/home_services.dart';
-import 'package:readyplates_restaurants/src/home/order_controller.dart';
+import 'package:readyplates_restaurants/src/orders/order_controller.dart';
 import 'package:readyplates_restaurants/src/home/screens/add_food_item.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/src/staticscreens/opening_screen.dart';
 import 'package:readyplates_restaurants/utils/exception.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
-import 'package:readyplates_restaurants/utils/utils.dart';
 
 class HomeController extends GetxController {
   RxInt selectedIndex = 0.obs;

@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:readyplates_restaurants/models/orderitem_model.dart';
-import 'package:readyplates_restaurants/src/home/order_controller.dart';
-import 'package:readyplates_restaurants/src/home/screens/customer_otp_verify_page.dart';
+import 'package:readyplates_restaurants/src/orders/order_controller.dart';
+import 'package:readyplates_restaurants/src/orders/screens/customer_otp_verify_page.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 
 import 'onboardingbutton.dart';

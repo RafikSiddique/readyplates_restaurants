@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/onboarding_page5.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
@@ -23,56 +21,11 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
   final controller = Get.find<OnboardingController>();
   final formKey = GlobalKey<FormState>();
 
-  TimeOfDay currentTime = TimeOfDay.now();
-  TimeOfDay? PickedTime;
-
-  Future<void> _selectStartTime(BuildContext context) async {
-    PickedTime = await showTimePicker(
-      context: context,
-      initialTime: currentTime,
-      initialEntryMode: TimePickerEntryMode.dial,
-      helpText: 'Select Start Time',
-      confirmText: 'choose',
-      cancelText: 'cancel',
-      hourLabelText: 'hour',
-      minuteLabelText: 'minute',
-    );
-    if (PickedTime != null && PickedTime != currentTime) {
-      setState(() {
-        currentTime = PickedTime!;
-        controller.startTime = PickedTime.toString();
-        print(PickedTime!.format(context));
-      });
-    }
-  }
-
-  TimeOfDay currentTime1 = TimeOfDay.now();
-  TimeOfDay? PickedTime1;
-  Future<void> _selectEndTime(BuildContext context) async {
-    PickedTime1 = await showTimePicker(
-      context: context,
-      initialTime: currentTime1,
-      initialEntryMode: TimePickerEntryMode.dial,
-      helpText: 'Select End Time',
-      confirmText: 'choose',
-      cancelText: 'cancel',
-      hourLabelText: 'hour',
-      minuteLabelText: 'minute',
-    );
-    if (PickedTime1 != null && PickedTime1 != currentTime1) {
-      setState(() {
-        currentTime1 = PickedTime1!;
-        controller.endTime = PickedTime1.toString();
-        print(PickedTime1!.format(context));
-      });
-    }
-  }
-
   bool _Switchvalue = true;
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    // Size size = MediaQuery.of(context).size;
     return OnBoardingWrapper(
       onboardingController: controller,
       appBarTitle: 'Public Business Information',

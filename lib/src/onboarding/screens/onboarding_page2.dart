@@ -18,7 +18,8 @@ import 'package:uuid/uuid.dart';
 
 class OnboardingPage2 extends StatefulWidget {
   static const id = "/onboarding2";
-  OnboardingPage2({Key? key}) : super(key: key);
+  final LatLng latLng;
+  OnboardingPage2({Key? key, required this.latLng}) : super(key: key);
 
   @override
   State<OnboardingPage2> createState() => _OnboardingPage2State();
@@ -50,6 +51,58 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 8),
+
+              FieldTitle(
+                text: 'Locate Restaurant on Map',
+              ),
+
+              // RichText(
+
+              SizedBox(
+                height: 5,
+              ),
+              Expanded(
+                  child:
+                      // FutureBuilder<Position>(
+                      //     future: Geolocator.getCurrentPosition(),
+                      //     builder: (context, snapshot) {
+                      //       if (!snapshot.hasError && snapshot.data != null) {
+                      //         return
+                      SelectLocation(
+                isOpen: true,
+                latLng: widget.latLng,
+                setLocation: (p0) async {
+                  GeoCode geoCode = GeoCode();
+                  controller.latitude.text = p0.latitude.toString();
+                  controller.longitude.text = p0.longitude.toString();
+                  final address = await geoCode.reverseGeocoding(
+                      latitude: p0.latitude, longitude: p0.longitude);
+
+                  controller.address1.text = address.streetAddress.toString();
+                  controller.address2.text = address.region.toString();
+                  controller.postalcode.text = address.postal.toString();
+                },
+              )
+
+                  //     ;
+                  //   } else {
+                  //     return Center(
+                  //       child: CircularProgressIndicator(),
+                  //     );
+                  //   }
+                  // }
+                  // ),
+                  ),
+              SizedBox(
+                height: 3,
+              ),
+              Text("Please locate restaurant on Map",
+                  style: GoogleFonts.poppins(
+                    fontSize: 9,
+                    color: MyTheme.bottomtextColor,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.normal,
+                  )),
 
               AppFormField(
                 title: "Restaurant Address",
@@ -86,60 +139,6 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
                 inputType: TextInputType.number,
                 formatters: [FilteringTextInputFormatter.digitsOnly],
               ),
-
-              SizedBox(
-                height: 20,
-              ),
-              FieldTitle(
-                text: 'Locate Restaurant on Map',
-              ),
-
-              // RichText(
-
-              SizedBox(
-                height: 5,
-              ),
-              Expanded(
-                child: FutureBuilder<Position>(
-                    future: Geolocator.getCurrentPosition(),
-                    builder: (context, snapshot) {
-                      if (!snapshot.hasError && snapshot.data != null) {
-                        return SelectLocation(
-                          isOpen: true,
-                          latLng: LatLng(snapshot.data!.latitude,
-                              snapshot.data!.longitude),
-                          setLocation: (p0) async {
-                            GeoCode geoCode = GeoCode();
-                            controller.latitude.text = p0.latitude.toString();
-                            controller.longitude.text = p0.longitude.toString();
-                            final address = await geoCode.reverseGeocoding(
-                                latitude: p0.latitude, longitude: p0.longitude);
-
-                            controller.address1.text =
-                                address.streetAddress.toString();
-                            controller.address2.text =
-                                address.region.toString();
-                            controller.postalcode.text =
-                                address.postal.toString();
-                          },
-                        );
-                      } else {
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-                    }),
-              ),
-              SizedBox(
-                height: 3,
-              ),
-              Text("Please locate restaurant on Map",
-                  style: GoogleFonts.poppins(
-                    fontSize: 9,
-                    color: MyTheme.bottomtextColor,
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.normal,
-                  )),
 
               SizedBox(height: 20),
               OnboardingButton(

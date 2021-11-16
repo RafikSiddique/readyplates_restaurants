@@ -3,9 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
-import 'package:readyplates_restaurants/src/login/screens/changepassword_page1.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
-import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 

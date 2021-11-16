@@ -3,11 +3,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_services.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
-import 'package:readyplates_restaurants/src/onboarding/screens/onboarding_page5.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/onboarding_page6.dart';
 import 'package:readyplates_restaurants/utils/cities.dart';
 import 'package:readyplates_restaurants/utils/city.dart';
@@ -322,7 +322,9 @@ class OnboardingController extends GetxController {
 
   @override
   void onInit() {
-    SharedPreferenceHelper().getUserId().then((value) => uniqueId = value??"-1");
+    SharedPreferenceHelper()
+        .getUserId()
+        .then((value) => uniqueId = value ?? "-1");
     SharedPreferenceHelper()
         .getRestaurantId()
         .then((value) => resId = value.toString());
@@ -428,8 +430,10 @@ class OnboardingController extends GetxController {
       await sfHelper.setRestaurantId(resId);
       print('ID:1232323$resId');
       await Geolocator.requestPermission();
+      Position position = await Geolocator.getCurrentPosition();
 
-      Get.toNamed(OnboardingPage2.id);
+      Get.toNamed(OnboardingPage2.id,
+          arguments: LatLng(position.latitude, position.longitude));
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }
@@ -570,7 +574,7 @@ class OnboardingController extends GetxController {
         selectedRecurrence.value,
         startTime,
         endTime,
-        
+
         // "${eventendHour.value}:${eventendMinute.value}${eventendAmPm}",
         eventDesc.text,
       );

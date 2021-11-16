@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:readyplates_restaurants/src/home/screens/add_food_item.dart';
 import 'package:readyplates_restaurants/src/home/screens/feedback_page.dart';
 import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
@@ -36,7 +37,10 @@ class Routes {
           case OnboardingPage1.id:
             return OnboardingPage1();
           case OnboardingPage2.id:
-            return OnboardingPage2();
+            LatLng latlang = settings.arguments as LatLng;
+            return OnboardingPage2(
+              latLng: latlang,
+            );
           case OnboardingPage3.id:
             return OnboardingPage3();
           case OnboardingPage4.id:
