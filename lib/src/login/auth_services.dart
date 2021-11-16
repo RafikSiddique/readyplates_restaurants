@@ -63,7 +63,7 @@ class AuthenticationServices extends ApiServices {
       } else {
         throw AppException(code: response.statusCode, message: response.body);
       }
-    } catch (e) {
+} catch (e) {
       rethrow;
     }
   }

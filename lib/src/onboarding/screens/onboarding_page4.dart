@@ -29,6 +29,21 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
     return OnBoardingWrapper(
       onboardingController: controller,
       appBarTitle: 'Public Business Information',
+      buttonText: 'CONTINUE',
+      onTap: () {
+        Get.toNamed(OnboardingPage5.id);
+      },
+      textControllers: [
+        controller.pubbusinessName,
+        controller.supportEmail,
+        controller.supportNumber,
+        controller.addline1,
+        controller.addline2,
+        controller.addline3,
+        controller.state,
+        controller.city,
+        controller.pincode,
+      ],
       child: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16),
         child: SingleChildScrollView(
@@ -167,43 +182,6 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                 ),
                 SizedBox(
                   height: 22,
-                ),
-                OnboardingButton(
-                  onTap: () {
-                    // formKey.currentState!.save();
-                    // if (formKey.currentState!.validate())
-                    //   controller.onboardingApi(OnBoardingMethod.api4);
-                    Get.toNamed(OnboardingPage5.id);
-                  },
-                  buttonbackgroundColor:
-                      (controller.pubbusinessName.text.isEmpty ||
-                              controller.supportEmail.text.isEmpty ||
-                              controller.supportNumber.text.isEmpty ||
-                              controller.typeOfEstablishment.value.isEmpty ||
-                              controller.addline1.text.isEmpty ||
-                              controller.addline2.text.isEmpty ||
-                              controller.addline3.text.isEmpty ||
-                              controller.state.text.isEmpty ||
-                              controller.city.text.isEmpty ||
-                              controller.pincode.text.isEmpty)
-                          ? MyTheme.buttonColor
-                          : MyTheme.buttonchangeColor,
-                  text: 'CONTINUE',
-                  buttontextColor: (controller.pubbusinessName.text.isEmpty ||
-                          controller.supportEmail.text.isEmpty ||
-                          controller.supportNumber.text.isEmpty ||
-                          controller.typeOfEstablishment.value.isEmpty ||
-                          controller.addline1.text.isEmpty ||
-                          controller.addline2.text.isEmpty ||
-                          controller.addline3.text.isEmpty ||
-                          controller.state.text.isEmpty ||
-                          controller.city.text.isEmpty ||
-                          controller.pincode.text.isEmpty)
-                      ? MyTheme.buttontextColor
-                      : MyTheme.buttontextchangeColor,
-                ),
-                SizedBox(
-                  height: 16,
                 ),
               ],
             ),

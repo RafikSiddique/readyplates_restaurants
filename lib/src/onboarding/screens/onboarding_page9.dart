@@ -62,27 +62,19 @@ class _OnboardingPage9State extends State<OnboardingPage9> {
             images[3] != "");
   }
 
-  Color getButtonColor(Color disabled, Color enabled) {
+  bool getButtonColor() {
     switch (onBoardingController.pageIndex.value) {
       case 0:
-        return checkList(onBoardingController.fasciaImages)
-            ? enabled
-            : disabled;
+        return checkList(onBoardingController.fasciaImages);
       case 1:
-        return checkList(onBoardingController.ambienceImages)
-            ? enabled
-            : disabled;
+        return checkList(onBoardingController.ambienceImages);
       case 2:
-        return checkList(onBoardingController.foodImages) ? enabled : disabled;
+        return checkList(onBoardingController.foodImages);
       case 3:
-        return checkList(onBoardingController.covidProtocol)
-            ? enabled
-            : disabled;
+        return checkList(onBoardingController.covidProtocol);
 
       default:
-        return checkList(onBoardingController.fasciaImages)
-            ? enabled
-            : disabled;
+        return checkList(onBoardingController.fasciaImages);
     }
   }
 
@@ -92,6 +84,12 @@ class _OnboardingPage9State extends State<OnboardingPage9> {
     return OnBoardingWrapper(
       onboardingController: onBoardingController,
       appBarTitle: 'Restaurant Bio',
+      buttonText: 'CONTINUE',
+      onTap: () async {
+        await onBoardingController.onboardingApi(OnBoardingMethod.api7);
+      },
+      enabled: getButtonColor(),
+      textControllers: [],
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -195,21 +193,6 @@ class _OnboardingPage9State extends State<OnboardingPage9> {
                   ),
                 ],
               ),
-            ),
-            OnboardingButton(
-              onTap: () async {
-                await onBoardingController.onboardingApi(OnBoardingMethod.api7);
-              },
-              buttonbackgroundColor: getButtonColor(
-                  MyTheme.buttonColor, MyTheme.buttonchangeColor),
-              text: 'CONTINUE',
-              buttontextColor: getButtonColor(
-                MyTheme.buttontextColor,
-                MyTheme.buttontextchangeColor,
-              ),
-            ),
-            SizedBox(
-              height: 16,
             ),
           ],
         ),

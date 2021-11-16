@@ -33,6 +33,17 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
     return OnBoardingWrapper(
       appBarTitle: 'Tax Information',
       onboardingController: controller,
+      buttonText: 'CONTINUE',
+      onTap: () {
+        Get.toNamed(OnboardingPage7.id);
+      },
+      enabled: controller.businesstype.isNotEmpty &&
+          controller.confirmLetter.path.isNotEmpty &&
+          controller.uploadLetter.path.isNotEmpty,
+      textControllers: [
+        controller.nameOfBusiness,
+        controller.eiNumber,
+      ],
       child: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16),
         child: SingleChildScrollView(
@@ -140,32 +151,6 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                       controller.uploadLetter = p0;
                     });
                   },
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.27,
-                ),
-                OnboardingButton(
-                  onTap: () {
-                    Get.toNamed(OnboardingPage7.id);
-                  },
-                  buttonbackgroundColor: (controller.businesstype.isEmpty ||
-                          controller.nameOfBusiness.text.isEmpty ||
-                          controller.eiNumber.text.isEmpty ||
-                          controller.confirmLetter.path.isEmpty ||
-                          controller.uploadLetter.path.isEmpty)
-                      ? MyTheme.buttonColor
-                      : MyTheme.buttonchangeColor,
-                  text: 'CONTINUE',
-                  buttontextColor: (controller.businesstype.isEmpty ||
-                          controller.nameOfBusiness.text.isEmpty ||
-                          controller.eiNumber.text.isEmpty ||
-                          controller.confirmLetter.path.isEmpty ||
-                          controller.uploadLetter.path.isEmpty)
-                      ? MyTheme.buttontextColor
-                      : MyTheme.buttontextchangeColor,
-                ),
-                SizedBox(
-                  height: 16,
                 ),
               ],
             ),

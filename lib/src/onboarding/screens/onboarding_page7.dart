@@ -72,11 +72,23 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
     return OnBoardingWrapper(
       onboardingController: controller,
       appBarTitle: 'Partner Onboarding',
+      buttonText: 'CONTINUE',
+      onTap: () {
+        formKey.currentState!.save();
+        if (formKey.currentState!.validate())
+          controller.onboardingApi(OnBoardingMethod.api4);
+      },
+      enabled: controller.typeOfEstablishment.value.isEmpty ||
+          controller.isChecked == false ||
+          PickedTime == null ||
+          PickedTime1 == null ||
+          controller.isDays == false,
+      textControllers: [],
       child: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16),
-        child: SingleChildScrollView(
-          child: Form(
-            key: formKey,
+        child: Form(
+          key: formKey,
+          child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -484,34 +496,6 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                 ),
                 SizedBox(
                   height: 30,
-                ),
-                OnboardingButton(
-                  onTap: () {
-                    formKey.currentState!.save();
-                    if (formKey.currentState!.validate())
-                      controller.onboardingApi(OnBoardingMethod.api4);
-                    Get.toNamed(OnboardingPage8.resId);
-                  },
-                  buttonbackgroundColor:
-                      (controller.typeOfEstablishment.value.isEmpty ||
-                              controller.isChecked == false ||
-                              PickedTime == null ||
-                              PickedTime1 == null ||
-                              controller.isDays == false)
-                          ? MyTheme.buttonColor
-                          : MyTheme.buttonchangeColor,
-                  text: 'CONTINUE',
-                  buttontextColor:
-                      (controller.typeOfEstablishment.value.isEmpty ||
-                              controller.isChecked == false ||
-                              PickedTime == null ||
-                              PickedTime1 == null ||
-                              controller.isDays == false)
-                          ? MyTheme.buttontextColor
-                          : MyTheme.buttontextchangeColor,
-                ),
-                SizedBox(
-                  height: 16,
                 ),
               ],
             ),

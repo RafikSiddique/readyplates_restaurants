@@ -28,6 +28,36 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
     return OnBoardingWrapper(
       appBarTitle: 'Account Settings',
       onboardingController: controller,
+      textControllers: [
+        controller.accNumber,
+        controller.accName,
+        controller.addline1,
+        controller.addline2,
+        controller.addline3,
+        controller.state,
+        controller.city,
+        controller.pincode
+      ],
+      onTap: () {
+        controller.businessaccNumber = TextEditingController();
+        controller.businessaccName = TextEditingController();
+        controller.businessaddline1 = TextEditingController();
+        controller.businessaddline2 = TextEditingController();
+        controller.businessaddline3 = TextEditingController();
+        controller.businessstate = TextEditingController();
+        controller.businesscity = TextEditingController();
+        controller.businesspincode = TextEditingController();
+        controller.businessaccNumber.text = controller.accNumber.text;
+        controller.businessaccName.text = controller.accName.text;
+        controller.businessaddline1.text = controller.addline1.text;
+        controller.businessaddline2.text = controller.addline2.text;
+        controller.businessaddline3.text = controller.addline3.text;
+        controller.businessstate.text = controller.state.text;
+        controller.businesscity.text = controller.city.text;
+        controller.businesspincode.text = controller.pincode.text;
+        Get.toNamed(OnboardingPage4.id);
+      },
+      buttonText: 'CONTINUE',
       child: SingleChildScrollView(
         child: Form(
           key: formKey,
@@ -236,57 +266,6 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
 
                 SizedBox(
                   height: 14,
-                ),
-
-                OnboardingButton(
-                  onTap: () {
-                    controller.businessaccNumber = TextEditingController();
-                    controller.businessaccName = TextEditingController();
-                    controller.businessaddline1 = TextEditingController();
-                    controller.businessaddline2 = TextEditingController();
-                    controller.businessaddline3 = TextEditingController();
-                    controller.businessstate = TextEditingController();
-                    controller.businesscity = TextEditingController();
-                    controller.businesspincode = TextEditingController();
-                    controller.businessaccNumber.text =
-                        controller.accNumber.text;
-                    controller.businessaccName.text = controller.accName.text;
-                    controller.businessaddline1.text = controller.addline1.text;
-                    controller.businessaddline2.text = controller.addline2.text;
-                    controller.businessaddline3.text = controller.addline3.text;
-                    controller.businessstate.text = controller.state.text;
-                    controller.businesscity.text = controller.city.text;
-                    controller.businesspincode.text = controller.pincode.text;
-                    Get.toNamed(OnboardingPage4.id);
-                  },
-                  buttonbackgroundColor: (controller.accNumber.text.isEmpty ||
-                          controller.accName.text.isEmpty ||
-                          controller.addline1.text.isEmpty ||
-                          controller.addline2.text.isEmpty ||
-                          controller.addline3.text.isEmpty ||
-                          controller.state.text.isEmpty ||
-                          controller.city.text.isEmpty ||
-                          controller.pincode.text.isEmpty ||
-                          controller.phoneveify.text.isEmpty ||
-                          controller.timezone.isEmpty)
-                      ? MyTheme.buttonColor
-                      : MyTheme.buttonchangeColor,
-                  text: 'CONTINUE',
-                  buttontextColor: (controller.accNumber.text.isEmpty ||
-                          controller.accName.text.isEmpty ||
-                          controller.addline1.text.isEmpty ||
-                          controller.addline2.text.isEmpty ||
-                          controller.addline3.text.isEmpty ||
-                          controller.state.text.isEmpty ||
-                          controller.city.text.isEmpty ||
-                          controller.pincode.text.isEmpty ||
-                          controller.phoneveify.text.isEmpty ||
-                          controller.timezone.isEmpty)
-                      ? MyTheme.buttontextColor
-                      : MyTheme.buttontextchangeColor,
-                ),
-                SizedBox(
-                  height: 16,
                 ),
               ],
             ),

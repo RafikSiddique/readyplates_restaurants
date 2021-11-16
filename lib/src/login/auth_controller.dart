@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:readyplates_restaurants/src/home/home_controller.dart';
 import 'package:readyplates_restaurants/src/orders/order_controller.dart';
 import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
@@ -102,29 +104,33 @@ class AuthController extends GetxController {
       );
       await sfHelper.setUserId(id[0]);
       await sfHelper.setRestaurantId(id[1]);
-      //   int routeId = 10; // await getScreen(id[0]);
       if (!isChangePass) {
-        //if (routeId >= 9) {
-        isLoggedIn.value = true;
-        sfHelper.setLoggedIn(true);
+        int routeId = await getScreen(id[0]);
+        if (routeId >= 9) {
+          isLoggedIn.value = true;
+          sfHelper.setLoggedIn(true);
 
-        final controller = Get.put(HomeController());
-        await controller.getFoodItems();
-        final oController = Get.put(OrderController());
-        await oController.getOrderItems();
-        Get.offAllNamed(HomePage.id);
-        email.clear();
-        password.clear();
-        password2.clear();
-        /*        } else {
+          final controller = Get.put(HomeController());
+          await controller.getFoodItems();
+          final oController = Get.put(OrderController());
+          await oController.getOrderItems();
+          Get.offAllNamed(HomePage.id);
+          email.clear();
+          password.clear();
+          password2.clear();
+        } else {
+          Get.put(OnboardingController());
+          Get.find<OnboardingController>().uniqueId = id[0];
+
           if (routeId == 1) {
             await Geolocator.requestPermission();
-            ;
+            Position position = await Geolocator.getCurrentPosition();
+            Get.toNamed(OnboardingPage2.id,
+                arguments: LatLng(position.latitude, position.longitude));
+          } else {
+            Get.toNamed(route(routeId + 1));
           }
-      Get.find<OnboardingController>().uniqueId = id[0];
-
-          Get.toNamed(route(routeId + 1));
-        } */
+        }
       } else {
         print('object');
         print(isChangePass);

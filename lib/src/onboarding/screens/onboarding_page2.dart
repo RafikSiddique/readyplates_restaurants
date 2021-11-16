@@ -47,131 +47,112 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
             left: 16,
             right: 16,
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 8),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 8),
 
-              FieldTitle(
-                text: 'Locate Restaurant on Map',
-              ),
+                FieldTitle(
+                  text: 'Locate Restaurant on Map',
+                ),
 
-              // RichText(
+                // RichText(
 
-              SizedBox(
-                height: 5,
-              ),
-              Expanded(
-                  child:
-                      // FutureBuilder<Position>(
-                      //     future: Geolocator.getCurrentPosition(),
-                      //     builder: (context, snapshot) {
-                      //       if (!snapshot.hasError && snapshot.data != null) {
-                      //         return
-                      SelectLocation(
-                isOpen: true,
-                latLng: widget.latLng,
-                setLocation: (p0) async {
-                  GeoCode geoCode = GeoCode();
-                  controller.latitude.text = p0.latitude.toString();
-                  controller.longitude.text = p0.longitude.toString();
-                  final address = await geoCode.reverseGeocoding(
-                      latitude: p0.latitude, longitude: p0.longitude);
+                SizedBox(
+                  height: 5,
+                ),
+                Container(
+                  height: Get.height * 0.4,
+                  child: SelectLocation(
+                    isOpen: true,
+                    latLng: widget.latLng,
+                    setLocation: (p0) async {
+                      GeoCode geoCode = GeoCode();
+                      controller.latitude.text = p0.latitude.toString();
+                      controller.longitude.text = p0.longitude.toString();
+                      final address = await geoCode.reverseGeocoding(
+                          latitude: p0.latitude, longitude: p0.longitude);
 
-                  controller.address1.text = address.streetAddress.toString();
-                  controller.address2.text = address.region.toString();
-                  controller.postalcode.text = address.postal.toString();
-                },
-              )
-
-                  //     ;
-                  //   } else {
-                  //     return Center(
-                  //       child: CircularProgressIndicator(),
-                  //     );
-                  //   }
-                  // }
-                  // ),
+                      controller.address1.text =
+                          address.streetAddress.toString();
+                      controller.address2.text = address.region.toString();
+                      controller.postalcode.text = address.postal.toString();
+                    },
                   ),
-              SizedBox(
-                height: 3,
-              ),
-              Text("Please locate restaurant on Map",
-                  style: GoogleFonts.poppins(
-                    fontSize: 9,
-                    color: MyTheme.bottomtextColor,
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.normal,
-                  )),
+                ),
+                SizedBox(
+                  height: 3,
+                ),
+                Text("Please locate restaurant on Map",
+                    style: GoogleFonts.poppins(
+                      fontSize: 9,
+                      color: MyTheme.bottomtextColor,
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.normal,
+                    )),
 
-              AppFormField(
-                title: "Restaurant Address",
-                hintText: "Address Line 1",
-                hintfontSize: 15,
-                controller: controller.address1,
-                borderRadius: BorderRadius.vertical(top: Radius.circular(6)),
-              ),
+                AppFormField(
+                  title: "Restaurant Address",
+                  hintText: "Address Line 1",
+                  hintfontSize: 15,
+                  controller: controller.address1,
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(6)),
+                ),
 
-              AppFormField(
-                title: '',
-                hintText: "Address Line 2",
-                hintfontSize: 15,
-                controller: controller.address2,
-                borderRadius: BorderRadius.vertical(bottom: Radius.circular(0)),
-              ),
-              AppFormField(
-                title: '',
-                hintText: "Nearby Landmark",
-                hintfontSize: 15,
-                controller: controller.nearbylandnark,
-                borderRadius: BorderRadius.vertical(bottom: Radius.circular(6)),
-                bottomText:
-                    'Make sure it matches the name on your government ID',
-              ),
+                AppFormField(
+                  title: '',
+                  hintText: "Address Line 2",
+                  hintfontSize: 15,
+                  controller: controller.address2,
+                  borderRadius:
+                      BorderRadius.vertical(bottom: Radius.circular(0)),
+                ),
+                AppFormField(
+                  title: '',
+                  hintText: "Nearby Landmark",
+                  hintfontSize: 15,
+                  controller: controller.nearbylandnark,
+                  borderRadius:
+                      BorderRadius.vertical(bottom: Radius.circular(6)),
+                  bottomText:
+                      'Make sure it matches the name on your government ID',
+                ),
 
-              SizedBox(height: 20),
+                SizedBox(height: 20),
 
-              AppFormField(
-                title: "Postal Code",
-                hintText: "XXXXXX",
-                hintfontSize: 15,
-                controller: controller.postalcode,
-                inputType: TextInputType.number,
-                formatters: [FilteringTextInputFormatter.digitsOnly],
-              ),
+                AppFormField(
+                  title: "Postal Code",
+                  hintText: "XXXXXX",
+                  hintfontSize: 15,
+                  controller: controller.postalcode,
+                  inputType: TextInputType.number,
+                  formatters: [FilteringTextInputFormatter.digitsOnly],
+                ),
 
-              SizedBox(height: 20),
-              OnboardingButton(
-                onTap: () {
-                  formKey.currentState!.save();
+                SizedBox(height: 20),
 
-                  if (formKey.currentState!.validate())
-                    controller.onboardingApi(OnBoardingMethod.api2);
-                },
-                buttonbackgroundColor: (controller.address1.text.isEmpty ||
-                        controller.address2.text.isEmpty ||
-                        controller.nearbylandnark.text.isEmpty ||
-                        controller.latitude.text.isEmpty ||
-                        controller.longitude.text.isEmpty)
-                    ? MyTheme.buttonColor
-                    : MyTheme.buttonchangeColor,
-                text: 'CONTINUE',
-                buttontextColor: (controller.address1.text.isEmpty ||
-                        controller.address2.text.isEmpty ||
-                        controller.nearbylandnark.text.isEmpty ||
-                        controller.latitude.text.isEmpty ||
-                        controller.longitude.text.isEmpty)
-                    ? MyTheme.buttontextColor
-                    : MyTheme.buttontextchangeColor,
-              ),
-
-              SizedBox(
-                height: 16,
-              ),
-            ],
+                SizedBox(
+                  height: 16,
+                ),
+              ],
+            ),
           ),
         ),
       ),
+      onTap: () {
+        formKey.currentState!.save();
+        if (formKey.currentState!.validate())
+          controller.onboardingApi(OnBoardingMethod.api2);
+      },
+      buttonText: 'CONTINUE',
+      textControllers: [
+        controller.address1,
+        controller.address2,
+        controller.nearbylandnark,
+        controller.latitude,
+        controller.longitude
+      ],
     );
   }
 }
@@ -248,6 +229,10 @@ class _SelectLocationState extends State<SelectLocation> {
   final Completer<GoogleMapController> completer =
       Completer<GoogleMapController>();
 
+  void updateCam(double lat, double lon) async {
+    controller?.animateCamera(CameraUpdate.newLatLngZoom(LatLng(lat, lon), 18));
+  }
+
   GoogleMapController? controller;
   @override
   Widget build(BuildContext context) {
@@ -283,8 +268,7 @@ class _SelectLocationState extends State<SelectLocation> {
               children: [
                 mapButtons(Icons.gps_fixed, () async {
                   Position position = await Geolocator.getCurrentPosition();
-                  controller?.animateCamera(CameraUpdate.newLatLngZoom(
-                      LatLng(position.latitude, position.longitude), 18));
+                  updateCam(position.latitude, position.longitude);
                 }),
                 SizedBox(
                   height: 10,
@@ -334,24 +318,16 @@ class _SelectLocationState extends State<SelectLocation> {
                     return ListTile(
                       onTap: () async {
                         final session = Uuid().v4();
-
                         Place place = await PlaceApiProvider(session)
                             .getPlaceDetailFromId(itemData.placeId);
-                        controller?.animateCamera(CameraUpdate.newLatLng(
-                            LatLng(place.lat!, place.lang!)));
+                        updateCam(place.lat!, place.lang!);
                         FocusScope.of(context).unfocus();
                       },
                       title: Text(itemData.description.toString()),
                     );
                   },
                   onSuggestionSelected: (Suggestion? suggestion) async {
-                    FocusScope.of(context).unfocus();
-                    /*          final session = Uuid().v4();
-
-                    Place place = await PlaceApiProvider(session)
-                        .getPlaceDetailFromId(suggestion!.placeId);
-                    controller?.animateCamera(CameraUpdate.newLatLng(
-                        LatLng(place.lat!, place.lang!))); */
+                    // FocusScope.of(context).unfocus();
                   },
                   suggestionsCallback: (String pattern) async {
                     final session = Uuid().v4();

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
+import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/onboarding_page6.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
@@ -24,6 +25,19 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
     return OnBoardingWrapper(
       appBarTitle: 'Public Business Information',
       onboardingController: controller,
+      buttonText: 'CONTINUE',
+      onTap: () {
+        Get.toNamed(OnboardingPage6.id);
+      },
+      textControllers: [
+        controller.statementDescriptor,
+        controller.shortenedDescriptor,
+        controller.businessWeb,
+        controller.supportWeb,
+        controller.privacy,
+        controller.termServices,
+        controller.fsolNumber,
+      ],
       child: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16),
         child: SingleChildScrollView(
@@ -104,38 +118,6 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                 ),
                 SizedBox(
                   height: 25,
-                ),
-                OnboardingButton(
-                  onTap: () {
-                    // formKey.currentState!.save();
-                    // if (formKey.currentState!.validate())
-                    //   controller.onboardingApi(OnBoardingMethod.api5);
-                    Get.toNamed(OnboardingPage6.id);
-                  },
-                  buttonbackgroundColor:
-                      (controller.statementDescriptor.text.isEmpty ||
-                              controller.shortenedDescriptor.text.isEmpty ||
-                              controller.businessWeb.text.isEmpty ||
-                              controller.supportWeb.text.isEmpty ||
-                              controller.privacy.text.isEmpty ||
-                              controller.termServices.text.isEmpty ||
-                              controller.fsolNumber.text.isEmpty)
-                          ? MyTheme.buttonColor
-                          : MyTheme.buttonchangeColor,
-                  text: 'CONTINUE',
-                  buttontextColor:
-                      (controller.statementDescriptor.text.isEmpty ||
-                              controller.shortenedDescriptor.text.isEmpty ||
-                              controller.businessWeb.text.isEmpty ||
-                              controller.supportWeb.text.isEmpty ||
-                              controller.privacy.text.isEmpty ||
-                              controller.termServices.text.isEmpty ||
-                              controller.fsolNumber.text.isEmpty)
-                          ? MyTheme.buttontextColor
-                          : MyTheme.buttontextchangeColor,
-                ),
-                SizedBox(
-                  height: 16,
                 ),
               ],
             ),

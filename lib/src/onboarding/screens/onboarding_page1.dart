@@ -22,49 +22,26 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
-  void initState() {
-    controller.resName.addListener(() {
-      setState(() {});
-    });
-    controller.firstName.addListener(() {
-      setState(() {});
-    });
-    controller.lastName.addListener(() {
-      setState(() {});
-    });
-    controller.ownemail.addListener(() {
-      setState(() {});
-    });
-    controller.ownMobile.addListener(() {
-      setState(() {});
-    });
-    controller.poc.addListener(() {
-      setState(() {});
-    });
-    controller.pocNumber.addListener(() {
-      setState(() {});
-    });
-
-    super.initState();
-  }
-
-  // @override
-  // void dispose() {
-  //   controller.resName.dispose();
-  //   controller.firstName.dispose();
-  //   controller.lastName.dispose();
-  //   controller.ownemail.dispose();
-  //   controller.ownMobile.dispose();
-  //   controller.poc.dispose();
-  //   controller.pocNumber.dispose();
-  //   super.dispose();
-  // }
-
-  @override
   Widget build(BuildContext context) {
     return OnBoardingWrapper(
       onboardingController: controller,
       appBarTitle: "Partner Onboarding",
+      buttonText: 'CONTINUE',
+      onTap: () {
+        formKey.currentState!.save();
+        if (formKey.currentState!.validate())
+          controller.onboardingApi(OnBoardingMethod.api1);
+      },
+      textControllers: [
+        controller.resName,
+        controller.firstName,
+        controller.lastName,
+        controller.ownemail,
+        controller.ownMobile,
+        controller.poc,
+        controller.pocNumber
+      ],
+      enabled: controller.rescity.isNotEmpty,
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(left: 16, right: 16),
@@ -231,10 +208,10 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                   height: 5,
                 ),
                 GestureDetector(
-                  onTap: () {
+                  onTap: () async {
                     controller.rxStates
                         .sort((a, b) => a.name.compareTo(b.name));
-                    showDialog(
+                    await showDialog(
                       context: context,
                       builder: (context) {
                         return AlertDialog(
@@ -242,6 +219,7 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                         );
                       },
                     );
+                    setState(() {});
                   },
                   child: Container(
                     width: double.infinity,
@@ -296,34 +274,6 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                 ),
                 SizedBox(
                   height: 18,
-                ),
-                OnboardingButton(
-                  onTap: () {
-                    formKey.currentState!.save();
-                    if (formKey.currentState!.validate())
-                      controller.onboardingApi(OnBoardingMethod.api1);
-                  },
-                  buttonbackgroundColor: (controller.resName.text.isEmpty ||
-                          controller.firstName.text.isEmpty ||
-                          controller.lastName.text.isEmpty ||
-                          controller.ownemail.text.isEmpty ||
-                          controller.ownMobile.text.isEmpty ||
-                          controller.rescity.isEmpty ||
-                          controller.poc.text.isEmpty ||
-                          controller.pocNumber.text.isEmpty)
-                      ? MyTheme.buttonColor
-                      : MyTheme.buttonchangeColor,
-                  text: 'CONTINUE',
-                  buttontextColor: (controller.resName.text.isEmpty ||
-                          controller.firstName.text.isEmpty ||
-                          controller.lastName.text.isEmpty ||
-                          controller.ownemail.text.isEmpty ||
-                          controller.ownMobile.text.isEmpty ||
-                          controller.rescity.isEmpty ||
-                          controller.poc.text.isEmpty ||
-                          controller.pocNumber.text.isEmpty)
-                      ? MyTheme.buttontextColor
-                      : MyTheme.buttontextchangeColor,
                 ),
                 SizedBox(
                   height: 16,
