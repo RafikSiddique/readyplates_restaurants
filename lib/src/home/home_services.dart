@@ -40,16 +40,16 @@ class HomeServices extends ApiServices {
         'cost': cost,
       });
 
-      //if (other_serving_cost.isNotEmpty && other_serving_size.isNotEmpty) {
-      request.fields.addAll({
-        "other_serving_cost": other_serving_cost.isEmpty
-            ? "other_serving_cost"
-            : other_serving_cost,
-        "other_serving_size": other_serving_size.isEmpty
-            ? "other_serving_size"
-            : other_serving_size,
-      });
-      //}
+      if (other_serving_cost.isNotEmpty && other_serving_size.isNotEmpty) {
+        request.fields.addAll({
+          "other_serving_cost": other_serving_cost.isEmpty
+              ? "other_serving_cost"
+              : other_serving_cost,
+          "other_serving_size": other_serving_size.isEmpty
+              ? "other_serving_size"
+              : other_serving_size,
+        });
+      }
 
       StreamedResponse response = await request.send();
       String body = await response.stream.bytesToString();
@@ -93,12 +93,12 @@ class HomeServices extends ApiServices {
         'spice_level': spice_level,
         'cost': cost,
       });
-      //  if (other_serving_cost.isNotEmpty && other_serving_size.isNotEmpty) {
-      request.fields.addAll({
-        "other_serving_cost": other_serving_cost,
-        "other_serving_size": other_serving_size,
-      });
-      //}
+      if (other_serving_cost.isNotEmpty && other_serving_size.isNotEmpty) {
+        request.fields.addAll({
+          "other_serving_cost": other_serving_cost,
+          "other_serving_size": other_serving_size,
+        });
+      }
       StreamedResponse response = await request.send();
       if (response.statusCode == 201) {
         String body = await response.stream.bytesToString();

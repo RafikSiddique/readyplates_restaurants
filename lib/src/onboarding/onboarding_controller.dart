@@ -385,14 +385,15 @@ class OnboardingController extends GetxController {
 
   final PageController pageController = PageController();
 
-  Future<void> onboardingApi(OnBoardingMethod method) async {
+  Future<void> onboardingApi(OnBoardingMethod method,
+      {bool isEditing = false}) async {
     loading.value = true;
     switch (method) {
       case OnBoardingMethod.api1:
         await _onboardingapi1();
         break;
       case OnBoardingMethod.api2:
-        await _onboardingapi2();
+        await _onboardingapi2(isEditing);
         break;
       case OnBoardingMethod.api3:
         await _onboardingapi3();
@@ -491,7 +492,7 @@ class OnboardingController extends GetxController {
     }
   }
 
-  Future<void> _onboardingapi2() async {
+  Future<void> _onboardingapi2(bool isEditing) async {
     String adress =
         address1.text + " " + address2.text + " " + nearbylandnark.text;
 
@@ -503,7 +504,11 @@ class OnboardingController extends GetxController {
         latitude.text,
         longitude.text,
       );
-      Get.toNamed(OnboardingPage3.id);
+      if (!isEditing)
+        Get.toNamed(OnboardingPage3.id);
+      else
+        Navigator.popUntil(
+            Get.context!, (route) => route.settings.name == HomePage.id);
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }
@@ -750,9 +755,12 @@ class OnboardingController extends GetxController {
         await services.uploadImages(files, pageIndex.value, fields, resId);
 
         if (pageIndex.value == 3) {
-          Get.find<SharedPreferenceHelper>().setLoggedIn(true);
-          Get.find<AuthController>().isLoggedIn.value = true;
-          Get.offAllNamed(HomePage.id);
+          if (isEditing) {
+          } else {
+            Get.find<SharedPreferenceHelper>().setLoggedIn(true);
+            Get.find<AuthController>().isLoggedIn.value = true;
+            Get.offAllNamed(HomePage.id);
+          }
         } else {
           pageController.animateToPage(pageIndex.value + 1,
               duration: Duration(milliseconds: 500), curve: Curves.ease);

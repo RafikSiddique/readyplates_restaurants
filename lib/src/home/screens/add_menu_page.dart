@@ -42,13 +42,6 @@ class MenuPage extends StatelessWidget {
                         )
                       ]),
                   margin: EdgeInsets.all(7),
-                  // shadowColor: Color.fromRGBO(188, 202, 224, 0.4),
-                  // elevation: 3,
-                  // margin: EdgeInsets.all(7),
-                  // shape: RoundedRectangleBorder(
-                  //   borderRadius: BorderRadius.circular(10),
-                  // ),
-
                   child: Padding(
                     padding: const EdgeInsets.all(10),
                     child: DottedBorder(
