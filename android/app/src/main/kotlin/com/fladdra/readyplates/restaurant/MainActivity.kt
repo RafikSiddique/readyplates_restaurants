@@ -1,4 +1,4 @@
-package com.example.readyplates_restaurants
+package com.fladdra.readyplates.restaurant
 
 import io.flutter.embedding.android.FlutterActivity
 
