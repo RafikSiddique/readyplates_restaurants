@@ -257,7 +257,7 @@ class OnboardingServices extends ApiServices {
           {
             'user': user,
             'type_of_estd': type_of_estd,
-            'type_of_cusine': type_of_cusine,
+            'types_of_cusine': type_of_cusine,
             'start_time': start_time,
             'end_time': end_time,
             'open_days': open_days,

@@ -218,6 +218,9 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                                             controller.isChecked = value!;
                                             controller.chooseCategory
                                                 .contains(category);
+                                            print(controller.chooseCategory
+                                                .toList()
+                                                .toString());
                                           });
                                         },
                                       ),

@@ -602,7 +602,7 @@ class OnboardingController extends GetxController {
       await services.onboardingapi7(
         uniqueId,
         typeOfEstablishment.value,
-        chooseCategory.toString(),
+        chooseCategory.toList().toString(),
         startTime,
         endTime,
         chooseDays.toList().toString(),
