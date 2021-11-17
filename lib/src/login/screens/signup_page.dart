@@ -195,6 +195,7 @@ class _SignupPageState extends State<SignupPage> {
                               title: "Email Address",
                               hintText: "Eg aatef.sayyed@fladdra.com",
                               controller: controller.email,
+                              isEmail: true,
                               fontSize: 13,
                             ),
                             SizedBox(

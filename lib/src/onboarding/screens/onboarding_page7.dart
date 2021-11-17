@@ -36,7 +36,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
     if (PickedTime != null && PickedTime != currentTime) {
       setState(() {
         currentTime = PickedTime!;
-        controller.startTime = PickedTime.toString();
+        controller.startTime = PickedTime!.format(context);
         print(PickedTime!.format(context));
       });
     }
@@ -58,7 +58,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
     if (PickedTime1 != null && PickedTime1 != currentTime1) {
       setState(() {
         currentTime1 = PickedTime1!;
-        controller.endTime = PickedTime1.toString();
+        controller.endTime = PickedTime1!.format(context);
         print(PickedTime1!.format(context));
       });
     }

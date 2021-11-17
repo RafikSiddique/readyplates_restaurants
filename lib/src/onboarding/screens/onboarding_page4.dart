@@ -32,18 +32,17 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
         formKey.currentState!.save();
         if (formKey.currentState!.validate())
           controller.onboardingApi(OnBoardingMethod.api4);
-        // Get.toNamed(OnboardingPage5.id);
       },
       textControllers: [
         controller.pubbusinessName,
         controller.supportEmail,
         controller.supportNumber,
-        controller.addline1,
-        controller.addline2,
-        controller.addline3,
-        controller.state,
-        controller.city,
-        controller.pincode,
+        controller.businessaddline1,
+        controller.businessaddline2,
+        controller.businessaddline3,
+        controller.businessstate,
+        controller.businesscity,
+        controller.businesspincode,
       ],
       child: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16),
@@ -71,6 +70,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                   title: "Support Email",
                   hintText: "contactus@nevadafastfoods.com",
                   hintfontSize: 15,
+                  isEmail: true,
                   controller: controller.supportEmail,
                 ),
                 SizedBox(

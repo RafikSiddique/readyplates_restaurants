@@ -69,6 +69,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   height: 17,
                 ),
                 AppFormField(
+                  isUrl: true,
                   title: 'Business Website',
                   hintText: 'http://nevadafastfoods.com/',
                   hintfontSize: 15,
@@ -79,6 +80,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   height: 17,
                 ),
                 AppFormField(
+                  isUrl: true,
                   title: 'Support Website',
                   hintText: 'http://nevadafastfoods.com/',
                   hintfontSize: 15,
@@ -89,6 +91,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   height: 17,
                 ),
                 AppFormField(
+                  isUrl: true,
                   title: 'Privacy Policy',
                   hintText: 'http://nevadafastfoods.com/privacypolicy',
                   hintfontSize: 15,
@@ -102,6 +105,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   title: 'Terms of Service',
                   hintText: 'http://nevadafastfoods.com/termsofservice',
                   hintfontSize: 15,
+                  isUrl: true,
                   isRequired: false,
                   controller: controller.termServices,
                 ),
@@ -112,6 +116,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   title: 'FSOL License Number',
                   hintText: '67534289110934',
                   hintfontSize: 15,
+                  isUrl: true,
                   isRequired: true,
                   controller: controller.fsolNumber,
                 ),

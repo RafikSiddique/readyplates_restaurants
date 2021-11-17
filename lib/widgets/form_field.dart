@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:get/get_utils/src/extensions/string_extensions.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 
@@ -13,12 +14,14 @@ class AppFormField extends StatefulWidget {
   final String? Function(String?)? validator;
   void Function(String)? onchanged;
   void Function(bool)? onSwitch;
+  final bool isEmail;
   final String hintText;
   final BorderRadius borderRadius;
   final TextEditingController controller;
   final String? bottomText;
   final bool isPassword;
   final List<TextInputFormatter>? formatters;
+  final bool isUrl;
   final TextInputType inputType;
   final double fontSize;
   final double hintfontSize;
@@ -31,8 +34,10 @@ class AppFormField extends StatefulWidget {
   AppFormField({
     Key? key,
     this.line,
+    this.isEmail = false,
     this.secondVal,
     this.matchVerification = false,
+    this.isUrl = false,
     this.isRequired = true,
     this.fontSize = 13,
     this.hintfontSize = 15,
@@ -147,25 +152,35 @@ class _AppFormFieldState extends State<AppFormField> {
                       maxLength: widget.maxLength,
 
                       validator: (value) {
-                        if (value == "") {
+                        if (value == "" || value == null) {
                           if (widget.isRequired) {
                             setState(() {
                               valid = false;
                             });
                             return "This Field is required";
                           }
-                          if (widget.minLength != null) {
-                            if (value!.length < widget.minLength!) {
-                              return "Invalid, Minimum length should be ${widget.minLength} digits";
-                            }
-                          }
-                        } else {
-                          if (widget.matchVerification) {
-                            if (value != widget.secondVal!.text) {
-                              return "The ${widget.title} does not match";
-                            }
+                        }
+                        if (widget.isUrl) {
+                          if (!value!.isURL) {
+                            return "Please enter a valid URL";
                           }
                         }
+                        if (widget.isEmail) {
+                          if (!value!.isEmail) {
+                            return "Please enter a valid E-Mail Id";
+                          }
+                        }
+                        if (widget.minLength != null) {
+                          if (value!.length < widget.minLength!) {
+                            return "Invalid, Minimum length should be ${widget.minLength} digits";
+                          }
+                        }
+                        if (widget.matchVerification) {
+                          if (value != widget.secondVal!.text) {
+                            return "The ${widget.title} does not match";
+                          }
+                        }
+
                         if (widget.validator != null)
                           return widget.validator!(value);
                       },

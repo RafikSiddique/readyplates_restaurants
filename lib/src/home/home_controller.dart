@@ -18,9 +18,12 @@ import 'package:readyplates_restaurants/utils/exception.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 
 class HomeController extends GetxController {
-  RxInt selectedIndex = 0.obs;
+  HomeController({required this.selectedIndex});
+
+  RxInt selectedIndex;
   bool isEditing = false;
-  final pageController = PageController();
+  late PageController pageController =
+      PageController(initialPage: selectedIndex.value);
   FoodItemModel? foodItemModel;
 
   final SharedPreferenceHelper sfHelper = Get.find();

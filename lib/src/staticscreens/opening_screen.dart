@@ -253,7 +253,7 @@ class _OpeningScreenState extends State<OpeningScreen>
       await authController.getSharedPref();
       if (authController.isLoggedIn.value) {
         print("Logged In");
-        Get.put(HomeController());
+        Get.put(HomeController(selectedIndex: 0.obs));
         Get.put(OrderController());
         Get.offNamed(HomePage.id);
       } else {

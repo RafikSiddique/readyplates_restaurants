@@ -89,6 +89,7 @@ class AuthController extends GetxController {
           await services.signup(email.text, password.text, password2.text);
       await sfHelper.setUserId(id);
       final oController = Get.put(OnboardingController());
+      oController.isEditing = false;
       oController.uniqueId = id;
       Get.toNamed(OnboardingPage1.id);
     } catch (e) {
@@ -110,7 +111,7 @@ class AuthController extends GetxController {
           isLoggedIn.value = true;
           sfHelper.setLoggedIn(true);
 
-          final controller = Get.put(HomeController());
+          final controller = Get.put(HomeController(selectedIndex: 0.obs));
           await controller.getFoodItems();
           final oController = Get.put(OrderController());
           await oController.getOrderItems();

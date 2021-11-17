@@ -177,6 +177,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           AppFormField(
                             title: "Email Address",
+                            isEmail: true,
                             hintText: "Registered E-Mail ID",
                             fontSize: 13,
                             inputType: TextInputType.text,

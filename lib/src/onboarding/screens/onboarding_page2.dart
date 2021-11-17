@@ -330,9 +330,13 @@ class _SelectLocationState extends State<SelectLocation> {
                     // FocusScope.of(context).unfocus();
                   },
                   suggestionsCallback: (String pattern) async {
-                    final session = Uuid().v4();
-                    return PlaceApiProvider(session)
-                        .fetchSuggestions(pattern, 'en');
+                    if (pattern.isNotEmpty) {
+                      final session = Uuid().v4();
+                      return PlaceApiProvider(session)
+                          .fetchSuggestions(pattern, 'en');
+                    } else {
+                      return <Suggestion>[];
+                    }
                   },
                 ),
               ),

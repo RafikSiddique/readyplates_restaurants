@@ -4,11 +4,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/login/screens/login_page.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
+import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 import 'package:readyplates_restaurants/widgets/edit_button.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
-
+  ProfilePage({Key? key}) : super(key: key);
+  final SharedPreferenceHelper sfHelper = SharedPreferenceHelper();
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -22,24 +23,40 @@ class ProfilePage extends StatelessWidget {
             }),
         ProfileListTile(
             title: "Restaurant Detail",
-            onTap: () {
+            onTap: () async {
               print('object');
+              bool isRegistered = Get.isRegistered<OnboardingController>();
+              if (!isRegistered) Get.put(OnboardingController());
+              final c = Get.find<OnboardingController>();
+              c..isEditing = true;
+              String userId = await sfHelper.getRestaurantId();
+              c.uniqueId = userId;
               Get.toNamed(OnboardingPage1.id);
-              Get.put(OnboardingController());
             }),
         ProfileListTile(
             title: "Restaurant Bio",
-            onTap: () {
+            onTap: () async {
               print('object');
+              bool isRegistered = Get.isRegistered<OnboardingController>();
+              if (!isRegistered) Get.put(OnboardingController());
+              final c = Get.find<OnboardingController>();
+              c..isEditing = true;
+              String userId = await sfHelper.getRestaurantId();
+              c.uniqueId = userId;
+
               Get.toNamed(OnboardingPage7.id);
-              Get.put(OnboardingController());
             }),
         ProfileListTile(
             title: "Payment Setup",
-            onTap: () {
+            onTap: () async {
               print('object');
+              bool isRegistered = Get.isRegistered<OnboardingController>();
+              if (!isRegistered) Get.put(OnboardingController());
+              final c = Get.find<OnboardingController>();
+              c..isEditing = true;
+              String userId = await sfHelper.getRestaurantId();
+              c.uniqueId = userId;
               Get.toNamed(OnboardingPage3.id);
-              Get.put(OnboardingController());
             }),
       ],
     );

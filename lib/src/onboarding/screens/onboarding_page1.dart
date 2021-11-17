@@ -89,6 +89,7 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                 AppFormField(
                   title: 'Owner Email ID',
                   hintText: 'username@aol.com',
+                  isEmail: true,
                   hintfontSize: 15,
                   controller: controller.ownemail,
                 ),

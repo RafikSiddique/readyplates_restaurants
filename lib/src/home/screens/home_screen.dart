@@ -12,7 +12,7 @@ import 'package:readyplates_restaurants/utils/my_color.dart';
 class HomePage extends StatelessWidget {
   static const id = "/home";
   HomePage({Key? key}) : super(key: key);
-  final controller = Get.put(HomeController());
+  final controller = Get.find<HomeController>();
   OrderModelApi? orderModelApi;
 
   final List<String> bottomBarIcons =

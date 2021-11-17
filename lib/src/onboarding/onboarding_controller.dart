@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:readyplates_restaurants/src/home/home_controller.dart';
 import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_services.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/onboarding_page6.dart';
+import 'package:readyplates_restaurants/src/orders/order_controller.dart';
 import 'package:readyplates_restaurants/utils/cities.dart';
 import 'package:readyplates_restaurants/utils/city.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
@@ -22,6 +24,8 @@ class OnboardingController extends GetxController {
 
   OnboardingServices services = OnboardingServices();
   final SharedPreferenceHelper sfHelper = Get.find();
+
+  bool isEditing = false;
 
   ///OnBoarding 1
   void initControllers1() {
@@ -385,15 +389,16 @@ class OnboardingController extends GetxController {
 
   final PageController pageController = PageController();
 
-  Future<void> onboardingApi(OnBoardingMethod method,
-      {bool isEditing = false}) async {
+  Future<void> onboardingApi(
+    OnBoardingMethod method,
+  ) async {
     loading.value = true;
     switch (method) {
       case OnBoardingMethod.api1:
         await _onboardingapi1();
         break;
       case OnBoardingMethod.api2:
-        await _onboardingapi2(isEditing);
+        await _onboardingapi2();
         break;
       case OnBoardingMethod.api3:
         await _onboardingapi3();
@@ -405,7 +410,7 @@ class OnboardingController extends GetxController {
         await _onboardingapi5();
         break;
       case OnBoardingMethod.api6:
-        await _onboardingapi6(isEditing);
+        await _onboardingapi6();
         break;
       case OnBoardingMethod.api7:
         await _onboardingapi7();
@@ -414,7 +419,7 @@ class OnboardingController extends GetxController {
         await _onboardingapi8();
         break;
       case OnBoardingMethod.api9:
-        await _uploadImage(isEditing);
+        await _uploadImage();
         break;
     }
     loading.value = false;
@@ -493,7 +498,7 @@ class OnboardingController extends GetxController {
     }
   }
 
-  Future<void> _onboardingapi2(bool isEditing) async {
+  Future<void> _onboardingapi2() async {
     String adress =
         address1.text + " " + address2.text + " " + nearbylandnark.text;
 
@@ -507,9 +512,12 @@ class OnboardingController extends GetxController {
       );
       if (!isEditing)
         Get.toNamed(OnboardingPage3.id);
-      else
-        Navigator.popUntil(
-            Get.context!, (route) => route.settings.name == HomePage.id);
+      else {
+        final c = Get.find<HomeController>();
+        c.selectedIndex.value = 3;
+        c.pageController.jumpToPage(3);
+        Get.offAllNamed(HomePage.id);
+      }
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }
@@ -586,7 +594,7 @@ class OnboardingController extends GetxController {
     }
   }
 
-  Future<void> _onboardingapi6(bool isEditing) async {
+  Future<void> _onboardingapi6() async {
     try {
       await services.onboardingapi6(
         uniqueId,
@@ -598,9 +606,12 @@ class OnboardingController extends GetxController {
       );
       if (!isEditing)
         Get.toNamed(OnboardingPage7.id);
-      else
-        Navigator.popUntil(
-            Get.context!, (route) => route.settings.name == HomePage.id);
+      else {
+        final c = Get.find<HomeController>();
+        c.selectedIndex.value = 3;
+        c.pageController.jumpToPage(3);
+        Get.offAllNamed(HomePage.id);
+      }
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }
@@ -724,7 +735,7 @@ class OnboardingController extends GetxController {
     return list[0] != "" && list[1] != "" && list[2] != "" && list[3] != "";
   }
 
-  Future<void> _uploadImage(bool isEditing) async {
+  Future<void> _uploadImage() async {
     try {
       if (resId == "") {
         resId = await sfHelper.getRestaurantId();
@@ -760,10 +771,15 @@ class OnboardingController extends GetxController {
 
         if (pageIndex.value == 3) {
           if (isEditing) {
-            Get.toNamed(OnboardingPage9.resId);
+            final c = Get.find<HomeController>();
+            c.selectedIndex.value = 3;
+            c.pageController.jumpToPage(3);
+            Get.offAllNamed(HomePage.id);
           } else {
             Get.find<SharedPreferenceHelper>().setLoggedIn(true);
             Get.find<AuthController>().isLoggedIn.value = true;
+            Get.put(HomeController(selectedIndex: 1.obs));
+            Get.put(OrderController());
             Get.offAllNamed(HomePage.id);
           }
         } else {
