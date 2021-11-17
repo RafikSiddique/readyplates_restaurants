@@ -2,12 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
-import 'package:readyplates_restaurants/src/onboarding/screens/onboarding_page5.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
-import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 
 class OnboardingPage4 extends StatefulWidget {
   static const id = "/onboarding4";
@@ -31,7 +29,10 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
       appBarTitle: 'Public Business Information',
       buttonText: 'CONTINUE',
       onTap: () {
-        Get.toNamed(OnboardingPage5.id);
+        formKey.currentState!.save();
+        if (formKey.currentState!.validate())
+          controller.onboardingApi(OnBoardingMethod.api4);
+        // Get.toNamed(OnboardingPage5.id);
       },
       textControllers: [
         controller.pubbusinessName,

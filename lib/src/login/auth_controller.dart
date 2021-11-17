@@ -65,7 +65,7 @@ class AuthController extends GetxController {
       case 7:
         return OnboardingPage7.id;
       case 8:
-        return OnboardingPage8.resId;
+        return OnboardingPage8.id;
       case 9:
         controller.pageIndex.value = 0;
         return OnboardingPage9.resId;

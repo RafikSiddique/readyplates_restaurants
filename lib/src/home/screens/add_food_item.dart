@@ -18,7 +18,8 @@ import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 
 String getUrl(String url) {
-  // // http://202.53.174.5:8000/
+  // http://202.53.174.5:8000
+  // http://192.168.0.194:5500
   return "http://202.53.174.5:8000" + url;
 }
 
@@ -197,7 +198,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
                             ),
                             DropdownDietType(
                               //THIS
-                              color: controller.dietType == ""
+                              color: controller.dietType.value == ""
                                   ? MyTheme.borderColor
                                   : MyTheme.borderchangeColor,
                               value: controller.dietType.value == ""
@@ -245,7 +246,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
                   height: 5,
                 ),
                 DropdownCategory(
-                  color: controller.category == ""
+                  color: controller.category.value == ""
                       ? MyTheme.borderColor
                       : MyTheme.borderchangeColor,
                   value: controller.category.value == ""
@@ -253,6 +254,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
                       : controller.category.value,
                   onSelect: (p0) {
                     controller.category.value = p0!;
+                    setState(() {});
                   },
                 ),
                 SizedBox(
@@ -311,6 +313,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
                       : controller.servingSize,
                   onSelect: (p0) {
                     controller.servingSize = p0!;
+                    setState(() {});
                   },
                 ),
                 SizedBox(height: 3),

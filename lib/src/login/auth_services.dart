@@ -56,14 +56,14 @@ class AuthenticationServices extends ApiServices {
         Map resp = json.decode(response.body);
         print(resp["ID"]);
         String id = resp["ID"].toString();
-        String resname = resp["Restaurant ID"].toString();
+        String resid = resp["Restaurant ID"].toString();
         print('User Id is ---->' + id);
         print(response.body);
-        return [id, resname];
+        return [id, resid];
       } else {
         throw AppException(code: response.statusCode, message: response.body);
       }
-} catch (e) {
+    } catch (e) {
       rethrow;
     }
   }

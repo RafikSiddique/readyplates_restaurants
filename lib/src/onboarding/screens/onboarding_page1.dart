@@ -8,7 +8,6 @@ import 'package:readyplates_restaurants/widgets/city_selector.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
-import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 
 class OnboardingPage1 extends StatefulWidget {
   static const id = "/onboarding1";

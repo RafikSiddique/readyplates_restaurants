@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
-import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
-import 'package:readyplates_restaurants/src/onboarding/screens/onboarding_page6.dart';
-import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
-import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 
 class OnboardingPage5 extends StatefulWidget {
   static const id = "/onboarding5";
@@ -27,7 +23,10 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
       onboardingController: controller,
       buttonText: 'CONTINUE',
       onTap: () {
-        Get.toNamed(OnboardingPage6.id);
+        formKey.currentState!.save();
+        if (formKey.currentState!.validate())
+          controller.onboardingApi(OnBoardingMethod.api5);
+        // Get.toNamed(OnboardingPage6.id);
       },
       textControllers: [
         controller.statementDescriptor,

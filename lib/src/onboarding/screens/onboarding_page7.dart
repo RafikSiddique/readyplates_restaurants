@@ -3,11 +3,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
-import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
-import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 
 class OnboardingPage7 extends StatefulWidget {
   static const id = "/onboarding7";
@@ -76,13 +74,13 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
       onTap: () {
         formKey.currentState!.save();
         if (formKey.currentState!.validate())
-          controller.onboardingApi(OnBoardingMethod.api4);
+          controller.onboardingApi(OnBoardingMethod.api7);
       },
       enabled: controller.typeOfEstablishment.value.isEmpty ||
-          controller.isChecked == false ||
+          controller.isChecked == true ||
           PickedTime == null ||
           PickedTime1 == null ||
-          controller.isDays == false,
+          controller.isDays == true,
       textControllers: [],
       child: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16),

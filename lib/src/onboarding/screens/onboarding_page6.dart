@@ -3,14 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:open_file/open_file.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
-import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/business.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/file_picker.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
-import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 
 class OnboardingPage6 extends StatefulWidget {
   static const id = "/OnboardingPage6";
@@ -35,7 +33,10 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
       onboardingController: controller,
       buttonText: 'CONTINUE',
       onTap: () {
-        Get.toNamed(OnboardingPage7.id);
+        formKey.currentState!.save();
+        if (formKey.currentState!.validate())
+          controller.onboardingApi(OnBoardingMethod.api6);
+        // Get.toNamed(OnboardingPage7.id);
       },
       enabled: controller.businesstype.isNotEmpty &&
           controller.confirmLetter.path.isNotEmpty &&

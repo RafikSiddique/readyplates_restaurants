@@ -83,8 +83,8 @@ class OnBoardingWrapper extends StatelessWidget {
                   ),
                   builder: (context, child) {
                     return Padding(
-                      padding:
-                          const EdgeInsets.only(bottom: 8.0, left: 8, right: 8),
+                      padding: const EdgeInsets.only(
+                          bottom: 16, left: 16, right: 16),
                       child: AnimatedSwitcher(
                         duration: Duration(milliseconds: 300),
                         child: OnboardingButton(

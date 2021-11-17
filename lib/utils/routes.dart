@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:readyplates_restaurants/src/home/screens/add_food_item.dart';
-import 'package:readyplates_restaurants/src/home/screens/feedback_page.dart';
 import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
-import 'package:readyplates_restaurants/src/home/screens/performance_page.dart';
 import 'package:readyplates_restaurants/src/login/screens/changepassword_page1.dart';
 import 'package:readyplates_restaurants/src/login/screens/login_page.dart';
 import 'package:readyplates_restaurants/src/login/screens/signup_page.dart';
@@ -51,7 +49,7 @@ class Routes {
             return OnboardingPage6();
           case OnboardingPage7.id:
             return OnboardingPage7();
-          case OnboardingPage8.resId:
+          case OnboardingPage8.id:
             return OnboardingPage8();
           case OnboardingPage9.resId:
             return OnboardingPage9();

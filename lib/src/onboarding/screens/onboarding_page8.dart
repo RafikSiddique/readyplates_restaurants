@@ -6,10 +6,9 @@ import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
-import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 
 class OnboardingPage8 extends StatefulWidget {
-  static const resId = "/onboarding8";
+  static const id = "/onboarding8";
   const OnboardingPage8({Key? key}) : super(key: key);
 
   @override
@@ -107,7 +106,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
       onTap: () {
         formKey.currentState!.save();
         if (formKey.currentState!.validate())
-          controller.onboardingApi(OnBoardingMethod.api6);
+          controller.onboardingApi(OnBoardingMethod.api8);
       },
       enabled: controller.noOfTables.value == 00 ||
           controller.noOfSeats.value == 00 ||

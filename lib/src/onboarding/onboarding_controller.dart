@@ -13,7 +13,7 @@ import 'package:readyplates_restaurants/utils/cities.dart';
 import 'package:readyplates_restaurants/utils/city.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 
-enum OnBoardingMethod { api1, api2, api3, api4, api5, api6, api7 }
+enum OnBoardingMethod { api1, api2, api3, api4, api5, api6, api7, api8, api9 }
 
 class OnboardingController extends GetxController {
   RxInt pageIndex = 0.obs;
@@ -404,9 +404,15 @@ class OnboardingController extends GetxController {
         await _onboardingapi5();
         break;
       case OnBoardingMethod.api6:
-        await _onboardingApi6();
+        await _onboardingapi6();
         break;
       case OnBoardingMethod.api7:
+        await _onboardingapi7();
+        break;
+      case OnBoardingMethod.api8:
+        await _onboardingapi8();
+        break;
+      case OnBoardingMethod.api9:
         await _uploadImage();
         break;
     }
@@ -504,16 +510,25 @@ class OnboardingController extends GetxController {
   }
 
   Future<void> _onboardingapi3() async {
+    String business_add = addline1.text +
+        " " +
+        addline2.text +
+        " " +
+        addline3.text +
+        " " +
+        state.text +
+        " " +
+        city.text +
+        " " +
+        pincode.text;
     try {
       await services.onboardingapi3(
-        uniqueId,
-        gstpresent.text,
-        gstnum.text,
-        fssaistatus.text,
-        "${expiry.year}-${expiry.month}-${expiry.day}",
-        kycimg,
-        gstinimg,
-        fssaiimg,
+        resId,
+        accNumber.text,
+        accName.text,
+        business_add,
+        phoneveify.text,
+        timezone.value,
       );
       Get.toNamed(OnboardingPage4.id);
     } catch (e) {
@@ -522,17 +537,27 @@ class OnboardingController extends GetxController {
   }
 
   Future<void> _onboardingapi4() async {
+    String business_add = addline1.text +
+        " " +
+        addline2.text +
+        " " +
+        addline3.text +
+        " " +
+        state.text +
+        " " +
+        city.text +
+        " " +
+        pincode.text;
     try {
       await services.onboardingapi4(
         uniqueId,
-        typeOfEstablishment.value,
-        chooseCategory.toString(),
-        startTime,
-        endTime,
-        chooseDays.toList().toString(),
+        pubbusinessName.text,
+        supportEmail.text,
+        supportNumber.text,
+        business_add,
       );
       //sfHelper.getRestaurantId();
-      Get.toNamed(OnboardingPage8.resId);
+      Get.toNamed(OnboardingPage5.id);
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }
@@ -540,42 +565,69 @@ class OnboardingController extends GetxController {
 
   Future<void> _onboardingapi5() async {
     try {
-      if (resId == "") {
-        resId = await sfHelper.getRestaurantId();
-      }
       await services.onboardingapi5(
-        resId,
-        ac_number.text,
-        typeOfAcc,
-        ifsc_code.text,
-        pan_num.text,
-        pan_name.text,
-        pan_image,
-      );
+          uniqueId,
+          statementDescriptor.text,
+          shortenedDescriptor.text,
+          businessWeb.text,
+          supportWeb.text,
+          privacy.text,
+          termServices.text,
+          fsolNumber.text);
       Get.toNamed(OnboardingPage6.id);
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }
   }
 
-  Future<void> _onboardingApi6() async {
+  Future<void> _onboardingapi6() async {
+    try {
+      await services.onboardingapi6(
+        uniqueId,
+        businesstype.value,
+        nameOfBusiness.text,
+        eiNumber.text,
+        confirmLetter,
+        uploadLetter,
+      );
+
+      Get.toNamed(OnboardingPage7.id);
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+    }
+  }
+
+  Future<void> _onboardingapi7() async {
+    try {
+      await services.onboardingapi7(
+        uniqueId,
+        typeOfEstablishment.value,
+        chooseCategory.toString(),
+        startTime,
+        endTime,
+        chooseDays.toList().toString(),
+      );
+      Get.toNamed(OnboardingPage8.id);
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+    }
+  }
+
+  Future<void> _onboardingapi8() async {
     try {
       if (resId == "") {
         resId = await sfHelper.getRestaurantId();
       }
-      await services.onboardingapi6(
+      await services.onboardingapi8(
         resId,
         resDescript.text,
         noOfTables.toString(),
         noOfSeats.toString(),
-        costFor2.toString(),
         servingTime.toString(),
         "${recurrenceTime.year}-${recurrenceTime.month}-${recurrenceTime.day}",
         selectedRecurrence.value,
         startTime,
         endTime,
-
-        // "${eventendHour.value}:${eventendMinute.value}${eventendAmPm}",
         eventDesc.text,
       );
 

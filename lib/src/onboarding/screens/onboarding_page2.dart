@@ -13,7 +13,6 @@ import 'package:readyplates_restaurants/utils/place_search.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
-import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 import 'package:uuid/uuid.dart';
 
 class OnboardingPage2 extends StatefulWidget {
@@ -91,6 +90,7 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
                       fontStyle: FontStyle.normal,
                       fontWeight: FontWeight.normal,
                     )),
+                SizedBox(height: 20),
 
                 AppFormField(
                   title: "Restaurant Address",

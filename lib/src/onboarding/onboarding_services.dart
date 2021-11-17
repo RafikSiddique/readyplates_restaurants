@@ -77,34 +77,33 @@ class OnboardingServices extends ApiServices {
 
   Future<void> onboardingapi3(
     String user,
-    String gstin_present,
-    String gstin_num,
-    String fssai_status,
-    String fssai_expiry,
-    File kyc_image,
-    File gstin_image,
-    File fssai_image,
+    String ac_number,
+    String ac_name,
+    String business_address,
+    String phone_num,
+    String time_zone,
   ) async {
     try {
-      MultipartRequest request = MultipartRequest('POST', onboarding(3));
-      MultipartFile kycImage =
-          await MultipartFile.fromPath('kyc_image', kyc_image.path);
-      MultipartFile gstin_Image =
-          await MultipartFile.fromPath('gstin_image', gstin_image.path);
-      MultipartFile fssaiImage =
-          await MultipartFile.fromPath('fssai_image', fssai_image.path);
-      request.files.addAll([kycImage, fssaiImage, gstin_Image]);
-      request.fields.addAll({
-        'user': user,
-        'gstin_present': gstin_present,
-        'gstin_num': gstin_num,
-        'fssai_status': fssai_status,
-        'fssai_expiry': fssai_expiry,
-      });
-      StreamedResponse response = await request.send();
+      Response response = await post(
+        onboarding(3),
+        body: jsonEncode(
+          {
+            'user': user,
+            'ac_number': ac_number,
+            'ac_name': ac_name,
+            'business_address': business_address,
+            'phone_num': phone_num,
+            'time_zone': time_zone,
+          },
+        ),
+        headers: contentTypeJsonHeader,
+      );
+      print('ID!!!!!!!!!!!!!!!!!5454545!!');
+      print(response.body);
+      print(response.statusCode);
       if (response.statusCode == 201) {
-        String body = await response.stream.bytesToString();
-        print(body);
+        print('ID!!!!!!!!!!!!!!!!!!!');
+        print(response.body);
       } else {
         throw AppException(
             code: response.statusCode, message: response.reasonPhrase);
@@ -116,11 +115,10 @@ class OnboardingServices extends ApiServices {
 
   Future<void> onboardingapi4(
     String user,
-    String type_of_estd,
-    String type_of_cusine,
-    String start_time,
-    String end_time,
-    String open_days,
+    String business_name,
+    String support_email,
+    String support_num,
+    String support_add,
   ) async {
     try {
       Response response = await post(
@@ -128,16 +126,19 @@ class OnboardingServices extends ApiServices {
         body: jsonEncode(
           {
             'user': user,
-            'type_of_estd': type_of_estd,
-            'type_of_cusine': type_of_cusine,
-            'start_time': start_time,
-            'end_time': end_time,
-            'open_days': open_days,
+            'business_name': business_name,
+            'support_email': support_email,
+            'support_num': support_num,
+            'support_add': support_add,
           },
         ),
         headers: contentTypeJsonHeader,
       );
+      print('ID!!!!!!!!!!!!!!!!!5454545!!');
+      print(response.body);
+      print(response.statusCode);
       if (response.statusCode == 201) {
+        print('ID!!!!!!!!!!!!!!!!!!!');
         print(response.body);
       } else {
         throw AppException(code: response.statusCode, message: response.body);
@@ -149,37 +150,40 @@ class OnboardingServices extends ApiServices {
 
   Future<void> onboardingapi5(
     String user,
-    String ac_number,
-    String type_of_ac,
-    String ifsc_code,
-    String pan_num,
-    String pan_name,
-    File pan_image,
+    String statement_desc,
+    String short_desc,
+    String business_website,
+    String support_website,
+    String privacy_policy,
+    String terms_of_service,
+    String fsol_license,
   ) async {
     try {
-      MultipartRequest request = MultipartRequest('POST', onboarding(5));
+      Response response = await post(
+        onboarding(5),
+        body: jsonEncode(
+          {
+            'user': user,
+            'statement_desc': statement_desc,
+            'short_desc': short_desc,
+            'business_website': business_website,
+            'support_website': support_website,
+            'privacy_policy': privacy_policy,
+            'terms_of_service': terms_of_service,
+            'fsol_license': fsol_license,
+          },
+        ),
+        headers: contentTypeJsonHeader,
+      );
 
-      MultipartFile panImage =
-          await MultipartFile.fromPath('pan_image', pan_image.path);
-
-      request.files.addAll([panImage]);
-      request.fields.addAll({
-        'user': user,
-        'ac_number': ac_number,
-        'type_of_ac': type_of_ac,
-        'ifsc_code': ifsc_code,
-        'pan_num': pan_num,
-        'pan_name': pan_name,
-      });
       print('body1');
-      StreamedResponse response = await request.send();
       print('body2');
-      // String body = await response.stream.bytesToString();
-      // print(body);
+      print('ID!!!!!!!!!!!!!!!!!5454545!!');
+      print(response.body);
+      print(response.statusCode);
+
       if (response.statusCode == 201) {
         print('body3');
-        String body = await response.stream.bytesToString();
-        print(body);
         print('body4');
       } else {
         throw AppException(
@@ -192,10 +196,97 @@ class OnboardingServices extends ApiServices {
 
   Future<void> onboardingapi6(
     String user,
+    String type_of_business,
+    String name_of_business,
+    String ein,
+    File ss4_letter,
+    File c147_letter,
+  ) async {
+    print('body1');
+    print('body2');
+    print('ID!!!!!!!!!!!!!!!!!5454545!!');
+    try {
+      MultipartRequest request = MultipartRequest('POST', onboarding(6));
+      MultipartFile ss4_letters =
+          await MultipartFile.fromPath('ss4_letter', ss4_letter.path);
+      MultipartFile c147_letters =
+          await MultipartFile.fromPath('c147_letter', c147_letter.path);
+      print('body3');
+      print('body4');
+      print('ID!!!!!!!!!!!!!!!!!5454545!!');
+      request.files.addAll([ss4_letters, c147_letters]);
+      request.fields.addAll({
+        'user': user,
+        'type_of_business': type_of_business,
+        'name_of_business': name_of_business,
+        'ein': ein,
+      });
+
+      StreamedResponse response = await request.send();
+      print(response);
+      print(response.statusCode);
+      if (response.statusCode == 201) {
+        print(response);
+        print(response.statusCode);
+        String body = await response.stream.bytesToString();
+        print(body);
+      } else {
+        throw AppException(
+            code: response.statusCode, message: response.reasonPhrase);
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> onboardingapi7(
+    String user,
+    String type_of_estd,
+    String type_of_cusine,
+    String start_time,
+    String end_time,
+    String open_days,
+  ) async {
+    print('body1');
+    print('body2');
+    print('ID!!!!!!!!!!!!!!!!!5454545!!');
+    try {
+      Response response = await post(
+        onboarding(7),
+        body: jsonEncode(
+          {
+            'user': user,
+            'type_of_estd': type_of_estd,
+            'type_of_cusine': type_of_cusine,
+            'start_time': start_time,
+            'end_time': end_time,
+            'open_days': open_days,
+          },
+        ),
+        headers: contentTypeJsonHeader,
+      );
+      print('body3');
+      print('body4');
+      print('ID!!!!!!!!!!!!!!!!!5454545!!');
+      print(response.body);
+      print(response.statusCode);
+      if (response.statusCode == 201) {
+        print(response.body);
+        print(response.statusCode);
+        print(response.body);
+      } else {
+        throw AppException(code: response.statusCode, message: response.body);
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> onboardingapi8(
+    String user,
     String description,
     String no_of_tables,
     String max_table_size,
-    String cost_for_two,
     String serving_time,
     String recurring_event_date,
     String recur_freq,
@@ -205,14 +296,13 @@ class OnboardingServices extends ApiServices {
   ) async {
     try {
       Response response = await post(
-        onboarding(6),
+        onboarding(8),
         body: jsonEncode(
           {
             'user': user,
             'description': description,
             'no_of_tables': no_of_tables,
             'max_table_size': max_table_size,
-            'cost_for_two': cost_for_two,
             'serving_time': serving_time,
             'recurring_event_date': recurring_event_date,
             'recur_freq': recur_freq,
@@ -244,7 +334,7 @@ class OnboardingServices extends ApiServices {
         multipartFiles.add(multipartFile);
       }
       MultipartRequest request =
-          MultipartRequest('POST', onboarding(index + 7));
+          MultipartRequest('POST', onboarding(index + 9));
       request.files.addAll(multipartFiles);
       request.fields.addAll({'user': user});
       StreamedResponse response = await request.send();

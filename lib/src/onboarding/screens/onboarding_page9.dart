@@ -10,7 +10,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
-import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 
 class OnboardingPage9 extends StatefulWidget {
   static const resId = "/onboarding9";
@@ -86,7 +85,7 @@ class _OnboardingPage9State extends State<OnboardingPage9> {
       appBarTitle: 'Restaurant Bio',
       buttonText: 'CONTINUE',
       onTap: () async {
-        await onBoardingController.onboardingApi(OnBoardingMethod.api7);
+        await onBoardingController.onboardingApi(OnBoardingMethod.api9);
       },
       enabled: getButtonColor(),
       textControllers: [],

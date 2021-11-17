@@ -3,12 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
-import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingWrapper.dart';
-import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 import 'package:readyplates_restaurants/widgets/timezone.dart';
 
 class OnboardingPage3 extends StatefulWidget {
@@ -55,7 +53,10 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
         controller.businessstate.text = controller.state.text;
         controller.businesscity.text = controller.city.text;
         controller.businesspincode.text = controller.pincode.text;
-        Get.toNamed(OnboardingPage4.id);
+        // Get.toNamed(OnboardingPage4.id);
+        formKey.currentState!.save();
+        if (formKey.currentState!.validate())
+          controller.onboardingApi(OnBoardingMethod.api3);
       },
       buttonText: 'CONTINUE',
       child: SingleChildScrollView(
