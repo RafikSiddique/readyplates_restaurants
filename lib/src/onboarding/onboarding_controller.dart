@@ -405,7 +405,7 @@ class OnboardingController extends GetxController {
         await _onboardingapi5();
         break;
       case OnBoardingMethod.api6:
-        await _onboardingapi6();
+        await _onboardingapi6(isEditing);
         break;
       case OnBoardingMethod.api7:
         await _onboardingapi7();
@@ -414,7 +414,7 @@ class OnboardingController extends GetxController {
         await _onboardingapi8();
         break;
       case OnBoardingMethod.api9:
-        await _uploadImage();
+        await _uploadImage(isEditing);
         break;
     }
     loading.value = false;
@@ -434,6 +434,7 @@ class OnboardingController extends GetxController {
       );
       this.resId = resId;
       //sfHelper.setRestaurantName(resNameController.text);
+
       await sfHelper.setRestaurantId(resId);
       print('ID:1232323$resId');
       await Geolocator.requestPermission();
@@ -585,7 +586,7 @@ class OnboardingController extends GetxController {
     }
   }
 
-  Future<void> _onboardingapi6() async {
+  Future<void> _onboardingapi6(bool isEditing) async {
     try {
       await services.onboardingapi6(
         uniqueId,
@@ -595,8 +596,11 @@ class OnboardingController extends GetxController {
         confirmLetter,
         uploadLetter,
       );
-
-      Get.toNamed(OnboardingPage7.id);
+      if (!isEditing)
+        Get.toNamed(OnboardingPage7.id);
+      else
+        Navigator.popUntil(
+            Get.context!, (route) => route.settings.name == HomePage.id);
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }
@@ -720,7 +724,7 @@ class OnboardingController extends GetxController {
     return list[0] != "" && list[1] != "" && list[2] != "" && list[3] != "";
   }
 
-  Future<void> _uploadImage() async {
+  Future<void> _uploadImage(bool isEditing) async {
     try {
       if (resId == "") {
         resId = await sfHelper.getRestaurantId();
@@ -756,6 +760,7 @@ class OnboardingController extends GetxController {
 
         if (pageIndex.value == 3) {
           if (isEditing) {
+            Get.toNamed(OnboardingPage9.resId);
           } else {
             Get.find<SharedPreferenceHelper>().setLoggedIn(true);
             Get.find<AuthController>().isLoggedIn.value = true;

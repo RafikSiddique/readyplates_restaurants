@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/login/screens/login_page.dart';
+import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
+import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
 import 'package:readyplates_restaurants/widgets/edit_button.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -18,9 +20,27 @@ class ProfilePage extends StatelessWidget {
                     isChangePassword: true,
                   ));
             }),
-        ProfileListTile(title: "Restaurant Detail", onTap: () {}),
-        ProfileListTile(title: "Restaurant Bio", onTap: () {}),
-        ProfileListTile(title: "Payment Setup", onTap: () {}),
+        ProfileListTile(
+            title: "Restaurant Detail",
+            onTap: () {
+              print('object');
+              Get.toNamed(OnboardingPage1.id);
+              Get.put(OnboardingController());
+            }),
+        ProfileListTile(
+            title: "Restaurant Bio",
+            onTap: () {
+              print('object');
+              Get.toNamed(OnboardingPage7.id);
+              Get.put(OnboardingController());
+            }),
+        ProfileListTile(
+            title: "Payment Setup",
+            onTap: () {
+              print('object');
+              Get.toNamed(OnboardingPage3.id);
+              Get.put(OnboardingController());
+            }),
       ],
     );
   }
