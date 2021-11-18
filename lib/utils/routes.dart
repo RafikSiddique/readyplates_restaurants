@@ -7,6 +7,7 @@ import 'package:readyplates_restaurants/src/login/screens/changepassword_page1.d
 import 'package:readyplates_restaurants/src/login/screens/login_page.dart';
 import 'package:readyplates_restaurants/src/login/screens/signup_page.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
+import 'package:readyplates_restaurants/src/onboarding/screens/table_config_page.dart';
 import 'package:readyplates_restaurants/src/staticscreens/opening_screen.dart';
 
 class Routes {
@@ -53,6 +54,8 @@ class Routes {
             return OnboardingPage8();
           case OnboardingPage9.resId:
             return OnboardingPage9();
+          case TableConfig.id:
+            return TableConfig();
 
           default:
             return OpeningScreen();

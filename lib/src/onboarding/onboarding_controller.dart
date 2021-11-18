@@ -321,6 +321,19 @@ class OnboardingController extends GetxController {
     "Dine In",
     "Dine In & Delivery Both",
   ];
+  RxString numberOfTable = "".obs;
+  List<String> noOfTable = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+  ];
 
   RxDouble value = 1.0.obs;
 
