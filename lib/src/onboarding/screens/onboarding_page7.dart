@@ -77,10 +77,10 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
           controller.onboardingApi(OnBoardingMethod.api7);
       },
       enabled: controller.typeOfEstablishment.value.isEmpty ||
-          controller.isChecked == true ||
+          controller.isChecked == false ||
           PickedTime == null ||
           PickedTime1 == null ||
-          controller.isDays == true,
+          controller.isDays == false,
       textControllers: [],
       child: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16),

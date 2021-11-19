@@ -21,6 +21,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   String dob = '';
   String rec = '';
+
   DateTime? _selectedEventDate;
   void showEventDate() {
     showDatePicker(
@@ -110,7 +111,8 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
       },
       enabled: controller.noOfTables.value == 00 ||
           controller.noOfSeats.value == 00 ||
-          controller.servingTime.value == 0 ||
+          controller.servingTime.value == 00 ||
+          controller.tableTurnTime.value == 00 ||
           _selectedEventDate == null ||
           rec.isEmpty ||
           PickedTime == null ||
@@ -331,99 +333,228 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                 SizedBox(
                   height: 15,
                 ),
-                FieldTitle(
-                  text: 'Serving time',
-                  fontFamily: 'Inter-Regular',
-                  fontSize: 13,
-                  fontWeight: FontWeight.w500,
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                InkWell(
-                  onTap: () {
-                    Get.bottomSheet(BottomSheet(
-                      onClosing: () {},
-                      builder: (context) {
-                        return Card(
-                            margin: EdgeInsets.zero,
-                            child: ListView(
-                              shrinkWrap: true,
-                              children: List.generate(6, (index) {
-                                return (index + 1) * 15;
-                              })
-                                  .map((e) => ListTile(
-                                        title: Text(e.toString() + " Minutes"),
-                                        onTap: () {
-                                          setState(() {
-                                            controller.servingTime.value = e;
-                                          });
 
-                                          Get.back();
-                                        },
-                                      ))
-                                  .toList(),
-                            ));
-                      },
-                    ));
-                  },
-                  child: Container(
-                    height: 45,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                      border: Border.all(
-                        width: 1,
-                        color: controller.servingTime.value == 0
-                            ? MyTheme.borderColor
-                            : MyTheme.borderchangeColor,
-                        style: BorderStyle.solid,
+                Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          FieldTitle(
+                            text: 'Serving time',
+                            fontFamily: 'Inter-Regular',
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Get.bottomSheet(BottomSheet(
+                                onClosing: () {},
+                                builder: (context) {
+                                  return Card(
+                                      margin: EdgeInsets.zero,
+                                      child: ListView(
+                                        shrinkWrap: true,
+                                        children: List.generate(6, (index) {
+                                          return (index + 1) * 15;
+                                        })
+                                            .map((e) => ListTile(
+                                                  title: Text(e.toString() +
+                                                      " Minutes"),
+                                                  onTap: () {
+                                                    setState(() {
+                                                      controller.servingTime
+                                                          .value = e;
+                                                    });
+
+                                                    Get.back();
+                                                  },
+                                                ))
+                                            .toList(),
+                                      ));
+                                },
+                              ));
+                            },
+                            child: Container(
+                              height: 45,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(6)),
+                                border: Border.all(
+                                  width: 1,
+                                  color: controller.servingTime.value == 0
+                                      ? MyTheme.borderColor
+                                      : MyTheme.borderchangeColor,
+                                  style: BorderStyle.solid,
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Obx(
+                                    () => Text(
+                                        controller.servingTime.value.toString(),
+                                        textAlign: TextAlign.center,
+                                        style: GoogleFonts.inter(
+                                          fontSize: 16,
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.w500,
+                                          color:
+                                              controller.servingTime.value == 00
+                                                  ? MyTheme.hinttextColor
+                                                  : MyTheme.hinttextchangeColor,
+                                        )),
+                                  ),
+                                  SizedBox(
+                                    width: 8,
+                                  ),
+                                  Text(
+                                    'mins',
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.inter(
+                                      fontSize: 16,
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.w500,
+                                      color: controller.servingTime.value == 00
+                                          ? MyTheme.hinttextColor
+                                          : MyTheme.checkboxtextColor,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 3,
+                          ),
+                          Text(
+                            'Enter average serving time for two',
+                            style: GoogleFonts.poppins(
+                              fontSize: 9,
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.normal,
+                              color: MyTheme.bottomtextColor,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Obx(
-                          () => Text(controller.servingTime.value.toString(),
-                              textAlign: TextAlign.center,
-                              style: GoogleFonts.inter(
-                                fontSize: 16,
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w500,
-                                color: controller.servingTime.value == 00
-                                    ? MyTheme.hinttextColor
-                                    : MyTheme.hinttextchangeColor,
-                              )),
-                        ),
-                        SizedBox(
-                          width: 8,
-                        ),
-                        Text(
-                          'mins',
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.inter(
-                            fontSize: 16,
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w500,
-                            color: controller.servingTime.value == 00
-                                ? MyTheme.hinttextColor
-                                : MyTheme.checkboxtextColor,
-                          ),
-                        ),
-                      ],
+                    SizedBox(
+                      width: 18,
                     ),
-                  ),
-                ),
-                SizedBox(
-                  height: 3,
-                ),
-                Text(
-                  'Enter average serving time for two',
-                  style: GoogleFonts.poppins(
-                    fontSize: 9,
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.normal,
-                    color: MyTheme.bottomtextColor,
-                  ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          FieldTitle(
+                            text: 'Table turn time',
+                            fontFamily: 'Inter-Regular',
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Get.bottomSheet(BottomSheet(
+                                onClosing: () {},
+                                builder: (context) {
+                                  return Card(
+                                      margin: EdgeInsets.zero,
+                                      child: ListView(
+                                        shrinkWrap: true,
+                                        children: List.generate(8, (index) {
+                                          return (index + 1) * 15;
+                                        })
+                                            .map((e) => ListTile(
+                                                  title: Text(e.toString() +
+                                                      " Minutes"),
+                                                  onTap: () {
+                                                    setState(() {
+                                                      controller.tableTurnTime
+                                                          .value = e;
+                                                    });
+
+                                                    Get.back();
+                                                  },
+                                                ))
+                                            .toList(),
+                                      ));
+                                },
+                              ));
+                            },
+                            child: Container(
+                              height: 45,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(6)),
+                                border: Border.all(
+                                  width: 1,
+                                  color: controller.tableTurnTime.value == 0
+                                      ? MyTheme.borderColor
+                                      : MyTheme.borderchangeColor,
+                                  style: BorderStyle.solid,
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Obx(
+                                    () => Text(
+                                        controller.tableTurnTime.value
+                                            .toString(),
+                                        textAlign: TextAlign.center,
+                                        style: GoogleFonts.inter(
+                                          fontSize: 16,
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.w500,
+                                          color:
+                                              controller.tableTurnTime.value ==
+                                                      00
+                                                  ? MyTheme.hinttextColor
+                                                  : MyTheme.hinttextchangeColor,
+                                        )),
+                                  ),
+                                  SizedBox(
+                                    width: 8,
+                                  ),
+                                  Text(
+                                    'mins',
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.inter(
+                                      fontSize: 16,
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.w500,
+                                      color:
+                                          controller.tableTurnTime.value == 00
+                                              ? MyTheme.hinttextColor
+                                              : MyTheme.checkboxtextColor,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 3,
+                          ),
+                          Text(
+                            'Select average table allocation time',
+                            style: GoogleFonts.poppins(
+                              fontSize: 9,
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.normal,
+                              color: MyTheme.bottomtextColor,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(
                   height: 15,
@@ -557,7 +688,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                                                               .value = e;
                                                           setState(() {
                                                             rec = controller
-                                                                .servingTime
+                                                                .selectedRecurrence
                                                                 .value
                                                                 .toString();
                                                           });
@@ -620,7 +751,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                                                                     .value = e;
                                                                 setState(() {
                                                                   rec = controller
-                                                                      .servingTime
+                                                                      .selectedRecurrence
                                                                       .value
                                                                       .toString();
                                                                 });

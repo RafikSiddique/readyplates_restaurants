@@ -205,7 +205,7 @@ class OnboardingController extends GetxController {
 
   RxInt costFor2 = 0.obs;
   RxInt servingTime = 0.obs;
-
+  RxInt tableTurnTime = 0.obs;
   RxInt noOfTables = 0.obs;
   RxInt noOfSeats = 0.obs;
   late TextEditingController ac_number;

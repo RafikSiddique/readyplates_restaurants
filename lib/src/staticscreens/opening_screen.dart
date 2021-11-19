@@ -142,6 +142,7 @@ class _OpeningScreenState extends State<OpeningScreen>
                       type: MaterialType.transparency,
                       child: InkWell(
                         onTap: () {
+                          // Get.toNamed(TableConfig.id);
                           Get.toNamed(LoginPage.id);
                         },
                         child: ClipRRect(
