@@ -20,8 +20,9 @@ class _TableConfigState extends State<TableConfig> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool edit = true;
   bool add = false;
-  int count = 1;
   List<int> list = [];
+  String d = '';
+  List<int> c = [];
   @override
   Widget build(BuildContext context) {
     return OnBoardingWrapper(
@@ -303,6 +304,8 @@ class _TableConfigState extends State<TableConfig> {
                           InkWell(
                             onTap: () {
                               setState(() {
+                                list.remove(e);
+
                                 add = !add;
                               });
                             },
@@ -332,8 +335,7 @@ class _TableConfigState extends State<TableConfig> {
                 InkWell(
                   onTap: () async {
                     setState(() {
-                      list = List.generate(count, (index) => index + 1);
-                      count++;
+                      list.add(list.length + 1);
 
                       add = !add;
                     });

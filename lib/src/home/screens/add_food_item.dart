@@ -20,8 +20,8 @@ import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 String getUrl(String url) {
 // http://202.53.174.5:8000 global url
   // http://192.168.0.194:5500 local url
-
-  return "http://202.53.174.5:8000" + url;
+//https://readyplates.herokuapp.com
+  return "https://readyplates.herokuapp.com" + url;
 }
 
 class AddFoodItem extends StatefulWidget {

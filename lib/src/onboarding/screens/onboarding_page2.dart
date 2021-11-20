@@ -68,8 +68,9 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
                     latLng: widget.latLng,
                     setLocation: (p0) async {
                       GeoCode geoCode = GeoCode();
-                      controller.latitude.text = p0.latitude.toString();
-                      controller.longitude.text = p0.longitude.toString();
+                      controller.latitude.text = p0.latitude.toStringAsFixed(6);
+                      controller.longitude.text =
+                          p0.longitude.toStringAsFixed(6);
                       final address = await geoCode.reverseGeocoding(
                           latitude: p0.latitude, longitude: p0.longitude);
 

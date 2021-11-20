@@ -4,8 +4,8 @@ class ApiServices {
   };
   // http://202.53.174.5:8000/  global url
   // http://192.168.0.194:5500/ local url
-
-  final String baseUri = "http://202.53.174.5:8000/";
+  // https://readyplates.herokuapp.com/
+  final String baseUri = "https://readyplates.herokuapp.com/";
 
   Uri restaurants(String path) => Uri.parse(baseUri + "restaurants/" + path);
 

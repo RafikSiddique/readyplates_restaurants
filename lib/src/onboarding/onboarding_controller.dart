@@ -657,6 +657,7 @@ class OnboardingController extends GetxController {
         noOfTables.toString(),
         noOfSeats.toString(),
         servingTime.toString(),
+        tableTurnTime.toString(),
         "${recurrenceTime.year}-${recurrenceTime.month}-${recurrenceTime.day}",
         selectedRecurrence.value,
         startTime,
