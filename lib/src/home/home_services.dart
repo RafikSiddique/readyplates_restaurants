@@ -39,6 +39,7 @@ class HomeServices extends ApiServices {
         'spice_level': spice_level,
         'cost': cost,
       });
+
       if (other_serving_cost.isNotEmpty && other_serving_size.isNotEmpty) {
         request.fields.addAll({
           "other_serving_cost": other_serving_cost.isEmpty
@@ -49,11 +50,11 @@ class HomeServices extends ApiServices {
               : other_serving_size,
         });
       }
+
       StreamedResponse response = await request.send();
       String body = await response.stream.bytesToString();
       print(body);
-      if (response.statusCode == 201) {
-        print('ID!!!!!!!!!!!!!!!vxcvzxvczxc!');
+      if (response.statusCode != 201) {
         throw AppException(
             code: response.statusCode, message: response.reasonPhrase);
       }
