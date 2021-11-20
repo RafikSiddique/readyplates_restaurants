@@ -17,7 +17,6 @@ void main() async {
   await Firebase.initializeApp();
   Get.put(SharedPreferenceHelper());
   Get.put(AuthController());
-  Get.put(OnboardingController());
   runApp(MyApp());
 }
 
