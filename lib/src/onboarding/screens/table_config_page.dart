@@ -21,8 +21,7 @@ class _TableConfigState extends State<TableConfig> {
   bool edit = true;
   bool add = false;
   List<int> list = [];
-  String d = '';
-  List<int> c = [];
+
   @override
   Widget build(BuildContext context) {
     return OnBoardingWrapper(
@@ -303,11 +302,14 @@ class _TableConfigState extends State<TableConfig> {
                           ),
                           InkWell(
                             onTap: () {
-                              setState(() {
-                                list.remove(e);
-
-                                add = !add;
-                              });
+                              if (list.length > 0)
+                                setState(() {
+                                  list.removeLast();
+                                  print(list.toString());
+                                  add = !add;
+                                });
+                              else
+                                list.add(list.length + 1);
                             },
                             child: Container(
                               height: 28,
@@ -336,7 +338,7 @@ class _TableConfigState extends State<TableConfig> {
                   onTap: () async {
                     setState(() {
                       list.add(list.length + 1);
-
+                      print(list.toString());
                       add = !add;
                     });
                   },
