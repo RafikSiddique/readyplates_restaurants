@@ -64,11 +64,12 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
     }
   }
 
+  TimeOfDay currentTime1 = TimeOfDay.now();
   TimeOfDay? PickedTime1;
   Future<void> _selectEndTime(BuildContext context) async {
     PickedTime1 = await showTimePicker(
       context: context,
-      initialTime: currentTime,
+      initialTime: currentTime1,
       initialEntryMode: TimePickerEntryMode.dial,
       helpText: 'Select End Time',
       confirmText: 'choose',
@@ -76,9 +77,9 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
       hourLabelText: 'hour',
       minuteLabelText: 'minute',
     );
-    if (PickedTime1 != null && PickedTime1 != currentTime) {
+    if (PickedTime1 != null && PickedTime1 != currentTime1) {
       setState(() {
-        currentTime = PickedTime1!;
+        currentTime1 = PickedTime1!;
         controller.endTime = PickedTime1!.format(context);
         print(PickedTime1!.format(context));
       });
@@ -882,8 +883,8 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                               child: Center(
                                 child: Text(
                                   PickedTime1 == null
-                                      ? '${currentTime.format(context)}'
-                                      : '${currentTime.format(context)}',
+                                      ? '${currentTime1.format(context)}'
+                                      : '${currentTime1.format(context)}',
                                   style: GoogleFonts.inter(
                                     fontSize: 16,
                                     fontStyle: FontStyle.normal,
