@@ -50,19 +50,19 @@ class HomeController extends GetxController {
 
   RxList<FoodItemModel> foodItems = <FoodItemModel>[
     FoodItemModel(
-        id: -1,
-        name: "name",
-        description: "description",
-        image1: "image1",
-        image2: "image2",
-        diet_type: "diet_type",
-        category: "category",
-        std_serving_size: "std_serving_size",
-        other_serving_size: "other_serving_size",
-        other_serving_cost: "other_serving_cost",
-        spice_level: "spice_level",
-        cost: "cost",
-        restaurant: "'restaurant'"),
+      id: -1,
+      name: "name",
+      description: "description",
+      image1: "image1",
+      diet_type: "diet_type",
+      category: "category",
+      std_serving_size: "std_serving_size",
+      other_serving_size: "other_serving_size",
+      other_serving_cost: "other_serving_cost",
+      spice_level: "spice_level",
+      cost: "cost",
+      restaurant: "'restaurant'",
+    ),
   ].obs;
   Timer? timer;
   void onChanged(int i) {
@@ -182,18 +182,19 @@ class HomeController extends GetxController {
     try {
       String resname = await sfHelper.getRestaurantId();
       await homeServices.editFoodItem(
-          id,
-          resname,
-          name.text,
-          desc.text,
-          image1,
-          dietType.value,
-          category.value,
-          servingSize,
-          servingcost.text,
-          servingname.text,
-          spiceSlider.value.toString(),
-          cost.text);
+        id,
+        resname,
+        name.text,
+        desc.text,
+        image1,
+        dietType.value,
+        category.value,
+        servingSize,
+        servingcost.text,
+        servingname.text,
+        spiceSlider.value.toString(),
+        cost.text,
+      );
       await getFoodItems();
       Get.back();
     } catch (e) {

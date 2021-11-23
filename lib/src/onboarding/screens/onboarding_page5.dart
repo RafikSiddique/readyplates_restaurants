@@ -116,7 +116,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   title: 'FSOL License Number',
                   hintText: '67534289110934',
                   hintfontSize: 15,
-                  isUrl: true,
+                  isUrl: false,
                   isRequired: true,
                   controller: controller.fsolNumber,
                 ),

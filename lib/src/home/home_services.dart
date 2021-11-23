@@ -39,7 +39,6 @@ class HomeServices extends ApiServices {
         'spice_level': spice_level,
         'cost': cost,
       });
-
       if (other_serving_cost.isNotEmpty && other_serving_size.isNotEmpty) {
         request.fields.addAll({
           "other_serving_cost": other_serving_cost.isEmpty
@@ -50,15 +49,17 @@ class HomeServices extends ApiServices {
               : other_serving_size,
         });
       }
-
       StreamedResponse response = await request.send();
+
       String body = await response.stream.bytesToString();
+
       print(body);
       if (response.statusCode != 201) {
         throw AppException(
             code: response.statusCode, message: response.reasonPhrase);
       }
     } catch (e) {
+      print(e);
       rethrow;
     }
   }
@@ -105,7 +106,6 @@ class HomeServices extends ApiServices {
         print(body);
       } else {
         String body = await response.stream.bytesToString();
-        print(body);
         throw AppException(
             code: response.statusCode, message: response.reasonPhrase);
       }
@@ -141,19 +141,19 @@ class HomeServices extends ApiServices {
         menuList(id),
       );
 
-      print(response.body);
       if (response.statusCode == 200) {
         List<dynamic> list = jsonDecode(response.body);
 
         List<FoodItemModel> foodItems =
             list.map((e) => FoodItemModel.fromMap(e)).toList();
-        print(foodItems);
+
         return foodItems;
       } else {
         throw AppException(
             code: response.statusCode, message: response.reasonPhrase);
       }
     } catch (e) {
+      print(e);
       rethrow;
     }
   }

@@ -5,7 +5,6 @@ class FoodItemModel {
   final String name;
   final String description;
   final String image1;
-  final String image2;
   final String diet_type;
   final String category;
   final String std_serving_size;
@@ -19,7 +18,6 @@ class FoodItemModel {
     required this.name,
     required this.description,
     required this.image1,
-    required this.image2,
     required this.diet_type,
     required this.category,
     required this.std_serving_size,
@@ -50,7 +48,6 @@ class FoodItemModel {
       name: name ?? this.name,
       description: description ?? this.description,
       image1: image1 ?? this.image1,
-      image2: image2 ?? this.image2,
       diet_type: diet_type ?? this.diet_type,
       category: category ?? this.category,
       std_serving_size: std_serving_size ?? this.std_serving_size,
@@ -68,7 +65,6 @@ class FoodItemModel {
       'name': name,
       'description': description,
       'image1': image1,
-      'image2': image2,
       'diet_type': diet_type,
       'category': category,
       'std_serving_size': std_serving_size,
@@ -86,7 +82,6 @@ class FoodItemModel {
       name: map['name'],
       description: map['description'],
       image1: map['image1'],
-      image2: map['image2'],
       diet_type: map['diet_type'],
       category: map['category'],
       std_serving_size: map['std_serving_size'],
@@ -105,7 +100,7 @@ class FoodItemModel {
 
   @override
   String toString() {
-    return 'FoodItemModel(id: $id, name: $name, description: $description, image1: $image1, image2: $image2, diet_type: $diet_type, category: $category, std_serving_size: $std_serving_size, other_serving_size: $other_serving_size, other_serving_cost: $other_serving_cost, spice_level: $spice_level, cost: $cost, restaurant: $restaurant)';
+    return 'FoodItemModel(id: $id, name: $name, description: $description, image1: $image1,  diet_type: $diet_type, category: $category, std_serving_size: $std_serving_size, other_serving_size: $other_serving_size, other_serving_cost: $other_serving_cost, spice_level: $spice_level, cost: $cost, restaurant: $restaurant)';
   }
 
   @override
@@ -117,7 +112,6 @@ class FoodItemModel {
         other.name == name &&
         other.description == description &&
         other.image1 == image1 &&
-        other.image2 == image2 &&
         other.diet_type == diet_type &&
         other.category == category &&
         other.std_serving_size == std_serving_size &&
@@ -134,7 +128,6 @@ class FoodItemModel {
         name.hashCode ^
         description.hashCode ^
         image1.hashCode ^
-        image2.hashCode ^
         diet_type.hashCode ^
         category.hashCode ^
         std_serving_size.hashCode ^
