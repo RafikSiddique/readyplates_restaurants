@@ -138,6 +138,9 @@ class HomeController extends GetxController {
     feedback.clear();
     image1 = File("");
     spiceSlider.value = 1;
+    servingSize = '';
+    category.value = '';
+    dietType.value = '';
   }
 
   RxDouble spiceSlider = 1.0.obs;

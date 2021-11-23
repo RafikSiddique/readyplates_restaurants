@@ -146,14 +146,13 @@ class HomeServices extends ApiServices {
 
         List<FoodItemModel> foodItems =
             list.map((e) => FoodItemModel.fromMap(e)).toList();
-
+        print(foodItems);
         return foodItems;
       } else {
         throw AppException(
             code: response.statusCode, message: response.reasonPhrase);
       }
     } catch (e) {
-      print(e);
       rethrow;
     }
   }
