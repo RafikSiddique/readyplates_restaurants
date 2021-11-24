@@ -351,4 +351,45 @@ class OnboardingServices extends ApiServices {
       throw AppException(message: e.toString());
     }
   }
+
+  Future<void> tableConfig(
+    String restaurant,
+    String capacity,
+    String order,
+  ) async {
+    print('body1');
+    print('body2');
+    try {
+      Response response = await post(
+        table,
+        body: jsonEncode(
+          {
+            'restaurant': restaurant,
+            'capacity': capacity,
+            'order': order,
+          },
+        ),
+        headers: contentTypeJsonHeader,
+      );
+      print(response);
+      print(response.body);
+      print(response.request);
+      print(response.statusCode);
+      print('body4');
+
+      if (response.statusCode == 200) {
+        print(response);
+        print(response.body);
+        print(response.request);
+        print(response.statusCode);
+        print('body5');
+        print('body6');
+        print(response.body);
+      } else {
+        throw AppException(code: response.statusCode, message: response.body);
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

@@ -182,6 +182,8 @@ class _ChangePasswordPage1State extends State<ChangePasswordPage1> {
                             inputType: TextInputType.text,
                             controller: controller.password,
                             isPassword: true,
+                            matchVerification: true,
+                            secondVal: controller.password2,
                           ),
                           SizedBox(
                             height: kToolbarHeight * 0.4,
@@ -193,7 +195,10 @@ class _ChangePasswordPage1State extends State<ChangePasswordPage1> {
                             line: 1,
                             fontSize: 12,
                             controller: controller.password2,
+                            inputType: TextInputType.text,
                             isPassword: true,
+                            matchVerification: true,
+                            secondVal: controller.password,
                           ),
                           SizedBox(
                             height: kToolbarHeight * 0.6,

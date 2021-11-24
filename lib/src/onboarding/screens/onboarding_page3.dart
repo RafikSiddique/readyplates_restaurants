@@ -34,7 +34,8 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
         controller.addline3,
         controller.state,
         controller.city,
-        controller.pincode
+        controller.pincode,
+        controller.phoneveify,
       ],
       onTap: () {
         controller.businessaccNumber = TextEditingController();
@@ -58,6 +59,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
         if (formKey.currentState!.validate())
           controller.onboardingApi(OnBoardingMethod.api3);
       },
+      enabled: controller.timezone.isNotEmpty,
       buttonText: 'CONTINUE',
       child: SingleChildScrollView(
         child: Form(

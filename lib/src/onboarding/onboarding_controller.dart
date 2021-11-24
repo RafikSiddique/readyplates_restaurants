@@ -10,12 +10,24 @@ import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_services.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/onboarding_page6.dart';
+import 'package:readyplates_restaurants/src/onboarding/screens/table_config_page.dart';
 import 'package:readyplates_restaurants/src/orders/order_controller.dart';
 import 'package:readyplates_restaurants/utils/cities.dart';
 import 'package:readyplates_restaurants/utils/city.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 
-enum OnBoardingMethod { api1, api2, api3, api4, api5, api6, api7, api8, api9 }
+enum OnBoardingMethod {
+  api1,
+  api2,
+  api3,
+  api4,
+  api5,
+  api6,
+  api7,
+  api8,
+  api9,
+  api13
+}
 
 class OnboardingController extends GetxController {
   RxInt pageIndex = 0.obs;
@@ -434,6 +446,9 @@ class OnboardingController extends GetxController {
       case OnBoardingMethod.api9:
         await _uploadImage();
         break;
+      case OnBoardingMethod.api13:
+        await _tableconfig();
+        break;
     }
     loading.value = false;
   }
@@ -790,11 +805,12 @@ class OnboardingController extends GetxController {
             c.pageController.jumpToPage(3);
             Get.offAllNamed(HomePage.id);
           } else {
-            Get.find<SharedPreferenceHelper>().setLoggedIn(true);
-            Get.find<AuthController>().isLoggedIn.value = true;
-            Get.put(HomeController(selectedIndex: 1.obs));
-            Get.put(OrderController());
-            Get.offAllNamed(HomePage.id);
+            // Get.find<SharedPreferenceHelper>().setLoggedIn(true);
+            // Get.find<AuthController>().isLoggedIn.value = true;
+            // Get.put(HomeController(selectedIndex: 0.obs));
+            // Get.put(OrderController());
+            // Get.offAllNamed(HomePage.id);
+            Get.toNamed(TableConfig.id);
           }
         } else {
           pageController.animateToPage(pageIndex.value + 1,
@@ -803,6 +819,26 @@ class OnboardingController extends GetxController {
       } else {
         Get.snackbar("Error", "Uplaod All the Images");
       }
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+    }
+  }
+
+  Future<void> _tableconfig() async {
+    try {
+      if (resId == "") {
+        resId = await sfHelper.getRestaurantId();
+      }
+      await services.tableConfig(
+        resId,
+        numberOfTable.value,
+        '4',
+      );
+      Get.find<SharedPreferenceHelper>().setLoggedIn(true);
+      Get.find<AuthController>().isLoggedIn.value = true;
+      Get.put(HomeController(selectedIndex: 0.obs));
+      Get.put(OrderController());
+      Get.offAllNamed(HomePage.id);
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }

@@ -29,11 +29,9 @@ class _TableConfigState extends State<TableConfig> {
       appBarTitle: 'Table Configuration',
       buttonText: 'CONTINUE',
       onTap: () {
-        // formKey.currentState!.save();
-        // if (formKey.currentState!.validate()) ;
-        // controller.onboardingApi(OnBoardingMethod.api1);
-        // Get.find<HomeController>();
-        // Get.toNamed(HomePage.id);
+        formKey.currentState!.save();
+        if (formKey.currentState!.validate()) ;
+        controller.onboardingApi(OnBoardingMethod.api13);
       },
       textControllers: [],
       enabled: controller.numberOfTable.isNotEmpty,
