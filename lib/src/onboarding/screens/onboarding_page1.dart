@@ -105,80 +105,94 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                 SizedBox(
                   height: 5,
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(6.0),
-                    ),
-                    border: Border.all(
-                      width: 1,
-                      color: controller.ownMobile.text.isEmpty
-                          ? MyTheme.borderColor
-                          : MyTheme.borderchangeColor,
-                    ),
-                  ),
-                  child: TextFormField(
-                    style: GoogleFonts.inter(
-                      fontSize: 15,
-                      color: MyTheme.hinttextchangeColor,
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    controller: controller.ownMobile,
-                    keyboardType: TextInputType.number,
-                    textAlign: TextAlign.left,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                      ),
-                      hintText: '+1 415 569 2700',
-                      suffixIcon: Container(
-                        width: 115,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Container(
-                              height: 35,
-                              width: 0,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  width: 1,
-                                  color: controller.ownMobile.text.isEmpty
-                                      ? MyTheme.borderColor
-                                      : MyTheme.borderchangeColor,
-                                ),
-                              ),
+                ValueListenableBuilder<TextEditingValue>(
+                    valueListenable: controller.ownMobile,
+                    builder: (context, v, __) {
+                      return Container(
+                        child: TextFormField(
+                          style: GoogleFonts.inter(
+                            fontSize: 15,
+                            color: MyTheme.hinttextchangeColor,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          controller: controller.ownMobile,
+                          keyboardType: TextInputType.number,
+                          textAlign: TextAlign.left,
+                          decoration: InputDecoration(
+                            errorStyle: TextStyle(
+                              height: 1,
+                              textBaseline: TextBaseline.ideographic,
                             ),
-                            TextButton(
-                              child: Padding(
-                                padding: EdgeInsets.only(right: 20, left: 20),
-                                child: Text(
-                                  'Verify',
-                                  style: GoogleFonts.inter(
-                                    decoration: TextDecoration.underline,
-                                    fontWeight: FontWeight.bold,
-                                    fontStyle: FontStyle.normal,
-                                    fontSize: 15,
-                                    color: MyTheme.verifytextColor,
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                width: 1,
+                                color: v.text != ""
+                                    ? MyTheme.borderchangeColor
+                                    : MyTheme.borderColor,
+                              ),
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                width: 1,
+                                color: v.text != ""
+                                    ? MyTheme.borderchangeColor
+                                    : MyTheme.borderColor,
+                              ),
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            counterText: "",
+                            hintText: '+1 415 569 2700',
+                            suffixIcon: Container(
+                              width: 115,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Container(
+                                    height: 35,
+                                    width: 0,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        width: 0.5,
+                                        color: v.text != ""
+                                            ? MyTheme.borderchangeColor
+                                            : MyTheme.borderColor,
+                                      ),
+                                    ),
                                   ),
-                                ),
+                                  TextButton(
+                                    child: Padding(
+                                      padding:
+                                          EdgeInsets.only(right: 20, left: 20),
+                                      child: Text(
+                                        'Verify',
+                                        style: GoogleFonts.inter(
+                                          decoration: TextDecoration.underline,
+                                          fontWeight: FontWeight.bold,
+                                          fontStyle: FontStyle.normal,
+                                          fontSize: 15,
+                                          color: MyTheme.verifytextColor,
+                                        ),
+                                      ),
+                                    ),
+                                    onPressed: () {},
+                                  ),
+                                ],
                               ),
-                              onPressed: () {},
                             ),
-                          ],
+                            contentPadding:
+                                EdgeInsets.only(left: 14, top: 14, right: 24),
+                            hintStyle: TextStyle(
+                              fontSize: 15,
+                              color: MyTheme.hinttextColor,
+                              fontFamily: 'Inter-Regular',
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
                         ),
-                      ),
-                      contentPadding:
-                          EdgeInsets.only(left: 14, top: 14, right: 24),
-                      hintStyle: TextStyle(
-                        fontSize: 15,
-                        color: MyTheme.hinttextColor,
-                        fontFamily: 'Inter-Regular',
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                ),
+                      );
+                    }),
                 SizedBox(
                   height: 3,
                 ),

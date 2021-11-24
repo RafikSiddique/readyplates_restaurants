@@ -68,6 +68,7 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                 Business(
                   onSelect: (p0) {
                     controller.businesstype.value = p0!;
+                    setState(() {});
                   },
                   color: controller.businesstype == ""
                       ? MyTheme.borderColor
