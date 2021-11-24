@@ -110,14 +110,12 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
         if (formKey.currentState!.validate())
           controller.onboardingApi(OnBoardingMethod.api8);
       },
-      enabled: controller.noOfTables.value == 00 ||
-          controller.noOfSeats.value == 00 ||
-          controller.servingTime.value == 00 ||
-          controller.tableTurnTime.value == 00 ||
-          _selectedEventDate == null ||
-          rec.isEmpty ||
-          PickedTime == null ||
-          PickedTime1 == null,
+      enabled: controller.servingTime.value != 00 &&
+          controller.tableTurnTime.value != 00 &&
+          _selectedEventDate != null &&
+          rec.isNotEmpty &&
+          PickedTime != null &&
+          PickedTime1 != null,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Form(
@@ -137,200 +135,6 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                   bottomText: 'Max 50 words',
                 ),
 
-                SizedBox(
-                  height: 15,
-                ),
-                FieldTitle(
-                  text: 'Table Information',
-                  fontFamily: 'Inter-Regular',
-                  fontSize: 13,
-                  fontWeight: FontWeight.w500,
-                ),
-
-                SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: 45,
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(6)),
-                              border: Border.all(
-                                width: 1,
-                                color: controller.noOfTables.value == 00
-                                    ? MyTheme.borderColor
-                                    : MyTheme.borderchangeColor,
-                                style: BorderStyle.solid,
-                              ),
-                            ),
-                            child: InkWell(
-                              onTap: () {
-                                Get.bottomSheet(BottomSheet(
-                                  onClosing: () {},
-                                  builder: (context) {
-                                    return Card(
-                                        margin: EdgeInsets.zero,
-                                        child: ListView(
-                                          shrinkWrap: true,
-                                          children: List.generate(50, (index) {
-                                            return (index + 1);
-                                          })
-                                              .map((e) => ListTile(
-                                                    title: Text(
-                                                      e.toString(),
-                                                    ),
-                                                    onTap: () {
-                                                      setState(() {
-                                                        controller.noOfTables
-                                                            .value = e;
-                                                      });
-                                                      Get.back();
-                                                    },
-                                                  ))
-                                              .toList(),
-                                        ));
-                                  },
-                                ));
-                              },
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Obx(
-                                    () => Text(
-                                      controller.noOfTables.value
-                                          .toString()
-                                          .padLeft(2, "0"),
-                                      textAlign: TextAlign.center,
-                                      style: GoogleFonts.inter(
-                                        fontSize: 16,
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.w500,
-                                        color: controller.noOfTables.value == 00
-                                            ? MyTheme.hinttextColor
-                                            : MyTheme.hinttextchangeColor,
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 16,
-                                  ),
-                                  Container(),
-                                ],
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 3,
-                          ),
-                          Text(
-                            'Enter No of tables present',
-                            style: GoogleFonts.poppins(
-                              fontSize: 9,
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.normal,
-                              color: MyTheme.bottomtextColor,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      width: 18,
-                    ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: 45,
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(6)),
-                              border: Border.all(
-                                width: 1,
-                                color: controller.noOfSeats.value == 00
-                                    ? MyTheme.borderColor
-                                    : MyTheme.borderchangeColor,
-                                style: BorderStyle.solid,
-                              ),
-                            ),
-                            child: InkWell(
-                              onTap: () {
-                                Get.bottomSheet(BottomSheet(
-                                  onClosing: () {},
-                                  builder: (context) {
-                                    return Card(
-                                        margin: EdgeInsets.zero,
-                                        child: ListView(
-                                          shrinkWrap: true,
-                                          children: List.generate(50, (index) {
-                                            return (index + 1);
-                                          })
-                                              .map((e) => ListTile(
-                                                    title: Text(e.toString()),
-                                                    onTap: () {
-                                                      setState(() {
-                                                        controller.noOfSeats
-                                                            .value = e;
-                                                      });
-                                                      Get.back();
-                                                    },
-                                                  ))
-                                              .toList(),
-                                        ));
-                                  },
-                                ));
-                              },
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Obx(
-                                    () => Text(
-                                      controller.noOfSeats.value
-                                          .toString()
-                                          .padLeft(2, "0"),
-                                      textAlign: TextAlign.center,
-                                      style: GoogleFonts.inter(
-                                        fontSize: 16,
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.w500,
-                                        color: controller.noOfSeats.value == 00
-                                            ? MyTheme.hinttextColor
-                                            : MyTheme.hinttextchangeColor,
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 16,
-                                  ),
-                                  Container(),
-                                ],
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 3,
-                          ),
-                          Text(
-                            'Max table size (No of persons)',
-                            style: GoogleFonts.poppins(
-                              fontSize: 9,
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.normal,
-                              color: MyTheme.bottomtextColor,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
                 SizedBox(
                   height: 15,
                 ),
@@ -576,31 +380,31 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            height: 45,
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(6)),
-                              border: Border.all(
-                                width: 1,
-                                color: _selectedEventDate == null
-                                    ? MyTheme.borderColor
-                                    : MyTheme.borderchangeColor,
-                                style: BorderStyle.solid,
+                          InkWell(
+                            onTap: () {
+                              showEventDate();
+                            },
+                            child: Container(
+                              height: 45,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(6)),
+                                border: Border.all(
+                                  width: 1,
+                                  color: _selectedEventDate == null
+                                      ? MyTheme.borderColor
+                                      : MyTheme.borderchangeColor,
+                                  style: BorderStyle.solid,
+                                ),
                               ),
-                            ),
-                            child: Center(
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Spacer(),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 14),
-                                    child: InkWell(
-                                      onTap: () {
-                                        showEventDate();
-                                      },
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Spacer(),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 14),
                                       child: Text(
                                         _selectedEventDate == null
                                             ? 'Event Dates'
@@ -616,24 +420,25 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  Spacer(),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 7.5),
-                                    child: InkWell(
-                                      onTap: () {
-                                        showEventDate();
-                                      },
-                                      child: Container(
-                                        width: 20,
-                                        height: 20,
-                                        child: Image(
-                                            image: AssetImage(
-                                                'assets/images/calendar.png')),
+                                    Spacer(),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(right: 7.5),
+                                      child: InkWell(
+                                        onTap: () {
+                                          showEventDate();
+                                        },
+                                        child: Container(
+                                          width: 20,
+                                          height: 20,
+                                          child: Image(
+                                              image: AssetImage(
+                                                  'assets/images/calendar.png')),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -806,23 +611,23 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            height: 45,
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(6)),
-                              border: Border.all(
-                                width: 1,
-                                color: PickedTime == null
-                                    ? MyTheme.borderColor
-                                    : MyTheme.borderchangeColor,
-                                style: BorderStyle.solid,
+                          InkWell(
+                            onTap: () {
+                              _selectStartTime(context);
+                            },
+                            child: Container(
+                              height: 45,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(6)),
+                                border: Border.all(
+                                  width: 1,
+                                  color: PickedTime == null
+                                      ? MyTheme.borderColor
+                                      : MyTheme.borderchangeColor,
+                                  style: BorderStyle.solid,
+                                ),
                               ),
-                            ),
-                            child: GestureDetector(
-                              onTap: () {
-                                _selectStartTime(context);
-                              },
                               child: Center(
                                 child: Text(
                                   PickedTime == null
@@ -863,23 +668,23 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            height: 45,
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(6)),
-                              border: Border.all(
-                                width: 1,
-                                color: PickedTime1 == null
-                                    ? MyTheme.borderColor
-                                    : MyTheme.borderchangeColor,
-                                style: BorderStyle.solid,
+                          InkWell(
+                            onTap: () {
+                              _selectEndTime(context);
+                            },
+                            child: Container(
+                              height: 45,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(6)),
+                                border: Border.all(
+                                  width: 1,
+                                  color: PickedTime1 == null
+                                      ? MyTheme.borderColor
+                                      : MyTheme.borderchangeColor,
+                                  style: BorderStyle.solid,
+                                ),
                               ),
-                            ),
-                            child: GestureDetector(
-                              onTap: () {
-                                _selectEndTime(context);
-                              },
                               child: Center(
                                 child: Text(
                                   PickedTime1 == null

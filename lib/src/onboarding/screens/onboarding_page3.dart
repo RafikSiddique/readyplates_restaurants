@@ -38,16 +38,13 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
         controller.phoneveify,
       ],
       onTap: () {
-        controller.businessaccNumber = TextEditingController();
-        controller.businessaccName = TextEditingController();
         controller.businessaddline1 = TextEditingController();
         controller.businessaddline2 = TextEditingController();
         controller.businessaddline3 = TextEditingController();
         controller.businessstate = TextEditingController();
         controller.businesscity = TextEditingController();
         controller.businesspincode = TextEditingController();
-        controller.businessaccNumber.text = controller.accNumber.text;
-        controller.businessaccName.text = controller.accName.text;
+
         controller.businessaddline1.text = controller.addline1.text;
         controller.businessaddline2.text = controller.addline2.text;
         controller.businessaddline3.text = controller.addline3.text;

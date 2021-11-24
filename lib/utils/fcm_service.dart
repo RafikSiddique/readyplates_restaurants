@@ -7,17 +7,11 @@ import 'package:readyplates_restaurants/utils/api_services.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 
 class FirebaseMessagingService extends ApiServices {
-  int i = 0;
-  FirebaseMessagingService() {
-    //if (i == 0) {
-    i++;
-    print(i);
-    print("Constructor called");
-    initializeMessaging();
-    initLocalNotification();
-    /* } else {
-      print("Not Calling");
-    } */
+  
+
+  void initNotifications() {
+    _initializeMessaging();
+    _initLocalNotification();
   }
 
   static FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
@@ -47,7 +41,7 @@ class FirebaseMessagingService extends ApiServices {
     return Future<void>.value();
   }
 
-  void initializeMessaging() {
+  void _initializeMessaging() {
     // if (i < 2) {
     print("Init Messaging Called");
     getToken();
@@ -71,7 +65,7 @@ class FirebaseMessagingService extends ApiServices {
     //}
   }
 
-  void initLocalNotification() {
+  void _initLocalNotification() {
     // if (i < 2) {
     print("Init local notification called");
     FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =

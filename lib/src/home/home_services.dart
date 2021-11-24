@@ -101,11 +101,9 @@ class HomeServices extends ApiServices {
         });
       }
       StreamedResponse response = await request.send();
-      if (response.statusCode == 201) {
-        String body = await response.stream.bytesToString();
-        print(body);
-      } else {
-        String body = await response.stream.bytesToString();
+      String body = await response.stream.bytesToString();
+      print(body);
+      if (response.statusCode != 201) {
         throw AppException(
             code: response.statusCode, message: response.reasonPhrase);
       }

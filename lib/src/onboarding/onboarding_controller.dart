@@ -39,56 +39,211 @@ class OnboardingController extends GetxController {
 
   bool isEditing = false;
 
-  ///OnBoarding 1
-  void initControllers1() {
-    resName = TextEditingController();
-
-    firstName = TextEditingController();
-    lastName = TextEditingController();
-    ownemail = TextEditingController();
-    ownMobile = TextEditingController();
-    poc = TextEditingController();
-    pocNumber = TextEditingController();
-    //
-    accNumber = TextEditingController();
-    accName = TextEditingController();
-    addline1 = TextEditingController();
-    addline2 = TextEditingController();
-    addline3 = TextEditingController();
-    state = TextEditingController();
-    city = TextEditingController();
-    pincode = TextEditingController();
-    phoneveify = TextEditingController();
-    pubbusinessName = TextEditingController();
-    supportEmail = TextEditingController();
-    supportNumber = TextEditingController();
-    statementDescriptor = TextEditingController();
-    shortenedDescriptor = TextEditingController();
-    businessWeb = TextEditingController();
-    supportWeb = TextEditingController();
-    privacy = TextEditingController();
-    termServices = TextEditingController();
-    fsolNumber = TextEditingController();
-    nameOfBusiness = TextEditingController();
-    eiNumber = TextEditingController();
-    businessaccNumber = TextEditingController();
-    businessaccName = TextEditingController();
-    businessaddline1 = TextEditingController();
-    businessaddline2 = TextEditingController();
-    businessaddline3 = TextEditingController();
-    businessstate = TextEditingController();
-    businesscity = TextEditingController();
-    businesspincode = TextEditingController();
+  Future<void> onboardingApi(
+    OnBoardingMethod method,
+  ) async {
+    loading.value = true;
+    switch (method) {
+      case OnBoardingMethod.api1:
+        init2();
+        await _onboardingapi1();
+        dispose1();
+        break;
+      case OnBoardingMethod.api2:
+        init3();
+        await _onboardingapi2();
+        dispose2();
+        break;
+      case OnBoardingMethod.api3:
+        init4();
+        await _onboardingapi3();
+        dispose3();
+        break;
+      case OnBoardingMethod.api4:
+        init5();
+        await _onboardingapi4();
+        dispose4();
+        break;
+      case OnBoardingMethod.api5:
+        init6();
+        await _onboardingapi5();
+        dispose5();
+        break;
+      case OnBoardingMethod.api6:
+        await _onboardingapi6();
+        dispose6();
+        break;
+      case OnBoardingMethod.api7:
+        init8();
+        await _onboardingapi7();
+        break;
+      case OnBoardingMethod.api8:
+        await _onboardingapi8();
+        dispose8();
+        break;
+      case OnBoardingMethod.api9:
+        await _uploadImage();
+        break;
+      case OnBoardingMethod.api13:
+        await _tableconfig();
+        break;
+    }
+    loading.value = false;
   }
 
   late TextEditingController resName;
-
   late TextEditingController firstName;
   late TextEditingController lastName;
   late TextEditingController ownemail;
   late TextEditingController ownMobile;
   late TextEditingController poc;
   late TextEditingController pocNumber;
+  String rescity = '';
+
+  ///OnBoarding 1
+  void initControllers1() {
+    resName = TextEditingController();
+    firstName = TextEditingController();
+    lastName = TextEditingController();
+    ownemail = TextEditingController();
+    ownMobile = TextEditingController();
+    poc = TextEditingController();
+    pocNumber = TextEditingController();
+  }
+
+  Future<void> _onboardingapi1() async {
+    String ownName = firstName.text + " " + lastName.text;
+    try {
+      resId = await services.onboardingapi1(
+        uniqueId,
+        resName.text,
+        ownName,
+        ownMobile.text,
+        rescity,
+        poc.text,
+        pocNumber.text,
+      );
+      this.resId = resId;
+
+      await sfHelper.setRestaurantId(resId);
+      print('ID:1232323$resId');
+      await Geolocator.requestPermission();
+      Position position = await Geolocator.getCurrentPosition();
+
+      Get.toNamed(OnboardingPage2.id,
+          arguments: LatLng(position.latitude, position.longitude));
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+    }
+  }
+
+  RxList<States> rxStates =
+      List<States>.from(details.map((e) => States.fromMap(e))).obs;
+
+  void searchState(String query) {
+    rxStates.value = List<States>.from(details.map((e) => States.fromMap(e)));
+    if (query != "") {
+      rxStates.value = rxStates
+          .where((p0) => p0.name.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+    }
+    rxStates.sort((a, b) => a.name.compareTo(b.name));
+  }
+
+  void search(int stateId, String query) {
+    try {
+      List<States> states =
+          List<States>.from(details.map((e) => States.fromMap(e)));
+      if (query.trim() == "") {
+        int i = rxStates.indexWhere((element) => element.id == stateId);
+        List<City> city =
+            states.firstWhere((element) => element.id == stateId).city;
+        city.sort((a, b) => a.name.compareTo(b.name));
+        rxStates[i].city.value = city;
+      } else {
+        int i = rxStates.indexWhere((element) => element.id == stateId);
+        print(i);
+        print("RX Things");
+        print(rxStates[i]);
+        print(rxStates[i].city);
+        States state = states.firstWhere((element) => element.id == stateId);
+        print("Original Things");
+        print(state);
+        print(state.city);
+        List<City> city = state.city
+            .where((p0) => p0.name.toLowerCase().contains(query.toLowerCase()))
+            .toList();
+        city.sort((a, b) => a.name.compareTo(b.name));
+        print(city);
+        rxStates[i].city.value = city;
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void dispose1() {
+    resName.dispose();
+    firstName.dispose();
+    lastName.dispose();
+    ownemail.dispose();
+    ownMobile.dispose();
+    poc.dispose();
+    pocNumber.dispose();
+    rescity = "";
+  }
+
+  ///OnBoarding 2
+  late TextEditingController address1;
+  late TextEditingController address2;
+  late TextEditingController nearbylandnark;
+  late TextEditingController postalcode;
+  late TextEditingController latitude;
+  late TextEditingController longitude;
+
+  void init2() {
+    address1 = TextEditingController();
+    address2 = TextEditingController();
+    nearbylandnark = TextEditingController();
+    postalcode = TextEditingController();
+    latitude = TextEditingController();
+    longitude = TextEditingController();
+  }
+
+  Future<void> _onboardingapi2() async {
+    String adress =
+        address1.text + " " + address2.text + " " + nearbylandnark.text;
+
+    try {
+      await services.onboardingapi2(
+        uniqueId,
+        adress,
+        postalcode.text,
+        latitude.text,
+        longitude.text,
+      );
+      if (!isEditing)
+        Get.toNamed(OnboardingPage3.id);
+      else {
+        final c = Get.find<HomeController>();
+        c.selectedIndex.value = 3;
+        c.pageController.jumpToPage(3);
+        Get.offAllNamed(HomePage.id);
+      }
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+    }
+  }
+
+  void dispose2() {
+    address1.dispose();
+    address2.dispose();
+    nearbylandnark.dispose();
+    postalcode.dispose();
+    latitude.dispose();
+    longitude.dispose();
+  }
+
   late TextEditingController accNumber;
   late TextEditingController accName;
   late TextEditingController addline1;
@@ -98,22 +253,64 @@ class OnboardingController extends GetxController {
   late TextEditingController city;
   late TextEditingController pincode;
   late TextEditingController phoneveify;
+  RxString timezone = "".obs;
+
+  void init3() {
+    accNumber = TextEditingController();
+    accName = TextEditingController();
+    addline1 = TextEditingController();
+    addline2 = TextEditingController();
+    addline3 = TextEditingController();
+    state = TextEditingController();
+    city = TextEditingController();
+    pincode = TextEditingController();
+    phoneveify = TextEditingController();
+    businessaddline1 = TextEditingController();
+    businessaddline2 = TextEditingController();
+    businessaddline3 = TextEditingController();
+    businessstate = TextEditingController();
+    businesscity = TextEditingController();
+    businesspincode = TextEditingController();
+  }
+
+  Future<void> _onboardingapi3() async {
+    String business_add = addline1.text +
+        " " +
+        addline2.text +
+        " " +
+        addline3.text +
+        " " +
+        state.text +
+        " " +
+        city.text +
+        " " +
+        pincode.text;
+    try {
+      await services.onboardingapi3(
+        resId,
+        accNumber.text,
+        accName.text,
+        business_add,
+        phoneveify.text,
+        timezone.value,
+      );
+      Get.toNamed(OnboardingPage4.id);
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+    }
+  }
+
+  void dispose3() {
+    accNumber.dispose();
+    accName.dispose();
+    phoneveify.dispose();
+    timezone.value = "";
+  }
+
+//Onboarding 4
   late TextEditingController pubbusinessName;
   late TextEditingController supportEmail;
   late TextEditingController supportNumber;
-
-  late TextEditingController statementDescriptor;
-  late TextEditingController shortenedDescriptor;
-  late TextEditingController businessWeb;
-  late TextEditingController supportWeb;
-  late TextEditingController privacy;
-  late TextEditingController termServices;
-  late TextEditingController fsolNumber;
-  late TextEditingController nameOfBusiness;
-  late TextEditingController eiNumber;
-
-  late TextEditingController businessaccNumber;
-  late TextEditingController businessaccName;
   late TextEditingController businessaddline1;
   late TextEditingController businessaddline2;
   late TextEditingController businessaddline3;
@@ -121,29 +318,93 @@ class OnboardingController extends GetxController {
   late TextEditingController businesscity;
   late TextEditingController businesspincode;
 
-  String rescity = '';
+  void init4() {
+    pubbusinessName = TextEditingController();
+    supportEmail = TextEditingController();
+    supportNumber = TextEditingController();
+  }
 
-  ///OnBoarding 2
-  void dispose1() {
-    resName.dispose();
-    firstName.dispose();
-    lastName.dispose();
-    ownemail.dispose();
-    ownMobile.dispose();
-    poc.dispose();
-    pocNumber.dispose();
-    accNumber.dispose();
-    accName.dispose();
+  Future<void> _onboardingapi4() async {
+    String business_add = addline1.text +
+        " " +
+        addline2.text +
+        " " +
+        addline3.text +
+        " " +
+        state.text +
+        " " +
+        city.text +
+        " " +
+        pincode.text;
+    try {
+      await services.onboardingapi4(
+        uniqueId,
+        pubbusinessName.text,
+        supportEmail.text,
+        supportNumber.text,
+        business_add,
+      );
+      //sfHelper.getRestaurantId();
+      Get.toNamed(OnboardingPage5.id);
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+    }
+  }
+
+  void dispose4() {
+    pubbusinessName.dispose();
+    supportEmail.dispose();
+    supportNumber.dispose();
+    businessaddline1.dispose();
+    businessaddline2.dispose();
+    businessaddline3.dispose();
+    businessstate.dispose();
+    businesscity.dispose();
+    businesspincode.dispose();
     addline1.dispose();
     addline2.dispose();
     addline3.dispose();
     state.dispose();
     city.dispose();
     pincode.dispose();
-    phoneveify.dispose();
-    pubbusinessName.dispose();
-    supportEmail.dispose();
-    supportNumber.dispose();
+  }
+
+  //Onboarding 5
+  late TextEditingController statementDescriptor;
+  late TextEditingController shortenedDescriptor;
+  late TextEditingController businessWeb;
+  late TextEditingController supportWeb;
+  late TextEditingController privacy;
+  late TextEditingController termServices;
+  late TextEditingController fsolNumber;
+  void init5() {
+    statementDescriptor = TextEditingController();
+    shortenedDescriptor = TextEditingController();
+    businessWeb = TextEditingController();
+    supportWeb = TextEditingController();
+    privacy = TextEditingController();
+    termServices = TextEditingController();
+    fsolNumber = TextEditingController();
+  }
+
+  Future<void> _onboardingapi5() async {
+    try {
+      await services.onboardingapi5(
+          uniqueId,
+          statementDescriptor.text,
+          shortenedDescriptor.text,
+          businessWeb.text,
+          supportWeb.text,
+          privacy.text,
+          termServices.text,
+          fsolNumber.text);
+      Get.toNamed(OnboardingPage6.id);
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+    }
+  }
+
+  void dispose5() {
     statementDescriptor.dispose();
     shortenedDescriptor.dispose();
     businessWeb.dispose();
@@ -151,87 +412,152 @@ class OnboardingController extends GetxController {
     privacy.dispose();
     termServices.dispose();
     fsolNumber.dispose();
-    nameOfBusiness.dispose();
-    eiNumber.dispose();
-    businessaccNumber.dispose();
-    businessaccName.dispose();
-    businessaddline1.dispose();
-    businessaddline2.dispose();
-    businessaddline3.dispose();
-    businessstate.dispose();
-    businesscity.dispose();
-    businesspincode.dispose();
-
-    address1 = TextEditingController();
-    address2 = TextEditingController();
-    nearbylandnark = TextEditingController();
-    postalcode = TextEditingController();
-    latitude = TextEditingController();
-    longitude = TextEditingController();
-    gstpresent = TextEditingController();
-    gstnum = TextEditingController();
-    fssaistatus = TextEditingController();
   }
 
-  late TextEditingController address1;
-  late TextEditingController address2;
-  late TextEditingController nearbylandnark;
-  late TextEditingController postalcode;
-  late TextEditingController latitude;
-  late TextEditingController longitude;
-  late TextEditingController gstpresent;
-  late TextEditingController gstnum;
-  late TextEditingController fssaistatus;
+//OnBoarding6
+  late TextEditingController nameOfBusiness;
+  late TextEditingController eiNumber;
+  late File confirmLetter;
+  late File uploadLetter;
+  RxString businesstype = "".obs;
+  void init6() {
+    nameOfBusiness = TextEditingController();
+    eiNumber = TextEditingController();
+    confirmLetter = File('');
+    uploadLetter = File('');
+  }
 
-  void dispose2() {}
+  Future<void> _onboardingapi6() async {
+    try {
+      await services.onboardingapi6(
+        uniqueId,
+        businesstype.value,
+        nameOfBusiness.text,
+        eiNumber.text,
+        confirmLetter,
+        uploadLetter,
+      );
+      if (!isEditing)
+        Get.toNamed(OnboardingPage7.id);
+      else {
+        final c = Get.find<HomeController>();
+        c.selectedIndex.value = 3;
+        c.pageController.jumpToPage(3);
+        Get.offAllNamed(HomePage.id);
+      }
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+    }
+  }
 
-  DateTime expiry = DateTime(1900);
+  void dispose6() {
+    nameOfBusiness.dispose();
+    eiNumber.dispose();
+    confirmLetter.delete();
+    uploadLetter.delete();
+  }
+
+  //onboarding 7
+  List<String> selectCategory = [
+    'Burgers',
+    'Pan-Asian',
+    'Continental',
+    'Malay',
+    'Seafood',
+    'South Indian',
+    'Pizza',
+    'Arab',
+    'Fast Food',
+    'Korean',
+    'Barbeque',
+    'North Indian',
+    'Chinese',
+    'Italian',
+    'Drinks',
+    'Indonesian',
+    'Vegan',
+    'Pan-Indian',
+  ];
+
+  RxList<String> chooseCategory = <String>[].obs;
+  List<String> selectDays = [
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday',
+  ];
+  RxList<String> chooseDays = <String>[].obs;
   String startTime = '';
   String endTime = '';
-  File kycimg = File('');
-  File gstinimg = File('');
-  File fssaiimg = File('');
+  List<String> typeOfEsts = [
+    "Dine In",
+    "Dine In & Delivery Both",
+  ];
+  RxString typeOfEstablishment = "".obs;
 
-  final resDescript = TextEditingController();
+  Future<void> _onboardingapi7() async {
+    try {
+      await services.onboardingapi7(
+        uniqueId,
+        typeOfEstablishment.value,
+        chooseCategory.toList().toString(),
+        startTime,
+        endTime,
+        chooseDays.toList().toString(),
+      );
+      Get.toNamed(OnboardingPage8.id);
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+    }
+  }
 
-  RxInt startHour = 10.obs;
-  RxInt startMinute = 00.obs;
-
-  RxInt endHour = 10.obs;
-  RxInt endMinute = 00.obs;
-
-  List<String> amPm = ["AM", "PM"];
-  RxString startAmPm = "AM".obs;
-  RxString endAmPm = "PM".obs;
-
-  RxInt eventstartHour = 10.obs;
-  RxInt eventstartMinute = 00.obs;
-  RxInt eventendHour = 10.obs;
-  RxInt eventendMinute = 00.obs;
-  RxString eventstartAmPm = "AM".obs;
-  RxString eventendAmPm = "PM".obs;
-  final eventDesc = TextEditingController();
+  //Onboarding 8
+  late TextEditingController resDescript;
+  late TextEditingController eventDesc;
   DateTime recurrenceTime = DateTime.now();
-
   RxString selectedRecurrence = "Monthly".obs;
-
-  RxInt costFor2 = 0.obs;
   RxInt servingTime = 0.obs;
   RxInt tableTurnTime = 0.obs;
-  RxInt noOfTables = 0.obs;
-  RxInt noOfSeats = 0.obs;
-  late TextEditingController ac_number;
-  late TextEditingController reac_number;
-  late TextEditingController ifsc_code;
-  late TextEditingController pan_num;
-  late TextEditingController pan_name;
-  File pan_image = File('');
-  File confirmLetter = File('');
-  File uploadLetter = File('');
-  RxString businesstype = "".obs;
-  RxString timezone = "".obs;
+  void init8() {
+    resDescript = TextEditingController();
+    eventDesc = TextEditingController();
+  }
+
+  Future<void> _onboardingapi8() async {
+    try {
+      if (resId == "") {
+        resId = await sfHelper.getRestaurantId();
+      }
+      await services.onboardingapi8(
+        resId,
+        resDescript.text,
+        "0",
+        "0",
+        servingTime.toString(),
+        tableTurnTime.toString(),
+        "${recurrenceTime.year}-${recurrenceTime.month}-${recurrenceTime.day}",
+        selectedRecurrence.value,
+        startTime,
+        endTime,
+        eventDesc.text,
+      );
+
+      Get.toNamed(OnboardingPage9.resId);
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+    }
+  }
+
+  void dispose8() {
+    resDescript.clear();
+    eventDesc.clear();
+  }
+
   void clear() {
-    resName.clear();
+/*     resName.clear();
 
     firstName.clear();
     lastName.clear();
@@ -282,7 +608,7 @@ class OnboardingController extends GetxController {
     businessaddline3.clear();
     businessstate.clear();
     businesscity.clear();
-    businesspincode.clear();
+    businesspincode.clear(); */
   }
 
   @override
@@ -290,50 +616,9 @@ class OnboardingController extends GetxController {
     super.dispose();
   }
 
-  List<String> selectCategory = [
-    'Burgers',
-    'Pan-Asian',
-    'Continental',
-    'Malay',
-    'Seafood',
-    'South Indian',
-    'Pizza',
-    'Arab',
-    'Fast Food',
-    'Korean',
-    'Barbeque',
-    'North Indian',
-    'Chinese',
-    'Italian',
-    'Japanese',
-    'Indonesian',
-    'Vegan',
-    'Pan-Indian',
-  ];
-
-  RxList<String> chooseCategory = <String>[].obs;
-  List<String> selectDays = [
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-    'Sunday',
-  ];
-  RxList<String> chooseDays = <String>[].obs;
-  bool isChecked = false;
-  bool isDays = false;
-
-  String typeOfAcc = "";
-  List<String> accType = ["Saving", "Current"];
-  RxString typeOfEstablishment = "".obs;
-  RxString supportCountry = "".obs;
-  List<String> typeOfEsts = [
-    "Dine In",
-    "Dine In & Delivery Both",
-  ];
-  RxString numberOfTable = "".obs;
+  RxList<int> tables = <int>[].obs;
+  RxList<bool> edit = <bool>[].obs;
+  RxList<int> capacities = <int>[].obs;
   List<String> noOfTable = [
     "1",
     "2",
@@ -357,335 +642,12 @@ class OnboardingController extends GetxController {
     SharedPreferenceHelper()
         .getRestaurantId()
         .then((value) => resId = value.toString());
-    resName = TextEditingController();
-    firstName = TextEditingController();
-    lastName = TextEditingController();
-    ownemail = TextEditingController();
-    ownMobile = TextEditingController();
-    poc = TextEditingController();
-    pocNumber = TextEditingController();
-    address1 = TextEditingController();
-    address2 = TextEditingController();
-    nearbylandnark = TextEditingController();
-    postalcode = TextEditingController();
-    latitude = TextEditingController();
-    longitude = TextEditingController();
-    gstpresent = TextEditingController();
-    gstnum = TextEditingController();
-    fssaistatus = TextEditingController();
-    ac_number = TextEditingController();
-    reac_number = TextEditingController();
-    ifsc_code = TextEditingController();
-    pan_num = TextEditingController();
-    pan_name = TextEditingController();
-    //
-    accNumber = TextEditingController();
-    accName = TextEditingController();
-    addline1 = TextEditingController();
-    addline2 = TextEditingController();
-    addline3 = TextEditingController();
-    state = TextEditingController();
-    city = TextEditingController();
-    pincode = TextEditingController();
-    phoneveify = TextEditingController();
-    pubbusinessName = TextEditingController();
-    supportEmail = TextEditingController();
-    supportNumber = TextEditingController();
-    statementDescriptor = TextEditingController();
-    shortenedDescriptor = TextEditingController();
-    businessWeb = TextEditingController();
-    supportWeb = TextEditingController();
-    privacy = TextEditingController();
-    termServices = TextEditingController();
-    fsolNumber = TextEditingController();
-    nameOfBusiness = TextEditingController();
-    eiNumber = TextEditingController();
-    businessaccNumber = TextEditingController();
-    businessaccName = TextEditingController();
-    businessaddline1 = TextEditingController();
-    businessaddline2 = TextEditingController();
-    businessaddline3 = TextEditingController();
-    businessstate = TextEditingController();
-    businesscity = TextEditingController();
-    businesspincode = TextEditingController();
-
+    initControllers1();
     super.onInit();
   }
 
+//Onboarding9
   final PageController pageController = PageController();
-
-  Future<void> onboardingApi(
-    OnBoardingMethod method,
-  ) async {
-    loading.value = true;
-    switch (method) {
-      case OnBoardingMethod.api1:
-        await _onboardingapi1();
-        break;
-      case OnBoardingMethod.api2:
-        await _onboardingapi2();
-        break;
-      case OnBoardingMethod.api3:
-        await _onboardingapi3();
-        break;
-      case OnBoardingMethod.api4:
-        await _onboardingapi4();
-        break;
-      case OnBoardingMethod.api5:
-        await _onboardingapi5();
-        break;
-      case OnBoardingMethod.api6:
-        await _onboardingapi6();
-        break;
-      case OnBoardingMethod.api7:
-        await _onboardingapi7();
-        break;
-      case OnBoardingMethod.api8:
-        await _onboardingapi8();
-        break;
-      case OnBoardingMethod.api9:
-        await _uploadImage();
-        break;
-      case OnBoardingMethod.api13:
-        await _tableconfig();
-        break;
-    }
-    loading.value = false;
-  }
-
-  Future<void> _onboardingapi1() async {
-    String ownName = firstName.text + " " + lastName.text;
-    try {
-      resId = await services.onboardingapi1(
-        uniqueId,
-        resName.text,
-        ownName,
-        ownMobile.text,
-        rescity,
-        poc.text,
-        pocNumber.text,
-      );
-      this.resId = resId;
-      //sfHelper.setRestaurantName(resNameController.text);
-
-      await sfHelper.setRestaurantId(resId);
-      print('ID:1232323$resId');
-      await Geolocator.requestPermission();
-      Position position = await Geolocator.getCurrentPosition();
-
-      Get.toNamed(OnboardingPage2.id,
-          arguments: LatLng(position.latitude, position.longitude));
-    } catch (e) {
-      Get.snackbar("Error", e.toString());
-    }
-  }
-
-  RxList<States> rxStates =
-      List<States>.from(details.map((e) => States.fromMap(e))).obs;
-
-  void searchState(String query) {
-    rxStates.value = List<States>.from(details.map((e) => States.fromMap(e)));
-    if (query != "") {
-      rxStates.value = rxStates
-          .where((p0) => p0.name.toLowerCase().contains(query.toLowerCase()))
-          .toList();
-    }
-    rxStates.sort((a, b) => a.name.compareTo(b.name));
-  }
-
-  void search(int stateId, String query) {
-    try {
-      List<States> states =
-          List<States>.from(details.map((e) => States.fromMap(e)));
-      //  rxStates.value = states;
-      if (query.trim() == "") {
-        int i = rxStates.indexWhere((element) => element.id == stateId);
-        List<City> city =
-            states.firstWhere((element) => element.id == stateId).city;
-        city.sort((a, b) => a.name.compareTo(b.name));
-        rxStates[i].city.value = city;
-      } else {
-        int i = rxStates.indexWhere((element) => element.id == stateId);
-        print(i);
-        print("RX Things");
-        print(rxStates[i]);
-        print(rxStates[i].city);
-        States state = states.firstWhere((element) => element.id == stateId);
-        print("Original Things");
-        print(state);
-        print(state.city);
-        List<City> city = state.city
-            .where((p0) => p0.name.toLowerCase().contains(query.toLowerCase()))
-            .toList();
-        city.sort((a, b) => a.name.compareTo(b.name));
-        print(city);
-        rxStates[i].city.value = city;
-      }
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  Future<void> _onboardingapi2() async {
-    String adress =
-        address1.text + " " + address2.text + " " + nearbylandnark.text;
-
-    try {
-      await services.onboardingapi2(
-        uniqueId,
-        adress,
-        postalcode.text,
-        latitude.text,
-        longitude.text,
-      );
-      if (!isEditing)
-        Get.toNamed(OnboardingPage3.id);
-      else {
-        final c = Get.find<HomeController>();
-        c.selectedIndex.value = 3;
-        c.pageController.jumpToPage(3);
-        Get.offAllNamed(HomePage.id);
-      }
-    } catch (e) {
-      Get.snackbar("Error", e.toString());
-    }
-  }
-
-  Future<void> _onboardingapi3() async {
-    String business_add = addline1.text +
-        " " +
-        addline2.text +
-        " " +
-        addline3.text +
-        " " +
-        state.text +
-        " " +
-        city.text +
-        " " +
-        pincode.text;
-    try {
-      await services.onboardingapi3(
-        resId,
-        accNumber.text,
-        accName.text,
-        business_add,
-        phoneveify.text,
-        timezone.value,
-      );
-      Get.toNamed(OnboardingPage4.id);
-    } catch (e) {
-      Get.snackbar("Error", e.toString());
-    }
-  }
-
-  Future<void> _onboardingapi4() async {
-    String business_add = addline1.text +
-        " " +
-        addline2.text +
-        " " +
-        addline3.text +
-        " " +
-        state.text +
-        " " +
-        city.text +
-        " " +
-        pincode.text;
-    try {
-      await services.onboardingapi4(
-        uniqueId,
-        pubbusinessName.text,
-        supportEmail.text,
-        supportNumber.text,
-        business_add,
-      );
-      //sfHelper.getRestaurantId();
-      Get.toNamed(OnboardingPage5.id);
-    } catch (e) {
-      Get.snackbar("Error", e.toString());
-    }
-  }
-
-  Future<void> _onboardingapi5() async {
-    try {
-      await services.onboardingapi5(
-          uniqueId,
-          statementDescriptor.text,
-          shortenedDescriptor.text,
-          businessWeb.text,
-          supportWeb.text,
-          privacy.text,
-          termServices.text,
-          fsolNumber.text);
-      Get.toNamed(OnboardingPage6.id);
-    } catch (e) {
-      Get.snackbar("Error", e.toString());
-    }
-  }
-
-  Future<void> _onboardingapi6() async {
-    try {
-      await services.onboardingapi6(
-        uniqueId,
-        businesstype.value,
-        nameOfBusiness.text,
-        eiNumber.text,
-        confirmLetter,
-        uploadLetter,
-      );
-      if (!isEditing)
-        Get.toNamed(OnboardingPage7.id);
-      else {
-        final c = Get.find<HomeController>();
-        c.selectedIndex.value = 3;
-        c.pageController.jumpToPage(3);
-        Get.offAllNamed(HomePage.id);
-      }
-    } catch (e) {
-      Get.snackbar("Error", e.toString());
-    }
-  }
-
-  Future<void> _onboardingapi7() async {
-    try {
-      await services.onboardingapi7(
-        uniqueId,
-        typeOfEstablishment.value,
-        chooseCategory.toList().toString(),
-        startTime,
-        endTime,
-        chooseDays.toList().toString(),
-      );
-      Get.toNamed(OnboardingPage8.id);
-    } catch (e) {
-      Get.snackbar("Error", e.toString());
-    }
-  }
-
-  Future<void> _onboardingapi8() async {
-    try {
-      if (resId == "") {
-        resId = await sfHelper.getRestaurantId();
-      }
-      await services.onboardingapi8(
-        resId,
-        resDescript.text,
-        noOfTables.toString(),
-        noOfSeats.toString(),
-        servingTime.toString(),
-        tableTurnTime.toString(),
-        "${recurrenceTime.year}-${recurrenceTime.month}-${recurrenceTime.day}",
-        selectedRecurrence.value,
-        startTime,
-        endTime,
-        eventDesc.text,
-      );
-
-      Get.toNamed(OnboardingPage9.resId);
-    } catch (e) {
-      Get.snackbar("Error", e.toString());
-    }
-  }
-
   List<List<String>> allImages() => [
         demoFasciaImages, //0
         demoAmbienceImages,
@@ -703,10 +665,10 @@ class OnboardingController extends GetxController {
         covidProtocol,
       ];
   List<String> demoFasciaImages = [
-    "assets/images/frontfascia.png", //0//0 ===
-    "assets/images/StreetView.png", //0 //1 ===
-    "assets/images/FrontFasciaDaytime.png", //0 //2
-    "assets/images/RestaurantEntrance.png" //0 //3
+    "assets/images/frontfascia.png",
+    "assets/images/StreetView.png",
+    "assets/images/FrontFasciaDaytime.png",
+    "assets/images/RestaurantEntrance.png"
   ];
 
   List<String> demoFasciaNames = [
@@ -717,8 +679,8 @@ class OnboardingController extends GetxController {
   ];
 
   List<String> demoAmbienceImages = [
-    "assets/images/ambience1.png", //1 //0 ===
-    "assets/images/ambience2.png", //1 //1
+    "assets/images/ambience1.png",
+    "assets/images/ambience2.png",
     "assets/images/Restaurant ambience.png",
     "assets/images/ambience4.png",
   ];
@@ -805,11 +767,6 @@ class OnboardingController extends GetxController {
             c.pageController.jumpToPage(3);
             Get.offAllNamed(HomePage.id);
           } else {
-            // Get.find<SharedPreferenceHelper>().setLoggedIn(true);
-            // Get.find<AuthController>().isLoggedIn.value = true;
-            // Get.put(HomeController(selectedIndex: 0.obs));
-            // Get.put(OrderController());
-            // Get.offAllNamed(HomePage.id);
             Get.toNamed(TableConfig.id);
           }
         } else {
@@ -831,8 +788,7 @@ class OnboardingController extends GetxController {
       }
       await services.tableConfig(
         resId,
-        numberOfTable.value,
-        '4',
+        capacities,
       );
       Get.find<SharedPreferenceHelper>().setLoggedIn(true);
       Get.find<AuthController>().isLoggedIn.value = true;

@@ -18,9 +18,8 @@ class TableConfig extends StatefulWidget {
 class _TableConfigState extends State<TableConfig> {
   final controller = Get.find<OnboardingController>();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  bool edit = true;
+
   bool add = false;
-  List<int> list = [];
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +33,7 @@ class _TableConfigState extends State<TableConfig> {
         controller.onboardingApi(OnBoardingMethod.api13);
       },
       textControllers: [],
-      enabled: controller.numberOfTable.isNotEmpty,
+      enabled: controller.capacities.isNotEmpty && controller.tables.isNotEmpty,
       child: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16),
         child: Form(
@@ -45,9 +44,9 @@ class _TableConfigState extends State<TableConfig> {
                 SizedBox(
                   height: 27,
                 ),
-                ...list.map(
-                  (e) => Visibility(
-                    visible: edit,
+                for (var i = 0; i < controller.tables.length; i++)
+                  Visibility(
+                    visible: controller.edit[i],
                     child: Padding(
                       padding: const EdgeInsets.only(top: 16),
                       child: Row(
@@ -61,7 +60,7 @@ class _TableConfigState extends State<TableConfig> {
                                 borderRadius: BorderRadius.circular(10)),
                             child: Center(
                               child: Text(
-                                'Table ${e}',
+                                'Table ${controller.tables[i]}',
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.inter(
                                   textStyle: TextStyle(
@@ -102,7 +101,7 @@ class _TableConfigState extends State<TableConfig> {
                             decoration: BoxDecoration(
                                 color: Color(0xffE2F5F4),
                                 borderRadius: BorderRadius.circular(5)),
-                            child: DropdownButtonFormField(
+                            child: DropdownButtonFormField<int>(
                               isExpanded: true,
                               icon: Padding(
                                 padding: const EdgeInsets.only(
@@ -114,14 +113,14 @@ class _TableConfigState extends State<TableConfig> {
                                   size: 14.87,
                                 ),
                               ),
-                              value: controller.numberOfTable.value == ""
+                              value: controller.capacities[i] == 0
                                   ? null
-                                  : controller.numberOfTable.value,
+                                  : controller.capacities[i],
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
                                   borderSide: BorderSide.none,
                                 ),
-                                hintText: '00',
+                                hintText: '0',
                                 contentPadding: EdgeInsets.only(
                                   left: 14,
                                 ),
@@ -132,11 +131,11 @@ class _TableConfigState extends State<TableConfig> {
                                   color: MyTheme.bottomtextColor,
                                 ),
                               ),
-                              items: controller.noOfTable
+                              items: List.generate(10, (index) => index + 1)
                                   .map(
-                                    (i) => DropdownMenuItem(
+                                    (i) => DropdownMenuItem<int>(
                                         child: Text(
-                                          i,
+                                          i.toString(),
                                           style: GoogleFonts.inter(
                                             fontSize: 13,
                                             fontWeight: FontWeight.w500,
@@ -149,27 +148,16 @@ class _TableConfigState extends State<TableConfig> {
                                   .toList(),
                               onChanged: (newValue) {
                                 setState(() {
-                                  controller.numberOfTable.value =
-                                      newValue.toString();
+                                  controller.capacities[i] = newValue!;
                                 });
                               },
                             ),
                           ),
-                          // TableDropDown(
-                          //   value: controller.numberOfTable.value == ""
-                          //       ? null
-                          //       : controller.numberOfTable.value,
-                          //   onSelect: (newValue) {
-                          //     setState(() {
-                          //       controller.numberOfTable.value = newValue!;
-                          //     });
-                          //   },
-                          // ),
 
                           InkWell(
                             onTap: () {
                               setState(() {
-                                edit = !edit;
+                                controller.edit[i] = !controller.edit[i];
                               });
                             },
                             child: Container(
@@ -190,7 +178,7 @@ class _TableConfigState extends State<TableConfig> {
                           InkWell(
                             onTap: () {
                               setState(() {
-                                edit = !edit;
+                                controller.edit[i] = !controller.edit[i];
                               });
                             },
                             child: Container(
@@ -223,7 +211,7 @@ class _TableConfigState extends State<TableConfig> {
                                 borderRadius: BorderRadius.circular(10)),
                             child: Center(
                               child: Text(
-                                'Table  ${e}',
+                                'Table  ${controller.tables[i]}',
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.inter(
                                   textStyle: TextStyle(
@@ -262,9 +250,7 @@ class _TableConfigState extends State<TableConfig> {
                                 borderRadius: BorderRadius.circular(5)),
                             child: Center(
                               child: Text(
-                                controller.numberOfTable.value.isEmpty
-                                    ? '00'
-                                    : controller.numberOfTable.value.toString(),
+                                controller.capacities[i].toString(),
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.inter(
                                   textStyle: TextStyle(
@@ -280,7 +266,7 @@ class _TableConfigState extends State<TableConfig> {
                           InkWell(
                             onTap: () {
                               setState(() {
-                                edit = !edit;
+                                controller.edit[i] = !controller.edit[i];
                               });
                             },
                             child: Container(
@@ -300,14 +286,13 @@ class _TableConfigState extends State<TableConfig> {
                           ),
                           InkWell(
                             onTap: () {
-                              if (list.length > 0)
+                              if (controller.tables.length > 0)
                                 setState(() {
-                                  list.removeLast();
-                                  print(list.toString());
+                                  controller.tables.removeLast();
+                                  controller.capacities.removeLast();
+                                  controller.edit.removeLast();
                                   add = !add;
                                 });
-                              else
-                                list.add(list.length + 1);
                             },
                             child: Container(
                               height: 28,
@@ -328,15 +313,12 @@ class _TableConfigState extends State<TableConfig> {
                       ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 16,
-                ),
                 InkWell(
                   onTap: () async {
                     setState(() {
-                      list.add(list.length + 1);
-                      print(list.toString());
+                      controller.tables.add(controller.tables.length + 1);
+                      controller.capacities.add(0);
+                      controller.edit.add(false);
                       add = !add;
                     });
                   },

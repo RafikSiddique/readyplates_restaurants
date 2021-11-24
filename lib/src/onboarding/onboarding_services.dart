@@ -354,11 +354,8 @@ class OnboardingServices extends ApiServices {
 
   Future<void> tableConfig(
     String restaurant,
-    String capacity,
-    String order,
+    List<int> capacity,
   ) async {
-    print('body1');
-    print('body2');
     try {
       Response response = await post(
         table,
@@ -366,26 +363,11 @@ class OnboardingServices extends ApiServices {
           {
             'restaurant': restaurant,
             'capacity': capacity,
-            'order': order,
           },
         ),
         headers: contentTypeJsonHeader,
       );
-      print(response);
-      print(response.body);
-      print(response.request);
-      print(response.statusCode);
-      print('body4');
-
-      if (response.statusCode == 200) {
-        print(response);
-        print(response.body);
-        print(response.request);
-        print(response.statusCode);
-        print('body5');
-        print('body6');
-        print(response.body);
-      } else {
+      if (response.statusCode != 200) {
         throw AppException(code: response.statusCode, message: response.body);
       }
     } catch (e) {

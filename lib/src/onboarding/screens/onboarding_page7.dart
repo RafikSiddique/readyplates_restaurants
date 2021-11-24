@@ -76,11 +76,9 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
         if (formKey.currentState!.validate())
           controller.onboardingApi(OnBoardingMethod.api7);
       },
-      enabled: controller.typeOfEstablishment.value.isEmpty ||
-          controller.isChecked == false ||
-          PickedTime == null ||
-          PickedTime1 == null ||
-          controller.isDays == false,
+      enabled: controller.typeOfEstablishment.value.isNotEmpty &&
+              PickedTime != null ||
+          PickedTime1 != null,
       textControllers: [],
       child: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16),
@@ -214,14 +212,6 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                                             controller.chooseCategory
                                                 .add(category);
                                           }
-                                          setState(() {
-                                            controller.isChecked = value!;
-                                            controller.chooseCategory
-                                                .contains(category);
-                                            print(controller.chooseCategory
-                                                .toList()
-                                                .toString());
-                                          });
                                         },
                                       ),
                                     ),
@@ -292,23 +282,23 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            height: 45,
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(6)),
-                              border: Border.all(
-                                width: 1,
-                                color: PickedTime == null
-                                    ? MyTheme.borderColor
-                                    : MyTheme.borderchangeColor,
-                                style: BorderStyle.solid,
+                          InkWell(
+                            onTap: () {
+                              _selectStartTime(context);
+                            },
+                            child: Container(
+                              height: 45,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(6)),
+                                border: Border.all(
+                                  width: 1,
+                                  color: PickedTime == null
+                                      ? MyTheme.borderColor
+                                      : MyTheme.borderchangeColor,
+                                  style: BorderStyle.solid,
+                                ),
                               ),
-                            ),
-                            child: GestureDetector(
-                              onTap: () {
-                                _selectStartTime(context);
-                              },
                               child: Center(
                                 child: Text(
                                   PickedTime == null
@@ -349,23 +339,23 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            height: 45,
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(6)),
-                              border: Border.all(
-                                width: 1,
-                                color: PickedTime1 == null
-                                    ? MyTheme.borderColor
-                                    : MyTheme.borderchangeColor,
-                                style: BorderStyle.solid,
+                          InkWell(
+                            onTap: () {
+                              _selectEndTime(context);
+                            },
+                            child: Container(
+                              height: 45,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(6)),
+                                border: Border.all(
+                                  width: 1,
+                                  color: PickedTime1 == null
+                                      ? MyTheme.borderColor
+                                      : MyTheme.borderchangeColor,
+                                  style: BorderStyle.solid,
+                                ),
                               ),
-                            ),
-                            child: GestureDetector(
-                              onTap: () {
-                                _selectEndTime(context);
-                              },
                               child: Center(
                                 child: Text(
                                   PickedTime1 == null
@@ -449,11 +439,6 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                                             } else {
                                               controller.chooseDays.add(days);
                                             }
-                                            setState(() {
-                                              controller.isDays = value!;
-                                              controller.chooseDays
-                                                  .contains(days);
-                                            });
                                           },
                                         ),
                                       ),

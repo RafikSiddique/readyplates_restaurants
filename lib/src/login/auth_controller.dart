@@ -88,6 +88,9 @@ class AuthController extends GetxController {
       String id =
           await services.signup(email.text, password.text, password2.text);
       await sfHelper.setUserId(id);
+      email.clear();
+      password.clear();
+      password2.clear();
       final oController = Get.put(OnboardingController());
       oController.isEditing = false;
       oController.uniqueId = id;

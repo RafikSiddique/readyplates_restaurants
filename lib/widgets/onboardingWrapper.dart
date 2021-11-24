@@ -63,12 +63,17 @@ class OnBoardingWrapper extends StatelessWidget {
                         color: MyTheme.iconColor,
                       ),
                       onPressed: () {
-                        Get.showSnackbar(GetBar(
-                          title: "Warning",
-                          duration: Duration(seconds: 2),
-                          message:
-                              "You can't you back at this stage, if you want to edit, you can edit after logging in",
-                        ));
+                        onboardingController.capacities.clear();
+                        if (!onboardingController.isEditing) {
+                          Get.showSnackbar(GetBar(
+                            title: "Warning",
+                            duration: Duration(seconds: 2),
+                            message:
+                                "You can't you back at this stage, if you want to edit, you can edit after logging in",
+                          ));
+                        } else {
+                          Get.back();
+                        }
                       }),
                   centerTitle: true,
                   title: Text(

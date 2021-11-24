@@ -16,13 +16,13 @@ void main() async {
   await Firebase.initializeApp();
   Get.put(SharedPreferenceHelper());
   Get.put(AuthController());
+  final fcm = FirebaseMessagingService();
+  fcm.initNotifications();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key) {
-    FirebaseMessagingService();
-  }
+  MyApp({Key? key}) : super(key: key) {}
 
   @override
   Widget build(BuildContext context) {

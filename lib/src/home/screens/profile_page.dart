@@ -28,7 +28,7 @@ class ProfilePage extends StatelessWidget {
               bool isRegistered = Get.isRegistered<OnboardingController>();
               if (!isRegistered) Get.put(OnboardingController());
               final c = Get.find<OnboardingController>();
-              c..isEditing = true;
+              c.isEditing = true;
               String userId = await sfHelper.getRestaurantId();
               c.uniqueId = userId;
               Get.toNamed(OnboardingPage1.id);
@@ -40,7 +40,8 @@ class ProfilePage extends StatelessWidget {
               bool isRegistered = Get.isRegistered<OnboardingController>();
               if (!isRegistered) Get.put(OnboardingController());
               final c = Get.find<OnboardingController>();
-              c..isEditing = true;
+              c.isEditing = true;
+
               String userId = await sfHelper.getRestaurantId();
               c.uniqueId = userId;
 
@@ -53,9 +54,10 @@ class ProfilePage extends StatelessWidget {
               bool isRegistered = Get.isRegistered<OnboardingController>();
               if (!isRegistered) Get.put(OnboardingController());
               final c = Get.find<OnboardingController>();
-              c..isEditing = true;
+              c.isEditing = true;
               String userId = await sfHelper.getRestaurantId();
               c.uniqueId = userId;
+              c.init3();
               Get.toNamed(OnboardingPage3.id);
             }),
       ],

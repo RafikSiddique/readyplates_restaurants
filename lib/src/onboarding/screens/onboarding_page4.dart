@@ -116,9 +116,6 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                   controller: controller.businessaddline1,
                   onSwitch: (value) {
                     if (value) {
-                      controller.businessaccNumber.text =
-                          controller.accNumber.text;
-                      controller.businessaccName.text = controller.accName.text;
                       controller.businessaddline1.text =
                           controller.addline1.text;
                       controller.businessaddline2.text =
@@ -129,8 +126,6 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                       controller.businesscity.text = controller.city.text;
                       controller.businesspincode.text = controller.pincode.text;
                     } else {
-                      controller.businessaccNumber.clear();
-                      controller.businessaccName.clear();
                       controller.businessaddline1.clear();
                       controller.businessaddline2.clear();
                       controller.businessaddline3.clear();
