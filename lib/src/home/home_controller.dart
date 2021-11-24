@@ -76,7 +76,7 @@ class HomeController extends GetxController {
       getFeedbacksFirst();
       timer = Timer.periodic(Duration(seconds: 5), (t) async {
         await getFeedbacks();
-        print("Feedback Get");
+
         timer = t;
       });
     } else if (i == 2) {
@@ -84,7 +84,7 @@ class HomeController extends GetxController {
       Get.find<OrderController>().getOrderItems();
       timer = Timer.periodic(Duration(seconds: 2), (t) async {
         await Get.find<OrderController>().getOrderItemsWithoutLoad();
-        print("Orders Get");
+
         timer = t;
       });
     } else if (i == 0) {
@@ -92,7 +92,7 @@ class HomeController extends GetxController {
 
       timer = Timer.periodic(Duration(seconds: 2), (t) async {
         await getFoodItems();
-        print("FoodItems Get");
+
         timer = t;
       });
     } else {

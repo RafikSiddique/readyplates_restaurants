@@ -14,6 +14,7 @@ import 'package:readyplates_restaurants/src/onboarding/screens/table_config_page
 import 'package:readyplates_restaurants/src/orders/order_controller.dart';
 import 'package:readyplates_restaurants/utils/cities.dart';
 import 'package:readyplates_restaurants/utils/city.dart';
+import 'package:readyplates_restaurants/utils/fcm_service.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 
 enum OnBoardingMethod {
@@ -126,7 +127,7 @@ class OnboardingController extends GetxController {
       this.resId = resId;
 
       await sfHelper.setRestaurantId(resId);
-      print('ID:1232323$resId');
+
       await Geolocator.requestPermission();
       Position position = await Geolocator.getCurrentPosition();
 
@@ -162,19 +163,14 @@ class OnboardingController extends GetxController {
         rxStates[i].city.value = city;
       } else {
         int i = rxStates.indexWhere((element) => element.id == stateId);
-        print(i);
-        print("RX Things");
-        print(rxStates[i]);
-        print(rxStates[i].city);
+
         States state = states.firstWhere((element) => element.id == stateId);
-        print("Original Things");
-        print(state);
-        print(state.city);
+
         List<City> city = state.city
             .where((p0) => p0.name.toLowerCase().contains(query.toLowerCase()))
             .toList();
         city.sort((a, b) => a.name.compareTo(b.name));
-        print(city);
+        
         rxStates[i].city.value = city;
       }
     } catch (e) {
@@ -794,6 +790,7 @@ class OnboardingController extends GetxController {
       Get.find<AuthController>().isLoggedIn.value = true;
       Get.put(HomeController(selectedIndex: 0.obs));
       Get.put(OrderController());
+      FirebaseMessagingService().getToken();
       Get.offAllNamed(HomePage.id);
     } catch (e) {
       Get.snackbar("Error", e.toString());

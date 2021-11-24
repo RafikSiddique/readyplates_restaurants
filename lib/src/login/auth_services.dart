@@ -27,7 +27,7 @@ class AuthenticationServices extends ApiServices {
       );
       if (response.statusCode == 201) {
         Map resp = json.decode(response.body);
-        print(resp["Id"]);
+
         return resp['Id'].toString();
       } else {
         throw AppException(code: response.statusCode, message: response.body);

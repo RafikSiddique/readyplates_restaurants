@@ -10,6 +10,7 @@ import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/src/login/screens/login_page.dart';
 import 'package:readyplates_restaurants/src/login/screens/signup_page.dart';
+import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 
 class OpeningScreen extends StatefulWidget {
   static const id = "/openingScreen";
@@ -260,18 +261,18 @@ class _OpeningScreenState extends State<OpeningScreen>
       } else {
         print("Not Logged In");
 
-        // String resId = await SharedPreferenceHelper().getRestaurantId();
-        /*  if (controller.userId != "-1" && resId != "" && resId != "null") {
+         String resId = await SharedPreferenceHelper().getRestaurantId();
+        if (authController.userId != "-1" && resId != "" && resId != "null") {
           Get.put(OrderController());
           Get.offNamed(HomePage.id);
-        } else { */
+        } else { 
 
-        controller.animateToPage(1,
-            duration: Duration(milliseconds: 500), curve: Curves.ease);
-        /*        int id = await controller.getScreen(controller.userId);
-          Get.offNamed(controller.route(id + 1)); */
+      /*   controller.animateToPage(1,
+            duration: Duration(milliseconds: 500), curve: Curves.ease); */
+             int id = await authController.getScreen(authController.userId);
+          Get.offNamed(authController.route(id + 1)); 
 
-        //}
+        }
       }
     } catch (e) {
       print(e);

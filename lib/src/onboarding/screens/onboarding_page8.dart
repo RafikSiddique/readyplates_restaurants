@@ -59,7 +59,6 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
       setState(() {
         currentTime = PickedTime!;
         controller.startTime = PickedTime!.format(context);
-        print(PickedTime!.format(context));
       });
     }
   }
@@ -81,20 +80,12 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
       setState(() {
         currentTime1 = PickedTime1!;
         controller.endTime = PickedTime1!.format(context);
-        print(PickedTime1!.format(context));
       });
     }
   }
 
   @override
   void initState() {
-/*     controller.resDescript.addListener(() {
-      setState(() {});
-    });
-    controller.eventDesc.addListener(() {
-      setState(() {});
-    }); */
-
     super.initState();
   }
 

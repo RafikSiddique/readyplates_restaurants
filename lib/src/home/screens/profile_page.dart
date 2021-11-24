@@ -24,7 +24,6 @@ class ProfilePage extends StatelessWidget {
         ProfileListTile(
             title: "Restaurant Detail",
             onTap: () async {
-              print('object');
               bool isRegistered = Get.isRegistered<OnboardingController>();
               if (!isRegistered) Get.put(OnboardingController());
               final c = Get.find<OnboardingController>();
@@ -36,7 +35,6 @@ class ProfilePage extends StatelessWidget {
         ProfileListTile(
             title: "Restaurant Bio",
             onTap: () async {
-              print('object');
               bool isRegistered = Get.isRegistered<OnboardingController>();
               if (!isRegistered) Get.put(OnboardingController());
               final c = Get.find<OnboardingController>();
@@ -50,7 +48,6 @@ class ProfilePage extends StatelessWidget {
         ProfileListTile(
             title: "Payment Setup",
             onTap: () async {
-              print('object');
               bool isRegistered = Get.isRegistered<OnboardingController>();
               if (!isRegistered) Get.put(OnboardingController());
               final c = Get.find<OnboardingController>();

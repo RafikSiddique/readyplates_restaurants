@@ -59,7 +59,6 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
       setState(() {
         currentTime1 = PickedTime1!;
         controller.endTime = PickedTime1!.format(context);
-        print(PickedTime1!.format(context));
       });
     }
   }

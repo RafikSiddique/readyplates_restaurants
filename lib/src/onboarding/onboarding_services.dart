@@ -30,11 +30,9 @@ class OnboardingServices extends ApiServices {
           headers: contentTypeJsonHeader);
       if (response.statusCode == 201) {
         Map resp1 = json.decode(response.body);
-        print(resp1["Restaurant ID"]);
-        print('ID!!!!!!!!!!!!!!!!!!!');
+
         String resid = resp1['Restaurant ID'].toString();
-        print('User Id is ---->' + resid);
-        print(response.body);
+        print('Restaurant Id is ---->' + resid);
         return resid;
       } else {
         throw AppException(code: response.statusCode, message: response.body);
@@ -65,9 +63,7 @@ class OnboardingServices extends ApiServices {
         ),
         headers: contentTypeJsonHeader,
       );
-      if (response.statusCode == 201) {
-        print(response.body);
-      } else {
+      if (response.statusCode != 201) {
         throw AppException(code: response.statusCode, message: response.body);
       }
     } catch (e) {
@@ -98,13 +94,8 @@ class OnboardingServices extends ApiServices {
         ),
         headers: contentTypeJsonHeader,
       );
-      print('ID!!!!!!!!!!!!!!!!!5454545!!');
-      print(response.body);
-      print(response.statusCode);
-      if (response.statusCode == 201) {
-        print('ID!!!!!!!!!!!!!!!!!!!');
-        print(response.body);
-      } else {
+
+      if (response.statusCode != 201) {
         throw AppException(
             code: response.statusCode, message: response.reasonPhrase);
       }
@@ -134,13 +125,8 @@ class OnboardingServices extends ApiServices {
         ),
         headers: contentTypeJsonHeader,
       );
-      print('ID!!!!!!!!!!!!!!!!!5454545!!');
-      print(response.body);
-      print(response.statusCode);
-      if (response.statusCode == 201) {
-        print('ID!!!!!!!!!!!!!!!!!!!');
-        print(response.body);
-      } else {
+
+      if (response.statusCode != 201) {
         throw AppException(code: response.statusCode, message: response.body);
       }
     } catch (e) {
@@ -176,16 +162,7 @@ class OnboardingServices extends ApiServices {
         headers: contentTypeJsonHeader,
       );
 
-      print('body1');
-      print('body2');
-      print('ID!!!!!!!!!!!!!!!!!5454545!!');
-      print(response.body);
-      print(response.statusCode);
-
-      if (response.statusCode == 201) {
-        print('body3');
-        print('body4');
-      } else {
+      if (response.statusCode != 201) {
         throw AppException(
             code: response.statusCode, message: response.reasonPhrase);
       }
@@ -202,18 +179,13 @@ class OnboardingServices extends ApiServices {
     File ss4_letter,
     File c147_letter,
   ) async {
-    print('body1');
-    print('body2');
-    print('ID!!!!!!!!!!!!!!!!!5454545!!');
     try {
       MultipartRequest request = MultipartRequest('POST', onboarding(6));
       MultipartFile ss4_letters =
           await MultipartFile.fromPath('ss4_letter', ss4_letter.path);
       MultipartFile c147_letters =
           await MultipartFile.fromPath('c147_letter', c147_letter.path);
-      print('body3');
-      print('body4');
-      print('ID!!!!!!!!!!!!!!!!!5454545!!');
+
       request.files.addAll([ss4_letters, c147_letters]);
       request.fields.addAll({
         'user': user,
@@ -223,14 +195,8 @@ class OnboardingServices extends ApiServices {
       });
 
       StreamedResponse response = await request.send();
-      print(response);
-      print(response.statusCode);
-      if (response.statusCode == 201) {
-        print(response);
-        print(response.statusCode);
-        String body = await response.stream.bytesToString();
-        print(body);
-      } else {
+
+      if (response.statusCode != 201) {
         throw AppException(
             code: response.statusCode, message: response.reasonPhrase);
       }
@@ -247,9 +213,6 @@ class OnboardingServices extends ApiServices {
     String end_time,
     String open_days,
   ) async {
-    print('body1');
-    print('body2');
-    print('ID!!!!!!!!!!!!!!!!!5454545!!');
     try {
       Response response = await post(
         onboarding(7),
@@ -265,16 +228,8 @@ class OnboardingServices extends ApiServices {
         ),
         headers: contentTypeJsonHeader,
       );
-      print('body3');
-      print('body4');
-      print('ID!!!!!!!!!!!!!!!!!5454545!!');
-      print(response.body);
-      print(response.statusCode);
-      if (response.statusCode == 201) {
-        print(response.body);
-        print(response.statusCode);
-        print(response.body);
-      } else {
+
+      if (response.statusCode != 201) {
         throw AppException(code: response.statusCode, message: response.body);
       }
     } catch (e) {
@@ -315,9 +270,8 @@ class OnboardingServices extends ApiServices {
         ),
         headers: contentTypeJsonHeader,
       );
-      if (response.statusCode == 201) {
-        print(response.body);
-      } else {
+      if (response.statusCode != 201) {
+        
         throw AppException(code: response.statusCode, message: response.body);
       }
     } catch (e) {

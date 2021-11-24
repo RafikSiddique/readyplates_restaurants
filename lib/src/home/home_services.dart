@@ -52,7 +52,6 @@ class HomeServices extends ApiServices {
       StreamedResponse response = await request.send();
 
       String body = await response.stream.bytesToString();
-
       print(body);
       if (response.statusCode != 201) {
         throw AppException(
@@ -114,14 +113,9 @@ class HomeServices extends ApiServices {
 
   Future<List<FeedbackModel>> getFeedbacks(String id) async {
     try {
-      print(id);
       Response response = await get(feedbacks(id));
-
-      print(response.statusCode);
-      print(response.reasonPhrase);
       print(response.body);
       if (response.statusCode == 200) {
-        print(response.body);
         List<dynamic> data = jsonDecode(response.body);
         return data.map((e) => FeedbackModel.fromMap(e)).toList();
       } else {

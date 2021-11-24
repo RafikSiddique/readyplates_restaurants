@@ -7,8 +7,6 @@ import 'package:readyplates_restaurants/utils/api_services.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 
 class FirebaseMessagingService extends ApiServices {
-  
-
   void initNotifications() {
     _initializeMessaging();
     _initLocalNotification();
@@ -21,7 +19,6 @@ class FirebaseMessagingService extends ApiServices {
     print(message.data);
     print(message.notification?.body);
     print(message.notification?.title);
-
     AndroidNotificationDetails androidNotificationDetails =
         AndroidNotificationDetails(
       'ReadyPlates',
@@ -42,8 +39,6 @@ class FirebaseMessagingService extends ApiServices {
   }
 
   void _initializeMessaging() {
-    // if (i < 2) {
-    print("Init Messaging Called");
     getToken();
     FirebaseMessaging.onMessage.listen((event) {
       print("OnMessage");
@@ -62,12 +57,9 @@ class FirebaseMessagingService extends ApiServices {
     });
 
     FirebaseMessaging.onBackgroundMessage(showMessage);
-    //}
   }
 
   void _initLocalNotification() {
-    // if (i < 2) {
-    print("Init local notification called");
     FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
         FlutterLocalNotificationsPlugin();
 

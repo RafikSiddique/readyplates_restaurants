@@ -9,6 +9,7 @@ import 'package:readyplates_restaurants/src/login/auth_services.dart';
 import 'package:readyplates_restaurants/src/login/screens/changepassword_page1.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
+import 'package:readyplates_restaurants/utils/fcm_service.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 
 class AuthController extends GetxController {
@@ -108,6 +109,7 @@ class AuthController extends GetxController {
       );
       await sfHelper.setUserId(id[0]);
       await sfHelper.setRestaurantId(id[1]);
+      FirebaseMessagingService().getToken();
       if (!isChangePass) {
         int routeId = await getScreen(id[0]);
         if (routeId >= 9) {
@@ -136,7 +138,7 @@ class AuthController extends GetxController {
           }
         }
       } else {
-        print('object');
+        
         print(isChangePass);
         Get.offNamed(ChangePasswordPage1.id);
         password.clear();
