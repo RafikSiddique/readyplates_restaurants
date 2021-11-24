@@ -251,10 +251,6 @@ class HomeController extends GetxController {
     await sfHelper.clear();
     timer?.cancel();
     Get.find<AuthController>().clearAll();
-    bool isOnBordingInit = Get.isRegistered<OnboardingController>();
-    if (isOnBordingInit) {
-      Get.find<OnboardingController>().clear();
-    }
     selectedIndex.value = 0;
     final c = Get.find<OrderController>();
     c.inProgress.clear();

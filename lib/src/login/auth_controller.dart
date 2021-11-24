@@ -49,7 +49,7 @@ class AuthController extends GetxController {
   }
 
   String route(int id) {
-    final controller = Get.find<OnboardingController>();
+    final controller = Get.put(OnboardingController());
     switch (id) {
       case 1:
         return OnboardingPage1.id;
@@ -138,7 +138,6 @@ class AuthController extends GetxController {
           }
         }
       } else {
-        
         print(isChangePass);
         Get.offNamed(ChangePasswordPage1.id);
         password.clear();

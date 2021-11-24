@@ -170,7 +170,7 @@ class OnboardingController extends GetxController {
             .where((p0) => p0.name.toLowerCase().contains(query.toLowerCase()))
             .toList();
         city.sort((a, b) => a.name.compareTo(b.name));
-        
+
         rxStates[i].city.value = city;
       }
     } catch (e) {
@@ -552,83 +552,10 @@ class OnboardingController extends GetxController {
     eventDesc.clear();
   }
 
-  void clear() {
-/*     resName.clear();
-
-    firstName.clear();
-    lastName.clear();
-    ownMobile.clear();
-    poc.clear();
-    pocNumber.clear();
-    address1.clear();
-    address2.clear();
-    nearbylandnark.clear();
-    postalcode.clear();
-    latitude.clear();
-    longitude.clear();
-    gstpresent.clear();
-    gstnum.clear();
-    fssaistatus.clear();
-    ac_number.clear();
-    reac_number.clear();
-    ifsc_code.clear();
-    pan_num.clear();
-    pan_name.clear();
-    eventDesc.clear();
-    //
-    accNumber.clear();
-    accName.clear();
-    addline1.clear();
-    addline2.clear();
-    addline3.clear();
-    state.clear();
-    city.clear();
-    pincode.clear();
-    phoneveify.clear();
-    pubbusinessName.clear();
-    supportEmail.clear();
-    supportNumber.clear();
-    statementDescriptor.clear();
-    shortenedDescriptor.clear();
-    businessWeb.clear();
-    supportWeb.clear();
-    privacy.clear();
-    termServices.clear();
-    fsolNumber.clear();
-    nameOfBusiness.clear();
-    eiNumber.clear();
-    businessaccNumber.clear();
-    businessaccName.clear();
-    businessaddline1.clear();
-    businessaddline2.clear();
-    businessaddline3.clear();
-    businessstate.clear();
-    businesscity.clear();
-    businesspincode.clear(); */
-  }
-
   @override
   void dispose() {
     super.dispose();
   }
-
-  RxList<int> tables = <int>[].obs;
-  RxList<bool> edit = <bool>[].obs;
-  RxList<int> capacities = <int>[].obs;
-  List<String> noOfTable = [
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
-  ];
-
-  RxDouble value = 1.0.obs;
 
   @override
   void onInit() {
@@ -645,7 +572,7 @@ class OnboardingController extends GetxController {
 //Onboarding9
   final PageController pageController = PageController();
   List<List<String>> allImages() => [
-        demoFasciaImages, //0
+        demoFasciaImages,
         demoAmbienceImages,
         demoFoodImages,
         demoPrecautionImage
@@ -776,6 +703,10 @@ class OnboardingController extends GetxController {
       Get.snackbar("Error", e.toString());
     }
   }
+
+  RxList<int> tables = <int>[].obs;
+  RxList<bool> edit = <bool>[].obs;
+  RxList<int> capacities = <int>[].obs;
 
   Future<void> _tableconfig() async {
     try {

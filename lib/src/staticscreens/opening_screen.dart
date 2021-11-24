@@ -261,17 +261,13 @@ class _OpeningScreenState extends State<OpeningScreen>
       } else {
         print("Not Logged In");
 
-         String resId = await SharedPreferenceHelper().getRestaurantId();
+        String resId = await SharedPreferenceHelper().getRestaurantId();
         if (authController.userId != "-1" && resId != "" && resId != "null") {
           Get.put(OrderController());
           Get.offNamed(HomePage.id);
-        } else { 
-
-      /*   controller.animateToPage(1,
-            duration: Duration(milliseconds: 500), curve: Curves.ease); */
-             int id = await authController.getScreen(authController.userId);
-          Get.offNamed(authController.route(id + 1)); 
-
+        } else {
+          int id = await authController.getScreen(authController.userId);
+          Get.offNamed(authController.route(id + 1));
         }
       }
     } catch (e) {
