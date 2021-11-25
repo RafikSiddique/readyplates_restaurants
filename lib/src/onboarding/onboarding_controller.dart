@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:readyplates_restaurants/main.dart';
 import 'package:readyplates_restaurants/src/home/home_controller.dart';
 import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
@@ -724,7 +725,7 @@ class OnboardingController extends GetxController {
       Get.put(HomeController(selectedIndex: 0.obs));
       Get.put(OrderController());
       FirebaseMessagingService().getToken();
-      Get.offAllNamed(HomePage.id);
+      runApp(MyApp());
       dispose();
     } catch (e) {
       Get.snackbar("Error", e.toString());
