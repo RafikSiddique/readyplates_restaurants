@@ -269,7 +269,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 ),
               ),
               SizedBox(
-                height: 16,
+                height: 22,
               ),
               Hero(
                 tag: feedbackModel.id,
@@ -285,7 +285,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 ),
               ),
               SizedBox(
-                height: 17,
+                height: 16,
               ),
             ],
           ),

@@ -49,31 +49,31 @@ class OnboardingController extends GetxController {
       case OnBoardingMethod.api1:
         init2();
         await _onboardingapi1();
-        dispose1();
+        // dispose1();
         break;
       case OnBoardingMethod.api2:
         init3();
         await _onboardingapi2();
-        dispose2();
+        // dispose2();
         break;
       case OnBoardingMethod.api3:
         init4();
         await _onboardingapi3();
-        dispose3();
+        // dispose3();
         break;
       case OnBoardingMethod.api4:
         init5();
         await _onboardingapi4();
-        dispose4();
+        // dispose4();
         break;
       case OnBoardingMethod.api5:
         init6();
         await _onboardingapi5();
-        dispose5();
+        // dispose5();
         break;
       case OnBoardingMethod.api6:
         await _onboardingapi6();
-        dispose6();
+        // dispose6();
         break;
       case OnBoardingMethod.api7:
         init8();
@@ -81,7 +81,7 @@ class OnboardingController extends GetxController {
         break;
       case OnBoardingMethod.api8:
         await _onboardingapi8();
-        dispose8();
+        // dispose8();
         break;
       case OnBoardingMethod.api9:
         await _uploadImage();
@@ -725,8 +725,8 @@ class OnboardingController extends GetxController {
       Get.put(HomeController(selectedIndex: 0.obs));
       Get.put(OrderController());
       FirebaseMessagingService().getToken();
-      runApp(MyApp());
-      dispose();
+      Get.offAllNamed(HomePage.id);
+      // dispose();
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }

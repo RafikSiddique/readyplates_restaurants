@@ -480,7 +480,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                   ),
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 22,
                 ),
               ],
             ),

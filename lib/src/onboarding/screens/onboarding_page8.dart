@@ -84,8 +84,6 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
     }
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return OnBoardingWrapper(
@@ -722,11 +720,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                 ),
 
                 SizedBox(
-                  height: 15,
-                ),
-
-                SizedBox(
-                  height: 16,
+                  height: 22,
                 ),
               ],
             ),

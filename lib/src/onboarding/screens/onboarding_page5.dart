@@ -121,7 +121,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
                   controller: controller.fsolNumber,
                 ),
                 SizedBox(
-                  height: 25,
+                  height: 22,
                 ),
               ],
             ),

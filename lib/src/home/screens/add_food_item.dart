@@ -501,7 +501,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
                   ),
                 ),
                 SizedBox(
-                  height: 16,
+                  height: 22,
                 ),
                 OnboardingButton(
                   onTap: () {

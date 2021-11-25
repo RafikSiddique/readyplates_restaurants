@@ -131,10 +131,8 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
                   formatters: [FilteringTextInputFormatter.digitsOnly],
                 ),
 
-                SizedBox(height: 20),
-
                 SizedBox(
-                  height: 16,
+                  height: 22,
                 ),
               ],
             ),

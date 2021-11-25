@@ -375,6 +375,9 @@ class _TableConfigState extends State<TableConfig> {
                     ),
                   ),
                 ),
+                SizedBox(
+                  height: 22,
+                ),
               ],
             ),
           ),
