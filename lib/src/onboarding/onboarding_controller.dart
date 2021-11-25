@@ -223,8 +223,8 @@ class OnboardingController extends GetxController {
       else {
         final c = Get.find<HomeController>();
         c.selectedIndex.value = 3;
-        c.pageController.jumpToPage(3);
         Get.offAllNamed(HomePage.id);
+        c.pageController.jumpToPage(3);
       }
     } catch (e) {
       Get.snackbar("Error", e.toString());
@@ -438,8 +438,9 @@ class OnboardingController extends GetxController {
       else {
         final c = Get.find<HomeController>();
         c.selectedIndex.value = 3;
-        c.pageController.jumpToPage(3);
         Get.offAllNamed(HomePage.id);
+        c.pageController.animateToPage(3,
+            duration: Duration(microseconds: 200), curve: Curves.ease);
       }
     } catch (e) {
       Get.snackbar("Error", e.toString());
@@ -687,8 +688,9 @@ class OnboardingController extends GetxController {
           if (isEditing) {
             final c = Get.find<HomeController>();
             c.selectedIndex.value = 3;
-            c.pageController.jumpToPage(3);
             Get.offAllNamed(HomePage.id);
+            c.pageController.animateToPage(3,
+                duration: Duration(microseconds: 200), curve: Curves.ease);
           } else {
             Get.toNamed(TableConfig.id);
           }
@@ -707,8 +709,6 @@ class OnboardingController extends GetxController {
   RxList<int> tables = <int>[].obs;
   RxList<bool> edit = <bool>[].obs;
   RxList<int> capacities = <int>[].obs;
-
-
 
   Future<void> _tableconfig() async {
     try {
