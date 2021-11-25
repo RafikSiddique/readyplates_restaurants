@@ -275,7 +275,12 @@ class _OpeningScreenState extends State<OpeningScreen>
           Get.put(OrderController());
           Get.offNamed(HomePage.id);
         } else {
-          Get.offNamed(authController.route(id + 1));
+          if (id == 0) {
+            controller.animateToPage(1,
+                duration: Duration(milliseconds: 500), curve: Curves.ease);
+          } else {
+            Get.offNamed(authController.route(id + 1));
+          }
         }
         //}
       }

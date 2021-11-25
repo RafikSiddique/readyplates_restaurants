@@ -84,10 +84,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
     }
   }
 
-  @override
-  void initState() {
-    super.initState();
-  }
+
 
   @override
   Widget build(BuildContext context) {

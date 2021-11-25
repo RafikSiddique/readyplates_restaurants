@@ -18,26 +18,6 @@ class ChangePasswordPage1 extends StatefulWidget {
 class _ChangePasswordPage1State extends State<ChangePasswordPage1> {
   final controller = Get.find<AuthController>();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  // @override
-  // void initState() {
-  //   controller.password.addListener(() {
-  //     setState(() {});
-  //   });
-
-  //   controller.password2.addListener(() {
-  //     setState(() {});
-  //   });
-
-  //   super.initState();
-  // }
-
-  // @override
-  // void dispose() {
-  //   controller.email.dispose();
-  //   controller.password.dispose();
-
-  //   super.dispose();
-  // }
 
   @override
   Widget build(BuildContext context) {

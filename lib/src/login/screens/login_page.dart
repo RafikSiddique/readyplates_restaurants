@@ -19,25 +19,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final controller = Get.find<AuthController>();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  // @override
-  // void initState() {
-  //   controller.email.addListener(() {
-  //     setState(() {});
-  //   });
-  //   controller.password.addListener(() {
-  //     setState(() {});
-  //   });
-
-  //   super.initState();
-  // }
-
-  // @override
-  // void dispose() {
-  //   controller.email.dispose();
-  //   controller.password.dispose();
-
-  //   super.dispose();
-  // }
 
   @override
   Widget build(BuildContext context) {

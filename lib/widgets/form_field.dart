@@ -68,9 +68,6 @@ class _AppFormFieldState extends State<AppFormField> {
   bool obSecureText = true;
   TextEditingController get controller => widget.controller;
   @override
-  void initState() {
-    super.initState();
-  }
 
   bool valid = true;
 

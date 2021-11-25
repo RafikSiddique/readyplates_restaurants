@@ -19,19 +19,6 @@ class SignupPage extends StatefulWidget {
 class _SignupPageState extends State<SignupPage> {
   final controller = Get.find<AuthController>();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  // @override
-  // void dispose() {
-  //   controller.email.dispose();
-  //   controller.password.dispose();
-  //   controller.password2.dispose();
-
-  //   super.dispose();
-  // }
 
   @override
   Widget build(BuildContext context) {

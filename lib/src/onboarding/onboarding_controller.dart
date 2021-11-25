@@ -708,6 +708,8 @@ class OnboardingController extends GetxController {
   RxList<bool> edit = <bool>[].obs;
   RxList<int> capacities = <int>[].obs;
 
+
+
   Future<void> _tableconfig() async {
     try {
       if (resId == "") {
@@ -723,6 +725,7 @@ class OnboardingController extends GetxController {
       Get.put(OrderController());
       FirebaseMessagingService().getToken();
       Get.offAllNamed(HomePage.id);
+      dispose();
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }
