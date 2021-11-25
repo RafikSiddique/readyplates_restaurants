@@ -56,6 +56,120 @@ class _TableConfigState extends State<TableConfig> {
                             height: 52,
                             width: 96,
                             decoration: BoxDecoration(
+                                color: Color(0xffE0E0E0),
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Center(
+                              child: Text(
+                                'Table  ${controller.tables[i]}',
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.inter(
+                                  textStyle: TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w500,
+                                    fontStyle: FontStyle.normal,
+                                    color: MyTheme.bottomtextColor,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            height: 52,
+                            width: 85,
+                            child: Center(
+                              child: Text(
+                                'Capacity',
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.inter(
+                                  textStyle: TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w500,
+                                    fontStyle: FontStyle.normal,
+                                    color: MyTheme.bottomtextColor,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            height: 28,
+                            width: 56,
+                            decoration: BoxDecoration(
+                                color: Color(0xffE0E0E0),
+                                borderRadius: BorderRadius.circular(5)),
+                            child: Center(
+                              child: Text(
+                                controller.capacities[i].toString(),
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.inter(
+                                  textStyle: TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w500,
+                                    fontStyle: FontStyle.normal,
+                                    color: MyTheme.bottomtextColor,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                controller.edit[i] = !controller.edit[i];
+                              });
+                            },
+                            child: Container(
+                              height: 28,
+                              width: 28,
+                              decoration: BoxDecoration(
+                                  color: Color(0xffFFD000).withOpacity(0.3),
+                                  borderRadius: BorderRadius.circular(4)),
+                              child: Center(
+                                child: Icon(
+                                  FontAwesomeIcons.pen,
+                                  color: Color(0xffF5BF00),
+                                  size: 16,
+                                ),
+                              ),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              if (controller.tables.length > 0)
+                                setState(() {
+                                  controller.tables.removeLast();
+                                  controller.capacities.removeLast();
+                                  controller.edit.removeLast();
+                                  add = !add;
+                                });
+                            },
+                            child: Container(
+                              height: 28,
+                              width: 28,
+                              decoration: BoxDecoration(
+                                  color: Color(0xffFFE2E2),
+                                  borderRadius: BorderRadius.circular(4)),
+                              child: Center(
+                                child: Icon(
+                                  Icons.delete_forever,
+                                  color: Color(0xffEB6424),
+                                  size: 20,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    replacement: Padding(
+                      padding: const EdgeInsets.only(top: 16),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            height: 52,
+                            width: 96,
+                            decoration: BoxDecoration(
                                 color: Color(0xffE2F5F4),
                                 borderRadius: BorderRadius.circular(10)),
                             child: Center(
@@ -191,120 +305,6 @@ class _TableConfigState extends State<TableConfig> {
                                   FontAwesomeIcons.timesCircle,
                                   color: MyTheme.closeiconColor,
                                   size: 21,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    replacement: Padding(
-                      padding: const EdgeInsets.only(top: 16),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            height: 52,
-                            width: 96,
-                            decoration: BoxDecoration(
-                                color: Color(0xffE0E0E0),
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Center(
-                              child: Text(
-                                'Table  ${controller.tables[i]}',
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.inter(
-                                  textStyle: TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w500,
-                                    fontStyle: FontStyle.normal,
-                                    color: MyTheme.bottomtextColor,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            height: 52,
-                            width: 85,
-                            child: Center(
-                              child: Text(
-                                'Capacity',
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.inter(
-                                  textStyle: TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w500,
-                                    fontStyle: FontStyle.normal,
-                                    color: MyTheme.bottomtextColor,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            height: 28,
-                            width: 56,
-                            decoration: BoxDecoration(
-                                color: Color(0xffE0E0E0),
-                                borderRadius: BorderRadius.circular(5)),
-                            child: Center(
-                              child: Text(
-                                controller.capacities[i].toString(),
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.inter(
-                                  textStyle: TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w500,
-                                    fontStyle: FontStyle.normal,
-                                    color: MyTheme.bottomtextColor,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              setState(() {
-                                controller.edit[i] = !controller.edit[i];
-                              });
-                            },
-                            child: Container(
-                              height: 28,
-                              width: 28,
-                              decoration: BoxDecoration(
-                                  color: Color(0xffFFD000).withOpacity(0.3),
-                                  borderRadius: BorderRadius.circular(4)),
-                              child: Center(
-                                child: Icon(
-                                  FontAwesomeIcons.pen,
-                                  color: Color(0xffF5BF00),
-                                  size: 16,
-                                ),
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              if (controller.tables.length > 0)
-                                setState(() {
-                                  controller.tables.removeLast();
-                                  controller.capacities.removeLast();
-                                  controller.edit.removeLast();
-                                  add = !add;
-                                });
-                            },
-                            child: Container(
-                              height: 28,
-                              width: 28,
-                              decoration: BoxDecoration(
-                                  color: Color(0xffFFE2E2),
-                                  borderRadius: BorderRadius.circular(4)),
-                              child: Center(
-                                child: Icon(
-                                  Icons.delete_forever,
-                                  color: Color(0xffEB6424),
-                                  size: 20,
                                 ),
                               ),
                             ),
