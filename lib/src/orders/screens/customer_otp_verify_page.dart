@@ -67,7 +67,7 @@ class CustomerOtpVerify extends GetView<OrderController> {
                   InkWell(
                     onTap: () {},
                     child: Container(
-                      height: MediaQuery.of(context).size.height * 0.4,
+                      height: MediaQuery.of(context).size.height * 0.58,
                       // width: MediaQuery.of(context).size.width * 0.7,
                       child: Image(
                         image: AssetImage('assets/images/otpverify.png'),
@@ -201,7 +201,7 @@ class CustomerOtpVerify extends GetView<OrderController> {
                     buttontextColor: MyTheme.appbackgroundColor,
                   ),
                   SizedBox(
-                    height: 15,
+                    height: 16,
                   ),
                 ],
               ),

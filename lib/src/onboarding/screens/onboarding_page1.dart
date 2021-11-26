@@ -96,119 +96,128 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                 SizedBox(
                   height: 18,
                 ),
-                FieldTitle(
-                  text: 'Owner Mobile Number',
-                  fontFamily: 'Inter-Regular',
-                  fontSize: 13,
-                  fontWeight: FontWeight.w500,
+                AppFormField(
+                  title: 'Owner Mobile Number',
+                  hintText: '+91 XXXXXXXXXX',
+                  hintfontSize: 15,
+                  controller: controller.ownMobile,
                 ),
-                SizedBox(
-                  height: 5,
-                ),
-                ValueListenableBuilder<TextEditingValue>(
-                    valueListenable: controller.ownMobile,
-                    builder: (context, v, __) {
-                      return Container(
-                        child: TextFormField(
-                          style: GoogleFonts.inter(
-                            fontSize: 15,
-                            color: MyTheme.hinttextchangeColor,
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w500,
-                          ),
-                          controller: controller.ownMobile,
-                          keyboardType: TextInputType.number,
-                          textAlign: TextAlign.left,
-                          decoration: InputDecoration(
-                            errorStyle: TextStyle(
-                              height: 1,
-                              textBaseline: TextBaseline.ideographic,
-                            ),
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                width: 1,
-                                color: v.text != ""
-                                    ? MyTheme.borderchangeColor
-                                    : MyTheme.borderColor,
-                              ),
-                              borderRadius: BorderRadius.circular(6),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                width: 1,
-                                color: v.text != ""
-                                    ? MyTheme.borderchangeColor
-                                    : MyTheme.borderColor,
-                              ),
-                              borderRadius: BorderRadius.circular(6),
-                            ),
-                            counterText: "",
-                            hintText: '+1 415 569 2700',
-                            suffixIcon: Container(
-                              width: 115,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Container(
-                                    height: 35,
-                                    width: 0,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        width: 0.5,
-                                        color: v.text != ""
-                                            ? MyTheme.borderchangeColor
-                                            : MyTheme.borderColor,
-                                      ),
-                                    ),
-                                  ),
-                                  TextButton(
-                                    child: Padding(
-                                      padding:
-                                          EdgeInsets.only(right: 20, left: 20),
-                                      child: Text(
-                                        'Verify',
-                                        style: GoogleFonts.inter(
-                                          decoration: TextDecoration.underline,
-                                          fontWeight: FontWeight.bold,
-                                          fontStyle: FontStyle.normal,
-                                          fontSize: 15,
-                                          color: MyTheme.verifytextColor,
-                                        ),
-                                      ),
-                                    ),
-                                    onPressed: () {},
-                                  ),
-                                ],
-                              ),
-                            ),
-                            contentPadding:
-                                EdgeInsets.only(left: 14, top: 14, right: 24),
-                            hintStyle: TextStyle(
-                              fontSize: 15,
-                              color: MyTheme.hinttextColor,
-                              fontFamily: 'Inter-Regular',
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                      );
-                    }),
-                SizedBox(
-                  height: 3,
-                ),
-                Text(
-                  controller.ownMobile.text.isEmpty
-                      ? 'Will be used to make all future correspondence/communications'
-                      : 'Press “Verify” to authenticate mobile number',
-                  style: GoogleFonts.poppins(
-                    fontSize: 9,
-                    fontWeight: FontWeight.normal,
-                    fontStyle: FontStyle.normal,
-                    color: controller.ownMobile.text.isEmpty
-                        ? MyTheme.bottomtextColor
-                        : MyTheme.starColor,
-                  ),
-                ),
+
+                //
+                // FieldTitle(
+                //   text: 'Owner Mobile Number',
+                //   fontFamily: 'Inter-Regular',
+                //   fontSize: 13,
+                //   fontWeight: FontWeight.w500,
+                // ),
+                // SizedBox(
+                //   height: 5,
+                // ),
+                // ValueListenableBuilder<TextEditingValue>(
+                //     valueListenable: controller.ownMobile,
+                //     builder: (context, v, __) {
+                //       return Container(
+                //         child: TextFormField(
+                //           style: GoogleFonts.inter(
+                //             fontSize: 15,
+                //             color: MyTheme.hinttextchangeColor,
+                //             fontStyle: FontStyle.normal,
+                //             fontWeight: FontWeight.w500,
+                //           ),
+                //           controller: controller.ownMobile,
+                //           keyboardType: TextInputType.number,
+                //           textAlign: TextAlign.left,
+                //           decoration: InputDecoration(
+                //             errorStyle: TextStyle(
+                //               height: 1,
+                //               textBaseline: TextBaseline.ideographic,
+                //             ),
+                //             border: OutlineInputBorder(
+                //               borderSide: BorderSide(
+                //                 width: 1,
+                //                 color: v.text != ""
+                //                     ? MyTheme.borderchangeColor
+                //                     : MyTheme.borderColor,
+                //               ),
+                //               borderRadius: BorderRadius.circular(6),
+                //             ),
+                //             enabledBorder: OutlineInputBorder(
+                //               borderSide: BorderSide(
+                //                 width: 1,
+                //                 color: v.text != ""
+                //                     ? MyTheme.borderchangeColor
+                //                     : MyTheme.borderColor,
+                //               ),
+                //               borderRadius: BorderRadius.circular(6),
+                //             ),
+                //             counterText: "",
+                //             hintText: '+1 415 569 2700',
+                //             suffixIcon: Container(
+                //               width: 115,
+                //               child: Row(
+                //                 mainAxisAlignment: MainAxisAlignment.end,
+                //                 children: [
+                //                   Container(
+                //                     height: 35,
+                //                     width: 0,
+                //                     decoration: BoxDecoration(
+                //                       border: Border.all(
+                //                         width: 0.5,
+                //                         color: v.text != ""
+                //                             ? MyTheme.borderchangeColor
+                //                             : MyTheme.borderColor,
+                //                       ),
+                //                     ),
+                //                   ),
+                //                   TextButton(
+                //                     child: Padding(
+                //                       padding:
+                //                           EdgeInsets.only(right: 20, left: 20),
+                //                       child: Text(
+                //                         'Verify',
+                //                         style: GoogleFonts.inter(
+                //                           decoration: TextDecoration.underline,
+                //                           fontWeight: FontWeight.bold,
+                //                           fontStyle: FontStyle.normal,
+                //                           fontSize: 15,
+                //                           color: MyTheme.verifytextColor,
+                //                         ),
+                //                       ),
+                //                     ),
+                //                     onPressed: () {},
+                //                   ),
+                //                 ],
+                //               ),
+                //             ),
+                //             contentPadding:
+                //                 EdgeInsets.only(left: 14, top: 14, right: 24),
+                //             hintStyle: TextStyle(
+                //               fontSize: 15,
+                //               color: MyTheme.hinttextColor,
+                //               fontFamily: 'Inter-Regular',
+                //               fontWeight: FontWeight.w500,
+                //             ),
+                //           ),
+                //         ),
+                //       );
+                //     }),
+                // SizedBox(
+                //   height: 3,
+                // ),
+                // Text(
+                //   controller.ownMobile.text.isEmpty
+                //       ? 'Will be used to make all future correspondence/communications'
+                //       : 'Press “Verify” to authenticate mobile number',
+                //   style: GoogleFonts.poppins(
+                //     fontSize: 9,
+                //     fontWeight: FontWeight.normal,
+                //     fontStyle: FontStyle.normal,
+                //     color: controller.ownMobile.text.isEmpty
+                //         ? MyTheme.bottomtextColor
+                //         : MyTheme.starColor,
+                //   ),
+                // ),
+                //
                 SizedBox(
                   height: 18,
                 ),

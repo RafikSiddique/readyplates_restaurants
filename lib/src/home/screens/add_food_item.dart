@@ -21,7 +21,7 @@ String getUrl(String url) {
 // http://202.53.174.5:8000 global url
   // http://192.168.29.31:5500 local url
 //https://readyplates.herokuapp.com
-  return "http://202.53.174.5:8000" + url;
+  return "https://readyplates.herokuapp.com" + url;
 }
 
 class AddFoodItem extends StatefulWidget {

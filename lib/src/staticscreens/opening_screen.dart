@@ -32,6 +32,7 @@ class _OpeningScreenState extends State<OpeningScreen>
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       // appBar: AppBar(),
+      // final push
       body: Container(
         height: size.height,
         decoration: BoxDecoration(
@@ -143,7 +144,6 @@ class _OpeningScreenState extends State<OpeningScreen>
                       type: MaterialType.transparency,
                       child: InkWell(
                         onTap: () {
-                          // Get.toNamed(TableConfig.id);
                           Get.toNamed(LoginPage.id);
                         },
                         child: ClipRRect(
