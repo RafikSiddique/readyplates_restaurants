@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
+import 'package:readyplates_restaurants/src/staticscreens/opening_screen.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
+import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 
 class OnBoardingWrapper extends StatelessWidget {
@@ -40,6 +43,13 @@ class OnBoardingWrapper extends StatelessWidget {
               message:
                   "You can't you back at this stage, if you want to edit, you can edit after logging in",
               duration: Duration(seconds: 2),
+              mainButton: TextButton(
+                  onPressed: () {
+                    Get.find<AuthController>().clearAll();
+                    SharedPreferenceHelper().clear();
+                    Get.offAllNamed(OpeningScreen.id);
+                  },
+                  child: Text("Logout?")),
             ),
           );
           return false;

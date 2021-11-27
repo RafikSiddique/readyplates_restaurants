@@ -222,9 +222,8 @@ class OnboardingController extends GetxController {
         Get.toNamed(OnboardingPage3.id);
       else {
         final c = Get.find<HomeController>();
-        c.selectedIndex.value = 3;
         Get.offAllNamed(HomePage.id);
-        c.pageController.jumpToPage(3);
+        c.selectedIndex.value = 0;
       }
     } catch (e) {
       Get.snackbar("Error", e.toString());
