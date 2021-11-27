@@ -223,7 +223,7 @@ class OnboardingController extends GetxController {
       else {
         final c = Get.find<HomeController>();
         Get.offAllNamed(HomePage.id);
-        c.selectedIndex.value = 0;
+        c.selectedIndex.value = 3;
       }
     } catch (e) {
       Get.snackbar("Error", e.toString());
@@ -436,10 +436,11 @@ class OnboardingController extends GetxController {
         Get.toNamed(OnboardingPage7.id);
       else {
         final c = Get.find<HomeController>();
-        c.selectedIndex.value = 3;
+
         Get.offAllNamed(HomePage.id);
-        c.pageController.animateToPage(3,
-            duration: Duration(microseconds: 200), curve: Curves.ease);
+        c.selectedIndex.value = 3;
+        // c.pageController.animateToPage(3,
+        //     duration: Duration(microseconds: 200), curve: Curves.ease);
       }
     } catch (e) {
       Get.snackbar("Error", e.toString());
@@ -686,10 +687,10 @@ class OnboardingController extends GetxController {
         if (pageIndex.value == 3) {
           if (isEditing) {
             final c = Get.find<HomeController>();
-            c.selectedIndex.value = 3;
             Get.offAllNamed(HomePage.id);
-            c.pageController.animateToPage(3,
-                duration: Duration(microseconds: 200), curve: Curves.ease);
+            c.selectedIndex.value = 3;
+            // c.pageController.animateToPage(3,
+            //     duration: Duration(microseconds: 200), curve: Curves.ease);
           } else {
             Get.toNamed(TableConfig.id);
           }

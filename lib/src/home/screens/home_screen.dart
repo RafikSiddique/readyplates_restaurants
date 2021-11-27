@@ -18,6 +18,25 @@ class HomePage extends StatelessWidget {
   final List<String> bottomBarIcons =
       List.generate(4, (index) => 'assets/images/bottombaar${index + 1}.png');
   final List<String> label = ["Menu", "Performance", "Orders", "Profile"];
+  Widget getBody() {
+    switch (controller.selectedIndex.value) {
+      case 0:
+        return MenuPage();
+
+      case 1:
+        return PerformancePage();
+
+      case 2:
+        return OrderCompletePage1();
+
+      case 3:
+        return ProfilePage();
+
+      default:
+        return MenuPage();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,15 +100,6 @@ class HomePage extends StatelessWidget {
                 ),
               )),
         ),
-        body: PageView(
-          controller: controller.pageController,
-          physics: NeverScrollableScrollPhysics(),
-          children: [
-            MenuPage(),
-            PerformancePage(),
-            OrderCompletePage1(),
-            ProfilePage(),
-          ],
-        ));
+        body: Obx(() => getBody()));
   }
 }

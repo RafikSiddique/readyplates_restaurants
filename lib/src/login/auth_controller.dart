@@ -155,7 +155,13 @@ class AuthController extends GetxController {
       );
       await sfHelper.setUserId(id[0]);
       await sfHelper.setRestaurantId(id[1]);
+      final c = Get.find<HomeController>();
+
       Get.offAllNamed(HomePage.id);
+
+      c.selectedIndex.value = 3;
+      // c.pageController.animateToPage(3,
+      //     duration: Duration(microseconds: 200), curve: Curves.ease);
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }
