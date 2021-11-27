@@ -198,27 +198,36 @@ class _LoginPageState extends State<LoginPage> {
                           SizedBox(
                             height: kToolbarHeight * 0.4,
                           ),
-                          OnboardingButton(
-                            height: 54,
-                            onTap: () async {
-                              formKey.currentState!.save();
-                              if (formKey.currentState!.validate()) ;
+                          AnimatedBuilder(
+                              animation: Listenable.merge([
+                                controller.email,
+                                controller.password,
+                              ]),
+                              builder: (context, child) {
+                                return OnboardingButton(
+                                  height: 54,
+                                  onTap: () async {
+                                    formKey.currentState!.save();
+                                    if (formKey.currentState!.validate()) ;
 
-                              await controller.login(widget.isChangePassword);
-                            },
-                            buttonbackgroundColor:
-                                (controller.email.text.isEmpty ||
-                                        controller.password.text.isEmpty)
-                                    ? MyTheme.buttonColor
-                                    : MyTheme.buttonchangeColor,
-                            text: controller.isLoggedIn == true
-                                ? 'Proceed'
-                                : 'Verify Password',
-                            buttontextColor: (controller.email.text.isEmpty ||
-                                    controller.password.text.isEmpty)
-                                ? MyTheme.buttontextColor
-                                : MyTheme.buttontextchangeColor,
-                          ),
+                                    await controller
+                                        .login(widget.isChangePassword);
+                                  },
+                                  buttonbackgroundColor:
+                                      (controller.email.text.isEmpty ||
+                                              controller.password.text.isEmpty)
+                                          ? MyTheme.buttonColor
+                                          : MyTheme.buttonchangeColor,
+                                  text: controller.isLoggedIn == true
+                                      ? 'Proceed'
+                                      : 'Verify Password',
+                                  buttontextColor:
+                                      (controller.email.text.isEmpty ||
+                                              controller.password.text.isEmpty)
+                                          ? MyTheme.buttontextColor
+                                          : MyTheme.buttontextchangeColor,
+                                );
+                              }),
                           SizedBox(
                             height: kToolbarHeight * 0.15,
                           ),

@@ -504,6 +504,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
                   height: 22,
                 ),
                 OnboardingButton(
+                  height: 50,
                   onTap: () {
                     formKey.currentState?.save();
 

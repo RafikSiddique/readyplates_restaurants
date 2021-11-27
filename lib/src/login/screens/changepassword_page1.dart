@@ -183,25 +183,32 @@ class _ChangePasswordPage1State extends State<ChangePasswordPage1> {
                           SizedBox(
                             height: kToolbarHeight * 0.6,
                           ),
-                          OnboardingButton(
-                            height: 54,
-                            onTap: () async {
-                              formKey.currentState!.save();
-                              if (formKey.currentState!.validate())
-                                await controller.changePassword();
-                            },
-                            buttonbackgroundColor:
-                                (controller.password.text.isEmpty ||
-                                        controller.password2.text.isEmpty)
-                                    ? MyTheme.buttonColor
-                                    : MyTheme.buttonchangeColor,
-                            text: 'Change Password',
-                            buttontextColor:
-                                (controller.password.text.isEmpty ||
-                                        controller.password2.text.isEmpty)
-                                    ? MyTheme.buttontextColor
-                                    : MyTheme.buttontextchangeColor,
-                          ),
+                          AnimatedBuilder(
+                              animation: Listenable.merge([
+                                controller.password,
+                                controller.password2,
+                              ]),
+                              builder: (context, child) {
+                                return OnboardingButton(
+                                  height: 54,
+                                  onTap: () async {
+                                    formKey.currentState!.save();
+                                    if (formKey.currentState!.validate())
+                                      await controller.changePassword();
+                                  },
+                                  buttonbackgroundColor:
+                                      (controller.password.text.isEmpty ||
+                                              controller.password2.text.isEmpty)
+                                          ? MyTheme.buttonColor
+                                          : MyTheme.buttonchangeColor,
+                                  text: 'Change Password',
+                                  buttontextColor:
+                                      (controller.password.text.isEmpty ||
+                                              controller.password2.text.isEmpty)
+                                          ? MyTheme.buttontextColor
+                                          : MyTheme.buttontextchangeColor,
+                                );
+                              }),
                           SizedBox(
                             height: 10,
                           )
