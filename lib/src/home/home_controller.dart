@@ -21,8 +21,8 @@ class HomeController extends GetxController {
 
   RxInt selectedIndex;
   bool isEditing = false;
-  late PageController pageController =
-      PageController(initialPage: selectedIndex.value);
+  // late PageController pageController =
+  //     PageController(initialPage: selectedIndex.value);
   FoodItemModel? foodItemModel;
 
   final SharedPreferenceHelper sfHelper = Get.find();
@@ -67,8 +67,8 @@ class HomeController extends GetxController {
   void onChanged(int i) {
     selectedIndex.value = i;
 
-    pageController.animateToPage(i,
-        duration: Duration(milliseconds: 500), curve: Curves.ease);
+    // pageController.animateToPage(i,
+    //     duration: Duration(milliseconds: 500), curve: Curves.ease);
     title.value = getTitle(i);
     if (i == 1) {
       timer?.cancel();
