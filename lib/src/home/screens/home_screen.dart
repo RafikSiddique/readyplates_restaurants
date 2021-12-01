@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/models/orderitem_model.dart';
 import 'package:readyplates_restaurants/src/home/home_controller.dart';
+import 'package:readyplates_restaurants/src/home/screens/Table_Assign_Page.dart';
 import 'package:readyplates_restaurants/src/home/screens/add_menu_page.dart';
 import 'package:readyplates_restaurants/src/orders/screens/order_complete_page1.dart';
 import 'package:readyplates_restaurants/src/home/screens/performance_page.dart';
@@ -16,8 +17,14 @@ class HomePage extends StatelessWidget {
   OrderModelApi? orderModelApi;
 
   final List<String> bottomBarIcons =
-      List.generate(4, (index) => 'assets/images/bottombaar${index + 1}.png');
-  final List<String> label = ["Menu", "Performance", "Orders", "Profile"];
+      List.generate(5, (index) => 'assets/images/bottombaar${index + 1}.png');
+  final List<String> label = [
+    "Menu",
+    "Performance",
+    "Orders",
+    "Tables",
+    "Profile",
+  ];
   Widget getBody() {
     switch (controller.selectedIndex.value) {
       case 0:
@@ -30,6 +37,9 @@ class HomePage extends StatelessWidget {
         return OrderCompletePage1();
 
       case 3:
+        return TableAssignPage();
+
+      case 4:
         return ProfilePage();
 
       default:
@@ -55,8 +65,18 @@ class HomePage extends StatelessWidget {
                 currentIndex: controller.selectedIndex.value,
                 type: BottomNavigationBarType.fixed,
                 backgroundColor: Color(0xFFFFFFFF),
-                selectedFontSize: 20,
-                unselectedFontSize: 20,
+                // selectedFontSize: 20,
+                // unselectedFontSize: 20,
+                selectedLabelStyle: GoogleFonts.inter(
+                  fontSize: 13,
+                  fontStyle: FontStyle.normal,
+                  fontWeight: FontWeight.normal,
+                ),
+                unselectedLabelStyle: GoogleFonts.inter(
+                  fontSize: 13,
+                  fontStyle: FontStyle.normal,
+                  fontWeight: FontWeight.normal,
+                ),
                 onTap: controller.onChanged,
                 items: [
                   for (var i = 0; i < bottomBarIcons.length; i++)

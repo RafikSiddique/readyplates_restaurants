@@ -110,6 +110,8 @@ class HomeController extends GetxController {
       case 2:
         return "Orders";
       case 3:
+        return "Table Status";
+      case 4:
         return "Profile";
       default:
         return "";
