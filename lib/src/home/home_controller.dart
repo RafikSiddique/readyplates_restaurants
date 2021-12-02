@@ -8,6 +8,7 @@ import 'package:http/http.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:readyplates_restaurants/models/feedback_model.dart';
 import 'package:readyplates_restaurants/models/fooditem_model.dart';
+import 'package:readyplates_restaurants/models/table_model.dart';
 import 'package:readyplates_restaurants/src/home/home_services.dart';
 import 'package:readyplates_restaurants/src/orders/order_controller.dart';
 import 'package:readyplates_restaurants/src/home/screens/add_food_item.dart';
@@ -64,6 +65,9 @@ class HomeController extends GetxController {
       cost: "cost",
       restaurant: "'restaurant'",
     ),
+  ].obs;
+  RxList<TableModel> getTables = <TableModel>[
+    TableModel(id: -1, capacity: 1, available: false, restaurant: 1)
   ].obs;
   Timer? timer;
   void onChanged(int i) {
@@ -227,6 +231,22 @@ class HomeController extends GetxController {
       timer?.cancel();
     }
   }
+
+//
+  Future<void> getAvailableTables(String id) async {
+    try {
+      getTables.value = await homeServices.getAvailableTable(id);
+    } catch (e) {
+      getTables.value = getTables.length != 0
+          ? getTables.first.id == -1
+              ? []
+              : getTables
+          : [];
+      Get.snackbar("Error", e.toString());
+      timer?.cancel();
+    }
+  }
+  //
 
   RxList<FeedbackModel> feedbacks = <FeedbackModel>[].obs;
   RxBool feedbackLoading = false.obs;

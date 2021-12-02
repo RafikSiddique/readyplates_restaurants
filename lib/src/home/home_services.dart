@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:http/http.dart';
 import 'package:readyplates_restaurants/models/feedback_model.dart';
 import 'package:readyplates_restaurants/models/fooditem_model.dart';
+import 'package:readyplates_restaurants/models/table_model.dart';
 
 import 'package:readyplates_restaurants/utils/api_services.dart';
 import 'package:readyplates_restaurants/utils/exception.dart';
@@ -147,4 +148,29 @@ class HomeServices extends ApiServices {
       rethrow;
     }
   }
+
+  //
+  Future<List<TableModel>> getAvailableTable(String id) async {
+    try {
+      Response response = await get(
+        availableTable(id),
+      );
+
+      if (response.statusCode == 200) {
+        List<dynamic> list = jsonDecode(response.body);
+
+        List<TableModel> tables =
+            list.map((e) => TableModel.fromMap(e)).toList();
+        print(tables);
+        return tables;
+      } else {
+        throw AppException(
+            code: response.statusCode, message: response.reasonPhrase);
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  //
 }

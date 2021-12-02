@@ -19,7 +19,7 @@ class ApiServices {
   Uri onboarding(int screen) => restaurants("s${screen}/");
   Uri get table => restaurants('table/');
   Uri get menu => restaurants('menu/');
-
+  Uri availableTable(String id) => restaurants('table/$id');
   Uri updateMenu(int id) => restaurants('menu/$id');
 
   Uri menuList(String id) => restaurants('menulist/$id/');
