@@ -58,4 +58,8 @@ class MyTheme {
   static Color ratingfillColor = Color(0xffFFD000);
   static Color priceColor = Color(0xff595959);
   static Color ordertextColor = Color(0xff4E535A).withOpacity(0.8);
+  static Color bordersColor = Color(0xffC4C4C4);
+  static Color buttonbackColor = Color(0xffEBEBEB);
+  static Color vacantcolor = Color(0xffE2F5F4);
+  static Color occupiedcolor = Color(0xffFFDBDB);
 }
