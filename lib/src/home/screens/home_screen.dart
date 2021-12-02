@@ -94,32 +94,35 @@ class HomePage extends StatelessWidget {
                 ]),
           ),
         ),
-        appBar: AppBar(
-          elevation: 0,
-          centerTitle: true,
-          toolbarHeight: 44,
-          backgroundColor: Colors.transparent,
-          actions: [
-            IconButton(
-              onPressed: () {
-                controller.logout();
-              },
-              icon: Icon(
-                Icons.power_settings_new,
-                color: Colors.black,
-              ),
-            )
-          ],
-          title: Obx(() => Text(
-                controller.title.value,
-                style: GoogleFonts.inter(
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 17,
-                  color: Color(0xff393E46),
-                ),
-              )),
-        ),
+        appBar: PreferredSize(
+            child: Obx(
+              () => AppBar(
+                  elevation: 0,
+                  centerTitle: true,
+                  toolbarHeight: 44,
+                  backgroundColor: controller.appBarColor.value,
+                  actions: [
+                    IconButton(
+                      onPressed: () {
+                        controller.logout();
+                      },
+                      icon: Icon(
+                        Icons.power_settings_new,
+                        color: Colors.black,
+                      ),
+                    )
+                  ],
+                  title: Text(
+                    controller.title.value,
+                    style: GoogleFonts.inter(
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 17,
+                      color: Color(0xff393E46),
+                    ),
+                  )),
+            ),
+            preferredSize: Size.fromHeight(44)),
         body: Obx(() => getBody()));
   }
 }

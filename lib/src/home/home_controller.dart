@@ -19,6 +19,8 @@ import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 class HomeController extends GetxController {
   HomeController({required this.selectedIndex});
 
+  Rx<Color> appBarColor = Colors.transparent.obs;
+
   RxInt selectedIndex;
   bool isEditing = false;
   // late PageController pageController =
@@ -65,6 +67,11 @@ class HomeController extends GetxController {
   ].obs;
   Timer? timer;
   void onChanged(int i) {
+    if (i == 3) {
+      appBarColor.value = Colors.white;
+    } else {
+      appBarColor.value = Colors.transparent;
+    }
     selectedIndex.value = i;
 
     // pageController.animateToPage(i,
