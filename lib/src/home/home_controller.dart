@@ -69,10 +69,12 @@ class HomeController extends GetxController {
   RxList<TableModel> getTables = <TableModel>[
     TableModel(id: -1, capacity: 1, available: false, restaurant: 1)
   ].obs;
+
   Timer? timer;
   void onChanged(int i) {
     if (i == 3) {
       appBarColor.value = Colors.white;
+      getAvailableTables();
     } else {
       appBarColor.value = Colors.transparent;
     }
@@ -86,7 +88,6 @@ class HomeController extends GetxController {
       getFeedbacksFirst();
       timer = Timer.periodic(Duration(seconds: 5), (t) async {
         await getFeedbacks();
-
         timer = t;
       });
     } else if (i == 2) {
@@ -233,8 +234,9 @@ class HomeController extends GetxController {
   }
 
 //
-  Future<void> getAvailableTables(String id) async {
+  Future<void> getAvailableTables() async {
     try {
+      String id = await sfHelper.getRestaurantId();
       getTables.value = await homeServices.getAvailableTable(id);
     } catch (e) {
       getTables.value = getTables.length != 0
@@ -246,7 +248,15 @@ class HomeController extends GetxController {
       timer?.cancel();
     }
   }
-  //
+
+  Future<void> switchTableAvailability(int id, bool availability) async {
+    try {
+      await homeServices.switchAvailability(id, availability);
+      await getAvailableTables();
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+    }
+  }
 
   RxList<FeedbackModel> feedbacks = <FeedbackModel>[].obs;
   RxBool feedbackLoading = false.obs;

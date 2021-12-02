@@ -118,7 +118,7 @@ class OrderModelApi {
       created_on: DateTime.parse(map['created_on']),
       totalPrice: map['totalprice'],
       no_of_people: map['no_of_people'],
-      no_of_table: map['table'],
+      no_of_table: map['no_of_table'],
       date: map['date'],
       time: map['time'],
       tax: map['tax'],

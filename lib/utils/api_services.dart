@@ -20,6 +20,8 @@ class ApiServices {
   Uri get table => restaurants('table/');
   Uri get menu => restaurants('menu/');
   Uri availableTable(String id) => restaurants('table/$id');
+  Uri get setAvailability => restaurants('tableavailable/');
+
   Uri updateMenu(int id) => restaurants('menu/$id');
 
   Uri menuList(String id) => restaurants('menulist/$id/');

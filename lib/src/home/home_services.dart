@@ -149,7 +149,22 @@ class HomeServices extends ApiServices {
     }
   }
 
-  //
+  Future<void> switchAvailability(int id, bool availability) async {
+    try {
+      Response response = await post(setAvailability,
+          body: jsonEncode({
+            "id": id,
+            "available": availability,
+          }));
+      if (response.statusCode != 200) {
+        throw AppException(
+            code: response.statusCode, message: response.reasonPhrase);
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<List<TableModel>> getAvailableTable(String id) async {
     try {
       Response response = await get(
@@ -157,7 +172,7 @@ class HomeServices extends ApiServices {
       );
 
       if (response.statusCode == 200) {
-        List<dynamic> list = jsonDecode(response.body);
+        List<dynamic> list = (jsonDecode(response.body) as Map)['data'];
 
         List<TableModel> tables =
             list.map((e) => TableModel.fromMap(e)).toList();
@@ -171,6 +186,4 @@ class HomeServices extends ApiServices {
       rethrow;
     }
   }
-
-  //
 }
