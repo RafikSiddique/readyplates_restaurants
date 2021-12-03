@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/models/orderitem_model.dart';
 import 'package:readyplates_restaurants/src/home/home_controller.dart';
-import 'package:readyplates_restaurants/src/home/screens/Table_Assign_Page.dart';
+import 'package:readyplates_restaurants/src/home/screens/table_status_page.dart';
 import 'package:readyplates_restaurants/src/home/screens/add_menu_page.dart';
 import 'package:readyplates_restaurants/src/orders/screens/order_complete_page1.dart';
 import 'package:readyplates_restaurants/src/home/screens/performance_page.dart';
@@ -37,7 +37,7 @@ class HomePage extends StatelessWidget {
         return OrderCompletePage1();
 
       case 3:
-        return TableAssignPage();
+        return TableStatusPage();
 
       case 4:
         return ProfilePage();
