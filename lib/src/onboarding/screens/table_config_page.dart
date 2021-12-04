@@ -245,7 +245,7 @@ class _TableConfigState extends State<TableConfig> {
                                   color: MyTheme.bottomtextColor,
                                 ),
                               ),
-                              items: List.generate(10, (index) => index + 1)
+                              items: List.generate(50, (index) => index + 1)
                                   .map(
                                     (i) => DropdownMenuItem<int>(
                                         child: Text(

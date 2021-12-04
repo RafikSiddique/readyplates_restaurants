@@ -41,16 +41,16 @@ class SortByCapacity extends StatelessWidget {
             color: MyTheme.chevrondowncolor,
           ),
         ),
-        items: List.generate(10, (index) => index + 1)
+        items: List.generate(50, (index) => index + 1)
             .map(
               (i) => DropdownMenuItem<int>(
                   child: Text(
                     i.toString(),
-                    style: GoogleFonts.inter(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w500,
+                    style: GoogleFonts.nunito(
                       fontStyle: FontStyle.normal,
-                      color: MyTheme.bottomtextColor,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 13,
+                      color: MyTheme.chevrondowncolor,
                     ),
                   ),
                   value: i),

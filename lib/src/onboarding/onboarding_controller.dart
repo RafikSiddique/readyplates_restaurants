@@ -223,7 +223,7 @@ class OnboardingController extends GetxController {
       else {
         final c = Get.find<HomeController>();
         Get.offAllNamed(HomePage.id);
-        c.selectedIndex.value = 3;
+        c.selectedIndex.value = 4;
       }
     } catch (e) {
       Get.snackbar("Error", e.toString());
@@ -438,7 +438,7 @@ class OnboardingController extends GetxController {
         final c = Get.find<HomeController>();
 
         Get.offAllNamed(HomePage.id);
-        c.selectedIndex.value = 3;
+        c.selectedIndex.value = 4;
         // c.pageController.animateToPage(3,
         //     duration: Duration(microseconds: 200), curve: Curves.ease);
       }
@@ -531,10 +531,7 @@ class OnboardingController extends GetxController {
       await services.onboardingapi8(
         resId,
         resDescript.text,
-        "0",
-        "0",
         servingTime.toString(),
-        tableTurnTime.toString(),
         "${recurrenceTime.year}-${recurrenceTime.month}-${recurrenceTime.day}",
         selectedRecurrence.value,
         startTime,
@@ -684,11 +681,11 @@ class OnboardingController extends GetxController {
       if (isImagesUploaded(files)) {
         await services.uploadImages(files, pageIndex.value, fields, resId);
 
-        if (pageIndex.value == 3) {
+        if (pageIndex.value == 4) {
           if (isEditing) {
             final c = Get.find<HomeController>();
             Get.offAllNamed(HomePage.id);
-            c.selectedIndex.value = 3;
+            c.selectedIndex.value = 4;
             // c.pageController.animateToPage(3,
             //     duration: Duration(microseconds: 200), curve: Curves.ease);
           } else {

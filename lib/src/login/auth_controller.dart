@@ -159,7 +159,7 @@ class AuthController extends GetxController {
 
       Get.offAllNamed(HomePage.id);
 
-      c.selectedIndex.value = 3;
+      c.selectedIndex.value = 4;
       // c.pageController.animateToPage(3,
       //     duration: Duration(microseconds: 200), curve: Curves.ease);
     } catch (e) {

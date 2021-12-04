@@ -44,8 +44,8 @@ class _TableStatusPageState extends State<TableStatusPage>
                     child: Container(
                       decoration: BoxDecoration(
                         color: tabController.index == 0
-                            ? MyTheme.appbackgroundColor
-                            : MyTheme.buttonbackColor,
+                            ? MyTheme.buttonbackColor
+                            : MyTheme.appbackgroundColor,
                         border: Border.all(
                           width: 1.0,
                           color: MyTheme.bordersColor,
@@ -80,8 +80,8 @@ class _TableStatusPageState extends State<TableStatusPage>
                     child: Container(
                       decoration: BoxDecoration(
                           color: tabController.index == 1
-                              ? MyTheme.appbackgroundColor
-                              : MyTheme.buttonbackColor,
+                              ? MyTheme.buttonbackColor
+                              : MyTheme.appbackgroundColor,
                           border: Border.all(
                             width: 1.0,
                             color: Color(0xffC4C4C4),

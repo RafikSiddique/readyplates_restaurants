@@ -240,10 +240,7 @@ class OnboardingServices extends ApiServices {
   Future<void> onboardingapi8(
     String user,
     String description,
-    String no_of_tables,
-    String max_table_size,
     String serving_time,
-    String table_alloc_time,
     String recurring_event_date,
     String recur_freq,
     String event_start,
@@ -257,10 +254,7 @@ class OnboardingServices extends ApiServices {
           {
             'user': user,
             'description': description,
-            'no_of_tables': no_of_tables,
-            'max_table_size': max_table_size,
             'serving_time': serving_time,
-            'table_alloc_time': table_alloc_time,
             'recurring_event_date': recurring_event_date,
             'recur_freq': recur_freq,
             'event_start': event_start,
@@ -271,7 +265,6 @@ class OnboardingServices extends ApiServices {
         headers: contentTypeJsonHeader,
       );
       if (response.statusCode != 201) {
-        
         throw AppException(code: response.statusCode, message: response.body);
       }
     } catch (e) {

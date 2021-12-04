@@ -8,13 +8,14 @@ class SortByType extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String dropdownValue = 'Highest to Lowest';
     return Container(
       height: 30,
       width: 164,
       decoration: BoxDecoration(
           color: MyTheme.searchbackcolor,
           borderRadius: BorderRadius.circular(5)),
-      child: DropdownButtonFormField<int>(
+      child: DropdownButtonFormField<String>(
         isExpanded: true,
         icon: Padding(
           padding: const EdgeInsets.only(
@@ -41,25 +42,26 @@ class SortByType extends StatelessWidget {
             color: MyTheme.chevrondowncolor,
           ),
         ),
-        items: List.generate(10, (index) => index + 1)
-            .map(
-              (i) => DropdownMenuItem<int>(
-                  child: Text(
-                    i.toString(),
-                    style: GoogleFonts.inter(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w500,
-                      fontStyle: FontStyle.normal,
-                      color: MyTheme.bottomtextColor,
-                    ),
-                  ),
-                  value: i),
-            )
-            .toList(),
-        onChanged: (newValue) {
-          // setState(() {
-          //   // controller.capacities[i] = newValue!;
-          // });
+        value: dropdownValue,
+        items: <String>[
+          'Highest to Lowest',
+          'Lowest to Highest',
+        ].map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: GoogleFonts.nunito(
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight.w600,
+                fontSize: 13,
+                color: MyTheme.chevrondowncolor,
+              ),
+            ),
+          );
+        }).toList(),
+        onChanged: (String? newValue) {
+          dropdownValue = newValue!;
         },
       ),
     );
