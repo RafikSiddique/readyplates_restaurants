@@ -63,7 +63,7 @@ class PerformancePage extends GetView<HomeController> {
                                                   .toList()
                                                   .sum() /
                                               controller.feedbacks.length)
-                                          .toStringAsFixed(2),
+                                          .toStringAsFixed(1),
                                       value: 'OVERALL EXP',
                                     ),
                                     SizedBox(
@@ -77,7 +77,7 @@ class PerformancePage extends GetView<HomeController> {
                                                   .toList()
                                                   .sum() /
                                               controller.feedbacks.length)
-                                          .toStringAsFixed(2),
+                                          .toStringAsFixed(1),
                                       value: 'TASTE',
                                     )
                                   ]),
@@ -95,7 +95,7 @@ class PerformancePage extends GetView<HomeController> {
                                                   .toList()
                                                   .sum() /
                                               controller.feedbacks.length)
-                                          .toStringAsFixed(2),
+                                          .toStringAsFixed(1),
                                       value: 'AMBIENCE',
                                     ),
                                     SizedBox(
@@ -109,7 +109,7 @@ class PerformancePage extends GetView<HomeController> {
                                                   .toList()
                                                   .sum() /
                                               controller.feedbacks.length)
-                                          .toStringAsFixed(2),
+                                          .toStringAsFixed(1),
                                       value: 'SERVING TIME',
                                     )
                                   ]),
