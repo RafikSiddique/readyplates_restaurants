@@ -66,7 +66,10 @@ class HomeController extends GetxController {
       restaurant: "'restaurant'",
     ),
   ].obs;
-  RxList<TableModel> getTables = <TableModel>[
+  RxList<TableModel> getAvailTables = <TableModel>[
+    TableModel(id: -1, capacity: 1, available: false, restaurant: 1)
+  ].obs;
+  RxList<TableModel> getUnavaailTables = <TableModel>[
     TableModel(id: -1, capacity: 1, available: false, restaurant: 1)
   ].obs;
 
@@ -237,12 +240,21 @@ class HomeController extends GetxController {
   Future<void> getAvailableTables() async {
     try {
       String id = await sfHelper.getRestaurantId();
-      getTables.value = await homeServices.getAvailableTable(id);
+      List<TableModel> tables = await homeServices.getAvailableTable(id);
+      getAvailTables.value =
+          tables.where((element) => element.available).toList();
+      getUnavaailTables.value =
+          tables.where((element) => !element.available).toList();
     } catch (e) {
-      getTables.value = getTables.length != 0
-          ? getTables.first.id == -1
+      getAvailTables.value = getAvailTables.length != 0
+          ? getAvailTables.first.id == -1
               ? []
-              : getTables
+              : getAvailTables
+          : [];
+      getUnavaailTables.value = getUnavaailTables.length != 0
+          ? getUnavaailTables.first.id == -1
+              ? []
+              : getUnavaailTables
           : [];
       Get.snackbar("Error", e.toString());
       timer?.cancel();

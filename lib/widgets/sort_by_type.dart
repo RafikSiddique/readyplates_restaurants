@@ -4,7 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 
 class SortByType extends StatelessWidget {
-  const SortByType({Key? key}) : super(key: key);
+  final Function(bool) sort;
+  const SortByType({Key? key, required this.sort}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +63,11 @@ class SortByType extends StatelessWidget {
         }).toList(),
         onChanged: (String? newValue) {
           dropdownValue = newValue!;
+          if (newValue == "Highest to Lowest") {
+            sort(true);
+          } else {
+            sort(false);
+          }
         },
       ),
     );

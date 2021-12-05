@@ -151,11 +151,14 @@ class HomeServices extends ApiServices {
 
   Future<void> switchAvailability(int id, bool availability) async {
     try {
+      //Request request = Request("POST", setAvailability);
+
       Response response = await post(setAvailability,
           body: jsonEncode({
             "id": id,
             "available": availability,
-          }));
+          }),
+          headers: contentTypeJsonHeader);
       if (response.statusCode != 200) {
         throw AppException(
             code: response.statusCode, message: response.reasonPhrase);

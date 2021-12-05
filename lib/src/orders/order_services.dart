@@ -25,13 +25,20 @@ class OrderServices extends ApiServices {
     }
   }
 
-  Future<void> updateStatus(int id, int status) async {
+  Future<void> updateStatus(int id, int status, [int tableId = -1]) async {
     try {
       var request = MultipartRequest('PUT', updateStatusUrl);
-      request.fields.addAll({
-        'id': id.toString(),
-        'status': status.toString(),
-      });
+      if (tableId != -1)
+        request.fields.addAll({
+          'id': id.toString(),
+          'status': status.toString(),
+          "table": tableId.toString()
+        });
+      else
+        request.fields.addAll({
+          'id': id.toString(),
+          'status': status.toString(),
+        });
       var response = await request.send();
       if (response.statusCode != 202) {
         throw AppException(

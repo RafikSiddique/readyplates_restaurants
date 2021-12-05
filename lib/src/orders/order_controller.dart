@@ -106,10 +106,10 @@ class OrderController extends GetxController {
     }
   }
 
-  Future<void> updateStatus(int id, int status) async {
+  Future<void> updateStatus(int id, int status, [int tableId = -1]) async {
     try {
       loading.value = true;
-      await services.updateStatus(id, status);
+      await services.updateStatus(id, status, tableId);
       await getOrderItems();
       loading.value = false;
     } catch (e) {

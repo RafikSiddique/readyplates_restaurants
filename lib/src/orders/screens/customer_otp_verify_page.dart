@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/state_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/models/orderitem_model.dart';
+import 'package:readyplates_restaurants/src/home/home_controller.dart';
 import 'package:readyplates_restaurants/src/orders/order_controller.dart';
+import 'package:readyplates_restaurants/src/orders/screens/table_assign_page.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 
@@ -21,17 +24,6 @@ class CustomerOtpVerify extends GetView<OrderController> {
         centerTitle: true,
         toolbarHeight: 44,
         backgroundColor: Colors.transparent,
-        actions: [
-          IconButton(
-            onPressed: () {
-              //controller.logout();
-            },
-            icon: Icon(
-              Icons.power_settings_new,
-              color: Colors.black,
-            ),
-          )
-        ],
         automaticallyImplyLeading: false,
         title: Text(
           "Order #${orderModelApi.id}",
@@ -186,14 +178,11 @@ class CustomerOtpVerify extends GetView<OrderController> {
                     onTap: () async {
                       if (controller.otpVerification.value ==
                           controller.otpVerified) {
-                        await controller.updateStatus(orderModelApi.id, 1);
-                        controller.otpVerification.value = "";
-                        controller.otp = "";
-                        for (var i = 0; i < controller.otpText.length; i++) {
-                          controller.otpText[i].clear();
-                        }
-
-                        Navigator.pop(context);
+                        Get.find<HomeController>().getAvailableTables();
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => TableAssignPage(orderId: orderModelApi.id,)));
                       }
                     },
                     buttonbackgroundColor: MyTheme.text1Color,

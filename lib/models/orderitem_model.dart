@@ -86,7 +86,7 @@ class OrderModelApi {
   DateTime created_on;
   String totalPrice;
   int no_of_people;
-  int no_of_table;
+  int? no_of_table;
   String date;
   String time;
   String tax;
@@ -118,7 +118,7 @@ class OrderModelApi {
       created_on: DateTime.parse(map['created_on']),
       totalPrice: map['totalprice'],
       no_of_people: map['no_of_people'],
-      no_of_table: map['no_of_table'],
+      no_of_table: map['table'],
       date: map['date'],
       time: map['time'],
       tax: map['tax'],
