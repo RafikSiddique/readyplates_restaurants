@@ -716,12 +716,19 @@ class OnboardingController extends GetxController {
         resId,
         capacities,
       );
-      Get.find<SharedPreferenceHelper>().setLoggedIn(true);
-      Get.find<AuthController>().isLoggedIn.value = true;
-      Get.put(HomeController(selectedIndex: 0.obs));
-      Get.put(OrderController());
-      FirebaseMessagingService().getToken();
-      Get.offAllNamed(HomePage.id);
+      if (!isEditing) {
+        Get.find<SharedPreferenceHelper>().setLoggedIn(true);
+        Get.find<AuthController>().isLoggedIn.value = true;
+        Get.put(HomeController(selectedIndex: 0.obs));
+        Get.put(OrderController());
+        FirebaseMessagingService().getToken();
+        Get.offAllNamed(HomePage.id);
+      } else {
+        final c = Get.find<HomeController>();
+        Get.offAllNamed(HomePage.id);
+        c.selectedIndex.value = 4;
+      }
+
       // dispose();
     } catch (e) {
       Get.snackbar("Error", e.toString());
