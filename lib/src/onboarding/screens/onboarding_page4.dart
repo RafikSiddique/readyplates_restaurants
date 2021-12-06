@@ -77,9 +77,18 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                   height: 22,
                 ),
                 AppFormField(
-                    title: "Support Phone Number",
-                    hintText: '+1 415 569 2700',
-                    controller: controller.supportNumber),
+                  title: "Support Phone Number",
+                  hintText: '+1 415 569 2700',
+                  controller: controller.supportNumber,
+                  onSwitch: (Value) {
+                    if (Value) {
+                      controller.supportNumber.text =
+                          controller.phoneveify.text;
+                    } else {
+                      controller.businessaddline1.clear();
+                    }
+                  },
+                ),
                 SizedBox(
                   height: 22,
                 ),

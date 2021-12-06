@@ -43,13 +43,14 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
         controller.businessstate = TextEditingController();
         controller.businesscity = TextEditingController();
         controller.businesspincode = TextEditingController();
-
+        controller.supportNumber = TextEditingController();
         controller.businessaddline1.text = controller.addline1.text;
         controller.businessaddline2.text = controller.addline2.text;
         controller.businessaddline3.text = controller.addline3.text;
         controller.businessstate.text = controller.state.text;
         controller.businesscity.text = controller.city.text;
         controller.businesspincode.text = controller.pincode.text;
+        controller.supportNumber.text = controller.phoneveify.text;
         // Get.toNamed(OnboardingPage4.id);
         formKey.currentState!.save();
         if (formKey.currentState!.validate())

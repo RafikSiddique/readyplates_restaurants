@@ -473,7 +473,7 @@ class OnboardingController extends GetxController {
     'Drinks',
     'Indonesian',
     'Vegan',
-    'hawaiian',
+    'Hawaiian',
   ];
 
   RxList<String> chooseCategory = <String>[].obs;
