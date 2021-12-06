@@ -20,6 +20,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
   final formKey = GlobalKey<FormState>();
 
   bool _Switchvalue = true;
+  void Function(bool)? onSwitch;
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +86,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                       controller.supportNumber.text =
                           controller.phoneveify.text;
                     } else {
-                      controller.businessaddline1.clear();
+                      controller.supportNumber.clear();
                     }
                   },
                 ),
@@ -107,9 +108,10 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                           activeColor: MyTheme.borderchangeColor,
                           trackColor: MyTheme.editbuttontextColor,
                           value: _Switchvalue,
-                          onChanged: (Value) {
+                          onChanged: (newValue) {
+                            if (onSwitch != null) onSwitch!(newValue);
                             setState(() {
-                              _Switchvalue = Value;
+                              _Switchvalue = newValue;
                             });
                           }),
                     ),

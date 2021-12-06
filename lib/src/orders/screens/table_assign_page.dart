@@ -128,6 +128,9 @@ class _TableAssignPageState extends State<TableAssignPage> {
                       SortByCapacity(),
                     ],
                   ),
+                  SizedBox(
+                    width: 14,
+                  ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -330,35 +333,41 @@ class _TableAssignPageState extends State<TableAssignPage> {
                             : Center(
                                 child: CircularProgressIndicator(),
                               )
-                        : Container(
-                            height: MediaQuery.of(context).size.height * 0.08,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(6),
-                                color: MyTheme.buttonbackColor),
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 14, top: 10),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Icon(
-                                    Icons.error,
-                                    color: MyTheme.text3Color,
+                        : Align(
+                            alignment: Alignment.topCenter,
+                            child: Container(
+                                height: 60,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(6),
+                                    color: MyTheme.buttonbackColor),
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.only(left: 14, top: 10),
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Icon(
+                                        Icons.error,
+                                        color: MyTheme.text3Color,
+                                      ),
+                                      SizedBox(width: 13),
+                                      Container(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.7,
+                                        child: Text(
+                                            "There are no vacant tables available to assign at the moment.",
+                                            textAlign: TextAlign.left,
+                                            style: GoogleFonts.nunito(
+                                                fontSize: 15,
+                                                fontStyle: FontStyle.normal,
+                                                fontWeight: FontWeight.normal)),
+                                      )
+                                    ],
                                   ),
-                                  SizedBox(width: 13),
-                                  Container(
-                                    width: MediaQuery.of(context).size.width *
-                                        0.65,
-                                    child: Text(
-                                        "There are no vacant tables available to assign at the moment.",
-                                        textAlign: TextAlign.left,
-                                        style: GoogleFonts.nunito(
-                                            fontSize: 15,
-                                            fontStyle: FontStyle.normal,
-                                            fontWeight: FontWeight.normal)),
-                                  )
-                                ],
-                              ),
-                            )),
+                                )),
+                          ),
                   );
                 },
               ),

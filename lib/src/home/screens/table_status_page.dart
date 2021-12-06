@@ -186,6 +186,9 @@ class _TableStatusPageState extends State<TableStatusPage>
                     SortByCapacity(),
                   ],
                 ),
+                SizedBox(
+                  width: 14,
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -367,8 +370,21 @@ class _TableStatusPageState extends State<TableStatusPage>
                         : Center(
                             child: CircularProgressIndicator(),
                           )
-                    : Container(
-                        child: Text("No Tables found"),
+                    : Align(
+                        alignment: Alignment.topCenter,
+                        child: Container(
+                          child: Text(
+                            "No Tables found",
+                            style: GoogleFonts.inter(
+                              textStyle: TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w500,
+                                fontStyle: FontStyle.normal,
+                                color: MyTheme.appbartextColor,
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                 controller.getAvailTables.length != 0
                     ? controller.getAvailTables.first.id != -1
@@ -492,8 +508,21 @@ class _TableStatusPageState extends State<TableStatusPage>
                         : Center(
                             child: CircularProgressIndicator(),
                           )
-                    : Container(
-                        child: Text("No Tables found"),
+                    : Align(
+                        alignment: Alignment.topCenter,
+                        child: Container(
+                          child: Text(
+                            "No Tables found",
+                            style: GoogleFonts.inter(
+                              textStyle: TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w500,
+                                fontStyle: FontStyle.normal,
+                                color: MyTheme.appbartextColor,
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
               ],
             )),
