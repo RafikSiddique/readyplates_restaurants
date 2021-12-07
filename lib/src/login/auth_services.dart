@@ -68,7 +68,7 @@ class AuthenticationServices extends ApiServices {
     }
   }
 
-  Future<String> changePassword(
+  Future<void> changePassword(
     String email,
     String password,
   ) async {
@@ -88,7 +88,6 @@ class AuthenticationServices extends ApiServices {
         print(resp["Success"].toString());
 
         print(response.body);
-        return resp.toString();
       } else {
         throw AppException(code: response.statusCode, message: response.body);
       }

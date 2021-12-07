@@ -46,7 +46,7 @@ class SortByCapacity extends StatelessWidget {
         value: dropdownValue,
         items: <String>[
           'Table Name',
-          'Table Capacity',
+          dropdownValue,
         ].map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
             value: value,
@@ -62,8 +62,7 @@ class SortByCapacity extends StatelessWidget {
           );
         }).toList(),
         onChanged: (String? newValue) {
-          dropdownValue = newValue!;
-          if (newValue == "Highest to Lowest") {
+          if (newValue == dropdownValue) {
             sort(true);
           } else {
             sort(false);

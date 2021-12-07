@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:readyplates_restaurants/models/table_model.dart';
+import 'package:readyplates_restaurants/src/home/home_controller.dart';
 import 'package:readyplates_restaurants/src/login/screens/login_page.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
@@ -67,6 +69,19 @@ class ProfilePage extends StatelessWidget {
               c.isEditing = true;
               String userId = await sfHelper.getRestaurantId();
               c.uniqueId = userId;
+              final HomeController hc = Get.find();
+              await hc.getAvailableTables();
+
+              c.tables.clear();
+              c.capacities.clear();
+              c.edit.clear();
+              List<TableModel> allTables =
+                  hc.getAvailTables + hc.getUnavaailTables;
+              allTables.forEach((element) {
+                c.tables.add(c.tables.length + 1);
+                c.capacities.add(element.capacity);
+                c.edit.add(false);
+              });
               Get.toNamed(TableConfig.id);
             }),
       ],

@@ -21,7 +21,7 @@ class HomeController extends GetxController {
   HomeController({required this.selectedIndex});
 
   Rx<Color> appBarColor = Colors.transparent.obs;
-
+  RxString searchBy = "Table Capacity".obs;
   RxInt selectedIndex;
   bool isEditing = false;
   // late PageController pageController =
