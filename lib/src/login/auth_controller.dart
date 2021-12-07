@@ -50,6 +50,7 @@ class AuthController extends GetxController {
 
   String route(int id) {
     final controller = Get.put(OnboardingController());
+    controller.isEditing = false;
     switch (id) {
       case 1:
         return OnboardingPage1.id;
