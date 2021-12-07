@@ -10,7 +10,6 @@ import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_services.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/onboarding_page6.dart';
-import 'package:readyplates_restaurants/src/onboarding/screens/table_config_page.dart';
 import 'package:readyplates_restaurants/src/orders/order_controller.dart';
 import 'package:readyplates_restaurants/utils/cities.dart';
 import 'package:readyplates_restaurants/utils/city.dart';
@@ -316,7 +315,6 @@ class OnboardingController extends GetxController {
   void init4() {
     pubbusinessName = TextEditingController();
     supportEmail = TextEditingController();
-    supportNumber = TextEditingController();
   }
 
   Future<void> _onboardingapi4() async {
@@ -686,10 +684,10 @@ class OnboardingController extends GetxController {
             final c = Get.find<HomeController>();
             Get.offAllNamed(HomePage.id);
             c.selectedIndex.value = 4;
-            // c.pageController.animateToPage(3,
-            //     duration: Duration(microseconds: 200), curve: Curves.ease);
           } else {
-            Get.toNamed(TableConfig.id);
+            final c = Get.find<HomeController>();
+            Get.offAllNamed(HomePage.id);
+            c.selectedIndex.value = 4;
           }
         } else {
           pageController.animateToPage(pageIndex.value + 1,

@@ -222,7 +222,11 @@ class OrderWidget extends StatelessWidget {
                 OnboardingButton(
                   onTap: () async {
                     if (element.status == OrderState.inProgress) {
-                      await controller.updateStatus(element.id, 2);
+                      if (element.no_of_table != null)
+                        await controller.updateStatus(
+                            element.id, 2, element.no_of_table!);
+                      else
+                        controller.getOrderItems();
                     }
                   },
                   buttonbackgroundColor: element.status == OrderState.inProgress
