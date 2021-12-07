@@ -125,7 +125,17 @@ class _TableAssignPageState extends State<TableAssignPage> {
                       SizedBox(
                         height: 5,
                       ),
-                      SortByCapacity(),
+                      SortByCapacity(
+                        sort: (p0) {
+                          if (p0) {
+                            controller.getAvailTables.sort(
+                                (b, a) => a.capacity.compareTo(b.capacity));
+                          } else {
+                            controller.getAvailTables.sort(
+                                (a, b) => a.capacity.compareTo(b.capacity));
+                          }
+                        },
+                      ),
                     ],
                   ),
                   SizedBox(

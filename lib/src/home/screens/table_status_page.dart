@@ -130,6 +130,12 @@ class _TableStatusPageState extends State<TableStatusPage>
                   fontStyle: FontStyle.normal,
                   fontWeight: FontWeight.w500,
                 ),
+                onChanged: (value) async {
+                  await controller.getAvailableTables();
+                  controller.getAvailTables.value = controller.getAvailTables
+                      .where((p0) => p0.capacity.toString().contains(value))
+                      .toList();
+                },
                 decoration: InputDecoration(
                     border: InputBorder.none,
                     prefixIcon: Icon(
@@ -183,7 +189,17 @@ class _TableStatusPageState extends State<TableStatusPage>
                     SizedBox(
                       height: 5,
                     ),
-                    SortByCapacity(),
+                    SortByCapacity(
+                      sort: (p0) {
+                        if (p0) {
+                          controller.getAvailTables
+                              .sort((b, a) => a.capacity.compareTo(b.capacity));
+                        } else {
+                          controller.getAvailTables
+                              .sort((a, b) => a.capacity.compareTo(b.capacity));
+                        }
+                      },
+                    ),
                   ],
                 ),
                 SizedBox(

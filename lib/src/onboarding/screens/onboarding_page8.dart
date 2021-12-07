@@ -97,7 +97,6 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
           controller.onboardingApi(OnBoardingMethod.api8);
       },
       enabled: controller.servingTime.value != 00 &&
-          controller.tableTurnTime.value != 00 &&
           _selectedEventDate != null &&
           rec.isNotEmpty &&
           PickedTime != null &&

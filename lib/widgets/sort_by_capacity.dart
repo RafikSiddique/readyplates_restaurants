@@ -4,17 +4,19 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 
 class SortByCapacity extends StatelessWidget {
-  const SortByCapacity({Key? key}) : super(key: key);
+  final Function(bool) sort;
+  const SortByCapacity({Key? key, required this.sort}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    String dropdownValue = 'Table Capacity';
     return Container(
       height: 30,
       width: 164,
       decoration: BoxDecoration(
           color: MyTheme.searchbackcolor,
           borderRadius: BorderRadius.circular(5)),
-      child: DropdownButtonFormField<int>(
+      child: DropdownButtonFormField<String>(
         isExpanded: true,
         icon: Padding(
           padding: const EdgeInsets.only(
@@ -41,25 +43,31 @@ class SortByCapacity extends StatelessWidget {
             color: MyTheme.chevrondowncolor,
           ),
         ),
-        items: List.generate(50, (index) => index + 1)
-            .map(
-              (i) => DropdownMenuItem<int>(
-                  child: Text(
-                    i.toString(),
-                    style: GoogleFonts.nunito(
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 13,
-                      color: MyTheme.chevrondowncolor,
-                    ),
-                  ),
-                  value: i),
-            )
-            .toList(),
-        onChanged: (newValue) {
-          // setState(() {
-          //   // controller.capacities[i] = newValue!;
-          // });
+        value: dropdownValue,
+        items: <String>[
+          'Table Name',
+          'Table Capacity',
+        ].map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: GoogleFonts.nunito(
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight.w600,
+                fontSize: 13,
+                color: MyTheme.chevrondowncolor,
+              ),
+            ),
+          );
+        }).toList(),
+        onChanged: (String? newValue) {
+          dropdownValue = newValue!;
+          if (newValue == "Highest to Lowest") {
+            sort(true);
+          } else {
+            sort(false);
+          }
         },
       ),
     );
