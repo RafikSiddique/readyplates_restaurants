@@ -316,7 +316,6 @@ class OnboardingController extends GetxController {
   void init4() {
     pubbusinessName = TextEditingController();
     supportEmail = TextEditingController();
-    supportNumber = TextEditingController();
   }
 
   Future<void> _onboardingapi4() async {
@@ -680,14 +679,12 @@ class OnboardingController extends GetxController {
       }
       if (isImagesUploaded(files)) {
         await services.uploadImages(files, pageIndex.value, fields, resId);
-
-        if (pageIndex.value == 4) {
+  //
+        if (pageIndex.value == 3) {
           if (isEditing) {
             final c = Get.find<HomeController>();
             Get.offAllNamed(HomePage.id);
             c.selectedIndex.value = 4;
-            // c.pageController.animateToPage(3,
-            //     duration: Duration(microseconds: 200), curve: Curves.ease);
           } else {
             Get.toNamed(TableConfig.id);
           }
@@ -702,7 +699,7 @@ class OnboardingController extends GetxController {
       Get.snackbar("Error", e.toString());
     }
   }
-
+//
   RxList<int> tables = <int>[].obs;
   RxList<bool> edit = <bool>[].obs;
   RxList<int> capacities = <int>[].obs;

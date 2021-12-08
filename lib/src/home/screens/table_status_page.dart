@@ -167,85 +167,94 @@ class _TableStatusPageState extends State<TableStatusPage>
                   }
                 },
                 decoration: InputDecoration(
-                    border: InputBorder.none,
-                    prefixIcon: Icon(
-                      Icons.search,
-                      color: MyTheme.bordersColor,
-                    ),
-                    hintText: 'Search for Table, Capacity....',
-                    hintStyle: GoogleFonts.nunito(
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 15,
-                      color: MyTheme.bordersColor,
-                    ),
-                    suffixIcon: Obx(() => DropdownButtonHideUnderline(
-                          child: DropdownButton<String>(
-                            alignment: Alignment.bottomRight,
-                            isDense: true,
-                            // itemHeight: 50,
-                            value: controller.searchBy.value,
-                            items: ["Table Capacity", "Table Number"]
-                                .map(
-                                  (e) => DropdownMenuItem(
-                                    child: Text(e),
-                                    value: e,
-                                  ),
-                                )
-                                .toList(),
-                            onChanged: (String? value) async {
-                              controller.searchBy.value =
-                                  value ?? "Table Capacity";
-                              if (value == "Table Capacity") {
-                                searchByCapacity = true;
-                              } else {
-                                searchByCapacity = false;
-                              }
-                              await controller.getAvailableTables();
-                              if (searchByCapacity) {
-                                controller.getAvailTables.value = controller
-                                    .getAvailTables
-                                    .where((p0) => p0.capacity
-                                        .toString()
-                                        .contains(search.text))
-                                    .toList();
-                                controller.getUnavaailTables.value = controller
-                                    .getAvailTables
-                                    .where((p0) => p0.capacity
-                                        .toString()
-                                        .contains(search.text))
-                                    .toList();
-                              } else {
-                                if (search.text != "") {
-                                  List<TableModel> availables =
-                                      controller.getAvailTables;
-                                  List<TableModel> unavailable =
-                                      controller.getUnavaailTables;
-                                  List<TableModel> unavailSearch = [];
-                                  List<TableModel> availSearch = [];
-                                  for (var i = 0; i < availables.length; i++) {
-                                    if ((i + 1)
-                                        .toString()
-                                        .contains(search.text)) {
-                                      availSearch.add(availables[i]);
-                                    }
-                                  }
-                                  for (var i = 0; i < unavailable.length; i++) {
-                                    if ((i + 1)
-                                        .toString()
-                                        .contains(search.text)) {
-                                      unavailSearch.add(unavailable[i]);
-                                    }
-                                  }
+                  border: InputBorder.none,
+                  prefixIcon: Icon(
+                    Icons.search,
+                    color: MyTheme.bordersColor,
+                  ),
+                  hintText: 'Search for Table, Capacity....',
+                  hintStyle: GoogleFonts.nunito(
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 15,
+                    color: MyTheme.bordersColor,
+                  ),
+                  suffixIcon: Obx(
+                    () => DropdownButtonHideUnderline(
+                      child: DropdownButton<String>(
+                        alignment: Alignment.bottomRight,
+                        isDense: true,
+                        // itemHeight: 50,
 
-                                  controller.getAvailTables.value = availSearch;
-                                  controller.getUnavaailTables.value =
-                                      unavailSearch;
+                        value: controller.searchBy.value,
+                        items: ["Table Capacity", "Table Number"]
+                            .map(
+                              (e) => DropdownMenuItem(
+                                child: Text(
+                                  e,
+                                  style: GoogleFonts.nunito(
+                                    textStyle: TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w600,
+                                      fontStyle: FontStyle.normal,
+                                      color: MyTheme.bottomtextColor,
+                                    ),
+                                  ),
+                                ),
+                                value: e,
+                              ),
+                            )
+                            .toList(),
+                        onChanged: (String? value) async {
+                          controller.searchBy.value = value ?? "Table Capacity";
+                          if (value == "Table Capacity") {
+                            searchByCapacity = true;
+                          } else {
+                            searchByCapacity = false;
+                          }
+                          await controller.getAvailableTables();
+                          if (searchByCapacity) {
+                            controller.getAvailTables.value = controller
+                                .getAvailTables
+                                .where((p0) => p0.capacity
+                                    .toString()
+                                    .contains(search.text))
+                                .toList();
+                            controller.getUnavaailTables.value = controller
+                                .getAvailTables
+                                .where((p0) => p0.capacity
+                                    .toString()
+                                    .contains(search.text))
+                                .toList();
+                          } else {
+                            if (search.text != "") {
+                              List<TableModel> availables =
+                                  controller.getAvailTables;
+                              List<TableModel> unavailable =
+                                  controller.getUnavaailTables;
+                              List<TableModel> unavailSearch = [];
+                              List<TableModel> availSearch = [];
+                              for (var i = 0; i < availables.length; i++) {
+                                if ((i + 1).toString().contains(search.text)) {
+                                  availSearch.add(availables[i]);
                                 }
                               }
-                            },
-                          ),
-                        ))),
+                              for (var i = 0; i < unavailable.length; i++) {
+                                if ((i + 1).toString().contains(search.text)) {
+                                  unavailSearch.add(unavailable[i]);
+                                }
+                              }
+
+                              controller.getAvailTables.value = availSearch;
+                              controller.getUnavaailTables.value =
+                                  unavailSearch;
+                            }
+                          }
+                        },
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ),
           ),
