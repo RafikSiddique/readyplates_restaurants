@@ -10,6 +10,7 @@ import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_services.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/onboarding_page6.dart';
+import 'package:readyplates_restaurants/src/onboarding/screens/table_config_page.dart';
 import 'package:readyplates_restaurants/src/orders/order_controller.dart';
 import 'package:readyplates_restaurants/utils/cities.dart';
 import 'package:readyplates_restaurants/utils/city.dart';
@@ -678,16 +679,14 @@ class OnboardingController extends GetxController {
       }
       if (isImagesUploaded(files)) {
         await services.uploadImages(files, pageIndex.value, fields, resId);
-
-        if (pageIndex.value == 4) {
+  //
+        if (pageIndex.value == 3) {
           if (isEditing) {
             final c = Get.find<HomeController>();
             Get.offAllNamed(HomePage.id);
             c.selectedIndex.value = 4;
           } else {
-            final c = Get.find<HomeController>();
-            Get.offAllNamed(HomePage.id);
-            c.selectedIndex.value = 4;
+            Get.toNamed(TableConfig.id);
           }
         } else {
           pageController.animateToPage(pageIndex.value + 1,
@@ -700,7 +699,7 @@ class OnboardingController extends GetxController {
       Get.snackbar("Error", e.toString());
     }
   }
-
+//
   RxList<int> tables = <int>[].obs;
   RxList<bool> edit = <bool>[].obs;
   RxList<int> capacities = <int>[].obs;
