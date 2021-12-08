@@ -31,8 +31,8 @@ class ProfilePage extends StatelessWidget {
               if (!isRegistered) Get.put(OnboardingController());
               final c = Get.find<OnboardingController>();
               c.isEditing = true;
-              String userId = await sfHelper.getRestaurantId();
-              c.uniqueId = userId;
+              String? userId = await sfHelper.getUserId();
+              c.uniqueId = userId!;
               Get.toNamed(OnboardingPage1.id);
             }),
         ProfileListTile(
@@ -55,8 +55,8 @@ class ProfilePage extends StatelessWidget {
               if (!isRegistered) Get.put(OnboardingController());
               final c = Get.find<OnboardingController>();
               c.isEditing = true;
-              String userId = await sfHelper.getRestaurantId();
-              c.uniqueId = userId;
+              String? userId = await sfHelper.getUserId();
+              c.uniqueId = userId!;
               c.init3();
               Get.toNamed(OnboardingPage3.id);
             }),
