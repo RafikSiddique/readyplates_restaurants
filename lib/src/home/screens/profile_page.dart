@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:readyplates_restaurants/models/restaurant_model.dart';
 import 'package:readyplates_restaurants/models/table_model.dart';
 import 'package:readyplates_restaurants/src/home/home_controller.dart';
 import 'package:readyplates_restaurants/src/login/screens/login_page.dart';
@@ -13,6 +14,7 @@ import 'package:readyplates_restaurants/widgets/edit_button.dart';
 class ProfilePage extends StatelessWidget {
   ProfilePage({Key? key}) : super(key: key);
   final SharedPreferenceHelper sfHelper = SharedPreferenceHelper();
+  final HomeController homeController = Get.find();
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -33,7 +35,19 @@ class ProfilePage extends StatelessWidget {
               c.isEditing = true;
               String? userId = await sfHelper.getUserId();
               c.uniqueId = userId!;
-              Get.toNamed(OnboardingPage1.id);
+              if (homeController.restaurantModel == null) {
+                await homeController.getRestaurant();
+
+                RestaurantModel restaurantModel =
+                    homeController.restaurantModel!;
+                c.initEditControllers1n2(restaurantModel);
+                Get.toNamed(OnboardingPage1.id);
+              } else {
+                RestaurantModel restaurantModel =
+                    homeController.restaurantModel!;
+                c.initEditControllers1n2(restaurantModel);
+                Get.toNamed(OnboardingPage1.id);
+              }
             }),
         ProfileListTile(
             title: "Restaurant Bio",
@@ -45,7 +59,11 @@ class ProfilePage extends StatelessWidget {
 
               String? userId = await sfHelper.getUserId();
               c.uniqueId = userId!;
-
+              if (homeController.restaurantModel == null) {
+                await homeController.getRestaurant();
+              }
+              RestaurantModel restaurantModel = homeController.restaurantModel!;
+              c.initEditing7n8(restaurantModel);
               Get.toNamed(OnboardingPage7.id);
             }),
         ProfileListTile(
@@ -69,14 +87,12 @@ class ProfilePage extends StatelessWidget {
               c.isEditing = true;
               String? userId = await sfHelper.getUserId();
               c.uniqueId = userId!;
-              final HomeController hc = Get.find();
-              await hc.getAvailableTables();
-
+              await homeController.getAvailableTables();
               c.tables.clear();
               c.capacities.clear();
               c.edit.clear();
-              List<TableModel> allTables =
-                  hc.getAvailTables + hc.getUnavaailTables;
+              List<TableModel> allTables = homeController.getAvailTables +
+                  homeController.getUnavaailTables;
               allTables.forEach((element) {
                 c.tables.add(c.tables.length + 1);
                 c.capacities.add(element.capacity);

@@ -42,6 +42,7 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
         child: SingleChildScrollView(
           child: Form(
             key: formKey,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

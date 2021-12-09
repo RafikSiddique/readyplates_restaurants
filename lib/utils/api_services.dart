@@ -33,6 +33,6 @@ class ApiServices {
 
   Uri feedbacks(String id) => restaurants('feedback/$id');
 
-  Uri singleRestaurantUri(int id) => Uri.parse(baseUri + 'getrestaurant/$id');
-
+  Uri singleRestaurantUri(int id) =>
+      Uri.parse(baseUri + 'customers/getrestaurant/$id');
 }

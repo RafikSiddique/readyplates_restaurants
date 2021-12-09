@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:readyplates_restaurants/models/restaurant_model.dart';
 import 'package:readyplates_restaurants/src/home/home_controller.dart';
 import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
@@ -46,41 +47,39 @@ class OnboardingController extends GetxController {
     loading.value = true;
     switch (method) {
       case OnBoardingMethod.api1:
-        init2();
+        if (!isEditing) {
+          init2();
+        }
         await _onboardingapi1();
-        // dispose1();
         break;
       case OnBoardingMethod.api2:
         init3();
         await _onboardingapi2();
-        // dispose2();
         break;
       case OnBoardingMethod.api3:
         init4();
         await _onboardingapi3();
-        // dispose3();
         break;
       case OnBoardingMethod.api4:
         init5();
         await _onboardingapi4();
-        // dispose4();
+
         break;
       case OnBoardingMethod.api5:
         init6();
         await _onboardingapi5();
-        // dispose5();
+
         break;
       case OnBoardingMethod.api6:
         await _onboardingapi6();
-        // dispose6();
+
         break;
       case OnBoardingMethod.api7:
-        init8();
+        if (!isEditing) init8();
         await _onboardingapi7();
         break;
       case OnBoardingMethod.api8:
         await _onboardingapi8();
-        // dispose8();
         break;
       case OnBoardingMethod.api9:
         await _uploadImage();
@@ -110,6 +109,28 @@ class OnboardingController extends GetxController {
     ownMobile = TextEditingController();
     poc = TextEditingController();
     pocNumber = TextEditingController();
+  }
+
+  void initEditControllers1n2(RestaurantModel restaurantModel) {
+    resName = TextEditingController(text: restaurantModel.resName);
+    firstName =
+        TextEditingController(text: restaurantModel.own_name.split(' ').first);
+    lastName =
+        TextEditingController(text: restaurantModel.own_name.split(' ').last);
+    ownemail = TextEditingController();
+    ownMobile = TextEditingController(text: restaurantModel.own_mobile);
+    poc = TextEditingController(text: restaurantModel.poc);
+    pocNumber = TextEditingController(text: restaurantModel.poc_number);
+    address1 =
+        TextEditingController(text: restaurantModel.address.split(' ').first);
+    address2 =
+        TextEditingController(text: restaurantModel.address.split(' ')[1]);
+    nearbylandnark =
+        TextEditingController(text: restaurantModel.address.split(' ').last);
+    postalcode = TextEditingController(text: restaurantModel.postal_code);
+    latitude = TextEditingController(text: restaurantModel.latitude);
+    longitude = TextEditingController(text: restaurantModel.longitude);
+    rescity = restaurantModel.res_city;
   }
 
   Future<void> _onboardingapi1() async {
@@ -486,9 +507,49 @@ class OnboardingController extends GetxController {
     'Saturday',
     'Sunday',
   ];
-  RxList<String> chooseDays = <String>[].obs;
+
+  void initEditing7n8(RestaurantModel restaurantModel) async {
+    chooseDays.value = restaurantModel.open_days;
+    typeOfEstablishment.value = restaurantModel.type_of_estd;
+    chooseCategory.value = restaurantModel.types_of_cusine;
+    startTime = restaurantModel.start_time;
+    endTime = restaurantModel.end_time;
+    List<String> startTimes = restaurantModel.start_time.split(':');
+    List<String> endTimes = restaurantModel.end_time.split(':');
+    int start = (int.parse(startTimes.first) +
+        (startTimes.last.toLowerCase().contains('a')
+            ? 0
+            : startTimes.last.toLowerCase().contains('p')
+                ? 12
+                : 0));
+    int end = int.parse(endTimes.first) +
+        (endTimes.last.toLowerCase().contains('a')
+            ? 0
+            : endTimes.last.toLowerCase().contains('p')
+                ? 12
+                : 0);
+    int startMin = int.parse(startTimes.last.split(' ').first);
+    int endMin = int.parse(endTimes.last.split(' ').first);
+    startTimeTod = TimeOfDay(hour: start, minute: startMin);
+    endTimeTod = TimeOfDay(hour: end, minute: endMin);
+    resDescript =
+        TextEditingController(text: restaurantModel.bio.first.description);
+    eventDesc =
+        TextEditingController(text: restaurantModel.bio.first.event_desc);
+    servingTime.value = int.parse(restaurantModel.bio.first.servingTime);
+    List<String> dates = restaurantModel.bio[0].recurring_event_date.split('-');
+    String month = dates[1].length == 1 ? "0${dates[1]}" : dates[1];
+    String day = dates[2].length == 1 ? "0${dates[2]}" : dates[2];
+    DateTime eventDate = DateTime.parse(dates[0] + month + day);
+    recurrenceTime = eventDate;
+    selectedRecurrence.value = restaurantModel.bio.first.recur_freq;
+  }
+
+  TimeOfDay? startTimeTod;
+  TimeOfDay? endTimeTod;
   String startTime = '';
   String endTime = '';
+  RxList<String> chooseDays = <String>[].obs;
   List<String> typeOfEsts = [
     "Dine In",
     "Dine In & Delivery Both",
@@ -514,10 +575,14 @@ class OnboardingController extends GetxController {
   //Onboarding 8
   late TextEditingController resDescript;
   late TextEditingController eventDesc;
-  DateTime recurrenceTime = DateTime.now();
+  DateTime? recurrenceTime;
   RxString selectedRecurrence = "Monthly".obs;
   RxInt servingTime = 0.obs;
-  RxInt tableTurnTime = 0.obs;
+  Rx<TimeOfDay> estartTimeTod = TimeOfDay.now().obs;
+  Rx<TimeOfDay> eendTimeTod = TimeOfDay.now().obs;
+  String estartTime = '';
+  String eendTime = '';
+
   void init8() {
     resDescript = TextEditingController();
     eventDesc = TextEditingController();
@@ -528,14 +593,17 @@ class OnboardingController extends GetxController {
       if (resId == "") {
         resId = await sfHelper.getRestaurantId();
       }
+      if (recurrenceTime == null) {
+        recurrenceTime = DateTime.now();
+      }
       await services.onboardingapi8(
         resId,
         resDescript.text,
         servingTime.toString(),
-        "${recurrenceTime.year}-${recurrenceTime.month}-${recurrenceTime.day}",
+        "${recurrenceTime!.year}-${recurrenceTime!.month}-${recurrenceTime!.day}",
         selectedRecurrence.value,
-        startTime,
-        endTime,
+        estartTime,
+        eendTime,
         eventDesc.text,
       );
 

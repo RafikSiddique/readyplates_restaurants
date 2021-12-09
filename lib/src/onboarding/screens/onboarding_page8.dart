@@ -22,32 +22,26 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
   String dob = '';
   String rec = '';
 
-  DateTime? _selectedEventDate;
-  void showEventDate() {
-    showDatePicker(
+  void showEventDate() async {
+    DateTime? dt = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(2021),
       lastDate: DateTime(2050),
       currentDate: DateTime.now(),
-    ).then((pickedDate) {
-      if (pickedDate == null) {
-        return;
-      }
-      controller.recurrenceTime = pickedDate;
+    );
+    if (dt != null)
       setState(() {
-        _selectedEventDate = pickedDate;
+        controller.recurrenceTime = dt;
       });
-    });
   }
 
   TimeOfDay currentTime = TimeOfDay.now();
-  TimeOfDay? PickedTime;
 
   Future<void> _selectStartTime(BuildContext context) async {
-    PickedTime = await showTimePicker(
+    TimeOfDay? tod = await showTimePicker(
       context: context,
-      initialTime: currentTime,
+      initialTime: controller.estartTimeTod.value,
       initialEntryMode: TimePickerEntryMode.dial,
       helpText: 'Select Start Time',
       confirmText: 'choose',
@@ -55,20 +49,18 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
       hourLabelText: 'hour',
       minuteLabelText: 'minute',
     );
-    if (PickedTime != null && PickedTime != currentTime) {
+    if (tod != null && tod != currentTime) {
+      controller.estartTimeTod.value = tod;
       setState(() {
-        currentTime = PickedTime!;
-        controller.startTime = PickedTime!.format(context);
+        controller.estartTime = controller.estartTimeTod.value.format(context);
       });
     }
   }
 
-  TimeOfDay currentTime1 = TimeOfDay.now();
-  TimeOfDay? PickedTime1;
   Future<void> _selectEndTime(BuildContext context) async {
-    PickedTime1 = await showTimePicker(
+    TimeOfDay? tod = await showTimePicker(
       context: context,
-      initialTime: currentTime1,
+      initialTime: controller.eendTimeTod.value,
       initialEntryMode: TimePickerEntryMode.dial,
       helpText: 'Select End Time',
       confirmText: 'choose',
@@ -76,10 +68,10 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
       hourLabelText: 'hour',
       minuteLabelText: 'minute',
     );
-    if (PickedTime1 != null && PickedTime1 != currentTime1) {
+    if (tod != null && tod != currentTime) {
+      controller.eendTimeTod.value = tod;
       setState(() {
-        currentTime1 = PickedTime1!;
-        controller.endTime = PickedTime1!.format(context);
+        controller.eendTime = controller.eendTimeTod.value.format(context);
       });
     }
   }
@@ -97,10 +89,10 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
           controller.onboardingApi(OnBoardingMethod.api8);
       },
       enabled: controller.servingTime.value != 00 &&
-          _selectedEventDate != null &&
+          controller.recurrenceTime != null &&
           rec.isNotEmpty &&
-          PickedTime != null &&
-          PickedTime1 != null,
+          controller.eendTimeTod.value != currentTime &&
+          controller.estartTimeTod.value != currentTime,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Form(
@@ -260,7 +252,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                                     BorderRadius.all(Radius.circular(6)),
                                 border: Border.all(
                                   width: 1,
-                                  color: _selectedEventDate == null
+                                  color: controller.recurrenceTime == null
                                       ? MyTheme.borderColor
                                       : MyTheme.borderchangeColor,
                                   style: BorderStyle.solid,
@@ -275,17 +267,18 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                                     Padding(
                                       padding: const EdgeInsets.only(left: 14),
                                       child: Text(
-                                        _selectedEventDate == null
+                                        controller.recurrenceTime == null
                                             ? 'Event Dates'
-                                            : '${_selectedEventDate!.year}/${_selectedEventDate!.month}/${_selectedEventDate!.day}',
+                                            : '${controller.recurrenceTime!.year}/${controller.recurrenceTime!.month}/${controller.recurrenceTime!.day}',
                                         textAlign: TextAlign.center,
                                         style: GoogleFonts.inter(
                                           fontSize: 16,
                                           fontStyle: FontStyle.normal,
                                           fontWeight: FontWeight.w500,
-                                          color: _selectedEventDate == null
-                                              ? MyTheme.hinttextColor
-                                              : MyTheme.hinttextchangeColor,
+                                          color:
+                                              controller.recurrenceTime == null
+                                                  ? MyTheme.hinttextColor
+                                                  : MyTheme.hinttextchangeColor,
                                         ),
                                       ),
                                     ),
@@ -404,7 +397,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                                           const EdgeInsets.only(right: 7.5),
                                       child: InkWell(
                                         onTap: () {
-                                          Get.bottomSheet(BottomSheet(
+                                          /*             Get.bottomSheet(BottomSheet(
                                             onClosing: () {},
                                             builder: (context) {
                                               return Card(
@@ -437,7 +430,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                                                         .toList(),
                                                   ));
                                             },
-                                          ));
+                                          )); */
                                         },
                                         child: Container(
                                           width: 20,
@@ -491,7 +484,8 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                                     BorderRadius.all(Radius.circular(6)),
                                 border: Border.all(
                                   width: 1,
-                                  color: PickedTime == null
+                                  color: controller.estartTimeTod.value ==
+                                          currentTime
                                       ? MyTheme.borderColor
                                       : MyTheme.borderchangeColor,
                                   style: BorderStyle.solid,
@@ -499,14 +493,13 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                               ),
                               child: Center(
                                 child: Text(
-                                  PickedTime == null
-                                      ? '${currentTime.format(context)}'
-                                      : '${currentTime.format(context)}',
+                                  '${controller.estartTimeTod.value.format(context)}',
                                   style: GoogleFonts.inter(
                                     fontSize: 16,
                                     fontStyle: FontStyle.normal,
                                     fontWeight: FontWeight.w500,
-                                    color: PickedTime == null
+                                    color: controller.estartTimeTod.value ==
+                                            currentTime
                                         ? MyTheme.hinttextColor
                                         : MyTheme.hinttextchangeColor,
                                   ),
@@ -548,7 +541,8 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                                     BorderRadius.all(Radius.circular(6)),
                                 border: Border.all(
                                   width: 1,
-                                  color: PickedTime1 == null
+                                  color: controller.eendTimeTod.value ==
+                                          currentTime
                                       ? MyTheme.borderColor
                                       : MyTheme.borderchangeColor,
                                   style: BorderStyle.solid,
@@ -556,14 +550,13 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                               ),
                               child: Center(
                                 child: Text(
-                                  PickedTime1 == null
-                                      ? '${currentTime1.format(context)}'
-                                      : '${currentTime1.format(context)}',
+                                  '${controller.eendTimeTod.value.format(context)}',
                                   style: GoogleFonts.inter(
                                     fontSize: 16,
                                     fontStyle: FontStyle.normal,
                                     fontWeight: FontWeight.w500,
-                                    color: PickedTime1 == null
+                                    color: controller.eendTimeTod.value ==
+                                            currentTime
                                         ? MyTheme.hinttextColor
                                         : MyTheme.hinttextchangeColor,
                                   ),

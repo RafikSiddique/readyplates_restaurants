@@ -20,12 +20,11 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
   final formKey = GlobalKey<FormState>();
 
   TimeOfDay currentTime = TimeOfDay.now();
-  TimeOfDay? PickedTime;
 
   Future<void> _selectStartTime(BuildContext context) async {
-    PickedTime = await showTimePicker(
+    TimeOfDay? tod = await showTimePicker(
       context: context,
-      initialTime: currentTime,
+      initialTime: controller.startTimeTod ?? currentTime,
       initialEntryMode: TimePickerEntryMode.dial,
       helpText: 'Select Start Time',
       confirmText: 'choose',
@@ -33,21 +32,47 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
       hourLabelText: 'hour',
       minuteLabelText: 'minute',
     );
-    if (PickedTime != null && PickedTime != currentTime) {
-      setState(() {
-        currentTime = PickedTime!;
-        controller.startTime = PickedTime!.format(context);
-        print(PickedTime!.format(context));
-      });
+
+    if (tod != null && tod != currentTime) {
+      if (controller.endTimeTod != null) {
+        if (tod.hour <= controller.endTimeTod!.hour) {
+          if (tod.hour == controller.endTimeTod!.hour) {
+            if (tod.minute < controller.endTimeTod!.minute) {
+              controller.startTimeTod = tod;
+              setState(() {
+                controller.startTime = controller.startTimeTod!.format(context);
+              });
+            } else {
+              Get.showSnackbar(GetBar(
+                message: "Start time should be before the end time",
+                duration: Duration(seconds: 1),
+              ));
+            }
+          } else {
+            controller.startTimeTod = tod;
+            setState(() {
+              controller.startTime = controller.startTimeTod!.format(context);
+            });
+          }
+        } else {
+          Get.showSnackbar(GetBar(
+            message: "Start time should be before the end time",
+            duration: Duration(seconds: 1),
+          ));
+        }
+      } else {
+        controller.startTimeTod = tod;
+        setState(() {
+          controller.startTime = controller.startTimeTod!.format(context);
+        });
+      }
     }
   }
 
-  TimeOfDay currentTime1 = TimeOfDay.now();
-  TimeOfDay? PickedTime1;
   Future<void> _selectEndTime(BuildContext context) async {
-    PickedTime1 = await showTimePicker(
+    TimeOfDay? tod = await showTimePicker(
       context: context,
-      initialTime: currentTime1,
+      initialTime: controller.endTimeTod ?? currentTime,
       initialEntryMode: TimePickerEntryMode.dial,
       helpText: 'Select End Time',
       confirmText: 'choose',
@@ -55,11 +80,39 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
       hourLabelText: 'hour',
       minuteLabelText: 'minute',
     );
-    if (PickedTime1 != null && PickedTime1 != currentTime1) {
-      setState(() {
-        currentTime1 = PickedTime1!;
-        controller.endTime = PickedTime1!.format(context);
-      });
+    if (tod != null && tod != currentTime) {
+      if (controller.startTimeTod != null) {
+        if (tod.hour >= controller.startTimeTod!.hour) {
+          if (tod.hour == controller.startTimeTod!.hour) {
+            if (tod.minute > controller.startTimeTod!.minute) {
+              controller.endTimeTod = tod;
+              setState(() {
+                controller.endTime = controller.endTimeTod!.format(context);
+              });
+            } else {
+              Get.showSnackbar(GetBar(
+                message: "Start time should be before the end time",
+                duration: Duration(seconds: 1),
+              ));
+            }
+          } else {
+            controller.endTimeTod = tod;
+            setState(() {
+              controller.endTime = controller.endTimeTod!.format(context);
+            });
+          }
+        } else {
+          Get.showSnackbar(GetBar(
+            message: "Start time should be before the end time",
+            duration: Duration(seconds: 1),
+          ));
+        }
+      } else {
+        controller.endTimeTod = tod;
+        setState(() {
+          controller.endTime = controller.endTimeTod!.format(context);
+        });
+      }
     }
   }
 
@@ -75,9 +128,11 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
         if (formKey.currentState!.validate())
           controller.onboardingApi(OnBoardingMethod.api7);
       },
-      enabled: controller.typeOfEstablishment.value.isNotEmpty &&
-              PickedTime != null ||
-          PickedTime1 != null,
+      enabled: controller.typeOfEstablishment.isNotEmpty &&
+          controller.startTimeTod != null &&
+          controller.endTimeTod != null &&
+          controller.chooseDays.isNotEmpty &&
+          controller.selectCategory.isNotEmpty,
       textControllers: [],
       child: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16),
@@ -108,7 +163,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                     ),
                     border: Border.all(
                       width: 1,
-                      color: controller.typeOfEstablishment.value.isEmpty
+                      color: controller.typeOfEstablishment.isEmpty
                           ? MyTheme.borderColor
                           : MyTheme.borderchangeColor,
                       style: BorderStyle.solid,
@@ -136,7 +191,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                         fontSize: 15,
                         fontStyle: FontStyle.normal,
                         fontWeight: FontWeight.w500,
-                        color: controller.typeOfEstablishment.value.isEmpty
+                        color: controller.typeOfEstablishment.isEmpty
                             ? MyTheme.hinttextColor
                             : MyTheme.hinttextchangeColor,
                       ),
@@ -155,7 +210,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                               value: e),
                         )
                         .toList(),
-                    // value: controller.typeOfEstablishment.value,
+                    // value: controller.typeOfEstablishment ,
                     onChanged: (newValue) {
                       setState(() {
                         controller.typeOfEstablishment.value = newValue!;
@@ -292,7 +347,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                                     BorderRadius.all(Radius.circular(6)),
                                 border: Border.all(
                                   width: 1,
-                                  color: PickedTime == null
+                                  color: controller.startTimeTod == null
                                       ? MyTheme.borderColor
                                       : MyTheme.borderchangeColor,
                                   style: BorderStyle.solid,
@@ -300,14 +355,16 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                               ),
                               child: Center(
                                 child: Text(
-                                  PickedTime == null
+                                  controller.startTimeTod == null
                                       ? '${currentTime.format(context)}'
-                                      : '${currentTime.format(context)}',
+                                      : '${controller.startTimeTod!.format(context)}',
                                   style: GoogleFonts.inter(
-                                    fontSize: PickedTime == null ? 16 : 18,
+                                    fontSize: controller.startTimeTod == null
+                                        ? 16
+                                        : 18,
                                     fontStyle: FontStyle.normal,
                                     fontWeight: FontWeight.w500,
-                                    color: PickedTime == null
+                                    color: controller.startTimeTod == null
                                         ? MyTheme.hinttextColor
                                         : MyTheme.hinttextchangeColor,
                                   ),
@@ -349,7 +406,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                                     BorderRadius.all(Radius.circular(6)),
                                 border: Border.all(
                                   width: 1,
-                                  color: PickedTime1 == null
+                                  color: controller.endTimeTod == null
                                       ? MyTheme.borderColor
                                       : MyTheme.borderchangeColor,
                                   style: BorderStyle.solid,
@@ -357,14 +414,15 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                               ),
                               child: Center(
                                 child: Text(
-                                  PickedTime1 == null
-                                      ? '${currentTime1.format(context)}'
-                                      : '${currentTime1.format(context)}',
+                                  controller.endTimeTod == null
+                                      ? '${currentTime.format(context)}'
+                                      : '${controller.endTimeTod!.format(context)}',
                                   style: GoogleFonts.inter(
-                                    fontSize: PickedTime1 == null ? 16 : 18,
+                                    fontSize:
+                                        controller.endTimeTod == null ? 16 : 18,
                                     fontStyle: FontStyle.normal,
                                     fontWeight: FontWeight.w500,
-                                    color: PickedTime1 == null
+                                    color: controller.endTimeTod == null
                                         ? MyTheme.hinttextColor
                                         : MyTheme.hinttextchangeColor,
                                   ),

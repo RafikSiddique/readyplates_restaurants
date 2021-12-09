@@ -28,8 +28,9 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
       buttonText: 'CONTINUE',
       onTap: () {
         formKey.currentState!.save();
-        if (formKey.currentState!.validate())
+        if (formKey.currentState!.validate()) {
           controller.onboardingApi(OnBoardingMethod.api1);
+        }
       },
       textControllers: [
         controller.resName,
