@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:http/http.dart';
 import 'package:readyplates_restaurants/models/feedback_model.dart';
 import 'package:readyplates_restaurants/models/fooditem_model.dart';
+import 'package:readyplates_restaurants/models/restaurant_model.dart';
 import 'package:readyplates_restaurants/models/table_model.dart';
 
 import 'package:readyplates_restaurants/utils/api_services.dart';
@@ -59,6 +60,24 @@ class HomeServices extends ApiServices {
       }
     } catch (e) {
       print(e);
+      rethrow;
+    }
+  }
+
+  Future<RestaurantModel> getRes(int id) async {
+    try {
+      Response response =
+          await get(singleRestaurantUri(id), headers: contentTypeJsonHeader);
+      print(response.request);
+      if (response.statusCode == 200) {
+        print(response.request);
+        Map<String, dynamic> data = jsonDecode(response.body).first;
+        return RestaurantModel.fromMap(data);
+      } else {
+        throw AppException(
+            code: response.statusCode, message: response.reasonPhrase);
+      }
+    } catch (e) {
       rethrow;
     }
   }

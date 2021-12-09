@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:readyplates_restaurants/models/restaurant_model.dart';
 import 'package:readyplates_restaurants/src/home/home_controller.dart';
 import 'package:readyplates_restaurants/utils/api_services.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
@@ -17,13 +18,6 @@ import 'package:readyplates_restaurants/widgets/dropdownstandard.dart';
 import 'package:readyplates_restaurants/widgets/field_title.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
-
-String getUrl(String url) {
-// http://202.53.174.5:8000 global url
-  // http://192.168.29.31:5500 local url
-//https://readyplates.herokuapp.com
-  return ApiServices().baseUriImage + url;
-}
 
 class AddFoodItem extends StatefulWidget {
   static const id = "/addfoodItem";

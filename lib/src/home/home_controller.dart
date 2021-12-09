@@ -8,6 +8,7 @@ import 'package:http/http.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:readyplates_restaurants/models/feedback_model.dart';
 import 'package:readyplates_restaurants/models/fooditem_model.dart';
+import 'package:readyplates_restaurants/models/restaurant_model.dart';
 import 'package:readyplates_restaurants/models/table_model.dart';
 import 'package:readyplates_restaurants/src/home/home_services.dart';
 import 'package:readyplates_restaurants/src/orders/order_controller.dart';
@@ -27,7 +28,7 @@ class HomeController extends GetxController {
   // late PageController pageController =
   //     PageController(initialPage: selectedIndex.value);
   FoodItemModel? foodItemModel;
-
+  RestaurantModel? restaurantModel;
   final SharedPreferenceHelper sfHelper = Get.find();
   final HomeServices homeServices = HomeServices();
 
@@ -173,6 +174,19 @@ class HomeController extends GetxController {
   RxString dietType = "".obs;
   RxString category = "".obs;
   String servingSize = "";
+
+  Future<void> getRestaurant() async {
+    try {
+      String resId = await sfHelper.getRestaurantId();
+
+      restaurantModel = await homeServices.getRes(int.parse(resId));
+    } catch (e) {
+      Get.showSnackbar(GetBar(
+        title: "Error",
+        message: "Something went wrong",
+      ));
+    }
+  }
 
   Future<void> addFoodItem() async {
     try {
