@@ -137,7 +137,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   hintText: "Pin Code",
                   hintfontSize: 15,
                   controller: controller.pincode,
-                  formatters: [FilteringTextInputFormatter.digitsOnly],
+                  inputType: TextInputType.phone,
                   isRequired: false,
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(6)),
@@ -145,9 +145,10 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                 SizedBox(height: 14),
                 AppFormField(
                   title: "Phone Verification",
-                  hintText: "+1 415 569 2700",
+                  hintText: "+1 808 569 2700",
                   hintfontSize: 15,
                   controller: controller.phoneveify,
+                  inputType: TextInputType.phone,
                 ),
                 //
                 // FieldTitle(

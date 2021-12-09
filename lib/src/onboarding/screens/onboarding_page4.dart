@@ -78,7 +78,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                 ),
                 AppFormField(
                   title: "Support Phone Number",
-                  hintText: '+1 415 569 2700',
+                  hintText: '+1 808 569 2700',
                   controller: controller.supportNumber,
                   onSwitch: (Value) {
                     if (Value) {
@@ -88,6 +88,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                       controller.supportNumber.clear();
                     }
                   },
+                  inputType: TextInputType.phone,
                 ),
                 SizedBox(
                   height: 22,
@@ -190,6 +191,7 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                   controller: controller.businesspincode,
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(6)),
+                  inputType: TextInputType.phone,
                 ),
                 SizedBox(
                   height: 22,

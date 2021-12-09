@@ -234,7 +234,7 @@ class _TableConfigState extends State<TableConfig> {
                                 border: OutlineInputBorder(
                                   borderSide: BorderSide.none,
                                 ),
-                                hintText: '0',
+                                hintText: '1',
                                 contentPadding: EdgeInsets.only(
                                   left: 14,
                                 ),

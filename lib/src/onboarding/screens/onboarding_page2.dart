@@ -191,7 +191,7 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
                   hintText: "XXXXXX",
                   hintfontSize: 15,
                   controller: controller.postalcode,
-                  inputType: TextInputType.number,
+                  inputType: TextInputType.phone,
                   formatters: [FilteringTextInputFormatter.digitsOnly],
                 ),
 

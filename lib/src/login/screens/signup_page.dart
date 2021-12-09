@@ -99,7 +99,7 @@ class _SignupPageState extends State<SignupPage> {
                 ),
                 SizedBox(
                   height:
-                      media.viewInsets.bottom == 0 ? kToolbarHeight / 1.5 : 0,
+                      media.viewInsets.bottom == 0 ? kToolbarHeight / 1.0 : 0,
                 ),
                 Spacer(
                   flex: media.viewInsets.bottom == 0
@@ -109,7 +109,7 @@ class _SignupPageState extends State<SignupPage> {
                       : 1,
                 ),
                 Expanded(
-                  flex: size.height > 800 ? 5 : 6,
+                  flex: size.height > 800 ? 2 : 3,
                   child: AnimatedContainer(
                     duration: Duration(milliseconds: 300),
                     width: size.width,
@@ -237,7 +237,7 @@ class _SignupPageState extends State<SignupPage> {
                                             controller.password2.text.isEmpty)
                                         ? MyTheme.buttonColor
                                         : MyTheme.buttonchangeColor,
-                                    text: 'Verify Password',
+                                    text: 'Sign Up',
                                     buttontextColor: (controller
                                                 .email.text.isEmpty ||
                                             controller.password.text.isEmpty ||
@@ -247,52 +247,7 @@ class _SignupPageState extends State<SignupPage> {
                                   );
                                 }),
                             SizedBox(
-                              height: kToolbarHeight * 0.2,
-                            ),
-                            InkWell(
-                              onTap: () {},
-                              child: Container(
-                                width: size.width,
-                                height: 54,
-                                decoration: BoxDecoration(
-                                  color: Color(0xffF4F4F4),
-                                  border: Border.all(
-                                    width: 1,
-                                    color: Color(0xffB9B9B9),
-                                  ),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(6)),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      width: 26.42,
-                                      height: 27,
-                                      child: Image.asset(
-                                          'assets/images/google.png'),
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Center(
-                                      child: Text(
-                                        'Sign up with Google',
-                                        textAlign: TextAlign.center,
-                                        style: GoogleFonts.inter(
-                                          fontSize: 17,
-                                          fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.w600,
-                                          color: Color(0xff222222),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: kToolbarHeight / 2.7,
+                              height: 16,
                             )
                           ],
                         ),

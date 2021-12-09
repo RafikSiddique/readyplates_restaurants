@@ -98,9 +98,10 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                 ),
                 AppFormField(
                   title: 'Owner Mobile Number',
-                  hintText: '+91 XXXXXXXXXX',
+                  hintText: '+1 808 569 2700',
                   hintfontSize: 15,
                   controller: controller.ownMobile,
+                  inputType: TextInputType.phone,
                 ),
 
                 //
@@ -289,11 +290,10 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                 ),
                 AppFormField(
                   title: "Restaurant POC Mobile Number",
-                  hintText: '+1 415 569 2700',
+                  hintText: '+1 808 569 2700',
                   hintfontSize: 15,
                   controller: controller.pocNumber,
-                  inputType: TextInputType.number,
-                  formatters: [FilteringTextInputFormatter.digitsOnly],
+                  inputType: TextInputType.phone,
                 ),
                 SizedBox(
                   height: 22,

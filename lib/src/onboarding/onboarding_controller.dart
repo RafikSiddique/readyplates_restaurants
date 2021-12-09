@@ -266,6 +266,7 @@ class OnboardingController extends GetxController {
     businessstate = TextEditingController();
     businesscity = TextEditingController();
     businesspincode = TextEditingController();
+    supportNumber = TextEditingController();
   }
 
   Future<void> _onboardingapi3() async {
@@ -455,24 +456,24 @@ class OnboardingController extends GetxController {
 
   //onboarding 7
   List<String> selectCategory = [
+    'Hawaiian',
     'Burgers',
     'Pan-Asian',
     'Continental',
     'Malay',
     'Seafood',
-    'South Indian',
+    'Steak',
     'Pizza',
     'Arab',
     'Fast Food',
-    'Korean',
+    'Pan-Indian',
     'Barbeque',
-    'North Indian',
+    'Japanese',
     'Chinese',
     'Italian',
     'Drinks',
     'Indonesian',
     'Vegan',
-    'Hawaiian',
   ];
 
   RxList<String> chooseCategory = <String>[].obs;
@@ -679,7 +680,7 @@ class OnboardingController extends GetxController {
       }
       if (isImagesUploaded(files)) {
         await services.uploadImages(files, pageIndex.value, fields, resId);
-  //
+        //
         if (pageIndex.value == 3) {
           if (isEditing) {
             final c = Get.find<HomeController>();
@@ -699,6 +700,7 @@ class OnboardingController extends GetxController {
       Get.snackbar("Error", e.toString());
     }
   }
+
 //
   RxList<int> tables = <int>[].obs;
   RxList<bool> edit = <bool>[].obs;

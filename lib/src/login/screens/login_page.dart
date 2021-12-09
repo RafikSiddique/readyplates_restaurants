@@ -229,53 +229,6 @@ class _LoginPageState extends State<LoginPage> {
                                 );
                               }),
                           SizedBox(
-                            height: kToolbarHeight * 0.15,
-                          ),
-                          if (widget.isChangePassword != true)
-                            InkWell(
-                              onTap: () {},
-                              child: Container(
-                                width: size.width,
-                                height: 54,
-                                decoration: BoxDecoration(
-                                  color: Color(0xffF4F4F4),
-                                  border: Border.all(
-                                    width: 1,
-                                    color: Color(0xffB9B9B9),
-                                  ),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(6)),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      width: 26.42,
-                                      height: 27,
-                                      child: Image.asset(
-                                          'assets/images/google.png'),
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Center(
-                                      child: Text(
-                                        'Sign up with Google',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          fontSize: 17,
-                                          fontFamily: 'Inter-Regular',
-                                          fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.w600,
-                                          color: Color(0xff222222),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          SizedBox(
                             height: 16,
                           )
                         ],
