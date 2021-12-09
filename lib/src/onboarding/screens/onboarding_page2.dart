@@ -6,6 +6,7 @@ import 'package:geocode/geocode.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_geocoding/google_geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
@@ -26,7 +27,9 @@ class OnboardingPage2 extends StatefulWidget {
 
 class _OnboardingPage2State extends State<OnboardingPage2> {
   final controller = Get.find<OnboardingController>();
-
+  GeoCode geoCode = GeoCode();
+  String googleApiKey = "AIzaSyDR2to-aBls8N4Wqa4xt3Et5vk2GkVF2Do";
+  late GoogleGeocoding _geoCoding = GoogleGeocoding(googleApiKey);
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool isMapKeyboard = false;
   int a = 0;
@@ -67,17 +70,78 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
                     isOpen: true,
                     latLng: widget.latLng,
                     setLocation: (p0) async {
-                      GeoCode geoCode = GeoCode();
                       controller.latitude.text = p0.latitude.toStringAsFixed(6);
                       controller.longitude.text =
                           p0.longitude.toStringAsFixed(6);
-                      final address = await geoCode.reverseGeocoding(
-                          latitude: p0.latitude, longitude: p0.longitude);
+                      try {
+                        GeocodingResponse? results = await _geoCoding.geocoding
+                            .getReverse(LatLon(p0.latitude, p0.longitude));
+                        if (results != null &&
+                            results.results != null &&
+                            results.results!.isNotEmpty) {
+                          GeocodingResult res = results.results![0];
+                          String? currentAddress = res.formattedAddress;
+                          if (currentAddress == null) {
+                            final address = await geoCode.reverseGeocoding(
+                                latitude: p0.latitude, longitude: p0.longitude);
+                            controller.address1.text =
+                                address.streetAddress.toString();
+                            controller.address2.text =
+                                address.region.toString();
+                            controller.postalcode.text =
+                                address.postal.toString();
+                          } else {
+                            print(res);
+                            if (res.addressComponents != null) {
+                              res.addressComponents!.forEach((element) {
+                                print(element.longName);
+                                print(element.types);
+                              });
+                              List<String?> address1Text = res
+                                  .addressComponents!
+                                  .where((element) =>
+                                      element.types!.contains('sublocality') ||
+                                      element.types!.contains('premise') ||
+                                      element.types!.contains('plus_code') ||
+                                      element.types!.contains('neighborhood'))
+                                  .toList()
+                                  .map((e) => e.longName)
+                                  .toList();
+                              String data = address1Text.join(', ');
+                              controller.address1.text = data;
 
-                      controller.address1.text =
-                          address.streetAddress.toString();
-                      controller.address2.text = address.region.toString();
-                      controller.postalcode.text = address.postal.toString();
+                              List<String?> address2Text = res
+                                  .addressComponents!
+                                  .where((element) =>
+                                      element.types!.contains('locality') ||
+                                      element.types!.any((element) => element
+                                          .contains('administrative_area')))
+                                  .map((e) => e.longName)
+                                  .toList();
+                              controller.address2.text =
+                                  address2Text.join(', ');
+                              controller.postalcode.text = res
+                                  .addressComponents!
+                                  .firstWhere((element) =>
+                                      element.types!.contains('postal_code'))
+                                  .longName
+                                  .toString();
+                            } else {
+                              controller.address1.text = currentAddress;
+                            }
+
+                            print(res.postcodeLocalities);
+                          }
+                        }
+                      } catch (e) {
+                        print(e);
+                        final address = await geoCode.reverseGeocoding(
+                            latitude: p0.latitude, longitude: p0.longitude);
+                        controller.address1.text =
+                            address.streetAddress.toString();
+                        controller.address2.text = address.region.toString();
+                        controller.postalcode.text = address.postal.toString();
+                      }
                     },
                   ),
                 ),
@@ -158,7 +222,7 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
 
 class SelectLocation extends StatefulWidget {
   final LatLng latLng;
-  final Function(LatLng) setLocation;
+  final void Function(LatLng) setLocation;
   final bool isOpen;
 
   SelectLocation({
