@@ -127,9 +127,9 @@ class OrderWidget extends StatelessWidget {
                   builder: (context, snapshot) {
                     if (snapshot.hasData && snapshot.data != null) {
                       return Text(
-                          "Table" +
+                          "Table " +
                               snapshot.data.toString() +
-                              " Table for " +
+                              "for " +
                               element.no_of_people.toString() +
                               " People",
                           style: GoogleFonts.nunito(
@@ -137,7 +137,7 @@ class OrderWidget extends StatelessWidget {
                               fontSize: 15,
                               fontWeight: FontWeight.w600,
                               fontStyle: FontStyle.normal,
-                              color: MyTheme.buttonbackColor,
+                              color: MyTheme.buttonchangeColor,
                             ),
                           ));
                     }
@@ -155,7 +155,7 @@ class OrderWidget extends StatelessWidget {
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
                         fontStyle: FontStyle.normal,
-                        color: MyTheme.buttonbackColor,
+                        color: MyTheme.buttonchangeColor,
                       ),
                     ))
             ],
