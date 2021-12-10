@@ -73,7 +73,6 @@ class OnBoardingWrapper extends StatelessWidget {
                         color: MyTheme.iconColor,
                       ),
                       onPressed: () {
-                        onboardingController.capacities.clear();
                         if (!onboardingController.isEditing) {
                           Get.showSnackbar(GetBar(
                             title: "Warning",

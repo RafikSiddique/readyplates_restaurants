@@ -91,6 +91,7 @@ class ProfilePage extends StatelessWidget {
               c.tables.clear();
               c.capacities.clear();
               c.edit.clear();
+              c.available.clear();
               List<TableModel> allTables = homeController.getAvailTables +
                   homeController.getUnavaailTables;
               allTables.forEach((element) {
