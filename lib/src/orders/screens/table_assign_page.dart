@@ -79,30 +79,19 @@ class _TableAssignPageState extends State<TableAssignPage> {
                           .getAvailTables
                           .where((p0) => p0.capacity.toString().contains(value))
                           .toList();
-                      controller.getUnavaailTables.value = controller
-                          .getUnavaailTables
-                          .where((p0) => p0.capacity.toString().contains(value))
-                          .toList();
                     } else {
                       if (search.text != "") {
                         List<TableModel> availables = controller.getAvailTables;
-                        List<TableModel> unavailable =
-                            controller.getUnavaailTables;
-                        List<TableModel> unavailSearch = [];
                         List<TableModel> availSearch = [];
                         for (var i = 0; i < availables.length; i++) {
-                          if ((i + 1).toString().contains(search.text)) {
+                          if ((controller.allTables.indexOf(availables[i]) + 1)
+                              .toString()
+                              .contains(search.text)) {
                             availSearch.add(availables[i]);
-                          }
-                        }
-                        for (var i = 0; i < unavailable.length; i++) {
-                          if ((i + 1).toString().contains(search.text)) {
-                            unavailSearch.add(unavailable[i]);
                           }
                         }
 
                         controller.getAvailTables.value = availSearch;
-                        controller.getUnavaailTables.value = unavailSearch;
                       }
                     }
                   },
@@ -162,38 +151,22 @@ class _TableAssignPageState extends State<TableAssignPage> {
                                       .toString()
                                       .contains(search.text))
                                   .toList();
-                              controller.getUnavaailTables.value = controller
-                                  .getAvailTables
-                                  .where((p0) => p0.capacity
-                                      .toString()
-                                      .contains(search.text))
-                                  .toList();
                             } else {
                               if (search.text != "") {
                                 List<TableModel> availables =
                                     controller.getAvailTables;
-                                List<TableModel> unavailable =
-                                    controller.getUnavaailTables;
-                                List<TableModel> unavailSearch = [];
                                 List<TableModel> availSearch = [];
                                 for (var i = 0; i < availables.length; i++) {
-                                  if ((i + 1)
+                                  if ((controller.allTables
+                                              .indexOf(availables[i]) +
+                                          1)
                                       .toString()
                                       .contains(search.text)) {
                                     availSearch.add(availables[i]);
                                   }
                                 }
-                                for (var i = 0; i < unavailable.length; i++) {
-                                  if ((i + 1)
-                                      .toString()
-                                      .contains(search.text)) {
-                                    unavailSearch.add(unavailable[i]);
-                                  }
-                                }
 
                                 controller.getAvailTables.value = availSearch;
-                                controller.getUnavaailTables.value =
-                                    unavailSearch;
                               }
                             }
                           },
@@ -246,12 +219,8 @@ class _TableAssignPageState extends State<TableAssignPage> {
                             if (accending) {
                               controller.getAvailTables.sort(
                                   (b, a) => a.capacity.compareTo(b.capacity));
-                              controller.getUnavaailTables.sort(
-                                  (b, a) => a.capacity.compareTo(b.capacity));
                             } else {
                               controller.getAvailTables.sort(
-                                  (a, b) => a.capacity.compareTo(b.capacity));
-                              controller.getUnavaailTables.sort(
                                   (a, b) => a.capacity.compareTo(b.capacity));
                             }
                           } else {
@@ -262,8 +231,6 @@ class _TableAssignPageState extends State<TableAssignPage> {
                                   .sort((b, a) => a.id.compareTo(b.id));
                             } else {
                               controller.getAvailTables
-                                  .sort((a, b) => a.id.compareTo(b.id));
-                              controller.getUnavaailTables
                                   .sort((a, b) => a.id.compareTo(b.id));
                             }
                           }
@@ -310,24 +277,16 @@ class _TableAssignPageState extends State<TableAssignPage> {
                             if (p0) {
                               controller.getAvailTables.sort(
                                   (b, a) => a.capacity.compareTo(b.capacity));
-                              controller.getUnavaailTables.sort(
-                                  (b, a) => a.capacity.compareTo(b.capacity));
                             } else {
                               controller.getAvailTables.sort(
-                                  (a, b) => a.capacity.compareTo(b.capacity));
-                              controller.getUnavaailTables.sort(
                                   (a, b) => a.capacity.compareTo(b.capacity));
                             }
                           } else {
                             if (p0) {
                               controller.getAvailTables
                                   .sort((b, a) => a.id.compareTo(b.id));
-                              controller.getUnavaailTables
-                                  .sort((b, a) => a.id.compareTo(b.id));
                             } else {
                               controller.getAvailTables
-                                  .sort((a, b) => a.id.compareTo(b.id));
-                              controller.getUnavaailTables
                                   .sort((a, b) => a.id.compareTo(b.id));
                             }
                           }

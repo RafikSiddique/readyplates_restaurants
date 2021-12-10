@@ -129,7 +129,7 @@ class OrderWidget extends StatelessWidget {
                       return Text(
                           "Table " +
                               snapshot.data.toString() +
-                              "for " +
+                              " for " +
                               element.no_of_people.toString() +
                               " People",
                           style: GoogleFonts.nunito(

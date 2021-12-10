@@ -120,6 +120,8 @@ class CustomerOtpVerify extends GetView<OrderController> {
                               ),
                             ),
                             onChanged: (value) {
+                              print(value);
+                              print(controller.otp);
                               if (value.length == 1) {
                                 controller.otp += value;
                                 if (i < 3) {
@@ -139,6 +141,8 @@ class CustomerOtpVerify extends GetView<OrderController> {
                                   controller.otp =
                                       controller.otp.substring(0, i);
                                   controller.otpFields[i - 1].requestFocus();
+                                } else {
+                                  controller.otp = "";
                                 }
                               }
                             },
