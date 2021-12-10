@@ -772,17 +772,30 @@ class OnboardingController extends GetxController {
   RxList<int> tables = <int>[].obs;
   RxList<bool> edit = <bool>[].obs;
   RxList<int> capacities = <int>[].obs;
+  List<bool> available = [];
 
   Future<void> _tableconfig() async {
+    String getValues(bool value) {
+      switch (value) {
+        case true:
+          return "True";
+        case false:
+          return "False";
+        default:
+          return "True";
+      }
+    }
+
     try {
       if (resId == "") {
         resId = await sfHelper.getRestaurantId();
       }
-      await services.tableConfig(
-        resId,
-        capacities,
-      );
+
       if (!isEditing) {
+        await services.tableConfig(
+          resId,
+          capacities,
+        );
         Get.find<SharedPreferenceHelper>().setLoggedIn(true);
         Get.find<AuthController>().isLoggedIn.value = true;
         Get.put(HomeController(selectedIndex: 0.obs));
@@ -790,6 +803,15 @@ class OnboardingController extends GetxController {
         FirebaseMessagingService().getToken();
         Get.offAllNamed(HomePage.id);
       } else {
+        if (available.isEmpty) {
+          available = List.generate(capacities.length, (index) => true);
+        }
+
+        while (available.length < capacities.length) {
+          available.add(true);
+        }
+        await services.tableConfigEdit(
+            resId, capacities, available.map((e) => getValues(e)).toList());
         final c = Get.find<HomeController>();
         Get.offAllNamed(HomePage.id);
         c.selectedIndex.value = 4;

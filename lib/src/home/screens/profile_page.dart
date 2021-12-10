@@ -97,6 +97,7 @@ class ProfilePage extends StatelessWidget {
                 c.tables.add(c.tables.length + 1);
                 c.capacities.add(element.capacity);
                 c.edit.add(false);
+                c.available.add(element.available);
               });
               Get.toNamed(TableConfig.id);
             }),

@@ -321,4 +321,29 @@ class OnboardingServices extends ApiServices {
       rethrow;
     }
   }
+
+  Future<void> tableConfigEdit(
+    String restaurant,
+    List<int> capacity,
+    List<String> available
+  ) async {
+    try {
+      Response response = await post(
+        table,
+        body: jsonEncode(
+          {
+            'restaurant': restaurant,
+            'capacity': capacity,
+            'available': available 
+          },
+        ),
+        headers: contentTypeJsonHeader,
+      );
+      if (response.statusCode != 200) {
+        throw AppException(code: response.statusCode, message: response.body);
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
