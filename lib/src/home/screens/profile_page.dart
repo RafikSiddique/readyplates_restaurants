@@ -96,7 +96,7 @@ class ProfilePage extends StatelessWidget {
               allTables.forEach((element) {
                 c.tables.add(c.tables.length + 1);
                 c.capacities.add(element.capacity);
-                c.edit.add(false);
+                c.edit.add(true);
               });
               Get.toNamed(TableConfig.id);
             }),

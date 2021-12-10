@@ -317,7 +317,7 @@ class _TableConfigState extends State<TableConfig> {
                   onTap: () async {
                     setState(() {
                       controller.tables.add(controller.tables.length + 1);
-                      controller.capacities.add(0);
+                      controller.capacities.add(1);
                       controller.edit.add(false);
                       add = !add;
                     });

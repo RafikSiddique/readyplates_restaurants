@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
@@ -250,7 +249,7 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                     width: double.infinity,
                     height: 50,
                     alignment: Alignment.centerLeft,
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                     decoration: BoxDecoration(
                       border: Border.all(
                         width: 1,

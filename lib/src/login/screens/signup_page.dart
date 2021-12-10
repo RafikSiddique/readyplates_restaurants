@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:get/get.dart';
@@ -99,7 +98,7 @@ class _SignupPageState extends State<SignupPage> {
                 ),
                 SizedBox(
                   height:
-                      media.viewInsets.bottom == 0 ? kToolbarHeight / 1.0 : 0,
+                      media.viewInsets.bottom == 0 ? kToolbarHeight / 1.5 : 0,
                 ),
                 Spacer(
                   flex: media.viewInsets.bottom == 0
@@ -109,7 +108,7 @@ class _SignupPageState extends State<SignupPage> {
                       : 1,
                 ),
                 Expanded(
-                  flex: size.height > 800 ? 2 : 3,
+                  flex: size.height > 800 ? 6 : 7,
                   child: AnimatedContainer(
                     duration: Duration(milliseconds: 300),
                     width: size.width,

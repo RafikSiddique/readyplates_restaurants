@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart';
@@ -12,7 +11,6 @@ import 'package:readyplates_restaurants/models/restaurant_model.dart';
 import 'package:readyplates_restaurants/models/table_model.dart';
 import 'package:readyplates_restaurants/src/home/home_services.dart';
 import 'package:readyplates_restaurants/src/orders/order_controller.dart';
-import 'package:readyplates_restaurants/src/home/screens/add_food_item.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/src/staticscreens/opening_screen.dart';
 import 'package:readyplates_restaurants/utils/exception.dart';
