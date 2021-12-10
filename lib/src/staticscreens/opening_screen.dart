@@ -86,7 +86,7 @@ class _OpeningScreenState extends State<OpeningScreen>
             Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 42, right: 43, top: 50),
+                  padding: const EdgeInsets.only(top: 50),
                   child: Hero(
                     tag: "rp",
                     child: Material(
@@ -97,7 +97,6 @@ class _OpeningScreenState extends State<OpeningScreen>
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            // width: 40,
                             height: 40,
                             child: Image.asset(
                               "assets/images/spoon.png",

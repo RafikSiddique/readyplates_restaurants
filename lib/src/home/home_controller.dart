@@ -278,7 +278,7 @@ class HomeController extends GetxController {
     }
   }
 
-    Future<int> getSingleTable(String id, int tableId) async {
+  Future<int> getSingleTable(String id, int tableId) async {
     try {
       List<TableModel> tables = await homeServices.getAvailableTable(id);
       int tableNo = tables.indexWhere((element) => element.id == tableId);
@@ -307,7 +307,6 @@ class HomeController extends GetxController {
       feedbacks.value = await homeServices.getFeedbacks(id);
       feedbackLoading.value = false;
     } catch (e) {
-      Get.snackbar("Error", e.toString());
       feedbackLoading.value = false;
     }
   }

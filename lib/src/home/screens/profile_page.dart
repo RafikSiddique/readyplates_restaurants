@@ -56,7 +56,12 @@ class ProfilePage extends StatelessWidget {
               if (!isRegistered) Get.put(OnboardingController());
               final c = Get.find<OnboardingController>();
               c.isEditing = true;
-
+              c.fasciaImages = List.generate(4, (index) => "");
+              c.ambienceImages = List.generate(4, (index) => "");
+              c.foodImages = List.generate(4, (index) => "");
+              c.covidProtocol = List.generate(4, (index) => "");
+              c.pageController = PageController(initialPage: 0);
+              c.pageIndex.value = 0;
               String? userId = await sfHelper.getUserId();
               c.uniqueId = userId!;
               if (homeController.restaurantModel == null) {
@@ -92,12 +97,13 @@ class ProfilePage extends StatelessWidget {
               c.capacities.clear();
               c.edit.clear();
               c.available.clear();
+
               List<TableModel> allTables = homeController.getAvailTables +
                   homeController.getUnavaailTables;
               allTables.forEach((element) {
                 c.tables.add(c.tables.length + 1);
                 c.capacities.add(element.capacity);
-                
+
                 c.available.add(element.available);
                 c.edit.add(true);
               });

@@ -505,25 +505,21 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                                     ),
                                     Container(
                                       alignment: Alignment.centerLeft,
-                                      width: size.width * 0.15,
-                                      child: FittedBox(
-                                        fit: BoxFit.scaleDown,
-                                        child: Text(
-                                          days,
-                                          style: GoogleFonts.inter(
-                                            fontSize: controller.chooseDays
-                                                        .contains(days) ==
-                                                    true
-                                                ? 15
-                                                : 13,
-                                            fontStyle: FontStyle.normal,
-                                            fontWeight: controller.chooseDays
-                                                        .contains(days) ==
-                                                    true
-                                                ? FontWeight.w600
-                                                : FontWeight.normal,
-                                            color: MyTheme.checkboxtextColor,
-                                          ),
+                                      child: Text(
+                                        days,
+                                        style: GoogleFonts.inter(
+                                          fontSize: controller.chooseDays
+                                                      .contains(days) ==
+                                                  true
+                                              ? Get.width * 0.035
+                                              : Get.width * 0.03,
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: controller.chooseDays
+                                                      .contains(days) ==
+                                                  true
+                                              ? FontWeight.w600
+                                              : FontWeight.normal,
+                                          color: MyTheme.checkboxtextColor,
                                         ),
                                       ),
                                     ),

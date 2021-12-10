@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:readyplates_restaurants/utils/my_color.dart';
@@ -29,12 +30,13 @@ class Business extends StatelessWidget {
         ),
       ),
       child: DropdownButtonFormField(
+          isExpanded: true,
           icon: Padding(
             padding: const EdgeInsets.only(right: 8.17),
             child: FaIcon(
               FontAwesomeIcons.chevronDown,
               color: MyTheme.iconColor,
-              size: 14.87,
+              size: Get.width * 0.03,
             ),
           ),
           value: value,

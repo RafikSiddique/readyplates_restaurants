@@ -635,7 +635,7 @@ class OnboardingController extends GetxController {
   }
 
 //Onboarding9
-  final PageController pageController = PageController();
+   PageController pageController = PageController();
   List<List<String>> allImages() => [
         demoFasciaImages,
         demoAmbienceImages,

@@ -40,58 +40,58 @@ class _SignupPageState extends State<SignupPage> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                AnimatedContainer(
-                  duration: Duration(milliseconds: 500),
-                  height: media.viewInsets.bottom == 0 ? 40 : 0,
-                  margin: EdgeInsets.only(
-                      left: 42,
-                      right: 43,
-                      top: media.viewInsets.bottom == 0 ? 50 : 0),
-                  child: Hero(
-                    tag: "rp",
-                    child: Material(
-                      type: MaterialType.transparency,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            // width: 40,
-                            height: 40,
-                            child: Image.asset(
-                              "assets/images/spoon.png",
-                              fit: BoxFit.cover,
+                Center(
+                  child: AnimatedContainer(
+                    duration: Duration(milliseconds: 500),
+                    height: media.viewInsets.bottom == 0 ? 40 : 0,
+                    margin: EdgeInsets.only(
+                        top: media.viewInsets.bottom == 0 ? 50 : 0),
+                    child: Hero(
+                      tag: "rp",
+                      child: Material(
+                        type: MaterialType.transparency,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              // width: 40,
+                              height: 40,
+                              child: Image.asset(
+                                "assets/images/spoon.png",
+                                fit: BoxFit.cover,
+                              ),
                             ),
-                          ),
-                          SizedBox(width: 16),
-                          Container(
-                            // width: size.width * 0.6,
-                            height: 39,
-                            child: RichText(
-                              text: TextSpan(
-                                  text: 'READY',
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 30,
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color.fromRGBO(255, 255, 255, 0.9),
-                                  ),
-                                  children: [
-                                    TextSpan(
-                                      text: ' Plates'.toUpperCase(),
-                                      style: GoogleFonts.montserrat(
-                                        fontSize: 30,
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.normal,
-                                        color:
-                                            Color.fromRGBO(255, 255, 255, 0.9),
-                                      ),
+                            SizedBox(width: 16),
+                            Container(
+                              // width: size.width * 0.6,
+                              height: 39,
+                              child: RichText(
+                                text: TextSpan(
+                                    text: 'READY',
+                                    style: GoogleFonts.montserrat(
+                                      fontSize: 30,
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromRGBO(255, 255, 255, 0.9),
                                     ),
-                                  ]),
+                                    children: [
+                                      TextSpan(
+                                        text: ' Plates'.toUpperCase(),
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 30,
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.normal,
+                                          color: Color.fromRGBO(
+                                              255, 255, 255, 0.9),
+                                        ),
+                                      ),
+                                    ]),
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -246,7 +246,7 @@ class _SignupPageState extends State<SignupPage> {
                                   );
                                 }),
                             SizedBox(
-                              height: 16,
+                              height: Get.height * 0.05,
                             )
                           ],
                         ),

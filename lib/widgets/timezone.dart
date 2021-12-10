@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:readyplates_restaurants/utils/my_color.dart';
@@ -40,14 +41,15 @@ class TimeZone extends StatelessWidget {
       ),
       child: DropdownButtonFormField(
           icon: Padding(
-            padding: const EdgeInsets.only(right: 8.17),
+            padding: const EdgeInsets.only(right: 8),
             child: FaIcon(
               FontAwesomeIcons.chevronDown,
               color: MyTheme.iconColor,
-              size: 14.87,
+              size: Get.width * 0.02,
             ),
           ),
           value: value,
+          isExpanded: true,
           decoration: InputDecoration(
             border: OutlineInputBorder(
               borderSide: BorderSide.none,
@@ -58,7 +60,7 @@ class TimeZone extends StatelessWidget {
               top: 14,
             ),
             hintStyle: GoogleFonts.inter(
-              fontSize: 15,
+              fontSize: Get.width * 0.04,
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.w500,
               color: MyTheme.hinttextColor,
@@ -66,17 +68,14 @@ class TimeZone extends StatelessWidget {
           ),
           items: timeZones
               .map((e) => DropdownMenuItem(
-                    child: Container(
-                      // width: MediaQuery.of(context).size.width * 0.7,
-                      child: FittedBox(
-                        child: Text(
-                          e,
-                          style: GoogleFonts.inter(
-                            fontSize: 15,
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w500,
-                            color: MyTheme.hinttextchangeColor,
-                          ),
+                    child: FittedBox(
+                      child: Text(
+                        e,
+                        style: GoogleFonts.inter(
+                          fontSize: 15,
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.w500,
+                          color: MyTheme.hinttextchangeColor,
                         ),
                       ),
                     ),

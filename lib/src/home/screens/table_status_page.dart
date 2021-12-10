@@ -497,6 +497,8 @@ class _TableStatusPageState extends State<TableStatusPage>
                                       child: Container(
                                         height: 52,
                                         width: 90,
+                                        padding:
+                                            EdgeInsets.symmetric(horizontal: 8),
                                         decoration: BoxDecoration(
                                             color: MyTheme.vacantcolor,
                                             borderRadius:

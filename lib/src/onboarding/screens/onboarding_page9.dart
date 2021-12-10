@@ -25,8 +25,6 @@ class _OnboardingPage9State extends State<OnboardingPage9> {
     return [
       for (int o = 0; o < onBoardingController.allImages().length; o++)
         new Swiper(
-//class ImageUploadCard extends StatelessWidget {
-
             itemWidth: MediaQuery.of(context).size.width,
             autoplay: true,
             itemBuilder: (context, index) {
@@ -35,13 +33,6 @@ class _OnboardingPage9State extends State<OnboardingPage9> {
                 width: size.width,
                 height: null,
               );
-
-              // Center(
-              //   child: Image.asset(
-              //     "assets/images/frontfascia.png",
-              //     fit: BoxFit.contain,
-              //   ),
-              // );
             },
             itemCount: 4),
     ];
@@ -96,7 +87,7 @@ class _OnboardingPage9State extends State<OnboardingPage9> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              height: size.height * 0.3,
+              height: size.height * 0.25,
               child: PageView(
                 controller: onBoardingController.pageController,
                 physics: NeverScrollableScrollPhysics(),

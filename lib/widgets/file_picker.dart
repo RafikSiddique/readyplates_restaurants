@@ -23,9 +23,9 @@ class PickFiles extends StatelessWidget {
   }) : super(key: key);
   final controller = Get.find<OnboardingController>();
 
-  void openFile(PlatformFile file) {
-    OpenFile.open(file.path!);
-  }
+/*   void openFile(PlatformFile file) {
+    OpenFile.open(file.path!, );
+  } */
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +50,7 @@ class PickFiles extends StatelessWidget {
               padding: const EdgeInsets.only(left: 12.5),
               child: Text(
                 uploadText,
+                overflow: TextOverflow.ellipsis,
                 style: GoogleFonts.inter(
                   fontSize: fontSize,
                   fontStyle: FontStyle.normal,
@@ -62,8 +63,10 @@ class PickFiles extends StatelessWidget {
           ),
           InkWell(
             onTap: () async {
-              final result =
-                  await FilePicker.platform.pickFiles(allowMultiple: true);
+              final result = await FilePicker.platform.pickFiles(
+                  allowMultiple: false,
+                  type: FileType.custom,
+                  allowedExtensions: ['png', 'jpg', 'pdf']);
               if (result == null) return;
               final file = result.files.first;
               onFilePicked(File(file.path!));
