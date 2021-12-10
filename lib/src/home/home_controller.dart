@@ -74,6 +74,10 @@ class HomeController extends GetxController {
     TableModel(id: -1, capacity: 1, available: false, restaurant: 1)
   ].obs;
 
+  RxList<TableModel> allTables = <TableModel>[
+    TableModel(id: -1, capacity: 1, available: false, restaurant: 1)
+  ].obs;
+
   Timer? timer;
   void onChanged(int i) {
     if (i == 3) {
@@ -255,6 +259,7 @@ class HomeController extends GetxController {
     try {
       String id = await sfHelper.getRestaurantId();
       List<TableModel> tables = await homeServices.getAvailableTable(id);
+      allTables.value = tables;
       getAvailTables.value =
           tables.where((element) => element.available).toList();
       getUnavaailTables.value =

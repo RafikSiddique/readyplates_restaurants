@@ -748,7 +748,6 @@ class OnboardingController extends GetxController {
       }
       if (isImagesUploaded(files)) {
         await services.uploadImages(files, pageIndex.value, fields, resId);
-        //
         if (pageIndex.value == 3) {
           if (isEditing) {
             final c = Get.find<HomeController>();

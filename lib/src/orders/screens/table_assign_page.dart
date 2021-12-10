@@ -371,7 +371,7 @@ class _TableAssignPageState extends State<TableAssignPage> {
                                                           10)),
                                               child: Center(
                                                 child: Text(
-                                                  'Table ${i + 1}',
+                                                  'Table ${controller.allTables.indexOf(controller.getAvailTables[i]) + 1}',
                                                   textAlign: TextAlign.center,
                                                   style: GoogleFonts.inter(
                                                     textStyle: TextStyle(

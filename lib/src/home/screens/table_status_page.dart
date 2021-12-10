@@ -405,28 +405,47 @@ class _TableStatusPageState extends State<TableStatusPage>
               children: [
                 controller.getUnavaailTables.length != 0
                     ? controller.getUnavaailTables.first.id != -1
-                        ? ListView(
-                            physics: BouncingScrollPhysics(),
-                            children: controller.getUnavaailTables
-                                .map(
-                                  (e) => Padding(
-                                    padding: const EdgeInsets.only(bottom: 16),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
+                        ? ListView(physics: BouncingScrollPhysics(), children: [
+                            for (var i = 0;
+                                i < controller.getUnavaailTables.length;
+                                i++)
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 16),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      height: 52,
+                                      width: 96,
+                                      decoration: BoxDecoration(
+                                          color: Color(0xffE0E0E0),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Center(
+                                        child: Text(
+                                          'Table ${controller.allTables.indexOf(controller.getUnavaailTables[i]) + 1}',
+                                          textAlign: TextAlign.center,
+                                          style: GoogleFonts.inter(
+                                            textStyle: TextStyle(
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.w500,
+                                              fontStyle: FontStyle.normal,
+                                              color: MyTheme.bottomtextColor,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Column(
                                       children: [
                                         Container(
-                                          height: 52,
-                                          width: 96,
-                                          decoration: BoxDecoration(
-                                              color: Color(0xffE0E0E0),
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
+                                          height: 24,
+                                          width: 85,
                                           child: Center(
                                             child: Text(
-                                              'Table ${e.id}',
+                                              'Capacity',
                                               textAlign: TextAlign.center,
                                               style: GoogleFonts.inter(
                                                 textStyle: TextStyle(
@@ -440,81 +459,26 @@ class _TableStatusPageState extends State<TableStatusPage>
                                             ),
                                           ),
                                         ),
-                                        Column(
-                                          children: [
-                                            Container(
-                                              height: 24,
-                                              width: 85,
-                                              child: Center(
-                                                child: Text(
-                                                  'Capacity',
-                                                  textAlign: TextAlign.center,
-                                                  style: GoogleFonts.inter(
-                                                    textStyle: TextStyle(
-                                                      fontSize: 13,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontStyle:
-                                                          FontStyle.normal,
-                                                      color: MyTheme
-                                                          .bottomtextColor,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            Container(
-                                              height: 28,
-                                              width: 56,
-                                              decoration: BoxDecoration(
-                                                  color: Color(0xffE0E0E0),
-                                                  borderRadius:
-                                                      BorderRadius.circular(5)),
-                                              child: Center(
-                                                child: Text(
-                                                  e.capacity.toString(),
-                                                  textAlign: TextAlign.center,
-                                                  style: GoogleFonts.inter(
-                                                    textStyle: TextStyle(
-                                                      fontSize: 13,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontStyle:
-                                                          FontStyle.normal,
-                                                      color: MyTheme
-                                                          .bottomtextColor,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        InkWell(
-                                          onTap: () async {
-                                            await controller
-                                                .switchTableAvailability(
-                                                    e.id, true);
-                                          },
-                                          child: Container(
-                                            height: 52,
-                                            width: 90,
-                                            decoration: BoxDecoration(
-                                                color: MyTheme.vacantcolor,
-                                                borderRadius:
-                                                    BorderRadius.circular(4)),
-                                            child: Center(
-                                              child: Text(
-                                                'Mark as Vacant',
-                                                textAlign: TextAlign.center,
-                                                style: GoogleFonts.inter(
-                                                  textStyle: TextStyle(
-                                                    fontSize: 13,
-                                                    fontWeight: FontWeight.w500,
-                                                    fontStyle: FontStyle.normal,
-                                                    color: MyTheme
-                                                        .borderchangeColor,
-                                                  ),
+                                        Container(
+                                          height: 28,
+                                          width: 56,
+                                          decoration: BoxDecoration(
+                                              color: Color(0xffE0E0E0),
+                                              borderRadius:
+                                                  BorderRadius.circular(5)),
+                                          child: Center(
+                                            child: Text(
+                                              controller
+                                                  .getUnavaailTables[i].capacity
+                                                  .toString(),
+                                              textAlign: TextAlign.center,
+                                              style: GoogleFonts.inter(
+                                                textStyle: TextStyle(
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontStyle: FontStyle.normal,
+                                                  color:
+                                                      MyTheme.bottomtextColor,
                                                 ),
                                               ),
                                             ),
@@ -522,9 +486,42 @@ class _TableStatusPageState extends State<TableStatusPage>
                                         ),
                                       ],
                                     ),
-                                  ),
-                                )
-                                .toList())
+                                    InkWell(
+                                      onTap: () async {
+                                        await controller
+                                            .switchTableAvailability(
+                                                controller
+                                                    .getUnavaailTables[i].id,
+                                                true);
+                                      },
+                                      child: Container(
+                                        height: 52,
+                                        width: 90,
+                                        decoration: BoxDecoration(
+                                            color: MyTheme.vacantcolor,
+                                            borderRadius:
+                                                BorderRadius.circular(4)),
+                                        child: Center(
+                                          child: Text(
+                                            'Mark as Vacant',
+                                            textAlign: TextAlign.center,
+                                            style: GoogleFonts.inter(
+                                              textStyle: TextStyle(
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w500,
+                                                fontStyle: FontStyle.normal,
+                                                color:
+                                                    MyTheme.borderchangeColor,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                          ])
                         : Center(
                             child: CircularProgressIndicator(),
                           )
@@ -546,26 +543,46 @@ class _TableStatusPageState extends State<TableStatusPage>
                       ),
                 controller.getAvailTables.length != 0
                     ? controller.getAvailTables.first.id != -1
-                        ? ListView(
-                            physics: BouncingScrollPhysics(),
-                            children: controller.getAvailTables
-                                .map(
-                                  (e) => Padding(
-                                    padding: const EdgeInsets.only(bottom: 16),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
+                        ? ListView(physics: BouncingScrollPhysics(), children: [
+                            for (var i = 0;
+                                i < controller.getAvailTables.length;
+                                i++)
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 16),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Container(
+                                      height: 52,
+                                      width: 96,
+                                      decoration: BoxDecoration(
+                                          color: Color(0xffE0E0E0),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Center(
+                                        child: Text(
+                                          'Table ${controller.allTables.indexOf(controller.getAvailTables[i]) + 1}',
+                                          textAlign: TextAlign.center,
+                                          style: GoogleFonts.inter(
+                                            textStyle: TextStyle(
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.w500,
+                                              fontStyle: FontStyle.normal,
+                                              color: MyTheme.bottomtextColor,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Column(
                                       children: [
                                         Container(
-                                          height: 52,
-                                          width: 96,
-                                          decoration: BoxDecoration(
-                                              color: Color(0xffE0E0E0),
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
+                                          height: 24,
+                                          width: 85,
                                           child: Center(
                                             child: Text(
-                                              'Table ${e.id}',
+                                              'Capacity',
                                               textAlign: TextAlign.center,
                                               style: GoogleFonts.inter(
                                                 textStyle: TextStyle(
@@ -579,81 +596,26 @@ class _TableStatusPageState extends State<TableStatusPage>
                                             ),
                                           ),
                                         ),
-                                        Column(
-                                          children: [
-                                            Container(
-                                              height: 24,
-                                              width: 85,
-                                              child: Center(
-                                                child: Text(
-                                                  'Capacity',
-                                                  textAlign: TextAlign.center,
-                                                  style: GoogleFonts.inter(
-                                                    textStyle: TextStyle(
-                                                      fontSize: 13,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontStyle:
-                                                          FontStyle.normal,
-                                                      color: MyTheme
-                                                          .bottomtextColor,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            Container(
-                                              height: 28,
-                                              width: 56,
-                                              decoration: BoxDecoration(
-                                                  color: Color(0xffE0E0E0),
-                                                  borderRadius:
-                                                      BorderRadius.circular(5)),
-                                              child: Center(
-                                                child: Text(
-                                                  e.capacity.toString(),
-                                                  textAlign: TextAlign.center,
-                                                  style: GoogleFonts.inter(
-                                                    textStyle: TextStyle(
-                                                      fontSize: 13,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontStyle:
-                                                          FontStyle.normal,
-                                                      color: MyTheme
-                                                          .bottomtextColor,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        InkWell(
-                                          onTap: () async {
-                                            await controller
-                                                .switchTableAvailability(
-                                                    e.id, false);
-                                          },
-                                          child: Container(
-                                            height: 52,
-                                            width: 90,
-                                            decoration: BoxDecoration(
-                                                color: MyTheme.occupiedcolor,
-                                                borderRadius:
-                                                    BorderRadius.circular(4)),
-                                            child: Center(
-                                              child: Text(
-                                                'Mark as Occupied',
-                                                textAlign: TextAlign.center,
-                                                style: GoogleFonts.inter(
-                                                  textStyle: TextStyle(
-                                                    fontSize: 13,
-                                                    fontWeight: FontWeight.w500,
-                                                    fontStyle: FontStyle.normal,
-                                                    color:
-                                                        MyTheme.closeiconColor,
-                                                  ),
+                                        Container(
+                                          height: 28,
+                                          width: 56,
+                                          decoration: BoxDecoration(
+                                              color: Color(0xffE0E0E0),
+                                              borderRadius:
+                                                  BorderRadius.circular(5)),
+                                          child: Center(
+                                            child: Text(
+                                              controller
+                                                  .getAvailTables[i].capacity
+                                                  .toString(),
+                                              textAlign: TextAlign.center,
+                                              style: GoogleFonts.inter(
+                                                textStyle: TextStyle(
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontStyle: FontStyle.normal,
+                                                  color:
+                                                      MyTheme.bottomtextColor,
                                                 ),
                                               ),
                                             ),
@@ -661,9 +623,40 @@ class _TableStatusPageState extends State<TableStatusPage>
                                         ),
                                       ],
                                     ),
-                                  ),
-                                )
-                                .toList())
+                                    InkWell(
+                                      onTap: () async {
+                                        await controller
+                                            .switchTableAvailability(
+                                                controller.getAvailTables[i].id,
+                                                false);
+                                      },
+                                      child: Container(
+                                        height: 52,
+                                        width: 90,
+                                        decoration: BoxDecoration(
+                                            color: MyTheme.occupiedcolor,
+                                            borderRadius:
+                                                BorderRadius.circular(4)),
+                                        child: Center(
+                                          child: Text(
+                                            'Mark as Occupied',
+                                            textAlign: TextAlign.center,
+                                            style: GoogleFonts.inter(
+                                              textStyle: TextStyle(
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w500,
+                                                fontStyle: FontStyle.normal,
+                                                color: MyTheme.closeiconColor,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                          ])
                         : Center(
                             child: CircularProgressIndicator(),
                           )
