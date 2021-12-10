@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:readyplates_restaurants/models/orderitem_model.dart';
+import 'package:readyplates_restaurants/src/home/home_controller.dart';
 import 'package:readyplates_restaurants/src/orders/order_controller.dart';
 import 'package:readyplates_restaurants/src/orders/screens/customer_otp_verify_page.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
@@ -14,6 +15,7 @@ class OrderWidget extends StatelessWidget {
   final OrderModelApi element;
   OrderWidget({Key? key, required this.element}) : super(key: key);
   final controller = Get.find<OrderController>();
+  final hc = Get.find<HomeController>();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -118,20 +120,44 @@ class OrderWidget extends StatelessWidget {
                       color: MyTheme.text1Color,
                     ),
                   )),
-              Text(
-                  element.no_of_table.toString() +
-                      " x Table for " +
-                      element.no_of_people.toString() +
-                      " People",
-                  textAlign: TextAlign.right,
-                  style: GoogleFonts.inter(
-                    textStyle: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                      fontStyle: FontStyle.normal,
-                      color: MyTheme.text1Color,
-                    ),
-                  )),
+              if (element.no_of_table != null)
+                FutureBuilder<int>(
+                  future: hc.getSingleTable(
+                      element.restaurant.id.toString(), element.no_of_table!),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData && snapshot.data != null) {
+                      return Text(
+                          "Table" +
+                              snapshot.data.toString() +
+                              " Table for " +
+                              element.no_of_people.toString() +
+                              " People",
+                          style: GoogleFonts.nunito(
+                            textStyle: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                              fontStyle: FontStyle.normal,
+                              color: MyTheme.buttonbackColor,
+                            ),
+                          ));
+                    }
+                    return Container();
+                  },
+                )
+              else
+                Text(
+                    "Accept order to assign" +
+                        " Table for " +
+                        element.no_of_people.toString() +
+                        " People",
+                    style: GoogleFonts.nunito(
+                      textStyle: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                        fontStyle: FontStyle.normal,
+                        color: MyTheme.buttonbackColor,
+                      ),
+                    ))
             ],
           ),
           Row(

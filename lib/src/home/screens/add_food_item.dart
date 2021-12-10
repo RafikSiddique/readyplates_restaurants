@@ -109,6 +109,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
                       pickImage(
                         imageFile: (p0) {
                           controller.image1 = p0;
+
                           setState(() {});
                         },
                       );
@@ -129,10 +130,16 @@ class _AddFoodItemState extends State<AddFoodItem> {
                         child: Center(
                           child: Container(
                             child: controller.isEditing
-                                ? Image.network(
-                                    getUrl(controller.foodItemModel!.image1),
-                                    fit: BoxFit.cover,
-                                  )
+                                ? controller.image1.path == ""
+                                    ? Image.network(
+                                        getUrl(
+                                            controller.foodItemModel!.image1),
+                                        fit: BoxFit.cover,
+                                      )
+                                    : Image.file(
+                                        controller.image1,
+                                        fit: BoxFit.cover,
+                                      )
                                 : controller.image1.path == ""
                                     ? Image(
                                         image: AssetImage(

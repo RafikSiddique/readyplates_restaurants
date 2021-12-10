@@ -278,6 +278,17 @@ class HomeController extends GetxController {
     }
   }
 
+    Future<int> getSingleTable(String id, int tableId) async {
+    try {
+      List<TableModel> tables = await homeServices.getAvailableTable(id);
+      int tableNo = tables.indexWhere((element) => element.id == tableId);
+      return tableNo + 1;
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+      return -1;
+    }
+  }
+
   Future<void> switchTableAvailability(int id, bool availability) async {
     try {
       await homeServices.switchAvailability(id, availability);
