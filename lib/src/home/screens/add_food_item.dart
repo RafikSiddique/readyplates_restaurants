@@ -46,6 +46,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
       );
       if (croppedFile != null) {
         imageFile(croppedFile);
+        
       }
     }
   }
