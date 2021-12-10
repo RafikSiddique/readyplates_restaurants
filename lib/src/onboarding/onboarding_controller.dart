@@ -10,7 +10,6 @@ import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_services.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
-import 'package:readyplates_restaurants/src/onboarding/screens/onboarding_page6.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/table_config_page.dart';
 import 'package:readyplates_restaurants/src/orders/order_controller.dart';
 import 'package:readyplates_restaurants/utils/cities.dart';
@@ -578,8 +577,8 @@ class OnboardingController extends GetxController {
   DateTime? recurrenceTime;
   RxString selectedRecurrence = "Monthly".obs;
   RxInt servingTime = 0.obs;
-  Rx<TimeOfDay> estartTimeTod = TimeOfDay.now().obs;
-  Rx<TimeOfDay> eendTimeTod = TimeOfDay.now().obs;
+  TimeOfDay? estartTimeTod;
+  TimeOfDay? eendTimeTod;
   String estartTime = '';
   String eendTime = '';
 

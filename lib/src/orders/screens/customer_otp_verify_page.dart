@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
@@ -182,7 +181,9 @@ class CustomerOtpVerify extends GetView<OrderController> {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (_) => TableAssignPage(orderId: orderModelApi.id,)));
+                                builder: (_) => TableAssignPage(
+                                      orderId: orderModelApi.id,
+                                    )));
                       }
                     },
                     buttonbackgroundColor: MyTheme.text1Color,

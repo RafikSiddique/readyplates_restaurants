@@ -41,7 +41,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
   Future<void> _selectStartTime(BuildContext context) async {
     TimeOfDay? tod = await showTimePicker(
       context: context,
-      initialTime: controller.estartTimeTod.value,
+      initialTime: controller.estartTimeTod ?? currentTime,
       initialEntryMode: TimePickerEntryMode.dial,
       helpText: 'Select Start Time',
       confirmText: 'choose',
@@ -50,9 +50,9 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
       minuteLabelText: 'minute',
     );
     if (tod != null && tod != currentTime) {
-      controller.estartTimeTod.value = tod;
+      controller.estartTimeTod = tod;
       setState(() {
-        controller.estartTime = controller.estartTimeTod.value.format(context);
+        controller.estartTime = controller.estartTimeTod!.format(context);
       });
     }
   }
@@ -60,7 +60,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
   Future<void> _selectEndTime(BuildContext context) async {
     TimeOfDay? tod = await showTimePicker(
       context: context,
-      initialTime: controller.eendTimeTod.value,
+      initialTime: controller.eendTimeTod ?? currentTime,
       initialEntryMode: TimePickerEntryMode.dial,
       helpText: 'Select End Time',
       confirmText: 'choose',
@@ -69,9 +69,9 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
       minuteLabelText: 'minute',
     );
     if (tod != null && tod != currentTime) {
-      controller.eendTimeTod.value = tod;
+      controller.eendTimeTod = tod;
       setState(() {
-        controller.eendTime = controller.eendTimeTod.value.format(context);
+        controller.eendTime = controller.eendTimeTod!.format(context);
       });
     }
   }
@@ -91,8 +91,8 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
       enabled: controller.servingTime.value != 00 &&
           controller.recurrenceTime != null &&
           rec.isNotEmpty &&
-          controller.eendTimeTod.value != currentTime &&
-          controller.estartTimeTod.value != currentTime,
+          controller.eendTimeTod != currentTime &&
+          controller.estartTimeTod != currentTime,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Form(
@@ -484,8 +484,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                                     BorderRadius.all(Radius.circular(6)),
                                 border: Border.all(
                                   width: 1,
-                                  color: controller.estartTimeTod.value ==
-                                          currentTime
+                                  color: controller.estartTimeTod == null
                                       ? MyTheme.borderColor
                                       : MyTheme.borderchangeColor,
                                   style: BorderStyle.solid,
@@ -493,13 +492,14 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                               ),
                               child: Center(
                                 child: Text(
-                                  '${controller.estartTimeTod.value.format(context)}',
+                                  controller.estartTimeTod == null
+                                      ? '${currentTime.format(context)}'
+                                      : '${controller.estartTimeTod!.format(context)}',
                                   style: GoogleFonts.inter(
                                     fontSize: 16,
                                     fontStyle: FontStyle.normal,
                                     fontWeight: FontWeight.w500,
-                                    color: controller.estartTimeTod.value ==
-                                            currentTime
+                                    color: controller.estartTimeTod == null
                                         ? MyTheme.hinttextColor
                                         : MyTheme.hinttextchangeColor,
                                   ),
@@ -541,8 +541,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                                     BorderRadius.all(Radius.circular(6)),
                                 border: Border.all(
                                   width: 1,
-                                  color: controller.eendTimeTod.value ==
-                                          currentTime
+                                  color: controller.eendTimeTod == null
                                       ? MyTheme.borderColor
                                       : MyTheme.borderchangeColor,
                                   style: BorderStyle.solid,
@@ -550,13 +549,14 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                               ),
                               child: Center(
                                 child: Text(
-                                  '${controller.eendTimeTod.value.format(context)}',
+                                  controller.eendTimeTod == null
+                                      ? '${currentTime.format(context)}'
+                                      : '${controller.eendTimeTod!.format(context)}',
                                   style: GoogleFonts.inter(
                                     fontSize: 16,
                                     fontStyle: FontStyle.normal,
                                     fontWeight: FontWeight.w500,
-                                    color: controller.eendTimeTod.value ==
-                                            currentTime
+                                    color: controller.eendTimeTod == null
                                         ? MyTheme.hinttextColor
                                         : MyTheme.hinttextchangeColor,
                                   ),

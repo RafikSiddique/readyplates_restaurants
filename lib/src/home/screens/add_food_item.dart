@@ -10,7 +10,6 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:readyplates_restaurants/models/restaurant_model.dart';
 import 'package:readyplates_restaurants/src/home/home_controller.dart';
-import 'package:readyplates_restaurants/utils/api_services.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/dropdowncategory.dart';
 import 'package:readyplates_restaurants/widgets/dropdowndiettype.dart';
@@ -46,7 +45,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
       );
       if (croppedFile != null) {
         imageFile(croppedFile);
-        
+        // setState(() {});
       }
     }
   }
