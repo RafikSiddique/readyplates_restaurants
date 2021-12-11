@@ -541,6 +541,27 @@ class OnboardingController extends GetxController {
     String day = dates[2].length == 1 ? "0${dates[2]}" : dates[2];
     DateTime eventDate = DateTime.parse(dates[0] + month + day);
     recurrenceTime = eventDate;
+        estartTime = restaurantModel.start_time;
+    eendTime = restaurantModel.end_time;
+    List<String> estartTimes = restaurantModel.start_time.split(':');
+    List<String> eendTimes = restaurantModel.end_time.split(':');
+    int estart = (int.parse(estartTimes.first) +
+        (estartTimes.last.toLowerCase().contains('a')
+            ? 0
+            : estartTimes.last.toLowerCase().contains('p')
+                ? 12
+                : 0));
+    int eend = int.parse(eendTimes.first) +
+        (eendTimes.last.toLowerCase().contains('a')
+            ? 0
+            : eendTimes.last.toLowerCase().contains('p')
+                ? 12
+                : 0);
+    int estartMin = int.parse(estartTimes.last.split(' ').first);
+    int eendMin = int.parse(eendTimes.last.split(' ').first);
+    estartTimeTod = TimeOfDay(hour: estart, minute: estartMin);
+    eendTimeTod = TimeOfDay(hour: eend, minute: eendMin);
+    //estartTimeTod = 
     selectedRecurrence.value = restaurantModel.bio.first.recur_freq;
   }
 

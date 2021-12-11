@@ -108,7 +108,7 @@ class _SignupPageState extends State<SignupPage> {
                       : 1,
                 ),
                 Expanded(
-                  flex: size.height > 800 ? 6 : 7,
+                  flex: size.height > 800 ? 4 : 6,
                   child: AnimatedContainer(
                     duration: Duration(milliseconds: 300),
                     width: size.width,
@@ -246,7 +246,7 @@ class _SignupPageState extends State<SignupPage> {
                                   );
                                 }),
                             SizedBox(
-                              height: Get.height * 0.05,
+                              height: Get.height * 0.01,
                             )
                           ],
                         ),

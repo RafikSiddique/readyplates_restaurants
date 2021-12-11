@@ -32,7 +32,6 @@ android {
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
-
     defaultConfig {
         applicationId "com.fladdra.readyplates.restaurant"
         minSdkVersion 20

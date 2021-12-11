@@ -242,11 +242,7 @@ class HomeController extends GetxController {
       String id = await sfHelper.getRestaurantId();
       foodItems.value = await homeServices.getMenu(id);
     } catch (e) {
-      foodItems.value = foodItems.length != 0
-          ? foodItems.first.id == -1
-              ? []
-              : foodItems
-          : [];
+      
       Get.snackbar("Error", e.toString());
       timer?.cancel();
     }
@@ -262,6 +258,8 @@ class HomeController extends GetxController {
           tables.where((element) => element.available).toList();
       getUnavaailTables.value =
           tables.where((element) => !element.available).toList();
+      getAvailTables.sort((a, b) => a.capacity.compareTo(b.capacity));
+      getUnavaailTables.sort((a, b) => a.capacity.compareTo(b.capacity));
     } catch (e) {
       getAvailTables.value = getAvailTables.length != 0
           ? getAvailTables.first.id == -1

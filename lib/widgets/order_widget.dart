@@ -226,47 +226,24 @@ class OrderWidget extends StatelessWidget {
               ],
             )
           else
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Press the below button if customer has paid for the order at restaurant",
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.inter(
-                    textStyle: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w500,
-                      fontStyle: FontStyle.normal,
-                      color: MyTheme.textColor,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                OnboardingButton(
-                  onTap: () async {
-                    if (element.status == OrderState.inProgress) {
-                      if (element.no_of_table != null)
-                        await controller.updateStatus(
-                            element.id, 2, element.no_of_table!);
-                      else
-                        controller.getOrderItems();
-                    }
-                  },
-                  buttonbackgroundColor: element.status == OrderState.inProgress
-                      ? MyTheme.text1Color
-                      : MyTheme.buttonColor,
-                  text: element.status == OrderState.inProgress
-                      ? 'End Order'
-                      : element.status == OrderState.cancelled
-                          ? "Order Cancelled"
-                          : "Order Completed",
-                  buttontextColor: MyTheme.appbackgroundColor,
-                  fontWeight: FontWeight.bold,
-                ),
-              ],
+            OnboardingButton(
+              onTap: () async {
+                /*             if (element.status == OrderState.inProgress) {
+                  if (element.no_of_table != null)
+                    await controller.updateStatus(
+                        element.id, 2, element.no_of_table!);
+                  else
+                    controller.getOrderItems();
+                } */
+              },
+              buttonbackgroundColor: MyTheme.buttonColor,
+              text: element.status == OrderState.inProgress
+                  ? 'In Progress'
+                  : element.status == OrderState.cancelled
+                      ? "Order Cancelled"
+                      : "Order Completed",
+              buttontextColor: MyTheme.appbackgroundColor,
+              fontWeight: FontWeight.bold,
             )
         ],
       ),

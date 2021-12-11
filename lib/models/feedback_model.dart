@@ -10,7 +10,9 @@ class FeedbackModel {
   final String image;
   final int restaurant;
   final int user;
+  final int order;
   FeedbackModel({
+    required this.order,
     required this.id,
     required this.overall_experience,
     required this.taste,
@@ -21,30 +23,6 @@ class FeedbackModel {
     required this.restaurant,
     required this.user,
   });
-
-  FeedbackModel copyWith({
-    int? id,
-    String? overall_experience,
-    String? taste,
-    String? ambience,
-    String? serving_time,
-    String? feedback,
-    String? image,
-    int? restaurant,
-    int? user,
-  }) {
-    return FeedbackModel(
-      id: id ?? this.id,
-      overall_experience: overall_experience ?? this.overall_experience,
-      taste: taste ?? this.taste,
-      ambience: ambience ?? this.ambience,
-      serving_time: serving_time ?? this.serving_time,
-      feedback: feedback ?? this.feedback,
-      image: image ?? this.image,
-      restaurant: restaurant ?? this.restaurant,
-      user: user ?? this.user,
-    );
-  }
 
   Map<String, dynamic> toMap() {
     return {
@@ -68,6 +46,7 @@ class FeedbackModel {
       ambience: map['ambience'],
       serving_time: map['serving_time'],
       feedback: map['feedback'],
+      order: map['order'],
       image: map['image'],
       restaurant: map['restaurant']?.toInt(),
       user: map['user']?.toInt(),
@@ -76,7 +55,8 @@ class FeedbackModel {
 
   String toJson() => json.encode(toMap());
 
-  factory FeedbackModel.fromJson(String source) => FeedbackModel.fromMap(json.decode(source));
+  factory FeedbackModel.fromJson(String source) =>
+      FeedbackModel.fromMap(json.decode(source));
 
   @override
   String toString() {
@@ -86,29 +66,29 @@ class FeedbackModel {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
+
     return other is FeedbackModel &&
-      other.id == id &&
-      other.overall_experience == overall_experience &&
-      other.taste == taste &&
-      other.ambience == ambience &&
-      other.serving_time == serving_time &&
-      other.feedback == feedback &&
-      other.image == image &&
-      other.restaurant == restaurant &&
-      other.user == user;
+        other.id == id &&
+        other.overall_experience == overall_experience &&
+        other.taste == taste &&
+        other.ambience == ambience &&
+        other.serving_time == serving_time &&
+        other.feedback == feedback &&
+        other.image == image &&
+        other.restaurant == restaurant &&
+        other.user == user;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-      overall_experience.hashCode ^
-      taste.hashCode ^
-      ambience.hashCode ^
-      serving_time.hashCode ^
-      feedback.hashCode ^
-      image.hashCode ^
-      restaurant.hashCode ^
-      user.hashCode;
+        overall_experience.hashCode ^
+        taste.hashCode ^
+        ambience.hashCode ^
+        serving_time.hashCode ^
+        feedback.hashCode ^
+        image.hashCode ^
+        restaurant.hashCode ^
+        user.hashCode;
   }
 }

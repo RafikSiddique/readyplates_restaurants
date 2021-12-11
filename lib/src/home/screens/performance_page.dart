@@ -172,7 +172,7 @@ class FeedbackWidget extends StatelessWidget {
           children: [
             Row(children: [
               Spacer(),
-              Text("Order #${feedbackModel.id}",
+              Text("Order #${feedbackModel.order}",
                   style: GoogleFonts.inter(
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
