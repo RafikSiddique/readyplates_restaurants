@@ -213,6 +213,18 @@ class HomeController extends GetxController {
     }
   }
 
+  Future<void> delete(int id) async {
+    try {
+      await homeServices.deleteFoodItem(id);
+      getFoodItems();
+    } catch (e) {
+      Get.showSnackbar(GetBar(
+        duration: Duration(seconds: 1),
+        message: e.toString(),
+      ));
+    }
+  }
+
   Future<void> editFoodItem(int id) async {
     try {
       String resname = await sfHelper.getRestaurantId();
@@ -242,7 +254,6 @@ class HomeController extends GetxController {
       String id = await sfHelper.getRestaurantId();
       foodItems.value = await homeServices.getMenu(id);
     } catch (e) {
-      
       Get.snackbar("Error", e.toString());
       timer?.cancel();
     }

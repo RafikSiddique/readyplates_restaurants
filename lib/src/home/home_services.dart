@@ -130,6 +130,17 @@ class HomeServices extends ApiServices {
     }
   }
 
+  Future<void> deleteFoodItem(int id) async {
+    try {
+      Response res = await delete(updateMenu(id));
+      if (res.statusCode != 200) {
+        throw AppException(code: res.statusCode, message: res.reasonPhrase);
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<List<FeedbackModel>> getFeedbacks(String id) async {
     try {
       Response response = await get(feedbacks(id));
