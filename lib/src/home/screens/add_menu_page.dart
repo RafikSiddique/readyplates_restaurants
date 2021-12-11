@@ -108,7 +108,10 @@ class MenuPage extends StatelessWidget {
                   children: [
                     if (controller.foodItems
                         .any((p0) => p0.category == categories[i]))
-                      Text(categories[i]),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15.0),
+                        child: Text(categories[i]),
+                      ),
                     ...controller.foodItems
                         .where((p0) => p0.category == categories[i])
                         .map(
