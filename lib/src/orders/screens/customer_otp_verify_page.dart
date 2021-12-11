@@ -34,44 +34,39 @@ class CustomerOtpVerify extends GetView<OrderController> {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 16, right: 16, top: 3),
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                offset: Offset(0, 4),
-                blurRadius: 4,
-                spreadRadius: 0,
-                color: Color(0xffBCCAE0).withOpacity(0.4),
-              )
-            ],
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 15, right: 15, top: 30),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  InkWell(
-                    onTap: () {},
-                    child: Container(
-                      height: MediaQuery.of(context).size.height * 0.58,
-                      // width: MediaQuery.of(context).size.width * 0.7,
-                      child: Image(
-                        image: AssetImage('assets/images/otpverify.png'),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    width: 250,
-                    child: Text(
-                        "Enter PIN sent to customer to complete verification",
+      body: Container(
+        margin: EdgeInsets.all(14),
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              offset: Offset(0, 4),
+              blurRadius: 4,
+              spreadRadius: 0,
+              color: Color(0xffBCCAE0).withOpacity(0.4),
+            )
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 15, right: 15, top: 30),
+          child: Column(
+            children: [
+              Expanded(
+                flex: 10,
+                child: Image(
+                  image: AssetImage('assets/images/otpverify.png'),
+                ),
+              ),
+              Spacer(
+                flex: 1,
+              ),
+              Container(
+                width: 250,
+                child:
+                    Text("Enter PIN sent to customer to complete verification",
                         textAlign: TextAlign.center,
                         style: GoogleFonts.inter(
                           textStyle: TextStyle(
@@ -81,125 +76,124 @@ class CustomerOtpVerify extends GetView<OrderController> {
                             color: MyTheme.textColor,
                           ),
                         )),
-                  ),
-                  SizedBox(
-                    height: 13,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      for (var i = 0; i < controller.otpFields.length; i++)
-                        Container(
-                          width: 40,
-                          height: 50,
-                          margin: EdgeInsets.all(8),
-                          child: TextField(
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.montserrat(
-                                fontSize: 18, fontWeight: FontWeight.w600),
-                            controller: controller.otpText[i],
-                            textAlignVertical: TextAlignVertical.bottom,
-                            focusNode: controller.otpFields[i],
-                            maxLength: 1,
-                            inputFormatters: [
-                              FilteringTextInputFormatter.digitsOnly,
-                            ],
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(
-                              counterText: "",
-                              hintText: (i + 1).toString(),
-                              hintStyle: TextStyle(
-                                color: Colors.grey.shade300,
-                              ),
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  width: 1,
-                                  color: MyTheme.borderColor,
-                                ),
-                                borderRadius: BorderRadius.circular(6.0),
-                              ),
-                            ),
-                            onChanged: (value) {
-                              print(value);
-                              print(controller.otp);
-                              if (value.length == 1) {
-                                controller.otp += value;
-                                if (i < 3) {
-                                  controller.otpFields[i + 1].requestFocus();
-                                } else {
-                                  if (orderModelApi.pin.toString() ==
-                                      controller.otp) {
-                                    controller.otpVerification.value =
-                                        controller.otpVerified;
-                                  } else {
-                                    controller.otpVerification.value =
-                                        controller.incorrect;
-                                  }
-                                }
-                              } else {
-                                if (i != 0) {
-                                  controller.otp =
-                                      controller.otp.substring(0, i);
-                                  controller.otpFields[i - 1].requestFocus();
-                                } else {
-                                  controller.otp = "";
-                                }
-                              }
-                            },
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  for (var i = 0; i < controller.otpFields.length; i++)
+                    Container(
+                      width: 40,
+                      height: 50,
+                      margin: EdgeInsets.all(8),
+                      child: TextField(
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.montserrat(
+                            fontSize: 18, fontWeight: FontWeight.w600),
+                        controller: controller.otpText[i],
+                        textAlignVertical: TextAlignVertical.bottom,
+                        focusNode: controller.otpFields[i],
+                        maxLength: 1,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly,
+                        ],
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          counterText: "",
+                          hintText: (i + 1).toString(),
+                          hintStyle: TextStyle(
+                            color: Colors.grey.shade300,
                           ),
-                        )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Obx(() => Text(controller.otpVerification.value,
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.inter(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        fontStyle: FontStyle.normal,
-                        color: controller.otpVerification.value ==
-                                controller.otpVerified
-                            ? MyTheme.borderchangeColor
-                            : Colors.red,
-                      ))),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  OnboardingButton(
-                    height: 44,
-                    boxShadow: [
-                      BoxShadow(
-                        offset: Offset(0, 2),
-                        blurRadius: 4,
-                        spreadRadius: 0,
-                        color: Color(0xff000000).withOpacity(0.25),
-                      )
-                    ],
-                    fontWeight: FontWeight.bold,
-                    onTap: () async {
-                      if (controller.otpVerification.value ==
-                          controller.otpVerified) {
-                        Get.find<HomeController>().getAvailableTables();
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => TableAssignPage(
-                                      orderId: orderModelApi.id,
-                                    )));
-                      }
-                    },
-                    buttonbackgroundColor: MyTheme.text1Color,
-                    text: 'Confirm',
-                    buttontextColor: MyTheme.appbackgroundColor,
-                  ),
-                  SizedBox(
-                    height: 16,
-                  ),
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              width: 1,
+                              color: MyTheme.borderColor,
+                            ),
+                            borderRadius: BorderRadius.circular(6.0),
+                          ),
+                        ),
+                        onChanged: (value) {
+                          print(value);
+                          print(controller.otp);
+                          if (value.length == 1) {
+                            controller.otp += value;
+                            if (i < 3) {
+                              controller.otpFields[i + 1].requestFocus();
+                            } else {
+                              if (orderModelApi.pin.toString() ==
+                                  controller.otp) {
+                                controller.otpVerification.value =
+                                    controller.otpVerified;
+                              } else {
+                                controller.otpVerification.value =
+                                    controller.incorrect;
+                              }
+                            }
+                          } else {
+                            if (i != 0) {
+                              controller.otp = controller.otp.substring(0, i);
+                              controller.otpFields[i - 1].requestFocus();
+                            } else {
+                              controller.otp = "";
+                            }
+                          }
+                        },
+                      ),
+                    )
                 ],
               ),
-            ),
+              Obx(() => controller.otpVerification.value != ""
+                  ? Spacer(
+                      flex: 1,
+                    )
+                  : Container()),
+              Obx(() => Text(controller.otpVerification.value,
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.inter(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    fontStyle: FontStyle.normal,
+                    color: controller.otpVerification.value ==
+                            controller.otpVerified
+                        ? MyTheme.borderchangeColor
+                        : Colors.red,
+                  ))),
+              Spacer(
+                flex: 1,
+              ),
+              OnboardingButton(
+                height: 44,
+                boxShadow: [
+                  BoxShadow(
+                    offset: Offset(0, 2),
+                    blurRadius: 4,
+                    spreadRadius: 0,
+                    color: Color(0xff000000).withOpacity(0.25),
+                  )
+                ],
+                fontWeight: FontWeight.bold,
+                onTap: () async {
+                  if (controller.otpVerification.value ==
+                      controller.otpVerified) {
+                    Get.find<HomeController>().getAvailableTables();
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => TableAssignPage(
+                                  orderId: orderModelApi.id,
+                                )));
+                  }
+                },
+                buttonbackgroundColor: MyTheme.text1Color,
+                text: 'Confirm',
+                buttontextColor: MyTheme.appbackgroundColor,
+              ),
+              Spacer(
+                flex: 1,
+              )
+            ],
           ),
         ),
       ),

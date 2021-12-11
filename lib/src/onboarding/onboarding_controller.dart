@@ -541,7 +541,7 @@ class OnboardingController extends GetxController {
     String day = dates[2].length == 1 ? "0${dates[2]}" : dates[2];
     DateTime eventDate = DateTime.parse(dates[0] + month + day);
     recurrenceTime = eventDate;
-        estartTime = restaurantModel.start_time;
+    estartTime = restaurantModel.start_time;
     eendTime = restaurantModel.end_time;
     List<String> estartTimes = restaurantModel.start_time.split(':');
     List<String> eendTimes = restaurantModel.end_time.split(':');
@@ -561,7 +561,7 @@ class OnboardingController extends GetxController {
     int eendMin = int.parse(eendTimes.last.split(' ').first);
     estartTimeTod = TimeOfDay(hour: estart, minute: estartMin);
     eendTimeTod = TimeOfDay(hour: eend, minute: eendMin);
-    //estartTimeTod = 
+    //estartTimeTod =
     selectedRecurrence.value = restaurantModel.bio.first.recur_freq;
   }
 
@@ -596,7 +596,7 @@ class OnboardingController extends GetxController {
   late TextEditingController resDescript;
   late TextEditingController eventDesc;
   DateTime? recurrenceTime;
-  RxString selectedRecurrence = "Monthly".obs;
+  RxString selectedRecurrence = "".obs;
   RxInt servingTime = 0.obs;
   TimeOfDay? estartTimeTod;
   TimeOfDay? eendTimeTod;
@@ -615,6 +615,9 @@ class OnboardingController extends GetxController {
       }
       if (recurrenceTime == null) {
         recurrenceTime = DateTime.now();
+      }
+      if (selectedRecurrence.value == "") {
+        selectedRecurrence.value = "Monthly";
       }
       await services.onboardingapi8(
         resId,
@@ -656,7 +659,7 @@ class OnboardingController extends GetxController {
   }
 
 //Onboarding9
-   PageController pageController = PageController();
+  PageController pageController = PageController();
   List<List<String>> allImages() => [
         demoFasciaImages,
         demoAmbienceImages,

@@ -82,7 +82,7 @@ class DropdownDietType extends StatelessWidget {
                 value: "1"),
             DropdownMenuItem(
                 child: Text(
-                  "Meat",
+                "Meat",
                   style: GoogleFonts.inter(
                     fontSize: 15,
                     fontStyle: FontStyle.normal,

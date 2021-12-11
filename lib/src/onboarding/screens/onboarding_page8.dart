@@ -20,7 +20,6 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
   final controller = Get.find<OnboardingController>();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   String dob = '';
-  String rec = '';
 
   void showEventDate() async {
     DateTime? dt = await showDatePicker(
@@ -90,7 +89,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
       },
       enabled: controller.servingTime.value != 00 &&
           controller.recurrenceTime != null &&
-          rec.isNotEmpty &&
+          controller.selectedRecurrence.isNotEmpty &&
           controller.eendTimeTod != currentTime &&
           controller.estartTimeTod != currentTime,
       child: Padding(
@@ -331,7 +330,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                                   BorderRadius.all(Radius.circular(6)),
                               border: Border.all(
                                 width: 1,
-                                color: rec.isEmpty
+                                color: controller.selectedRecurrence.value == ""
                                     ? MyTheme.borderColor
                                     : MyTheme.borderchangeColor,
                                 style: BorderStyle.solid,
@@ -354,12 +353,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                                                           controller
                                                               .selectedRecurrence
                                                               .value = e;
-                                                          setState(() {
-                                                            rec = controller
-                                                                .selectedRecurrence
-                                                                .value
-                                                                .toString();
-                                                          });
+                                                          setState(() {});
 
                                                           Get.back();
                                                         },
@@ -384,7 +378,8 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                                             fontSize: 16,
                                             fontStyle: FontStyle.normal,
                                             fontWeight: FontWeight.w500,
-                                            color: rec == ''
+                                            color: controller.selectedRecurrence
+                                                    .value.isEmpty
                                                 ? MyTheme.hinttextColor
                                                 : MyTheme.hinttextchangeColor,
                                           ),

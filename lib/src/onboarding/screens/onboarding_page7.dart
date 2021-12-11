@@ -210,7 +210,9 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                               value: e),
                         )
                         .toList(),
-                    // value: controller.typeOfEstablishment ,
+                    value: controller.typeOfEstablishment.value == ""
+                        ? null
+                        : controller.typeOfEstablishment.value,
                     onChanged: (newValue) {
                       setState(() {
                         controller.typeOfEstablishment.value = newValue!;
