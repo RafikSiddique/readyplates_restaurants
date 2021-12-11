@@ -110,7 +110,7 @@ class MenuPage extends StatelessWidget {
                         .any((p0) => p0.category == categories[i]))
                       Padding(
                         padding: const EdgeInsets.only(left: 15.0),
-                        child: Text(categories[i]),
+                        child: Text(categories[i]), //TODO: Format this text
                       ),
                     ...controller.foodItems
                         .where((p0) => p0.category == categories[i])
