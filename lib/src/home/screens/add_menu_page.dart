@@ -12,7 +12,7 @@ import 'package:readyplates_restaurants/widgets/edit_button.dart';
 class MenuPage extends StatelessWidget {
   MenuPage({Key? key}) : super(key: key);
   final controller = Get.find<HomeController>();
-  List<String> categories = ["Starter", "Main Course", "Desserts", "Slides"];
+  List<String> categories = ["Starter", "Main Course", "Desserts", "Sides"];
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context);
@@ -109,8 +109,19 @@ class MenuPage extends StatelessWidget {
                     if (controller.foodItems
                         .any((p0) => p0.category == categories[i]))
                       Padding(
-                        padding: const EdgeInsets.only(left: 15.0),
-                        child: Text(categories[i]), //TODO: Format this text
+                        padding: const EdgeInsets.only(
+                          top: 16,
+                          left: 16,
+                        ),
+                        child: Text(
+                          categories[i].toUpperCase(),
+                          style: GoogleFonts.inter(
+                            fontSize: 15,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.w500,
+                            color: MyTheme.text3Color,
+                          ),
+                        ),
                       ),
                     ...controller.foodItems
                         .where((p0) => p0.category == categories[i])
