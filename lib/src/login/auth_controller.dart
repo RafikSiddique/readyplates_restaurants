@@ -53,20 +53,29 @@ class AuthController extends GetxController {
     controller.isEditing = false;
     switch (id) {
       case 1:
+        controller.initControllers1();
         return OnboardingPage1.id;
       case 2:
+        controller.init2();
         return OnboardingPage2.id;
       case 3:
+        controller.init3();
+
         return OnboardingPage3.id;
       case 4:
+        controller.init4();
+
         return OnboardingPage4.id;
       case 5:
+        controller.init5();
         return OnboardingPage5.id;
       case 6:
+        controller.init6();
         return OnboardingPage6.id;
       case 7:
         return OnboardingPage7.id;
       case 8:
+        controller.init8();
         return OnboardingPage8.id;
       case 9:
         controller.pageIndex.value = 0;

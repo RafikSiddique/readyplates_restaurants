@@ -284,6 +284,7 @@ class _OpeningScreenState extends State<OpeningScreen>
           } else {
             if (id == 1) {
               final c = Get.put(OnboardingController());
+              
               await Geolocator.requestPermission();
               Position position = await Geolocator.getCurrentPosition();
               c.init2();
