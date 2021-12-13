@@ -166,6 +166,7 @@ class _TableStatusPageState extends State<TableStatusPage>
                     }
                   }
                 },
+                keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   prefixIcon: Icon(

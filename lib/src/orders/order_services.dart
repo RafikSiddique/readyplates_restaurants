@@ -9,7 +9,8 @@ class OrderServices extends ApiServices {
     try {
       Response response =
           await get(resOrders(id), headers: contentTypeJsonHeader);
-
+      print(response.statusCode);
+      print(response);
       if (response.statusCode == 200) {
         Map<String, dynamic> map = jsonDecode(response.body);
         List<dynamic> list = map["Data"];
