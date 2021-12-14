@@ -3,6 +3,8 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:readyplates_restaurants/src/home/home_controller.dart';
+import 'package:readyplates_restaurants/src/login/screens/login_page.dart';
+import 'package:readyplates_restaurants/src/login/screens/otp_verify_page.dart';
 import 'package:readyplates_restaurants/src/orders/order_controller.dart';
 import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
 import 'package:readyplates_restaurants/src/login/auth_services.dart';
@@ -33,11 +35,22 @@ class AuthController extends GetxController {
     password.clear();
   }
 
+  late List<TextEditingController> otpText;
+  String otp = '';
+  late List<FocusNode> otpFields;
+
+  RxString otpVerification = "".obs;
+
+  String otpVerified = "OTP Verified";
+  String incorrect = "Incorrect OTP";
+
   @override
   void onInit() {
     email = TextEditingController();
     password = TextEditingController();
     password2 = TextEditingController();
+    otpFields = List.generate(4, (index) => FocusNode());
+    otpText = List.generate(4, (index) => TextEditingController());
     super.onInit();
   }
 
@@ -166,6 +179,17 @@ class AuthController extends GetxController {
       final c = Get.find<HomeController>();
       Get.offAllNamed(HomePage.id);
       c.selectedIndex.value = 4;
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+    }
+  }
+
+  Future<void> forgotPassword() async {
+    try {
+      await services.forgotPassword(
+        email.text,
+      );
+      Get.toNamed(VerifyOtpPage.id);
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }

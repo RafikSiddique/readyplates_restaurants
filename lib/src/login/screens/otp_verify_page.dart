@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
-import 'package:readyplates_restaurants/src/login/screens/forgot_password_page.dart';
+import 'package:readyplates_restaurants/src/login/screens/changepassword_page1.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
-import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 
-class LoginPage extends StatefulWidget {
-  static const id = "/login";
-  final bool isChangePassword;
-  const LoginPage({Key? key, this.isChangePassword = false}) : super(key: key);
+class VerifyOtpPage extends StatefulWidget {
+  static const id = "/verifyotp";
+  const VerifyOtpPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<VerifyOtpPage> createState() => _VerifyOtpPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _VerifyOtpPageState extends State<VerifyOtpPage> {
   final controller = Get.find<AuthController>();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -129,15 +128,13 @@ class _LoginPageState extends State<LoginPage> {
                                 Align(
                                   alignment: Alignment.center,
                                   child: Hero(
-                                    tag: "login",
+                                    tag: "Forgot Password",
                                     child: Card(
                                       elevation: 0,
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Text(
-                                          widget.isChangePassword == true
-                                              ? "Change Password"
-                                              : 'Login',
+                                          "Forgot Password",
                                           textAlign: TextAlign.center,
                                           style: GoogleFonts.inter(
                                             fontSize: 17,
@@ -157,82 +154,91 @@ class _LoginPageState extends State<LoginPage> {
                           SizedBox(
                             height: kToolbarHeight * 0.4,
                           ),
-                          AppFormField(
-                            title: "Email Address",
-                            isEmail: true,
-                            hintText: "Registered E-Mail ID",
-                            fontSize: 13,
-                            inputType: TextInputType.text,
-                            controller: controller.email,
-                          ),
-                          SizedBox(
-                            height: kToolbarHeight * 0.4,
-                          ),
-                          AppFormField(
-                            title: "Password",
-                            hintText: "** ** **",
-                            line: 1,
-                            fontSize: 13,
-                            controller: controller.password,
-                            isPassword: true,
-                          ),
-                          SizedBox(
-                            height: 3,
-                          ),
-                          if (widget.isChangePassword != true)
-                            InkWell(
-                              onTap: () {
-                                Get.toNamed(ForgotPasswordPage.id);
-                              },
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    'Forgot Password ?',
-                                    textAlign: TextAlign.center,
-                                    style: GoogleFonts.inter(
-                                      decoration: TextDecoration.underline,
-                                      fontSize: 10,
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.normal,
-                                      color: MyTheme.starColor,
-                                    ),
-                                  ),
-                                ],
+                          Align(
+                            alignment: Alignment.center,
+                            child: Container(
+                              width: 200,
+                              child: Text(
+                                "Enter OTP sent on registered email to proceed further",
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.inter(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w500,
+                                  fontStyle: FontStyle.normal,
+                                  color: MyTheme.chevrondowncolor,
+                                ),
                               ),
                             ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              for (var i = 0;
+                                  i < controller.otpFields.length;
+                                  i++)
+                                Container(
+                                  width: 40,
+                                  height: 50,
+                                  margin: EdgeInsets.all(8),
+                                  child: TextField(
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.montserrat(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600),
+                                    controller: controller.otpText[i],
+                                    textAlignVertical: TextAlignVertical.bottom,
+                                    focusNode: controller.otpFields[i],
+                                    maxLength: 1,
+                                    inputFormatters: [
+                                      FilteringTextInputFormatter.digitsOnly,
+                                    ],
+                                    keyboardType: TextInputType.number,
+                                    decoration: InputDecoration(
+                                      counterText: "",
+                                      hintText: (i + 1).toString(),
+                                      hintStyle: TextStyle(
+                                        color: Colors.grey.shade300,
+                                      ),
+                                      border: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          width: 1,
+                                          color: MyTheme.borderColor,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(6.0),
+                                      ),
+                                    ),
+                                    onChanged: (value) {},
+                                  ),
+                                )
+                            ],
+                          ),
                           SizedBox(
                             height: kToolbarHeight * 0.4,
                           ),
                           AnimatedBuilder(
                               animation: Listenable.merge([
-                                controller.email,
-                                controller.password,
+                                // controller.otpText[i],
                               ]),
                               builder: (context, child) {
                                 return OnboardingButton(
-                                  height: 54,
-                                  onTap: () async {
-                                    formKey.currentState!.save();
-                                    if (formKey.currentState!.validate()) ;
-
-                                    await controller
-                                        .login(widget.isChangePassword);
-                                  },
-                                  buttonbackgroundColor:
-                                      (controller.email.text.isEmpty ||
-                                              controller.password.text.isEmpty)
-                                          ? MyTheme.buttonColor
-                                          : MyTheme.buttonchangeColor,
-                                  text: controller.isLoggedIn == true
-                                      ? 'Proceed'
-                                      : 'Verify Password',
-                                  buttontextColor:
-                                      (controller.email.text.isEmpty ||
-                                              controller.password.text.isEmpty)
-                                          ? MyTheme.buttontextColor
-                                          : MyTheme.buttontextchangeColor,
-                                );
+                                    height: 54,
+                                    onTap: () async {
+                                      Get.toNamed(ChangePasswordPage1.id);
+                                    },
+                                    buttonbackgroundColor: MyTheme.imgtextColor,
+                                    // (controller.otpText[i].text.isEmpty)
+                                    //     ? MyTheme.buttonColor
+                                    //     : MyTheme.buttonchangeColor,
+                                    text: 'CONTINUE',
+                                    buttontextColor: Colors.white
+                                    // (controller.otpText[i].text.isEmpty)
+                                    //     ? MyTheme.imgtextColor
+                                    //     : MyTheme.buttontextchangeColor,
+                                    );
                               }),
                           SizedBox(
                             height: 16,

@@ -6,13 +6,13 @@ class ApiServices {
   final String baseUrlLive = "http://202.53.174.5:8000";
   final String baseUrlLocal = "http://192.168.0.194:5500";
   String get baseUri => baseUriImage + "/";
-  String get baseUriImage => baseUrlLive;
+  String get baseUriImage => baseUrlLocal;
 
   Uri restaurants(String path) => Uri.parse(baseUri + "restaurants/" + path);
 
   Uri accounts(String url) => Uri.parse(baseUri + "accounts/" + url);
   Uri get changePass => accounts("resetpass/");
-
+  Uri get forgotUri => accounts('forgotpass/');
   Uri get loginUri => restaurants('login/');
   Uri get registerUri => restaurants('register/');
 

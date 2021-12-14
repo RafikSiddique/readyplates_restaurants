@@ -6,6 +6,8 @@ import 'package:readyplates_restaurants/utils/api_services.dart';
 import 'package:readyplates_restaurants/utils/exception.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 
+String respOtp = '';
+
 class AuthenticationServices extends ApiServices {
   SharedPreferenceHelper sharedPreferenceHelper = SharedPreferenceHelper();
   Future<String> signup(
@@ -86,6 +88,34 @@ class AuthenticationServices extends ApiServices {
       if (response.statusCode == 200) {
         Map resp = json.decode(response.body);
         print(resp["Success"].toString());
+
+        print(response.body);
+      } else {
+        throw AppException(code: response.statusCode, message: response.body);
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> forgotPassword(
+    String email,
+  ) async {
+    try {
+      Response response = await post(
+        forgotUri,
+        body: jsonEncode(
+          {
+            'email': email,
+          },
+        ),
+        headers: contentTypeJsonHeader,
+      );
+
+      if (response.statusCode == 200) {
+        Map resp = json.decode(response.body);
+        respOtp = resp["OTP"].toString();
+        print("${respOtp} bvc");
 
         print(response.body);
       } else {
