@@ -77,4 +77,13 @@ class MyTheme {
   static Color searchbackcolor = Color(0xffF5F5F5);
 
   static Color chevrondowncolor = Color(0xff797979);
+
+  static Color cancelOrderBackColor = Color(0xffFEE4E3);
+  static Color cancelOrderTextColor = Color(0xffEB5449);
+
+  static Color inProgressOrderBackColor = Color(0xffD3F9E1);
+  static Color inProgressOrderTextColor = Color(0xff30C77A);
+
+  static Color completeOrderBackColor = Color(0xffEFEFEF);
+  static Color completeOrderTextColor = Color(0xff979797);
 }

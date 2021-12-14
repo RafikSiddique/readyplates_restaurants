@@ -3,7 +3,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:readyplates_restaurants/src/home/home_controller.dart';
-import 'package:readyplates_restaurants/src/login/screens/login_page.dart';
 import 'package:readyplates_restaurants/src/login/screens/otp_verify_page.dart';
 import 'package:readyplates_restaurants/src/orders/order_controller.dart';
 import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
@@ -109,8 +108,8 @@ class AuthController extends GetxController {
 
   Future<void> signup() async {
     try {
-      String id =
-          await services.signup(email.text, password.text, password2.text);
+      String id = await services.signup(
+          email.text.toLowerCase(), password.text, password2.text);
       await sfHelper.setUserId(id);
       email.clear();
       password.clear();
@@ -127,7 +126,7 @@ class AuthController extends GetxController {
   Future<void> login(bool isChangePass) async {
     try {
       List<String> id = await services.login(
-        email.text,
+        email.text.toLowerCase(),
         password.text,
       );
       await sfHelper.setUserId(id[0]);

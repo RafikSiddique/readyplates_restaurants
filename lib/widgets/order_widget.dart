@@ -145,11 +145,7 @@ class OrderWidget extends StatelessWidget {
                   },
                 )
               else
-                Text(
-                    "Accept order to assign" +
-                        " Table for " +
-                        element.no_of_people.toString() +
-                        " People",
+                Text("Order For " + element.no_of_people.toString() + " PAX",
                     style: GoogleFonts.nunito(
                       textStyle: TextStyle(
                         fontSize: 15,
@@ -236,14 +232,23 @@ class OrderWidget extends StatelessWidget {
                     controller.getOrderItems();
                 } */
               },
-              buttonbackgroundColor: MyTheme.buttonColor,
+              fontSize: 15,
+              buttonbackgroundColor: element.status == OrderState.inProgress
+                  ? MyTheme.inProgressOrderBackColor
+                  : (element.status == OrderState.cancelled
+                      ? MyTheme.cancelOrderBackColor
+                      : MyTheme.completeOrderBackColor),
               text: element.status == OrderState.inProgress
                   ? 'In Progress'
                   : element.status == OrderState.cancelled
-                      ? "Order Cancelled"
+                      ? "Cancelled"
                       : "Order Completed",
-              buttontextColor: MyTheme.appbackgroundColor,
-              fontWeight: FontWeight.bold,
+              buttontextColor: element.status == OrderState.inProgress
+                  ? MyTheme.inProgressOrderTextColor
+                  : (element.status == OrderState.cancelled
+                      ? MyTheme.cancelOrderTextColor
+                      : MyTheme.completeOrderTextColor),
+              fontWeight: FontWeight.w500,
             )
         ],
       ),
