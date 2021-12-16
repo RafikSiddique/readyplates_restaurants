@@ -71,8 +71,6 @@ class _AppFormFieldState extends State<AppFormField> {
   bool valid = true;
 
   bool _Switchvalue = true;
-  RegExp regExp = new RegExp(
-      r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
 
   @override
   Widget build(BuildContext context) {
@@ -170,8 +168,7 @@ class _AppFormFieldState extends State<AppFormField> {
                             return "Please enter a valid E-Mail Id";
                           }
                         }
-                        if (widget.minLength != null &&
-                            widget.minLength! >= 8) {
+                        if (widget.minLength != null) {
                           if (value!.length < widget.minLength!) {
                             return "Invalid, Minimum length should be ${widget.minLength} digits";
                           }
