@@ -48,8 +48,8 @@ class AuthController extends GetxController {
     email = TextEditingController();
     password = TextEditingController();
     password2 = TextEditingController();
-    otpFields = List.generate(4, (index) => FocusNode());
-    otpText = List.generate(4, (index) => TextEditingController());
+    otpFields = List.generate(6, (index) => FocusNode());
+    otpText = List.generate(6, (index) => TextEditingController());
     super.onInit();
   }
 
