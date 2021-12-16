@@ -175,8 +175,8 @@ class AuthController extends GetxController {
   Future<void> changePassword() async {
     try {
       await services.changePassword(
+        email.text.toLowerCase(),
         password.text,
-        password2.text,
       );
       final c = Get.find<HomeController>();
       Get.offAllNamed(HomePage.id);

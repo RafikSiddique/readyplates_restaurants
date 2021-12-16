@@ -19,6 +19,7 @@ class VerifyOtpPage extends StatefulWidget {
 class _VerifyOtpPageState extends State<VerifyOtpPage> {
   final controller = Get.find<AuthController>();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  int j = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -211,7 +212,10 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                                             BorderRadius.circular(6.0),
                                       ),
                                     ),
-                                    onChanged: (value) {},
+                                    onChanged: (value) {
+                                      print(value);
+                                      j = i;
+                                    },
                                   ),
                                 )
                             ],
@@ -221,24 +225,24 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                           ),
                           AnimatedBuilder(
                               animation: Listenable.merge([
-                                // controller.otpText[i],
+                                controller.otpText[j],
                               ]),
                               builder: (context, child) {
                                 return OnboardingButton(
-                                    height: 54,
-                                    onTap: () async {
-                                      Get.toNamed(ChangePasswordPage1.id);
-                                    },
-                                    buttonbackgroundColor: MyTheme.imgtextColor,
-                                    // (controller.otpText[i].text.isEmpty)
-                                    //     ? MyTheme.buttonColor
-                                    //     : MyTheme.buttonchangeColor,
-                                    text: 'CONTINUE',
-                                    buttontextColor: Colors.white
-                                    // (controller.otpText[i].text.isEmpty)
-                                    //     ? MyTheme.imgtextColor
-                                    //     : MyTheme.buttontextchangeColor,
-                                    );
+                                  height: 54,
+                                  onTap: () async {
+                                    Get.toNamed(ChangePasswordPage1.id);
+                                  },
+                                  buttonbackgroundColor:
+                                      (controller.otpText[j].text.isEmpty)
+                                          ? MyTheme.imgtextColor
+                                          : MyTheme.buttonchangeColor,
+                                  text: 'CONTINUE',
+                                  buttontextColor:
+                                      (controller.otpText[j].text.isEmpty)
+                                          ? MyTheme.buttontextchangeColor
+                                          : MyTheme.buttontextchangeColor,
+                                );
                               }),
                           SizedBox(
                             height: 16,
