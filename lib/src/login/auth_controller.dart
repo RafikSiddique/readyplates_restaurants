@@ -109,7 +109,10 @@ class AuthController extends GetxController {
   Future<void> signup() async {
     try {
       String id = await services.signup(
-          email.text.toLowerCase(), password.text, password2.text);
+        email.text.toLowerCase(),
+        password.text,
+        password2.text,
+      );
       await sfHelper.setUserId(id);
       email.clear();
       password.clear();
@@ -172,8 +175,8 @@ class AuthController extends GetxController {
   Future<void> changePassword() async {
     try {
       await services.changePassword(
-        email.text,
         password.text,
+        password2.text,
       );
       final c = Get.find<HomeController>();
       Get.offAllNamed(HomePage.id);
@@ -186,7 +189,7 @@ class AuthController extends GetxController {
   Future<void> forgotPassword() async {
     try {
       await services.forgotPassword(
-        email.text,
+        email.text.toLowerCase(),
       );
       Get.toNamed(VerifyOtpPage.id);
     } catch (e) {

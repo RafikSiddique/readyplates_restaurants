@@ -3,7 +3,6 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:open_file/open_file.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 
 class PickFiles extends StatelessWidget {

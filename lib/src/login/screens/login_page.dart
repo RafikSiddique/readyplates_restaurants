@@ -174,6 +174,7 @@ class _LoginPageState extends State<LoginPage> {
                             line: 1,
                             fontSize: 13,
                             controller: controller.password,
+                            minLength: 8,
                             isPassword: true,
                           ),
                           SizedBox(
