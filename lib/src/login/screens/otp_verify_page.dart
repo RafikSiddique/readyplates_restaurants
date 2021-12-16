@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
+import 'package:readyplates_restaurants/src/login/auth_services.dart';
 import 'package:readyplates_restaurants/src/login/screens/changepassword_page1.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
@@ -215,11 +216,56 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                                     onChanged: (value) {
                                       print(value);
                                       j = i;
+                                      print(controller.otpText[i]);
+                                      if (value.length == 1) {
+                                        controller.otp += value;
+                                        if (i < 3) {
+                                          controller.otpFields[i + 1]
+                                              .requestFocus();
+                                        } else {
+                                          if (respOtp ==
+                                              controller.otpText[i]) {
+                                            controller.otpVerification.value =
+                                                controller.otpVerified;
+                                          } else {
+                                            controller.otpVerification.value =
+                                                controller.incorrect;
+                                          }
+                                        }
+                                      } else {
+                                        if (i != 0) {
+                                          controller.otp =
+                                              controller.otp.substring(0, i);
+                                          controller.otpFields[i - 1]
+                                              .requestFocus();
+                                        } else {
+                                          controller.otp = "";
+                                        }
+                                      }
                                     },
                                   ),
                                 )
                             ],
                           ),
+                          Obx(() => controller.otpVerification.value != ""
+                              ? SizedBox(
+                                  height: 8,
+                                )
+                              : Container()),
+                          Obx(() => Align(
+                                alignment: Alignment.center,
+                                child: Text(controller.otpVerification.value,
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.inter(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                      fontStyle: FontStyle.normal,
+                                      color: controller.otpVerification.value ==
+                                              controller.otpVerified
+                                          ? MyTheme.borderchangeColor
+                                          : Colors.red,
+                                    )),
+                              )),
                           SizedBox(
                             height: kToolbarHeight * 0.4,
                           ),
@@ -231,7 +277,10 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                                 return OnboardingButton(
                                   height: 54,
                                   onTap: () async {
-                                    Get.toNamed(ChangePasswordPage1.id);
+                                    if (controller.otpVerification.value ==
+                                        controller.otpVerified) {
+                                      Get.toNamed(ChangePasswordPage1.id);
+                                    }
                                   },
                                   buttonbackgroundColor:
                                       (controller.otpText[j].text.isEmpty)
