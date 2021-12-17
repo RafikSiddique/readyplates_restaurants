@@ -3,6 +3,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:readyplates_restaurants/src/home/home_controller.dart';
+import 'package:readyplates_restaurants/src/login/screens/login_page.dart';
 import 'package:readyplates_restaurants/src/login/screens/otp_verify_page.dart';
 import 'package:readyplates_restaurants/src/orders/order_controller.dart';
 import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
@@ -12,6 +13,8 @@ import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dar
 import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
 import 'package:readyplates_restaurants/utils/fcm_service.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
+
+String uid = '';
 
 class AuthController extends GetxController {
   final AuthenticationServices services = AuthenticationServices();
@@ -114,6 +117,7 @@ class AuthController extends GetxController {
         password2.text,
       );
       await sfHelper.setUserId(id);
+      uid = id;
       email.clear();
       password.clear();
       password2.clear();
@@ -178,9 +182,13 @@ class AuthController extends GetxController {
         email.text.toLowerCase(),
         password.text,
       );
-      final c = Get.find<HomeController>();
-      Get.offAllNamed(HomePage.id);
-      c.selectedIndex.value = 4;
+      if (uid != '') {
+        final c = Get.find<HomeController>();
+        Get.offAllNamed(HomePage.id);
+        c.selectedIndex.value = 4;
+      } else {
+        Get.toNamed(LoginPage.id);
+      }
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }
