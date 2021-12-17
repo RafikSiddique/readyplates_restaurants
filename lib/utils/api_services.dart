@@ -6,7 +6,7 @@ class ApiServices {
   final String baseUrlLive = "http://202.53.174.5:8000";
   final String baseUrlLocal = "http://192.168.0.194:5500";
   String get baseUri => baseUriImage + "/";
-  String get baseUriImage => baseUrlLocal;
+  String get baseUriImage => baseUrlLive;
 
   Uri restaurants(String path) => Uri.parse(baseUri + "restaurants/" + path);
 
