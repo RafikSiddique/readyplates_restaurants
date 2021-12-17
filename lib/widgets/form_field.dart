@@ -71,6 +71,13 @@ class _AppFormFieldState extends State<AppFormField> {
   bool valid = true;
 
   bool _Switchvalue = true;
+  bool validateStructure(String password) {
+    String pattern =
+        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
+    RegExp regExp = new RegExp(pattern);
+    return regExp.hasMatch(password);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -156,6 +163,12 @@ class _AppFormFieldState extends State<AppFormField> {
                             return "This Field is required";
                           }
                         }
+                        if (widget.isPassword) {
+                          if (!validateStructure(value!)) {
+                            return 'Password should contains atleast 8 characters \n(Caps, Small & Special Characters)';
+                          }
+                        }
+
                         if (widget.isUrl) {
                           if (!value!.isURL) {
                             return "Please enter a valid URL";

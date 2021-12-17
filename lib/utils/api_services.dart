@@ -12,7 +12,7 @@ class ApiServices {
 
   Uri accounts(String url) => Uri.parse(baseUri + "accounts/" + url);
   Uri get changePass => accounts("resetpass/");
-
+  Uri get forgotUri => accounts('forgotpass/');
   Uri get loginUri => restaurants('login/');
   Uri get registerUri => restaurants('register/');
 

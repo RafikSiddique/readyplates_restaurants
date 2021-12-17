@@ -3,6 +3,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:readyplates_restaurants/src/home/home_controller.dart';
+import 'package:readyplates_restaurants/src/login/screens/otp_verify_page.dart';
 import 'package:readyplates_restaurants/src/orders/order_controller.dart';
 import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
 import 'package:readyplates_restaurants/src/login/auth_services.dart';
@@ -33,11 +34,22 @@ class AuthController extends GetxController {
     password.clear();
   }
 
+  late List<TextEditingController> otpText;
+  String otp = '';
+  late List<FocusNode> otpFields;
+
+  RxString otpVerification = "".obs;
+
+  String otpVerified = "OTP Verified";
+  String incorrect = "Incorrect OTP";
+
   @override
   void onInit() {
     email = TextEditingController();
     password = TextEditingController();
     password2 = TextEditingController();
+    otpFields = List.generate(6, (index) => FocusNode());
+    otpText = List.generate(6, (index) => TextEditingController());
     super.onInit();
   }
 
@@ -96,8 +108,11 @@ class AuthController extends GetxController {
 
   Future<void> signup() async {
     try {
-      String id =
-          await services.signup(email.text, password.text, password2.text);
+      String id = await services.signup(
+        email.text.toLowerCase(),
+        password.text,
+        password2.text,
+      );
       await sfHelper.setUserId(id);
       email.clear();
       password.clear();
@@ -114,7 +129,7 @@ class AuthController extends GetxController {
   Future<void> login(bool isChangePass) async {
     try {
       List<String> id = await services.login(
-        email.text,
+        email.text.toLowerCase(),
         password.text,
       );
       await sfHelper.setUserId(id[0]);
@@ -160,12 +175,23 @@ class AuthController extends GetxController {
   Future<void> changePassword() async {
     try {
       await services.changePassword(
-        email.text,
+        email.text.toLowerCase(),
         password.text,
       );
       final c = Get.find<HomeController>();
       Get.offAllNamed(HomePage.id);
       c.selectedIndex.value = 4;
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+    }
+  }
+
+  Future<void> forgotPassword() async {
+    try {
+      await services.forgotPassword(
+        email.text.toLowerCase(),
+      );
+      Get.toNamed(VerifyOtpPage.id);
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }

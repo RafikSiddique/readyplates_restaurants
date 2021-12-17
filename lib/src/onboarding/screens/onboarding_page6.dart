@@ -94,7 +94,6 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                   minLength: 14,
                   maxLength: 14,
                   hintfontSize: 15,
-                  inputType: TextInputType.number,
                   controller: controller.eiNumber,
                 ),
                 SizedBox(
@@ -148,7 +147,6 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                   uploadtextColor: controller.uploadLetter.path.isEmpty
                       ? MyTheme.hinttextColor
                       : MyTheme.hinttextchangeColor,
-                      
                   fontSize: 15,
                   onFilePicked: (p0) {
                     setState(() {

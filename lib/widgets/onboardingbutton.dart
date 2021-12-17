@@ -8,6 +8,7 @@ class OnboardingButton extends StatelessWidget {
   final List<BoxShadow>? boxShadow;
   final FontWeight? fontWeight;
   final String text;
+  final double fontSize;
   final double? height;
   final Color buttontextColor;
   const OnboardingButton(
@@ -18,18 +19,22 @@ class OnboardingButton extends StatelessWidget {
       this.height = 40.11,
       this.boxShadow,
       required this.text,
+      this.fontSize = 17,
       required this.buttontextColor})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      decoration: BoxDecoration(
+        boxShadow: boxShadow,
+      ),
       height: height,
       width: double.infinity,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
             primary: buttonbackgroundColor,
-            elevation: 2,
+            elevation: 0,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(6))),
         onPressed: onTap,
@@ -37,7 +42,7 @@ class OnboardingButton extends StatelessWidget {
           text,
           textAlign: TextAlign.center,
           style: GoogleFonts.inter(
-            fontSize: 17,
+            fontSize: fontSize,
             fontWeight: fontWeight,
             fontStyle: FontStyle.normal,
             color: buttontextColor,

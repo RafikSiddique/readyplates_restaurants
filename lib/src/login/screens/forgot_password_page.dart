@@ -3,21 +3,19 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
-import 'package:readyplates_restaurants/src/login/screens/forgot_password_page.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/form_field.dart';
 import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
 
-class LoginPage extends StatefulWidget {
-  static const id = "/login";
-  final bool isChangePassword;
-  const LoginPage({Key? key, this.isChangePassword = false}) : super(key: key);
+class ForgotPasswordPage extends StatefulWidget {
+  static const id = "/forgot";
+  const ForgotPasswordPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<ForgotPasswordPage> createState() => _ForgotPasswordPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   final controller = Get.find<AuthController>();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -129,15 +127,13 @@ class _LoginPageState extends State<LoginPage> {
                                 Align(
                                   alignment: Alignment.center,
                                   child: Hero(
-                                    tag: "login",
+                                    tag: "Forgot Password",
                                     child: Card(
                                       elevation: 0,
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Text(
-                                          widget.isChangePassword == true
-                                              ? "Change Password"
-                                              : 'Login',
+                                          "Forgot Password",
                                           textAlign: TextAlign.center,
                                           style: GoogleFonts.inter(
                                             fontSize: 17,
@@ -168,46 +164,9 @@ class _LoginPageState extends State<LoginPage> {
                           SizedBox(
                             height: kToolbarHeight * 0.4,
                           ),
-                          AppFormField(
-                            title: "Password",
-                            hintText: "** ** **",
-                            line: 1,
-                            fontSize: 13,
-                            controller: controller.password,
-                            isPassword: true,
-                          ),
-                          SizedBox(
-                            height: 3,
-                          ),
-                          if (widget.isChangePassword != true)
-                            InkWell(
-                              onTap: () {
-                                Get.toNamed(ForgotPasswordPage.id);
-                              },
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    'Forgot Password ?',
-                                    textAlign: TextAlign.center,
-                                    style: GoogleFonts.inter(
-                                      decoration: TextDecoration.underline,
-                                      fontSize: 10,
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.normal,
-                                      color: MyTheme.starColor,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          SizedBox(
-                            height: kToolbarHeight * 0.4,
-                          ),
                           AnimatedBuilder(
                               animation: Listenable.merge([
                                 controller.email,
-                                controller.password,
                               ]),
                               builder: (context, child) {
                                 return OnboardingButton(
@@ -216,20 +175,15 @@ class _LoginPageState extends State<LoginPage> {
                                     formKey.currentState!.save();
                                     if (formKey.currentState!.validate()) ;
 
-                                    await controller
-                                        .login(widget.isChangePassword);
+                                    await controller.forgotPassword();
                                   },
                                   buttonbackgroundColor:
-                                      (controller.email.text.isEmpty ||
-                                              controller.password.text.isEmpty)
+                                      (controller.email.text.isEmpty)
                                           ? MyTheme.buttonColor
                                           : MyTheme.buttonchangeColor,
-                                  text: controller.isLoggedIn == true
-                                      ? 'Proceed'
-                                      : 'Verify Password',
+                                  text: 'Confirm',
                                   buttontextColor:
-                                      (controller.email.text.isEmpty ||
-                                              controller.password.text.isEmpty)
+                                      (controller.email.text.isEmpty)
                                           ? MyTheme.buttontextColor
                                           : MyTheme.buttontextchangeColor,
                                 );

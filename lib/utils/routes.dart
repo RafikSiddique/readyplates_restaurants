@@ -3,7 +3,9 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:readyplates_restaurants/src/home/screens/add_food_item.dart';
 import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
 import 'package:readyplates_restaurants/src/login/screens/changepassword_page1.dart';
+import 'package:readyplates_restaurants/src/login/screens/forgot_password_page.dart';
 import 'package:readyplates_restaurants/src/login/screens/login_page.dart';
+import 'package:readyplates_restaurants/src/login/screens/otp_verify_page.dart';
 import 'package:readyplates_restaurants/src/login/screens/signup_page.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/table_config_page.dart';
@@ -25,6 +27,11 @@ class Routes {
               );
             else
               return LoginPage();
+          case ForgotPasswordPage.id:
+            return ForgotPasswordPage();
+          case VerifyOtpPage.id:
+            return VerifyOtpPage();
+
           case SignupPage.id:
             return SignupPage();
 

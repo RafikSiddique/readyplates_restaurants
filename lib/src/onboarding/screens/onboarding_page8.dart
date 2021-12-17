@@ -586,6 +586,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                   title: '',
                   hintText: 'Event Description',
                   hintfontSize: 15,
+                  isRequired: false,
                   controller: controller.eventDesc,
                   bottomText: 'Max 20 words',
                 ),
