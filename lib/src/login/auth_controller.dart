@@ -189,6 +189,9 @@ class AuthController extends GetxController {
       } else {
         email.clear();
         password.clear();
+        for (var i = 0; i < otpText.length; i++) {
+          otpText[i].clear();
+        }
         Get.toNamed(LoginPage.id);
       }
     } catch (e) {

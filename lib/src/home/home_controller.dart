@@ -343,6 +343,7 @@ class HomeController extends GetxController {
     c.ended.clear();
     c.active.clear();
     foodItems.value = [];
+    uid = '';
     Get.offAllNamed(OpeningScreen.id);
   }
 }
