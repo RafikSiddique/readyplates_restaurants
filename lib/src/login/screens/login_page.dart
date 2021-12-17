@@ -184,21 +184,23 @@ class _LoginPageState extends State<LoginPage> {
                               onTap: () {
                                 Get.toNamed(ForgotPasswordPage.id);
                               },
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    'Forgot Password ?',
-                                    textAlign: TextAlign.center,
-                                    style: GoogleFonts.inter(
-                                      decoration: TextDecoration.underline,
-                                      fontSize: 10,
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.normal,
-                                      color: MyTheme.starColor,
+                              child: Container(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      'Forgot Password ?',
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.inter(
+                                        decoration: TextDecoration.underline,
+                                        fontSize: 10,
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.normal,
+                                        color: MyTheme.starColor,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           SizedBox(

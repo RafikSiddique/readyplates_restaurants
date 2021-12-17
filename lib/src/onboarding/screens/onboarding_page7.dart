@@ -260,14 +260,16 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                                             .contains(category),
                                         tristate: false,
                                         onChanged: (value) {
-                                          if (controller.chooseCategory
-                                              .contains(category)) {
-                                            controller.chooseCategory
-                                                .remove(category);
-                                          } else {
-                                            controller.chooseCategory
-                                                .add(category);
-                                          }
+                                          setState(() {
+                                            if (controller.chooseCategory
+                                                .contains(category)) {
+                                              controller.chooseCategory
+                                                  .remove(category);
+                                            } else {
+                                              controller.chooseCategory
+                                                  .add(category);
+                                            }
+                                          });
                                         },
                                       ),
                                     ),
@@ -491,13 +493,15 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                                           value: controller.chooseDays
                                               .contains(days),
                                           onChanged: (value) {
-                                            if (controller.chooseDays
-                                                .contains(days)) {
-                                              controller.chooseDays
-                                                  .remove(days);
-                                            } else {
-                                              controller.chooseDays.add(days);
-                                            }
+                                            setState(() {
+                                              if (controller.chooseDays
+                                                  .contains(days)) {
+                                                controller.chooseDays
+                                                    .remove(days);
+                                              } else {
+                                                controller.chooseDays.add(days);
+                                              }
+                                            });
                                           },
                                         ),
                                       ),

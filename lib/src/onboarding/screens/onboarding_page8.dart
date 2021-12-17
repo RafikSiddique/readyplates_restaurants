@@ -373,7 +373,11 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                                       padding: const EdgeInsets.only(left: 14),
                                       child: Obx(
                                         () => Text(
-                                          controller.selectedRecurrence.value,
+                                          controller.selectedRecurrence.value ==
+                                                  ''
+                                              ? 'Monthly'
+                                              : controller
+                                                  .selectedRecurrence.value,
                                           style: GoogleFonts.inter(
                                             fontSize: 16,
                                             fontStyle: FontStyle.normal,

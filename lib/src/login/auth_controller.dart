@@ -187,6 +187,8 @@ class AuthController extends GetxController {
         Get.offAllNamed(HomePage.id);
         c.selectedIndex.value = 4;
       } else {
+        email.clear();
+        password.clear();
         Get.toNamed(LoginPage.id);
       }
     } catch (e) {
