@@ -189,9 +189,12 @@ class AuthController extends GetxController {
       } else {
         email.clear();
         password.clear();
+        password2.clear();
         for (var i = 0; i < otpText.length; i++) {
           otpText[i].clear();
         }
+        otpVerification = "".obs;
+        otp = "";
         Get.toNamed(LoginPage.id);
       }
     } catch (e) {
@@ -204,6 +207,7 @@ class AuthController extends GetxController {
       await services.forgotPassword(
         email.text.toLowerCase(),
       );
+
       Get.toNamed(VerifyOtpPage.id);
     } catch (e) {
       Get.snackbar("Error", e.toString());
