@@ -22,6 +22,17 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>For Map</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>For Map</string>
+	<key>NSLocationTemporaryUsageDescriptionDictionary</key>
+	<dict>
+		<key>wantAccurateLocation</key>
+		<string>For Map</string>
+	</dict>
+	<key>NSLocationUsageDescription</key>
+	<string>For Map</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

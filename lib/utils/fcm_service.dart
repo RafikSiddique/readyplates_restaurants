@@ -76,8 +76,9 @@ class FirebaseMessagingService extends ApiServices {
         ?.createNotificationChannel(androidNotificationChannel);
     AndroidInitializationSettings androidInitializationSettings =
         AndroidInitializationSettings("@mipmap/ic_launcher");
-    InitializationSettings initializationSettings =
-        InitializationSettings(android: androidInitializationSettings);
+    InitializationSettings initializationSettings = InitializationSettings(
+        android: androidInitializationSettings,
+        iOS: IOSInitializationSettings());
     flutterLocalNotificationsPlugin.initialize(initializationSettings);
     //}
   }

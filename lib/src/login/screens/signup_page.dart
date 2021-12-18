@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -108,7 +110,11 @@ class _SignupPageState extends State<SignupPage> {
                       : 1,
                 ),
                 Expanded(
-                  flex: size.height > 800 ? 4 : 6,
+                  flex: Platform.isAndroid
+                      ? size.height > 800
+                          ? 4
+                          : 6
+                      : 6,
                   child: AnimatedContainer(
                     duration: Duration(milliseconds: 300),
                     width: size.width,
