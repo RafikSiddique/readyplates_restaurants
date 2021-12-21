@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -126,7 +128,7 @@ class AuthController extends GetxController {
       oController.uniqueId = id;
       Get.toNamed(OnboardingPage1.id);
     } catch (e) {
-      Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
     }
   }
 
@@ -172,7 +174,7 @@ class AuthController extends GetxController {
         password.clear();
       }
     } catch (e) {
-      Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
     }
   }
 
@@ -198,7 +200,7 @@ class AuthController extends GetxController {
         Get.toNamed(LoginPage.id);
       }
     } catch (e) {
-      Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
     }
   }
 
@@ -210,7 +212,7 @@ class AuthController extends GetxController {
 
       Get.toNamed(VerifyOtpPage.id);
     } catch (e) {
-      Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
     }
   }
 
@@ -219,7 +221,7 @@ class AuthController extends GetxController {
       int id = await services.getOnboardingScreen(uid);
       return id;
     } catch (e) {
-      Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
       return 0;
     }
   }

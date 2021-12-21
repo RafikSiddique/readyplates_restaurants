@@ -106,7 +106,7 @@ class OrderController extends GetxController {
       update();
     } catch (e) {
       loading.value = false;
-      Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
     }
   }
 
@@ -118,8 +118,7 @@ class OrderController extends GetxController {
       loading.value = false;
     } catch (e) {
       loading.value = false;
-
-      Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
     }
   }
 }

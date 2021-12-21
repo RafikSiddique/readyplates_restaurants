@@ -183,10 +183,11 @@ class HomeController extends GetxController {
 
       restaurantModel = await homeServices.getRes(int.parse(resId));
     } catch (e) {
-      Get.showSnackbar(GetBar(
-        title: "Error",
-        message: "Something went wrong",
-      ));
+      if (e.runtimeType != SocketException)
+        Get.showSnackbar(GetBar(
+          title: "Error",
+          message: "Something went wrong",
+        ));
     }
   }
 
@@ -209,7 +210,7 @@ class HomeController extends GetxController {
       clearController();
       Get.back();
     } catch (e) {
-      Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
     }
   }
 
@@ -218,10 +219,11 @@ class HomeController extends GetxController {
       await homeServices.deleteFoodItem(id);
       getFoodItems();
     } catch (e) {
-      Get.showSnackbar(GetBar(
-        duration: Duration(seconds: 1),
-        message: e.toString(),
-      ));
+      if (e.runtimeType != SocketException)
+        Get.showSnackbar(GetBar(
+          duration: Duration(seconds: 1),
+          message: e.toString(),
+        ));
     }
   }
 
@@ -245,7 +247,7 @@ class HomeController extends GetxController {
       await getFoodItems();
       Get.back();
     } catch (e) {
-      Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
     }
   }
 
@@ -282,7 +284,7 @@ class HomeController extends GetxController {
               ? []
               : getUnavaailTables
           : [];
-      Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
       timer?.cancel();
     }
   }
@@ -303,6 +305,7 @@ class HomeController extends GetxController {
       await homeServices.switchAvailability(id, availability);
       await getAvailableTables();
     } catch (e) {
+      if(e.runtimeType!=SocketException)
       Get.snackbar("Error", e.toString());
     }
   }

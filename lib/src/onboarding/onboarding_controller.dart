@@ -154,7 +154,7 @@ class OnboardingController extends GetxController {
       Get.toNamed(OnboardingPage2.id,
           arguments: LatLng(position.latitude, position.longitude));
     } catch (e) {
-      Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
     }
   }
 
@@ -246,7 +246,7 @@ class OnboardingController extends GetxController {
         c.selectedIndex.value = 4;
       }
     } catch (e) {
-      Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
     }
   }
 
@@ -312,7 +312,7 @@ class OnboardingController extends GetxController {
       );
       Get.toNamed(OnboardingPage4.id);
     } catch (e) {
-      Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
     }
   }
 
@@ -362,7 +362,7 @@ class OnboardingController extends GetxController {
       //sfHelper.getRestaurantId();
       Get.toNamed(OnboardingPage5.id);
     } catch (e) {
-      Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
     }
   }
 
@@ -415,7 +415,7 @@ class OnboardingController extends GetxController {
           fsolNumber.text);
       Get.toNamed(OnboardingPage6.id);
     } catch (e) {
-      Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
     }
   }
 
@@ -463,7 +463,7 @@ class OnboardingController extends GetxController {
         //     duration: Duration(microseconds: 200), curve: Curves.ease);
       }
     } catch (e) {
-      Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
     }
   }
 
@@ -588,7 +588,7 @@ class OnboardingController extends GetxController {
       );
       Get.toNamed(OnboardingPage8.id);
     } catch (e) {
-      Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
     }
   }
 
@@ -632,7 +632,7 @@ class OnboardingController extends GetxController {
 
       Get.toNamed(OnboardingPage9.resId);
     } catch (e) {
-      Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
     }
   }
 
@@ -787,7 +787,7 @@ class OnboardingController extends GetxController {
         Get.snackbar("Error", "Uplaod All the Images");
       }
     } catch (e) {
-      Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
     }
   }
 
@@ -842,7 +842,7 @@ class OnboardingController extends GetxController {
 
       // dispose();
     } catch (e) {
-      Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
     }
   }
 }
