@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:readyplates_restaurants/models/orderitem_model.dart';
@@ -77,7 +79,9 @@ class OrderController extends GetxController {
       update();
     } catch (e) {
       loading.value = false;
-      Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) {
+        Get.snackbar("Error", e.toString());
+      }
     }
   }
 

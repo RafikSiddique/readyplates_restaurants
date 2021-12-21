@@ -17,6 +17,8 @@ class OrderServices extends ApiServices {
         List<OrderModelApi> orders =
             list.map((e) => OrderModelApi.fromMap(e)).toList();
         return orders;
+      } else if (response.statusCode == 204) {
+        return [];
       } else {
         throw AppException(
             code: response.statusCode, message: response.reasonPhrase);
