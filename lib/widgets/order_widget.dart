@@ -249,7 +249,20 @@ class OrderWidget extends StatelessWidget {
                       ? MyTheme.cancelOrderTextColor
                       : MyTheme.completeOrderTextColor),
               fontWeight: FontWeight.w500,
-            )
+            ),
+          element.status == OrderState.inProgress
+              ? Padding(
+                  padding: const EdgeInsets.only(top: 16),
+                  child: OnboardingButton(
+                    onTap: () async {},
+                    fontSize: 15,
+                    buttonbackgroundColor: MyTheme.buttonColor,
+                    text: "Food Prepared",
+                    buttontextColor: MyTheme.buttontextchangeColor,
+                    fontWeight: FontWeight.w500,
+                  ),
+                )
+              : Container(),
         ],
       ),
     );

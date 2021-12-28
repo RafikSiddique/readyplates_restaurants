@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
@@ -89,7 +90,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
       },
       enabled: controller.servingTime.value != 00 &&
           controller.recurrenceTime != null &&
-          controller.selectedRecurrence.isNotEmpty &&
+          // controller.selectedRecurrence.isNotEmpty &&
           controller.eendTimeTod != currentTime &&
           controller.estartTimeTod != currentTime,
       child: Padding(
@@ -219,8 +220,28 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                   ],
                 ),
                 SizedBox(
-                  width: 18,
+                  height: 15,
                 ),
+                AppFormField(
+                  title: 'Maximum orders per day',
+                  hintText: '100',
+                  hintfontSize: 15,
+                  inputType: TextInputType.number,
+                  controller: controller.maxOrder,
+                ),
+
+                SizedBox(
+                  height: 15,
+                ),
+
+                AppFormField(
+                  title: 'Allows orders for days in advance',
+                  hintText: '7',
+                  hintfontSize: 15,
+                  inputType: TextInputType.number,
+                  controller: controller.allowOrders,
+                ),
+
                 SizedBox(
                   height: 15,
                 ),
@@ -234,234 +255,233 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                 SizedBox(
                   height: 5,
                 ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              showEventDate();
-                            },
-                            child: Container(
-                              height: 45,
-                              decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(6)),
-                                border: Border.all(
-                                  width: 1,
-                                  color: controller.recurrenceTime == null
-                                      ? MyTheme.borderColor
-                                      : MyTheme.borderchangeColor,
-                                  style: BorderStyle.solid,
-                                ),
-                              ),
-                              child: Center(
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Spacer(),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 14),
-                                      child: Text(
-                                        controller.recurrenceTime == null
-                                            ? 'Event Dates'
-                                            : '${controller.recurrenceTime!.year}/${controller.recurrenceTime!.month}/${controller.recurrenceTime!.day}',
-                                        textAlign: TextAlign.center,
-                                        style: GoogleFonts.inter(
-                                          fontSize: 16,
-                                          fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.w500,
-                                          color:
-                                              controller.recurrenceTime == null
-                                                  ? MyTheme.hinttextColor
-                                                  : MyTheme.hinttextchangeColor,
-                                        ),
-                                      ),
-                                    ),
-                                    Spacer(),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 7.5),
-                                      child: InkWell(
-                                        onTap: () {
-                                          showEventDate();
-                                        },
-                                        child: Container(
-                                          width: 20,
-                                          height: 20,
-                                          child: Image(
-                                              image: AssetImage(
-                                                  'assets/images/calendar.png')),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 3,
-                          ),
-                          Text('Select Event Dates',
-                              style: GoogleFonts.poppins(
-                                fontSize: 9,
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.normal,
-                                color: MyTheme.bottomtextColor,
-                              ))
-                        ],
+                // Row(
+                //   children: [
+                //     Expanded(
+                //       child:
+                // Column(
+                //   crossAxisAlignment: CrossAxisAlignment.start,
+                //   children: [
+                InkWell(
+                  onTap: () {
+                    showEventDate();
+                  },
+                  child: Container(
+                    height: 45,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(6)),
+                      border: Border.all(
+                        width: 1,
+                        color: controller.recurrenceTime == null
+                            ? MyTheme.borderColor
+                            : MyTheme.borderchangeColor,
+                        style: BorderStyle.solid,
                       ),
                     ),
-                    SizedBox(
-                      width: 18,
-                    ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                    child: Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
-                            height: 45,
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(6)),
-                              border: Border.all(
-                                width: 1,
-                                color: controller.selectedRecurrence.value == ""
-                                    ? MyTheme.borderColor
-                                    : MyTheme.borderchangeColor,
-                                style: BorderStyle.solid,
+                          Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 14),
+                            child: Text(
+                              controller.recurrenceTime == null
+                                  ? 'Event Dates'
+                                  : '${controller.recurrenceTime!.year}/${controller.recurrenceTime!.month}/${controller.recurrenceTime!.day}',
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.inter(
+                                fontSize: 16,
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.w500,
+                                color: controller.recurrenceTime == null
+                                    ? MyTheme.hinttextColor
+                                    : MyTheme.hinttextchangeColor,
                               ),
                             ),
+                          ),
+                          Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 7.5),
                             child: InkWell(
                               onTap: () {
-                                Get.bottomSheet(BottomSheet(
-                                  onClosing: () {},
-                                  builder: (context) {
-                                    return Card(
-                                        margin: EdgeInsets.zero,
-                                        child: ListView(
-                                          shrinkWrap: true,
-                                          children:
-                                              ["Yearly", "Monthly", "Weekly"]
-                                                  .map((e) => ListTile(
-                                                        title: Text(e),
-                                                        onTap: () {
-                                                          controller
-                                                              .selectedRecurrence
-                                                              .value = e;
-                                                          setState(() {});
-
-                                                          Get.back();
-                                                        },
-                                                      ))
-                                                  .toList(),
-                                        ));
-                                  },
-                                ));
+                                showEventDate();
                               },
-                              child: Center(
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Spacer(),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 14),
-                                      child: Obx(
-                                        () => Text(
-                                          controller.selectedRecurrence.value ==
-                                                  ''
-                                              ? 'Monthly'
-                                              : controller
-                                                  .selectedRecurrence.value,
-                                          style: GoogleFonts.inter(
-                                            fontSize: 16,
-                                            fontStyle: FontStyle.normal,
-                                            fontWeight: FontWeight.w500,
-                                            color: controller.selectedRecurrence
-                                                    .value.isEmpty
-                                                ? MyTheme.hinttextColor
-                                                : MyTheme.hinttextchangeColor,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Spacer(),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 7.5),
-                                      child: InkWell(
-                                        onTap: () {
-                                          /*             Get.bottomSheet(BottomSheet(
-                                            onClosing: () {},
-                                            builder: (context) {
-                                              return Card(
-                                                  margin: EdgeInsets.zero,
-                                                  child: ListView(
-                                                    shrinkWrap: true,
-                                                    children: [
-                                                      "Yearly",
-                                                      "Monthly",
-                                                      "Weekly"
-                                                    ]
-                                                        .map((e) => ListTile(
-                                                              title: Text(
-                                                                e,
-                                                              ),
-                                                              onTap: () {
-                                                                controller
-                                                                    .selectedRecurrence
-                                                                    .value = e;
-                                                                setState(() {
-                                                                  rec = controller
-                                                                      .selectedRecurrence
-                                                                      .value
-                                                                      .toString();
-                                                                });
-
-                                                                Get.back();
-                                                              },
-                                                            ))
-                                                        .toList(),
-                                                  ));
-                                            },
-                                          )); */
-                                        },
-                                        child: Container(
-                                          width: 20,
-                                          height: 20,
-                                          child: Image(
-                                              image: AssetImage(
-                                                  'assets/images/calendar.png')),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                              child: Container(
+                                width: 20,
+                                height: 20,
+                                child: Image(
+                                    image: AssetImage(
+                                        'assets/images/calendar.png')),
                               ),
                             ),
                           ),
-                          SizedBox(
-                            height: 3,
-                          ),
-                          Text(
-                            'Recurrance frequency',
-                            style: GoogleFonts.poppins(
-                              fontSize: 9,
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.normal,
-                              color: MyTheme.bottomtextColor,
-                            ),
-                          )
                         ],
                       ),
                     ),
-                  ],
+                  ),
                 ),
+                SizedBox(
+                  height: 3,
+                ),
+                Text(
+                  'Select Event Dates',
+                  style: GoogleFonts.poppins(
+                    fontSize: 9,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.normal,
+                    color: MyTheme.bottomtextColor,
+                  ),
+                ),
+                //   ],
+                // ),
+                // ),
+                // SizedBox(
+                //   width: 18,
+                // ),
+                // Expanded(
+                //   child: Column(
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     children: [
+                //       Container(
+                //         height: 45,
+                //         decoration: BoxDecoration(
+                //           borderRadius:
+                //               BorderRadius.all(Radius.circular(6)),
+                //           border: Border.all(
+                //             width: 1,
+                //             color: controller.selectedRecurrence.value == ""
+                //                 ? MyTheme.borderColor
+                //                 : MyTheme.borderchangeColor,
+                //             style: BorderStyle.solid,
+                //           ),
+                //         ),
+                //         child: InkWell(
+                //           onTap: () {
+                //             Get.bottomSheet(BottomSheet(
+                //               onClosing: () {},
+                //               builder: (context) {
+                //                 return Card(
+                //                     margin: EdgeInsets.zero,
+                //                     child: ListView(
+                //                       shrinkWrap: true,
+                //                       children:
+                //                           ["Yearly", "Monthly", "Weekly"]
+                //                               .map((e) => ListTile(
+                //                                     title: Text(e),
+                //                                     onTap: () {
+                //                                       controller
+                //                                           .selectedRecurrence
+                //                                           .value = e;
+                //                                       setState(() {});
+
+                //                                       Get.back();
+                //                                     },
+                //                                   ))
+                //                               .toList(),
+                //                     ));
+                //               },
+                //             ));
+                //           },
+                //           child: Center(
+                //             child: Row(
+                //               mainAxisAlignment:
+                //                   MainAxisAlignment.spaceBetween,
+                //               children: [
+                //                 Spacer(),
+                //                 Padding(
+                //                   padding: const EdgeInsets.only(left: 14),
+                //                   child: Obx(
+                //                     () => Text(
+                //                       controller.selectedRecurrence.value ==
+                //                               ''
+                //                           ? 'Monthly'
+                //                           : controller
+                //                               .selectedRecurrence.value,
+                //                       style: GoogleFonts.inter(
+                //                         fontSize: 16,
+                //                         fontStyle: FontStyle.normal,
+                //                         fontWeight: FontWeight.w500,
+                //                         color: controller.selectedRecurrence
+                //                                 .value.isEmpty
+                //                             ? MyTheme.hinttextColor
+                //                             : MyTheme.hinttextchangeColor,
+                //                       ),
+                //                     ),
+                //                   ),
+                //                 ),
+                //                 Spacer(),
+                //                 Padding(
+                //                   padding:
+                //                       const EdgeInsets.only(right: 7.5),
+                //                   child: InkWell(
+                //                     onTap: () {
+                //                       /*             Get.bottomSheet(BottomSheet(
+                //                         onClosing: () {},
+                //                         builder: (context) {
+                //                           return Card(
+                //                               margin: EdgeInsets.zero,
+                //                               child: ListView(
+                //                                 shrinkWrap: true,
+                //                                 children: [
+                //                                   "Yearly",
+                //                                   "Monthly",
+                //                                   "Weekly"
+                //                                 ]
+                //                                     .map((e) => ListTile(
+                //                                           title: Text(
+                //                                             e,
+                //                                           ),
+                //                                           onTap: () {
+                //                                             controller
+                //                                                 .selectedRecurrence
+                //                                                 .value = e;
+                //                                             setState(() {
+                //                                               rec = controller
+                //                                                   .selectedRecurrence
+                //                                                   .value
+                //                                                   .toString();
+                //                                             });
+
+                //                                             Get.back();
+                //                                           },
+                //                                         ))
+                //                                     .toList(),
+                //                               ));
+                //                         },
+                //                       )); */
+                //                     },
+                //                     child: Container(
+                //                       width: 20,
+                //                       height: 20,
+                //                       child: Image(
+                //                           image: AssetImage(
+                //                               'assets/images/calendar.png')),
+                //                     ),
+                //                   ),
+                //                 ),
+                //               ],
+                //             ),
+                //           ),
+                //         ),
+                //       ),
+                //       SizedBox(
+                //         height: 3,
+                //       ),
+                //       Text(
+                //         'Recurrance frequency',
+                //         style: GoogleFonts.poppins(
+                //           fontSize: 9,
+                //           fontStyle: FontStyle.normal,
+                //           fontWeight: FontWeight.normal,
+                //           color: MyTheme.bottomtextColor,
+                //         ),
+                //       )
+                //     ],
+                //   ),
+                // ),
+                // ],
+                // ),
                 SizedBox(
                   height: 5,
                 ),
@@ -583,11 +603,23 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                 ),
 
                 SizedBox(
-                  height: 5,
+                  height: 15,
                 ),
                 AppFormField(
+                  title: 'Event Name',
+                  hintText: 'Event Name',
+                  hintfontSize: 15,
+                  isRequired: false,
+                  controller: controller.eventName,
+                ),
+
+                SizedBox(
+                  height: 15,
+                ),
+
+                AppFormField(
                   line: 4,
-                  title: '',
+                  title: 'Event Description',
                   hintText: 'Event Description',
                   hintfontSize: 15,
                   isRequired: false,

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,13 +9,24 @@ import 'package:readyplates_restaurants/src/login/screens/login_page.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/table_config_page.dart';
+import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 import 'package:readyplates_restaurants/widgets/edit_button.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   ProfilePage({Key? key}) : super(key: key);
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
   final SharedPreferenceHelper sfHelper = SharedPreferenceHelper();
+
   final HomeController homeController = Get.find();
+
+  bool _Switchvalue = true;
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -109,6 +121,45 @@ class ProfilePage extends StatelessWidget {
               });
               Get.toNamed(TableConfig.id);
             }),
+        Card(
+          margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 7),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 11.0),
+                  child: Text(
+                    _Switchvalue == false ? 'Start Orders' : 'Close Orders',
+                    style: GoogleFonts.inter(
+                      fontSize: 15,
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.normal,
+                      color: Color(0xff6C757D),
+                    ),
+                  ),
+                ),
+                Transform.scale(
+                  scale: 0.6,
+                  child: CupertinoSwitch(
+                      thumbColor: Colors.white,
+                      activeColor: MyTheme.borderchangeColor,
+                      trackColor: MyTheme.editbuttontextColor,
+                      value: _Switchvalue,
+                      onChanged: (newValue) {
+                        setState(() {
+                          _Switchvalue = !_Switchvalue;
+                        });
+                      }),
+                ),
+              ],
+            ),
+          ),
+        )
       ],
     );
   }

@@ -594,6 +594,9 @@ class OnboardingController extends GetxController {
 
   //Onboarding 8
   late TextEditingController resDescript;
+  late TextEditingController maxOrder;
+  late TextEditingController allowOrders;
+  late TextEditingController eventName;
   late TextEditingController eventDesc;
   DateTime? recurrenceTime;
   RxString selectedRecurrence = "".obs;
@@ -605,6 +608,9 @@ class OnboardingController extends GetxController {
 
   void init8() {
     resDescript = TextEditingController();
+    maxOrder = TextEditingController();
+    allowOrders = TextEditingController();
+    eventName = TextEditingController();
     eventDesc = TextEditingController();
   }
 
@@ -624,7 +630,7 @@ class OnboardingController extends GetxController {
         resDescript.text,
         servingTime.toString(),
         "${recurrenceTime!.year}-${recurrenceTime!.month}-${recurrenceTime!.day}",
-        selectedRecurrence.value,
+        'Monthly',
         estartTime,
         eendTime,
         eventDesc.text,
@@ -638,6 +644,9 @@ class OnboardingController extends GetxController {
 
   void dispose8() {
     resDescript.clear();
+    maxOrder.clear();
+    allowOrders.clear();
+    eventName.clear();
     eventDesc.clear();
   }
 
