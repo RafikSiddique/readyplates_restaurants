@@ -594,8 +594,8 @@ class OnboardingController extends GetxController {
 
   //Onboarding 8
   late TextEditingController resDescript;
-  late TextEditingController maxOrder;
-  late TextEditingController allowOrders;
+  late TextEditingController maxOrders;
+  late TextEditingController advanceOrders;
   late TextEditingController eventName;
   late TextEditingController eventDesc;
   DateTime? recurrenceTime;
@@ -608,8 +608,8 @@ class OnboardingController extends GetxController {
 
   void init8() {
     resDescript = TextEditingController();
-    maxOrder = TextEditingController();
-    allowOrders = TextEditingController();
+    maxOrders = TextEditingController();
+    advanceOrders = TextEditingController();
     eventName = TextEditingController();
     eventDesc = TextEditingController();
   }
@@ -622,15 +622,17 @@ class OnboardingController extends GetxController {
       if (recurrenceTime == null) {
         recurrenceTime = DateTime.now();
       }
-      if (selectedRecurrence.value == "") {
-        selectedRecurrence.value = "Monthly";
-      }
+      // if (selectedRecurrence.value == "") {
+      //   selectedRecurrence.value = "Monthly";
+      // }
       await services.onboardingapi8(
         resId,
         resDescript.text,
         servingTime.toString(),
+        maxOrders.text,
+        advanceOrders.text,
         "${recurrenceTime!.year}-${recurrenceTime!.month}-${recurrenceTime!.day}",
-        'Monthly',
+        eventName.text,
         estartTime,
         eendTime,
         eventDesc.text,
@@ -644,8 +646,8 @@ class OnboardingController extends GetxController {
 
   void dispose8() {
     resDescript.clear();
-    maxOrder.clear();
-    allowOrders.clear();
+    maxOrders.clear();
+    advanceOrders.clear();
     eventName.clear();
     eventDesc.clear();
   }

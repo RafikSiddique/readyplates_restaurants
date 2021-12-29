@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
@@ -82,7 +81,13 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
       appBarTitle: 'Restaurant Bio',
       onboardingController: controller,
       buttonText: 'CONTINUE',
-      textControllers: [controller.resDescript, controller.eventDesc],
+      textControllers: [
+        controller.resDescript,
+        controller.maxOrders,
+        controller.advanceOrders,
+        controller.eventName,
+        controller.eventDesc
+      ],
       onTap: () {
         formKey.currentState!.save();
         if (formKey.currentState!.validate())
@@ -227,7 +232,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                   hintText: '100',
                   hintfontSize: 15,
                   inputType: TextInputType.number,
-                  controller: controller.maxOrder,
+                  controller: controller.maxOrders,
                 ),
 
                 SizedBox(
@@ -239,7 +244,7 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
                   hintText: '7',
                   hintfontSize: 15,
                   inputType: TextInputType.number,
-                  controller: controller.allowOrders,
+                  controller: controller.advanceOrders,
                 ),
 
                 SizedBox(

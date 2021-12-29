@@ -241,8 +241,10 @@ class OnboardingServices extends ApiServices {
     String user,
     String description,
     String serving_time,
+    String no_of_orders,
+    String advance_orders,
     String recurring_event_date,
-    String recur_freq,
+    String event_name,
     String event_start,
     String event_end,
     String event_desc,
@@ -255,8 +257,10 @@ class OnboardingServices extends ApiServices {
             'user': user,
             'description': description,
             'serving_time': serving_time,
+            'no_of_orders': no_of_orders,
+            'advance_orders': advance_orders,
             'recurring_event_date': recurring_event_date,
-            'recur_freq': recur_freq,
+            'event_name': event_name,
             'event_start': event_start,
             'event_end': event_end,
             'event_desc': event_desc,
@@ -323,10 +327,7 @@ class OnboardingServices extends ApiServices {
   }
 
   Future<void> tableConfigEdit(
-    String restaurant,
-    List<int> capacity,
-    List<String> available
-  ) async {
+      String restaurant, List<int> capacity, List<String> available) async {
     try {
       Response response = await post(
         table,
@@ -334,7 +335,7 @@ class OnboardingServices extends ApiServices {
           {
             'restaurant': restaurant,
             'capacity': capacity,
-            'available': available 
+            'available': available
           },
         ),
         headers: contentTypeJsonHeader,
