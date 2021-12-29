@@ -76,6 +76,8 @@ class _ProfilePageState extends State<ProfilePage> {
               c.pageIndex.value = 0;
               String? userId = await sfHelper.getUserId();
               c.uniqueId = userId!;
+              final controller = Get.find<OnboardingController>();
+              controller.init8();
               if (homeController.restaurantModel == null) {
                 await homeController.getRestaurant();
               }
