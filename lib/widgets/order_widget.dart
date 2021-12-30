@@ -16,6 +16,100 @@ class OrderWidget extends StatelessWidget {
   OrderWidget({Key? key, required this.element}) : super(key: key);
   final controller = Get.find<OrderController>();
   final hc = Get.find<HomeController>();
+
+Widget orderButton(BuildContext context) {
+  switch (element.status) {
+    case OrderState.placed:
+      return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.6,
+                  child:
+                      Text("Press button to enter OTP after customer arrival",
+                          style: GoogleFonts.inter(
+                            textStyle: TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w500,
+                              fontStyle: FontStyle.normal,
+                              color: MyTheme.textColor,
+                            ),
+                          )),
+                ),
+                Spacer(),
+                // SizedBox(
+                //   width: 17,
+                // ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => CustomerOtpVerify(element),
+                        ));
+                  },
+                  child: Container(
+                    height: 44,
+                    width: 44,
+                    child: Image(
+                      image: AssetImage('assets/images/orderbutton.png'),
+                    ),
+                  ),
+                )
+              ],
+            );
+      case OrderState.inProgress:
+            return  OnboardingButton(
+              onTap: () async {
+                          /* if (element.status == OrderState.inProgress) {
+                  if (element.no_of_table != null)
+                    await controller.updateStatus(
+                        element.id, 2, element.no_of_table!);
+                  else
+                    controller.getOrderItems();
+                }  */
+              },
+              fontSize: 15,
+              buttonbackgroundColor: MyTheme.inProgressOrderBackColor,
+              text:  'In Progress',
+              buttontextColor: MyTheme.inProgressOrderTextColor,
+              fontWeight: FontWeight.w500,
+            );
+        case OrderState.Served: 
+        //TODO Set served button
+          return Container();
+        case OrderState.completed:
+        return        OnboardingButton(
+              onTap: () async {
+              },
+              fontSize: 15,
+              buttonbackgroundColor: MyTheme.completeOrderBackColor,
+              text:"Order Completed",
+              buttontextColor:  MyTheme.completeOrderTextColor,
+              fontWeight: FontWeight.w500,
+            );
+            case OrderState.cancelled:
+            return        OnboardingButton(
+              onTap: () async {
+                      
+              },
+              fontSize: 15,
+              buttonbackgroundColor:  MyTheme.cancelOrderBackColor
+                      ,
+              text: "Cancelled"
+                      ,
+              buttontextColor: element.status == OrderState.inProgress
+                  ? MyTheme.inProgressOrderTextColor
+                  : (element.status == OrderState.cancelled
+                      ? MyTheme.cancelOrderTextColor
+                      : MyTheme.completeOrderTextColor),
+              fontWeight: FontWeight.w500,
+            );
+    default:
+    return Container();
+  }
+}
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -182,74 +276,8 @@ class OrderWidget extends StatelessWidget {
           SizedBox(
             height: 16,
           ),
-          if (element.status == OrderState.placed)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width * 0.6,
-                  child:
-                      Text("Press button to enter OTP after customer arrival",
-                          style: GoogleFonts.inter(
-                            textStyle: TextStyle(
-                              fontSize: 17,
-                              fontWeight: FontWeight.w500,
-                              fontStyle: FontStyle.normal,
-                              color: MyTheme.textColor,
-                            ),
-                          )),
-                ),
-                Spacer(),
-                // SizedBox(
-                //   width: 17,
-                // ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                          builder: (context) => CustomerOtpVerify(element),
-                        ));
-                  },
-                  child: Container(
-                    height: 44,
-                    width: 44,
-                    child: Image(
-                      image: AssetImage('assets/images/orderbutton.png'),
-                    ),
-                  ),
-                )
-              ],
-            )
-          else
-            OnboardingButton(
-              onTap: () async {
-                /*             if (element.status == OrderState.inProgress) {
-                  if (element.no_of_table != null)
-                    await controller.updateStatus(
-                        element.id, 2, element.no_of_table!);
-                  else
-                    controller.getOrderItems();
-                } */
-              },
-              fontSize: 15,
-              buttonbackgroundColor: element.status == OrderState.inProgress
-                  ? MyTheme.inProgressOrderBackColor
-                  : (element.status == OrderState.cancelled
-                      ? MyTheme.cancelOrderBackColor
-                      : MyTheme.completeOrderBackColor),
-              text: element.status == OrderState.inProgress
-                  ? 'In Progress'
-                  : element.status == OrderState.cancelled
-                      ? "Cancelled"
-                      : "Order Completed",
-              buttontextColor: element.status == OrderState.inProgress
-                  ? MyTheme.inProgressOrderTextColor
-                  : (element.status == OrderState.cancelled
-                      ? MyTheme.cancelOrderTextColor
-                      : MyTheme.completeOrderTextColor),
-              fontWeight: FontWeight.w500,
-            ),
+          orderButton(context),
+     
           element.status == OrderState.inProgress
               ? Padding(
                   padding: const EdgeInsets.only(top: 16),

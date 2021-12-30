@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:readyplates_restaurants/models/orderitem_model.dart';
 import 'package:readyplates_restaurants/models/table_model.dart';
 import 'package:readyplates_restaurants/src/home/home_controller.dart';
 import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
@@ -421,7 +422,7 @@ class _TableAssignPageState extends State<TableAssignPage> {
                                                 await orderController
                                                     .updateStatus(
                                                         widget.orderId,
-                                                        1,
+                                                        OrderState.inProgress,
                                                         controller
                                                             .getAvailTables[i]
                                                             .id);
