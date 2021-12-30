@@ -86,10 +86,10 @@ class OrderWidget extends StatelessWidget {
               text: "Food Served",
               border: Border.all(
                 width: 1,
-                color: Color(0xff44C4A1),
+                color: MyTheme.outlinedBorderColor,
               ),
               borderRadius: BorderRadius.circular(6),
-              buttontextColor: Color(0xff44C4A1),
+              buttontextColor: MyTheme.outlinedBorderColor,
               elevation: 2,
               fontWeight: FontWeight.w500,
             )
