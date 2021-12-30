@@ -10,6 +10,9 @@ class OnboardingButton extends StatelessWidget {
   final String text;
   final double fontSize;
   final double? height;
+  final BorderRadiusGeometry? borderRadius;
+  final BoxBorder? border;
+  final double? elevation;
   final Color buttontextColor;
   const OnboardingButton(
       {Key? key,
@@ -18,6 +21,9 @@ class OnboardingButton extends StatelessWidget {
       required this.buttonbackgroundColor,
       this.height = 40.11,
       this.boxShadow,
+      this.border,
+      this.borderRadius,
+      this.elevation = 0,
       required this.text,
       this.fontSize = 17,
       required this.buttontextColor})
@@ -28,13 +34,15 @@ class OnboardingButton extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         boxShadow: boxShadow,
+        border: border,
+        borderRadius: borderRadius,
       ),
       height: height,
       width: double.infinity,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
             primary: buttonbackgroundColor,
-            elevation: 0,
+            elevation: elevation,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(6))),
         onPressed: onTap,

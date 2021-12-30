@@ -58,31 +58,46 @@ class OrderWidget extends StatelessWidget {
           ],
         );
       case OrderState.inProgress:
-        return OnboardingButton(
-          onTap: () async {
-            /* if (element.status == OrderState.inProgress) {
-                  if (element.no_of_table != null)
-                    await controller.updateStatus(
-                        element.id, 2, element.no_of_table!);
-                  else
-                    controller.getOrderItems();
-                }  */
-          },
-          fontSize: 15,
-          buttonbackgroundColor: MyTheme.inProgressOrderBackColor,
-          text: 'In Progress',
-          buttontextColor: MyTheme.inProgressOrderTextColor,
-          fontWeight: FontWeight.w500,
+        return Column(
+          children: [
+            OnboardingButton(
+              onTap: () async {
+                /* if (element.status == OrderState.inProgress) {
+                      if (element.no_of_table != null)
+                        await controller.updateStatus(
+                            element.id, 2, element.no_of_table!);
+                      else
+                        controller.getOrderItems();
+                    }  */
+              },
+              fontSize: 15,
+              buttonbackgroundColor: MyTheme.inProgressOrderBackColor,
+              text: 'In Progress',
+              buttontextColor: MyTheme.inProgressOrderTextColor,
+              fontWeight: FontWeight.w500,
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            OnboardingButton(
+              onTap: () async {},
+              fontSize: 15,
+              buttonbackgroundColor: MyTheme.buttontextchangeColor,
+              text: "Food Served",
+              border: Border.all(
+                width: 1,
+                color: Color(0xff44C4A1),
+              ),
+              borderRadius: BorderRadius.circular(6),
+              buttontextColor: Color(0xff44C4A1),
+              elevation: 2,
+              fontWeight: FontWeight.w500,
+            )
+          ],
         );
       case OrderState.Served:
-        return OnboardingButton(
-          onTap: () async {},
-          fontSize: 15,
-          buttonbackgroundColor: MyTheme.buttonColor,
-          text: "Food Served",
-          buttontextColor: MyTheme.buttontextchangeColor,
-          fontWeight: FontWeight.w500,
-        );
+        //TODO: served
+        return Container();
       case OrderState.completed:
         return OnboardingButton(
           onTap: () async {},
