@@ -219,4 +219,31 @@ class HomeServices extends ApiServices {
       rethrow;
     }
   }
+
+  Future<String> openCloseOrders(
+    String restaurant,
+    String open_orders,
+  ) async {
+    try {
+      Response response = await post(openCloseOrderUri,
+          body: jsonEncode(
+            {
+              'restaurant': restaurant,
+              'open_orders': open_orders,
+            },
+          ),
+          headers: contentTypeJsonHeader);
+      print(response.statusCode);
+      print(response.body);
+      if (response.statusCode == 200) {
+        print(response.statusCode);
+        print(response.body);
+        return response.body;
+      } else {
+        throw AppException(code: response.statusCode, message: response.body);
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

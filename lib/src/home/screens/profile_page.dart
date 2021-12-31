@@ -25,8 +25,6 @@ class _ProfilePageState extends State<ProfilePage> {
 
   final HomeController homeController = Get.find();
 
-  bool _Switchvalue = true;
-
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -136,7 +134,9 @@ class _ProfilePageState extends State<ProfilePage> {
                 Padding(
                   padding: const EdgeInsets.only(left: 11.0),
                   child: Text(
-                    _Switchvalue == false ? 'Start Orders' : 'Close Orders',
+                    homeController.Switchvalue == false
+                        ? 'Start Orders'
+                        : 'Close Orders',
                     style: GoogleFonts.inter(
                       fontSize: 15,
                       fontStyle: FontStyle.normal,
@@ -151,10 +151,12 @@ class _ProfilePageState extends State<ProfilePage> {
                       thumbColor: Colors.white,
                       activeColor: MyTheme.borderchangeColor,
                       trackColor: MyTheme.editbuttontextColor,
-                      value: _Switchvalue,
+                      value: homeController.Switchvalue,
                       onChanged: (newValue) {
+                        homeController.openCloseOrders();
                         setState(() {
-                          _Switchvalue = !_Switchvalue;
+                          homeController.Switchvalue =
+                              !homeController.Switchvalue;
                         });
                       }),
                 ),

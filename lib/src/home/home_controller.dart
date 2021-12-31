@@ -23,6 +23,7 @@ class HomeController extends GetxController {
   RxString searchBy = "Table Capacity".obs;
   RxInt selectedIndex;
   bool isEditing = false;
+  bool Switchvalue = true;
   // late PageController pageController =
   //     PageController(initialPage: selectedIndex.value);
   FoodItemModel? foodItemModel;
@@ -305,8 +306,7 @@ class HomeController extends GetxController {
       await homeServices.switchAvailability(id, availability);
       await getAvailableTables();
     } catch (e) {
-      if(e.runtimeType!=SocketException)
-      Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
     }
   }
 
@@ -333,6 +333,18 @@ class HomeController extends GetxController {
 
       } else {}
       timer?.cancel();
+    }
+  }
+
+  Future<void> openCloseOrders() async {
+    try {
+      String id = await sfHelper.getRestaurantId();
+      id = await homeServices.openCloseOrders(
+        id,
+        Switchvalue == true ? '1' : '0',
+      );
+    } catch (e) {
+      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
     }
   }
 
