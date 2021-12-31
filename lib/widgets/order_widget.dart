@@ -80,10 +80,12 @@ class OrderWidget extends StatelessWidget {
               height: 16,
             ),
             OnboardingButton(
-              onTap: () async {},
+              onTap: () async {
+                controller.updateStatus(element.id, OrderState.Served);
+              },
               fontSize: 15,
               buttonbackgroundColor: MyTheme.buttontextchangeColor,
-              text: "Food Served",
+              text: "Mark as Food is Served",
               border: Border.all(
                 width: 1,
                 color: MyTheme.outlinedBorderColor,
@@ -95,9 +97,7 @@ class OrderWidget extends StatelessWidget {
             )
           ],
         );
-      case OrderState.Served:
-        //TODO: served
-        return Container();
+
       case OrderState.completed:
         return OnboardingButton(
           onTap: () async {},
@@ -118,6 +118,20 @@ class OrderWidget extends StatelessWidget {
               : (element.status == OrderState.cancelled
                   ? MyTheme.cancelOrderTextColor
                   : MyTheme.completeOrderTextColor),
+          fontWeight: FontWeight.w500,
+        );
+      case OrderState.Served:
+        return OnboardingButton(
+          onTap: () async {},
+          fontSize: 15,
+          buttonbackgroundColor: MyTheme.buttontextchangeColor,
+          text: "Food is Served",
+          border: Border.all(
+            width: 1,
+            color: MyTheme.outlinedBorderColor,
+          ),
+          borderRadius: BorderRadius.circular(6),
+          buttontextColor: MyTheme.outlinedBorderColor,
           fontWeight: FontWeight.w500,
         );
       default:

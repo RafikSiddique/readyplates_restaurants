@@ -23,7 +23,8 @@ class OrderCompletePage1 extends GetView<OrderController> {
                 padding: const EdgeInsets.only(left: 16, right: 16, top: 4),
                 child: Obx(() => controller.active.isEmpty &&
                         controller.ended.isEmpty &&
-                        controller.inProgress.isEmpty
+                        controller.inProgress.isEmpty &&
+                        controller.Served.isEmpty
                     ? Center(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -77,6 +78,29 @@ class OrderCompletePage1 extends GetView<OrderController> {
                                   .map((element) =>
                                       OrderWidget(element: element))
                                   .toList(),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              if (controller.Served.isNotEmpty)
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 6),
+                                  child: Text(
+                                    "FOOD SRVED",
+                                    style: GoogleFonts.inter(
+                                      textStyle: TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w500,
+                                        fontStyle: FontStyle.normal,
+                                        color: MyTheme.ordertextColor,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              ...controller.Served.map((element) =>
+                                  OrderWidget(element: element)).toList(),
                               SizedBox(
                                 height: 10,
                               ),

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-enum OrderState { placed, inProgress, Served, completed, cancelled }
+enum OrderState { placed, inProgress, completed, cancelled, Served }
 
 class OrderModel {
   int user;
