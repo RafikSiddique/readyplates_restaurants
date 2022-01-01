@@ -86,5 +86,9 @@ class MyTheme {
 
   static Color completeOrderBackColor = Color(0xffEFEFEF);
   static Color completeOrderTextColor = Color(0xff979797);
+
+  static Color foodServedBackColor = Color(0xffDBE9FC);
+  static Color foodServedTextColor = Color(0xff2775E3);
+
   static Color outlinedBorderColor = Color(0xff44C4A1);
 }

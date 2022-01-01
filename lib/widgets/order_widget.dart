@@ -85,7 +85,7 @@ class OrderWidget extends StatelessWidget {
               },
               fontSize: 15,
               buttonbackgroundColor: MyTheme.buttontextchangeColor,
-              text: "Mark as Food is Served",
+              text: "Mark as \"Food Served\"",
               border: Border.all(
                 width: 1,
                 color: MyTheme.outlinedBorderColor,
@@ -101,14 +101,10 @@ class OrderWidget extends StatelessWidget {
         return OnboardingButton(
           onTap: () async {},
           fontSize: 15,
-          buttonbackgroundColor: MyTheme.buttontextchangeColor,
+          buttonbackgroundColor: MyTheme.foodServedBackColor,
           text: "Food is Served",
-          border: Border.all(
-            width: 1,
-            color: MyTheme.outlinedBorderColor,
-          ),
           borderRadius: BorderRadius.circular(6),
-          buttontextColor: MyTheme.outlinedBorderColor,
+          buttontextColor: MyTheme.foodServedTextColor,
           fontWeight: FontWeight.w500,
         );
 
