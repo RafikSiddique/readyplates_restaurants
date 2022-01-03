@@ -30,6 +30,7 @@ class HomeController extends GetxController {
   RestaurantModel? restaurantModel;
   final SharedPreferenceHelper sfHelper = Get.find();
   final HomeServices homeServices = HomeServices();
+  DateTime? closeOrderTime;
 
   // List<String> bottomBarIcons = List.generate(1,
   //     (index) => "assets/images/bottombaar" + (index + 1).toString() + ".png");

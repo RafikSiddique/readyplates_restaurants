@@ -24,6 +24,19 @@ class _ProfilePageState extends State<ProfilePage> {
   final SharedPreferenceHelper sfHelper = SharedPreferenceHelper();
 
   final HomeController homeController = Get.find();
+  void orderCloseUntilDate() async {
+    DateTime? dt = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2021),
+      lastDate: DateTime(2050),
+      currentDate: DateTime.now(),
+    );
+    if (dt != null)
+      setState(() {
+        homeController.closeOrderTime = dt;
+      });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -163,13 +176,18 @@ class _ProfilePageState extends State<ProfilePage> {
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.all(12),
-                                    child: Text(
-                                      "Close Orders until:",
-                                      style: GoogleFonts.inter(
-                                        fontSize: 17,
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.w500,
-                                        color: MyTheme.appbartextColor,
+                                    child: InkWell(
+                                      onTap: () {
+                                        orderCloseUntilDate();
+                                      },
+                                      child: Text(
+                                        "Close Orders until:${homeController.closeOrderTime == null ? 'Select Date' : '${homeController.closeOrderTime!.year}/${homeController.closeOrderTime!.month}/${homeController.closeOrderTime!.day}'}",
+                                        style: GoogleFonts.inter(
+                                          fontSize: 17,
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.w500,
+                                          color: MyTheme.appbartextColor,
+                                        ),
                                       ),
                                     ),
                                   ),
