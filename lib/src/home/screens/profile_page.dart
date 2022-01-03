@@ -220,6 +220,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                         color: MyTheme.appbartextColor,
                                       ),
                                     ),
+                                    onTap: () {
+                                      Get.back();
+                                    },
                                   ),
                                 ],
                               ),
