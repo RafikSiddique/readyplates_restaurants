@@ -153,11 +153,46 @@ class _ProfilePageState extends State<ProfilePage> {
                       trackColor: MyTheme.editbuttontextColor,
                       value: homeController.Switchvalue,
                       onChanged: (newValue) {
-                        homeController.openCloseOrders();
-                        setState(() {
-                          homeController.Switchvalue =
-                              !homeController.Switchvalue;
-                        });
+                        if (!newValue) {
+                          Get.bottomSheet(Card(
+                            child: Card(
+                              margin: EdgeInsets.zero,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "Close Orders until:",
+                                      style: GoogleFonts.inter(fontSize: 20),
+                                    ),
+                                  ),
+                                  ListTile(
+                                    title: Text("I turn back on manually"),
+                                    onTap: () {
+                                      homeController.openCloseOrders();
+                                      setState(() {
+                                        homeController.Switchvalue =
+                                            !homeController.Switchvalue;
+                                      });
+                                      Get.back();
+                                    },
+                                  ),
+                                  ListTile(
+                                    title: Text("Tomorrow morning"),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ));
+                        } else {
+                          homeController.openCloseOrders();
+                          setState(() {
+                            homeController.Switchvalue =
+                                !homeController.Switchvalue;
+                          });
+                        }
                       }),
                 ),
               ],

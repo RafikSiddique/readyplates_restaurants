@@ -68,7 +68,6 @@ class HomeServices extends ApiServices {
     try {
       Response response =
           await get(singleRestaurantUri(id), headers: contentTypeJsonHeader);
-      print(response.request);
       if (response.statusCode == 200) {
         print(response.request);
         Map<String, dynamic> data = jsonDecode(response.body).first;
