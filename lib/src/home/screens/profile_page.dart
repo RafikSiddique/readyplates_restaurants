@@ -162,14 +162,27 @@ class _ProfilePageState extends State<ProfilePage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.all(12),
                                     child: Text(
                                       "Close Orders until:",
-                                      style: GoogleFonts.inter(fontSize: 20),
+                                      style: GoogleFonts.inter(
+                                        fontSize: 17,
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.w500,
+                                        color: MyTheme.appbartextColor,
+                                      ),
                                     ),
                                   ),
                                   ListTile(
-                                    title: Text("I turn back on manually"),
+                                    title: Text(
+                                      "I turn back on manually",
+                                      style: GoogleFonts.inter(
+                                        fontSize: 17,
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.w500,
+                                        color: MyTheme.appbartextColor,
+                                      ),
+                                    ),
                                     onTap: () {
                                       homeController.openCloseOrders();
                                       setState(() {
@@ -180,7 +193,15 @@ class _ProfilePageState extends State<ProfilePage> {
                                     },
                                   ),
                                   ListTile(
-                                    title: Text("Tomorrow morning"),
+                                    title: Text(
+                                      "Tomorrow morning",
+                                      style: GoogleFonts.inter(
+                                        fontSize: 17,
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.w500,
+                                        color: MyTheme.appbartextColor,
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ),
