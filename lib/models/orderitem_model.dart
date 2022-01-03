@@ -91,28 +91,30 @@ class OrderModelApi {
   String time;
   String tax;
   OrderState status;
+  String tip;
   int pin;
   UserFromApi user;
   RestaurantFromOrder restaurant;
-  OrderModelApi({
-    required this.id,
-    required this.orderitems,
-    required this.created_on,
-    required this.totalPrice,
-    required this.no_of_people,
-    required this.no_of_table,
-    required this.date,
-    required this.time,
-    required this.tax,
-    required this.status,
-    required this.pin,
-    required this.user,
-    required this.restaurant,
-  });
+  OrderModelApi(
+      {required this.id,
+      required this.orderitems,
+      required this.created_on,
+      required this.totalPrice,
+      required this.no_of_people,
+      required this.no_of_table,
+      required this.date,
+      required this.time,
+      required this.tax,
+      required this.status,
+      required this.pin,
+      required this.user,
+      required this.restaurant,
+      this.tip = ""});
 
   factory OrderModelApi.fromMap(Map<String, dynamic> map) {
     return OrderModelApi(
       id: map['id'],
+      tip: map['tip'] ?? "",
       orderitems: List<OrderFoodItemApi>.from(
           map['orderitems']?.map((x) => OrderFoodItemApi.fromMap(x))),
       created_on: DateTime.parse(map['created_on']),

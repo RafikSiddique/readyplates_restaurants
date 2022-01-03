@@ -279,6 +279,14 @@ class OrderWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              if (element.tip != "")
+                Text("Tip: \$" + element.tip,
+                    style: GoogleFonts.inter(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      fontStyle: FontStyle.normal,
+                      color: MyTheme.text1Color,
+                    )),
               Spacer(),
               Text(
                   element.date +

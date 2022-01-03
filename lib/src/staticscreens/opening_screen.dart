@@ -270,32 +270,38 @@ class _OpeningScreenState extends State<OpeningScreen>
           Get.put(OrderController());
           Get.offNamed(HomePage.id);
         } else { */ */
-        int id = await authController.getScreen(authController.userId);
-        if (id >= 13) {
-          await SharedPreferenceHelper().setLoggedIn(true);
+        if (authController.userId != "-1") {
+          int id = await authController.getScreen(authController.userId);
+          if (id >= 13) {
+            await SharedPreferenceHelper().setLoggedIn(true);
 
-          Get.put(HomeController(selectedIndex: 0.obs));
-          Get.put(OrderController());
-          Get.offNamed(HomePage.id);
-        } else {
-          if (id == 0) {
-            controller.animateToPage(1,
-                duration: Duration(milliseconds: 500), curve: Curves.ease);
+            Get.put(HomeController(selectedIndex: 0.obs));
+            Get.put(OrderController());
+            Get.offNamed(HomePage.id);
           } else {
-            if (id == 1) {
-              final c = Get.put(OnboardingController());
-
-              await Geolocator.requestPermission();
-              Position position = await Geolocator.getCurrentPosition();
-              c.init2();
-              Get.toNamed(OnboardingPage2.id,
-                  arguments: LatLng(position.latitude, position.longitude));
+            if (id <= 0) {
+              controller.animateToPage(1,
+                  duration: Duration(milliseconds: 500), curve: Curves.ease);
             } else {
-              Get.toNamed(authController.route(id + 1));
+              if (id == 1) {
+                final c = Get.put(OnboardingController());
+
+                await Geolocator.requestPermission();
+                Position position = await Geolocator.getCurrentPosition();
+                c.init2();
+                Get.toNamed(OnboardingPage2.id,
+                    arguments: LatLng(position.latitude, position.longitude));
+              } else {
+                Get.toNamed(authController.route(id + 1));
+              }
             }
           }
+          //}
+        }else{
+          
+      controller.animateToPage(1,
+          duration: Duration(milliseconds: 500), curve: Curves.ease);
         }
-        //}
       }
     } catch (e) {
       print(e);
