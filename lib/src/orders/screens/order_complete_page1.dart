@@ -85,7 +85,7 @@ class OrderCompletePage1 extends GetView<OrderController> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 6),
                                   child: Text(
-                                    "FOOD SRVED",
+                                    "FOOD SERVED",
                                     style: GoogleFonts.inter(
                                       textStyle: TextStyle(
                                         fontSize: 10,
