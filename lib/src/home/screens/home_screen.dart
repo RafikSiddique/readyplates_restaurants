@@ -9,6 +9,7 @@ import 'package:readyplates_restaurants/src/orders/screens/order_complete_page1.
 import 'package:readyplates_restaurants/src/home/screens/performance_page.dart';
 import 'package:readyplates_restaurants/src/home/screens/profile_page.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
+import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 
 class HomePage extends StatelessWidget {
   static const id = "/home";
@@ -25,6 +26,7 @@ class HomePage extends StatelessWidget {
     "Tables",
     "Profile",
   ];
+
   Widget getBody() {
     switch (controller.selectedIndex.value) {
       case 0:
@@ -47,8 +49,47 @@ class HomePage extends StatelessWidget {
     }
   }
 
+  void showDialogLocal(BuildContext context) async {
+    bool flag = await SharedPreferenceHelper().getOpenAutoFlag();
+    if (!flag) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("Orders are closed"),
+            content: Text(
+                "You have closed the order up until you turn it back on, do you want to turn on the orders?"),
+            actions: [
+              TextButton(
+                  onPressed: () async {
+                    Navigator.pop(context);
+                  },
+                  child: Text("No")),
+              TextButton(
+                  onPressed: () async {
+                    String resid =
+                        await SharedPreferenceHelper().getRestaurantId();
+                    await controller.setAutoOrder(resid, 0);
+                    await SharedPreferenceHelper().setOpenAutoFlag(true);
+                    controller.Switchvalue = true;
+                    await controller.openCloseOrders();
+                    Navigator.pop(context);
+                  },
+                  child: Text("Yes"))
+            ],
+          );
+        },
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    bool isDialogShown = false;
+    if (!isDialogShown) {
+      showDialogLocal(context);
+      isDialogShown = true;
+    }
     return Scaffold(
         backgroundColor: MyTheme.backgroundColor,
         bottomNavigationBar: Obx(

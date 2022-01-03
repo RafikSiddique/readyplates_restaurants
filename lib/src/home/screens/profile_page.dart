@@ -57,11 +57,9 @@ class _ProfilePageState extends State<ProfilePage> {
               final c = Get.find<OnboardingController>();
               c.isEditing = true;
               String? userId = await sfHelper.getUserId();
-
               c.uniqueId = userId!;
               if (homeController.restaurantModel == null) {
                 await homeController.getRestaurant();
-
                 RestaurantModel restaurantModel =
                     homeController.restaurantModel!;
                 c.initEditControllers1n2(restaurantModel);
@@ -129,7 +127,6 @@ class _ProfilePageState extends State<ProfilePage> {
               allTables.forEach((element) {
                 c.tables.add(c.tables.length + 1);
                 c.capacities.add(element.capacity);
-
                 c.available.add(element.available);
                 c.edit.add(true);
               });
@@ -199,7 +196,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                     ),
                                     onTap: () async {
                                       homeController.openCloseOrders();
-
                                       sfHelper.setOpenAutoFlag(false);
                                       String resId =
                                           await sfHelper.getRestaurantId();
@@ -240,6 +236,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           ));
                         } else {
                           homeController.openCloseOrders();
+                          sfHelper.setOpenAutoFlag(true);
                           setState(() {
                             homeController.Switchvalue =
                                 !homeController.Switchvalue;

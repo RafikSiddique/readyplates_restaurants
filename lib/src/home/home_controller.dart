@@ -186,7 +186,7 @@ class HomeController extends GetxController {
       restaurantModel = await homeServices.getRes(int.parse(resId));
     } catch (e) {
       if (e.runtimeType != SocketException)
-        Get.showSnackbar(GetBar(
+        Get.showSnackbar(GetSnackBar(
           title: "Error",
           message: "Something went wrong",
         ));
@@ -198,6 +198,16 @@ class HomeController extends GetxController {
       await homeServices.setAutoOrder(resid.toString(), flag.toString());
     } catch (e) {
       Get.snackbar("Error", e.toString());
+    }
+  }
+
+  Future<bool> getAutoOrder(String resid) async {
+    try {
+      bool data = await homeServices.getAutoOrder(resid.toString());
+      return data;
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+      return false;
     }
   }
 

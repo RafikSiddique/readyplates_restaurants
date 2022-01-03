@@ -146,11 +146,13 @@ class AuthController extends GetxController {
         if (routeId >= 9) {
           isLoggedIn.value = true;
           sfHelper.setLoggedIn(true);
-
           final controller = Get.put(HomeController(selectedIndex: 0.obs));
           await controller.getFoodItems();
           final oController = Get.put(OrderController());
           await oController.getOrderItems();
+          bool auto = await controller.getAutoOrder(id[1]);
+          await sfHelper.setOpenAutoFlag(auto);
+          
           Get.offAllNamed(HomePage.id);
           email.clear();
           password.clear();
@@ -158,7 +160,6 @@ class AuthController extends GetxController {
         } else {
           Get.put(OnboardingController());
           Get.find<OnboardingController>().uniqueId = id[0];
-
           if (routeId == 1) {
             await Geolocator.requestPermission();
             Position position = await Geolocator.getCurrentPosition();
