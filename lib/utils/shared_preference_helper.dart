@@ -6,11 +6,25 @@ class SharedPreferenceHelper {
   final String _userId = "userId";
   final String _resId = "resId";
   final String _onBoardingNumber = "onboarding";
+  final String _autoFlag = "autoFlag";
+
   // final String _restaurantName = "resName";
   Future<bool> setUserId(String id) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     bool success = await sharedPreferences.setString(_userId, id);
     return success;
+  }
+
+  Future<bool> setOpenAutoFlag(bool flag) async {
+    SharedPreferences sf = await SharedPreferences.getInstance();
+    bool success = await sf.setBool(_autoFlag, flag);
+    return success;
+  }
+
+  Future<bool> getOpenAutoFlag() async {
+    SharedPreferences sf = await SharedPreferences.getInstance();
+    bool flag = sf.getBool(_autoFlag) ?? false;
+    return flag;
   }
 
   Future<String?> getUserId() async {

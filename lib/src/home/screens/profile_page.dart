@@ -57,6 +57,7 @@ class _ProfilePageState extends State<ProfilePage> {
               final c = Get.find<OnboardingController>();
               c.isEditing = true;
               String? userId = await sfHelper.getUserId();
+
               c.uniqueId = userId!;
               if (homeController.restaurantModel == null) {
                 await homeController.getRestaurant();
@@ -176,24 +177,19 @@ class _ProfilePageState extends State<ProfilePage> {
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.all(12),
-                                    child: InkWell(
-                                      onTap: () {
-                                        orderCloseUntilDate();
-                                      },
-                                      child: Text(
-                                        "Close Orders until:${homeController.closeOrderTime == null ? 'Select Date' : '${homeController.closeOrderTime!.year}/${homeController.closeOrderTime!.month}/${homeController.closeOrderTime!.day}'}",
-                                        style: GoogleFonts.inter(
-                                          fontSize: 17,
-                                          fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.w500,
-                                          color: MyTheme.appbartextColor,
-                                        ),
+                                    child: Text(
+                                      "Close Orders",
+                                      style: GoogleFonts.inter(
+                                        fontSize: 17,
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.bold,
+                                        color: MyTheme.appbartextColor,
                                       ),
                                     ),
                                   ),
                                   ListTile(
                                     title: Text(
-                                      "I turn back on manually",
+                                      "Turn back on manually",
                                       style: GoogleFonts.inter(
                                         fontSize: 17,
                                         fontStyle: FontStyle.normal,
@@ -201,8 +197,13 @@ class _ProfilePageState extends State<ProfilePage> {
                                         color: MyTheme.appbartextColor,
                                       ),
                                     ),
-                                    onTap: () {
+                                    onTap: () async {
                                       homeController.openCloseOrders();
+
+                                      sfHelper.setOpenAutoFlag(false);
+                                      String resId =
+                                          await sfHelper.getRestaurantId();
+                                      homeController.setAutoOrder(resId, 0);
                                       setState(() {
                                         homeController.Switchvalue =
                                             !homeController.Switchvalue;
@@ -212,7 +213,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ),
                                   ListTile(
                                     title: Text(
-                                      "Tomorrow morning",
+                                      "Reopen tomorrow",
                                       style: GoogleFonts.inter(
                                         fontSize: 17,
                                         fontStyle: FontStyle.normal,
@@ -220,7 +221,16 @@ class _ProfilePageState extends State<ProfilePage> {
                                         color: MyTheme.appbartextColor,
                                       ),
                                     ),
-                                    onTap: () {
+                                    onTap: () async {
+                                      sfHelper.setOpenAutoFlag(true);
+                                      homeController.openCloseOrders();
+                                      String resId =
+                                          await sfHelper.getRestaurantId();
+                                      homeController.setAutoOrder(resId, 1);
+                                      setState(() {
+                                        homeController.Switchvalue =
+                                            !homeController.Switchvalue;
+                                      });
                                       Get.back();
                                     },
                                   ),

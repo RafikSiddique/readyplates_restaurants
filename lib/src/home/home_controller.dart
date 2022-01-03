@@ -193,6 +193,14 @@ class HomeController extends GetxController {
     }
   }
 
+  Future<void> setAutoOrder(String resid, int flag) async {
+    try {
+      await homeServices.setAutoOrder(resid.toString(), flag.toString());
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+    }
+  }
+
   Future<void> addFoodItem() async {
     try {
       String resId = await sfHelper.getRestaurantId();

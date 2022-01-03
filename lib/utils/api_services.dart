@@ -37,4 +37,7 @@ class ApiServices {
       Uri.parse(baseUri + 'customers/getrestaurant/$id');
 
   Uri get openCloseOrderUri => restaurants('openorders/');
+
+  Uri autoOrders(String resid) => restaurants('autoorders/$resid');
+  Uri get setAutoOrders => restaurants('autoorders/');
 }

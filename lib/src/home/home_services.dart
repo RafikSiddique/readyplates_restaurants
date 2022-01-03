@@ -219,6 +219,34 @@ class HomeServices extends ApiServices {
     }
   }
 
+  Future<bool> getAutoOrder(String resid) async {
+    try {
+      Response res = await get(autoOrders(resid));
+      if (res.statusCode == 200) {
+        Map data = jsonDecode(res.body);
+        return data['Auto-Order-On'];
+      } else {
+        return false;
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> setAutoOrder(String resid, String flag) async {
+    try {
+      Response response = await post(setAutoOrders, body: {
+        'restaurant': resid,
+        'auto_on': flag,
+      });
+      if (response.statusCode != 200) {
+        throw AppException();
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<String> openCloseOrders(
     String restaurant,
     String open_orders,
