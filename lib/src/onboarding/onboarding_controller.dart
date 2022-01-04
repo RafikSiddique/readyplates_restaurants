@@ -561,6 +561,9 @@ class OnboardingController extends GetxController {
     int eendMin = int.parse(eendTimes.last.split(' ').first);
     estartTimeTod = TimeOfDay(hour: estart, minute: estartMin);
     eendTimeTod = TimeOfDay(hour: eend, minute: eendMin);
+    eventName.text = restaurantModel.bio.first.event_name;
+    advanceOrders.text = restaurantModel.bio.first.advance_orders;
+    maxOrders.text = restaurantModel.bio.first.no_of_orders;
     //estartTimeTod =
     selectedRecurrence.value = restaurantModel.bio.first.recur_freq;
   }

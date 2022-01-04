@@ -22,13 +22,6 @@ class RestaurantModel {
   final String postal_code;
   final String latitude;
   final String longitude;
-  final String gstin_present;
-  final String gstin_num;
-  final String fssai_status;
-  final String fssai_expiry;
-  final String kyc_image;
-  final String gstin_image;
-  final String fssai_image;
   final String type_of_estd;
   final List<String> types_of_cusine;
   final String start_time;
@@ -51,13 +44,6 @@ class RestaurantModel {
     required this.postal_code,
     required this.latitude,
     required this.longitude,
-    required this.gstin_present,
-    required this.gstin_num,
-    required this.fssai_status,
-    required this.fssai_expiry,
-    required this.kyc_image,
-    required this.gstin_image,
-    required this.fssai_image,
     required this.type_of_estd,
     required this.types_of_cusine,
     required this.start_time,
@@ -81,13 +67,6 @@ class RestaurantModel {
       'postal_code': postal_code,
       'latitude': latitude,
       'longitude': longitude,
-      'gstin_present': gstin_present,
-      'gstin_num': gstin_num,
-      'fssai_status': fssai_status,
-      'fssai_expiry': fssai_expiry,
-      'kyc_image': kyc_image,
-      'gstin_image': gstin_image,
-      'fssai_image': fssai_image,
       'type_of_estd': type_of_estd,
       'types_of_cusine': types_of_cusine,
       'start_time': start_time,
@@ -114,13 +93,6 @@ class RestaurantModel {
       postal_code: map['postal_code'] ?? "",
       latitude: map['latitude'] ?? "",
       longitude: map['longitude'] ?? "",
-      gstin_present: map['gstin_present'] ?? "",
-      gstin_num: map['gstin_num'] ?? "",
-      fssai_status: map['fssai_status'] ?? "",
-      fssai_expiry: map['fssai_expiry'] ?? "",
-      kyc_image: map['kyc_image'] ?? "",
-      gstin_image: map['gstin_image'] ?? "",
-      fssai_image: map['fssai_image'] ?? "",
       type_of_estd: map['type_of_estd'] ?? "",
       types_of_cusine: map['types_of_cusine'] != null
           ? List<String>.from(map['types_of_cusine']
@@ -149,11 +121,6 @@ class RestaurantModel {
       RestaurantModel.fromMap(json.decode(source));
 
   @override
-  String toString() {
-    return 'RestaurantModel(id: $id, bio: $bio, res_name: $resName, own_name: $own_name, own_mobile: $own_mobile, res_city: $res_city, poc: $poc, poc_number: $poc_number, address: $address, postal_code: $postal_code, latitude: $latitude, longitude: $longitude, gstin_present: $gstin_present, gstin_num: $gstin_num, fssai_status: $fssai_status, fssai_expiry: $fssai_expiry, kyc_image: $kyc_image, gstin_image: $gstin_image, fssai_image: $fssai_image, type_of_estd: $type_of_estd, types_of_cusine: $types_of_cusine, start_time: $start_time, end_time: $end_time, open_days: $open_days, completed_till: $completed_till, user: $user)';
-  }
-
-  @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
@@ -170,13 +137,6 @@ class RestaurantModel {
         other.postal_code == postal_code &&
         other.latitude == latitude &&
         other.longitude == longitude &&
-        other.gstin_present == gstin_present &&
-        other.gstin_num == gstin_num &&
-        other.fssai_status == fssai_status &&
-        other.fssai_expiry == fssai_expiry &&
-        other.kyc_image == kyc_image &&
-        other.gstin_image == gstin_image &&
-        other.fssai_image == fssai_image &&
         other.type_of_estd == type_of_estd &&
         other.types_of_cusine == types_of_cusine &&
         other.start_time == start_time &&
@@ -200,13 +160,6 @@ class RestaurantModel {
         postal_code.hashCode ^
         latitude.hashCode ^
         longitude.hashCode ^
-        gstin_present.hashCode ^
-        gstin_num.hashCode ^
-        fssai_status.hashCode ^
-        fssai_expiry.hashCode ^
-        kyc_image.hashCode ^
-        gstin_image.hashCode ^
-        fssai_image.hashCode ^
         type_of_estd.hashCode ^
         types_of_cusine.hashCode ^
         start_time.hashCode ^
@@ -223,6 +176,9 @@ class Bio {
   final String no_of_tables;
   final String max_table_size;
   final String cost_for_two;
+  final String no_of_orders;
+  final String advance_orders;
+  final String event_name;
   final String servingTime;
   final String recurring_event_date;
   final String recur_freq;
@@ -251,7 +207,10 @@ class Bio {
     required this.id,
     required this.description,
     required this.no_of_tables,
+    required this.no_of_orders,
     required this.max_table_size,
+    required this.advance_orders,
+    required this.event_name,
     required this.cost_for_two,
     required this.servingTime,
     required this.recurring_event_date,
@@ -316,6 +275,9 @@ class Bio {
   factory Bio.fromMap(Map<String, dynamic> map) {
     return Bio(
       id: map['id']?.toInt(),
+      advance_orders: map['advance_orders'] ?? "",
+      event_name: map['event_name'] ?? "",
+      no_of_orders: map['no_of_orders'] ?? "",
       description: map['description'] ?? "",
       no_of_tables: map['no_of_tables'] ?? "",
       max_table_size: map['max_table_size'] ?? "",
