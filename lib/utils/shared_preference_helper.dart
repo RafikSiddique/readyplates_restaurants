@@ -23,7 +23,7 @@ class SharedPreferenceHelper {
 
   Future<bool> getOpenAutoFlag() async {
     SharedPreferences sf = await SharedPreferences.getInstance();
-    bool flag = sf.getBool(_autoFlag) ?? false;
+    bool flag = sf.getBool(_autoFlag) ?? true;
     return flag;
   }
 
