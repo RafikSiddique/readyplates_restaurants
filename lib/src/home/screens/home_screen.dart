@@ -52,6 +52,7 @@ class HomePage extends StatelessWidget {
   void showDialogLocal(BuildContext context) async {
     bool flag = await SharedPreferenceHelper().getOpenAutoFlag();
     if (!flag) {
+      controller.switchValue.value = false;
       showDialog(
         context: context,
         builder: (context) {
@@ -71,7 +72,7 @@ class HomePage extends StatelessWidget {
                         await SharedPreferenceHelper().getRestaurantId();
                     await controller.setAutoOrder(resid, 0);
                     await SharedPreferenceHelper().setOpenAutoFlag(true);
-                    controller.Switchvalue = true;
+                    controller.switchValue.value = true;
                     await controller.openCloseOrders();
                     Navigator.pop(context);
                   },

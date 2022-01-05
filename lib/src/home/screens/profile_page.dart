@@ -144,105 +144,106 @@ class _ProfilePageState extends State<ProfilePage> {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(left: 11.0),
-                  child: Text(
-                    homeController.Switchvalue == false
-                        ? 'Start Orders'
-                        : 'Close Orders',
-                    style: GoogleFonts.inter(
-                      fontSize: 15,
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.normal,
-                      color: Color(0xff6C757D),
+                  child: Obx(
+                    () => Text(
+                      homeController.switchValue.value == true
+                          ? 'Close Orders'
+                          : 'Start Orders',
+                      style: GoogleFonts.inter(
+                        fontSize: 15,
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.normal,
+                        color: Color(0xff6C757D),
+                      ),
                     ),
                   ),
                 ),
                 Transform.scale(
                   scale: 0.6,
-                  child: CupertinoSwitch(
-                      thumbColor: Colors.white,
-                      activeColor: MyTheme.borderchangeColor,
-                      trackColor: MyTheme.editbuttontextColor,
-                      value: homeController.Switchvalue,
-                      onChanged: (newValue) {
-                        if (!newValue) {
-                          Get.bottomSheet(Card(
-                            child: Card(
-                              margin: EdgeInsets.zero,
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(12),
-                                    child: Text(
-                                      "Close Orders",
-                                      style: GoogleFonts.inter(
-                                        fontSize: 17,
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.bold,
-                                        color: MyTheme.appbartextColor,
+                  child: Obx(
+                    () => CupertinoSwitch(
+                        thumbColor: Colors.white,
+                        activeColor: MyTheme.borderchangeColor,
+                        trackColor: MyTheme.editbuttontextColor,
+                        value: homeController.switchValue.value,
+                        onChanged: (newValue) {
+                          if (!newValue) {
+                            Get.bottomSheet(Card(
+                              child: Card(
+                                margin: EdgeInsets.zero,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(12),
+                                      child: Text(
+                                        "Close Orders",
+                                        style: GoogleFonts.inter(
+                                          fontSize: 17,
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.bold,
+                                          color: MyTheme.appbartextColor,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  ListTile(
-                                    title: Text(
-                                      "Turn back on manually",
-                                      style: GoogleFonts.inter(
-                                        fontSize: 17,
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.w500,
-                                        color: MyTheme.appbartextColor,
+                                    ListTile(
+                                      title: Text(
+                                        "Turn back on manually",
+                                        style: GoogleFonts.inter(
+                                          fontSize: 17,
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.w500,
+                                          color: MyTheme.appbartextColor,
+                                        ),
                                       ),
+                                      onTap: () async {
+                                        homeController.openCloseOrders();
+
+                                        sfHelper.setOpenAutoFlag(false);
+                                        String resId =
+                                            await sfHelper.getRestaurantId();
+                                        homeController.setAutoOrder(resId, 0);
+
+                                        homeController.switchValue.value =
+                                            false;
+
+                                        Get.back();
+                                      },
                                     ),
-                                    onTap: () async {
-                                      homeController.openCloseOrders();
-                                      sfHelper.setOpenAutoFlag(false);
-                                      String resId =
-                                          await sfHelper.getRestaurantId();
-                                      homeController.setAutoOrder(resId, 0);
-                                      setState(() {
-                                        homeController.Switchvalue =
-                                            !homeController.Switchvalue;
-                                      });
-                                      Get.back();
-                                    },
-                                  ),
-                                  ListTile(
-                                    title: Text(
-                                      "Reopen tomorrow",
-                                      style: GoogleFonts.inter(
-                                        fontSize: 17,
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.w500,
-                                        color: MyTheme.appbartextColor,
+                                    ListTile(
+                                      title: Text(
+                                        "Reopen tomorrow",
+                                        style: GoogleFonts.inter(
+                                          fontSize: 17,
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.w500,
+                                          color: MyTheme.appbartextColor,
+                                        ),
                                       ),
+                                      onTap: () async {
+                                        sfHelper.setOpenAutoFlag(true);
+                                        homeController.openCloseOrders();
+                                        String resId =
+                                            await sfHelper.getRestaurantId();
+                                        homeController.setAutoOrder(resId, 1);
+                                        homeController.switchValue.value =
+                                            false;
+                                        Get.back();
+                                      },
                                     ),
-                                    onTap: () async {
-                                      sfHelper.setOpenAutoFlag(true);
-                                      homeController.openCloseOrders();
-                                      String resId =
-                                          await sfHelper.getRestaurantId();
-                                      homeController.setAutoOrder(resId, 1);
-                                      setState(() {
-                                        homeController.Switchvalue =
-                                            !homeController.Switchvalue;
-                                      });
-                                      Get.back();
-                                    },
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                          ));
-                        } else {
-                          homeController.openCloseOrders();
-                          sfHelper.setOpenAutoFlag(true);
-                          setState(() {
-                            homeController.Switchvalue =
-                                !homeController.Switchvalue;
-                          });
-                        }
-                      }),
+                            ));
+                          } else {
+                            homeController.openCloseOrders();
+                            sfHelper.setOpenAutoFlag(true);
+
+                            homeController.switchValue.value = true;
+                          }
+                        }),
+                  ),
                 ),
               ],
             ),

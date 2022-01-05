@@ -152,7 +152,7 @@ class AuthController extends GetxController {
           await oController.getOrderItems();
           bool auto = await controller.getAutoOrder(id[1]);
           await sfHelper.setOpenAutoFlag(auto);
-          
+
           Get.offAllNamed(HomePage.id);
           email.clear();
           password.clear();
