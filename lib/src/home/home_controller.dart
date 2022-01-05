@@ -132,6 +132,7 @@ class HomeController extends GetxController {
     servingcost = TextEditingController();
     feedback = TextEditingController();
     getFoodItems();
+    ordersOnOff();
     super.onInit();
   }
 
