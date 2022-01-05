@@ -78,7 +78,7 @@ class HomeController extends GetxController {
     TableModel(id: -1, capacity: 1, available: false, restaurant: 1)
   ].obs;
 
-  Timer? timer;
+  // Timer? timer;
   void onChanged(int i) {
     if (i == 3) {
       appBarColor.value = Colors.white;
@@ -87,33 +87,15 @@ class HomeController extends GetxController {
       appBarColor.value = Colors.transparent;
     }
     selectedIndex.value = i;
-
-    // pageController.animateToPage(i,
-    //     duration: Duration(milliseconds: 500), curve: Curves.ease);
     title.value = getTitle(i);
     if (i == 1) {
-      timer?.cancel();
+      //   timer?.cancel();
       getFeedbacksFirst();
-      timer = Timer.periodic(Duration(seconds: 5), (t) async {
-        await getFeedbacks();
-        timer = t;
-      });
     } else if (i == 2) {
-      timer?.cancel();
+      //  timer?.cancel();
       Get.find<OrderController>().getOrderItems();
-      timer = Timer.periodic(Duration(seconds: 2), (t) async {
-        await Get.find<OrderController>().getOrderItemsWithoutLoad();
-
-        timer = t;
-      });
     } else if (i == 0) {
-      timer?.cancel();
-
-      timer = Timer.periodic(Duration(seconds: 2), (t) async {
-        await getFoodItems();
-
-        timer = t;
-      });
+      getFoodItems();
     }
     ordersOnOff();
 
@@ -280,7 +262,7 @@ class HomeController extends GetxController {
       foodItems.value = await homeServices.getMenu(id);
     } catch (e) {
       Get.snackbar("Error", e.toString());
-      timer?.cancel();
+      //timer?.cancel();
     }
   }
 
@@ -308,7 +290,6 @@ class HomeController extends GetxController {
               : getUnavaailTables
           : [];
       if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
-      timer?.cancel();
     }
   }
 
@@ -354,16 +335,14 @@ class HomeController extends GetxController {
 //        Get.snackbar("Error", e.toString());
 
       } else {}
-      timer?.cancel();
+      //timer?.cancel();
     }
   }
 
-  Future<void> ordersOnOff() async {
+  FutureOr<void> ordersOnOff() async {
     try {
-      if (restaurantModel == null) {
-        await getRestaurant();
-        switchValue.value = restaurantModel!.open_orders;
-      }
+      await getRestaurant();
+      switchValue.value = restaurantModel!.open_orders;
     } catch (e) {
       if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
     }
@@ -384,7 +363,7 @@ class HomeController extends GetxController {
 
   Future<void> logout() async {
     await sfHelper.clear();
-    timer?.cancel();
+
     Get.find<AuthController>().clearAll();
     selectedIndex.value = 0;
     final c = Get.find<OrderController>();
