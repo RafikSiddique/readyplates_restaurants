@@ -199,14 +199,12 @@ class _ProfilePageState extends State<ProfilePage> {
                                       ),
                                       onTap: () async {
                                         homeController.openCloseOrders();
-
+                                        homeController.switchValue.value =
+                                            false;
                                         sfHelper.setOpenAutoFlag(false);
                                         String resId =
                                             await sfHelper.getRestaurantId();
                                         homeController.setAutoOrder(resId, 0);
-
-                                        homeController.switchValue.value =
-                                            false;
 
                                         Get.back();
                                       },
@@ -224,11 +222,12 @@ class _ProfilePageState extends State<ProfilePage> {
                                       onTap: () async {
                                         sfHelper.setOpenAutoFlag(true);
                                         homeController.openCloseOrders();
+                                        homeController.switchValue.value =
+                                            false;
                                         String resId =
                                             await sfHelper.getRestaurantId();
                                         homeController.setAutoOrder(resId, 1);
-                                        homeController.switchValue.value =
-                                            false;
+
                                         Get.back();
                                       },
                                     ),
