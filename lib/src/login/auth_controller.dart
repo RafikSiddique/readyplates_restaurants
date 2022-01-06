@@ -194,6 +194,9 @@ class AuthController extends GetxController {
         final c = Get.find<HomeController>();
         Get.offAllNamed(HomePage.id);
         c.selectedIndex.value = 4;
+        email.clear();
+        password.clear();
+        password2.clear();
       } else {
         email.clear();
         password.clear();
@@ -203,6 +206,7 @@ class AuthController extends GetxController {
         }
         otpVerification = "".obs;
         otp = "";
+
         Get.toNamed(LoginPage.id);
       }
     } catch (e) {

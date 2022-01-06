@@ -195,6 +195,7 @@ class _ChangePasswordPage1State extends State<ChangePasswordPage1> {
                                     formKey.currentState!.save();
                                     if (formKey.currentState!.validate())
                                       await controller.changePassword();
+                                    isForgotPass = false;
                                   },
                                   buttonbackgroundColor:
                                       (controller.password.text.isEmpty ||
