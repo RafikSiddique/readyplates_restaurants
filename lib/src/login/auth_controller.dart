@@ -150,9 +150,13 @@ class AuthController extends GetxController {
           await controller.getFoodItems();
           final oController = Get.put(OrderController());
           await oController.getOrderItems();
-          bool auto = await controller.getAutoOrder(id[1]);
-          await sfHelper.setOpenAutoFlag(auto);
-
+          await controller.getRestaurant();
+          if (!controller.restaurantModel!.open_orders) {
+            bool auto = await controller.getAutoOrder(id[1]);
+            await sfHelper.setOpenAutoFlag(auto);
+          } else {
+            await sfHelper.setOpenAutoFlag(true);
+          }
           Get.offAllNamed(HomePage.id);
           email.clear();
           password.clear();
