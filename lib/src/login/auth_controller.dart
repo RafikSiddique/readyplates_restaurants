@@ -16,7 +16,8 @@ import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
 import 'package:readyplates_restaurants/utils/fcm_service.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 
-String uid = '';
+// String uid = '';
+bool isForgotPass = false;
 
 class AuthController extends GetxController {
   final AuthenticationServices services = AuthenticationServices();
@@ -119,7 +120,7 @@ class AuthController extends GetxController {
         password2.text,
       );
       await sfHelper.setUserId(id);
-      uid = id;
+      // uid = id;
       email.clear();
       password.clear();
       password2.clear();
@@ -189,7 +190,7 @@ class AuthController extends GetxController {
         email.text.toLowerCase(),
         password.text,
       );
-      if (uid != '') {
+      if (isForgotPass == false) {
         final c = Get.find<HomeController>();
         Get.offAllNamed(HomePage.id);
         c.selectedIndex.value = 4;
