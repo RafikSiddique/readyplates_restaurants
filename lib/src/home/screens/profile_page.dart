@@ -166,9 +166,14 @@ class _ProfilePageState extends State<ProfilePage> {
                         activeColor: MyTheme.borderchangeColor,
                         trackColor: MyTheme.editbuttontextColor,
                         value: homeController.switchValue.value,
-                        onChanged: (newValue) {
+                        onChanged: (newValue) async {
                           if (!newValue) {
-                            Get.bottomSheet(Card(
+                            homeController.openCloseOrders();
+                            homeController.switchValue.value = false;
+                            sfHelper.setOpenAutoFlag(false);
+                            String resId = await sfHelper.getRestaurantId();
+                            homeController.setAutoOrder(resId, 0);
+/*                             Get.bottomSheet(Card(
                               child: Card(
                                 margin: EdgeInsets.zero,
                                 child: Column(
@@ -234,7 +239,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ],
                                 ),
                               ),
-                            ));
+                            )); */
                           } else {
                             homeController.openCloseOrders();
                             sfHelper.setOpenAutoFlag(true);
