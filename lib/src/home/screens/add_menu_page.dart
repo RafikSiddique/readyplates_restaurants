@@ -154,7 +154,7 @@ class MenuPage extends StatelessWidget {
                                   fontSize: 15,
                                   fontStyle: FontStyle.normal,
                                   fontWeight: FontWeight.w500,
-                                  color: MyTheme.text3Color,
+                                  color: MyTheme.appbartextColor,
                                 ),
                               ),
                             ),

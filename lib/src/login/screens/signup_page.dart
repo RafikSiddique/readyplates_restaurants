@@ -241,14 +241,14 @@ class _SignupPageState extends State<SignupPage> {
                                             controller.password.text.isEmpty ||
                                             controller.password2.text.isEmpty)
                                         ? MyTheme.buttonColor
-                                        : MyTheme.buttonchangeColor,
+                                        : MyTheme.text1Color,
                                     text: 'Sign Up',
                                     buttontextColor: (controller
                                                 .email.text.isEmpty ||
                                             controller.password.text.isEmpty ||
                                             controller.password2.text.isEmpty)
                                         ? MyTheme.buttontextColor
-                                        : MyTheme.buttontextchangeColor,
+                                        : MyTheme.appbackgroundColor,
                                   );
                                 }),
                             SizedBox(

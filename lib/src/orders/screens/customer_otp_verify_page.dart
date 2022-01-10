@@ -17,7 +17,7 @@ class CustomerOtpVerify extends GetView<OrderController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyTheme.backgroundColor,
+      backgroundColor: MyTheme.buttontextColor,
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,

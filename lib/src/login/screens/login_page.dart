@@ -196,7 +196,7 @@ class _LoginPageState extends State<LoginPage> {
                                         fontSize: 10,
                                         fontStyle: FontStyle.normal,
                                         fontWeight: FontWeight.normal,
-                                        color: MyTheme.starColor,
+                                        color: MyTheme.closeiconColor,
                                       ),
                                     ),
                                   ],
@@ -225,7 +225,7 @@ class _LoginPageState extends State<LoginPage> {
                                       (controller.email.text.isEmpty ||
                                               controller.password.text.isEmpty)
                                           ? MyTheme.buttonColor
-                                          : MyTheme.buttonchangeColor,
+                                          : MyTheme.text1Color,
                                   text: controller.isLoggedIn == true
                                       ? 'Proceed'
                                       : 'Verify Password',
@@ -233,7 +233,7 @@ class _LoginPageState extends State<LoginPage> {
                                       (controller.email.text.isEmpty ||
                                               controller.password.text.isEmpty)
                                           ? MyTheme.buttontextColor
-                                          : MyTheme.buttontextchangeColor,
+                                          : MyTheme.appbackgroundColor,
                                 );
                               }),
                           SizedBox(

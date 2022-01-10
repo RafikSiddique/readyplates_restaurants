@@ -201,13 +201,13 @@ class _ChangePasswordPage1State extends State<ChangePasswordPage1> {
                                       (controller.password.text.isEmpty ||
                                               controller.password2.text.isEmpty)
                                           ? MyTheme.buttonColor
-                                          : MyTheme.buttonchangeColor,
+                                          : MyTheme.text1Color,
                                   text: 'Change Password',
                                   buttontextColor:
                                       (controller.password.text.isEmpty ||
                                               controller.password2.text.isEmpty)
                                           ? MyTheme.buttontextColor
-                                          : MyTheme.buttontextchangeColor,
+                                          : MyTheme.appbackgroundColor,
                                 );
                               }),
                           SizedBox(

@@ -92,7 +92,7 @@ class HomePage extends StatelessWidget {
       isDialogShown = true;
     }
     return Scaffold(
-        backgroundColor: MyTheme.backgroundColor,
+        backgroundColor: MyTheme.buttontextColor,
         bottomNavigationBar: Obx(
           () => Container(
             height: 60,

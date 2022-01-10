@@ -18,7 +18,7 @@ class OrderCompletePage1 extends GetView<OrderController> {
       return Stack(
         children: [
           Scaffold(
-              backgroundColor: MyTheme.backgroundColor,
+              backgroundColor: MyTheme.buttontextColor,
               body: Padding(
                 padding: const EdgeInsets.only(left: 16, right: 16, top: 4),
                 child: Obx(() => controller.active.isEmpty &&

@@ -438,7 +438,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
                                     ),
                                     side: BorderSide(
                                         width: 1,
-                                        color: MyTheme.dropdownarrowColor),
+                                        color: MyTheme.bottomtextColor),
                                   ),
                                   icon: Icon(
                                     Icons.check_circle_outline_outlined,
@@ -449,7 +449,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
                                     'Accept',
                                     style: GoogleFonts.inter(
                                       fontSize: 15,
-                                      color: MyTheme.dropdownarrowColor,
+                                      color: MyTheme.bottomtextColor,
                                       fontStyle: FontStyle.normal,
                                       fontWeight: FontWeight.normal,
                                     ),
@@ -473,7 +473,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
                                     ),
                                     side: BorderSide(
                                         width: 1,
-                                        color: MyTheme.dropdownarrowColor),
+                                        color: MyTheme.bottomtextColor),
                                   ),
                                   icon: FaIcon(
                                     FontAwesomeIcons.timesCircle,
@@ -484,7 +484,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
                                     'Cancel',
                                     style: GoogleFonts.inter(
                                       fontSize: 15,
-                                      color: MyTheme.dropdownarrowColor,
+                                      color: MyTheme.bottomtextColor,
                                       fontStyle: FontStyle.normal,
                                       fontWeight: FontWeight.normal,
                                     ),
@@ -525,7 +525,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
                           controller.spiceSlider.value == '' ||
                           controller.servingSize.isEmpty)
                       ? MyTheme.buttonColor
-                      : MyTheme.buttonchangeColor,
+                      : MyTheme.text1Color,
                   text: 'CONTINUE',
                   buttontextColor: (controller.image1.path.isEmpty ||
                           controller.name.text.isEmpty ||
@@ -536,7 +536,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
                           controller.spiceSlider.value == '' ||
                           controller.servingSize.isEmpty)
                       ? MyTheme.buttontextColor
-                      : MyTheme.buttontextchangeColor,
+                      : MyTheme.appbackgroundColor,
                 ),
                 SizedBox(
                   height: 16,

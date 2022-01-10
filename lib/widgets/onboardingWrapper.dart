@@ -116,13 +116,13 @@ class OnBoardingWrapper extends StatelessWidget {
                                         (element) => element.text.isEmpty) ||
                                     !enabled
                                 ? MyTheme.buttonColor
-                                : MyTheme.buttonchangeColor,
+                                : MyTheme.text1Color,
                             text: buttonText,
                             buttontextColor: textControllers.any(
                                         (element) => element.text.isEmpty) ||
                                     !enabled
                                 ? MyTheme.buttontextColor
-                                : MyTheme.buttontextchangeColor),
+                                : MyTheme.appbackgroundColor),
                       ),
                     );
                   },

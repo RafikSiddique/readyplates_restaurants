@@ -23,7 +23,7 @@ class PerformancePage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: MyTheme.backgroundColor,
+        backgroundColor: MyTheme.buttontextColor,
         body: Obx(
           () => Stack(
             children: [
@@ -177,7 +177,7 @@ class FeedbackWidget extends StatelessWidget {
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
                     fontStyle: FontStyle.normal,
-                    color: MyTheme.text3Color,
+                    color: MyTheme.appbartextColor,
                   )),
               Spacer(),
             ]),
@@ -192,7 +192,7 @@ class FeedbackWidget extends StatelessWidget {
                       fontSize: 15,
                       fontWeight: FontWeight.normal,
                       fontStyle: FontStyle.normal,
-                      color: MyTheme.text3Color,
+                      color: MyTheme.appbartextColor,
                     )),
                 Spacer(),
                 Text(feedbackModel.overall_experience.toString(),
@@ -216,7 +216,7 @@ class FeedbackWidget extends StatelessWidget {
                       fontSize: 15,
                       fontWeight: FontWeight.normal,
                       fontStyle: FontStyle.normal,
-                      color: MyTheme.text3Color,
+                      color: MyTheme.appbartextColor,
                     )),
                 Spacer(),
                 Text(feedbackModel.taste,
@@ -240,7 +240,7 @@ class FeedbackWidget extends StatelessWidget {
                       fontSize: 15,
                       fontWeight: FontWeight.normal,
                       fontStyle: FontStyle.normal,
-                      color: MyTheme.text3Color,
+                      color: MyTheme.appbartextColor,
                     )),
                 Spacer(),
                 Text(feedbackModel.ambience,
@@ -264,7 +264,7 @@ class FeedbackWidget extends StatelessWidget {
                       fontSize: 15,
                       fontWeight: FontWeight.normal,
                       fontStyle: FontStyle.normal,
-                      color: MyTheme.text3Color,
+                      color: MyTheme.appbartextColor,
                     )),
                 Spacer(),
                 Text(feedbackModel.serving_time,

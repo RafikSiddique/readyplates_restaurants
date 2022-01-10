@@ -319,7 +319,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                     fontSize: 9,
                     fontStyle: FontStyle.normal,
                     fontWeight: FontWeight.normal,
-                    color: MyTheme.checkboxbottomtextColor,
+                    color: MyTheme.closeiconColor,
                   ),
                 ),
                 SizedBox(

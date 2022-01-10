@@ -287,13 +287,13 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                                   },
                                   buttonbackgroundColor:
                                       (controller.otpText[j].text.isEmpty)
-                                          ? MyTheme.imgtextColor
-                                          : MyTheme.buttonchangeColor,
+                                          ? MyTheme.completeOrderTextColor
+                                          : MyTheme.text1Color,
                                   text: 'CONTINUE',
                                   buttontextColor:
                                       (controller.otpText[j].text.isEmpty)
-                                          ? MyTheme.buttontextchangeColor
-                                          : MyTheme.buttontextchangeColor,
+                                          ? MyTheme.appbackgroundColor
+                                          : MyTheme.appbackgroundColor,
                                 );
                               }),
                           SizedBox(

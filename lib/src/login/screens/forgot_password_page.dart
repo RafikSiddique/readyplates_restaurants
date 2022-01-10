@@ -180,12 +180,12 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                   buttonbackgroundColor:
                                       (controller.email.text.isEmpty)
                                           ? MyTheme.buttonColor
-                                          : MyTheme.buttonchangeColor,
+                                          : MyTheme.text1Color,
                                   text: 'Confirm',
                                   buttontextColor:
                                       (controller.email.text.isEmpty)
                                           ? MyTheme.buttontextColor
-                                          : MyTheme.buttontextchangeColor,
+                                          : MyTheme.appbackgroundColor,
                                 );
                               }),
                           SizedBox(

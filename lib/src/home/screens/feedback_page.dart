@@ -234,7 +234,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         fontSize: 12,
                         fontStyle: FontStyle.normal,
                         fontWeight: FontWeight.normal,
-                        color: MyTheme.text3Color,
+                        color: MyTheme.appbartextColor,
                       )),
                     ),
                   ),
@@ -245,7 +245,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
               ),
               Container(
                 decoration: BoxDecoration(
-                  color: MyTheme.containerColor,
+                  color: MyTheme.completeOrderBackColor,
                   borderRadius: BorderRadius.circular(6),
                 ),
                 height: 228,
@@ -278,9 +278,9 @@ class _FeedbackPageState extends State<FeedbackPage> {
                   onTap: () {
                     Get.back();
                   },
-                  buttonbackgroundColor: MyTheme.buttonchangeColor,
+                  buttonbackgroundColor: MyTheme.text1Color,
                   text: 'Back',
-                  buttontextColor: MyTheme.buttontextchangeColor,
+                  buttontextColor: MyTheme.appbackgroundColor,
                   fontWeight: FontWeight.bold,
                 ),
               ),

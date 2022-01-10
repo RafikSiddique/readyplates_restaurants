@@ -84,7 +84,7 @@ class OrderWidget extends StatelessWidget {
                 controller.updateStatus(element.id, OrderState.Served);
               },
               fontSize: 15,
-              buttonbackgroundColor: MyTheme.buttontextchangeColor,
+              buttonbackgroundColor: MyTheme.appbackgroundColor,
               text: "Mark as \"Food Served\"",
               border: Border.all(
                 width: 1,
@@ -162,7 +162,7 @@ class OrderWidget extends StatelessWidget {
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
                     fontStyle: FontStyle.normal,
-                    color: MyTheme.text3Color,
+                    color: MyTheme.appbartextColor,
                   ),
                 )),
           ),
@@ -200,7 +200,7 @@ class OrderWidget extends StatelessWidget {
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500,
                                 fontStyle: FontStyle.normal,
-                                color: MyTheme.text3Color,
+                                color: MyTheme.appbartextColor,
                               ),
                             ),
                             overflow: TextOverflow.fade,
@@ -257,7 +257,7 @@ class OrderWidget extends StatelessWidget {
                               fontSize: 15,
                               fontWeight: FontWeight.w600,
                               fontStyle: FontStyle.normal,
-                              color: MyTheme.buttonchangeColor,
+                              color: MyTheme.text1Color,
                             ),
                           ));
                     }
@@ -271,7 +271,7 @@ class OrderWidget extends StatelessWidget {
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
                         fontStyle: FontStyle.normal,
-                        color: MyTheme.buttonchangeColor,
+                        color: MyTheme.text1Color,
                       ),
                     ))
             ],

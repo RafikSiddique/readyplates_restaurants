@@ -486,7 +486,7 @@ class _TableAssignPageState extends State<TableAssignPage> {
                                     children: [
                                       Icon(
                                         Icons.error,
-                                        color: MyTheme.text3Color,
+                                        color: MyTheme.appbartextColor,
                                       ),
                                       SizedBox(width: 13),
                                       Container(

@@ -35,7 +35,7 @@ class FieldTitle extends StatelessWidget {
                       text: ' *',
                       style: TextStyle(
                         fontSize: fontSize + 3,
-                        color: MyTheme.starColor,
+                        color: MyTheme.closeiconColor,
                       ),
                     ),
                   ]
