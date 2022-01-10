@@ -91,4 +91,6 @@ class MyTheme {
   static Color foodServedTextColor = Color(0xff2775E3);
 
   static Color outlinedBorderColor = Color(0xff44C4A1);
+
+  static Color orangeColor = Color(0xffF47121);
 }

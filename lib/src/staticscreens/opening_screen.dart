@@ -14,6 +14,7 @@ import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/src/login/screens/login_page.dart';
 import 'package:readyplates_restaurants/src/login/screens/signup_page.dart';
+import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 
 class OpeningScreen extends StatefulWidget {
@@ -37,6 +38,7 @@ class _OpeningScreenState extends State<OpeningScreen>
     return Scaffold(
       // appBar: AppBar(),
       // final push
+
       body: Container(
         height: size.height,
         decoration: BoxDecoration(
@@ -65,17 +67,17 @@ class _OpeningScreenState extends State<OpeningScreen>
                         style: GoogleFonts.montserrat(
                           fontSize: 30,
                           fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(255, 255, 255, 0.9),
+                          fontWeight: FontWeight.w700,
+                          color: MyTheme.orangeColor,
                         ),
                         children: [
                           TextSpan(
-                            text: ' Plates'.toUpperCase(),
+                            text: 'Plates'.toUpperCase(),
                             style: GoogleFonts.montserrat(
                               fontSize: 30,
                               fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.normal,
-                              color: Color.fromRGBO(255, 255, 255, 0.9),
+                              fontWeight: FontWeight.w200,
+                              color: MyTheme.orangeColor,
                             ),
                           ),
                         ]),
@@ -113,18 +115,17 @@ class _OpeningScreenState extends State<OpeningScreen>
                                   style: GoogleFonts.montserrat(
                                     fontSize: 30,
                                     fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color.fromRGBO(255, 255, 255, 0.9),
+                                    fontWeight: FontWeight.w700,
+                                    color: MyTheme.orangeColor,
                                   ),
                                   children: [
                                     TextSpan(
-                                      text: ' Plates'.toUpperCase(),
+                                      text: 'Plates'.toUpperCase(),
                                       style: GoogleFonts.montserrat(
                                         fontSize: 30,
                                         fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.normal,
-                                        color:
-                                            Color.fromRGBO(255, 255, 255, 0.9),
+                                        fontWeight: FontWeight.w200,
+                                        color: MyTheme.orangeColor,
                                       ),
                                     ),
                                   ]),
@@ -155,7 +156,7 @@ class _OpeningScreenState extends State<OpeningScreen>
                             width: size.width,
                             height: 54,
                             decoration: BoxDecoration(
-                              color: Color(0xffEFEFEF).withOpacity(0.30),
+                              color: Color(0xff222831).withOpacity(0.11),
                             ),
                             child: Center(
                               child: BackdropFilter(
@@ -169,7 +170,7 @@ class _OpeningScreenState extends State<OpeningScreen>
                                   style: GoogleFonts.inter(
                                     fontSize: 17,
                                     fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.bold,
+                                    fontWeight: FontWeight.w500,
                                     color: Color(0xff222831),
                                   ),
                                 ),
@@ -199,11 +200,11 @@ class _OpeningScreenState extends State<OpeningScreen>
                         },
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Color(0xff000000).withOpacity(0.05),
-                            border: Border.all(
-                              width: 1.5,
-                              color: Color(0xffFFFFFF).withOpacity(0.5),
-                            ),
+                            color: Color(0xff222831).withOpacity(0.46),
+                            // border: Border.all(
+                            //   width: 1.5,
+                            //   color: Color(0xffFFFFFF).withOpacity(0.5),
+                            // ),
                             borderRadius: BorderRadius.all(Radius.circular(6)),
                           ),
                           child: ClipRRect(
@@ -216,8 +217,8 @@ class _OpeningScreenState extends State<OpeningScreen>
                               child: Center(
                                 child: BackdropFilter(
                                   filter: ImageFilter.blur(
-                                    sigmaX: 10,
-                                    sigmaY: 10,
+                                    sigmaX: 8,
+                                    sigmaY: 8,
                                   ),
                                   child: Text(
                                     'SIGN UP',
@@ -225,7 +226,7 @@ class _OpeningScreenState extends State<OpeningScreen>
                                     style: GoogleFonts.inter(
                                       fontSize: 17,
                                       fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.bold,
+                                      fontWeight: FontWeight.w600,
                                       color: Color(0xffFFFFFF),
                                     ),
                                   ),
@@ -297,10 +298,9 @@ class _OpeningScreenState extends State<OpeningScreen>
             }
           }
           //}
-        }else{
-          
-      controller.animateToPage(1,
-          duration: Duration(milliseconds: 500), curve: Curves.ease);
+        } else {
+          controller.animateToPage(1,
+              duration: Duration(milliseconds: 500), curve: Curves.ease);
         }
       }
     } catch (e) {
