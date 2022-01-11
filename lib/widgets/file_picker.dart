@@ -7,19 +7,23 @@ import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dar
 
 class PickFiles extends StatelessWidget {
   final Color uploadborderColor;
+  final Color color;
+  final Color iconcolor;
   final String uploadText;
   final Color uploadtextColor;
   final double fontSize;
   final void Function(File) onFilePicked;
 
-  PickFiles({
-    Key? key,
-    this.fontSize = 13,
-    required this.uploadborderColor,
-    required this.uploadText,
-    required this.uploadtextColor,
-    required this.onFilePicked,
-  }) : super(key: key);
+  PickFiles(
+      {Key? key,
+      this.fontSize = 13,
+      required this.uploadborderColor,
+      required this.uploadText,
+      required this.uploadtextColor,
+      required this.onFilePicked,
+      required this.iconcolor,
+      required this.color})
+      : super(key: key);
   final controller = Get.find<OnboardingController>();
 
 /*   void openFile(PlatformFile file) {
@@ -73,7 +77,7 @@ class PickFiles extends StatelessWidget {
             child: Container(
               width: 45,
               decoration: BoxDecoration(
-                color: Color(0xffEFEFEF),
+                color: color,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(0),
                   topRight: Radius.circular(6.0),
@@ -85,11 +89,15 @@ class PickFiles extends StatelessWidget {
                 child: Container(
                   width: 20,
                   height: 20,
-                  child: Image(
-                    image: AssetImage(
-                      'assets/images/upload.png',
-                    ),
+                  child: Image.asset(
+                    'assets/images/upload.png',
+                    color: iconcolor,
                   ),
+                  //  Image(
+                  //   image: AssetImage(
+                  //     'assets/images/upload.png',
+                  //   ),
+                  // ),
                 ),
               ),
             ),

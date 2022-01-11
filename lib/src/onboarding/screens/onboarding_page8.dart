@@ -28,6 +28,8 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
       firstDate: DateTime(2021),
       lastDate: DateTime(2050),
       currentDate: DateTime.now(),
+      cancelText: 'Cancel',
+      confirmText: 'Ok',
     );
     if (dt != null)
       setState(() {
@@ -43,10 +45,10 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
       initialTime: controller.estartTimeTod ?? currentTime,
       initialEntryMode: TimePickerEntryMode.dial,
       helpText: 'Select Start Time',
-      confirmText: 'choose',
-      cancelText: 'cancel',
-      hourLabelText: 'hour',
-      minuteLabelText: 'minute',
+      confirmText: 'Choose',
+      cancelText: 'Cancel',
+      hourLabelText: 'Hour',
+      minuteLabelText: 'Minute',
     );
     if (tod != null && tod != currentTime) {
       controller.estartTimeTod = tod;
@@ -62,10 +64,10 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
       initialTime: controller.eendTimeTod ?? currentTime,
       initialEntryMode: TimePickerEntryMode.dial,
       helpText: 'Select End Time',
-      confirmText: 'choose',
-      cancelText: 'cancel',
-      hourLabelText: 'hour',
-      minuteLabelText: 'minute',
+      confirmText: 'Choose',
+      cancelText: 'Cancel',
+      hourLabelText: 'Hour',
+      minuteLabelText: 'Minute',
     );
     if (tod != null && tod != currentTime) {
       controller.eendTimeTod = tod;

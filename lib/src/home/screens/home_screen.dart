@@ -109,6 +109,8 @@ class HomePage extends StatelessWidget {
                 backgroundColor: Color(0xFFFFFFFF),
                 // selectedFontSize: 20,
                 // unselectedFontSize: 20,
+                selectedItemColor: MyTheme.orangeColor,
+                unselectedItemColor: MyTheme.appbartextColor,
                 selectedLabelStyle: GoogleFonts.inter(
                   fontSize: 13,
                   fontStyle: FontStyle.normal,
@@ -123,16 +125,17 @@ class HomePage extends StatelessWidget {
                 items: [
                   for (var i = 0; i < bottomBarIcons.length; i++)
                     BottomNavigationBarItem(
-                        icon: SizedBox.square(
-                          dimension: 20,
-                          child: Image.asset(
-                            bottomBarIcons[i],
-                            color: controller.selectedIndex.value == i
-                                ? MyTheme.borderchangeColor
-                                : null,
-                          ),
+                      icon: SizedBox.square(
+                        dimension: 20,
+                        child: Image.asset(
+                          bottomBarIcons[i],
+                          color: controller.selectedIndex.value == i
+                              ? MyTheme.orangeColor
+                              : MyTheme.appbartextColor,
                         ),
-                        label: label[i])
+                      ),
+                      label: label[i],
+                    )
                 ]),
           ),
         ),
@@ -160,7 +163,7 @@ class HomePage extends StatelessWidget {
                       fontStyle: FontStyle.normal,
                       fontWeight: FontWeight.w500,
                       fontSize: 17,
-                      color: Color(0xff393E46),
+                      color: MyTheme.orangeColor,
                     ),
                   )),
             ),

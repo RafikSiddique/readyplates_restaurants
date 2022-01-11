@@ -7,7 +7,7 @@ class MyTheme {
 
   static Color borderColor = Color(0xffE0E0E0);
 
-  static Color borderchangeColor = Color(0xff00ADB5);
+  static Color borderchangeColor = Color(0xffFBBA79);
 
   static Color verifytextColor = Color(0xffEB4132).withOpacity(0.7);
 
@@ -93,4 +93,11 @@ class MyTheme {
   static Color outlinedBorderColor = Color(0xff44C4A1);
 
   static Color orangeColor = Color(0xffF47121);
+
+  static Color verifyTextColor = Color(0xffFDD7A6);
+  static Color verifyButtonColor = Color(0xffFFF6E9);
+
+  static Color switchButtonColor = Color(0xff00ADB5);
+  static Color switchButtonChangeColor = Color(0xffFF6E42);
+  static Color sliderColor = Color(0xffFEEDD2);
 }

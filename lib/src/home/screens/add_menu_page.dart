@@ -86,7 +86,8 @@ class MenuPage extends StatelessWidget {
                               children: [
                                 Icon(
                                   Icons.add_circle_outline_sharp,
-                                  color: Color(0xff393E46),
+                                  // color: Color(0xff393E46),
+                                  color: MyTheme.orangeColor,
                                   size: 18,
                                 ),
                                 SizedBox(

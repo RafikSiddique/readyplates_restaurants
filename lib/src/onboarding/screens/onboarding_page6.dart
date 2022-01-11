@@ -110,6 +110,12 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                   height: 5.08,
                 ),
                 PickFiles(
+                  iconcolor: controller.confirmLetter.path.isEmpty
+                      ? MyTheme.iconColor
+                      : MyTheme.orangeColor,
+                  color: controller.confirmLetter.path.isEmpty
+                      ? MyTheme.completeOrderBackColor
+                      : MyTheme.verifyButtonColor,
                   uploadborderColor: controller.confirmLetter.path.isEmpty
                       ? MyTheme.borderColor
                       : MyTheme.borderchangeColor,
@@ -138,6 +144,12 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
                   height: 5.08,
                 ),
                 PickFiles(
+                  iconcolor: controller.uploadLetter.path.isEmpty
+                      ? MyTheme.iconColor
+                      : MyTheme.orangeColor,
+                  color: controller.uploadLetter.path.isEmpty
+                      ? MyTheme.completeOrderBackColor
+                      : MyTheme.verifyButtonColor,
                   uploadborderColor: controller.uploadLetter.path.isEmpty
                       ? MyTheme.borderColor
                       : MyTheme.borderchangeColor,

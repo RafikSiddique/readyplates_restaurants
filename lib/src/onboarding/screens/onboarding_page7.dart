@@ -27,10 +27,10 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
       initialTime: controller.startTimeTod ?? currentTime,
       initialEntryMode: TimePickerEntryMode.dial,
       helpText: 'Select Start Time',
-      confirmText: 'choose',
-      cancelText: 'cancel',
-      hourLabelText: 'hour',
-      minuteLabelText: 'minute',
+      confirmText: 'Choose',
+      cancelText: 'Cancel',
+      hourLabelText: 'Hour',
+      minuteLabelText: 'Minute',
     );
 
     if (tod != null && tod != currentTime) {
@@ -75,10 +75,10 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
       initialTime: controller.endTimeTod ?? currentTime,
       initialEntryMode: TimePickerEntryMode.dial,
       helpText: 'Select End Time',
-      confirmText: 'choose',
-      cancelText: 'cancel',
-      hourLabelText: 'hour',
-      minuteLabelText: 'minute',
+      confirmText: 'Choose',
+      cancelText: 'Cancel',
+      hourLabelText: 'Hour',
+      minuteLabelText: 'Minute',
     );
     if (tod != null && tod != currentTime) {
       if (controller.startTimeTod != null) {
@@ -250,7 +250,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                                       child: Checkbox(
                                         materialTapTargetSize:
                                             MaterialTapTargetSize.shrinkWrap,
-                                        activeColor: MyTheme.borderchangeColor,
+                                        activeColor: MyTheme.orangeColor,
                                         checkColor: Colors.white,
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
@@ -483,8 +483,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                                         child: Checkbox(
                                           materialTapTargetSize:
                                               MaterialTapTargetSize.shrinkWrap,
-                                          activeColor:
-                                              MyTheme.borderchangeColor,
+                                          activeColor: MyTheme.orangeColor,
                                           checkColor: Colors.white,
                                           shape: RoundedRectangleBorder(
                                             borderRadius:

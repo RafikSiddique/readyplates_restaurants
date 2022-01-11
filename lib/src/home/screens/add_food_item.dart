@@ -66,7 +66,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
             iconSize: 14.83,
             icon: FaIcon(
               FontAwesomeIcons.chevronLeft,
-              color: MyTheme.iconColor,
+              color: MyTheme.orangeColor,
             ),
             onPressed: () {
               Get.back();
@@ -78,7 +78,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
             fontStyle: FontStyle.normal,
             fontWeight: FontWeight.w500,
             fontSize: 17,
-            color: MyTheme.appbartextColor,
+            color: MyTheme.orangeColor,
           ),
         ),
       ),
@@ -118,41 +118,57 @@ class _AddFoodItemState extends State<AddFoodItem> {
                       dimension: size.width * 0.9,
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Color(0xffFFFFFF),
                           border: Border.all(
                             width: 1,
-                            color: controller.image1.path.isEmpty
-                                ? MyTheme.borderColor
-                                : MyTheme.borderchangeColor,
+                            color: MyTheme.borderchangeColor,
                           ),
                           borderRadius: BorderRadius.all(Radius.circular(6)),
                         ),
-                        child: Center(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(6)),
                           child: Container(
-                            child: controller.isEditing
-                                ? controller.image1.path == ""
-                                    ? Image.network(
-                                        getUrl(
-                                            controller.foodItemModel!.image1),
-                                        fit: BoxFit.cover,
-                                      )
-                                    : Image.file(
-                                        controller.image1,
-                                        fit: BoxFit.cover,
-                                      )
-                                : controller.image1.path == ""
-                                    ? Image(
-                                        image: AssetImage(
-                                          'assets/images/imglogo.png',
-                                        ),
-                                        width: 60,
-                                        height: 60,
-                                        fit: BoxFit.cover,
-                                      )
-                                    : Image.file(
-                                        controller.image1,
-                                        fit: BoxFit.cover,
-                                      ),
+                            decoration: BoxDecoration(
+                              color: Color(0xffFFFFFF),
+                              border: Border.all(
+                                width: 1,
+                                color: MyTheme.borderchangeColor,
+                              ),
+                            ),
+                            child: Center(
+                              child: Container(
+                                child: controller.isEditing
+                                    ? controller.image1.path == ""
+                                        ? Image.network(
+                                            getUrl(controller
+                                                .foodItemModel!.image1),
+                                            fit: BoxFit.cover,
+                                          )
+                                        : Image.file(
+                                            controller.image1,
+                                            fit: BoxFit.cover,
+                                          )
+                                    : controller.image1.path == ""
+                                        ? Image.asset(
+                                            'assets/images/imglogo.png',
+                                            color: MyTheme.borderchangeColor,
+                                            fit: BoxFit.cover,
+                                            width: 60,
+                                            height: 60,
+                                          )
+                                        // Image(
+                                        //     image: AssetImage(
+                                        //       'assets/images/imglogo.png',
+                                        //     ),
+                                        //     width: 60,
+                                        //     height: 60,
+                                        //     fit: BoxFit.cover,
+                                        //   )
+                                        : Image.file(
+                                            controller.image1,
+                                            fit: BoxFit.cover,
+                                          ),
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -282,8 +298,9 @@ class _AddFoodItemState extends State<AddFoodItem> {
                       divisions: 4,
                       max: 5,
                       min: 1,
-                      activeColor: Color(0xffFF6E42),
+                      activeColor: MyTheme.orangeColor,
                       thumbColor: Colors.white,
+                      inactiveColor: MyTheme.sliderColor,
                     ),
                   ),
                 ),
@@ -367,7 +384,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
                             children: [
                               Icon(
                                 Icons.add_circle_outline_sharp,
-                                color: Color(0xff393E46),
+                                color: MyTheme.orangeColor,
                                 size: 18,
                               ),
                               SizedBox(
@@ -442,7 +459,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
                                   ),
                                   icon: Icon(
                                     Icons.check_circle_outline_outlined,
-                                    color: MyTheme.borderchangeColor,
+                                    color: MyTheme.switchButtonColor,
                                     size: 16,
                                   ),
                                   label: Text(
@@ -524,8 +541,8 @@ class _AddFoodItemState extends State<AddFoodItem> {
                           controller.category.value.isEmpty ||
                           controller.spiceSlider.value == '' ||
                           controller.servingSize.isEmpty)
-                      ? MyTheme.buttonColor
-                      : MyTheme.text1Color,
+                      ? MyTheme.verifyButtonColor
+                      : MyTheme.orangeColor,
                   text: 'CONTINUE',
                   buttontextColor: (controller.image1.path.isEmpty ||
                           controller.name.text.isEmpty ||
@@ -535,7 +552,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
                           controller.category.value.isEmpty ||
                           controller.spiceSlider.value == '' ||
                           controller.servingSize.isEmpty)
-                      ? MyTheme.buttontextColor
+                      ? MyTheme.verifyTextColor
                       : MyTheme.appbackgroundColor,
                 ),
                 SizedBox(

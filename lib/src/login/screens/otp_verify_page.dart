@@ -31,7 +31,7 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/loginimg.png'),
+                image: AssetImage('assets/images/background.png'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -71,18 +71,17 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                                     style: GoogleFonts.montserrat(
                                       fontSize: 30,
                                       fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color.fromRGBO(255, 255, 255, 0.9),
+                                      fontWeight: FontWeight.w700,
+                                      color: MyTheme.orangeColor,
                                     ),
                                     children: [
                                       TextSpan(
-                                        text: ' Plates'.toUpperCase(),
+                                        text: 'Plates'.toUpperCase(),
                                         style: GoogleFonts.montserrat(
                                           fontSize: 30,
                                           fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.normal,
-                                          color: Color.fromRGBO(
-                                              255, 255, 255, 0.9),
+                                          fontWeight: FontWeight.w200,
+                                          color: MyTheme.orangeColor,
                                         ),
                                       ),
                                     ]),
@@ -119,7 +118,7 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                                       iconSize: 14.83,
                                       icon: FaIcon(
                                         FontAwesomeIcons.chevronLeft,
-                                        color: MyTheme.iconColor,
+                                        color: MyTheme.orangeColor,
                                       ),
                                       onPressed: () {
                                         Get.back();
@@ -140,9 +139,9 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                                           textAlign: TextAlign.center,
                                           style: GoogleFonts.inter(
                                             fontSize: 17,
-                                            fontWeight: FontWeight.w500,
+                                            fontWeight: FontWeight.w600,
                                             fontStyle: FontStyle.normal,
-                                            color: MyTheme.appbartextColor,
+                                            color: MyTheme.orangeColor,
                                           ),
                                         ),
                                       ),
@@ -184,6 +183,13 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                                 Container(
                                   width: 38,
                                   height: 50,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      width: 1,
+                                      color: MyTheme.borderColor,
+                                    ),
+                                    borderRadius: BorderRadius.circular(6),
+                                  ),
                                   margin: EdgeInsets.all(8),
                                   child: TextField(
                                     textAlign: TextAlign.center,
@@ -205,12 +211,7 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                                         color: Colors.grey.shade300,
                                       ),
                                       border: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          width: 1,
-                                          color: MyTheme.borderColor,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(6.0),
+                                        borderSide: BorderSide.none,
                                       ),
                                     ),
                                     onChanged: (value) {
@@ -264,7 +265,7 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                                       fontStyle: FontStyle.normal,
                                       color: controller.otpVerification.value ==
                                               controller.otpVerified
-                                          ? MyTheme.borderchangeColor
+                                          ? Colors.teal
                                           : Colors.red,
                                     )),
                               )),
@@ -287,12 +288,12 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                                   },
                                   buttonbackgroundColor:
                                       (controller.otpText[j].text.isEmpty)
-                                          ? MyTheme.completeOrderTextColor
-                                          : MyTheme.text1Color,
+                                          ? MyTheme.verifyButtonColor
+                                          : MyTheme.orangeColor,
                                   text: 'CONTINUE',
                                   buttontextColor:
                                       (controller.otpText[j].text.isEmpty)
-                                          ? MyTheme.appbackgroundColor
+                                          ? MyTheme.verifyTextColor
                                           : MyTheme.appbackgroundColor,
                                 );
                               }),

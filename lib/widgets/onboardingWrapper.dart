@@ -70,7 +70,7 @@ class OnBoardingWrapper extends StatelessWidget {
                       iconSize: 14.83,
                       icon: FaIcon(
                         FontAwesomeIcons.chevronLeft,
-                        color: MyTheme.iconColor,
+                        color: MyTheme.orangeColor,
                       ),
                       onPressed: () {
                         if (!onboardingController.isEditing) {
@@ -89,9 +89,9 @@ class OnBoardingWrapper extends StatelessWidget {
                     appBarTitle,
                     style: GoogleFonts.inter(
                       fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w600,
                       fontSize: 17,
-                      color: MyTheme.appbartextColor,
+                      color: MyTheme.orangeColor,
                     ),
                   ),
                 ),
@@ -107,22 +107,23 @@ class OnBoardingWrapper extends StatelessWidget {
                       child: AnimatedSwitcher(
                         duration: Duration(milliseconds: 300),
                         child: OnboardingButton(
-                            key: ValueKey(textControllers
-                                    .any((element) => element.text.isEmpty) ||
-                                !enabled),
-                            height: 50,
-                            onTap: onTap,
-                            buttonbackgroundColor: textControllers.any(
-                                        (element) => element.text.isEmpty) ||
-                                    !enabled
-                                ? MyTheme.buttonColor
-                                : MyTheme.text1Color,
-                            text: buttonText,
-                            buttontextColor: textControllers.any(
-                                        (element) => element.text.isEmpty) ||
-                                    !enabled
-                                ? MyTheme.buttontextColor
-                                : MyTheme.appbackgroundColor),
+                          key: ValueKey(textControllers
+                                  .any((element) => element.text.isEmpty) ||
+                              !enabled),
+                          height: 50,
+                          onTap: onTap,
+                          buttonbackgroundColor: textControllers
+                                      .any((element) => element.text.isEmpty) ||
+                                  !enabled
+                              ? MyTheme.verifyButtonColor
+                              : MyTheme.orangeColor,
+                          text: buttonText,
+                          buttontextColor: textControllers
+                                      .any((element) => element.text.isEmpty) ||
+                                  !enabled
+                              ? MyTheme.verifyTextColor
+                              : MyTheme.appbackgroundColor,
+                        ),
                       ),
                     );
                   },

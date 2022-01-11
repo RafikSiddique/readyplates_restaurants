@@ -18,12 +18,12 @@ class OnboardingPage4 extends StatefulWidget {
 class _OnboardingPage4State extends State<OnboardingPage4> {
   final controller = Get.find<OnboardingController>();
   final formKey = GlobalKey<FormState>();
-
   bool _Switchvalue = true;
 
   @override
   Widget build(BuildContext context) {
     // Size size = MediaQuery.of(context).size;
+
     return OnBoardingWrapper(
       onboardingController: controller,
       appBarTitle: 'Public Business Information',
@@ -105,8 +105,8 @@ class _OnboardingPage4State extends State<OnboardingPage4> {
                       scale: 0.6,
                       child: CupertinoSwitch(
                           thumbColor: Colors.white,
-                          activeColor: MyTheme.borderchangeColor,
-                          trackColor: MyTheme.editbuttontextColor,
+                          trackColor: MyTheme.switchButtonColor,
+                          activeColor: MyTheme.switchButtonChangeColor,
                           value: _Switchvalue,
                           onChanged: (newValue) {
                             setState(() {

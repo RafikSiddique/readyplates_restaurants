@@ -514,7 +514,7 @@ class _TableStatusPageState extends State<TableStatusPage>
                                                 fontWeight: FontWeight.w500,
                                                 fontStyle: FontStyle.normal,
                                                 color:
-                                                    MyTheme.borderchangeColor,
+                                                    MyTheme.switchButtonColor,
                                               ),
                                             ),
                                           ),

@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          primarySwatch: Colors.teal,
+          primarySwatch: Colors.orange,
           sliderTheme:
               SliderThemeData(trackHeight: 8, trackShape: CustomTrackShape()),
           bottomNavigationBarTheme: BottomNavigationBarThemeData(

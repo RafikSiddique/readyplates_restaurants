@@ -456,7 +456,7 @@ class _TableAssignPageState extends State<TableAssignPage> {
                                                         fontStyle:
                                                             FontStyle.normal,
                                                         color: MyTheme
-                                                            .borderchangeColor,
+                                                            .switchButtonColor,
                                                       ),
                                                     ),
                                                   ),

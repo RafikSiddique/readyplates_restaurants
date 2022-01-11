@@ -99,8 +99,8 @@ class _AppFormFieldState extends State<AppFormField> {
                     scale: 0.6,
                     child: CupertinoSwitch(
                         thumbColor: Colors.white,
-                        trackColor: MyTheme.editbuttontextColor,
-                        activeColor: MyTheme.borderchangeColor,
+                        trackColor: MyTheme.switchButtonColor,
+                        activeColor: MyTheme.switchButtonChangeColor,
                         value: _Switchvalue,
                         onChanged: (Value) {
                           if (widget.onSwitch != null) widget.onSwitch!(Value);

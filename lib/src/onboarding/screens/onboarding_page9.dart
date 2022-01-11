@@ -112,8 +112,8 @@ class _OnboardingPage9State extends State<OnboardingPage9> {
                               decoration: BoxDecoration(
                                 color: index ==
                                         onBoardingController.pageIndex.value
-                                    ? Color(0xff00ADB5)
-                                    : Color(0xffE0E0E0),
+                                    ? MyTheme.orangeColor
+                                    : MyTheme.verifyTextColor,
                                 shape: BoxShape.circle,
                               ),
                             )),
@@ -219,10 +219,22 @@ class ImageCard extends StatelessWidget {
         child: Container(
           height: height,
           width: width,
+          decoration: BoxDecoration(
+            border: Border.all(
+              width: 1,
+              color: MyTheme.borderchangeColor,
+            ),
+            borderRadius: BorderRadius.circular(6),
+          ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(6),
             child: Container(
-              decoration: BoxDecoration(),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  width: 0.5,
+                  color: MyTheme.borderchangeColor,
+                ),
+              ),
               child: Image.asset(
                 path,
                 height: name != null
@@ -296,8 +308,8 @@ class _ImageUploadCardState extends State<ImageUploadCard> {
         height: size.height * 0.20,
         decoration: BoxDecoration(
           border: Border.all(
-            width: 1,
-            color: MyTheme.borderColor,
+            width: 0.5,
+            color: MyTheme.borderchangeColor,
             style: BorderStyle.solid,
           ),
           borderRadius: BorderRadius.all(Radius.circular(6)),
@@ -312,11 +324,15 @@ class _ImageUploadCardState extends State<ImageUploadCard> {
                 height: widget.path == "" ? 38 : (size.height * 0.17) - 30,
                 alignment: Alignment.center,
                 child: widget.path == ""
-                    ? Image(
-                        image: AssetImage(
-                          'assets/images/imglogo.png',
-                        ),
+                    ? Image.asset(
+                        'assets/images/imglogo.png',
+                        color: MyTheme.borderchangeColor,
                       )
+                    //  Image(
+                    //     image: AssetImage(
+                    //       'assets/images/imglogo.png',
+                    //     ),
+                    //   )
                     : Image.file(
                         File(widget.path),
                         fit: BoxFit.cover,
@@ -328,8 +344,8 @@ class _ImageUploadCardState extends State<ImageUploadCard> {
               decoration: BoxDecoration(
                 color: Color(0xffFFFFFF),
                 border: Border.all(
-                  width: 1,
-                  color: MyTheme.borderColor,
+                  width: 0.5,
+                  color: MyTheme.borderchangeColor,
                   style: BorderStyle.solid,
                 ),
                 borderRadius: BorderRadius.only(
@@ -346,13 +362,14 @@ class _ImageUploadCardState extends State<ImageUploadCard> {
                       child: Text(
                         widget.path == "" ? widget.name : fileName,
                         style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
-                          overflow: TextOverflow.ellipsis,
-                          fontSize: 9,
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.normal,
-                          color: MyTheme.bottomtextColor,
-                        )),
+                          textStyle: TextStyle(
+                            overflow: TextOverflow.ellipsis,
+                            fontSize: 9,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.normal,
+                            color: MyTheme.bottomtextColor,
+                          ),
+                        ),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -361,25 +378,33 @@ class _ImageUploadCardState extends State<ImageUploadCard> {
                     width: 27,
                     height: 27,
                     decoration: BoxDecoration(
-                      color: Color(0xffEFEFEF),
-                      // color: Colors.amber,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(0),
-                        topRight: Radius.circular(0),
-                        bottomLeft: Radius.circular(0),
-                        bottomRight: Radius.circular(6.0),
-                      ),
-                    ),
+                        color:
+                            MyTheme.verifyButtonColor, // color: Colors.amber,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(0),
+                          topRight: Radius.circular(0),
+                          bottomLeft: Radius.circular(0),
+                          bottomRight: Radius.circular(6.0),
+                        ),
+                        border: Border.all(
+                          width: 0.5,
+                          color: MyTheme.borderchangeColor,
+                        )),
                     child: Center(
                       child: Container(
-                          width: 16,
-                          height: 16,
-                          // color: Colors.red,
-                          child: Image(
-                            image: AssetImage(
-                              'assets/images/upload.png',
-                            ),
-                          )),
+                        width: 16,
+                        height: 16,
+                        // color: Colors.red,
+                        child: Image.asset(
+                          'assets/images/upload.png',
+                          color: MyTheme.orangeColor,
+                        ),
+                        //  Image(
+                        //   image: AssetImage(
+                        //     'assets/images/upload.png',
+                        //   ),
+                        // ),
+                      ),
                     ),
                   ),
                 ],

@@ -157,7 +157,7 @@ class CustomerOtpVerify extends GetView<OrderController> {
                     fontStyle: FontStyle.normal,
                     color: controller.otpVerification.value ==
                             controller.otpVerified
-                        ? MyTheme.borderchangeColor
+                        ? MyTheme.switchButtonColor
                         : Colors.red,
                   ))),
               Spacer(
@@ -186,7 +186,7 @@ class CustomerOtpVerify extends GetView<OrderController> {
                                 )));
                   }
                 },
-                buttonbackgroundColor: MyTheme.text1Color,
+                buttonbackgroundColor: MyTheme.orangeColor,
                 text: 'Confirm',
                 buttontextColor: MyTheme.appbackgroundColor,
               ),

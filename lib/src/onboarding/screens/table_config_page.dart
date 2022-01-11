@@ -282,7 +282,7 @@ class _TableConfigState extends State<TableConfig> {
                               child: Center(
                                 child: Icon(
                                   Icons.check_circle_outline_outlined,
-                                  color: MyTheme.borderchangeColor,
+                                  color: MyTheme.switchButtonColor,
                                   size: 24,
                                 ),
                               ),
@@ -348,7 +348,7 @@ class _TableConfigState extends State<TableConfig> {
                                 children: [
                                   Icon(
                                     Icons.add_circle_outline_sharp,
-                                    color: Color(0xff393E46),
+                                    color: MyTheme.orangeColor,
                                     size: 18,
                                   ),
                                   SizedBox(

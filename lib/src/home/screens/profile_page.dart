@@ -163,7 +163,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: Obx(
                     () => CupertinoSwitch(
                         thumbColor: Colors.white,
-                        activeColor: MyTheme.borderchangeColor,
+                        activeColor: MyTheme.switchButtonColor,
                         trackColor: MyTheme.editbuttontextColor,
                         value: homeController.switchValue.value,
                         onChanged: (newValue) async {
@@ -173,7 +173,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             sfHelper.setOpenAutoFlag(false);
                             String resId = await sfHelper.getRestaurantId();
                             homeController.setAutoOrder(resId, 0);
-/*                             Get.bottomSheet(Card(
+                            Get.bottomSheet(Card(
                               child: Card(
                                 margin: EdgeInsets.zero,
                                 child: Column(
@@ -214,32 +214,32 @@ class _ProfilePageState extends State<ProfilePage> {
                                         Get.back();
                                       },
                                     ),
-                                    ListTile(
-                                      title: Text(
-                                        "Reopen tomorrow",
-                                        style: GoogleFonts.inter(
-                                          fontSize: 17,
-                                          fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.w500,
-                                          color: MyTheme.appbartextColor,
-                                        ),
-                                      ),
-                                      onTap: () async {
-                                        sfHelper.setOpenAutoFlag(true);
-                                        homeController.openCloseOrders();
-                                        homeController.switchValue.value =
-                                            false;
-                                        String resId =
-                                            await sfHelper.getRestaurantId();
-                                        homeController.setAutoOrder(resId, 1);
+                                    // ListTile(
+                                    //   title: Text(
+                                    //     "Reopen tomorrow",
+                                    //     style: GoogleFonts.inter(
+                                    //       fontSize: 17,
+                                    //       fontStyle: FontStyle.normal,
+                                    //       fontWeight: FontWeight.w500,
+                                    //       color: MyTheme.appbartextColor,
+                                    //     ),
+                                    //   ),
+                                    //   onTap: () async {
+                                    //     sfHelper.setOpenAutoFlag(true);
+                                    //     homeController.openCloseOrders();
+                                    //     homeController.switchValue.value =
+                                    //         false;
+                                    //     String resId =
+                                    //         await sfHelper.getRestaurantId();
+                                    //     homeController.setAutoOrder(resId, 1);
 
-                                        Get.back();
-                                      },
-                                    ),
+                                    //     Get.back();
+                                    //   },
+                                    // ),
                                   ],
                                 ),
                               ),
-                            )); */
+                            ));
                           } else {
                             homeController.openCloseOrders();
                             sfHelper.setOpenAutoFlag(true);

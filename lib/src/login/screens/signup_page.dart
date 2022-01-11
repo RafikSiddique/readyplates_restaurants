@@ -32,7 +32,7 @@ class _SignupPageState extends State<SignupPage> {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/signupimg.png'),
+                image: AssetImage('assets/images/background.png'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -75,18 +75,17 @@ class _SignupPageState extends State<SignupPage> {
                                     style: GoogleFonts.montserrat(
                                       fontSize: 30,
                                       fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color.fromRGBO(255, 255, 255, 0.9),
+                                      fontWeight: FontWeight.w700,
+                                      color: MyTheme.orangeColor,
                                     ),
                                     children: [
                                       TextSpan(
-                                        text: ' Plates'.toUpperCase(),
+                                        text: 'Plates'.toUpperCase(),
                                         style: GoogleFonts.montserrat(
                                           fontSize: 30,
                                           fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.normal,
-                                          color: Color.fromRGBO(
-                                              255, 255, 255, 0.9),
+                                          fontWeight: FontWeight.w200,
+                                          color: MyTheme.orangeColor,
                                         ),
                                       ),
                                     ]),
@@ -146,7 +145,7 @@ class _SignupPageState extends State<SignupPage> {
                                         iconSize: 14.83,
                                         icon: FaIcon(
                                           FontAwesomeIcons.chevronLeft,
-                                          color: MyTheme.iconColor,
+                                          color: MyTheme.orangeColor,
                                         ),
                                         onPressed: () {
                                           Get.back();
@@ -167,9 +166,9 @@ class _SignupPageState extends State<SignupPage> {
                                             textAlign: TextAlign.center,
                                             style: GoogleFonts.inter(
                                               fontSize: 17,
-                                              fontWeight: FontWeight.w500,
+                                              fontWeight: FontWeight.w600,
                                               fontStyle: FontStyle.normal,
-                                              color: MyTheme.appbartextColor,
+                                              color: MyTheme.orangeColor,
                                             ),
                                           ),
                                         ),
@@ -240,14 +239,14 @@ class _SignupPageState extends State<SignupPage> {
                                                 .email.text.isEmpty ||
                                             controller.password.text.isEmpty ||
                                             controller.password2.text.isEmpty)
-                                        ? MyTheme.buttonColor
-                                        : MyTheme.text1Color,
+                                        ? MyTheme.verifyButtonColor
+                                        : MyTheme.orangeColor,
                                     text: 'Sign Up',
                                     buttontextColor: (controller
                                                 .email.text.isEmpty ||
                                             controller.password.text.isEmpty ||
                                             controller.password2.text.isEmpty)
-                                        ? MyTheme.buttontextColor
+                                        ? MyTheme.verifyTextColor
                                         : MyTheme.appbackgroundColor,
                                   );
                                 }),
