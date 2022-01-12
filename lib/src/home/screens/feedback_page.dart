@@ -101,8 +101,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
                     starCount: 5,
                     size: 30,
                     spacing: 22,
-                    borderColor: MyTheme.ratingfillColor,
-                    color: MyTheme.ratingfillColor,
+                    borderColor: MyTheme.orangeColor,
+                    color: MyTheme.orangeColor,
                   ),
                   Text(stringText(feedbackModel.overall_experience),
                       style: GoogleFonts.inter(
@@ -133,8 +133,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
                     starCount: 5,
                     size: 30,
                     spacing: 22,
-                    borderColor: MyTheme.ratingfillColor,
-                    color: MyTheme.ratingfillColor,
+                    borderColor: MyTheme.orangeColor,
+                    color: MyTheme.orangeColor,
                   ),
                   Text(stringText(feedbackModel.taste),
                       style: GoogleFonts.inter(
@@ -165,8 +165,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
                     starCount: 5,
                     size: 30,
                     spacing: 22,
-                    borderColor: MyTheme.ratingfillColor,
-                    color: MyTheme.ratingfillColor,
+                    borderColor: MyTheme.orangeColor,
+                    color: MyTheme.orangeColor,
                   ),
                   Text(stringText(feedbackModel.ambience),
                       style: GoogleFonts.inter(
@@ -197,8 +197,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
                     starCount: 5,
                     size: 30,
                     spacing: 22,
-                    borderColor: MyTheme.ratingfillColor,
-                    color: MyTheme.ratingfillColor,
+                    borderColor: MyTheme.orangeColor,
+                    color: MyTheme.orangeColor,
                   ),
                   Text(stringText(feedbackModel.serving_time),
                       style: GoogleFonts.inter(
@@ -278,7 +278,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                   onTap: () {
                     Get.back();
                   },
-                  buttonbackgroundColor: MyTheme.text1Color,
+                  buttonbackgroundColor: MyTheme.orangeColor,
                   text: 'Back',
                   buttontextColor: MyTheme.appbackgroundColor,
                   fontWeight: FontWeight.bold,

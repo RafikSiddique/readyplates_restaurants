@@ -174,6 +174,7 @@ class _TableStatusPageState extends State<TableStatusPage>
                     color: MyTheme.bordersColor,
                   ),
                   hintText: 'Search for Table, Capacity....',
+                  contentPadding: EdgeInsets.only(top: 4),
                   hintStyle: GoogleFonts.nunito(
                     fontStyle: FontStyle.normal,
                     fontWeight: FontWeight.w600,
@@ -421,7 +422,7 @@ class _TableStatusPageState extends State<TableStatusPage>
                                       height: 52,
                                       width: 96,
                                       decoration: BoxDecoration(
-                                          color: Color(0xffE0E0E0),
+                                          color: MyTheme.verifyButtonColor,
                                           borderRadius:
                                               BorderRadius.circular(10)),
                                       child: Center(
@@ -433,7 +434,7 @@ class _TableStatusPageState extends State<TableStatusPage>
                                               fontSize: 13,
                                               fontWeight: FontWeight.w500,
                                               fontStyle: FontStyle.normal,
-                                              color: MyTheme.bottomtextColor,
+                                              color: MyTheme.orangeColor,
                                             ),
                                           ),
                                         ),
@@ -464,7 +465,7 @@ class _TableStatusPageState extends State<TableStatusPage>
                                           height: 28,
                                           width: 56,
                                           decoration: BoxDecoration(
-                                              color: Color(0xffE0E0E0),
+                                              color: MyTheme.verifyButtonColor,
                                               borderRadius:
                                                   BorderRadius.circular(5)),
                                           child: Center(
@@ -478,8 +479,7 @@ class _TableStatusPageState extends State<TableStatusPage>
                                                   fontSize: 13,
                                                   fontWeight: FontWeight.w500,
                                                   fontStyle: FontStyle.normal,
-                                                  color:
-                                                      MyTheme.bottomtextColor,
+                                                  color: MyTheme.orangeColor,
                                                 ),
                                               ),
                                             ),
@@ -560,7 +560,7 @@ class _TableStatusPageState extends State<TableStatusPage>
                                       height: 52,
                                       width: 96,
                                       decoration: BoxDecoration(
-                                          color: Color(0xffE0E0E0),
+                                          color: MyTheme.verifyButtonColor,
                                           borderRadius:
                                               BorderRadius.circular(10)),
                                       child: Center(
@@ -572,7 +572,7 @@ class _TableStatusPageState extends State<TableStatusPage>
                                               fontSize: 13,
                                               fontWeight: FontWeight.w500,
                                               fontStyle: FontStyle.normal,
-                                              color: MyTheme.bottomtextColor,
+                                              color: MyTheme.orangeColor,
                                             ),
                                           ),
                                         ),
@@ -603,7 +603,7 @@ class _TableStatusPageState extends State<TableStatusPage>
                                           height: 28,
                                           width: 56,
                                           decoration: BoxDecoration(
-                                              color: Color(0xffE0E0E0),
+                                              color: MyTheme.verifyButtonColor,
                                               borderRadius:
                                                   BorderRadius.circular(5)),
                                           child: Center(
@@ -617,8 +617,7 @@ class _TableStatusPageState extends State<TableStatusPage>
                                                   fontSize: 13,
                                                   fontWeight: FontWeight.w500,
                                                   fontStyle: FontStyle.normal,
-                                                  color:
-                                                      MyTheme.bottomtextColor,
+                                                  color: MyTheme.orangeColor,
                                                 ),
                                               ),
                                             ),

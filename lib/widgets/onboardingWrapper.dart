@@ -70,7 +70,9 @@ class OnBoardingWrapper extends StatelessWidget {
                       iconSize: 14.83,
                       icon: FaIcon(
                         FontAwesomeIcons.chevronLeft,
-                        color: MyTheme.orangeColor,
+                        color: appBarTitle == 'Table Configuration'
+                            ? MyTheme.appbartextColor
+                            : MyTheme.orangeColor,
                       ),
                       onPressed: () {
                         if (!onboardingController.isEditing) {
@@ -91,7 +93,9 @@ class OnBoardingWrapper extends StatelessWidget {
                       fontStyle: FontStyle.normal,
                       fontWeight: FontWeight.w600,
                       fontSize: 17,
-                      color: MyTheme.orangeColor,
+                      color: appBarTitle == 'Table Configuration'
+                          ? MyTheme.appbartextColor
+                          : MyTheme.orangeColor,
                     ),
                   ),
                 ),

@@ -110,6 +110,7 @@ class _TableAssignPageState extends State<TableAssignPage> {
                       fontSize: 15,
                       color: MyTheme.bordersColor,
                     ),
+                    contentPadding: EdgeInsets.only(top: 4),
                     suffixIcon: Obx(
                       () => DropdownButtonHideUnderline(
                         child: DropdownButton<String>(
@@ -324,7 +325,8 @@ class _TableAssignPageState extends State<TableAssignPage> {
                                               height: 52,
                                               width: 96,
                                               decoration: BoxDecoration(
-                                                  color: Color(0xffE0E0E0),
+                                                  color:
+                                                      MyTheme.verifyButtonColor,
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           10)),
@@ -339,8 +341,8 @@ class _TableAssignPageState extends State<TableAssignPage> {
                                                           FontWeight.w500,
                                                       fontStyle:
                                                           FontStyle.normal,
-                                                      color: MyTheme
-                                                          .bottomtextColor,
+                                                      color:
+                                                          MyTheme.orangeColor,
                                                     ),
                                                   ),
                                                 ),
@@ -374,7 +376,8 @@ class _TableAssignPageState extends State<TableAssignPage> {
                                                   height: 28,
                                                   width: 56,
                                                   decoration: BoxDecoration(
-                                                      color: Color(0xffE0E0E0),
+                                                      color: MyTheme
+                                                          .verifyButtonColor,
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               5)),
@@ -394,7 +397,7 @@ class _TableAssignPageState extends State<TableAssignPage> {
                                                           fontStyle:
                                                               FontStyle.normal,
                                                           color: MyTheme
-                                                              .bottomtextColor,
+                                                              .orangeColor,
                                                         ),
                                                       ),
                                                     ),

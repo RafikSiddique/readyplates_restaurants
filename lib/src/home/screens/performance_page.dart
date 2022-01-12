@@ -292,7 +292,7 @@ class FeedbackWidget extends StatelessWidget {
                             FeedbackPage(feedbackModel: feedbackModel),
                       ));
                 },
-                buttonbackgroundColor: MyTheme.text1Color,
+                buttonbackgroundColor: MyTheme.orangeColor,
                 text: 'View Detailed Feedback',
                 buttontextColor: MyTheme.appbackgroundColor,
                 fontWeight: FontWeight.bold,

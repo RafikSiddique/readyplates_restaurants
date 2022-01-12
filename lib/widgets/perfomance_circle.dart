@@ -17,7 +17,7 @@ class PerformanceCircle extends StatelessWidget {
         shape: BoxShape.circle,
         color: Colors.white,
         border: Border.all(
-          color: Color(0xffF4A261),
+          color: MyTheme.orangeColor,
           width: 3,
         ),
         boxShadow: [
@@ -25,6 +25,7 @@ class PerformanceCircle extends StatelessWidget {
             offset: Offset(0, 2),
             blurRadius: 4,
             spreadRadius: 0,
+            color: MyTheme.orangeColor.withOpacity(0.5),
           )
         ],
       ),

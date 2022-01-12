@@ -56,7 +56,7 @@ class _TableConfigState extends State<TableConfig> {
                             height: 52,
                             width: 96,
                             decoration: BoxDecoration(
-                                color: Color(0xffE0E0E0),
+                                color: MyTheme.verifyButtonColor,
                                 borderRadius: BorderRadius.circular(10)),
                             child: Center(
                               child: Text(
@@ -67,7 +67,7 @@ class _TableConfigState extends State<TableConfig> {
                                     fontSize: 13,
                                     fontWeight: FontWeight.w500,
                                     fontStyle: FontStyle.normal,
-                                    color: MyTheme.bottomtextColor,
+                                    color: MyTheme.orangeColor,
                                   ),
                                 ),
                               ),
@@ -95,7 +95,7 @@ class _TableConfigState extends State<TableConfig> {
                             height: 28,
                             width: 56,
                             decoration: BoxDecoration(
-                                color: Color(0xffE0E0E0),
+                                color: MyTheme.verifyButtonColor,
                                 borderRadius: BorderRadius.circular(5)),
                             child: Center(
                               child: Text(
@@ -106,7 +106,7 @@ class _TableConfigState extends State<TableConfig> {
                                     fontSize: 13,
                                     fontWeight: FontWeight.w500,
                                     fontStyle: FontStyle.normal,
-                                    color: MyTheme.bottomtextColor,
+                                    color: MyTheme.orangeColor,
                                   ),
                                 ),
                               ),
