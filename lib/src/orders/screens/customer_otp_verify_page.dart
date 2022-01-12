@@ -16,6 +16,7 @@ class CustomerOtpVerify extends GetView<OrderController> {
 
   @override
   Widget build(BuildContext context) {
+    int j = 0;
     return Scaffold(
       backgroundColor: MyTheme.buttontextColor,
       appBar: AppBar(
@@ -115,6 +116,7 @@ class CustomerOtpVerify extends GetView<OrderController> {
                           ),
                         ),
                         onChanged: (value) {
+                          controller.otpText[i] = controller.otpText[j];
                           print(value);
                           print(controller.otp);
                           if (value.length == 1) {
@@ -163,32 +165,39 @@ class CustomerOtpVerify extends GetView<OrderController> {
               Spacer(
                 flex: 1,
               ),
-              OnboardingButton(
-                height: 44,
-                boxShadow: [
-                  BoxShadow(
-                    offset: Offset(0, 2),
-                    blurRadius: 4,
-                    spreadRadius: 0,
-                    color: Color(0xff000000).withOpacity(0.25),
-                  )
-                ],
-                fontWeight: FontWeight.bold,
-                onTap: () async {
-                  if (controller.otpVerification.value ==
-                      controller.otpVerified) {
-                    Get.find<HomeController>().getAvailableTables();
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (_) => TableAssignPage(
-                                  orderId: orderModelApi.id,
-                                )));
-                  }
-                },
-                buttonbackgroundColor: MyTheme.orangeColor,
-                text: 'Confirm',
-                buttontextColor: MyTheme.appbackgroundColor,
+              Obx(
+                () => OnboardingButton(
+                  height: 44,
+                  // boxShadow: [
+                  //   BoxShadow(
+                  //     offset: Offset(0, 2),
+                  //     blurRadius: 4,
+                  //     spreadRadius: 0,
+                  //     color: Color(0xff000000).withOpacity(0.25),
+                  //   )
+                  // ],
+
+                  fontWeight: FontWeight.bold,
+                  onTap: () async {
+                    if (controller.otpVerification.value ==
+                        controller.otpVerified) {
+                      Get.find<HomeController>().getAvailableTables();
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => TableAssignPage(
+                                    orderId: orderModelApi.id,
+                                  )));
+                    }
+                  },
+                  buttonbackgroundColor: controller.otpText[j] == ''
+                      ? MyTheme.verifyButtonColor
+                      : MyTheme.orangeColor,
+                  text: 'Confirm',
+                  buttontextColor: controller.otpText[j] == ''
+                      ? MyTheme.verifyTextColor
+                      : MyTheme.appbackgroundColor,
+                ),
               ),
               Spacer(
                 flex: 1,

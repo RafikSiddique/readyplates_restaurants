@@ -7,7 +7,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/orders/order_controller.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/order_widget.dart';
-import 'package:readyplates_restaurants/widgets/sort_by_capacity.dart';
 
 class OrderCompletePage1 extends StatefulWidget {
   const OrderCompletePage1({
@@ -18,11 +17,10 @@ class OrderCompletePage1 extends StatefulWidget {
   State<OrderCompletePage1> createState() => _OrderCompletePage1State();
 }
 
-enum OrderSelect { placed, inProgress, Served, completed, cancelled }
-
 class _OrderCompletePage1State extends State<OrderCompletePage1> {
   final controller = Get.find<OrderController>();
   String dropdownValue = 'Default';
+  String changeValue = '';
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -174,12 +172,11 @@ class _OrderCompletePage1State extends State<OrderCompletePage1> {
                                       ),
                                       value: dropdownValue,
                                       items: <String>[
-                                        dropdownValue,
+                                        'Default',
                                         'placed',
                                         'inProgress',
                                         'Served',
-                                        'completed',
-                                        'cancelled',
+                                        'Ended',
                                       ].map<DropdownMenuItem<String>>(
                                           (String value) {
                                         return DropdownMenuItem<String>(
@@ -196,119 +193,285 @@ class _OrderCompletePage1State extends State<OrderCompletePage1> {
                                         );
                                       }).toList(),
                                       onChanged: (String? newValue) {
-                                        newValue;
+                                        setState(() {
+                                          changeValue = newValue!;
+                                        });
                                       },
                                     ),
                                   ),
                                 ),
-                                Expanded(
-                                  child: ListView(
-                                      physics: BouncingScrollPhysics(),
-                                      shrinkWrap: true,
-                                      padding: EdgeInsets.zero,
-                                      children: [
-                                        if (controller.active.isNotEmpty)
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 6),
-                                            child: Text(
-                                              "ACTIVE",
-                                              style: GoogleFonts.inter(
-                                                textStyle: TextStyle(
-                                                  fontSize: 10,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontStyle: FontStyle.normal,
-                                                  color: MyTheme.ordertextColor,
+                                if (changeValue == '' ||
+                                    changeValue == 'Default')
+                                  Expanded(
+                                    child: ListView(
+                                        physics: BouncingScrollPhysics(),
+                                        shrinkWrap: true,
+                                        padding: EdgeInsets.zero,
+                                        children: [
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          if (controller.active.isNotEmpty)
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 6),
+                                              child: Text(
+                                                "ACTIVE",
+                                                style: GoogleFonts.inter(
+                                                  textStyle: TextStyle(
+                                                    fontSize: 10,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontStyle: FontStyle.normal,
+                                                    color:
+                                                        MyTheme.ordertextColor,
+                                                  ),
                                                 ),
                                               ),
                                             ),
+                                          SizedBox(
+                                            height: 10,
                                           ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        ...controller.active
-                                            .map((element) =>
-                                                OrderWidget(element: element))
-                                            .toList(),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        if (controller.Served.isNotEmpty)
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 6),
-                                            child: Text(
-                                              "FOOD SERVED",
-                                              style: GoogleFonts.inter(
-                                                textStyle: TextStyle(
-                                                  fontSize: 10,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontStyle: FontStyle.normal,
-                                                  color: MyTheme.ordertextColor,
+                                          ...controller.active
+                                              .map((element) =>
+                                                  OrderWidget(element: element))
+                                              .toList(),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          if (controller.Served.isNotEmpty)
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 6),
+                                              child: Text(
+                                                "FOOD SERVED",
+                                                style: GoogleFonts.inter(
+                                                  textStyle: TextStyle(
+                                                    fontSize: 10,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontStyle: FontStyle.normal,
+                                                    color:
+                                                        MyTheme.ordertextColor,
+                                                  ),
                                                 ),
                                               ),
                                             ),
+                                          SizedBox(
+                                            height: 10,
                                           ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        ...controller.Served.map((element) =>
-                                                OrderWidget(element: element))
-                                            .toList(),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        if (controller.inProgress.isNotEmpty)
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 6),
-                                            child: Text(
-                                              "IN PROGRESS",
-                                              style: GoogleFonts.inter(
-                                                textStyle: TextStyle(
-                                                  fontSize: 10,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontStyle: FontStyle.normal,
-                                                  color: MyTheme.ordertextColor,
+                                          ...controller.Served.map((element) =>
+                                                  OrderWidget(element: element))
+                                              .toList(),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          if (controller.inProgress.isNotEmpty)
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 6),
+                                              child: Text(
+                                                "IN PROGRESS",
+                                                style: GoogleFonts.inter(
+                                                  textStyle: TextStyle(
+                                                    fontSize: 10,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontStyle: FontStyle.normal,
+                                                    color:
+                                                        MyTheme.ordertextColor,
+                                                  ),
                                                 ),
                                               ),
                                             ),
+                                          SizedBox(
+                                            height: 10,
                                           ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        ...controller.inProgress
-                                            .map((element) =>
-                                                OrderWidget(element: element))
-                                            .toList(),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        if (controller.ended.isNotEmpty)
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 6),
-                                            child: Text(
-                                              "PREVIOUS COMPLETED ORDERS",
-                                              style: GoogleFonts.inter(
-                                                textStyle: TextStyle(
-                                                  fontSize: 10,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontStyle: FontStyle.normal,
-                                                  color: MyTheme.ordertextColor,
+                                          ...controller.inProgress
+                                              .map((element) =>
+                                                  OrderWidget(element: element))
+                                              .toList(),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          if (controller.ended.isNotEmpty)
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 6),
+                                              child: Text(
+                                                "PREVIOUS COMPLETED ORDERS",
+                                                style: GoogleFonts.inter(
+                                                  textStyle: TextStyle(
+                                                    fontSize: 10,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontStyle: FontStyle.normal,
+                                                    color:
+                                                        MyTheme.ordertextColor,
+                                                  ),
                                                 ),
                                               ),
                                             ),
+                                          SizedBox(
+                                            height: 10,
                                           ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        ...controller.ended
-                                            .map((element) =>
-                                                OrderWidget(element: element))
-                                            .toList(),
-                                      ]),
-                                ),
+                                          ...controller.ended
+                                              .map((element) =>
+                                                  OrderWidget(element: element))
+                                              .toList(),
+                                        ]),
+                                  ),
+                                if (changeValue == 'placed')
+                                  Expanded(
+                                    child: ListView(
+                                        physics: BouncingScrollPhysics(),
+                                        shrinkWrap: true,
+                                        padding: EdgeInsets.zero,
+                                        children: [
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          if (controller.active.isNotEmpty)
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 6),
+                                              child: Text(
+                                                "ACTIVE",
+                                                style: GoogleFonts.inter(
+                                                  textStyle: TextStyle(
+                                                    fontSize: 10,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontStyle: FontStyle.normal,
+                                                    color:
+                                                        MyTheme.ordertextColor,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          ...controller.active
+                                              .map((element) =>
+                                                  OrderWidget(element: element))
+                                              .toList(),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                        ]),
+                                  ),
+                                if (changeValue == 'inProgress')
+                                  Expanded(
+                                    child: ListView(
+                                        physics: BouncingScrollPhysics(),
+                                        shrinkWrap: true,
+                                        padding: EdgeInsets.zero,
+                                        children: [
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          if (controller.inProgress.isNotEmpty)
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 6),
+                                              child: Text(
+                                                "IN PROGRESS",
+                                                style: GoogleFonts.inter(
+                                                  textStyle: TextStyle(
+                                                    fontSize: 10,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontStyle: FontStyle.normal,
+                                                    color:
+                                                        MyTheme.ordertextColor,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          ...controller.inProgress
+                                              .map((element) =>
+                                                  OrderWidget(element: element))
+                                              .toList(),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                        ]),
+                                  ),
+                                if (changeValue == 'Served')
+                                  Expanded(
+                                    child: ListView(
+                                        physics: BouncingScrollPhysics(),
+                                        shrinkWrap: true,
+                                        padding: EdgeInsets.zero,
+                                        children: [
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          if (controller.Served.isNotEmpty)
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 6),
+                                              child: Text(
+                                                "FOOD SERVED",
+                                                style: GoogleFonts.inter(
+                                                  textStyle: TextStyle(
+                                                    fontSize: 10,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontStyle: FontStyle.normal,
+                                                    color:
+                                                        MyTheme.ordertextColor,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          ...controller.Served.map((element) =>
+                                                  OrderWidget(element: element))
+                                              .toList(),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                        ]),
+                                  ),
+                                if (changeValue == 'Ended')
+                                  Expanded(
+                                    child: ListView(
+                                        physics: BouncingScrollPhysics(),
+                                        shrinkWrap: true,
+                                        padding: EdgeInsets.zero,
+                                        children: [
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          if (controller.ended.isNotEmpty)
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 6),
+                                              child: Text(
+                                                "PREVIOUS COMPLETED ORDERS",
+                                                style: GoogleFonts.inter(
+                                                  textStyle: TextStyle(
+                                                    fontSize: 10,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontStyle: FontStyle.normal,
+                                                    color:
+                                                        MyTheme.ordertextColor,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          ...controller.ended
+                                              .map((element) =>
+                                                  OrderWidget(element: element))
+                                              .toList(),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                        ]),
+                                  ),
                                 SizedBox(
                                   height: 30,
                                 ),
