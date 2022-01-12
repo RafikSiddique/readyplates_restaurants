@@ -163,7 +163,7 @@ class HomePage extends StatelessWidget {
                       fontStyle: FontStyle.normal,
                       fontWeight: FontWeight.w500,
                       fontSize: 17,
-                      color: MyTheme.orangeColor,
+                      color: MyTheme.appbartextColor,
                     ),
                   )),
             ),

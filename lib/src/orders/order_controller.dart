@@ -13,6 +13,7 @@ class OrderController extends GetxController {
   RxList<OrderModelApi> inProgress = <OrderModelApi>[].obs;
   RxList<OrderModelApi> Served = <OrderModelApi>[].obs;
   RxList<OrderModelApi> ended = <OrderModelApi>[].obs;
+  RxString searchByOrderState = "placed".obs;
 
   RxBool loading = false.obs;
 
