@@ -174,82 +174,96 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                           SizedBox(
                             height: 10,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              for (var i = 0;
-                                  i < controller.otpFields.length;
-                                  i++)
-                                Container(
-                                  width: 38,
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      width: 1,
-                                      color: MyTheme.borderColor,
-                                    ),
-                                    borderRadius: BorderRadius.circular(6),
-                                  ),
-                                  margin: EdgeInsets.all(8),
-                                  child: TextField(
-                                    textAlign: TextAlign.center,
-                                    style: GoogleFonts.montserrat(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w600),
-                                    controller: controller.otpText[i],
-                                    textAlignVertical: TextAlignVertical.bottom,
-                                    focusNode: controller.otpFields[i],
-                                    maxLength: 1,
-                                    inputFormatters: [
-                                      FilteringTextInputFormatter.digitsOnly,
-                                    ],
-                                    keyboardType: TextInputType.number,
-                                    decoration: InputDecoration(
-                                      counterText: "",
-                                      hintText: (i + 1).toString(),
-                                      hintStyle: TextStyle(
-                                        color: Colors.grey.shade300,
-                                      ),
-                                      border: OutlineInputBorder(
-                                        borderSide: BorderSide.none,
-                                      ),
-                                    ),
-                                    onChanged: (value) {
-                                      print(value);
+                          AnimatedBuilder(
+                              animation: Listenable.merge([
+                                controller.otpText[j],
+                              ]),
+                              builder: (context, child) {
+                                return Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    for (var i = 0;
+                                        i < controller.otpFields.length;
+                                        i++)
+                                      Container(
+                                        width: 38,
+                                        height: 50,
+                                        decoration: BoxDecoration(
+                                          border: Border.all(
+                                            width: 1,
+                                            color: (controller
+                                                    .otpText[j].text.isEmpty)
+                                                ? MyTheme.borderColor
+                                                : MyTheme.borderchangeColor,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(6),
+                                        ),
+                                        margin: EdgeInsets.all(8),
+                                        child: TextField(
+                                          textAlign: TextAlign.center,
+                                          style: GoogleFonts.montserrat(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w600),
+                                          controller: controller.otpText[i],
+                                          textAlignVertical:
+                                              TextAlignVertical.bottom,
+                                          focusNode: controller.otpFields[i],
+                                          maxLength: 1,
+                                          inputFormatters: [
+                                            FilteringTextInputFormatter
+                                                .digitsOnly,
+                                          ],
+                                          keyboardType: TextInputType.number,
+                                          decoration: InputDecoration(
+                                            counterText: "",
+                                            hintText: (i + 1).toString(),
+                                            hintStyle: TextStyle(
+                                              color: Colors.grey.shade300,
+                                            ),
+                                            border: OutlineInputBorder(
+                                              borderSide: BorderSide.none,
+                                            ),
+                                          ),
+                                          onChanged: (value) {
+                                            print(value);
 
-                                      print(
-                                          '${controller.otp} type otp isssssssssssssss');
-                                      print(
-                                          '${respOtp} respOtp otp isssssssssssssss');
-                                      if (value.length == 1) {
-                                        controller.otp += value;
-                                        if (i < 5) {
-                                          controller.otpFields[i + 1]
-                                              .requestFocus();
-                                        } else {
-                                          if (respOtp == controller.otp) {
-                                            controller.otpVerification.value =
-                                                controller.otpVerified;
-                                          } else {
-                                            controller.otpVerification.value =
-                                                controller.incorrect;
-                                          }
-                                        }
-                                      } else {
-                                        if (i != 0) {
-                                          controller.otp =
-                                              controller.otp.substring(0, i);
-                                          controller.otpFields[i - 1]
-                                              .requestFocus();
-                                        } else {
-                                          controller.otp = "";
-                                        }
-                                      }
-                                    },
-                                  ),
-                                )
-                            ],
-                          ),
+                                            print(
+                                                '${controller.otp} type otp isssssssssssssss');
+                                            print(
+                                                '${respOtp} respOtp otp isssssssssssssss');
+                                            if (value.length == 1) {
+                                              controller.otp += value;
+                                              if (i < 5) {
+                                                controller.otpFields[i + 1]
+                                                    .requestFocus();
+                                              } else {
+                                                if (respOtp == controller.otp) {
+                                                  controller.otpVerification
+                                                          .value =
+                                                      controller.otpVerified;
+                                                } else {
+                                                  controller.otpVerification
+                                                          .value =
+                                                      controller.incorrect;
+                                                }
+                                              }
+                                            } else {
+                                              if (i != 0) {
+                                                controller.otp = controller.otp
+                                                    .substring(0, i);
+                                                controller.otpFields[i - 1]
+                                                    .requestFocus();
+                                              } else {
+                                                controller.otp = "";
+                                              }
+                                            }
+                                          },
+                                        ),
+                                      )
+                                  ],
+                                );
+                              }),
                           Obx(() => controller.otpVerification.value != ""
                               ? SizedBox(
                                   height: 8,
@@ -265,8 +279,8 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                                       fontStyle: FontStyle.normal,
                                       color: controller.otpVerification.value ==
                                               controller.otpVerified
-                                          ? Colors.teal
-                                          : Colors.red,
+                                          ? MyTheme.switchButtonColor
+                                          : MyTheme.errorIcon,
                                     )),
                               )),
                           SizedBox(

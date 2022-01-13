@@ -173,8 +173,8 @@ class _OrderCompletePage1State extends State<OrderCompletePage1> {
                                       value: dropdownValue,
                                       items: <String>[
                                         'Default',
-                                        'placed',
-                                        'inProgress',
+                                        'Pending',
+                                        'InProgress',
                                         'Served',
                                         'Ended',
                                       ].map<DropdownMenuItem<String>>(
@@ -208,13 +208,10 @@ class _OrderCompletePage1State extends State<OrderCompletePage1> {
                                         shrinkWrap: true,
                                         padding: EdgeInsets.zero,
                                         children: [
-                                          SizedBox(
-                                            height: 10,
-                                          ),
                                           if (controller.active.isNotEmpty)
                                             Padding(
                                               padding: const EdgeInsets.only(
-                                                  left: 6),
+                                                  left: 6, top: 30),
                                               child: Text(
                                                 "ACTIVE",
                                                 style: GoogleFonts.inter(
@@ -235,13 +232,11 @@ class _OrderCompletePage1State extends State<OrderCompletePage1> {
                                               .map((element) =>
                                                   OrderWidget(element: element))
                                               .toList(),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
+                                          // active
                                           if (controller.Served.isNotEmpty)
                                             Padding(
                                               padding: const EdgeInsets.only(
-                                                  left: 6),
+                                                  left: 6, top: 30),
                                               child: Text(
                                                 "FOOD SERVED",
                                                 style: GoogleFonts.inter(
@@ -261,13 +256,11 @@ class _OrderCompletePage1State extends State<OrderCompletePage1> {
                                           ...controller.Served.map((element) =>
                                                   OrderWidget(element: element))
                                               .toList(),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
+                                          // served
                                           if (controller.inProgress.isNotEmpty)
                                             Padding(
                                               padding: const EdgeInsets.only(
-                                                  left: 6),
+                                                  left: 6, top: 30),
                                               child: Text(
                                                 "IN PROGRESS",
                                                 style: GoogleFonts.inter(
@@ -288,13 +281,11 @@ class _OrderCompletePage1State extends State<OrderCompletePage1> {
                                               .map((element) =>
                                                   OrderWidget(element: element))
                                               .toList(),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
+                                          // inprogress
                                           if (controller.ended.isNotEmpty)
                                             Padding(
                                               padding: const EdgeInsets.only(
-                                                  left: 6),
+                                                  left: 6, top: 30),
                                               child: Text(
                                                 "PREVIOUS COMPLETED ORDERS",
                                                 style: GoogleFonts.inter(
@@ -317,7 +308,7 @@ class _OrderCompletePage1State extends State<OrderCompletePage1> {
                                               .toList(),
                                         ]),
                                   ),
-                                if (changeValue == 'placed')
+                                if (changeValue == 'Pending')
                                   Expanded(
                                     child: ListView(
                                         physics: BouncingScrollPhysics(),
@@ -325,7 +316,7 @@ class _OrderCompletePage1State extends State<OrderCompletePage1> {
                                         padding: EdgeInsets.zero,
                                         children: [
                                           SizedBox(
-                                            height: 10,
+                                            height: 30,
                                           ),
                                           if (controller.active.isNotEmpty)
                                             Padding(
@@ -356,7 +347,7 @@ class _OrderCompletePage1State extends State<OrderCompletePage1> {
                                           ),
                                         ]),
                                   ),
-                                if (changeValue == 'inProgress')
+                                if (changeValue == 'InProgress')
                                   Expanded(
                                     child: ListView(
                                         physics: BouncingScrollPhysics(),
@@ -364,7 +355,7 @@ class _OrderCompletePage1State extends State<OrderCompletePage1> {
                                         padding: EdgeInsets.zero,
                                         children: [
                                           SizedBox(
-                                            height: 10,
+                                            height: 30,
                                           ),
                                           if (controller.inProgress.isNotEmpty)
                                             Padding(
@@ -403,7 +394,7 @@ class _OrderCompletePage1State extends State<OrderCompletePage1> {
                                         padding: EdgeInsets.zero,
                                         children: [
                                           SizedBox(
-                                            height: 10,
+                                            height: 30,
                                           ),
                                           if (controller.Served.isNotEmpty)
                                             Padding(
@@ -441,7 +432,7 @@ class _OrderCompletePage1State extends State<OrderCompletePage1> {
                                         padding: EdgeInsets.zero,
                                         children: [
                                           SizedBox(
-                                            height: 10,
+                                            height: 30,
                                           ),
                                           if (controller.ended.isNotEmpty)
                                             Padding(

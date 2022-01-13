@@ -51,7 +51,7 @@ class MyTheme {
   static Color text1Color = Color(0xff222831);
 
   static Color text2Color = Color(0xff4E535A);
-
+  static Color errorIcon = Color(0xffFF7976);
   // static Color text3Color = Color(0xff393E46);
 
   static Color numberColor = Color(0xff25A18E);
