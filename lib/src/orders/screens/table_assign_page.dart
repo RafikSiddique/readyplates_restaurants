@@ -500,9 +500,11 @@ class _TableAssignPageState extends State<TableAssignPage> {
                                             "There are no vacant tables available to assign at the moment.",
                                             textAlign: TextAlign.left,
                                             style: GoogleFonts.nunito(
-                                                fontSize: 15,
-                                                fontStyle: FontStyle.normal,
-                                                fontWeight: FontWeight.normal)),
+                                              fontSize: 15,
+                                              fontStyle: FontStyle.normal,
+                                              fontWeight: FontWeight.normal,
+                                              color: MyTheme.appbartextColor,
+                                            )),
                                       )
                                     ],
                                   ),

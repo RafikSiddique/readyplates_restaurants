@@ -32,7 +32,7 @@ class OrderInitiatedPage extends StatelessWidget {
                 fontSize: 25,
                 fontStyle: FontStyle.normal,
                 fontWeight: FontWeight.w500,
-                color: MyTheme.appbartextColor,
+                color: MyTheme.orangeColor,
               ),
             ),
             SizedBox(
@@ -53,7 +53,9 @@ class OrderInitiatedPage extends StatelessWidget {
             Container(
               width: 235.2,
               height: 298.38,
-              child: Image.asset('assets/images/orderdone.png'),
+              child: Image.asset(
+                'assets/images/orderdone.png',
+              ),
             ),
           ],
         ),

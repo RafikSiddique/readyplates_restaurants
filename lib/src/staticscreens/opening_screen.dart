@@ -51,40 +51,96 @@ class _OpeningScreenState extends State<OpeningScreen>
           controller: controller,
           physics: NeverScrollableScrollPhysics(),
           children: [
-            BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    'assets/images/spoon.png',
-                    width: MediaQuery.of(context).size.width * 0.6,
-                  ),
-                  RichText(
-                    text: TextSpan(
-                        text: 'READY',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 30,
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w700,
-                          color: MyTheme.orangeColor,
-                        ),
+            Align(
+              alignment: Alignment.center,
+              child: Container(
+                height: Get.height,
+                color: Colors.white,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Hero(
+                    tag: "rp",
+                    child: Material(
+                      type: MaterialType.transparency,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          TextSpan(
-                            text: 'Plates'.toUpperCase(),
-                            style: GoogleFonts.montserrat(
-                              fontSize: 30,
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w200,
-                              color: MyTheme.orangeColor,
+                          Container(
+                            height: 40,
+                            child: Image.asset(
+                              "assets/images/spoon.png",
+                              fit: BoxFit.cover,
                             ),
                           ),
-                        ]),
+                          SizedBox(width: 16),
+                          Container(
+                            // width: size.width * 0.6,
+                            height: 39,
+                            child: RichText(
+                              text: TextSpan(
+                                  text: 'READY',
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 30,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w700,
+                                    color: MyTheme.orangeColor,
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text: 'Plates'.toUpperCase(),
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 30,
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.w200,
+                                        color: MyTheme.orangeColor,
+                                      ),
+                                    ),
+                                  ]),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                ],
+                ),
               ),
             ),
+            // BackdropFilter(
+            //   filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.center,
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: [
+            //       Image.asset(
+            //         'assets/images/spoon.png',
+            //         width: MediaQuery.of(context).size.width * 0.6,
+            //       ),
+            //       RichText(
+            //         text: TextSpan(
+            //             text: 'READY',
+            //             style: GoogleFonts.montserrat(
+            //               fontSize: 30,
+            //               fontStyle: FontStyle.normal,
+            //               fontWeight: FontWeight.w700,
+            //               color: MyTheme.orangeColor,
+            //             ),
+            //             children: [
+            //               TextSpan(
+            //                 text: 'Plates'.toUpperCase(),
+            //                 style: GoogleFonts.montserrat(
+            //                   fontSize: 30,
+            //                   fontStyle: FontStyle.normal,
+            //                   fontWeight: FontWeight.w200,
+            //                   color: MyTheme.orangeColor,
+            //                 ),
+            //               ),
+            //             ]),
+            //       ),
+            //     ],
+            //   ),
+            // ),
             Column(
               children: [
                 Padding(
@@ -156,13 +212,13 @@ class _OpeningScreenState extends State<OpeningScreen>
                             width: size.width,
                             height: 54,
                             decoration: BoxDecoration(
-                              color: Color(0xff222831).withOpacity(0.11),
+                              color: Color(0xffF47121).withOpacity(0.1),
                             ),
                             child: Center(
                               child: BackdropFilter(
                                 filter: ImageFilter.blur(
-                                  sigmaX: 10,
-                                  sigmaY: 10,
+                                  sigmaX: 12,
+                                  sigmaY: 12,
                                 ),
                                 child: Text(
                                   'LOGIN',
@@ -170,8 +226,8 @@ class _OpeningScreenState extends State<OpeningScreen>
                                   style: GoogleFonts.inter(
                                     fontSize: 17,
                                     fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w500,
-                                    color: Color(0xff222831),
+                                    fontWeight: FontWeight.w600,
+                                    color: Color(0xff2F2E41),
                                   ),
                                 ),
                               ),
@@ -200,7 +256,7 @@ class _OpeningScreenState extends State<OpeningScreen>
                         },
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Color(0xff222831).withOpacity(0.46),
+                            color: Color(0xffFF7622).withOpacity(0.6),
                             // border: Border.all(
                             //   width: 1.5,
                             //   color: Color(0xffFFFFFF).withOpacity(0.5),
@@ -217,8 +273,8 @@ class _OpeningScreenState extends State<OpeningScreen>
                               child: Center(
                                 child: BackdropFilter(
                                   filter: ImageFilter.blur(
-                                    sigmaX: 8,
-                                    sigmaY: 8,
+                                    sigmaX: 4,
+                                    sigmaY: 4,
                                   ),
                                   child: Text(
                                     'SIGN UP',
