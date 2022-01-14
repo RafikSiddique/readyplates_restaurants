@@ -212,13 +212,13 @@ class _OpeningScreenState extends State<OpeningScreen>
                             width: size.width,
                             height: 54,
                             decoration: BoxDecoration(
-                              color: Color(0xffF47121).withOpacity(0.1),
+                              color: Color(0xffF47121).withOpacity(0.15),
                             ),
                             child: Center(
                               child: BackdropFilter(
                                 filter: ImageFilter.blur(
-                                  sigmaX: 12,
-                                  sigmaY: 12,
+                                  sigmaX: 6,
+                                  sigmaY: 6,
                                 ),
                                 child: Text(
                                   'LOGIN',
