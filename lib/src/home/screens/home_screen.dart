@@ -57,15 +57,37 @@ class HomePage extends StatelessWidget {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text("Orders are closed"),
+            title: Text(
+              "Orders are closed",
+              style: GoogleFonts.nunito(
+                color: Colors.black,
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                fontStyle: FontStyle.normal,
+              ),
+            ),
             content: Text(
-                "You have closed the order up until you turn it back on, do you want to turn on the orders?"),
+              "You have closed the order up until you turn it back on, do you want to turn on the orders?",
+              style: GoogleFonts.inter(
+                color: Colors.black,
+                fontSize: 15,
+                fontWeight: FontWeight.normal,
+                fontStyle: FontStyle.normal,
+              ),
+            ),
             actions: [
               TextButton(
                   onPressed: () async {
                     Navigator.pop(context);
                   },
-                  child: Text("No")),
+                  child: Text(
+                    "No",
+                    style: GoogleFonts.inter(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 17,
+                      color: MyTheme.orangeColor,
+                    ),
+                  )),
               TextButton(
                   onPressed: () async {
                     String resid =
@@ -76,7 +98,14 @@ class HomePage extends StatelessWidget {
                     await controller.openCloseOrders();
                     Navigator.pop(context);
                   },
-                  child: Text("Yes"))
+                  child: Text(
+                    "Yes",
+                    style: GoogleFonts.inter(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 17,
+                      color: MyTheme.orangeColor,
+                    ),
+                  ))
             ],
           );
         },

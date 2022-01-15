@@ -214,28 +214,28 @@ class _ProfilePageState extends State<ProfilePage> {
                                         Get.back();
                                       },
                                     ),
-                                    // ListTile(
-                                    //   title: Text(
-                                    //     "Reopen tomorrow",
-                                    //     style: GoogleFonts.inter(
-                                    //       fontSize: 17,
-                                    //       fontStyle: FontStyle.normal,
-                                    //       fontWeight: FontWeight.w500,
-                                    //       color: MyTheme.appbartextColor,
-                                    //     ),
-                                    //   ),
-                                    //   onTap: () async {
-                                    //     sfHelper.setOpenAutoFlag(true);
-                                    //     homeController.openCloseOrders();
-                                    //     homeController.switchValue.value =
-                                    //         false;
-                                    //     String resId =
-                                    //         await sfHelper.getRestaurantId();
-                                    //     homeController.setAutoOrder(resId, 1);
+                                    ListTile(
+                                      title: Text(
+                                        "Reopen tomorrow",
+                                        style: GoogleFonts.inter(
+                                          fontSize: 17,
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.w500,
+                                          color: MyTheme.appbartextColor,
+                                        ),
+                                      ),
+                                      onTap: () async {
+                                        sfHelper.setOpenAutoFlag(true);
+                                        homeController.openCloseOrders();
+                                        homeController.switchValue.value =
+                                            false;
+                                        String resId =
+                                            await sfHelper.getRestaurantId();
+                                        homeController.setAutoOrder(resId, 1);
 
-                                    //     Get.back();
-                                    //   },
-                                    // ),
+                                        Get.back();
+                                      },
+                                    ),
                                   ],
                                 ),
                               ),
