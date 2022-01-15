@@ -42,6 +42,21 @@ class MenuPage extends StatelessWidget {
     }
   } */
 
+  Color color(int i) {
+    if (i == 0)
+      return Color(0xff7af400);
+    else if (i == 1)
+      return Color(0xff70e000);
+    else if (i == 2)
+      return Color(0xff66cc00);
+    else if (i == 3)
+      return Color(0xff5cb900);
+    else if (i == 4)
+      return Color(0xff53a500);
+    else
+      return Color(0xff7af400);
+  }
+
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context);
@@ -267,7 +282,7 @@ class MenuPage extends StatelessWidget {
                                                                   const EdgeInsets
                                                                           .only(
                                                                       right: 16,
-                                                                      top: 5),
+                                                                      top: 4),
                                                               child: Container(
                                                                 width:
                                                                     size.width *
@@ -304,7 +319,7 @@ class MenuPage extends StatelessWidget {
                                                             height: 4,
                                                           ),
                                                           Container(
-                                                            height: 45,
+                                                            height: 30,
                                                             child:
                                                                 SingleChildScrollView(
                                                               scrollDirection:
@@ -336,6 +351,43 @@ class MenuPage extends StatelessWidget {
                                                                           TextOverflow
                                                                               .clip,
                                                                     ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    right: 16,
+                                                                    top: 4),
+                                                            child: Container(
+                                                              width:
+                                                                  size.width *
+                                                                      0.5,
+                                                              child: Text(
+                                                                e.std_serving_size,
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .left,
+                                                                style: GoogleFonts
+                                                                    .montserrat(
+                                                                  textStyle:
+                                                                      TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                    fontStyle:
+                                                                        FontStyle
+                                                                            .normal,
+                                                                    fontSize:
+                                                                        13,
+                                                                    color: MyTheme
+                                                                        .text1Color,
+                                                                    overflow:
+                                                                        TextOverflow
+                                                                            .ellipsis,
                                                                   ),
                                                                 ),
                                                               ),
@@ -373,6 +425,8 @@ class MenuPage extends StatelessWidget {
                                                                 (index) =>
                                                                     Image.asset(
                                                                   'assets/images/spice.png',
+                                                                  color: color(
+                                                                      index),
                                                                 ),
                                                               ),
                                                               Spacer(),
