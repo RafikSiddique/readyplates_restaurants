@@ -100,4 +100,9 @@ class MyTheme {
   static Color switchButtonColor = Color(0xff00ADB5);
   static Color switchButtonChangeColor = Color(0xffFF6E42);
   static Color sliderColor = Color(0xffFEEDD2);
+
+  static Color greenColor = Color(0xff2D8416);
+  static Color blueColor = Color(0xff154E81);
+  static Color redColor = Color(0xffEB4132);
+  static Color orangelightColor = Color(0xffEF9400);
 }
