@@ -41,11 +41,11 @@ class FirebaseMessagingService extends ApiServices {
   void _initializeMessaging() {
     getToken();
     FirebaseMessaging.onMessage.listen((event) {
-      print("OnMessage");
+      print("OnMessage-Restaurant");
       showMessage(event);
     });
     FirebaseMessaging.onMessageOpenedApp.listen((event) {
-      print("On Message Opened app");
+      print("On Message Opened app-Restaurant");
       showMessage(event);
     });
     FirebaseMessaging.instance.getInitialMessage().then((v) {

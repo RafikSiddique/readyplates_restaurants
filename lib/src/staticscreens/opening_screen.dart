@@ -39,27 +39,32 @@ class _OpeningScreenState extends State<OpeningScreen>
       // appBar: AppBar(),
       // final push
 
-      body: Container(
-        height: size.height,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/background.png'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: PageView(
-          controller: controller,
-          physics: NeverScrollableScrollPhysics(),
-          children: [
-            Align(
-              alignment: Alignment.center,
+      body: Stack(
+        children: [
+          Hero(
+            tag: 'rpimage',
+            child: Material(
               child: Container(
-                height: Get.height,
-                color: Colors.white,
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Hero(
-                    tag: "rp",
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/background.png'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          PageView(
+            controller: controller,
+            physics: NeverScrollableScrollPhysics(),
+            children: [
+              Align(
+                alignment: Alignment.center,
+                child: Container(
+                  height: Get.height,
+                  color: Colors.white,
+                  child: Align(
+                    alignment: Alignment.center,
                     child: Material(
                       type: MaterialType.transparency,
                       child: Row(
@@ -106,184 +111,127 @@ class _OpeningScreenState extends State<OpeningScreen>
                   ),
                 ),
               ),
-            ),
-            // BackdropFilter(
-            //   filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-            //   child: Column(
-            //     crossAxisAlignment: CrossAxisAlignment.center,
-            //     mainAxisAlignment: MainAxisAlignment.center,
-            //     children: [
-            //       Image.asset(
-            //         'assets/images/spoon.png',
-            //         width: MediaQuery.of(context).size.width * 0.6,
-            //       ),
-            //       RichText(
-            //         text: TextSpan(
-            //             text: 'READY',
-            //             style: GoogleFonts.montserrat(
-            //               fontSize: 30,
-            //               fontStyle: FontStyle.normal,
-            //               fontWeight: FontWeight.w700,
-            //               color: MyTheme.orangeColor,
-            //             ),
-            //             children: [
-            //               TextSpan(
-            //                 text: 'Plates'.toUpperCase(),
-            //                 style: GoogleFonts.montserrat(
-            //                   fontSize: 30,
-            //                   fontStyle: FontStyle.normal,
-            //                   fontWeight: FontWeight.w200,
-            //                   color: MyTheme.orangeColor,
-            //                 ),
-            //               ),
-            //             ]),
-            //       ),
-            //     ],
-            //   ),
-            // ),
-            Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 50),
-                  child: Hero(
-                    tag: "rp",
-                    child: Material(
-                      type: MaterialType.transparency,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: 40,
-                            child: Image.asset(
-                              "assets/images/spoon.png",
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          SizedBox(width: 16),
-                          Container(
-                            // width: size.width * 0.6,
-                            height: 39,
-                            child: RichText(
-                              text: TextSpan(
-                                  text: 'READY',
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 30,
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w700,
-                                    color: MyTheme.orangeColor,
-                                  ),
-                                  children: [
-                                    TextSpan(
-                                      text: 'Plates'.toUpperCase(),
-                                      style: GoogleFonts.montserrat(
-                                        fontSize: 30,
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.w200,
-                                        color: MyTheme.orangeColor,
-                                      ),
-                                    ),
-                                  ]),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                Spacer(),
-                Padding(
-                  padding: EdgeInsets.only(
-                    left: 16,
-                    right: 16,
-                  ),
-                  child: Hero(
-                    tag: "login",
-                    child: Material(
-                      type: MaterialType.transparency,
-                      child: InkWell(
-                        onTap: () {
-                          Get.toNamed(LoginPage.id);
-                        },
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(6)),
-                          child: Container(
-                            width: size.width,
-                            height: 54,
-                            decoration: BoxDecoration(
-                              color: Color(0xffF47121).withOpacity(0.15),
-                            ),
-                            child: Center(
-                              child: BackdropFilter(
-                                filter: ImageFilter.blur(
-                                  sigmaX: 6,
-                                  sigmaY: 6,
-                                ),
-                                child: Text(
-                                  'LOGIN',
-                                  textAlign: TextAlign.center,
-                                  style: GoogleFonts.inter(
-                                    fontSize: 17,
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w600,
-                                    color: Color(0xff2F2E41),
-                                  ),
-                                ),
+              // BackdropFilter(
+              //   filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+              //   child: Column(
+              //     crossAxisAlignment: CrossAxisAlignment.center,
+              //     mainAxisAlignment: MainAxisAlignment.center,
+              //     children: [
+              //       Image.asset(
+              //         'assets/images/spoon.png',
+              //         width: MediaQuery.of(context).size.width * 0.6,
+              //       ),
+              //       RichText(
+              //         text: TextSpan(
+              //             text: 'READY',
+              //             style: GoogleFonts.montserrat(
+              //               fontSize: 30,
+              //               fontStyle: FontStyle.normal,
+              //               fontWeight: FontWeight.w700,
+              //               color: MyTheme.orangeColor,
+              //             ),
+              //             children: [
+              //               TextSpan(
+              //                 text: 'Plates'.toUpperCase(),
+              //                 style: GoogleFonts.montserrat(
+              //                   fontSize: 30,
+              //                   fontStyle: FontStyle.normal,
+              //                   fontWeight: FontWeight.w200,
+              //                   color: MyTheme.orangeColor,
+              //                 ),
+              //               ),
+              //             ]),
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 50),
+                    child: Hero(
+                      tag: "rp",
+                      child: Material(
+                        type: MaterialType.transparency,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 40,
+                              child: Image.asset(
+                                "assets/images/spoon.png",
+                                fit: BoxFit.cover,
                               ),
                             ),
-                          ),
+                            SizedBox(width: 16),
+                            Container(
+                              // width: size.width * 0.6,
+                              height: 39,
+                              child: RichText(
+                                text: TextSpan(
+                                    text: 'READY',
+                                    style: GoogleFonts.montserrat(
+                                      fontSize: 30,
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.w700,
+                                      color: MyTheme.orangeColor,
+                                    ),
+                                    children: [
+                                      TextSpan(
+                                        text: 'Plates'.toUpperCase(),
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 30,
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.w200,
+                                          color: MyTheme.orangeColor,
+                                        ),
+                                      ),
+                                    ]),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    left: 16,
-                    right: 16,
-                  ),
-                  child: Hero(
-                    tag: 'signup',
-                    child: Material(
-                      type: MaterialType.transparency,
-                      child: InkWell(
-                        onTap: () {
-                          Get.toNamed(SignupPage.id);
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Color(0xffFF7622).withOpacity(0.6),
-                            // border: Border.all(
-                            //   width: 1.5,
-                            //   color: Color(0xffFFFFFF).withOpacity(0.5),
-                            // ),
-                            borderRadius: BorderRadius.all(Radius.circular(6)),
-                          ),
+                  Spacer(),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      left: 16,
+                      right: 16,
+                    ),
+                    child: Hero(
+                      tag: "login",
+                      child: Material(
+                        type: MaterialType.transparency,
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(context, LoginPage.id);
+                          },
                           child: ClipRRect(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(6),
-                            ),
+                            borderRadius: BorderRadius.all(Radius.circular(6)),
                             child: Container(
                               width: size.width,
                               height: 54,
+                              decoration: BoxDecoration(
+                                color: Color(0xffF47121).withOpacity(0.15),
+                              ),
                               child: Center(
                                 child: BackdropFilter(
                                   filter: ImageFilter.blur(
-                                    sigmaX: 4,
-                                    sigmaY: 4,
+                                    sigmaX: 6,
+                                    sigmaY: 6,
                                   ),
                                   child: Text(
-                                    'SIGN UP',
+                                    'LOGIN',
                                     textAlign: TextAlign.center,
                                     style: GoogleFonts.inter(
                                       fontSize: 17,
                                       fontStyle: FontStyle.normal,
                                       fontWeight: FontWeight.w600,
-                                      color: Color(0xffFFFFFF),
+                                      color: Color(0xff2F2E41),
                                     ),
                                   ),
                                 ),
@@ -294,14 +242,72 @@ class _OpeningScreenState extends State<OpeningScreen>
                       ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 25,
-                )
-              ],
-            ),
-          ],
-        ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      left: 16,
+                      right: 16,
+                    ),
+                    child: Hero(
+                      tag: 'signup',
+                      child: Material(
+                        type: MaterialType.transparency,
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(context, SignupPage.id);
+                        },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0xffFF7622).withOpacity(0.6),
+                              // border: Border.all(
+                              //   width: 1.5,
+                              //   color: Color(0xffFFFFFF).withOpacity(0.5),
+                              // ),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(6)),
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(6),
+                              ),
+                              child: Container(
+                                width: size.width,
+                                height: 54,
+                                child: Center(
+                                  child: BackdropFilter(
+                                    filter: ImageFilter.blur(
+                                      sigmaX: 4,
+                                      sigmaY: 4,
+                                    ),
+                                    child: Text(
+                                      'SIGN UP',
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.inter(
+                                        fontSize: 17,
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.w600,
+                                        color: Color(0xffFFFFFF),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 25,
+                  )
+                ],
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

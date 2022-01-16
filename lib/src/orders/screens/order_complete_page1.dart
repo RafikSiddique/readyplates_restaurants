@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:readyplates_restaurants/models/orderitem_model.dart';
 import 'package:readyplates_restaurants/src/orders/order_controller.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/widgets/order_widget.dart';
@@ -21,6 +22,63 @@ class _OrderCompletePage1State extends State<OrderCompletePage1> {
   final controller = Get.find<OrderController>();
   String dropdownValue = 'Default';
   String changeValue = '';
+  String searchValue = '';
+
+  List<String> types = const [
+    'Default',
+    'Pending',
+    'InProgress',
+    'Served',
+    'Ended',
+  ];
+
+  String getTitle(String type) {
+    switch (type) {
+      case 'Default':
+        return "";
+      case 'Pending':
+        return "Active";
+      case 'Served':
+        return "Food Served";
+      case 'InProgress':
+        return "In progress";
+      case 'Ended':
+        return "Previous completed orders";
+
+      default:
+        return "";
+    }
+  }
+
+  bool checkEmpty(List<OrderModelApi> orders) {
+    if (searchValue == '') {
+      return orders.isNotEmpty;
+    } else {
+      return orders
+          .where((element) => element.id.toString().contains(searchValue))
+          .isNotEmpty;
+    }
+  }
+
+  List<OrderModelApi> sortedOrders(String type) {
+    switch (type) {
+      case 'Default':
+        return [];
+
+      case 'Pending':
+        return controller.active;
+      case 'Served':
+        return controller.Served;
+      case 'InProgress':
+        return controller.inProgress;
+      case 'Ended':
+        return controller.ended;
+
+      default:
+        return [];
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -82,7 +140,11 @@ class _OrderCompletePage1State extends State<OrderCompletePage1> {
                                         fontStyle: FontStyle.normal,
                                         fontWeight: FontWeight.w500,
                                       ),
-                                      onChanged: (value) {},
+                                      onChanged: (value) {
+                                        setState(() {
+                                          searchValue = value;
+                                        });
+                                      },
                                       keyboardType: TextInputType.number,
                                       decoration: InputDecoration(
                                         border: InputBorder.none,
@@ -171,14 +233,9 @@ class _OrderCompletePage1State extends State<OrderCompletePage1> {
                                         ),
                                       ),
                                       value: dropdownValue,
-                                      items: <String>[
-                                        'Default',
-                                        'Pending',
-                                        'InProgress',
-                                        'Served',
-                                        'Ended',
-                                      ].map<DropdownMenuItem<String>>(
-                                          (String value) {
+                                      items: types
+                                          .map<DropdownMenuItem<String>>(
+                                              (String value) {
                                         return DropdownMenuItem<String>(
                                           value: value,
                                           child: Text(
@@ -207,7 +264,68 @@ class _OrderCompletePage1State extends State<OrderCompletePage1> {
                                         physics: BouncingScrollPhysics(),
                                         shrinkWrap: true,
                                         padding: EdgeInsets.zero,
-                                        children: [
+                                        children: types
+                                            .map(
+                                              (e) => Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  if (checkEmpty(
+                                                      sortedOrders(e)))
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 6, top: 30),
+                                                      child: Text(
+                                                        getTitle(e),
+                                                        style:
+                                                            GoogleFonts.inter(
+                                                          textStyle: TextStyle(
+                                                            fontSize: 10,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            fontStyle: FontStyle
+                                                                .normal,
+                                                            color: MyTheme
+                                                                .ordertextColor,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  if (checkEmpty(
+                                                      sortedOrders(e)))
+                                                    SizedBox(
+                                                      height: 10,
+                                                    ),
+                                                  if (searchValue == '')
+                                                    ...sortedOrders(e)
+                                                        .map((element) =>
+                                                            OrderWidget(
+                                                                element:
+                                                                    element))
+                                                        .toList()
+                                                  else
+                                                    ...sortedOrders(e)
+                                                        .where((element) =>
+                                                            element.id
+                                                                .toString()
+                                                                .contains(
+                                                                    searchValue))
+                                                        .map((element) =>
+                                                            OrderWidget(
+                                                                element:
+                                                                    element)),
+                                                  if (checkEmpty(
+                                                      sortedOrders(e)))
+                                                    SizedBox(
+                                                      height: 10,
+                                                    )
+                                                ],
+                                              ),
+                                            )
+                                            .toList() /*  [
+                                          
                                           if (controller.active.isNotEmpty)
                                             Padding(
                                               padding: const EdgeInsets.only(
@@ -228,10 +346,19 @@ class _OrderCompletePage1State extends State<OrderCompletePage1> {
                                           SizedBox(
                                             height: 10,
                                           ),
-                                          ...controller.active
-                                              .map((element) =>
-                                                  OrderWidget(element: element))
-                                              .toList(),
+                                          if (searchValue == '')
+                                            ...controller.active
+                                                .map((element) => OrderWidget(
+                                                    element: element))
+                                                .toList()
+                                          else
+                                            ...controller.active
+                                                .where((p0) => p0.id
+                                                    .toString()
+                                                    .contains(searchValue))
+                                                .map((element) => OrderWidget(
+                                                    element: element))
+                                                .toList(),
                                           // active
                                           if (controller.Served.isNotEmpty)
                                             Padding(
@@ -306,9 +433,10 @@ class _OrderCompletePage1State extends State<OrderCompletePage1> {
                                               .map((element) =>
                                                   OrderWidget(element: element))
                                               .toList(),
-                                        ]),
-                                  ),
-                                if (changeValue == 'Pending')
+                                        ] */
+                                        ),
+                                  )
+                                else
                                   Expanded(
                                     child: ListView(
                                         physics: BouncingScrollPhysics(),
@@ -318,12 +446,13 @@ class _OrderCompletePage1State extends State<OrderCompletePage1> {
                                           SizedBox(
                                             height: 30,
                                           ),
-                                          if (controller.active.isNotEmpty)
+                                          if (checkEmpty(
+                                              sortedOrders(changeValue)))
                                             Padding(
                                               padding: const EdgeInsets.only(
                                                   left: 6),
                                               child: Text(
-                                                "ACTIVE",
+                                                getTitle(changeValue),
                                                 style: GoogleFonts.inter(
                                                   textStyle: TextStyle(
                                                     fontSize: 10,
@@ -338,16 +467,24 @@ class _OrderCompletePage1State extends State<OrderCompletePage1> {
                                           SizedBox(
                                             height: 10,
                                           ),
-                                          ...controller.active
-                                              .map((element) =>
-                                                  OrderWidget(element: element))
-                                              .toList(),
+                                          if (searchValue == '')
+                                            ...sortedOrders(changeValue)
+                                                .map((element) => OrderWidget(
+                                                    element: element))
+                                                .toList()
+                                          else
+                                            ...sortedOrders(changeValue)
+                                                .where((element) => element.id
+                                                    .toString()
+                                                    .contains(searchValue))
+                                                .map((element) => OrderWidget(
+                                                    element: element)),
                                           SizedBox(
                                             height: 10,
                                           ),
                                         ]),
                                   ),
-                                if (changeValue == 'InProgress')
+                                /*    if (changeValue == 'InProgress')
                                   Expanded(
                                     child: ListView(
                                         physics: BouncingScrollPhysics(),
@@ -463,6 +600,7 @@ class _OrderCompletePage1State extends State<OrderCompletePage1> {
                                           ),
                                         ]),
                                   ),
+                                 */
                                 SizedBox(
                                   height: 30,
                                 ),
