@@ -10,6 +10,7 @@ import 'package:readyplates_restaurants/src/staticscreens/opening_screen.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 import 'package:readyplates_restaurants/widgets/onboardingbutton.dart';
+import 'package:readyplates_restaurants/widgets/snackbar.dart';
 
 class OnBoardingWrapper extends StatelessWidget {
   final OnboardingController onboardingController;
@@ -39,9 +40,28 @@ class OnBoardingWrapper extends StatelessWidget {
         if (!onboardingController.isEditing) {
           Get.showSnackbar(
             GetBar(
-              title: "Warning",
-              message:
-                  "You can't you back at this stage, if you want to edit, you can edit after logging in",
+              backgroundColor: MyTheme.verifyButtonColor,
+              titleText: Text(
+                "Warning",
+                style: GoogleFonts.nunito(
+                  fontStyle: FontStyle.normal,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 17,
+                  color: MyTheme.appbartextColor,
+                ),
+              ),
+              messageText: Text(
+                "You can't you back at this stage, if you want to edit, you can edit after logging in",
+                style: GoogleFonts.nunito(
+                  fontStyle: FontStyle.normal,
+                  fontWeight: FontWeight.normal,
+                  fontSize: 17,
+                  color: MyTheme.appbartextColor,
+                ),
+              ),
+              // title: "Warning",
+              // message:
+              //     "You can't you back at this stage, if you want to edit, you can edit after logging in",
               duration: Duration(seconds: 2),
               mainButton: TextButton(
                   onPressed: () {
@@ -49,7 +69,14 @@ class OnBoardingWrapper extends StatelessWidget {
                     SharedPreferenceHelper().clear();
                     Get.offAllNamed(OpeningScreen.id);
                   },
-                  child: Text("Logout?")),
+                  child: Text(
+                    "Logout?",
+                    style: GoogleFonts.inter(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 17,
+                      color: MyTheme.orangeColor,
+                    ),
+                  )),
             ),
           );
           return false;
@@ -76,11 +103,15 @@ class OnBoardingWrapper extends StatelessWidget {
                       ),
                       onPressed: () {
                         if (!onboardingController.isEditing) {
-                          Get.showSnackbar(GetBar(
-                            title: "Warning",
-                            duration: Duration(seconds: 2),
+                          Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+                            color: MyTheme.verifyButtonColor,
+                            title: 'Warning',
                             message:
                                 "You can't you back at this stage, if you want to edit, you can edit after logging in",
+                            icon: Icon(
+                              Icons.warning_amber_rounded,
+                              color: MyTheme.orangelightColor,
+                            ),
                           ));
                         } else {
                           Get.back();

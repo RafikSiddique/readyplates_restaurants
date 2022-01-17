@@ -240,7 +240,18 @@ class AuthController extends GetxController {
         Get.toNamed(LoginPage.id);
       }
     } catch (e) {
-      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message: e.toString(),
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
+        // Get.snackbar("Error", e.toString());
+      }
     }
   }
 
@@ -272,7 +283,18 @@ class AuthController extends GetxController {
       int id = await services.getOnboardingScreen(uid);
       return id;
     } catch (e) {
-      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message: e.toString(),
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
+        // Get.snackbar("Error", e.toString());
+      }
       return 0;
     }
   }

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -15,7 +16,9 @@ import 'package:readyplates_restaurants/src/orders/order_controller.dart';
 import 'package:readyplates_restaurants/utils/cities.dart';
 import 'package:readyplates_restaurants/utils/city.dart';
 import 'package:readyplates_restaurants/utils/fcm_service.dart';
+import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
+import 'package:readyplates_restaurants/widgets/snackbar.dart';
 
 enum OnBoardingMethod {
   api1,
@@ -154,7 +157,18 @@ class OnboardingController extends GetxController {
       Get.toNamed(OnboardingPage2.id,
           arguments: LatLng(position.latitude, position.longitude));
     } catch (e) {
-      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message: e.toString(),
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
+        // Get.snackbar("Error", e.toString());
+      }
     }
   }
 
@@ -246,7 +260,18 @@ class OnboardingController extends GetxController {
         c.selectedIndex.value = 4;
       }
     } catch (e) {
-      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message: e.toString(),
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
+        // Get.snackbar("Error", e.toString());
+      }
     }
   }
 
@@ -312,7 +337,18 @@ class OnboardingController extends GetxController {
       );
       Get.toNamed(OnboardingPage4.id);
     } catch (e) {
-      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message: e.toString(),
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
+        // Get.snackbar("Error", e.toString());
+      }
     }
   }
 
@@ -362,7 +398,18 @@ class OnboardingController extends GetxController {
       //sfHelper.getRestaurantId();
       Get.toNamed(OnboardingPage5.id);
     } catch (e) {
-      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message: e.toString(),
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
+        // Get.snackbar("Error", e.toString());
+      }
     }
   }
 
@@ -415,7 +462,18 @@ class OnboardingController extends GetxController {
           fsolNumber.text);
       Get.toNamed(OnboardingPage6.id);
     } catch (e) {
-      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message: e.toString(),
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
+        // Get.snackbar("Error", e.toString());
+      }
     }
   }
 
@@ -463,7 +521,18 @@ class OnboardingController extends GetxController {
         //     duration: Duration(microseconds: 200), curve: Curves.ease);
       }
     } catch (e) {
-      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message: e.toString(),
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
+        // Get.snackbar("Error", e.toString());
+      }
     }
   }
 
@@ -591,7 +660,18 @@ class OnboardingController extends GetxController {
       );
       Get.toNamed(OnboardingPage8.id);
     } catch (e) {
-      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message: e.toString(),
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
+        // Get.snackbar("Error", e.toString());
+      }
     }
   }
 
@@ -643,7 +723,18 @@ class OnboardingController extends GetxController {
 
       Get.toNamed(OnboardingPage9.resId);
     } catch (e) {
-      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message: e.toString(),
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
+        // Get.snackbar("Error", e.toString());
+      }
     }
   }
 
@@ -798,10 +889,32 @@ class OnboardingController extends GetxController {
               duration: Duration(milliseconds: 500), curve: Curves.ease);
         }
       } else {
-        Get.snackbar("Error", "Uplaod All the Images");
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message: "Uplaod All the Images",
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
+        // Get.snackbar("Error", e.toString());
+
+        // Get.snackbar("Error", "Uplaod All the Images");
       }
     } catch (e) {
-      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message: e.toString(),
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
+        // Get.snackbar("Error", e.toString());
+      }
     }
   }
 
@@ -856,7 +969,18 @@ class OnboardingController extends GetxController {
 
       // dispose();
     } catch (e) {
-      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message: e.toString(),
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
+        // Get.snackbar("Error", e.toString());
+      }
     }
   }
 }

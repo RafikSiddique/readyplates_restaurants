@@ -1,10 +1,13 @@
 import 'dart:io';
 
 import 'package:flutter/widgets.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:readyplates_restaurants/models/orderitem_model.dart';
 import 'package:readyplates_restaurants/src/orders/order_services.dart';
+import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
+import 'package:readyplates_restaurants/widgets/snackbar.dart';
 
 class OrderController extends GetxController {
   final SharedPreferenceHelper sfHelper = Get.find();
@@ -87,7 +90,16 @@ class OrderController extends GetxController {
     } catch (e) {
       loading.value = false;
       if (e.runtimeType != SocketException) {
-        Get.snackbar("Error", e.toString());
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message: e.toString(),
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
+        // Get.snackbar("Error", e.toString());
       }
     }
   }
@@ -118,7 +130,18 @@ class OrderController extends GetxController {
       update();
     } catch (e) {
       loading.value = false;
-      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message: e.toString(),
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
+        // Get.snackbar("Error", e.toString());
+      }
     }
   }
 
@@ -131,7 +154,18 @@ class OrderController extends GetxController {
       loading.value = false;
     } catch (e) {
       loading.value = false;
-      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message: e.toString(),
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
+        // Get.snackbar("Error", e.toString());
+      }
     }
   }
 }

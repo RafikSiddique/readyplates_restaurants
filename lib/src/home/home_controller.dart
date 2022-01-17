@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart';
 import 'package:path_provider/path_provider.dart';
@@ -14,7 +15,9 @@ import 'package:readyplates_restaurants/src/orders/order_controller.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/src/staticscreens/opening_screen.dart';
 import 'package:readyplates_restaurants/utils/exception.dart';
+import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
+import 'package:readyplates_restaurants/widgets/snackbar.dart';
 
 class HomeController extends GetxController {
   HomeController({required this.selectedIndex});
@@ -171,11 +174,18 @@ class HomeController extends GetxController {
 
       restaurantModel = await homeServices.getRes(int.parse(resId));
     } catch (e) {
-      if (e.runtimeType != SocketException)
-        Get.showSnackbar(GetSnackBar(
-          title: "Error",
-          message: "Something went wrong",
+      if (e.runtimeType != SocketException) {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message: e.toString(),
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
         ));
+        // Get.snackbar("Error", e.toString());
+      }
     }
   }
 
@@ -183,7 +193,17 @@ class HomeController extends GetxController {
     try {
       await homeServices.setAutoOrder(resid.toString(), flag.toString());
     } catch (e) {
-      Get.snackbar("Error", e.toString());
+      Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+        color: MyTheme.verifyButtonColor,
+        title: 'Error',
+        message: e.toString(),
+        icon: FaIcon(
+          FontAwesomeIcons.timesCircle,
+          color: MyTheme.redColor,
+        ),
+      ));
+      // Get.snackbar("Error", e.toString());
+
     }
   }
 
@@ -192,7 +212,17 @@ class HomeController extends GetxController {
       bool data = await homeServices.getAutoOrder(resid.toString());
       return data;
     } catch (e) {
-      Get.snackbar("Error", e.toString());
+      Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+        color: MyTheme.verifyButtonColor,
+        title: 'Error',
+        message: e.toString(),
+        icon: FaIcon(
+          FontAwesomeIcons.timesCircle,
+          color: MyTheme.redColor,
+        ),
+      ));
+      // Get.snackbar("Error", e.toString());
+
       return false;
     }
   }
@@ -216,7 +246,18 @@ class HomeController extends GetxController {
       clearController();
       Get.back();
     } catch (e) {
-      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message: e.toString(),
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
+        // Get.snackbar("Error", e.toString());
+      }
     }
   }
 
@@ -225,11 +266,18 @@ class HomeController extends GetxController {
       await homeServices.deleteFoodItem(id);
       getFoodItems();
     } catch (e) {
-      if (e.runtimeType != SocketException)
-        Get.showSnackbar(GetBar(
-          duration: Duration(seconds: 1),
+      if (e.runtimeType != SocketException) {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
           message: e.toString(),
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
         ));
+        // Get.snackbar("Error", e.toString());
+      }
     }
   }
 
@@ -253,7 +301,18 @@ class HomeController extends GetxController {
       await getFoodItems();
       Get.back();
     } catch (e) {
-      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message: e.toString(),
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
+        // Get.snackbar("Error", e.toString());
+      }
     }
   }
 
@@ -262,7 +321,17 @@ class HomeController extends GetxController {
       String id = await sfHelper.getRestaurantId();
       foodItems.value = await homeServices.getMenu(id);
     } catch (e) {
-      Get.snackbar("Error", e.toString());
+      Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+        color: MyTheme.verifyButtonColor,
+        title: 'Error',
+        message: e.toString(),
+        icon: FaIcon(
+          FontAwesomeIcons.timesCircle,
+          color: MyTheme.redColor,
+        ),
+      ));
+      // Get.snackbar("Error", e.toString());
+
       //timer?.cancel();
     }
   }
@@ -290,7 +359,18 @@ class HomeController extends GetxController {
               ? []
               : getUnavaailTables
           : [];
-      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message: e.toString(),
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
+        // Get.snackbar("Error", e.toString());
+      }
     }
   }
 
@@ -300,7 +380,17 @@ class HomeController extends GetxController {
       int tableNo = tables.indexWhere((element) => element.id == tableId);
       return tableNo + 1;
     } catch (e) {
-      Get.snackbar("Error", e.toString());
+      Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+        color: MyTheme.verifyButtonColor,
+        title: 'Error',
+        message: e.toString(),
+        icon: FaIcon(
+          FontAwesomeIcons.timesCircle,
+          color: MyTheme.redColor,
+        ),
+      ));
+      // Get.snackbar("Error", e.toString());
+
       return -1;
     }
   }
@@ -310,7 +400,18 @@ class HomeController extends GetxController {
       await homeServices.switchAvailability(id, availability);
       await getAvailableTables();
     } catch (e) {
-      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message: e.toString(),
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
+        // Get.snackbar("Error", e.toString());
+      }
     }
   }
 
@@ -345,7 +446,18 @@ class HomeController extends GetxController {
       await getRestaurant();
       switchValue.value = restaurantModel!.open_orders;
     } catch (e) {
-      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message: e.toString(),
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
+        // Get.snackbar("Error", e.toString());
+      }
     }
   }
 
@@ -358,7 +470,18 @@ class HomeController extends GetxController {
       );
       ordersOnOff();
     } catch (e) {
-      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message: e.toString(),
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
+        // Get.snackbar("Error", e.toString());
+      }
     }
   }
 
