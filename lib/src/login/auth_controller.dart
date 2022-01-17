@@ -1,6 +1,7 @@
 import 'dart:io';
-
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -14,7 +15,9 @@ import 'package:readyplates_restaurants/src/login/screens/changepassword_page1.d
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
 import 'package:readyplates_restaurants/utils/fcm_service.dart';
+import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
+import 'package:readyplates_restaurants/widgets/snackbar.dart';
 
 // String uid = '';
 bool isForgotPass = false;
@@ -129,7 +132,20 @@ class AuthController extends GetxController {
       oController.uniqueId = id;
       Get.toNamed(OnboardingPage1.id);
     } catch (e) {
-      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
+      Map resp = json.decode(e.toString());
+      String s = resp['Error']['email'][0];
+      if (e.runtimeType != SocketException) {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message: s.toString(),
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
+        // Get.snackbar("Error", e.toString());
+      }
     }
   }
 
@@ -180,7 +196,21 @@ class AuthController extends GetxController {
         password.clear();
       }
     } catch (e) {
-      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
+      Map resp = json.decode(e.toString());
+      String s = resp['ERROR'];
+      if (e.runtimeType != SocketException) {
+        // Get.snackbar("Error", e.toString());
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message: s.toString(),
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
+      }
+      ;
     }
   }
 
@@ -222,7 +252,18 @@ class AuthController extends GetxController {
 
       Get.toNamed(VerifyOtpPage.id);
     } catch (e) {
-      if (e.runtimeType != SocketException) Get.snackbar("Error", e.toString());
+      if (e.runtimeType != SocketException) {
+        // Get.snackbar("Error", e.toString());
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message: e.toString().replaceAll('"', ''),
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
+      }
     }
   }
 
