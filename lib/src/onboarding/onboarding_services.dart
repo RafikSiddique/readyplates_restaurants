@@ -181,12 +181,13 @@ class OnboardingServices extends ApiServices {
   ) async {
     try {
       MultipartRequest request = MultipartRequest('POST', onboarding(6));
-      MultipartFile ss4_letters =
+      //TODO: Uncomment
+      /*  MultipartFile ss4_letters =
           await MultipartFile.fromPath('ss4_letter', ss4_letter.path);
       MultipartFile c147_letters =
-          await MultipartFile.fromPath('c147_letter', c147_letter.path);
+          await MultipartFile.fromPath('c147_letter', c147_letter.path); */
 
-      request.files.addAll([ss4_letters, c147_letters]);
+      //request.files.addAll([ss4_letters, c147_letters]);
       request.fields.addAll({
         'user': user,
         'type_of_business': type_of_business,
@@ -282,20 +283,31 @@ class OnboardingServices extends ApiServices {
       List<MultipartFile> multipartFiles = [];
 
       for (int i = 0; i < files.length; i++) {
+        print("File:$i");
+        File file = File(files[i]);
+        List<int> bytes = await file.readAsBytes();
+        print(bytes);
+        print(bytes.length);
         MultipartFile multipartFile =
-            await MultipartFile.fromPath(fields[i], files[i]);
+            await MultipartFile.fromBytes(fields[i], bytes);
         multipartFiles.add(multipartFile);
       }
       MultipartRequest request =
           MultipartRequest('POST', onboarding(index + 9));
-      request.files.addAll(multipartFiles);
       request.fields.addAll({'user': user});
+      request.files.addAll(multipartFiles);
+      print(user);
       StreamedResponse response = await request.send();
+      print(request.fields);
+      print(request.files);
       if (response.statusCode == 201) {
         String body = await response.stream.bytesToString();
         print(body);
         return true;
       } else {
+        print(response.reasonPhrase);
+        String body = await response.stream.bytesToString();
+        print(body);
         throw AppException();
       }
     } catch (e) {

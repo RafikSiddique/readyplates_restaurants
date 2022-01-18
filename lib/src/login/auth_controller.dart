@@ -149,6 +149,27 @@ class AuthController extends GetxController {
     }
   }
 
+  Future<bool> getPermission() async {
+    bool isLocationEnabled = await Geolocator.isLocationServiceEnabled();
+    print("Is Location enabled:" + isLocationEnabled.toString());
+    if (isLocationEnabled) {
+      LocationPermission permission = await Geolocator.checkPermission();
+
+      if (permission == LocationPermission.denied) {
+        GeolocatorPlatform.instance.requestPermission();
+        return getPermission();
+      } else if (permission == LocationPermission.deniedForever) {
+        await Geolocator.openAppSettings();
+        return getPermission();
+      } else {
+        return true;
+      }
+    } else {
+      await Geolocator.openLocationSettings();
+      return getPermission();
+    }
+  }
+
   Future<void> login(bool isChangePass) async {
     try {
       List<String> id = await services.login(
@@ -160,6 +181,8 @@ class AuthController extends GetxController {
       FirebaseMessagingService().getToken();
       if (!isChangePass) {
         int routeId = await getScreen(id[0]);
+        print("Get onboarding screen");
+        print(routeId);
         if (routeId >= 9) {
           isLoggedIn.value = true;
           sfHelper.setLoggedIn(true);
@@ -179,13 +202,21 @@ class AuthController extends GetxController {
           password.clear();
           password2.clear();
         } else {
-          Get.put(OnboardingController());
-          Get.find<OnboardingController>().uniqueId = id[0];
+          final c = Get.put(OnboardingController());
+          c.uniqueId = id[0];
+          print("Getting map");
           if (routeId == 1) {
-            await Geolocator.requestPermission();
-            Position position = await Geolocator.getCurrentPosition();
-            Get.toNamed(OnboardingPage2.id,
-                arguments: LatLng(position.latitude, position.longitude));
+            print("Getting permission");
+            bool isAllowed = await getPermission();
+            print("Got permission");
+            if (isAllowed) {
+              c.init2();
+              Position position = await Geolocator.getCurrentPosition();
+              Get.toNamed(OnboardingPage2.id,
+                  arguments: LatLng(position.latitude, position.longitude));
+            } else {
+              print("Location not allowed");
+            }
           } else {
             Get.toNamed(route(routeId + 1));
           }
@@ -280,6 +311,7 @@ class AuthController extends GetxController {
 
   Future<int> getScreen(String uid) async {
     try {
+      print("Getting Screen");
       int id = await services.getOnboardingScreen(uid);
       return id;
     } catch (e) {

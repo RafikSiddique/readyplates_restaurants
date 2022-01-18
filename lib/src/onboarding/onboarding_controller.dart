@@ -845,6 +845,7 @@ class OnboardingController extends GetxController {
 
   Future<void> _uploadImage() async {
     try {
+      print("On Upload Image, Res Id is $resId");
       if (resId == "") {
         resId = await sfHelper.getRestaurantId();
       }
@@ -875,6 +876,7 @@ class OnboardingController extends GetxController {
           break;
       }
       if (isImagesUploaded(files)) {
+        print("Calling apis");
         await services.uploadImages(files, pageIndex.value, fields, resId);
         if (pageIndex.value == 3) {
           if (isEditing) {

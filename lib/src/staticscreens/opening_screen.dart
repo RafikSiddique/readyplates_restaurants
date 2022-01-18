@@ -257,7 +257,7 @@ class _OpeningScreenState extends State<OpeningScreen>
                         child: InkWell(
                           onTap: () {
                             Navigator.pushNamed(context, SignupPage.id);
-                        },
+                          },
                           child: Container(
                             decoration: BoxDecoration(
                               color: Color(0xffFF7622).withOpacity(0.6),
@@ -333,9 +333,11 @@ class _OpeningScreenState extends State<OpeningScreen>
           Get.put(OrderController());
           Get.offNamed(HomePage.id);
         } else { */ */
+        print("User Id: ${authController.userId}");
         if (authController.userId != "-1") {
           int id = await authController.getScreen(authController.userId);
-          if (id >= 13) {
+          print("Screen ID $id");
+          if (id >= 12) {
             await SharedPreferenceHelper().setLoggedIn(true);
 
             Get.put(HomeController(selectedIndex: 0.obs));
