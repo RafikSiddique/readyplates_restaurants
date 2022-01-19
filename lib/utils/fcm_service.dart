@@ -104,7 +104,7 @@ class FirebaseMessagingService extends ApiServices {
         FirebaseFirestore.instance.collection('restaurant').doc(userId).set({
           DateTime.now().toString(): token,
         });
-        var res = await post(Uri.parse(baseUri + 'restaurants/token/'),
+        var res = await post(Uri.parse(baseUri + 'restaurants/token2/'),
             headers: contentTypeJsonHeader,
             body: jsonEncode({
               'restaurant': userId,
