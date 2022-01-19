@@ -14,6 +14,7 @@ import 'package:readyplates_restaurants/src/home/screens/home_screen.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/src/login/screens/login_page.dart';
 import 'package:readyplates_restaurants/src/login/screens/signup_page.dart';
+import 'package:readyplates_restaurants/utils/fcm_service.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
 
@@ -341,7 +342,8 @@ class _OpeningScreenState extends State<OpeningScreen>
           print("Screen ID $id");
           if (id >= 12) {
             await SharedPreferenceHelper().setLoggedIn(true);
-
+final fcm = FirebaseMessagingService();
+          fcm.initNotifications();
             Get.put(HomeController(selectedIndex: 0.obs));
             Get.put(OrderController());
             Get.offNamed(HomePage.id);

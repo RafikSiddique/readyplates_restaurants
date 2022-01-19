@@ -197,6 +197,8 @@ class AuthController extends GetxController {
           } else {
             await sfHelper.setOpenAutoFlag(true);
           }
+          final fcm = FirebaseMessagingService();
+          fcm.initNotifications();
           Get.offAllNamed(HomePage.id);
           email.clear();
           password.clear();

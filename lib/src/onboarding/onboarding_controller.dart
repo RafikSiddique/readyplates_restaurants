@@ -948,6 +948,8 @@ class OnboardingController extends GetxController {
           resId,
           capacities,
         );
+        final fcm = FirebaseMessagingService();
+        fcm.initNotifications();
         Get.find<SharedPreferenceHelper>().setLoggedIn(true);
         Get.find<AuthController>().isLoggedIn.value = true;
         Get.put(HomeController(selectedIndex: 0.obs));
