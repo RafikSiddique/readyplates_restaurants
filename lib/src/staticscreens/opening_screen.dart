@@ -83,27 +83,29 @@ class _OpeningScreenState extends State<OpeningScreen>
                           SizedBox(width: 16),
                           Container(
                             // width: size.width * 0.6,
-                            height: 39,
-                            child: RichText(
-                              text: TextSpan(
-                                  text: 'READY',
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 30,
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w700,
-                                    color: MyTheme.orangeColor,
-                                  ),
-                                  children: [
-                                    TextSpan(
-                                      text: 'Plates'.toUpperCase(),
-                                      style: GoogleFonts.montserrat(
-                                        fontSize: 30,
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.w200,
-                                        color: MyTheme.orangeColor,
-                                      ),
+                            height: 40,
+                            child: Center(
+                              child: RichText(
+                                text: TextSpan(
+                                    text: 'READY',
+                                    style: GoogleFonts.montserrat(
+                                      fontSize: 30,
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.w700,
+                                      color: MyTheme.orangeColor,
                                     ),
-                                  ]),
+                                    children: [
+                                      TextSpan(
+                                        text: 'Plates'.toUpperCase(),
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 30,
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.w200,
+                                          color: MyTheme.orangeColor,
+                                        ),
+                                      ),
+                                    ]),
+                              ),
                             ),
                           ),
                         ],
@@ -342,8 +344,8 @@ class _OpeningScreenState extends State<OpeningScreen>
           print("Screen ID $id");
           if (id >= 12) {
             await SharedPreferenceHelper().setLoggedIn(true);
-final fcm = FirebaseMessagingService();
-          fcm.initNotifications();
+            final fcm = FirebaseMessagingService();
+            fcm.initNotifications();
             Get.put(HomeController(selectedIndex: 0.obs));
             Get.put(OrderController());
             Get.offNamed(HomePage.id);
