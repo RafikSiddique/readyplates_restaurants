@@ -148,7 +148,7 @@ class _OpeningScreenState extends State<OpeningScreen>
               Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 50),
+                    padding: const EdgeInsets.only(top: 55),
                     child: Hero(
                       tag: "rp",
                       child: Material(
@@ -168,27 +168,29 @@ class _OpeningScreenState extends State<OpeningScreen>
                             SizedBox(width: 16),
                             Container(
                               // width: size.width * 0.6,
-                              height: 39,
-                              child: RichText(
-                                text: TextSpan(
-                                    text: 'READY',
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 30,
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.w700,
-                                      color: MyTheme.orangeColor,
-                                    ),
-                                    children: [
-                                      TextSpan(
-                                        text: 'Plates'.toUpperCase(),
-                                        style: GoogleFonts.montserrat(
-                                          fontSize: 30,
-                                          fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.w200,
-                                          color: MyTheme.orangeColor,
-                                        ),
+                              height: 40,
+                              child: Center(
+                                child: RichText(
+                                  text: TextSpan(
+                                      text: 'READY',
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 30,
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.w700,
+                                        color: MyTheme.orangeColor,
                                       ),
-                                    ]),
+                                      children: [
+                                        TextSpan(
+                                          text: 'Plates'.toUpperCase(),
+                                          style: GoogleFonts.montserrat(
+                                            fontSize: 30,
+                                            fontStyle: FontStyle.normal,
+                                            fontWeight: FontWeight.w200,
+                                            color: MyTheme.orangeColor,
+                                          ),
+                                        ),
+                                      ]),
+                                ),
                               ),
                             ),
                           ],
