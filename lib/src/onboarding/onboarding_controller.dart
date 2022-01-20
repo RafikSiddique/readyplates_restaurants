@@ -894,7 +894,7 @@ class OnboardingController extends GetxController {
         Get.showSnackbar(MySnackBar.myLoadingSnackBar(
           color: MyTheme.verifyButtonColor,
           title: 'Error',
-          message: "Uplaod All the Images",
+          message: "Upload All the Images",
           icon: FaIcon(
             FontAwesomeIcons.timesCircle,
             color: MyTheme.redColor,
