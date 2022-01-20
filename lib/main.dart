@@ -25,8 +25,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: Colors.orange,
-          sliderTheme:
-              SliderThemeData(trackHeight: 8, trackShape: CustomTrackShape()),
+          sliderTheme: SliderThemeData(
+              trackHeight: 8,
+              trackShape: CustomTrackShape(),
+              valueIndicatorColor: Colors.grey),
           bottomNavigationBarTheme: BottomNavigationBarThemeData(
             selectedLabelStyle: GoogleFonts.inter(
               fontSize: 13,
