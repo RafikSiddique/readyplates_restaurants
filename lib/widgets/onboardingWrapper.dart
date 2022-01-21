@@ -35,6 +35,10 @@ class OnBoardingWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void foo() {
+      print("hello world");
+    }
+
     return WillPopScope(
       onWillPop: () async {
         if (!onboardingController.isEditing) {
@@ -107,7 +111,7 @@ class OnBoardingWrapper extends StatelessWidget {
                             color: MyTheme.verifyButtonColor,
                             title: 'Warning',
                             message:
-                                "You can't you back at this stage, if you want to edit, you can edit after logging in",
+                                "You can't go back at this stage, if you want to edit, you can edit after logging in.",
                             icon: Icon(
                               Icons.warning_amber_rounded,
                               color: MyTheme.orangelightColor,
@@ -142,12 +146,11 @@ class OnBoardingWrapper extends StatelessWidget {
                       child: AnimatedSwitcher(
                         duration: Duration(milliseconds: 300),
                         child: OnboardingButton(
-
                           key: ValueKey(textControllers
                                   .any((element) => element.text.isEmpty) ||
                               !enabled),
                           height: 50,
-                          onTap: enabled ? onTap : null,
+                          onTap: enabled ? onTap : foo,
                           buttonbackgroundColor: textControllers
                                       .any((element) => element.text.isEmpty) ||
                                   !enabled

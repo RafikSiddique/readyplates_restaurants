@@ -168,6 +168,17 @@ class OnboardingController extends GetxController {
           ),
         ));
         // Get.snackbar("Error", e.toString());
+      } else {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message:
+              "There seems to be a server/internet connectivity issue. Please check the same",
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
       }
     }
   }
@@ -271,6 +282,17 @@ class OnboardingController extends GetxController {
           ),
         ));
         // Get.snackbar("Error", e.toString());
+      } else {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message:
+              "There seems to be a server/internet connectivity issue. Please check the same",
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
       }
     }
   }
@@ -348,6 +370,17 @@ class OnboardingController extends GetxController {
           ),
         ));
         // Get.snackbar("Error", e.toString());
+      } else {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message:
+              "There seems to be a server/internet connectivity issue. Please check the same",
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
       }
     }
   }
@@ -409,6 +442,17 @@ class OnboardingController extends GetxController {
           ),
         ));
         // Get.snackbar("Error", e.toString());
+      } else {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message:
+              "There seems to be a server/internet connectivity issue. Please check the same",
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
       }
     }
   }
@@ -473,6 +517,17 @@ class OnboardingController extends GetxController {
           ),
         ));
         // Get.snackbar("Error", e.toString());
+      } else {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message:
+              "There seems to be a server/internet connectivity issue. Please check the same",
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
       }
     }
   }
@@ -532,6 +587,17 @@ class OnboardingController extends GetxController {
           ),
         ));
         // Get.snackbar("Error", e.toString());
+      } else {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message:
+              "There seems to be a server/internet connectivity issue. Please check the same",
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
       }
     }
   }
@@ -671,6 +737,17 @@ class OnboardingController extends GetxController {
           ),
         ));
         // Get.snackbar("Error", e.toString());
+      } else {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message:
+              "There seems to be a server/internet connectivity issue. Please check the same",
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
       }
     }
   }
@@ -734,6 +811,17 @@ class OnboardingController extends GetxController {
           ),
         ));
         // Get.snackbar("Error", e.toString());
+      } else {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message:
+              "There seems to be a server/internet connectivity issue. Please check the same",
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
       }
     }
   }
@@ -916,6 +1004,17 @@ class OnboardingController extends GetxController {
           ),
         ));
         // Get.snackbar("Error", e.toString());
+      } else {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message:
+              "There seems to be a server/internet connectivity issue. Please check the same",
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
       }
     }
   }
@@ -984,6 +1083,17 @@ class OnboardingController extends GetxController {
           ),
         ));
         // Get.snackbar("Error", e.toString());
+      } else {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message:
+              "There seems to be a server/internet connectivity issue. Please check the same",
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
       }
     }
   }

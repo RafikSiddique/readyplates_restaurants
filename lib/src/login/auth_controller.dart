@@ -145,6 +145,17 @@ class AuthController extends GetxController {
           ),
         ));
         // Get.snackbar("Error", e.toString());
+      } else {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message:
+              "There seems to be a server/internet connectivity issue. Please check the same",
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
       }
     }
   }
@@ -232,7 +243,6 @@ class AuthController extends GetxController {
       Map resp = json.decode(e.toString());
       String s = resp['ERROR'];
       if (e.runtimeType != SocketException) {
-        // Get.snackbar("Error", e.toString());
         Get.showSnackbar(MySnackBar.myLoadingSnackBar(
           color: MyTheme.verifyButtonColor,
           title: 'Error',
@@ -242,8 +252,19 @@ class AuthController extends GetxController {
             color: MyTheme.redColor,
           ),
         ));
+        // Get.snackbar("Error", e.toString());
+      } else {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message:
+              "There seems to be a server/internet connectivity issue. Please check the same",
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
       }
-      ;
     }
   }
 
@@ -284,6 +305,17 @@ class AuthController extends GetxController {
           ),
         ));
         // Get.snackbar("Error", e.toString());
+      } else {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message:
+              "There seems to be a server/internet connectivity issue. Please check the same",
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
       }
     }
   }
@@ -297,11 +329,22 @@ class AuthController extends GetxController {
       Get.toNamed(VerifyOtpPage.id);
     } catch (e) {
       if (e.runtimeType != SocketException) {
-        // Get.snackbar("Error", e.toString());
         Get.showSnackbar(MySnackBar.myLoadingSnackBar(
           color: MyTheme.verifyButtonColor,
           title: 'Error',
           message: e.toString().replaceAll('"', ''),
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
+        // Get.snackbar("Error", e.toString());
+      } else {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message:
+              "There seems to be a server/internet connectivity issue. Please check the same",
           icon: FaIcon(
             FontAwesomeIcons.timesCircle,
             color: MyTheme.redColor,
@@ -321,13 +364,24 @@ class AuthController extends GetxController {
         Get.showSnackbar(MySnackBar.myLoadingSnackBar(
           color: MyTheme.verifyButtonColor,
           title: 'Error',
-          message: e.toString(),
+          message: e.toString().replaceAll('"', ''),
           icon: FaIcon(
             FontAwesomeIcons.timesCircle,
             color: MyTheme.redColor,
           ),
         ));
         // Get.snackbar("Error", e.toString());
+      } else {
+        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+          color: MyTheme.verifyButtonColor,
+          title: 'Error',
+          message:
+              "There seems to be a server/internet connectivity issue. Please check the same",
+          icon: FaIcon(
+            FontAwesomeIcons.timesCircle,
+            color: MyTheme.redColor,
+          ),
+        ));
       }
       return 0;
     }
