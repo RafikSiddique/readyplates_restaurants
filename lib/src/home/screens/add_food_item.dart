@@ -314,7 +314,17 @@ class _AddFoodItemState extends State<AddFoodItem> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: List.generate(
-                              5, (index) => Text((index + 1).toString())),
+                            5,
+                            (index) => Text(
+                              ("${index + 1}").toString(),
+                              style: GoogleFonts.inter(
+                                fontSize: 13,
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.w500,
+                                color: MyTheme.labelColor,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                 controller.category.value == 'Desserts'
