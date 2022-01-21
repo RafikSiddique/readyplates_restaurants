@@ -13,6 +13,7 @@ import 'package:readyplates_restaurants/widgets/edit_button.dart';
 class MenuPage extends StatelessWidget {
   MenuPage({Key? key}) : super(key: key);
   final controller = Get.find<HomeController>();
+
   List<String> categories = ["Starter", "Main Course", "Desserts", "Sides"];
   bool loading = false;
 
@@ -367,7 +368,12 @@ class MenuPage extends StatelessWidget {
                                                                   size.width *
                                                                       0.5,
                                                               child: Text(
-                                                                e.std_serving_size,
+                                                                (e.std_serving_size ==
+                                                                            'Not Applicable' ||
+                                                                        e.std_serving_size ==
+                                                                            'Other')
+                                                                    ? ''
+                                                                    : e.std_serving_size,
                                                                 textAlign:
                                                                     TextAlign
                                                                         .left,
@@ -422,12 +428,17 @@ class MenuPage extends StatelessWidget {
                                                                 double.parse(e
                                                                         .spice_level)
                                                                     .toInt(),
-                                                                (index) =>
-                                                                    Image.asset(
-                                                                  'assets/images/spice.png',
-                                                                  color: color(
-                                                                      index),
-                                                                ),
+                                                                (index) => controller
+                                                                            .category
+                                                                            .value ==
+                                                                        'Desserts'
+                                                                    ? Container()
+                                                                    : Image
+                                                                        .asset(
+                                                                        'assets/images/spice.png',
+                                                                        color: color(
+                                                                            index),
+                                                                      ),
                                                               ),
                                                               Spacer(),
                                                               Text(

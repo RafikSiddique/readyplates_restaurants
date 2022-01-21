@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/src/login/auth_controller.dart';
 import 'package:readyplates_restaurants/src/staticscreens/opening_screen.dart';
-import 'package:readyplates_restaurants/utils/fcm_service.dart';
 import 'package:readyplates_restaurants/utils/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
@@ -26,8 +25,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: Colors.orange,
-          sliderTheme:
-              SliderThemeData(trackHeight: 8, trackShape: CustomTrackShape()),
+          sliderTheme: SliderThemeData(
+              trackHeight: 8,
+              trackShape: CustomTrackShape(),
+              valueIndicatorColor: Colors.grey),
           bottomNavigationBarTheme: BottomNavigationBarThemeData(
             selectedLabelStyle: GoogleFonts.inter(
               fontSize: 13,
