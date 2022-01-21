@@ -87,19 +87,19 @@ class _OnboardingPage8State extends State<OnboardingPage8> {
         controller.resDescript,
         controller.maxOrders,
         controller.advanceOrders,
-        controller.eventName,
-        controller.eventDesc
+        // controller.eventName,
+        // controller.eventDesc
       ],
       onTap: () {
         formKey.currentState!.save();
         if (formKey.currentState!.validate())
           controller.onboardingApi(OnBoardingMethod.api8);
       },
-      enabled: controller.servingTime.value != 00 &&
-          controller.recurrenceTime != null &&
-          // controller.selectedRecurrence.isNotEmpty &&
-          controller.eendTimeTod != currentTime &&
-          controller.estartTimeTod != currentTime,
+      // enabled: controller.servingTime.value != 00 &&
+      //     controller.recurrenceTime != null &&
+      //     // controller.selectedRecurrence.isNotEmpty &&
+      //     controller.eendTimeTod != currentTime &&
+      //     controller.estartTimeTod != currentTime,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Form(

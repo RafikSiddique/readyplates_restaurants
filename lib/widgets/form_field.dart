@@ -169,9 +169,11 @@ class _AppFormFieldState extends State<AppFormField> {
                           }
                         }
 
-                        if (widget.isUrl) {
-                          if (!value!.isURL) {
-                            return "Please enter a valid URL";
+                        if (value != '') {
+                          if (widget.isUrl) {
+                            if (!value!.isURL) {
+                              return "Please enter a valid URL";
+                            }
                           }
                         }
                         if (widget.isEmail) {
