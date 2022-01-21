@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 // import 'package:readyplates_restaurants/utils/my_color.dart';
 
 class OnboardingButton extends StatelessWidget {
-  final void Function() onTap;
+  final void Function()? onTap;
   final Color buttonbackgroundColor;
   final List<BoxShadow>? boxShadow;
   final FontWeight? fontWeight;

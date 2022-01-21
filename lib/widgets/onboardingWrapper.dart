@@ -142,11 +142,12 @@ class OnBoardingWrapper extends StatelessWidget {
                       child: AnimatedSwitcher(
                         duration: Duration(milliseconds: 300),
                         child: OnboardingButton(
+
                           key: ValueKey(textControllers
                                   .any((element) => element.text.isEmpty) ||
                               !enabled),
                           height: 50,
-                          onTap: onTap,
+                          onTap: enabled ? onTap : null,
                           buttonbackgroundColor: textControllers
                                       .any((element) => element.text.isEmpty) ||
                                   !enabled
