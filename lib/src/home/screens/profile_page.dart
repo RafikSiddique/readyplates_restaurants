@@ -210,7 +210,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                             top: 15, left: 13, bottom: 15),
                                         child: Container(
                                           height: 38,
-                                          width: Get.width,
+                                          // width: Get.width,
                                           child: Text(
                                             "Turn back on manually",
                                             style: GoogleFonts.nunito(
