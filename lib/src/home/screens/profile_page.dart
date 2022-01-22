@@ -181,27 +181,19 @@ class _ProfilePageState extends State<ProfilePage> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.all(12),
+                                      padding: const EdgeInsets.only(
+                                          top: 15, left: 13, bottom: 15),
                                       child: Text(
                                         "Close Orders",
                                         style: GoogleFonts.inter(
-                                          fontSize: 17,
-                                          fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.bold,
                                           color: MyTheme.appbartextColor,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w600,
+                                          fontStyle: FontStyle.normal,
                                         ),
                                       ),
                                     ),
-                                    ListTile(
-                                      title: Text(
-                                        "Turn back on manually",
-                                        style: GoogleFonts.inter(
-                                          fontSize: 17,
-                                          fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.w500,
-                                          color: MyTheme.appbartextColor,
-                                        ),
-                                      ),
+                                    InkWell(
                                       onTap: () async {
                                         homeController.openCloseOrders();
                                         homeController.switchValue.value =
@@ -213,7 +205,46 @@ class _ProfilePageState extends State<ProfilePage> {
 
                                         Get.back();
                                       },
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 15, left: 13, bottom: 15),
+                                        child: Container(
+                                          height: 38,
+                                          width: Get.width,
+                                          child: Text(
+                                            "Turn back on manually",
+                                            style: GoogleFonts.nunito(
+                                              color: MyTheme.appbartextColor,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w600,
+                                              fontStyle: FontStyle.normal,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
                                     ),
+                                    // ListTile(
+                                    //   title: Text(
+                                    //     "Turn back on manually",
+                                    //     style: GoogleFonts.nunito(
+                                    //       color: MyTheme.appbartextColor,
+                                    //       fontSize: 15,
+                                    //       fontWeight: FontWeight.w600,
+                                    //       fontStyle: FontStyle.normal,
+                                    //     ),
+                                    //   ),
+                                    //   onTap: () async {
+                                    //     homeController.openCloseOrders();
+                                    //     homeController.switchValue.value =
+                                    //         false;
+                                    //     sfHelper.setOpenAutoFlag(false);
+                                    //     String resId =
+                                    //         await sfHelper.getRestaurantId();
+                                    //     homeController.setAutoOrder(resId, 0);
+
+                                    //     Get.back();
+                                    //   },
+                                    // ),
                                     // ListTile(
                                     //   title: Text(
                                     //     "Reopen tomorrow",

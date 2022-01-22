@@ -43,7 +43,7 @@ class OnBoardingWrapper extends StatelessWidget {
       onWillPop: () async {
         if (!onboardingController.isEditing) {
           Get.showSnackbar(
-            GetBar(
+            GetSnackBar(
               backgroundColor: MyTheme.verifyButtonColor,
               titleText: Text(
                 "Warning",

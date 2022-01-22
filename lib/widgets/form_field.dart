@@ -67,7 +67,7 @@ class AppFormField extends StatefulWidget {
 class _AppFormFieldState extends State<AppFormField> {
   bool obSecureText = true;
   TextEditingController get controller => widget.controller;
-  @override
+
   bool valid = true;
 
   bool _Switchvalue = true;

@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 
 class MySnackBar {
-  static GetBar myLoadingSnackBar({
+  static GetSnackBar myLoadingSnackBar({
     String title = '',
     required String message,
     int duration = 3,
@@ -12,7 +12,7 @@ class MySnackBar {
     Color color = Colors.white,
     Widget? icon,
   }) {
-    return GetBar(
+    return GetSnackBar(
       titleText: Padding(
         padding: EdgeInsets.only(left: 8),
         child: Text(

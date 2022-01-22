@@ -43,7 +43,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                 controller.startTime = controller.startTimeTod!.format(context);
               });
             } else {
-              Get.showSnackbar(GetBar(
+              Get.showSnackbar(GetSnackBar(
                 message: "Start time should be before the end time",
                 duration: Duration(seconds: 1),
               ));
@@ -55,7 +55,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
             });
           }
         } else {
-          Get.showSnackbar(GetBar(
+          Get.showSnackbar(GetSnackBar(
             message: "Start time should be before the end time",
             duration: Duration(seconds: 1),
           ));
@@ -90,7 +90,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
                 controller.endTime = controller.endTimeTod!.format(context);
               });
             } else {
-              Get.showSnackbar(GetBar(
+              Get.showSnackbar(GetSnackBar(
                 message: "Start time should be before the end time",
                 duration: Duration(seconds: 1),
               ));
@@ -102,7 +102,7 @@ class _OnboardingPage7State extends State<OnboardingPage7> {
             });
           }
         } else {
-          Get.showSnackbar(GetBar(
+          Get.showSnackbar(GetSnackBar(
             message: "Start time should be before the end time",
             duration: Duration(seconds: 1),
           ));
