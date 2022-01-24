@@ -258,7 +258,8 @@ class MenuPage extends StatelessWidget {
                                                                       .foodItemModel = e;
                                                                   controller
                                                                       .setEditing();
-                                                                  Get.toNamed(
+                                                                  Navigator.pushNamed(
+                                                                      context,
                                                                       AddFoodItem
                                                                           .id);
                                                                 },
