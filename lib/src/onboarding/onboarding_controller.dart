@@ -150,7 +150,7 @@ class OnboardingController extends GetxController {
       this.resId = resId;
 
       await sfHelper.setRestaurantId(resId);
-
+      print("resssssssss${resId}Iddddddddddddddddddd");
       await Geolocator.requestPermission();
       Position position = await Geolocator.getCurrentPosition();
 
