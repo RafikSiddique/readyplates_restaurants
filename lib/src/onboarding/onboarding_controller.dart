@@ -186,7 +186,7 @@ class OnboardingController extends GetxController {
       Get.showSnackbar(MySnackBar.myLoadingSnackBar(
         title: 'Error',
         message:
-            "There seems to be a internet connectivity issue. Please check the your connection",
+            "There seems to be a internet connectivity issue. Please check your connection",
         icon: FaIcon(
           FontAwesomeIcons.timesCircle,
           color: MyTheme.redColor,
@@ -310,7 +310,7 @@ class OnboardingController extends GetxController {
       Get.showSnackbar(MySnackBar.myLoadingSnackBar(
         title: 'Error',
         message:
-            "There seems to be a internet connectivity issue. Please check the your connection",
+            "There seems to be a internet connectivity issue. Please check your connection",
         icon: FaIcon(
           FontAwesomeIcons.timesCircle,
           color: MyTheme.redColor,
@@ -408,7 +408,7 @@ class OnboardingController extends GetxController {
       Get.showSnackbar(MySnackBar.myLoadingSnackBar(
         title: 'Error',
         message:
-            "There seems to be a internet connectivity issue. Please check the your connection",
+            "There seems to be a internet connectivity issue. Please check your connection",
         icon: FaIcon(
           FontAwesomeIcons.timesCircle,
           color: MyTheme.redColor,
@@ -490,7 +490,7 @@ class OnboardingController extends GetxController {
       Get.showSnackbar(MySnackBar.myLoadingSnackBar(
         title: 'Error',
         message:
-            "There seems to be a internet connectivity issue. Please check the your connection",
+            "There seems to be a internet connectivity issue. Please check your connection",
         icon: FaIcon(
           FontAwesomeIcons.timesCircle,
           color: MyTheme.redColor,
@@ -575,7 +575,7 @@ class OnboardingController extends GetxController {
       Get.showSnackbar(MySnackBar.myLoadingSnackBar(
         title: 'Error',
         message:
-            "There seems to be a internet connectivity issue. Please check the your connection",
+            "There seems to be a internet connectivity issue. Please check your connection",
         icon: FaIcon(
           FontAwesomeIcons.timesCircle,
           color: MyTheme.redColor,
@@ -655,7 +655,7 @@ class OnboardingController extends GetxController {
       Get.showSnackbar(MySnackBar.myLoadingSnackBar(
         title: 'Error',
         message:
-            "There seems to be a internet connectivity issue. Please check the your connection",
+            "There seems to be a internet connectivity issue. Please check your connection",
         icon: FaIcon(
           FontAwesomeIcons.timesCircle,
           color: MyTheme.redColor,
@@ -815,7 +815,7 @@ class OnboardingController extends GetxController {
       Get.showSnackbar(MySnackBar.myLoadingSnackBar(
         title: 'Error',
         message:
-            "There seems to be a internet connectivity issue. Please check the your connection",
+            "There seems to be a internet connectivity issue. Please check your connection",
         icon: FaIcon(
           FontAwesomeIcons.timesCircle,
           color: MyTheme.redColor,
@@ -899,7 +899,7 @@ class OnboardingController extends GetxController {
       Get.showSnackbar(MySnackBar.myLoadingSnackBar(
         title: 'Error',
         message:
-            "There seems to be a internet connectivity issue. Please check the your connection",
+            "There seems to be a internet connectivity issue. Please check your connection",
         icon: FaIcon(
           FontAwesomeIcons.timesCircle,
           color: MyTheme.redColor,
@@ -1101,7 +1101,7 @@ class OnboardingController extends GetxController {
       Get.showSnackbar(MySnackBar.myLoadingSnackBar(
         title: 'Error',
         message:
-            "There seems to be a internet connectivity issue. Please check the your connection",
+            "There seems to be a internet connectivity issue. Please check your connection",
         icon: FaIcon(
           FontAwesomeIcons.timesCircle,
           color: MyTheme.redColor,
@@ -1190,7 +1190,7 @@ class OnboardingController extends GetxController {
       Get.showSnackbar(MySnackBar.myLoadingSnackBar(
         title: 'Error',
         message:
-            "There seems to be a internet connectivity issue. Please check the your connection",
+            "There seems to be a internet connectivity issue. Please check your connection",
         icon: FaIcon(
           FontAwesomeIcons.timesCircle,
           color: MyTheme.redColor,
