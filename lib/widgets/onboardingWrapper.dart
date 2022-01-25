@@ -108,7 +108,6 @@ class OnBoardingWrapper extends StatelessWidget {
                       onPressed: () {
                         if (!onboardingController.isEditing) {
                           Get.showSnackbar(MySnackBar.myLoadingSnackBar(
-                            color: MyTheme.verifyButtonColor,
                             title: 'Warning',
                             message:
                                 "You can't go back at this stage, if you want to edit, you can edit after logging in.",

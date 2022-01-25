@@ -92,7 +92,7 @@ class CustomerOtpVerify extends GetView<OrderController> {
                         for (var i = 0; i < controller.otpFields.length; i++)
                           Container(
                             width: 40,
-                            height: 50,
+                            // height: 50,
                             decoration: BoxDecoration(
                               border: Border.all(
                                 width: 1,
@@ -108,7 +108,7 @@ class CustomerOtpVerify extends GetView<OrderController> {
                               style: GoogleFonts.montserrat(
                                   fontSize: 18, fontWeight: FontWeight.w600),
                               controller: controller.otpText[i],
-                              textAlignVertical: TextAlignVertical.bottom,
+                              textAlignVertical: TextAlignVertical.center,
                               focusNode: controller.otpFields[i],
                               maxLength: 1,
                               inputFormatters: [
@@ -116,6 +116,9 @@ class CustomerOtpVerify extends GetView<OrderController> {
                               ],
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
+                                contentPadding: EdgeInsets.symmetric(
+                                  vertical: 8.0,
+                                ),
                                 counterText: "",
                                 hintText: (i + 1).toString(),
                                 hintStyle: TextStyle(

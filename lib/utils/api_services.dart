@@ -1,7 +1,15 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
+
 class ApiServices {
   final contentTypeJsonHeader = {
     'Content-Type': 'application/json',
   };
+  Future<bool> isConnected() async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+
+    return connectivityResult != ConnectivityResult.none;
+  }
+
   final String baseUrlheroku = 'https://readyplates.herokuapp.com';
   final String baseUrlLive = "http://202.53.174.5:8000";
   final String baseUrlLocal = "http://192.168.29.31:5500";

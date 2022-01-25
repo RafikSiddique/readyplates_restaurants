@@ -14,6 +14,7 @@ import 'package:readyplates_restaurants/src/login/auth_services.dart';
 import 'package:readyplates_restaurants/src/login/screens/changepassword_page1.dart';
 import 'package:readyplates_restaurants/src/onboarding/onboarding_controller.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
+import 'package:readyplates_restaurants/utils/api_services.dart';
 import 'package:readyplates_restaurants/utils/fcm_service.dart';
 import 'package:readyplates_restaurants/utils/my_color.dart';
 import 'package:readyplates_restaurants/utils/shared_preference_helper.dart';
@@ -25,6 +26,7 @@ bool isForgotPass = false;
 class AuthController extends GetxController {
   final AuthenticationServices services = AuthenticationServices();
   final SharedPreferenceHelper sfHelper = Get.find();
+  final ApiServices s = ApiServices();
 
   late TextEditingController email;
   late TextEditingController password;
@@ -116,47 +118,57 @@ class AuthController extends GetxController {
   }
 
   Future<void> signup() async {
-    try {
-      String id = await services.signup(
-        email.text.toLowerCase(),
-        password.text,
-        password2.text,
-      );
-      await sfHelper.setUserId(id);
-      // uid = id;
-      email.clear();
-      password.clear();
-      password2.clear();
-      final oController = Get.put(OnboardingController());
-      oController.isEditing = false;
-      oController.uniqueId = id;
-      Get.toNamed(OnboardingPage1.id);
-    } catch (e) {
-      Map resp = json.decode(e.toString());
-      String s = resp['Error']['email'][0];
-      if (e.runtimeType != SocketException) {
-        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
-          color: MyTheme.verifyButtonColor,
-          title: 'Error',
-          message: s.toString(),
-          icon: FaIcon(
-            FontAwesomeIcons.timesCircle,
-            color: MyTheme.redColor,
-          ),
-        ));
-        // Get.snackbar("Error", e.toString());
-      } else {
-        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
-          color: MyTheme.verifyButtonColor,
-          title: 'Error',
-          message:
-              "There seems to be a server/internet connectivity issue. Please check the same",
-          icon: FaIcon(
-            FontAwesomeIcons.timesCircle,
-            color: MyTheme.redColor,
-          ),
-        ));
+    if (await s.isConnected()) {
+      try {
+        String id = await services.signup(
+          email.text.toLowerCase(),
+          password.text,
+          password2.text,
+        );
+        await sfHelper.setUserId(id);
+        // uid = id;
+        email.clear();
+        password.clear();
+        password2.clear();
+        final oController = Get.put(OnboardingController());
+        oController.isEditing = false;
+        oController.uniqueId = id;
+        Get.toNamed(OnboardingPage1.id);
+      } catch (e) {
+        Map resp = json.decode(e.toString());
+        String s = resp['Error']['email'][0];
+        if (e.runtimeType != SocketException) {
+          Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+            title: 'Error',
+            message: s.toString(),
+            icon: FaIcon(
+              FontAwesomeIcons.timesCircle,
+              color: MyTheme.redColor,
+            ),
+          ));
+          // Get.snackbar("Error", e.toString());
+        } else {
+          Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+            title: 'Error',
+            message:
+                "There seems to be a server/internet connectivity issue. Please check the same",
+            icon: FaIcon(
+              FontAwesomeIcons.timesCircle,
+              color: MyTheme.redColor,
+            ),
+          ));
+        }
       }
+    } else {
+      Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+        title: 'Error',
+        message:
+            "There seems to be a internet connectivity issue. Please check the your connection",
+        icon: FaIcon(
+          FontAwesomeIcons.timesCircle,
+          color: MyTheme.redColor,
+        ),
+      ));
     }
   }
 
@@ -182,207 +194,248 @@ class AuthController extends GetxController {
   }
 
   Future<void> login(bool isChangePass) async {
-    try {
-      List<String> id = await services.login(
-        email.text.toLowerCase(),
-        password.text,
-      );
-      await sfHelper.setUserId(id[0]);
-      await sfHelper.setRestaurantId(id[1]);
-      FirebaseMessagingService().getToken();
-      if (!isChangePass) {
-        int routeId = await getScreen(id[0]);
-        print("Get onboarding screen");
-        print(routeId);
-        if (routeId >= 9) {
-          isLoggedIn.value = true;
-          sfHelper.setLoggedIn(true);
-          final controller = Get.put(HomeController(selectedIndex: 0.obs));
-          await controller.getFoodItems();
-          final oController = Get.put(OrderController());
-          await oController.getOrderItems();
-          await controller.getRestaurant();
-          if (!controller.restaurantModel!.open_orders) {
-            bool auto = await controller.getAutoOrder(id[1]);
-            await sfHelper.setOpenAutoFlag(auto);
-          } else {
-            await sfHelper.setOpenAutoFlag(true);
-          }
-          final fcm = FirebaseMessagingService();
-          fcm.initNotifications();
-          Get.offAllNamed(HomePage.id);
-          email.clear();
-          password.clear();
-          password2.clear();
-        } else {
-          final c = Get.put(OnboardingController());
-          c.uniqueId = id[0];
-          print("Getting map");
-          if (routeId == 1) {
-            print("Getting permission");
-            bool isAllowed = await getPermission();
-            print("Got permission");
-            if (isAllowed) {
-              c.init2();
-              Position position = await Geolocator.getCurrentPosition();
-              Get.toNamed(OnboardingPage2.id,
-                  arguments: LatLng(position.latitude, position.longitude));
+    if (await s.isConnected()) {
+      try {
+        List<String> id = await services.login(
+          email.text.toLowerCase(),
+          password.text,
+        );
+        await sfHelper.setUserId(id[0]);
+        await sfHelper.setRestaurantId(id[1]);
+        FirebaseMessagingService().getToken();
+        if (!isChangePass) {
+          int routeId = await getScreen(id[0]);
+          print("Get onboarding screen");
+          print(routeId);
+          if (routeId >= 9) {
+            isLoggedIn.value = true;
+            sfHelper.setLoggedIn(true);
+            final controller = Get.put(HomeController(selectedIndex: 0.obs));
+            await controller.getFoodItems();
+            final oController = Get.put(OrderController());
+            await oController.getOrderItems();
+            await controller.getRestaurant();
+            if (!controller.restaurantModel!.open_orders) {
+              bool auto = await controller.getAutoOrder(id[1]);
+              await sfHelper.setOpenAutoFlag(auto);
             } else {
-              print("Location not allowed");
+              await sfHelper.setOpenAutoFlag(true);
             }
+            final fcm = FirebaseMessagingService();
+            fcm.initNotifications();
+            Get.offAllNamed(HomePage.id);
+            email.clear();
+            password.clear();
+            password2.clear();
           } else {
-            Get.toNamed(route(routeId + 1));
+            final c = Get.put(OnboardingController());
+            c.uniqueId = id[0];
+            print("Getting map");
+            if (routeId == 1) {
+              print("Getting permission");
+              bool isAllowed = await getPermission();
+              print("Got permission");
+              if (isAllowed) {
+                c.init2();
+                Position position = await Geolocator.getCurrentPosition();
+                Get.toNamed(OnboardingPage2.id,
+                    arguments: LatLng(position.latitude, position.longitude));
+              } else {
+                print("Location not allowed");
+              }
+            } else {
+              Get.toNamed(route(routeId + 1));
+            }
           }
+        } else {
+          print(isChangePass);
+          Get.offNamed(ChangePasswordPage1.id);
+          password.clear();
         }
-      } else {
-        print(isChangePass);
-        Get.offNamed(ChangePasswordPage1.id);
-        password.clear();
+      } catch (e) {
+        Map resp = json.decode(e.toString());
+        String s = resp['ERROR'];
+        if (e.runtimeType != SocketException) {
+          Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+            title: 'Error',
+            message: s.toString(),
+            icon: FaIcon(
+              FontAwesomeIcons.timesCircle,
+              color: MyTheme.redColor,
+            ),
+          ));
+          // Get.snackbar("Error", e.toString());
+        } else {
+          Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+            title: 'Error',
+            message:
+                "There seems to be a server/internet connectivity issue. Please check the same",
+            icon: FaIcon(
+              FontAwesomeIcons.timesCircle,
+              color: MyTheme.redColor,
+            ),
+          ));
+        }
       }
-    } catch (e) {
-      Map resp = json.decode(e.toString());
-      String s = resp['ERROR'];
-      if (e.runtimeType != SocketException) {
-        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
-          color: MyTheme.verifyButtonColor,
-          title: 'Error',
-          message: s.toString(),
-          icon: FaIcon(
-            FontAwesomeIcons.timesCircle,
-            color: MyTheme.redColor,
-          ),
-        ));
-        // Get.snackbar("Error", e.toString());
-      } else {
-        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
-          color: MyTheme.verifyButtonColor,
-          title: 'Error',
-          message:
-              "There seems to be a server/internet connectivity issue. Please check the same",
-          icon: FaIcon(
-            FontAwesomeIcons.timesCircle,
-            color: MyTheme.redColor,
-          ),
-        ));
-      }
+    } else {
+      Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+        title: 'Error',
+        message:
+            "There seems to be a internet connectivity issue. Please check the your connection",
+        icon: FaIcon(
+          FontAwesomeIcons.timesCircle,
+          color: MyTheme.redColor,
+        ),
+      ));
     }
   }
 
   Future<void> changePassword() async {
-    try {
-      await services.changePassword(
-        email.text.toLowerCase(),
-        password.text,
-      );
-      if (isForgotPass == false) {
-        final c = Get.find<HomeController>();
-        Get.offAllNamed(HomePage.id);
-        c.selectedIndex.value = 4;
-        email.clear();
-        password.clear();
-        password2.clear();
-      } else {
-        email.clear();
-        password.clear();
-        password2.clear();
-        for (var i = 0; i < otpText.length; i++) {
-          otpText[i].clear();
-        }
-        otpVerification = "".obs;
-        otp = "";
+    if (await s.isConnected()) {
+      try {
+        await services.changePassword(
+          email.text.toLowerCase(),
+          password.text,
+        );
+        if (isForgotPass == false) {
+          final c = Get.find<HomeController>();
+          Get.offAllNamed(HomePage.id);
+          c.selectedIndex.value = 4;
+          email.clear();
+          password.clear();
+          password2.clear();
+        } else {
+          email.clear();
+          password.clear();
+          password2.clear();
+          for (var i = 0; i < otpText.length; i++) {
+            otpText[i].clear();
+          }
+          otpVerification = "".obs;
+          otp = "";
 
-        Get.toNamed(LoginPage.id);
+          Get.toNamed(LoginPage.id);
+        }
+      } catch (e) {
+        if (e.runtimeType != SocketException) {
+          Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+            title: 'Error',
+            message: e.toString(),
+            icon: FaIcon(
+              FontAwesomeIcons.timesCircle,
+              color: MyTheme.redColor,
+            ),
+          ));
+          // Get.snackbar("Error", e.toString());
+        } else {
+          Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+            title: 'Error',
+            message:
+                "There seems to be a server/internet connectivity issue. Please check the same",
+            icon: FaIcon(
+              FontAwesomeIcons.timesCircle,
+              color: MyTheme.redColor,
+            ),
+          ));
+        }
       }
-    } catch (e) {
-      if (e.runtimeType != SocketException) {
-        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
-          color: MyTheme.verifyButtonColor,
-          title: 'Error',
-          message: e.toString(),
-          icon: FaIcon(
-            FontAwesomeIcons.timesCircle,
-            color: MyTheme.redColor,
-          ),
-        ));
-        // Get.snackbar("Error", e.toString());
-      } else {
-        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
-          color: MyTheme.verifyButtonColor,
-          title: 'Error',
-          message:
-              "There seems to be a server/internet connectivity issue. Please check the same",
-          icon: FaIcon(
-            FontAwesomeIcons.timesCircle,
-            color: MyTheme.redColor,
-          ),
-        ));
-      }
+    } else {
+      Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+        title: 'Error',
+        message:
+            "There seems to be a internet connectivity issue. Please check the your connection",
+        icon: FaIcon(
+          FontAwesomeIcons.timesCircle,
+          color: MyTheme.redColor,
+        ),
+      ));
     }
   }
 
   Future<void> forgotPassword() async {
-    try {
-      await services.forgotPassword(
-        email.text.toLowerCase(),
-      );
+    if (await s.isConnected()) {
+      try {
+        await services.forgotPassword(
+          email.text.toLowerCase(),
+        );
 
-      Get.toNamed(VerifyOtpPage.id);
-    } catch (e) {
-      if (e.runtimeType != SocketException) {
-        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
-          color: MyTheme.verifyButtonColor,
-          title: 'Error',
-          message: e.toString().replaceAll('"', ''),
-          icon: FaIcon(
-            FontAwesomeIcons.timesCircle,
-            color: MyTheme.redColor,
-          ),
-        ));
-        // Get.snackbar("Error", e.toString());
-      } else {
-        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
-          color: MyTheme.verifyButtonColor,
-          title: 'Error',
-          message:
-              "There seems to be a server/internet connectivity issue. Please check the same",
-          icon: FaIcon(
-            FontAwesomeIcons.timesCircle,
-            color: MyTheme.redColor,
-          ),
-        ));
+        Get.toNamed(VerifyOtpPage.id);
+      } catch (e) {
+        if (e.runtimeType != SocketException) {
+          Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+            title: 'Error',
+            message: e.toString().replaceAll('"', ''),
+            icon: FaIcon(
+              FontAwesomeIcons.timesCircle,
+              color: MyTheme.redColor,
+            ),
+          ));
+          // Get.snackbar("Error", e.toString());
+        } else {
+          Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+            title: 'Error',
+            message:
+                "There seems to be a server/internet connectivity issue. Please check the same",
+            icon: FaIcon(
+              FontAwesomeIcons.timesCircle,
+              color: MyTheme.redColor,
+            ),
+          ));
+        }
       }
+    } else {
+      Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+        title: 'Error',
+        message:
+            "There seems to be a internet connectivity issue. Please check the your connection",
+        icon: FaIcon(
+          FontAwesomeIcons.timesCircle,
+          color: MyTheme.redColor,
+        ),
+      ));
     }
   }
 
   Future<int> getScreen(String uid) async {
-    try {
-      print("Getting Screen");
-      int id = await services.getOnboardingScreen(uid);
-      return id;
-    } catch (e) {
-      if (e.runtimeType != SocketException) {
-        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
-          color: MyTheme.verifyButtonColor,
-          title: 'Error',
-          message: e.toString().replaceAll('"', ''),
-          icon: FaIcon(
-            FontAwesomeIcons.timesCircle,
-            color: MyTheme.redColor,
-          ),
-        ));
-        // Get.snackbar("Error", e.toString());
-      } else {
-        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
-          color: MyTheme.verifyButtonColor,
-          title: 'Error',
-          message:
-              "There seems to be a server/internet connectivity issue. Please check the same",
-          icon: FaIcon(
-            FontAwesomeIcons.timesCircle,
-            color: MyTheme.redColor,
-          ),
-        ));
+    if (await s.isConnected()) {
+      try {
+        print("Getting Screen");
+        int id = await services.getOnboardingScreen(uid);
+        return id;
+      } catch (e) {
+        if (e.runtimeType != SocketException) {
+          Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+            title: 'Error',
+            message: e.toString().replaceAll('"', ''),
+            icon: FaIcon(
+              FontAwesomeIcons.timesCircle,
+              color: MyTheme.redColor,
+            ),
+          ));
+          // Get.snackbar("Error", e.toString());
+        } else {
+          Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+            title: 'Error',
+            message:
+                "There seems to be a server/internet connectivity issue. Please check the same",
+            icon: FaIcon(
+              FontAwesomeIcons.timesCircle,
+              color: MyTheme.redColor,
+            ),
+          ));
+        }
+        return 0;
       }
+    } else {
+      Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+        title: 'Error',
+        message:
+            "There seems to be a internet connectivity issue. Please check the your connection",
+        icon: FaIcon(
+          FontAwesomeIcons.timesCircle,
+          color: MyTheme.redColor,
+        ),
+      ));
       return 0;
     }
   }
