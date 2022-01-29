@@ -39,7 +39,7 @@ android {
     }
 
     defaultConfig {
-        applicationId 'com.apsissolutions.readyplates.restaurant'
+        applicationId 'com.readyplates.restaurant'
         minSdkVersion 20
         targetSdkVersion 31
         versionCode flutterVersionCode.toInteger()
