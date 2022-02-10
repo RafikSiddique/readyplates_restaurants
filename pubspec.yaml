@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -24,9 +24,10 @@ dependencies:
   after_layout: ^1.1.0
   animations: ^2.0.1
   cloud_firestore: ^3.1.6
+  connectivity_plus: ^2.2.0
   cupertino_icons: ^1.0.2
   dotted_border: ^2.0.0+1
-  file_picker: ^4.2.7
+  file_picker: ^4.3.2
   firebase_messaging: ^11.1.0
   flutter:
     sdk: flutter
@@ -35,7 +36,7 @@ dependencies:
   flutter_svg: ^0.23.0+1
   flutter_typeahead: ^3.2.1
   font_awesome_flutter: ^9.1.0
-  geocode: null
+  geocode: ^1.0.1
   geolocator: ^7.7.0
   get: ^4.3.8
   google_fonts: ^2.1.0
@@ -58,7 +59,7 @@ dev_dependencies:
     sdk: flutter
 
 flutter_icons:
-  image_path: "assets/images/applogo.png"
+  image_path: "assets/images/appicon.png"
   android: true
   ios: true
 
@@ -66,7 +67,6 @@ flutter_icons:
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

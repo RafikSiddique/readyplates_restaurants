@@ -39,8 +39,13 @@ class FirebaseMessagingService extends ApiServices {
     return Future<void>.value();
   }
 
+  int a = 0;
+
   void _initializeMessaging() {
-    getToken();
+    if (a == 0) {
+      getToken();
+      a++;
+    }
     FirebaseMessaging.onMessage.listen((event) {
       print("OnMessage-Restaurant");
       showMessage(event);
@@ -97,12 +102,9 @@ class FirebaseMessagingService extends ApiServices {
     try {
       if (userId != "") {
         FirebaseFirestore.instance.collection('restaurant').doc(userId).set({
-         DateTime.now().toString() : 
-          token,
-
-         
+          DateTime.now().toString(): token,
         });
-        var res = await post(Uri.parse(baseUri + 'restaurants/token/'),
+        var res = await post(Uri.parse(baseUri + 'restaurants/token2/'),
             headers: contentTypeJsonHeader,
             body: jsonEncode({
               'restaurant': userId,

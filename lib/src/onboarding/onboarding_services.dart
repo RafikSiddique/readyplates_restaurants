@@ -284,12 +284,11 @@ class OnboardingServices extends ApiServices {
 
       for (int i = 0; i < files.length; i++) {
         print("File:$i");
-        File file = File(files[i]);
-        List<int> bytes = await file.readAsBytes();
-        print(bytes);
-        print(bytes.length);
+        //File file = File(files[i]);
+        //List<int> bytes = await file.readAsBytes();
+        
         MultipartFile multipartFile =
-            await MultipartFile.fromBytes(fields[i], bytes);
+            await MultipartFile.fromPath(fields[i], files[i]);
         multipartFiles.add(multipartFile);
       }
       MultipartRequest request =

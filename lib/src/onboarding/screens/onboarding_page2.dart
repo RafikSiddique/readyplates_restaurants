@@ -350,58 +350,55 @@ class _SelectLocationState extends State<SelectLocation> {
             alignment: Alignment.topLeft,
             child: Container(
               height: 50,
+              decoration: BoxDecoration(
+                  color: MyTheme.appbackgroundColor,
+                  border: Border.all(color: MyTheme.orangeColor, width: 1),
+                  borderRadius: BorderRadius.circular(10)),
               width: MediaQuery.of(context).size.width * 0.6,
-              child: Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-                child: TypeAheadField<Suggestion>(
-                  textFieldConfiguration: TextFieldConfiguration(
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        hintText: "Search Any Location",
-                        hintStyle: GoogleFonts.inter(
+              child: TypeAheadField<Suggestion>(
+                textFieldConfiguration: TextFieldConfiguration(
+                  decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: "Search Any Location",
+                      hintStyle: GoogleFonts.inter(
                           fontSize: 15,
                           fontStyle: FontStyle.normal,
                           fontWeight: FontWeight.w500,
+                          color: MyTheme.hinttextColor),
+                      contentPadding: const EdgeInsets.only(top: 15, left: 10),
+                      prefixIcon: Padding(
+                        padding: const EdgeInsets.only(top: 5),
+                        child: Icon(
+                          Icons.search,
+                          color: Colors.grey,
+                          size: 22,
                         ),
-                        contentPadding:
-                            const EdgeInsets.only(top: 27, left: 10),
-                        suffixIcon: Padding(
-                          padding: const EdgeInsets.only(top: 5),
-                          child: Icon(
-                            Icons.search,
-                            color: Colors.grey,
-                            size: 22,
-                          ),
-                        )),
-                  ),
-                  itemBuilder: (BuildContext context, itemData) {
-                    return ListTile(
-                      onTap: () async {
-                        final session = Uuid().v4();
-                        Place place = await PlaceApiProvider(session)
-                            .getPlaceDetailFromId(itemData.placeId);
-                        updateCam(place.lat!, place.lang!);
-                        FocusScope.of(context).unfocus();
-                      },
-                      title: Text(itemData.description.toString()),
-                    );
-                  },
-                  onSuggestionSelected: (Suggestion? suggestion) async {
-                    // FocusScope.of(context).unfocus();
-                  },
-                  suggestionsCallback: (String pattern) async {
-                    if (pattern.isNotEmpty) {
-                      final session = Uuid().v4();
-                      return PlaceApiProvider(session)
-                          .fetchSuggestions(pattern, 'en');
-                    } else {
-                      return <Suggestion>[];
-                    }
-                  },
+                      )),
                 ),
+                itemBuilder: (BuildContext context, itemData) {
+                  return ListTile(
+                    onTap: () async {
+                      final session = Uuid().v4();
+                      Place place = await PlaceApiProvider(session)
+                          .getPlaceDetailFromId(itemData.placeId);
+                      updateCam(place.lat!, place.lang!);
+                      FocusScope.of(context).unfocus();
+                    },
+                    title: Text(itemData.description.toString()),
+                  );
+                },
+                onSuggestionSelected: (Suggestion? suggestion) async {
+                  // FocusScope.of(context).unfocus();
+                },
+                suggestionsCallback: (String pattern) async {
+                  if (pattern.isNotEmpty) {
+                    final session = Uuid().v4();
+                    return PlaceApiProvider(session)
+                        .fetchSuggestions(pattern, 'en');
+                  } else {
+                    return <Suggestion>[];
+                  }
+                },
               ),
             ),
           ),

@@ -90,7 +90,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   hintText: "Address Line 1",
                   hintfontSize: 15,
                   controller: controller.addline1,
-                  isRequired: false,
+                  isRequired: true,
                   borderRadius: BorderRadius.vertical(top: Radius.circular(6)),
                 ),
 
@@ -99,7 +99,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   hintText: "Address Line 2",
                   hintfontSize: 15,
                   controller: controller.addline2,
-                  isRequired: false,
+                  isRequired: true,
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(0)),
                 ),
@@ -109,7 +109,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   hintText: "Address Line 3",
                   hintfontSize: 15,
                   controller: controller.addline3,
-                  isRequired: false,
+                  isRequired: true,
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(0)),
                 ),
@@ -118,7 +118,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   hintText: "State",
                   hintfontSize: 15,
                   controller: controller.state,
-                  isRequired: false,
+                  isRequired: true,
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(0)),
                 ),
@@ -127,7 +127,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   hintText: "City",
                   hintfontSize: 15,
                   controller: controller.city,
-                  isRequired: false,
+                  isRequired: true,
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(0)),
                 ),
@@ -137,7 +137,7 @@ class _OnboardingPage3State extends State<OnboardingPage3> {
                   hintfontSize: 15,
                   controller: controller.pincode,
                   inputType: TextInputType.phone,
-                  isRequired: false,
+                  isRequired: true,
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(6)),
                 ),

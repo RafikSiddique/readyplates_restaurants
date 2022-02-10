@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -13,6 +15,7 @@ import 'package:readyplates_restaurants/widgets/edit_button.dart';
 class MenuPage extends StatelessWidget {
   MenuPage({Key? key}) : super(key: key);
   final controller = Get.find<HomeController>();
+
   List<String> categories = ["Starter", "Main Course", "Desserts", "Sides"];
   bool loading = false;
 
@@ -255,7 +258,8 @@ class MenuPage extends StatelessWidget {
                                                                       .foodItemModel = e;
                                                                   controller
                                                                       .setEditing();
-                                                                  Get.toNamed(
+                                                                  Navigator.pushNamed(
+                                                                      context,
                                                                       AddFoodItem
                                                                           .id);
                                                                 },
@@ -367,7 +371,12 @@ class MenuPage extends StatelessWidget {
                                                                   size.width *
                                                                       0.5,
                                                               child: Text(
-                                                                e.std_serving_size,
+                                                                (e.std_serving_size ==
+                                                                            'Not Applicable' ||
+                                                                        e.std_serving_size ==
+                                                                            'Other')
+                                                                    ? ''
+                                                                    : e.std_serving_size,
                                                                 textAlign:
                                                                     TextAlign
                                                                         .left,
@@ -422,12 +431,17 @@ class MenuPage extends StatelessWidget {
                                                                 double.parse(e
                                                                         .spice_level)
                                                                     .toInt(),
-                                                                (index) =>
-                                                                    Image.asset(
-                                                                  'assets/images/spice.png',
-                                                                  color: color(
-                                                                      index),
-                                                                ),
+                                                                (index) => controller
+                                                                            .category
+                                                                            .value ==
+                                                                        'Desserts'
+                                                                    ? Container()
+                                                                    : Image
+                                                                        .asset(
+                                                                        'assets/images/spice.png',
+                                                                        color: color(
+                                                                            index),
+                                                                      ),
                                                               ),
                                                               Spacer(),
                                                               Text(

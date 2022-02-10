@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -59,19 +61,19 @@ class HomePage extends StatelessWidget {
           return AlertDialog(
             title: Text(
               "Orders are closed",
-              style: GoogleFonts.nunito(
-                color: Colors.black,
+              style: GoogleFonts.inter(
+                color: MyTheme.appbartextColor,
                 fontSize: 15,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w600,
                 fontStyle: FontStyle.normal,
               ),
             ),
             content: Text(
               "You have closed the order up until you turn it back on, do you want to turn on the orders?",
-              style: GoogleFonts.inter(
-                color: Colors.black,
+              style: GoogleFonts.nunito(
+                color: MyTheme.appbartextColor,
                 fontSize: 15,
-                fontWeight: FontWeight.normal,
+                fontWeight: FontWeight.w600,
                 fontStyle: FontStyle.normal,
               ),
             ),
@@ -84,7 +86,7 @@ class HomePage extends StatelessWidget {
                     "No",
                     style: GoogleFonts.inter(
                       fontWeight: FontWeight.w600,
-                      fontSize: 17,
+                      fontSize: 15,
                       color: MyTheme.orangeColor,
                     ),
                   )),
@@ -102,7 +104,7 @@ class HomePage extends StatelessWidget {
                     "Yes",
                     style: GoogleFonts.inter(
                       fontWeight: FontWeight.w600,
-                      fontSize: 17,
+                      fontSize: 15,
                       color: MyTheme.orangeColor,
                     ),
                   ))

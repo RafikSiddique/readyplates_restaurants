@@ -31,10 +31,10 @@ class _OnboardingPage5State extends State<OnboardingPage5> {
       textControllers: [
         controller.statementDescriptor,
         controller.shortenedDescriptor,
-        controller.businessWeb,
-        controller.supportWeb,
-        controller.privacy,
-        controller.termServices,
+        // controller.businessWeb,
+        // controller.supportWeb,
+        // controller.privacy,
+        // controller.termServices,
         controller.fsolNumber,
       ],
       child: Padding(

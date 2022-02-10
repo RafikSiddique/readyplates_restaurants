@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -51,6 +50,17 @@ class _AddFoodItemState extends State<AddFoodItem> {
   }
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    formKey.currentState?.save();
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      setState(() {
+        print("State Changed");
+      });
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -155,14 +165,6 @@ class _AddFoodItemState extends State<AddFoodItem> {
                                             width: 60,
                                             height: 60,
                                           )
-                                        // Image(
-                                        //     image: AssetImage(
-                                        //       'assets/images/imglogo.png',
-                                        //     ),
-                                        //     width: 60,
-                                        //     height: 60,
-                                        //     fit: BoxFit.cover,
-                                        //   )
                                         : Image.file(
                                             controller.image1,
                                             fit: BoxFit.cover,
@@ -279,42 +281,60 @@ class _AddFoodItemState extends State<AddFoodItem> {
                 SizedBox(
                   height: 16,
                 ),
-                FieldTitle(
-                  text: "Spice Level",
-                  required: false,
-                  fontFamily: 'Inter-Regular',
-                  fontSize: 13,
-                  fontWeight: FontWeight.w500,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 2.0),
-                  child: Obx(
-                    () => Slider(
-                      value: controller.spiceSlider.value,
-                      onChanged: (value) {
-                        controller.spiceSlider.value = value;
-                      },
-                      label: controller.spiceSlider.value.toString(),
-                      divisions: 4,
-                      max: 5,
-                      min: 1,
-                      activeColor: MyTheme.orangeColor,
-                      thumbColor: Colors.white,
-                      inactiveColor: MyTheme.sliderColor,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: List.generate(
-                        5, (index) => Text((index + 1).toString())),
-                  ),
-                ),
-                SizedBox(
-                  height: 16,
-                ),
+                controller.category.value == 'Desserts'
+                    ? Container()
+                    : FieldTitle(
+                        text: "Spice Level",
+                        required: false,
+                        fontFamily: 'Inter-Regular',
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                      ),
+                controller.category.value == 'Desserts'
+                    ? Container()
+                    : Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                        child: Obx(
+                          () => Slider(
+                            value: controller.spiceSlider.value,
+                            onChanged: (value) {
+                              controller.spiceSlider.value = value;
+                            },
+                            label: controller.spiceSlider.value.toString(),
+                            divisions: 4,
+                            max: 5,
+                            min: 1,
+                            activeColor: MyTheme.orangeColor,
+                            thumbColor: Colors.white,
+                            inactiveColor: MyTheme.sliderColor,
+                          ),
+                        ),
+                      ),
+                controller.category.value == 'Desserts'
+                    ? Container()
+                    : Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: List.generate(
+                            5,
+                            (index) => Text(
+                              ("${index + 1}").toString(),
+                              style: GoogleFonts.inter(
+                                fontSize: 13,
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.w500,
+                                color: MyTheme.labelColor,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                controller.category.value == 'Desserts'
+                    ? Container()
+                    : SizedBox(
+                        height: 16,
+                      ),
                 FieldTitle(
                   text: "Standard Serving Size",
                   fontFamily: 'Inter-Regular',
@@ -336,188 +356,6 @@ class _AddFoodItemState extends State<AddFoodItem> {
                     setState(() {});
                   },
                 ),
-                SizedBox(height: 3),
-                Text(
-                  "Please Type in case of Other",
-                  style: GoogleFonts.poppins(
-                    fontSize: 9,
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.normal,
-                    color: MyTheme.bottomtextColor,
-                  ),
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                Text(
-                  "Other Serving Configurations",
-                  style: GoogleFonts.montserrat(
-                    fontSize: 13,
-                    fontWeight: FontWeight.bold,
-                    color: MyTheme.bottomtextColor,
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Visibility(
-                  visible: isVisible,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                          color: MyTheme.borderColor,
-                        ),
-                        borderRadius: BorderRadius.circular(10)),
-                    padding: EdgeInsets.all(8),
-                    child: DottedBorder(
-                      //color: Color(0Xff393E4),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10.0),
-                        child: InkWell(
-                          onTap: () {
-                            setState(() {
-                              isVisible = !isVisible;
-                            });
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.add_circle_outline_sharp,
-                                color: MyTheme.orangeColor,
-                                size: 18,
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                "Add ",
-                                style: GoogleFonts.inter(
-                                  fontSize: 15,
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.normal,
-                                  letterSpacing: -0.229412,
-                                  color: Color(0xff393E46),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-
-                      borderType: BorderType.RRect,
-                      radius: Radius.circular(10),
-                      dashPattern: [10, 5, 10, 5, 10, 5],
-                    ),
-                  ),
-                  replacement: Column(
-                    children: [
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                                child: AppFormField(
-                              title: 'Configration/Serving Name*',
-                              hintText: 'small',
-                              isRequired: false,
-                              hintfontSize: 15,
-                              controller: controller.servingname,
-                              bottomText: 'Please type  name of configuration',
-                            )),
-                            SizedBox(
-                              width: 15,
-                            ),
-                            Expanded(
-                              child: AppFormField(
-                                title: 'Serving Cost',
-                                hintText: '9.50 \$',
-                                isRequired: false,
-                                hintfontSize: 15,
-                                controller: controller.servingcost,
-                                bottomText: 'Enter Cost',
-                              ),
-                            ),
-                          ]),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Visibility(
-                        visible: isaccept,
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: OutlinedButton.icon(
-                                  style: OutlinedButton.styleFrom(
-                                    minimumSize: Size.fromHeight(45.0),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(6.0),
-                                    ),
-                                    side: BorderSide(
-                                        width: 1,
-                                        color: MyTheme.bottomtextColor),
-                                  ),
-                                  icon: Icon(
-                                    Icons.check_circle_outline_outlined,
-                                    color: MyTheme.switchButtonColor,
-                                    size: 16,
-                                  ),
-                                  label: Text(
-                                    'Accept',
-                                    style: GoogleFonts.inter(
-                                      fontSize: 15,
-                                      color: MyTheme.bottomtextColor,
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                  ),
-                                  onPressed: () {
-                                    setState(() {
-                                      isVisible = !isVisible;
-                                    });
-                                  },
-                                ),
-                              ),
-                              SizedBox(
-                                width: 15,
-                              ),
-                              Expanded(
-                                child: OutlinedButton.icon(
-                                  style: OutlinedButton.styleFrom(
-                                    minimumSize: Size.fromHeight(45.0),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(6.0),
-                                    ),
-                                    side: BorderSide(
-                                        width: 1,
-                                        color: MyTheme.bottomtextColor),
-                                  ),
-                                  icon: FaIcon(
-                                    FontAwesomeIcons.timesCircle,
-                                    color: MyTheme.closeiconColor,
-                                    size: 16,
-                                  ),
-                                  label: Text(
-                                    'Cancel',
-                                    style: GoogleFonts.inter(
-                                      fontSize: 15,
-                                      color: MyTheme.bottomtextColor,
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                  ),
-                                  onPressed: () {
-                                    setState(() {
-                                      isVisible = !isVisible;
-                                    });
-                                  },
-                                ),
-                              ),
-                            ]),
-                      ),
-                    ],
-                  ),
-                ),
                 SizedBox(
                   height: 22,
                 ),
@@ -525,7 +363,6 @@ class _AddFoodItemState extends State<AddFoodItem> {
                   height: 50,
                   onTap: () {
                     formKey.currentState?.save();
-
                     if (formKey.currentState?.validate() ?? false) {
                       if (controller.isEditing)
                         controller.editFoodItem(controller.foodItemModel!.id);

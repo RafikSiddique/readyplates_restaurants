@@ -38,9 +38,9 @@ class _OnboardingPage6State extends State<OnboardingPage6> {
           controller.onboardingApi(OnBoardingMethod.api6);
         // Get.toNamed(OnboardingPage7.id);
       },
-      enabled: controller.businesstype.isNotEmpty &&
-          controller.confirmLetter.path.isNotEmpty &&
-          controller.uploadLetter.path.isNotEmpty,
+      // enabled: controller.businesstype.isNotEmpty &&
+      //     controller.confirmLetter.path.isNotEmpty &&
+      //     controller.uploadLetter.path.isNotEmpty,
       textControllers: [
         controller.nameOfBusiness,
         controller.eiNumber,

@@ -35,11 +35,15 @@ class OnBoardingWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void foo() {
+      print("hello world");
+    }
+
     return WillPopScope(
       onWillPop: () async {
         if (!onboardingController.isEditing) {
           Get.showSnackbar(
-            GetBar(
+            GetSnackBar(
               backgroundColor: MyTheme.verifyButtonColor,
               titleText: Text(
                 "Warning",
@@ -104,10 +108,9 @@ class OnBoardingWrapper extends StatelessWidget {
                       onPressed: () {
                         if (!onboardingController.isEditing) {
                           Get.showSnackbar(MySnackBar.myLoadingSnackBar(
-                            color: MyTheme.verifyButtonColor,
                             title: 'Warning',
                             message:
-                                "You can't you back at this stage, if you want to edit, you can edit after logging in",
+                                "You can't go back at this stage, if you want to edit, you can edit after logging in.",
                             icon: Icon(
                               Icons.warning_amber_rounded,
                               color: MyTheme.orangelightColor,
@@ -146,7 +149,7 @@ class OnBoardingWrapper extends StatelessWidget {
                                   .any((element) => element.text.isEmpty) ||
                               !enabled),
                           height: 50,
-                          onTap: onTap,
+                          onTap: enabled ? onTap : foo,
                           buttonbackgroundColor: textControllers
                                       .any((element) => element.text.isEmpty) ||
                                   !enabled

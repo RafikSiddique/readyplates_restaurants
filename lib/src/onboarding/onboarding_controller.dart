@@ -13,6 +13,7 @@ import 'package:readyplates_restaurants/src/onboarding/onboarding_services.dart'
 import 'package:readyplates_restaurants/src/onboarding/screens/index.dart';
 import 'package:readyplates_restaurants/src/onboarding/screens/table_config_page.dart';
 import 'package:readyplates_restaurants/src/orders/order_controller.dart';
+import 'package:readyplates_restaurants/utils/api_services.dart';
 import 'package:readyplates_restaurants/utils/cities.dart';
 import 'package:readyplates_restaurants/utils/city.dart';
 import 'package:readyplates_restaurants/utils/fcm_service.dart';
@@ -40,6 +41,7 @@ class OnboardingController extends GetxController {
 
   OnboardingServices services = OnboardingServices();
   final SharedPreferenceHelper sfHelper = Get.find();
+  final ApiServices s = ApiServices();
 
   bool isEditing = false;
 
@@ -137,38 +139,59 @@ class OnboardingController extends GetxController {
 
   Future<void> _onboardingapi1() async {
     String ownName = firstName.text + " " + lastName.text;
-    try {
-      resId = await services.onboardingapi1(
-        uniqueId,
-        resName.text,
-        ownName,
-        ownMobile.text,
-        rescity,
-        poc.text,
-        pocNumber.text,
-      );
-      this.resId = resId;
+    if (await s.isConnected()) {
+      try {
+        resId = await services.onboardingapi1(
+          uniqueId,
+          resName.text,
+          ownName,
+          ownMobile.text,
+          rescity,
+          poc.text,
+          pocNumber.text,
+        );
+        this.resId = resId;
 
-      await sfHelper.setRestaurantId(resId);
+        await sfHelper.setRestaurantId(resId);
+        print("resssssssss${resId}Iddddddddddddddddddd");
+        await Geolocator.requestPermission();
+        Position position = await Geolocator.getCurrentPosition();
 
-      await Geolocator.requestPermission();
-      Position position = await Geolocator.getCurrentPosition();
-
-      Get.toNamed(OnboardingPage2.id,
-          arguments: LatLng(position.latitude, position.longitude));
-    } catch (e) {
-      if (e.runtimeType != SocketException) {
-        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
-          color: MyTheme.verifyButtonColor,
-          title: 'Error',
-          message: e.toString(),
-          icon: FaIcon(
-            FontAwesomeIcons.timesCircle,
-            color: MyTheme.redColor,
-          ),
-        ));
-        // Get.snackbar("Error", e.toString());
+        Get.toNamed(OnboardingPage2.id,
+            arguments: LatLng(position.latitude, position.longitude));
+      } catch (e) {
+        if (e.runtimeType != SocketException) {
+          Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+            title: 'Error',
+            message: e.toString(),
+            icon: FaIcon(
+              FontAwesomeIcons.timesCircle,
+              color: MyTheme.redColor,
+            ),
+          ));
+          // Get.snackbar("Error", e.toString());
+        } else {
+          Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+            title: 'Error',
+            message:
+                "There seems to be a server/internet connectivity issue. Please check the same",
+            icon: FaIcon(
+              FontAwesomeIcons.timesCircle,
+              color: MyTheme.redColor,
+            ),
+          ));
+        }
       }
+    } else {
+      Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+        title: 'Error',
+        message:
+            "There seems to be a internet connectivity issue. Please check your connection",
+        icon: FaIcon(
+          FontAwesomeIcons.timesCircle,
+          color: MyTheme.redColor,
+        ),
+      ));
     }
   }
 
@@ -244,34 +267,55 @@ class OnboardingController extends GetxController {
     String adress =
         address1.text + " " + address2.text + " " + nearbylandnark.text;
 
-    try {
-      await services.onboardingapi2(
-        uniqueId,
-        adress,
-        postalcode.text,
-        latitude.text,
-        longitude.text,
-      );
-      if (!isEditing)
-        Get.toNamed(OnboardingPage3.id);
-      else {
-        final c = Get.find<HomeController>();
-        Get.offAllNamed(HomePage.id);
-        c.selectedIndex.value = 4;
+    if (await s.isConnected()) {
+      try {
+        await services.onboardingapi2(
+          uniqueId,
+          adress,
+          postalcode.text,
+          latitude.text,
+          longitude.text,
+        );
+        if (!isEditing)
+          Get.toNamed(OnboardingPage3.id);
+        else {
+          final c = Get.find<HomeController>();
+          Get.offAllNamed(HomePage.id);
+          c.selectedIndex.value = 4;
+        }
+      } catch (e) {
+        if (e.runtimeType != SocketException) {
+          Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+            title: 'Error',
+            message: e.toString(),
+            icon: FaIcon(
+              FontAwesomeIcons.timesCircle,
+              color: MyTheme.redColor,
+            ),
+          ));
+          // Get.snackbar("Error", e.toString());
+        } else {
+          Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+            title: 'Error',
+            message:
+                "There seems to be a server/internet connectivity issue. Please check the same",
+            icon: FaIcon(
+              FontAwesomeIcons.timesCircle,
+              color: MyTheme.redColor,
+            ),
+          ));
+        }
       }
-    } catch (e) {
-      if (e.runtimeType != SocketException) {
-        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
-          color: MyTheme.verifyButtonColor,
-          title: 'Error',
-          message: e.toString(),
-          icon: FaIcon(
-            FontAwesomeIcons.timesCircle,
-            color: MyTheme.redColor,
-          ),
-        ));
-        // Get.snackbar("Error", e.toString());
-      }
+    } else {
+      Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+        title: 'Error',
+        message:
+            "There seems to be a internet connectivity issue. Please check your connection",
+        icon: FaIcon(
+          FontAwesomeIcons.timesCircle,
+          color: MyTheme.redColor,
+        ),
+      ));
     }
   }
 
@@ -326,29 +370,50 @@ class OnboardingController extends GetxController {
         city.text +
         " " +
         pincode.text;
-    try {
-      await services.onboardingapi3(
-        resId,
-        accNumber.text,
-        accName.text,
-        business_add,
-        phoneveify.text,
-        timezone.value,
-      );
-      Get.toNamed(OnboardingPage4.id);
-    } catch (e) {
-      if (e.runtimeType != SocketException) {
-        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
-          color: MyTheme.verifyButtonColor,
-          title: 'Error',
-          message: e.toString(),
-          icon: FaIcon(
-            FontAwesomeIcons.timesCircle,
-            color: MyTheme.redColor,
-          ),
-        ));
-        // Get.snackbar("Error", e.toString());
+    if (await s.isConnected()) {
+      try {
+        await services.onboardingapi3(
+          resId,
+          accNumber.text,
+          accName.text,
+          business_add,
+          phoneveify.text,
+          timezone.value,
+        );
+        Get.toNamed(OnboardingPage4.id);
+      } catch (e) {
+        if (e.runtimeType != SocketException) {
+          Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+            title: 'Error',
+            message: e.toString(),
+            icon: FaIcon(
+              FontAwesomeIcons.timesCircle,
+              color: MyTheme.redColor,
+            ),
+          ));
+          // Get.snackbar("Error", e.toString());
+        } else {
+          Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+            title: 'Error',
+            message:
+                "There seems to be a server/internet connectivity issue. Please check the same",
+            icon: FaIcon(
+              FontAwesomeIcons.timesCircle,
+              color: MyTheme.redColor,
+            ),
+          ));
+        }
       }
+    } else {
+      Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+        title: 'Error',
+        message:
+            "There seems to be a internet connectivity issue. Please check your connection",
+        icon: FaIcon(
+          FontAwesomeIcons.timesCircle,
+          color: MyTheme.redColor,
+        ),
+      ));
     }
   }
 
@@ -387,29 +452,50 @@ class OnboardingController extends GetxController {
         city.text +
         " " +
         pincode.text;
-    try {
-      await services.onboardingapi4(
-        uniqueId,
-        pubbusinessName.text,
-        supportEmail.text,
-        supportNumber.text,
-        business_add,
-      );
-      //sfHelper.getRestaurantId();
-      Get.toNamed(OnboardingPage5.id);
-    } catch (e) {
-      if (e.runtimeType != SocketException) {
-        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
-          color: MyTheme.verifyButtonColor,
-          title: 'Error',
-          message: e.toString(),
-          icon: FaIcon(
-            FontAwesomeIcons.timesCircle,
-            color: MyTheme.redColor,
-          ),
-        ));
-        // Get.snackbar("Error", e.toString());
+    if (await s.isConnected()) {
+      try {
+        await services.onboardingapi4(
+          uniqueId,
+          pubbusinessName.text,
+          supportEmail.text,
+          supportNumber.text,
+          business_add,
+        );
+        //sfHelper.getRestaurantId();
+        Get.toNamed(OnboardingPage5.id);
+      } catch (e) {
+        if (e.runtimeType != SocketException) {
+          Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+            title: 'Error',
+            message: e.toString(),
+            icon: FaIcon(
+              FontAwesomeIcons.timesCircle,
+              color: MyTheme.redColor,
+            ),
+          ));
+          // Get.snackbar("Error", e.toString());
+        } else {
+          Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+            title: 'Error',
+            message:
+                "There seems to be a server/internet connectivity issue. Please check the same",
+            icon: FaIcon(
+              FontAwesomeIcons.timesCircle,
+              color: MyTheme.redColor,
+            ),
+          ));
+        }
       }
+    } else {
+      Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+        title: 'Error',
+        message:
+            "There seems to be a internet connectivity issue. Please check your connection",
+        icon: FaIcon(
+          FontAwesomeIcons.timesCircle,
+          color: MyTheme.redColor,
+        ),
+      ));
     }
   }
 
@@ -450,30 +536,51 @@ class OnboardingController extends GetxController {
   }
 
   Future<void> _onboardingapi5() async {
-    try {
-      await services.onboardingapi5(
-          uniqueId,
-          statementDescriptor.text,
-          shortenedDescriptor.text,
-          businessWeb.text,
-          supportWeb.text,
-          privacy.text,
-          termServices.text,
-          fsolNumber.text);
-      Get.toNamed(OnboardingPage6.id);
-    } catch (e) {
-      if (e.runtimeType != SocketException) {
-        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
-          color: MyTheme.verifyButtonColor,
-          title: 'Error',
-          message: e.toString(),
-          icon: FaIcon(
-            FontAwesomeIcons.timesCircle,
-            color: MyTheme.redColor,
-          ),
-        ));
-        // Get.snackbar("Error", e.toString());
+    if (await s.isConnected()) {
+      try {
+        await services.onboardingapi5(
+            uniqueId,
+            statementDescriptor.text,
+            shortenedDescriptor.text,
+            businessWeb.text,
+            supportWeb.text,
+            privacy.text,
+            termServices.text,
+            fsolNumber.text);
+        Get.toNamed(OnboardingPage6.id);
+      } catch (e) {
+        if (e.runtimeType != SocketException) {
+          Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+            title: 'Error',
+            message: e.toString(),
+            icon: FaIcon(
+              FontAwesomeIcons.timesCircle,
+              color: MyTheme.redColor,
+            ),
+          ));
+          // Get.snackbar("Error", e.toString());
+        } else {
+          Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+            title: 'Error',
+            message:
+                "There seems to be a server/internet connectivity issue. Please check the same",
+            icon: FaIcon(
+              FontAwesomeIcons.timesCircle,
+              color: MyTheme.redColor,
+            ),
+          ));
+        }
       }
+    } else {
+      Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+        title: 'Error',
+        message:
+            "There seems to be a internet connectivity issue. Please check your connection",
+        icon: FaIcon(
+          FontAwesomeIcons.timesCircle,
+          color: MyTheme.redColor,
+        ),
+      ));
     }
   }
 
@@ -501,38 +608,59 @@ class OnboardingController extends GetxController {
   }
 
   Future<void> _onboardingapi6() async {
-    try {
-      await services.onboardingapi6(
-        uniqueId,
-        businesstype.value,
-        nameOfBusiness.text,
-        eiNumber.text,
-        confirmLetter,
-        uploadLetter,
-      );
-      if (!isEditing)
-        Get.toNamed(OnboardingPage7.id);
-      else {
-        final c = Get.find<HomeController>();
+    if (await s.isConnected()) {
+      try {
+        await services.onboardingapi6(
+          uniqueId,
+          businesstype.value,
+          nameOfBusiness.text,
+          eiNumber.text,
+          confirmLetter,
+          uploadLetter,
+        );
+        if (!isEditing)
+          Get.toNamed(OnboardingPage7.id);
+        else {
+          final c = Get.find<HomeController>();
 
-        Get.offAllNamed(HomePage.id);
-        c.selectedIndex.value = 4;
-        // c.pageController.animateToPage(3,
-        //     duration: Duration(microseconds: 200), curve: Curves.ease);
+          Get.offAllNamed(HomePage.id);
+          c.selectedIndex.value = 4;
+          // c.pageController.animateToPage(3,
+          //     duration: Duration(microseconds: 200), curve: Curves.ease);
+        }
+      } catch (e) {
+        if (e.runtimeType != SocketException) {
+          Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+            title: 'Error',
+            message: e.toString(),
+            icon: FaIcon(
+              FontAwesomeIcons.timesCircle,
+              color: MyTheme.redColor,
+            ),
+          ));
+          // Get.snackbar("Error", e.toString());
+        } else {
+          Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+            title: 'Error',
+            message:
+                "There seems to be a server/internet connectivity issue. Please check the same",
+            icon: FaIcon(
+              FontAwesomeIcons.timesCircle,
+              color: MyTheme.redColor,
+            ),
+          ));
+        }
       }
-    } catch (e) {
-      if (e.runtimeType != SocketException) {
-        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
-          color: MyTheme.verifyButtonColor,
-          title: 'Error',
-          message: e.toString(),
-          icon: FaIcon(
-            FontAwesomeIcons.timesCircle,
-            color: MyTheme.redColor,
-          ),
-        ));
-        // Get.snackbar("Error", e.toString());
-      }
+    } else {
+      Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+        title: 'Error',
+        message:
+            "There seems to be a internet connectivity issue. Please check your connection",
+        icon: FaIcon(
+          FontAwesomeIcons.timesCircle,
+          color: MyTheme.redColor,
+        ),
+      ));
     }
   }
 
@@ -649,29 +777,50 @@ class OnboardingController extends GetxController {
   RxString typeOfEstablishment = "".obs;
 
   Future<void> _onboardingapi7() async {
-    try {
-      await services.onboardingapi7(
-        uniqueId,
-        typeOfEstablishment.value,
-        chooseCategory.toList().toString(),
-        startTime,
-        endTime,
-        chooseDays.toList().toString(),
-      );
-      Get.toNamed(OnboardingPage8.id);
-    } catch (e) {
-      if (e.runtimeType != SocketException) {
-        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
-          color: MyTheme.verifyButtonColor,
-          title: 'Error',
-          message: e.toString(),
-          icon: FaIcon(
-            FontAwesomeIcons.timesCircle,
-            color: MyTheme.redColor,
-          ),
-        ));
-        // Get.snackbar("Error", e.toString());
+    if (await s.isConnected()) {
+      try {
+        await services.onboardingapi7(
+          uniqueId,
+          typeOfEstablishment.value,
+          chooseCategory.toList().toString(),
+          startTime,
+          endTime,
+          chooseDays.toList().toString(),
+        );
+        Get.toNamed(OnboardingPage8.id);
+      } catch (e) {
+        if (e.runtimeType != SocketException) {
+          Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+            title: 'Error',
+            message: e.toString(),
+            icon: FaIcon(
+              FontAwesomeIcons.timesCircle,
+              color: MyTheme.redColor,
+            ),
+          ));
+          // Get.snackbar("Error", e.toString());
+        } else {
+          Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+            title: 'Error',
+            message:
+                "There seems to be a server/internet connectivity issue. Please check the same",
+            icon: FaIcon(
+              FontAwesomeIcons.timesCircle,
+              color: MyTheme.redColor,
+            ),
+          ));
+        }
       }
+    } else {
+      Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+        title: 'Error',
+        message:
+            "There seems to be a internet connectivity issue. Please check your connection",
+        icon: FaIcon(
+          FontAwesomeIcons.timesCircle,
+          color: MyTheme.redColor,
+        ),
+      ));
     }
   }
 
@@ -698,43 +847,64 @@ class OnboardingController extends GetxController {
   }
 
   Future<void> _onboardingapi8() async {
-    try {
-      if (resId == "") {
-        resId = await sfHelper.getRestaurantId();
-      }
-      if (recurrenceTime == null) {
-        recurrenceTime = DateTime.now();
-      }
-      // if (selectedRecurrence.value == "") {
-      //   selectedRecurrence.value = "Monthly";
-      // }
-      await services.onboardingapi8(
-        resId,
-        resDescript.text,
-        servingTime.toString(),
-        maxOrders.text,
-        advanceOrders.text,
-        "${recurrenceTime!.year}-${recurrenceTime!.month}-${recurrenceTime!.day}",
-        eventName.text,
-        estartTime,
-        eendTime,
-        eventDesc.text,
-      );
+    if (await s.isConnected()) {
+      try {
+        if (resId == "") {
+          resId = await sfHelper.getRestaurantId();
+        }
+        if (recurrenceTime == null) {
+          recurrenceTime = DateTime.now();
+        }
+        // if (selectedRecurrence.value == "") {
+        //   selectedRecurrence.value = "Monthly";
+        // }
+        await services.onboardingapi8(
+          resId,
+          resDescript.text,
+          servingTime.toString(),
+          maxOrders.text,
+          advanceOrders.text,
+          "${recurrenceTime!.year}-${recurrenceTime!.month}-${recurrenceTime!.day}",
+          eventName.text,
+          estartTime,
+          eendTime,
+          eventDesc.text,
+        );
 
-      Get.toNamed(OnboardingPage9.resId);
-    } catch (e) {
-      if (e.runtimeType != SocketException) {
-        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
-          color: MyTheme.verifyButtonColor,
-          title: 'Error',
-          message: e.toString(),
-          icon: FaIcon(
-            FontAwesomeIcons.timesCircle,
-            color: MyTheme.redColor,
-          ),
-        ));
-        // Get.snackbar("Error", e.toString());
+        Get.toNamed(OnboardingPage9.resId);
+      } catch (e) {
+        if (e.runtimeType != SocketException) {
+          Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+            title: 'Error',
+            message: e.toString(),
+            icon: FaIcon(
+              FontAwesomeIcons.timesCircle,
+              color: MyTheme.redColor,
+            ),
+          ));
+          // Get.snackbar("Error", e.toString());
+        } else {
+          Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+            title: 'Error',
+            message:
+                "There seems to be a server/internet connectivity issue. Please check the same",
+            icon: FaIcon(
+              FontAwesomeIcons.timesCircle,
+              color: MyTheme.redColor,
+            ),
+          ));
+        }
       }
+    } else {
+      Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+        title: 'Error',
+        message:
+            "There seems to be a internet connectivity issue. Please check your connection",
+        icon: FaIcon(
+          FontAwesomeIcons.timesCircle,
+          color: MyTheme.redColor,
+        ),
+      ));
     }
   }
 
@@ -844,79 +1014,99 @@ class OnboardingController extends GetxController {
   }
 
   Future<void> _uploadImage() async {
-    try {
-      print("On Upload Image, Res Id is $resId");
-      if (resId == "") {
-        resId = await sfHelper.getRestaurantId();
-      }
-      List<String> fields = [];
-      List<String> files = [];
+    if (await s.isConnected()) {
+      try {
+        print("On Upload Image, Res Id is $resId");
+        if (resId == "") {
+          resId = await sfHelper.getRestaurantId();
+        }
+        List<String> fields = [];
+        List<String> files = [];
 
-      switch (pageIndex.value) {
-        case 0:
-          fields = [
-            "front_fascia_day",
-            "front_fascia_night",
-            "street_view",
-            "entrance"
-          ];
-          files = fasciaImages;
-          break;
-        case 1:
-          fields = ["ambience1", "ambience2", "ambience3", "ambience4"];
-          files = ambienceImages;
-          break;
-        case 2:
-          fields = ["food1", "food2", "food3", "food4"];
-          files = foodImages;
-          break;
-        default:
-          fields = ["cv19prec1", "cv19prec2", "cv19prec3", "cv19prec4"];
-          files = covidProtocol;
-          break;
-      }
-      if (isImagesUploaded(files)) {
-        print("Calling apis");
-        await services.uploadImages(files, pageIndex.value, fields, resId);
-        if (pageIndex.value == 3) {
-          if (isEditing) {
-            final c = Get.find<HomeController>();
-            Get.offAllNamed(HomePage.id);
-            c.selectedIndex.value = 4;
+        switch (pageIndex.value) {
+          case 0:
+            fields = [
+              "front_fascia_day",
+              "front_fascia_night",
+              "street_view",
+              "entrance"
+            ];
+            files = fasciaImages;
+            break;
+          case 1:
+            fields = ["ambience1", "ambience2", "ambience3", "ambience4"];
+            files = ambienceImages;
+            break;
+          case 2:
+            fields = ["food1", "food2", "food3", "food4"];
+            files = foodImages;
+            break;
+          default:
+            fields = ["cv19prec1", "cv19prec2", "cv19prec3", "cv19prec4"];
+            files = covidProtocol;
+            break;
+        }
+        if (isImagesUploaded(files)) {
+          print("Calling apis");
+          await services.uploadImages(files, pageIndex.value, fields, resId);
+          if (pageIndex.value == 3) {
+            if (isEditing) {
+              final c = Get.find<HomeController>();
+              Get.offAllNamed(HomePage.id);
+              c.selectedIndex.value = 4;
+            } else {
+              Get.toNamed(TableConfig.id);
+            }
           } else {
-            Get.toNamed(TableConfig.id);
+            pageController.animateToPage(pageIndex.value + 1,
+                duration: Duration(milliseconds: 500), curve: Curves.ease);
           }
         } else {
-          pageController.animateToPage(pageIndex.value + 1,
-              duration: Duration(milliseconds: 500), curve: Curves.ease);
-        }
-      } else {
-        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
-          color: MyTheme.verifyButtonColor,
-          title: 'Error',
-          message: "Uplaod All the Images",
-          icon: FaIcon(
-            FontAwesomeIcons.timesCircle,
-            color: MyTheme.redColor,
-          ),
-        ));
-        // Get.snackbar("Error", e.toString());
+          Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+            title: 'Error',
+            message: "Upload All the Images",
+            icon: FaIcon(
+              FontAwesomeIcons.timesCircle,
+              color: MyTheme.redColor,
+            ),
+          ));
+          // Get.snackbar("Error", e.toString());
 
-        // Get.snackbar("Error", "Uplaod All the Images");
+          // Get.snackbar("Error", "Uplaod All the Images");
+        }
+      } catch (e) {
+        if (e.runtimeType != SocketException) {
+          Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+            title: 'Error',
+            message: e.toString(),
+            icon: FaIcon(
+              FontAwesomeIcons.timesCircle,
+              color: MyTheme.redColor,
+            ),
+          ));
+          // Get.snackbar("Error", e.toString());
+        } else {
+          Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+            title: 'Error',
+            message:
+                "There seems to be a server/internet connectivity issue. Please check the same",
+            icon: FaIcon(
+              FontAwesomeIcons.timesCircle,
+              color: MyTheme.redColor,
+            ),
+          ));
+        }
       }
-    } catch (e) {
-      if (e.runtimeType != SocketException) {
-        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
-          color: MyTheme.verifyButtonColor,
-          title: 'Error',
-          message: e.toString(),
-          icon: FaIcon(
-            FontAwesomeIcons.timesCircle,
-            color: MyTheme.redColor,
-          ),
-        ));
-        // Get.snackbar("Error", e.toString());
-      }
+    } else {
+      Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+        title: 'Error',
+        message:
+            "There seems to be a internet connectivity issue. Please check your connection",
+        icon: FaIcon(
+          FontAwesomeIcons.timesCircle,
+          color: MyTheme.redColor,
+        ),
+      ));
     }
   }
 
@@ -938,51 +1128,74 @@ class OnboardingController extends GetxController {
       }
     }
 
-    try {
-      if (resId == "") {
-        resId = await sfHelper.getRestaurantId();
-      }
-
-      if (!isEditing) {
-        await services.tableConfig(
-          resId,
-          capacities,
-        );
-        Get.find<SharedPreferenceHelper>().setLoggedIn(true);
-        Get.find<AuthController>().isLoggedIn.value = true;
-        Get.put(HomeController(selectedIndex: 0.obs));
-        Get.put(OrderController());
-        FirebaseMessagingService().getToken();
-        Get.offAllNamed(HomePage.id);
-      } else {
-        if (available.isEmpty) {
-          available = List.generate(capacities.length, (index) => true);
+    if (await s.isConnected()) {
+      try {
+        if (resId == "") {
+          resId = await sfHelper.getRestaurantId();
         }
 
-        while (available.length < capacities.length) {
-          available.add(true);
-        }
-        await services.tableConfigEdit(
-            resId, capacities, available.map((e) => getValues(e)).toList());
-        final c = Get.find<HomeController>();
-        Get.offAllNamed(HomePage.id);
-        c.selectedIndex.value = 4;
-      }
+        if (!isEditing) {
+          await services.tableConfig(
+            resId,
+            capacities,
+          );
+          final fcm = FirebaseMessagingService();
+          fcm.initNotifications();
+          Get.find<SharedPreferenceHelper>().setLoggedIn(true);
+          Get.find<AuthController>().isLoggedIn.value = true;
+          Get.put(HomeController(selectedIndex: 0.obs));
+          Get.put(OrderController());
+          FirebaseMessagingService().getToken();
+          Get.offAllNamed(HomePage.id);
+        } else {
+          if (available.isEmpty) {
+            available = List.generate(capacities.length, (index) => true);
+          }
 
-      // dispose();
-    } catch (e) {
-      if (e.runtimeType != SocketException) {
-        Get.showSnackbar(MySnackBar.myLoadingSnackBar(
-          color: MyTheme.verifyButtonColor,
-          title: 'Error',
-          message: e.toString(),
-          icon: FaIcon(
-            FontAwesomeIcons.timesCircle,
-            color: MyTheme.redColor,
-          ),
-        ));
-        // Get.snackbar("Error", e.toString());
+          while (available.length < capacities.length) {
+            available.add(true);
+          }
+          await services.tableConfigEdit(
+              resId, capacities, available.map((e) => getValues(e)).toList());
+          final c = Get.find<HomeController>();
+          Get.offAllNamed(HomePage.id);
+          c.selectedIndex.value = 4;
+        }
+
+        // dispose();
+      } catch (e) {
+        if (e.runtimeType != SocketException) {
+          Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+            title: 'Error',
+            message: e.toString(),
+            icon: FaIcon(
+              FontAwesomeIcons.timesCircle,
+              color: MyTheme.redColor,
+            ),
+          ));
+          // Get.snackbar("Error", e.toString());
+        } else {
+          Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+            title: 'Error',
+            message:
+                "There seems to be a server/internet connectivity issue. Please check the same",
+            icon: FaIcon(
+              FontAwesomeIcons.timesCircle,
+              color: MyTheme.redColor,
+            ),
+          ));
+        }
       }
+    } else {
+      Get.showSnackbar(MySnackBar.myLoadingSnackBar(
+        title: 'Error',
+        message:
+            "There seems to be a internet connectivity issue. Please check your connection",
+        icon: FaIcon(
+          FontAwesomeIcons.timesCircle,
+          color: MyTheme.redColor,
+        ),
+      ));
     }
   }
 }

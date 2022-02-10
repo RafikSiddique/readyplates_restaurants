@@ -67,7 +67,7 @@ class AppFormField extends StatefulWidget {
 class _AppFormFieldState extends State<AppFormField> {
   bool obSecureText = true;
   TextEditingController get controller => widget.controller;
-  @override
+
   bool valid = true;
 
   bool _Switchvalue = true;
@@ -169,9 +169,11 @@ class _AppFormFieldState extends State<AppFormField> {
                           }
                         }
 
-                        if (widget.isUrl) {
-                          if (!value!.isURL) {
-                            return "Please enter a valid URL";
+                        if (value != '') {
+                          if (widget.isUrl) {
+                            if (!value!.isURL) {
+                              return "Please enter a valid URL";
+                            }
                           }
                         }
                         if (widget.isEmail) {
